@@ -81,6 +81,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			var banphoConTimer ;
 			var isInBanphoCon = false;
 			var isMoviePlaying = false;
+			// is playing just now
+			var isCurrentPlaying = false;
 			var $banphoCon = $('.banpho-con').hover(function(){
 				clearTimeout( banphoConTimer );
 				isInBanphoCon = true;
@@ -96,7 +98,10 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 						if( !isInBanphoCon )
 							$banphoCon.fadeOut();
 					} , 2000 );
-					$banphoCon.fadeIn();
+
+					if( !isCurrentPlaying ){
+						$banphoCon.fadeIn();
+					}
 				}
 			});
 
@@ -114,6 +119,11 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		var len = $('.slider-item').length;
 		if( index == 0 ){ return false; }
 
+		// stop current video
+		var video = $('.slider-item').eq( index )
+			.data('video-object');
+		video && video.pause();
+
 		$inner.animate({
 			marginLeft: '+=100%'
 		} , 500);
@@ -127,6 +137,11 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		var len = $('.slider-item').length;
 		if( index == len - 1 ){ return false; }
 
+		// stop current video
+		var video = $('.slider-item').eq( index )
+			.data('video-object');
+		video && video.pause();
+
 		$inner.animate({
 			marginLeft: '-=100%'
 		} , 500);
@@ -136,12 +151,58 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	});
 
 	LP.action('home-play-movie' , function(){
-		isMoviePlaying = true;
+		isCurrentPlaying = true;
+		setTimeout(function(){
+			isCurrentPlaying = false;
+		} , 3000);
+
 		var index = $('.slider-block-inner').data('index');
 		// get movie
 		var $sliderItem = $('.slider-item').eq( index );
-		
+		var movie = $sliderItem.data('movie');
+		if( !$sliderItem.find('video').length ){
+			$sliderItem.append( LP.format( '<div class="video-wrap"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
+                preload="auto"\
+                  poster="#[poster]">\
+                 <source src="#[videoFile].mp4" type="video/mp4" />\
+                 <source src="#[videoFile].webm" type="video/webm" />\
+                 <source src="#[videoFile].ogv" type="video/ogg" />\
+            </video></div>' , {id: 'home-movie-' + index  , videoFile: movie , poster: $sliderItem.find('img').attr('src')}));
+		}
 
+		LP.use('video-js' , function(){
+            videojs.options.flash.swf = "/js/video-js/video-js.swf";
+            var myVideo = videojs( 'home-movie-' + index , { "controls": false, "autoplay": true, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , function(){
+            	var v = this;
+            	var ratio = 516 / 893;
+                $(window).bind( 'resize.video-' + index , function(){
+                    var w = $sliderItem.width()  ;
+                    var h = $sliderItem.height() ;
+                    var vh = 0 ;
+                    var vw = 0 ;
+                    if( h / w > ratio ){
+                        vh = h + 40;
+                        vw = vh / ratio;
+                    } else {
+                        vw = w + 40;
+                        vh = vw * ratio;
+                    }
+                    v.dimensions( vw , vh );
+
+                    $('#' + v.Q).css({
+                        "margin-top": ( h - vh ) / 2,
+                        "margin-left": ( w - vw ) / 2
+                    });
+                })
+                .trigger('resize');
+
+                isMoviePlaying = true;
+            } );
+
+			$sliderItem.data('video-object' , myVideo);
+        });
+		
+		$('.banpho-con').fadeOut();
 	});
 
 	LP.action('home_newsnext' , function(){

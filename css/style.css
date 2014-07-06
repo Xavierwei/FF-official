@@ -191,7 +191,8 @@ a:hover{color:#000}
 /* section home */
 .sec_home{}
 	.home-slider{position: relative;}
-		.slider-item{float: left;display: none;}
+		.slider-item{float: left;display: none;position: relative;}
+		.video-wrap{position: absolute;top: 0; left: 0; width: 100%;height: 100%;}
 	.home_news{font-size: 36px;text-align: center;line-height:45px ;width: 1000px;margin: 0 auto;font-weight: bold;overflow: hidden;}
 		.home_news h2{font-size: 48px;line-height: 145px;}
 		.home_news_inner p{float: left; width: 1000px;}

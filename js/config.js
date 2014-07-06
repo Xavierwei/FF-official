@@ -59,6 +59,7 @@ seajs.config({
     }
     ,"video-js":{
       src: "../video-js/video.js"
+      , deps: ['../video-js/video-js.css']
     }
     ,"flash-detect":{
       src: "../plugin/flash_detect_min.js"

@@ -13,10 +13,10 @@
 	<!-- banner -->
 	<div class="banpho home-slider">
 		<div class="slider-block-inner cs-clear" data-index="0">
-			<div class="slider-item" style="position:static;display:block;"><img src="../images/INDEX_pho.jpg" /></div>
-			<div class="slider-item"><img src="../images/INDEX_pho.jpg" /></div>
-			<div class="slider-item"><img src="../images/INDEX_pho.jpg" /></div>
-			<div class="slider-item"><img src="../images/INDEX_pho.jpg" /></div>
+			<div class="slider-item" style="display:block;" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
+			<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
+			<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
+			<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
 		</div>
 		<div class="banpho-con">
 			<div><img src="../images/INDEX_c.png"></div>
