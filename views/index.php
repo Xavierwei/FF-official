@@ -1,28 +1,20 @@
+<?php $home_page = true; ?>
 <?php include_once 'common/header.php';?>
-<div class="page">
-<!-- banner -->
-	<div class="banpho">
-		<img src="../images/INDEX_pho.jpg" />
-		<div class="banpho-con">
-			<div><img src="../images/INDEX_c.png"></div>
-			<div class="banpho-bt">
-				<a href="#" class="banpho-bt-l"></a>
-				<div class="banpho-bt-c">play movie</div>
-				<a href="#" class="banpho-bt-r"></a>
-			</div>
-			<div class="banpho-i">1/12</div>
-		</div>
-	</div>
+<div class="page" data-page="home-page">
 	<!-- section -->
 	<div class="section sec_home">
 		<!--  -->
-		<div class="home_news">
+		<div class="home_news" data-index="0">
 			<h2>NEWS</h2>
-			<p>Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
+			<div class="home_news_inner cs-clear" style="width:3000px;">
+				<p>Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
+				<p>Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
+				<p>Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
+			</div>
 			<div class="home_newspage">
-				1/3
-				<a href="#" class="home_newspicon home_newsprev"></a>
-				<a href="#" class="home_newspicon home_newsnext"></a>
+				<span>1/3</span>
+				<a href="#" data-a="home_newsprev" class="home_newspicon home_newsprev transition"></a>
+				<a href="#" data-a="home_newsnext" class="home_newspicon home_newsnext transition"></a>
 			</div>
 		</div>
 		<!--  -->
@@ -60,20 +52,12 @@
 					<img src="../images/campaign_demo1.jpg" />
 					<p>All starts with an Audi</p>
 				</div>
-				<div class="cam_item">
-					<img src="../images/campaign_demo2.jpg" />
-					<p>All starts with an Audi</p>
-				</div>
-				<div class="cam_item">
-					<img src="../images/campaign_demo1.jpg" />
-					<p>All starts with an Audi</p>
-				</div>
-				<div class="cam_item">
-					<img src="../images/campaign_demo2.jpg" />
-					<p>All starts with an Audi</p>
-				</div>
 			</div>
-			<a class="home_cambtn" href="#">LOAD MORE</a>
+			<a class="home_cambtn" data-a="home-loadmore" href="#">
+				<div class="transition">
+					LOAD MORE <br/><br/>LOAD MORE
+				</div>
+			</a>
 		</div>		
 		<!--  -->
 		<div class="home_bio">
@@ -103,6 +87,12 @@
 			<a href="#" class="home_numbtn">ABOUT</a>
 		</div>
 		<!--  -->
+		<div class="home_char">
+			<p class="home_char_txt">
+				<i>“il n’est de richesse que d’homme.”</i> <br/>
+				<span>Rene Char</span>
+			</p>
+		</div>
 	</div>
 </div>
 <?php include_once 'common/footer.php';?>

@@ -2,12 +2,13 @@
 	<div class="footer">
 		<div class="ft_con cs-clear">
 			<div class="ft_mod ft_find">
-				<h3>FIND US</h3>
+				<h3>FOLLOW US</h3>
 				<div class="ft_mbd ft_findmbd cs-clear">
 					<a href="#" class="find_item find_item1"></a>
 					<a href="#" class="find_item find_item2"></a>
 					<a href="#" class="find_item find_item3"></a>
 					<a href="#" class="find_item find_item4"></a>
+					<a href="#" class="find_item find_item5"></a>
 				</div>
 			</div>
 			<div class="ft_mod ft_paris">
@@ -27,7 +28,7 @@
 				</div>
 			</div>
 			<div class="ft_mod ft_network">
-				<h3>OUR NETWORK</h3>
+				<h3>OUR MEDIAS</h3>
 				<div class="ft_mbd ft_workmbd">
 					<a href="#" class="work_item work_item1"></a>
 					<a href="#" class="work_item work_item2"></a>
