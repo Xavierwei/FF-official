@@ -154,25 +154,26 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		isCurrentPlaying = true;
 		setTimeout(function(){
 			isCurrentPlaying = false;
-		} , 3000);
+		} , 2000);
 
 		var index = $('.slider-block-inner').data('index');
 		// get movie
 		var $sliderItem = $('.slider-item').eq( index );
 		var movie = $sliderItem.data('movie');
-		if( !$sliderItem.find('video').length ){
-			$sliderItem.append( LP.format( '<div class="video-wrap"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
-                preload="auto"\
-                  poster="#[poster]">\
-                 <source src="#[videoFile].mp4" type="video/mp4" />\
-                 <source src="#[videoFile].webm" type="video/webm" />\
-                 <source src="#[videoFile].ogv" type="video/ogg" />\
-            </video></div>' , {id: 'home-movie-' + index  , videoFile: movie , poster: $sliderItem.find('img').attr('src')}));
-		}
+
+		$sliderItem.find('.video-wrap').remove();
+		var id = 'home-movie-' + index + (+new Date());
+		$sliderItem.append( LP.format( '<div class="video-wrap"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
+            preload="auto"\
+              poster="#[poster]">\
+             <source src="#[videoFile].mp4" type="video/mp4" />\
+             <source src="#[videoFile].webm" type="video/webm" />\
+             <source src="#[videoFile].ogv" type="video/ogg" />\
+        </video></div>' , {id: id  , videoFile: movie , poster: $sliderItem.find('img').attr('src')}));
 
 		LP.use('video-js' , function(){
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
-            var myVideo = videojs( 'home-movie-' + index , { "controls": false, "autoplay": true, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , function(){
+            var myVideo = videojs( id , { "controls": false, "autoplay": true, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , function(){
             	var v = this;
             	var ratio = 516 / 893;
                 $(window).bind( 'resize.video-' + index , function(){
