@@ -72,9 +72,39 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		case 'home-page':
 			// init home slider
 			// ============================
-			$('.slider-block-inner').css('width' , $('.slider-item').length + '00%');
+			var $sliderInner = $('.slider-block-inner').css('width' , $('.slider-item').length + '00%');
 			$(window).resize(function(){
-				$('.slider-item').css('width' , $(window).width()).show();
+				var winWidth = $(window).width();
+				var winHeight = $(window).height();
+				$('.slider-item').css('width' , winWidth).show();
+
+
+				// resize slider height
+				$sliderInner.height( winHeight );
+				// resize the slider images
+				$('<img />')
+					.load(function(){
+						var ratio = this.height / this.width;
+						var w = winWidth ;
+	                    var h = winHeight ;
+	                    var vh = 0 ;
+	                    var vw = 0 ;
+	                    if( h / w > ratio ){
+	                        vh = h + 40;
+	                        vw = vh / ratio;
+	                    } else {
+	                        vw = w + 40;
+	                        vh = vw * ratio;
+	                    }
+	                    $sliderInner.find('.slider-item>img').css({
+	                    	width: vw,
+	                    	height: vh,
+	                    	marginTop: ( h - vh ) / 2,
+	                    	marginLeft: ( w - vw ) / 2
+	                    });
+					})
+					.attr('src' , $sliderInner.find('.slider-item>img').eq(0).attr('src'));
+
 			})
 			.trigger('resize');
 
@@ -163,7 +193,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 		$sliderItem.find('.video-wrap').remove();
 		var id = 'home-movie-' + index + (+new Date());
-		$sliderItem.append( LP.format( '<div class="video-wrap"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
+		$sliderItem.append( LP.format( '<div class="video-wrap" style="display:none;"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
             preload="auto"\
               poster="#[poster]">\
              <source src="#[videoFile].mp4" type="video/mp4" />\
@@ -173,9 +203,10 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 		LP.use('video-js' , function(){
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
-            var myVideo = videojs( id , { "controls": false, "autoplay": true, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , function(){
+            var myVideo = videojs( id , { "controls": false, "autoplay": false, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , function(){
             	var v = this;
-            	var ratio = 516 / 893;
+            	var ratio = $sliderItem.children('img').height() / $sliderItem.children('img').width();
+            	console.log( +new Date() );
                 $(window).bind( 'resize.video-' + index , function(){
                     var w = $sliderItem.width()  ;
                     var h = $sliderItem.height() ;
@@ -194,8 +225,15 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                         "margin-top": ( h - vh ) / 2,
                         "margin-left": ( w - vw ) / 2
                     });
+
+                    console.log( +new Date() );
                 })
-                .trigger('resize');
+                .trigger('resize.video-' + index);
+
+                setTimeout(function(){
+                	$sliderItem.find('.video-wrap').fadeIn();
+                	myVideo.play();
+                } , 20);
 
                 isMoviePlaying = true;
             } );
