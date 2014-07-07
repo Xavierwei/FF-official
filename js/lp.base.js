@@ -18,7 +18,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	// ============================================================================
 	var $header = $('.header');
 	var headerHeight = $header.height();
-	var headerTop = $header.offset().top;
 
 	var $homeCampaign = $('.home_campaign');
 	var homeCampaignTop = $homeCampaign.offset().top;
@@ -31,7 +30,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		var stTop = $(window).scrollTop();
 
 		// header fixed effect
-		if( stTop > headerTop ){
+		if( stTop > $header.offset().top ){
 			$header.addClass('header-fixed');
 		} else {
 			$header.removeClass('header-fixed');
@@ -134,6 +133,18 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 					}
 				}
 			});
+
+
+			$('.brands-con li').hover(function(){
+				var $els = $(this).find('.brands-mask').animate({
+					opacity: 0.2
+				});
+
+			} , function(){
+				$(this).find('.brands-mask').animate({
+					opacity: 0.7
+				});
+			})
 
 	}
 
@@ -346,7 +357,65 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		return false;
 	});
 
+	LP.action('show-brands' , function(){
+		// TODO:: loading data from server
+		setTimeout(function(){
+			$('.sec_gates').hide();
+			$('.sec_brands').show();
 
+			$('.brands_tit').animate({
+				marginTop: 0,
+				marginBottom: 0
+			} , 200 );
+
+			$('.brands-con li').each(function( i ){
+				$(this).delay( 400 * i )
+					.animate({
+						marginLeft: 0
+					} , 400 )
+					.promise()
+					.then(function(){
+						$(this).find('dd')
+							.each(function( i ){
+								$(this).delay( i * 150 )
+									.animate({
+										width: 320
+									} , 200);
+								$(this).find('.brands-mask')
+									.css({
+										display: 'block',
+										opacity: 0.2
+									})
+									.delay( i * 200 )
+									.animate({
+										opacity: 0.6
+									} , 100 );
+							});
+					});
+			});	
+
+		} , 1000);
+
+		return false;
+	});
+
+	LP.action('brands-item' , function(){
+		$('.brands_tit').animate({
+				marginTop: -176,
+				marginBottom: 176
+			} , 200 );
+
+		$('.brands-con li').each(function( i ){
+			$(this).delay( 200 * i )
+				.animate({
+					marginLeft: -2000
+				} , 400 )
+				.promise()
+				.then(function(){
+					
+				});
+		});	
+	});
 
 	LP.action('search-toggle' , function(){
 		$('.search-wrap').toggle();
