@@ -11,11 +11,63 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
 	}
 
+	function renderVideo ( $wrap , movie , poster , config , cb ){
+		var id = 'video-js-' + ( $.guid++ );
+		$wrap.append( LP.format( '<div class="video-wrap" style="display:none;"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
+            preload="auto"\
+              poster="#[poster]">\
+             <source src="#[videoFile].mp4" type="video/mp4" />\
+             <source src="#[videoFile].webm" type="video/webm" />\
+             <source src="#[videoFile].ogv" type="video/ogg" />\
+        </video></div>' , {id: id  , videoFile: movie , poster: poster}));
+
+		config = $.extend( { "controls": false, "autoplay": false, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , config || {} );
+		var ratio = config.ratio || 3/4;
+		console.log( ratio );
+		LP.use('video-js' , function(){
+            videojs.options.flash.swf = "/js/video-js/video-js.swf";
+            var myVideo = videojs( id , config , function(){
+            	var v = this;
+                $(window).bind( 'resize.video-' + id , function(){
+                    var w = $wrap.width()  ;
+                    var h = $wrap.height() ;
+                    var vh = 0 ;
+                    var vw = 0 ;
+                    if( h / w > ratio ){
+                        vh = h + 40;
+                        vw = vh / ratio;
+                    } else {
+                        vw = w + 40;
+                        vh = vw * ratio;
+                    }
+                    v.dimensions( vw , vh );
+
+                    $('#' + v.Q).css({
+                        "margin-top": ( h - vh ) / 2,
+                        "margin-left": ( w - vw ) / 2
+                    });
+                })
+                .trigger('resize.video-' + id);
+
+                setTimeout(function(){
+                	$wrap.find('.video-wrap').fadeIn();
+                	myVideo.play();
+                } , 20);
+
+                cb && cb();
+            } );
+
+			$wrap.data('video-object' , myVideo);
+        });
+	}
+
 
 
 
 	// page init here
 	// ============================================================================
+
+	// window scroll event
 	var $header = $('.header');
 	var headerHeight = $header.height();
 
@@ -65,6 +117,80 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			});
 		}
 	});
+
+	// menu hover event
+	$('.CATEGORIES').hover(function(){
+		if( $('.sec_gates').is(':visible') ) return;
+		var winHeight = $(window).height();
+		$('.sec_gates').height( winHeight )
+			.css('top' , headerHeight - winHeight )
+			.show()
+			.animate({
+				top: headerHeight
+			} , 1000 , 'easeLightOutBack' , function(){
+				$(this).css({
+					height: 'auto'
+				});
+			} );
+
+		// render the letters
+		var letters = [];
+		$('.gates-inner-l a').each(function(){
+			var l = $.trim($(this).text())[0].toUpperCase();
+			if( $.inArray( l , letters ) < 0 ){
+				letters.push( l );
+			}
+		});
+
+		letters.sort();
+		var html = [];
+		$.each( letters , function( i , l ){
+			html.push('<li> <a data-a="filter-letter" href="#">' + l + '</a> </li>');
+		} );
+		$('.gates-inner-c ul').html( html.join('') );
+	});
+
+
+	var isAtTop = false;
+	var isAtBottom = false;
+	var gatesScrollTop = 0;
+	var runedNum = 0;
+	var $gatesInnerL = 	$('.gates-inner-l').mousemove(function( ev ){
+		if( ev.clientY < 50 + headerHeight ){
+			if( !isAtTop ){
+				runedNum = 200;
+				isAtTop = true;
+				gatesScrollTop = $gatesInnerL.scrollTop();
+			}
+		} else if( ev.clientY + 50 > $(window).height() ){
+			if( !isAtBottom ){
+				isAtBottom = true;
+				runedNum = 200;
+				gatesScrollTop = $gatesInnerL.scrollTop();
+			}
+		} else {
+			isAtTop = false;
+			isAtBottom = false;
+		}
+	}) . hover(function(){
+
+	} , function(){
+		isAtTop = false;
+		isAtBottom = false;
+	});
+
+	setInterval(function(){
+		if( isAtTop ){
+			runedNum++;
+			gatesScrollTop -= runedNum / 50;
+			$gatesInnerL.scrollTop( gatesScrollTop );
+		} else if( isAtBottom ) {
+			runedNum++;
+			gatesScrollTop += runedNum / 50;
+			$gatesInnerL.scrollTop( gatesScrollTop );
+		}
+	} , 1000 / 60);
+
 
 	var $page = $('.page');
 	switch( $page.data('page') ){
@@ -154,6 +280,32 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 	// page actions here
 	// ============================================================================
+	LP.action('navitem' , function(){
+		if($('.home-slider').length){
+			// stop the movie
+			$('.home-slider').find('.slider-item')
+				.each(function(){
+					$(this).data('movie-object') && $(this).data('movie-object').pause();
+				});
+
+			// hide the slider
+			$('.home-slider').animate({
+				height: 0
+			} , 500 , '' , function(){
+				$(this).remove();
+			});
+
+			// scroll to top 
+			$('html,body').animate({
+				scrollTop: 0
+			} , 500);
+		}
+
+		// load next page
+
+
+		return false;
+	});
 	LP.action('home-slider-left' , function(){
 		var $inner = $('.slider-block-inner');
 		var index =  parseInt( $inner.data('index') );
@@ -201,56 +353,13 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		// get movie
 		var $sliderItem = $('.slider-item').eq( index );
 		var movie = $sliderItem.data('movie');
-
 		$sliderItem.find('.video-wrap').remove();
-		var id = 'home-movie-' + index + (+new Date());
-		$sliderItem.append( LP.format( '<div class="video-wrap" style="display:none;"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
-            preload="auto"\
-              poster="#[poster]">\
-             <source src="#[videoFile].mp4" type="video/mp4" />\
-             <source src="#[videoFile].webm" type="video/webm" />\
-             <source src="#[videoFile].ogv" type="video/ogg" />\
-        </video></div>' , {id: id  , videoFile: movie , poster: $sliderItem.find('img').attr('src')}));
 
-		LP.use('video-js' , function(){
-            videojs.options.flash.swf = "/js/video-js/video-js.swf";
-            var myVideo = videojs( id , { "controls": false, "autoplay": false, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , function(){
-            	var v = this;
-            	var ratio = $sliderItem.children('img').height() / $sliderItem.children('img').width();
-            	console.log( +new Date() );
-                $(window).bind( 'resize.video-' + index , function(){
-                    var w = $sliderItem.width()  ;
-                    var h = $sliderItem.height() ;
-                    var vh = 0 ;
-                    var vw = 0 ;
-                    if( h / w > ratio ){
-                        vh = h + 40;
-                        vw = vh / ratio;
-                    } else {
-                        vw = w + 40;
-                        vh = vw * ratio;
-                    }
-                    v.dimensions( vw , vh );
-
-                    $('#' + v.Q).css({
-                        "margin-top": ( h - vh ) / 2,
-                        "margin-left": ( w - vw ) / 2
-                    });
-
-                    console.log( +new Date() );
-                })
-                .trigger('resize.video-' + index);
-
-                setTimeout(function(){
-                	$sliderItem.find('.video-wrap').fadeIn();
-                	myVideo.play();
-                } , 20);
-
-                isMoviePlaying = true;
-            } );
-
-			$sliderItem.data('video-object' , myVideo);
-        });
+		renderVideo( $sliderItem , movie , $sliderItem.find('img').attr('src') , {
+			ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width()
+		} , function(){
+			isMoviePlaying = true;
+		});
 		
 		$('.banpho-con').fadeOut();
 	});
@@ -316,6 +425,38 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			} );
 
 		return false;
+	});
+
+	LP.action('home-cam-item' , function(){
+		var $dom = $(this);
+		var $img = $dom.find('img');
+		var imgOff = $img.offset();
+		var $wrap = $('<div></div>').appendTo(document.body)
+			.css({
+				position: 'fixed',
+				width: $img.width(),
+				height: $img.height(),
+				top: imgOff.top - $(window).scrollTop(),
+				left: imgOff.left,
+				zIndex: 200
+			})
+			.append($img.clone()
+				.css({
+					width: '100%',
+					height: '100%'
+				}));
+
+		// zoom out
+		$wrap.animate({
+			width: $(window).width(),
+			height: $(window).height(),
+			top: 0,
+			left: 0
+		} , 500 , '' ,function(){
+			renderVideo( $wrap , $dom.data('movie') , $img.attr('src') , {
+
+			} );
+		} );
 	});
 
 	LP.action('home-loadmore' , function(){
@@ -396,6 +537,57 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 		} , 1000);
 
+		return false;
+	});
+
+	LP.action('filter-letter' , function(){
+		if( $(this).hasClass('active') ){
+			$(this).removeClass('active');
+		} else {
+			$(this).closest('ul')
+				.find('a')
+				.removeClass('active');
+			$(this).addClass('active');
+		}
+		LP.triggerAction('filter-category' , {category: $('.gates-inner-r a.active').data('category')});
+		return false;
+	});
+
+
+	LP.action('filter-category' , function( data ){
+		var category = data.category || $(this).data('category');
+		$(this).closest('ul')
+			.find('a')
+			.removeClass('active');
+		$(this).addClass('active');
+
+		
+		var $showLi = null;
+		var $hideLi = null;
+		if( !category ){
+			$showLi = $('.gates-inner-l li');
+		} else {
+			$showLi = $('.gates-inner-l a[data-category!="' + category + '"]').parent();
+			$hideLi = $('.gates-inner-l a[data-category="' + category + '"]').parent();
+		}
+
+		var $realShowLi = $();
+		var $realHideLi = $hideLi || $();
+		var letter = $.trim( $('.gates-inner-c a.active').text() );
+		$showLi.each(function(){
+			var text = $.trim( $(this).text() );
+			if( !letter || text[0].toUpperCase() == letter ){
+				$(this).slideDown();
+				$realShowLi.add( this );
+			} else {
+				$(this).slideUp();
+				$realHideLi.add( this );
+			}
+		});
+
+		$realShowLi.slideDown();
+		$realHideLi.slideUp();
+		console.log( $realShowLi , $realHideLi );
 		return false;
 	});
 

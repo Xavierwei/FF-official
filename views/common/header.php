@@ -36,13 +36,13 @@
 		<div class="header-inner">
 			<div class="logo"></div>
 			<div class="nav cs-clear">
-				<a class="navitem" href="index.html">CATEGORIES</a>
-				<a class="navitem" href="BRANDS.html">BRANDS</a>
-				<a class="navitem" href="SERVICES.html">SERVICES</a>
-				<a class="navitem" href="AWARDS.html">AWARDS</a>
-				<a class="navitem" href="PRESS.html">PRESS</a>
-				<a class="navitem" href="ABOUT.html">ABOUT</a>
-				<a class="navitem" href="CONTACT.html">CONTACT</a>
+				<a class="navitem CATEGORIES" data-a="navitem" href="#">CATEGORIES</a>
+				<a class="navitem" data-a="navitem" href="BRANDS.html">BRANDS</a>
+				<a class="navitem" data-a="navitem" href="SERVICES.html">SERVICES</a>
+				<a class="navitem" data-a="navitem" href="AWARDS.html">AWARDS</a>
+				<a class="navitem" data-a="navitem" href="PRESS.html">PRESS</a>
+				<a class="navitem" data-a="navitem" href="ABOUT.html">ABOUT</a>
+				<a class="navitem" data-a="navitem" href="CONTACT.html">CONTACT</a>
 			</div>
 			<div class="language"><a href="#">EN</a> <a href="#">中国</a></div>
 			<a href="#" data-a="search-toggle" class="search">×</a>

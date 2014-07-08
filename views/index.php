@@ -40,15 +40,15 @@
 		<div class="home_campaign">
 			<h2>FEATURED CAMPAIGNS</h2>
 			<div class="home_camcon cs-clear">
-				<div class="cam_item">
+				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
 					<img src="../images/campaign_demo1.jpg" />
 					<p>All starts with an Audi</p>
 				</div>
-				<div class="cam_item">
+				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
 					<img src="../images/campaign_demo2.jpg" />
 					<p>All starts with an Audi</p>
 				</div>
-				<div class="cam_item">
+				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
 					<img src="../images/campaign_demo1.jpg" />
 					<p>All starts with an Audi</p>
 				</div>
@@ -68,7 +68,11 @@
 				</div>
 				<div class="home_bioright">TV Awards, Andy's, New York Festival, Eurobest, Creative Circle, Epica – including more than 50 digital awards since 2011. Fred & Farid also has consecutively won 4 years the title of “Agency of the Year” at the World Luxury Awards. Fred & Farid were also members of major juries like the Cannes Lions Festival or the D&AD.</div>
 			</div>
-			<a href="#" class="home_biobtn">READ MORE</a>
+			<a href="/about/bio" class="home_biobtn">
+				<div class="transition">
+					READ MORE <br/><br/>READ MORE
+				</div>
+			</a>
 		</div>
 		<!--  -->
 		<div class="home_num">
@@ -84,7 +88,11 @@
 					</tr>
 				</table>
 			</div>
-			<a href="#" class="home_numbtn">ABOUT</a>
+			<a href="/about/ffgroup" class="home_numbtn">
+				<div class="transition">
+					ABOUT <br/><br/>ABOUT
+				</div>
+			</a>
 		</div>
 		<!--  -->
 		<div class="home_char">
@@ -94,53 +102,50 @@
 			</p>
 		</div>
 	</div>
-	<div class="section sec_gates">
+	<div class="section sec_gates" style="display:none;">
 		<div class="gates-inner cs-clear">
 			<div class="gates-inner-l">
 				<ul>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-a="audi" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Blcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Clcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Dlcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Elcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Glcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Hlcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Jlcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Klcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Tlcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Ilcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
 				</ul>
 			</div>
 			<div class="gates-inner-c">
 				<ul>
-					<li> <a href="#">A</a> </li>
-					<li> <a href="#">B</a> </li>
-					<li> <a href="#">C</a> </li>
 				</ul>
 			</div>
 			<div class="gates-inner-r">
 				<ul>
-					<li> <a href="#">all</a> </li>
-					<li> <a href="#">CONSULTING</a> </li>
-					<li> <a href="#">DIGITAL</a> </li>
-					<li> <a href="#">TRADITIONAL</a> </li>
-					<li> <a href="#">MEDIA / SOCIAL MEDIA</a> </li>
+					<li> <a data-a="filter-category" data-category="" class="active" href="#">all</a> </li>
+					<li> <a data-a="filter-category" data-category="CONSULTING" href="#">CONSULTING</a> </li>
+					<li> <a data-a="filter-category" data-category="DIGITAL" href="#">DIGITAL</a> </li>
+					<li> <a data-a="filter-category" data-category="TRADITIONAL" href="#">TRADITIONAL</a> </li>
+					<li> <a data-a="filter-category" data-category="MEDIA" href="#">MEDIA / SOCIAL MEDIA</a> </li>
 				</ul>
 			</div>
 		</div>

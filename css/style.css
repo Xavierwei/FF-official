@@ -30,7 +30,7 @@ a:hover{color:#000}
 /* FF Used
 ================================================================================================= */
 .page{background: white;position: relative;z-index: 2;margin-bottom: 550px;}
-.header{height: 66px;}
+.header{height: 66px;position: relative;z-index: 40;}
 	.header-inner{height: 66px;position: relative;z-index: 2; width: 100%;font-size: 14px;line-height: 60px;background: white;}
 	.header-fixed .header-inner{position: fixed;top: 0;z-index: 100;}
 	.logo{background: url('../images/logo.png') no-repeat;width: 14px;height: 14px;position: absolute;left:32px;top:24px;}
@@ -216,7 +216,7 @@ a:hover{color:#000}
 	.home_campaign{background: #f7f7f7;padding:0 0 190px;position: relative;}
 		.home_campaign h2{font-size:48px; text-align:center;line-height: 220px;}
 		.home_camcon{width: 1100px;margin: 0 auto}
-			.cam_item{text-align: center;width: 365px;font-weight:bold;line-height: 30px;float: left;margin-top: 300px;}
+			.cam_item{text-align: center;width: 365px;font-weight:bold;line-height: 30px;float: left;margin-top: 300px;cursor: pointer;}
 				.cam_item p{padding:28px 0;}
 		.home_cambtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto 0;display: block;position: absolute;left: 50%;margin-left: -88px;bottom: -90px;overflow: hidden;}
 		.home_cambtn:hover div{margin-top: -100px;}
@@ -226,10 +226,12 @@ a:hover{color:#000}
 			.home_biotxt strong{text-transform: uppercase;}
 			.home_bioleft{float:left;width: 515px}
 			.home_bioright{float: right;width: 515px}
-		.home_biobtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto 0;display: block;}
+		.home_biobtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto 0;display: block;overflow: hidden;}
+		.home_biobtn:hover div{margin-top: -100px;}
 	.home_num{background: #333;padding:30px;}
 		.home_num h2{font-size: 48px;line-height: 200px;text-align: center;line-height: 180px}
-		.home_numbtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto ;display: block;}
+		.home_numbtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto ;display: block;overflow: hidden;}
+		.home_numbtn:hover div{margin-top: -100px;}
 		.home_numtable{width: 1000px ;margin:0 auto}
 		.home_numtable table{width: 100%;text-align: center;}
 		.home_numtable strong{font-size: 48px;display: block;line-height: 50px}
@@ -240,10 +242,10 @@ a:hover{color:#000}
 
 
 /* for CATEGORIES */
-.sec_gates{ background: rgba(30,30,30,0.97); position: fixed;top: 66px;width: 100%;height: 100%;z-index: 4;}
+.sec_gates{ background: rgba(30,30,30,0.97); position: fixed;top: 66px; bottom: 0; width: 100%;height: 100%;z-index: 4;}
 .gates-inner{width: 1100px;margin: 0 auto;height: 100%;}
-.gates-inner a:hover{color: white;}
-	.gates-inner-l{width: 67.8%;float: left;font-size: 44px;font-weight: bold;line-height: 2em;height: 100%;overflow: auto;}
+.gates-inner a:hover,.gates-inner a.active{color: white;}
+	.gates-inner-l{width: 67.8%;float: left;font-size: 44px;font-weight: bold;line-height: 2em;height: 100%;overflow: hidden;}
 	.gates-inner-l a{margin-right: 100px;}
 	.gates-inner-c{padding-top: 100px;width: 12%;float: left;font-size: 18px;line-height: 2em;}
 	.gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 2em;text-transform: uppercase;}
