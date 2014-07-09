@@ -61,6 +61,7 @@
 		</div>		
 		<!--  -->
 		<div class="home_bio">
+			<img class="home_bio_bg" src="../images/home_biobg.jpg">
 			<h2>BIOGRAPHY</h2>
 			<div class="home_biotxt cs-clear">
 				<div class="home_bioleft">
@@ -80,10 +81,10 @@
 			<div class="home_numtable">
 				<table>
 					<tr>
-						<td><strong>2734</strong>PROJECTS</td>
-						<td><strong>135</strong>BRANDS</td>
-						<td><strong>700</strong>PRESS ARTICLES</td>
-						<td><strong>24</strong>SERVICES</td>
+						<td><strong class="num">2734</strong>PROJECTS</td>
+						<td><strong class="num">135</strong>BRANDS</td>
+						<td><strong class="num">700</strong>PRESS ARTICLES</td>
+						<td><strong class="num">24</strong>SERVICES</td>
 						<td><strong>XXX</strong>AWARDS</td>
 					</tr>
 				</table>
@@ -101,150 +102,6 @@
 				<span>Rene Char</span>
 			</p>
 		</div>
-	</div>
-	<div class="section sec_gates" style="display:none;">
-		<div class="gates-inner cs-clear">
-			<div class="gates-inner-l">
-				<ul>
-					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Blcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Clcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Dlcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Elcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Glcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Hlcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Jlcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Klcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Tlcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Ilcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-				</ul>
-			</div>
-			<div class="gates-inner-c">
-				<ul>
-				</ul>
-			</div>
-			<div class="gates-inner-r">
-				<ul>
-					<li> <a data-a="filter-category" data-category="" class="active" href="#">all</a> </li>
-					<li> <a data-a="filter-category" data-category="CONSULTING" href="#">CONSULTING</a> </li>
-					<li> <a data-a="filter-category" data-category="DIGITAL" href="#">DIGITAL</a> </li>
-					<li> <a data-a="filter-category" data-category="TRADITIONAL" href="#">TRADITIONAL</a> </li>
-					<li> <a data-a="filter-category" data-category="MEDIA" href="#">MEDIA / SOCIAL MEDIA</a> </li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-	<div class="section sec_brands">
-		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
-			<div class="sec_brands_tit"><h2>BRAND  |  AUDI</h2></div>
-			<div class="brands-tags">
-				<p>
-					<a href="#">6 &nbsp; × &nbsp;awards</a>
-					<a href="#">6 &nbsp; × &nbsp;tags</a>
-					<a href="#">6 &nbsp; × &nbsp;services</a>
-					<a href="#">6 &nbsp; × &nbsp;awards</a>
-				</p>
-			</div>
-		</div>
-		<ul class="brands-con">
-			<li style="margin-left:-600px;">
-				<dl class="cs-clear">
-					<dt>
-						<div class="brands-mask"></div>
-						<p class="brands-con-t">
-							911 BIRTHDAY ANNIVERSARY<br/>
-							-
-						</p>
-						<p class="brands-con-time">2013</p>
-						<div class="cs-clear brands-con-meta">
-							<span class="fr">#53</span>
-							<span>digital event</span>
-						</div>
-					</dt>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-				</dl>
-			</li>
-			<li style="margin-left:-600px;">
-				<dl class="cs-clear">
-					<dt>
-						<div class="brands-mask"></div>
-						<p class="brands-con-t">
-							911 BIRTHDAY ANNIVERSARY<br/>
-							-
-						</p>
-						<p class="brands-con-time">2013</p>
-						<div class="cs-clear brands-con-meta">
-							<span class="fr">#53</span>
-							<span>digital event</span>
-						</div>
-					</dt>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-				</dl>
-			</li>
-			<li style="margin-left:-600px;">
-				<dl class="cs-clear">
-					<dt>
-						<div class="brands-mask"></div>
-						<p class="brands-con-t">
-							911 BIRTHDAY ANNIVERSARY<br/>
-							-
-						</p>
-						<p class="brands-con-time">2013</p>
-						<div class="cs-clear brands-con-meta">
-							<span class="fr">#53</span>
-							<span>digital event</span>
-						</div>
-					</dt>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-				</dl>
-			</li>
-			<li style="margin-left:-600px;">
-				<dl class="cs-clear">
-					<dt>
-						<div class="brands-mask"></div>
-						<p class="brands-con-t">
-							911 BIRTHDAY ANNIVERSARY<br/>
-							-
-						</p>
-						<p class="brands-con-time">2013</p>
-						<div class="cs-clear brands-con-meta">
-							<span class="fr">#53</span>
-							<span>digital event</span>
-						</div>
-					</dt>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-				</dl>
-			</li>
-		</ul>
 	</div>
 </div>
 <?php include_once 'common/footer.php';?>

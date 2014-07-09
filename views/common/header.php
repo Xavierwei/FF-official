@@ -12,8 +12,8 @@
 	<?php if( $home_page ){?>
 	<!-- banner -->
 	<div class="banpho home-slider">
-		<div class="slider-block-inner cs-clear" data-index="0">
-			<div class="slider-item" style="display:block;" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
+		<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0">
+			<div class="slider-item" style="display:block;" data-movie="../videos/0"><img id="slider-img-1" src="../images/INDEX_pho.jpg" /></div>
 			<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
 			<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
 			<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
@@ -30,14 +30,21 @@
 			<div class="banpho-i">1/12</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	(function(){
+		var winHeight = document.documentElement.clientHeight;
+		var sliderInner = document.getElementById('slider-block-inner');
+		sliderInner.style.height = winHeight - 60 + 'px';
+	})();
+	</script>
 	<?php }?>
 	<!-- header -->
 	<div class="header">
 		<div class="header-inner">
 			<div class="logo"></div>
 			<div class="nav cs-clear">
-				<a class="navitem CATEGORIES" data-a="navitem" href="#">CATEGORIES</a>
-				<a class="navitem" data-a="navitem" href="BRANDS.html">BRANDS</a>
+				<a class="navitem" data-a="show-category" href="#">CATEGORIES</a>
+				<a class="navitem" data-a="show-brands" href="BRANDS.html">BRANDS</a>
 				<a class="navitem" data-a="navitem" href="SERVICES.html">SERVICES</a>
 				<a class="navitem" data-a="navitem" href="AWARDS.html">AWARDS</a>
 				<a class="navitem" data-a="navitem" href="PRESS.html">PRESS</a>
@@ -54,3 +61,153 @@
 			</div>
 		</div>
 	</div>
+	<div class="section sec_gates" style="display:none;">
+		<div class="gates-inner cs-clear">
+			<div class="gates-inner-l">
+				<ul>
+					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Blcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Clcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Dlcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Elcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Glcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Hlcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Jlcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Klcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Tlcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Ilcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+				</ul>
+			</div>
+			<div class="gates-inner-c">
+				<ul>
+				</ul>
+			</div>
+			<div class="gates-inner-r">
+				<ul>
+					<li> <a data-a="filter-category" data-category="" class="active" href="#">all</a> </li>
+					<li> <a data-a="filter-category" data-category="CONSULTING" href="#">CONSULTING</a> </li>
+					<li> <a data-a="filter-category" data-category="DIGITAL" href="#">DIGITAL</a> </li>
+					<li> <a data-a="filter-category" data-category="TRADITIONAL" href="#">TRADITIONAL</a> </li>
+					<li> <a data-a="filter-category" data-category="MEDIA" href="#">MEDIA / SOCIAL MEDIA</a> </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="section sec_brands">
+		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
+			<div class="sec_brands_tit"><h2>BRAND  |  AUDI</h2></div>
+			<div class="brands-tags">
+				<p>
+					<a href="#">6 &nbsp; × &nbsp;awards</a>
+					<a href="#">6 &nbsp; × &nbsp;tags</a>
+					<a href="#">6 &nbsp; × &nbsp;services</a>
+					<a href="#">6 &nbsp; × &nbsp;awards</a>
+				</p>
+			</div>
+		</div>
+		<ul class="brands-con">
+			<li style="margin-left:-600px;">
+				<dl class="cs-clear">
+					<dt>
+						<div class="brands-mask"></div>
+						<p class="brands-con-t">
+							911 BIRTHDAY ANNIVERSARY<br/>
+							-
+						</p>
+						<p class="brands-con-time">2013</p>
+						<div class="cs-clear brands-con-meta">
+							<span class="fr">#53</span>
+							<span>digital event</span>
+						</div>
+					</dt>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+				</dl>
+			</li>
+			<li style="margin-left:-600px;">
+				<dl class="cs-clear">
+					<dt>
+						<div class="brands-mask"></div>
+						<p class="brands-con-t">
+							911 BIRTHDAY ANNIVERSARY<br/>
+							-
+						</p>
+						<p class="brands-con-time">2013</p>
+						<div class="cs-clear brands-con-meta">
+							<span class="fr">#53</span>
+							<span>digital event</span>
+						</div>
+					</dt>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+				</dl>
+			</li>
+			<li style="margin-left:-600px;">
+				<dl class="cs-clear">
+					<dt>
+						<div class="brands-mask"></div>
+						<p class="brands-con-t">
+							911 BIRTHDAY ANNIVERSARY<br/>
+							-
+						</p>
+						<p class="brands-con-time">2013</p>
+						<div class="cs-clear brands-con-meta">
+							<span class="fr">#53</span>
+							<span>digital event</span>
+						</div>
+					</dt>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+				</dl>
+			</li>
+			<li style="margin-left:-600px;">
+				<dl class="cs-clear">
+					<dt>
+						<div class="brands-mask"></div>
+						<p class="brands-con-t">
+							911 BIRTHDAY ANNIVERSARY<br/>
+							-
+						</p>
+						<p class="brands-con-time">2013</p>
+						<div class="cs-clear brands-con-meta">
+							<span class="fr">#53</span>
+							<span>digital event</span>
+						</div>
+					</dt>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+
+
+
+
+
+

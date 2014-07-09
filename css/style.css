@@ -52,7 +52,7 @@ a:hover{color:#000}
 	.pagetit h1{color:#000;font-size: 48px;width: 1100px;margin: 0 auto}
 	.pagetitarr{position: absolute;width: 24px;height: 16px;background: url('../images/pagetitarr.png') no-repeat 0 0;right: 150px;top:40px;}
 	.pagetitarrbottom{background-position: top right;right:55px;}
-.banpho{text-align: center;background: #000;overflow: hidden; position: relative;}
+.banpho{text-align: center;background: white;overflow: hidden; position: relative;}
 	.banpho img{width: 100%}
 	.banpho-con{position: absolute;top: 50%;margin-top: -100px;left: 50%;margin-left: -165px;width: 330px;height: 200px;color: white;font-size: 14px;font-weight: bold;text-transform: uppercase;line-height: 50px;}
 	.banpho-con img{width: auto;}
@@ -192,7 +192,8 @@ a:hover{color:#000}
 /* section home */
 .sec_home{}
 	.home-slider{position: relative;z-index: 2;}
-		.slider-item{float: left;display: none;position: relative;height: 100%;overflow: hidden;}
+		.home-slider-inner{background: white;}
+		.slider-item{float: left;display: none;position: relative;height: 100%;overflow: hidden;opacity: 0;filter:alpha(opacity=0);}
 		.video-wrap{position: absolute;top: 0; left: 0; width: 100%;height: 100%;}
 	.home_news{font-size: 36px;text-align: center;line-height:45px ;width: 1000px;margin: 0 auto;font-weight: bold;overflow: hidden;}
 		.home_news h2{font-size: 48px;line-height: 145px;}
@@ -220,7 +221,8 @@ a:hover{color:#000}
 				.cam_item p{padding:28px 0;}
 		.home_cambtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto 0;display: block;position: absolute;left: 50%;margin-left: -88px;bottom: -90px;overflow: hidden;}
 		.home_cambtn:hover div{margin-top: -100px;}
-	.home_bio{background: url('../images/home_biobg.jpg') no-repeat center bottom;height: 507px;position: relative;z-index: 1;}
+	.home_bio{height: 507px;position: relative;z-index: 1;overflow: hidden;}
+		.home_bio_bg{width: 100%;position: absolute;z-index: -1;bottom: 0; min-width: 1000px;}
 		.home_bio h2{font-size: 48px;line-height: 200px;text-align: center;}
 		.home_biotxt{font-size: 15px;width: 1090px;margin: 0 auto}
 			.home_biotxt strong{text-transform: uppercase;}
@@ -234,7 +236,7 @@ a:hover{color:#000}
 		.home_numbtn:hover div{margin-top: -100px;}
 		.home_numtable{width: 1000px ;margin:0 auto}
 		.home_numtable table{width: 100%;text-align: center;}
-		.home_numtable strong{font-size: 48px;display: block;line-height: 50px}
+		.home_numtable strong{font-size: 48px;display: block;line-height: 55px}
 	.home_char{height: 425px;background: url(../images/home_charbg.jpg);color: white; text-align: center;font-weight: 100;}
 		.home_char i{font-size: 24px; font-style: italic;}
 		.home_char span{font-size: 14px;}
@@ -242,8 +244,8 @@ a:hover{color:#000}
 
 
 /* for CATEGORIES */
-.sec_gates{ background: rgba(30,30,30,0.97); position: fixed;top: 66px; bottom: 0; width: 100%;height: 100%;z-index: 4;}
-.gates-inner{width: 1100px;margin: 0 auto;height: 100%;}
+.sec_gates{ background: rgba(67, 66, 66, 0.97); position: fixed;top: 66px; bottom: 0; width: 100%;z-index: 4;}
+.gates-inner{width: 1100px;margin: -100% auto 0;height: 100%;}
 .gates-inner a:hover,.gates-inner a.active{color: white;}
 	.gates-inner-l{width: 67.8%;float: left;font-size: 44px;font-weight: bold;line-height: 2em;height: 100%;overflow: hidden;}
 	.gates-inner-l a{margin-right: 100px;}
@@ -257,6 +259,7 @@ a:hover{color:#000}
 	.brands-tags{background: #3b3b3b; }
 	.brands-tags p{width: 1100px;margin: 0 auto; line-height: 88px;font-size: 18px;font-weight: bold;}
 	.brands-tags a{margin-right: 100px;text-transform: uppercase;}
+	.brands-tags a:hover{color: white;}
 
 	.brands-con{width: 100%;overflow: hidden;}
 	.brands-con li{width: 3000px; height: 184px;position: relative;overflow: hidden;}
