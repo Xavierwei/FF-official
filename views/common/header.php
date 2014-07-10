@@ -9,6 +9,7 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<div class="container">
 	<?php if( $home_page ){?>
 	<!-- banner -->
 	<div class="banpho home-slider">
@@ -44,12 +45,12 @@
 			<div class="logo"></div>
 			<div class="nav cs-clear">
 				<a class="navitem" data-a="show-category" href="#">CATEGORIES</a>
-				<a class="navitem" data-a="show-brands" href="BRANDS.html">BRANDS</a>
-				<a class="navitem" data-a="navitem" href="SERVICES.html">SERVICES</a>
-				<a class="navitem" data-a="navitem" href="AWARDS.html">AWARDS</a>
-				<a class="navitem" data-a="navitem" href="PRESS.html">PRESS</a>
-				<a class="navitem" data-a="navitem" href="ABOUT.html">ABOUT</a>
-				<a class="navitem" data-a="navitem" href="CONTACT.html">CONTACT</a>
+				<a class="navitem" data-a="show-brands" href="#">BRANDS</a>
+				<a class="navitem" data-a="show-category" href="#">SERVICES</a>
+				<a class="navitem" data-a="navitem" href="awards.php">AWARDS</a>
+				<a class="navitem" data-a="navitem" href="press.php">PRESS</a>
+				<a class="navitem" data-a="navitem" href="about.php">ABOUT</a>
+				<a class="navitem" data-a="navitem" href="contact.php">CONTACT</a>
 			</div>
 			<div class="language"><a href="#">EN</a> <a href="#">中国</a></div>
 			<a href="#" data-a="search-toggle" class="search">×</a>
@@ -111,6 +112,29 @@
 	</div>
 
 	<div class="section sec_brands">
+		<div class="brand_item_tit" style="margin-top:-88px;margin-bottom: 88px;display:none;" >
+			<div class="sec_brands_tit"><h2>BRAND  |  AUDI  |  MILIMETER</h2></div>
+		</div>
+		<div class="brand_movie" style="display:none;">
+			<dl class="cs-clear">
+				<!-- <dt>
+					<div class="brands-mask" style="opacity: 0.7;"></div>
+					<p class="brands-con-t">
+						911 BIRTHDAY ANNIVERSARY<br>
+						-
+					</p>
+					<p class="brands-con-time">2013</p>
+					<div class="cs-clear brands-con-meta">
+						<span class="fr">#53</span>
+						<span>digital event</span>
+					</div>
+				</dt> -->
+				<dd class="brands-item" data-a="show-brands-big-movie" data-movie="../videos/0"><img src="../images/campaign_demo1.jpg"></dd>
+				<dd class="brands-item" data-a="show-brands-big-movie" data-movie="../videos/0"><img src="../images/campaign_demo1.jpg"></dd>
+				<dd class="brands-item" data-a="show-brands-big-movie" data-movie="../videos/0"><img src="../images/campaign_demo1.jpg"></dd>
+				<dd class="brands-item" data-a="show-brands-big-movie" data-movie="../videos/0"><img src="../images/campaign_demo1.jpg"></dd>
+			</dl>
+		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit"><h2>BRAND  |  AUDI</h2></div>
 			<div class="brands-tags">

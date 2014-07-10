@@ -38,6 +38,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 <script type="text/javascript" src="../js/plugin/modernizr-2.5.3.min.js"></script>
 <script type="text/javascript" src="../js/sea/sea-debug.js" data-config="../config.js"></script>
 <script type="text/javascript" src="../js/sea/plugin-shim.js"></script>

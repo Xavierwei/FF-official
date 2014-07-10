@@ -96,12 +96,18 @@
 			</a>
 		</div>
 		<!--  -->
-		<div class="home_char">
+		<div class="banner_footer">
+			<div class="banft_txt">
+				<p>“il n’est de richesse que d’homme.”</p>
+				<span>Rene Char</span>
+			</div>
+		</div>
+		<!-- <div class="home_char">
 			<p class="home_char_txt">
 				<i>“il n’est de richesse que d’homme.”</i> <br/>
 				<span>Rene Char</span>
 			</p>
-		</div>
+		</div> -->
 	</div>
 </div>
 <?php include_once 'common/footer.php';?>

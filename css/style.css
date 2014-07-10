@@ -181,7 +181,8 @@ a:hover{color:#000}
 	.press_txt{text-align: center;font-size: 36px;padding: 0 0 70px;line-height:40px }
 	.press_year{font-size: 36px;font-weight: bold;text-align: center;line-height: 40px}
 	.press_list{width: 1100px;margin: 0 auto 50px}
-		.press_item{font-size: 14px;color:#666;width: 180px;float: left;display: inline;margin: 50px 46px 0}
+		.press_item{font-size: 14px;color:#666;width: 180px;float: left;display: inline;margin: 50px 46px 0;position: relative;cursor: pointer;}
+			.cover_img{position: absolute;top:0;left:0;z-index: 1;clip:rect(0px 0px 0px 0px);}
 			.press_img{width: 180px;height: 241px}
 			.press_item h3{color:#000;text-transform: uppercase;padding:20px 0 18px;}
 			.press_item strong{color:#000;text-transform: uppercase;display: block}
@@ -253,8 +254,8 @@ a:hover{color:#000}
 	.gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 2em;text-transform: uppercase;}
 
 /* for brands */
-.sec_brands{display: none; position: absolute;top: 0px;width: 100%;z-index: 4;overflow: hidden;background: black;}
-	.sec_brands_tit{background: #333;height:88px;line-height: 88px;font-size: 44px;font-weight: bold;}
+.sec_brands{display: none; position: absolute;top: 0px;width: 100%;z-index: 4;overflow: hidden;background: black;min-height: 100%;}
+	.sec_brands_tit{background: #595959;height:88px;line-height: 88px;font-size: 44px;font-weight: bold;}
 	.sec_brands h2{width: 1100px;margin: 0 auto;}
 	.brands-tags{background: #3b3b3b; }
 	.brands-tags p{width: 1100px;margin: 0 auto; line-height: 88px;font-size: 18px;font-weight: bold;}
@@ -264,12 +265,14 @@ a:hover{color:#000}
 	.brands-con{width: 100%;overflow: hidden;}
 	.brands-con li{width: 3000px; height: 184px;position: relative;overflow: hidden;}
 	.brands-mask{display: none; width: 100%;position: absolute;top: 0; left: 0;height: 100%;background: black; opacity: 0.79;filter:alpha(opacity=79);}
-	.brands-con dl{margin: 0;}
-	.brands-con dt,.brands-con dd{float: left;margin: 0 1px 1px 0; position: relative;}
-	.brands-con dd{font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
+	.brands-con dl,.brand_movie dl{margin: 0;}
+	.brands-con dt,.brands-con dd,.brand_movie dd{float: left;margin: 0 1px 1px 0; position: relative;}
+	.brands-con dd,.brand_movie dd{font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
 	.brands-con dd img{height: 100%;}
 	.brands-con dt{width: 350px;background: #030101;color: white;height: 96px;padding: 44px;}
 	.brands-con dt .brands-mask{opacity: 0.40;filter:alpha(opacity=40);display: block;}
+	.brand_movie dd .brands-mask{display:none;}
+	.brand_movie dl{width: 200%;height: 100%;overflow: hidden;}
 
 	.brands-con-t{font-size: 20px;font-weight: bold;}
 	.brands-con-time{font-size: 14px;font-weight: 100;margin-top: 24px;}
@@ -277,9 +280,9 @@ a:hover{color:#000}
 
 /* pop shade */
 .shade{background: #000 ;opacity: 0.6;filter:alpha(opacity=60);position: fixed;left:0;top: 0;right: 0;bottom: 0;
-	_position: absolute;}
-.pop{background: #000;position: fixed;left:50%;top:50%;
-	_position: absolute;}
+	_position: absolute; z-index: 20000; display: none;}
+.pop{background: #000;position: fixed;left:50%;top:50% ;
+	_position: absolute; z-index: 20000; display: none;}
 /*pop_jobs*/
 .pop_jobs{width: 860px;height: 500px;margin: -275px 0 0 -517px;padding:50px 84px 0;font-size: 14px;}
 	.pop_jobcon{color:#fff;height: 380px;width: 750px;}
@@ -291,12 +294,18 @@ a:hover{color:#000}
 		.jobshareitem{float:left;background: url('../images/jobsshare.png') no-repeat;width: 30px; height:30px;display: inline;margin: 0 6px;}
 		.jobshare_fb{background-position: 0 -30px;}
 		.jobshare_t{background-position: 0 -60px;}
+
 	.popicon{background: url('../images/popicon.png') no-repeat;height: 30px;width: 30px;position: absolute;right:80px;cursor: pointer;}
 	.popclose{top:50px;}
 	.popprev{background-position: 0 -30px;top:150px}
 	.popnext{background-position: 0 -60px;top:250px;}
 	.popnum{top:200px;position: absolute;right: 80px;color:#666;line-height: 30px;}
-.pop_press{padding: 0 95px 0 0;margin:0 0 0 -440px;top:0;}
+.pop_press{padding: 0 95px 0 0;margin:0 0 0 -440px;top:auto; bottom: 100%;background: none;}
 	.pop_press .popicon{right: 30px}
 	.pop_press .popnum{right: 30px}
 	.popdownicon{background: url('../images/popdownicon.png') no-repeat;height: 30px;width: 30px;position: absolute;right:30px;bottom:55px;cursor: pointer;}
+	.pop_presspho{position: relative;z-index: 1;}
+	.pop_press_menus{width: 95px;position: absolute;height: 100%;top: 0;right: 95px;background: black;z-index: 0;}
+
+
+
