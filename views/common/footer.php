@@ -1,4 +1,11 @@
-<!-- footer -->
+	<div class="banner_footer">
+		<div class="banft_txt">
+			<p>“il n’est de richesse que d’homme.”</p>
+			<span>Rene Char</span>
+		</div>
+	</div>
+</div>
+	<!-- footer -->
 	<div class="footer">
 		<div class="ft_con cs-clear">
 			<div class="ft_mod ft_find">

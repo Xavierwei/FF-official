@@ -278,6 +278,27 @@ a:hover{color:#000}
 	.brands-con-time{font-size: 14px;font-weight: 100;margin-top: 24px;}
 	.brands-con-meta{font-size: 10px;font-weight: 100;color: #666;}
 
+/* interview_list */
+.interview_list{width: 1030px;margin: 0 auto;}
+.interview_list .interview_info{font-size: 14px;color: #999;text-transform: uppercase;padding-top: 60px;width: 340px;text-align: center;}
+.interview_list .interview_info span{display: inline-block;text-align: left;}
+.interview_list .interview_info strong{font-size: 24px;color: #000;}
+.interview_img{cursor: pointer;}
+.interview_odd .interview_info{float: right;}
+.interview_odd .interview_img{float: left;}
+.interview_even .interview_info{float: left;}
+.interview_even .interview_img{float: right;}
+.interview_list .interview_even span{text-align: right;}
+.interview_img img{display: block;}
+
+.interview_item{position: relative;margin: 80px 0 20px;opacity: 0;filter:alpha(opacity=0);}
+.interview_opt{position: absolute;color: white;left: 50%;top: 50%;margin-top: -10px;margin-left: -25px;cursor: pointer;font-size: 14px;}
+
+.interview-video-wrap{position: relative;overflow: hidden;}
+.interview-video{height: 400px;overflow: hidden; margin-bottom: 10px; position: relative;}
+.interview-video .video-wrap{top: auto; bottom: 0;}
+.interview_share{position: absolute;bottom: 20px;width: 100px;text-align: center;height: 50px;line-height: 50px;color: #fff;font-size: 14px;text-transform: uppercase;z-index: 10;font-weight: 100;}
+
 /* pop shade */
 .shade{background: #000 ;opacity: 0.6;filter:alpha(opacity=60);position: fixed;left:0;top: 0;right: 0;bottom: 0;
 	_position: absolute; z-index: 20000; display: none;}
@@ -306,6 +327,39 @@ a:hover{color:#000}
 	.popdownicon{background: url('../images/popdownicon.png') no-repeat;height: 30px;width: 30px;position: absolute;right:30px;bottom:55px;cursor: pointer;}
 	.pop_presspho{position: relative;z-index: 1;}
 	.pop_press_menus{width: 95px;position: absolute;height: 100%;top: 0;right: 95px;background: black;z-index: 0;}
+
+
+/* video theme */
+.interview-video-wrap .vjs-default-skin .vjs-control-bar{position: relative;display: block;background: #000;padding: 7px 0;top: 0;margin-bottom: 20px;}
+.interview-video-wrap .vjs-default-skin .vjs-play-control{line-height: 36px;display: none;}
+.interview-video-wrap .vjs-default-skin .vjs-play-control:before{display: none;}
+.interview-video-wrap .vjs-default-skin .vjs-play-control .vjs-control-text{clip: auto;width: auto;height: auto;left: 20px;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-control{top: 25px;height: 1px;margin: 0 100px;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-holder{background: white;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-play-progress,
+.interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-load-progress{background: #e00000;}
+.interview-video-wrap .vjs-default-skin .vjs-seek-handle{display: none;}
+.interview-video-wrap .vjs-default-skin .vjs-current-time{float: right;width: 8em;font-size: 14px;color: #fff;}
+.interview-video-wrap .vjs-time-divider,
+.interview-video-wrap .vjs-default-skin .vjs-duration,
+.interview-video-wrap .vjs-default-skin .vjs-fullscreen-control,
+.interview-video-wrap .vjs-default-skin .vjs-volume-control,
+.interview-video-wrap .vjs-default-skin .vjs-mute-control,
+.interview-video-wrap .vjs-default-skin .vjs-volume-menu-button,
+.interview-video-wrap .vjs-time-divider{display: none;}
+.interview-video-wrap .vjs-default-skin.vjs-has-started .vjs-control-bar{
+    visibility: visible !important;
+    opacity: 1!important;
+    filter:alpha(opacity=100) !important;
+}
+.interview-video-wrap .vjs-default-skin .vjs-big-play-button{top: 50%;left: 50%;width: 90px;height: 90px;background: url(../images/video-btn.png) no-repeat left bottom !important;border: none;box-shadow: none;margin-top: -45px;margin-left: -45px;}
+.interview-video-wrap .vjs-default-skin .vjs-big-play-button:before{display: none;box-shadow: none;}
+.interview-video-wrap .vjs-default-skin .vjs-big-play-button:hover,
+.interview-video-wrap .vjs-default-skin:hover .vjs-big-play-button,
+.interview-video-wrap .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
+.vjs-default-skin.vjs-paused .vjs-big-play-button{display: block !important;}
+
+
 
 
 

@@ -1,4 +1,15 @@
 <?php include_once 'common/header.php';?>
+<div class="shade"></div>
+<div class="pop pop_press">
+	<div class="pop_presspho" style="overflow:hidden;width:785px;"><img src="../images/presspop_pho.jpg" /></div>
+	<div class="pop_press_menus">
+		<p class=" popicon popclose " data-a="pop_close"></p>
+		<p class=" popicon popnext " data-a="press_next"></p>
+		<p class=" popnum ">1/12</p>
+		<p class=" popicon popprev " data-a="press_prev" ></p>
+		<p class=" popdownicon " data-a="press_prev"></p>
+	</div>
+</div>
 <div class="page" data-page="press-page">
 	<!-- page title -->
 	<div class="pagetit">
@@ -176,24 +187,4 @@
 		</div>
 		<!--  -->
 	</div>
-	<!-- banner footer -->
-	<div class="banner_footer">
-		<div class="banft_txt">
-			<p>“il n’est de richesse que d’homme.”</p>
-			<span>Rene Char</span>
-		</div>
-	</div>
-</div>
-
-<div class="shade"></div>
-<div class="pop pop_press">
-	<div class="pop_presspho" style="overflow:hidden;width:785px;"><img src="../images/presspop_pho.jpg" /></div>
-	<div class="pop_press_menus">
-		<p class=" popicon popclose " data-a="pop_close"></p>
-		<p class=" popicon popnext " data-a="press_next"></p>
-		<p class=" popnum ">1/12</p>
-		<p class=" popicon popprev " data-a="press_prev" ></p>
-		<p class=" popdownicon " data-a="press_prev"></p>
-	</div>
-</div>
 <?php include_once 'common/footer.php';?>

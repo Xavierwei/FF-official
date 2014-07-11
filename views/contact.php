@@ -182,6 +182,4 @@
 		<!--  -->
 	</div>
 	<div class="contact_map"></div>
-</div>
-
 <?php include_once 'common/footer.php';?>

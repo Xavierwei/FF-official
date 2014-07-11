@@ -325,7 +325,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
                 setTimeout(function(){
                 	$wrap.find('.video-wrap').fadeIn();
-                	myVideo.play();
+                	if( config.autoplay )
+                		myVideo.play();
                 } , 20);
 
                 cb && cb();
@@ -447,7 +448,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	// is playing just now
 	var isCurrentPlaying = false;
 	var isHeadHide = false;
-	
+
 	var pageManager = (function(){
 
 		var pageInits = {
@@ -613,15 +614,33 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				var	$banpho = $('.banpho');
 				var banphoTop = $banpho.offset().top;
 				var banphoImgHeight = $('.banpho img').height();
+
+				var $interviewList = $('.interview_list');
 				$(window).scroll(function(){
 					var stTop = $(window).scrollTop();
 
+					// for top image
 					if( stTop > banphoTop && stTop < banphoTop + banphoImgHeight ){
 						$banpho.height( banphoTop + banphoImgHeight - stTop )
 							.find('img')
 							.css({
 								marginTop: ( banphoImgHeight - ( banphoTop + banphoImgHeight - stTop ) ) / 2
 							});
+					}
+
+
+					// for interview
+					if( $interviewList.length && !$interviewList.data('init') ){
+						if( stTop > banphoTop + banphoImgHeight / 2 ){
+							$interviewList.data('init' , 1);
+							$interviewList.children().each(function( i ){
+								$(this).delay( 150 * i )
+									.animate({
+										opacity: 1,
+										marginTop: 0
+									} , 500 );
+							});
+						}
 					}
 				});
 			}
@@ -1197,5 +1216,58 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 					} , 500);
 			})
 		}).attr('src' , imgSrc);
+	});
+
+
+	LP.action('show-video-interview' , function(){
+		var $item = $(this).closest('.interview_item');
+		var $container = $item.data('media-dom');
+		var $videoWrap = $container && $container.find('.interview-video');
+		if( !$container ){
+			$container = $('.<div class="interview-video-wrap">\
+				<div class="interview-video"></div>\
+				<div class="interview_share">share</div>\
+			</div>').insertAfter( $item );
+
+			$item.data('media-dom' , $container)
+				.find('.interview_opt')
+				.html('CLOSE');
+
+
+			$videoWrap = $container.find('.interview-video');
+
+			// render video
+			$videoWrap.css({marginTop: -480});
+			renderVideo( $videoWrap , '../videos/0' , '../images/interview1.png' , {
+				autoplay: false,
+				controls: true
+			} , function(){
+				$('<div class="vjs-default-skin"></div>')
+					.append( $videoWrap.find('.vjs-control-bar') )
+					.appendTo( $videoWrap.parent() );
+			});
+
+			// start animate
+			$videoWrap.animate({
+				marginTop: 0
+			} , 1000);
+		} else {
+			var video = $videoWrap.data('video-object');
+			video && video.pause();
+
+
+			$item.removeData('media-dom')
+				.find('.interview_opt')
+				.html('WATCH');	
+
+			$videoWrap.animate({
+				marginTop: -480
+			} , 1000)
+			.promise()
+			.then(function(){
+				$container.remove();
+			});
+		}
+		
 	});
 });
