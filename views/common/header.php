@@ -2,15 +2,19 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>xxxx</title>
-    <meta name="keywords" content="玩排球游戏，参与有奖问答，既有机会参与幸运抽奖，赢取雅漾惊喜大礼！" />
-    <meta name="description" content="雅漾排球游戏,雅漾有奖问答,雅漾幸运抽奖" />
-    <meta name="viewport" content="width=640, minimum-scale=0.5, maximum-scale=1, target-densityDpi=290,user-scalable = no" />
+    <title>FRED &amp; FARID GROUP</title>
+	<meta name="keywords" content="Fred & Farid, Fred&Farid, Fred & Farid Group, Fred&Farid Group, FFL Paris, Frédéric Raillard, Farid Mokart, agence de publicité, agence de communication" />
+	<meta name="description" content="FRED & FARID GROUP is the first French independent Digital Creative Group, founded in 2007 by Fred Raillard and Farid Mokart, Cannes Grand Prix 2009 winner." />
+	<meta property="og:title" content="FRED &amp;AMP; FARID GROUP" />
+	<meta property="og:image" content="http://www.fredfarid.com/assets/images/ff_fb_200x200.jpg" />
+	<meta property="og:description" content="FRED & FARID GROUP is the first French independent Digital Creative Group, founded in 2007 by Fred Raillard and Farid Mokart, Cannes Grand Prix 2009 winner." />
+	<meta property="og:url" content="http://www.fredfarid.com/" />
+	<meta name="viewport" content="width=640, minimum-scale=0.5, maximum-scale=1, target-densityDpi=290,user-scalable = no" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div class="container">
-	<?php if( $home_page ){?>
+	<?php if( isset($home_page) ){?>
 	<!-- banner -->
 	<div class="banpho home-slider">
 		<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0">
