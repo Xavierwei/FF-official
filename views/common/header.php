@@ -42,7 +42,7 @@
 	<!-- header -->
 	<div class="header">
 		<div class="header-inner">
-			<div class="logo"></div>
+			<a href="index.php" data-a="navitem" class="logo"></a>
 			<div class="nav cs-clear">
 				<a class="navitem" data-a="show-category" href="#">CATEGORIES</a>
 				<a class="navitem" data-a="show-brands" href="#">BRANDS</a>

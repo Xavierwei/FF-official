@@ -440,6 +440,14 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		});
 	});
 
+
+	var banphoConTimer ;
+	var isInBanphoCon = false;
+	var isHomeSliderMoviePlaying = false;
+	// is playing just now
+	var isCurrentPlaying = false;
+	var isHeadHide = false;
+	
 	var pageManager = (function(){
 
 		var pageInits = {
@@ -550,12 +558,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				// // 		$banphoCon.show();
 				// // 	}
 				// // } , 1000 / 60 );
-				var banphoConTimer ;
-				var isInBanphoCon = false;
-				var isHomeSliderMoviePlaying = false;
-				// is playing just now
-				var isCurrentPlaying = false;
-				var isHeadHide = false;
+				
 
 				var $banphoCon = $('.banpho-con').hover(function(){
 					clearTimeout( banphoConTimer );
