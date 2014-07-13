@@ -14,6 +14,7 @@ img{margin:0;line-height:normal;}
 em,i{font-style:normal;text-decoration:none}
 ul{list-style:none;}
 table{border-collapse:collapse;border-spacing:0;}
+* {outline: none;-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
 
 /* Commonly Used
 ================================================================================================= */
@@ -102,7 +103,7 @@ a:hover{color:#000}
 	/**/
 	.awardfilter{width: 1100px;margin: 0 auto;height: 130px;}
 		.awardfilter_item{float: left;width: 300px;height: 50px;}
-		.awardfilter_item2{float: right;width: 180px;height: 54px;}
+		.awardfilter_item2{float: right;width: 180px;height: 54px;margin-top:13px;}
 			.awardfilter_btn{background: #000 ;color:#fff;font-size: 14px;border: 0;font-weight: bold;width: 180px;height: 54px;line-height: 54px;cursor: pointer;}
 				/**/
 			.selitem {position: relative;display: inline-block;background-color: #fff;font-size: 14px;}
