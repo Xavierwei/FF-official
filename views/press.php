@@ -1,5 +1,5 @@
 <?php include_once 'common/header.php';?>
-<div class="shade"></div>
+<div class="shade" data-a="pop-mask"></div>
 <div class="pop pop_press">
 	<div class="pop_presspho" style="overflow:hidden;width:785px;"><img src="../images/presspop_pho.jpg" /></div>
 	<div class="pop_press_menus">
@@ -24,166 +24,172 @@
 	<!-- section -->
 	<div class="section sec_press">
 		<!--  -->
-		<div class="press_crumbs">articles press / <strong>interview</strong> / conference</div>
-		<!--  -->
-		<div class="press_txt">Ici un texte de presentation<br />de chapitre utile pour le referencement</div>
-		<!--  -->
-		<div class="press_year">2014</div>
-		<div class="press_list cs-clear">
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img">
-					<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" />
-				</p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
-				</div>
-			</div>
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img">
-					<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" />
-				</p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
-				</div>
-			</div>
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img">
-					<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" />
-				</p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
-				</div>
-			</div>
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img">
-					<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" />
-				</p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
-				</div>
-			</div>
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img">
-					<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" />
-				</p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
-				</div>
-			</div>
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img">
-					<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" />
-				</p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
-				</div>
-			</div>
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img">
-					<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" />
-				</p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
-				</div>
-			</div>
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img">
-					<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" />
-				</p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
-				</div>
-			</div>
-			<!--  -->
+		<div class="press_crumbs">
+			<a href="./press.php" class="active" style="margin-left:150px;" data-a="press_crumbs_link">articles press</a> / 
+			<a href="./interview.php" data-a="press_crumbs_link">interview</a> /
+			<a href="./conference.php" data-a="press_crumbs_link">conference</a>
 		</div>
 		<!--  -->
-		<div class="press_year">2013</div>
-		<div class="press_list cs-clear">
+		<div id="press-container" >
+			<div class="press_txt">Ici un texte de presentation<br />de chapitre utile pour le referencement</div>
 			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" /></p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
+			<div class="press_year">2014</div>
+			<div class="press_list cs-clear">
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img">
+						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" />
+					</p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
 				</div>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img">
+						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" />
+					</p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
+				</div>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img">
+						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" />
+					</p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
+				</div>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img">
+						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" />
+					</p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
+				</div>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img">
+						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" />
+					</p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
+				</div>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img">
+						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" />
+					</p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
+				</div>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img">
+						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" />
+					</p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
+				</div>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img">
+						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" />
+					</p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
+				</div>
+				<!--  -->
 			</div>
 			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" /></p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
+			<div class="press_year">2013</div>
+			<div class="press_list cs-clear">
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" /></p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
 				</div>
-			</div>
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" /></p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" /></p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
 				</div>
-			</div>
-			<!--  -->
-			<div class="press_item" data-a="press_item">
-				<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-					<img src="../images/press_demopho1.jpg" /></p>
-				<h3>ad land</h3>
-				<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-				<div class="cs-clear">
-					<strong class="press_itempage">1/12</strong>
-					<a class="press_itemdown" href="#"></a>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" /></p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
 				</div>
+				<!--  -->
+				<div class="press_item" data-a="press_item">
+					<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+						<img src="../images/press_demopho1.jpg" /></p>
+					<h3>ad land</h3>
+					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
+					<div class="cs-clear">
+						<strong class="press_itempage">1/12</strong>
+						<a class="press_itemdown" href="#"></a>
+					</div>
+				</div>
+				<!--  -->
 			</div>
-			<!--  -->
 		</div>
 		<!--  -->
 	</div>

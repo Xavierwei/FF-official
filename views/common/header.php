@@ -40,7 +40,7 @@
 	</script>
 	<?php }?>
 	<!-- header -->
-	<div class="header">
+	<div class="header <?php if( !$home_page ){ ?>header-fixed<?php }?>">
 		<div class="header-inner">
 			<a href="index.php" data-a="navitem" class="logo"></a>
 			<div class="nav cs-clear">
@@ -136,7 +136,11 @@
 			</dl>
 		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
-			<div class="sec_brands_tit"><h2>BRAND  |  AUDI</h2></div>
+			<div class="sec_brands_tit">
+				<h2>BRAND  |  AUDI</h2>
+				<a href="#" class="pagetitarr pagetitarrtop"></a>
+				<a href="#" class="pagetitarr pagetitarrbottom"></a>
+			</div>
 			<div class="brands-tags">
 				<p>
 					<a href="#">6 &nbsp; × &nbsp;awards</a>

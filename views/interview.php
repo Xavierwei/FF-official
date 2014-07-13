@@ -1,5 +1,5 @@
 <?php include_once 'common/header.php';?>
-<div class="shade"></div>
+<div class="shade" data-a="pop-mask"></div>
 <div class="pop pop_press">
 	<div class="pop_presspho" style="overflow:hidden;width:785px;"><img src="../images/presspop_pho.jpg" /></div>
 	<div class="pop_press_menus">
@@ -24,84 +24,239 @@
 	<!-- section -->
 	<div class="section sec_press">
 		<!--  -->
-		<div class="press_crumbs">articles press / <strong>interview</strong> / conference</div>
-		<!--  -->
-		<div class="press_txt">Ici un texte de presentation<br />de chapitre utile pour le referencement</div>
-		<!--  -->
-		<div class="interview_list cs-clear">
+		<div class="press_crumbs">
+			<a href="./press.php" data-a="press_crumbs_link">articles press</a> / 
+			<a href="./interview.php" class="active" data-a="press_crumbs_link">interview</a> /
+			<a href="./conference.php" data-a="press_crumbs_link">conference</a>
+		</div>
+		<div id="press-container" >
 			<!--  -->
-			<div class="interview_item interview_video interview_odd cs-clear">
-				<div class="interview_info">
-					<span>
-						<strong> BFM BUSINESS</strong><br/>
-						le grand journal <br/>
-						part 1
+			<div class="press_txt">Ici un texte de presentation<br />de chapitre utile pour le referencement</div>
+			<!--  -->
+			<div id="press-container" class="interview_list cs-clear">
+				<!--  -->
+				<div class="interview_item interview_odd cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img" data-a="show-video-interview">
+						<img src="../images/interview1.png">
+					</div>
+					<span class="interview_opt" data-a="show-video-interview">
+						<div class="transition">
+						WATCH
+						<br/>
+						CLOSE
+						</div>
 					</span>
 				</div>
-				<div class="interview_img" data-a="show-video-interview">
-					<img src="../images/interview1.png">
-				</div>
-				<span class="interview_opt" data-a="show-video-interview">WATCH</span>
-			</div>
-			
-			<div class="interview_item interview_video interview_even cs-clear">
-				<div class="interview_info">
-					<span>
-						<strong> BFM BUSINESS</strong><br/>
-						le grand journal <br/>
-						part 1
+				
+				<div class="interview_item interview_even cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img"  data-a="show-music-interview"><img src="../images/interview1.png"></div>
+					<span class="interview_opt" data-a="show-music-interview">
+						<div class="transition">
+						LISTEN
+						<br/>
+						CLOSE
+						</div>
 					</span>
 				</div>
-				<div class="interview_img"><img src="../images/interview1.png"></div>
-				<span class="interview_opt">LISTEN</span>
-			</div>
-			<div class="interview_item interview_video interview_odd cs-clear">
-				<div class="interview_info">
-					<span>
-						<strong> BFM BUSINESS</strong><br/>
-						le grand journal <br/>
-						part 1
+				<div class="interview_item interview_odd cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img" data-a="show-video-interview">
+						<img src="../images/interview1.png">
+					</div>
+					<span class="interview_opt" data-a="show-video-interview">
+						<div class="transition">
+						WATCH
+						<br/>
+						CLOSE
+						</div>
 					</span>
 				</div>
-				<div class="interview_img">
-					<img src="../images/interview1.png">
-				</div>
-				<span class="interview_opt">WATCH</span>
-			</div>
-			<div class="interview_item interview_video interview_even cs-clear">
-				<div class="interview_info">
-					<span>
-						<strong> BFM BUSINESS</strong><br/>
-						le grand journal <br/>
-						part 1
+				
+				<div class="interview_item interview_even cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img"  data-a="show-music-interview"><img src="../images/interview1.png"></div>
+					<span class="interview_opt" data-a="show-music-interview">
+						<div class="transition">
+						LISTEN
+						<br/>
+						CLOSE
+						</div>
 					</span>
 				</div>
-				<div class="interview_img"><img src="../images/interview1.png"></div>
-				<span class="interview_opt">LISTEN</span>
-			</div>
-			<div class="interview_item interview_video interview_odd cs-clear">
-				<div class="interview_info">
-					<span>
-						<strong> BFM BUSINESS</strong><br/>
-						le grand journal <br/>
-						part 1
+				<div class="interview_item interview_odd cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img" data-a="show-video-interview">
+						<img src="../images/interview1.png">
+					</div>
+					<span class="interview_opt" data-a="show-video-interview">
+						<div class="transition">
+						WATCH
+						<br/>
+						CLOSE
+						</div>
 					</span>
 				</div>
-				<div class="interview_img">
-					<img src="../images/interview1.png">
-				</div>
-				<span class="interview_opt">WATCH</span>
-			</div>
-			<div class="interview_item interview_video interview_even cs-clear">
-				<div class="interview_info">
-					<span>
-						<strong> BFM BUSINESS</strong><br/>
-						le grand journal <br/>
-						part 1
+				
+				<div class="interview_item interview_even cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img"  data-a="show-music-interview"><img src="../images/interview1.png"></div>
+					<span class="interview_opt" data-a="show-music-interview">
+						<div class="transition">
+						LISTEN
+						<br/>
+						CLOSE
+						</div>
 					</span>
 				</div>
-				<div class="interview_img"><img src="../images/interview1.png"></div>
-				<span class="interview_opt">LISTEN</span>
+				<div class="interview_item interview_odd cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img" data-a="show-video-interview">
+						<img src="../images/interview1.png">
+					</div>
+					<span class="interview_opt" data-a="show-video-interview">
+						<div class="transition">
+						WATCH
+						<br/>
+						CLOSE
+						</div>
+					</span>
+				</div>
+				
+				<div class="interview_item interview_even cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img"  data-a="show-music-interview"><img src="../images/interview1.png"></div>
+					<span class="interview_opt" data-a="show-music-interview">
+						<div class="transition">
+						LISTEN
+						<br/>
+						CLOSE
+						</div>
+					</span>
+				</div>
+				<div class="interview_item interview_odd cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img" data-a="show-video-interview">
+						<img src="../images/interview1.png">
+					</div>
+					<span class="interview_opt" data-a="show-video-interview">
+						<div class="transition">
+						WATCH
+						<br/>
+						CLOSE
+						</div>
+					</span>
+				</div>
+				
+				<div class="interview_item interview_even cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img"  data-a="show-music-interview"><img src="../images/interview1.png"></div>
+					<span class="interview_opt" data-a="show-music-interview">
+						<div class="transition">
+						LISTEN
+						<br/>
+						CLOSE
+						</div>
+					</span>
+				</div>
+				<div class="interview_item interview_odd cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img" data-a="show-video-interview">
+						<img src="../images/interview1.png">
+					</div>
+					<span class="interview_opt" data-a="show-video-interview">
+						<div class="transition">
+						WATCH
+						<br/>
+						CLOSE
+						</div>
+					</span>
+				</div>
+				
+				<div class="interview_item interview_even cs-clear">
+					<div class="interview_info">
+						<span>
+							<strong> BFM BUSINESS</strong><br/>
+							le grand journal <br/>
+							part 1
+						</span>
+					</div>
+					<div class="interview_img"  data-a="show-music-interview"><img src="../images/interview1.png"></div>
+					<span class="interview_opt" data-a="show-music-interview">
+						<div class="transition">
+						LISTEN
+						<br/>
+						CLOSE
+						</div>
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>

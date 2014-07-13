@@ -1,6 +1,6 @@
 <?php include_once 'common/header.php';?>
 <!--  -->
-<div class="shade"></div>
+<div class="shade" data-a="pop-mask"></div>
 <div class="pop pop_jobs">
 	<div class="pop_jobcon">
 		<div class="">EN 中国</div>

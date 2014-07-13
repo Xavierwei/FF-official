@@ -256,7 +256,7 @@ a:hover{color:#000}
 	.gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 2em;text-transform: uppercase;}
 
 /* for brands */
-.sec_brands{display: none; position: absolute;top: 0px;bottom: 0;overflow: auto; width: 100%;z-index: 4;background: black;min-height: 100%;}
+.sec_brands{display: none; position: absolute;top: 0px;width: 100%;z-index: 4;overflow: hidden;background: black;min-height: 100%;}
 	.sec_brands_tit{background: #595959;height:88px;line-height: 88px;font-size: 44px;font-weight: bold;}
 	.sec_brands h2{width: 1100px;margin: 0 auto;}
 	.brands-tags{background: #3b3b3b; }
@@ -271,12 +271,10 @@ a:hover{color:#000}
 	.brands-con dt,.brands-con dd,.brand_movie dd{float: left;margin: 0 1px 1px 0; position: relative;}
 	.brands-con dd,.brand_movie dd{font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
 	.brands-con dd img{height: 100%;}
-	.brands-con dt{width: 350px;background: #030101;color: white;height: 96px;padding: 44px;position: relative;z-index: 1;}
+	.brands-con dt{width: 350px;background: #030101;color: white;height: 96px;padding: 44px;}
 	.brands-con dt .brands-mask{opacity: 0.40;filter:alpha(opacity=40);display: block;}
 	.brand_movie dd .brands-mask{display:none;}
 	.brand_movie dl{width: 200%;height: 100%;overflow: hidden;}
-
-	.brand_movie{position: absolute;top: 88px;height: auto;bottom: 0;}
 
 	.brands-con-t{font-size: 20px;font-weight: bold;}
 	.brands-con-time{font-size: 14px;font-weight: 100;margin-top: 24px;}
