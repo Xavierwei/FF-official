@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<!-- banner -->
-	<div class="banpho"><img src="../images/PRESS_pho.jpg" /></div>
+	<div class="banpho  banpho-img"><img src="../images/PRESS_pho.jpg" /></div>
 	<!-- section -->
 	<div class="section sec_press">
 		<!--  -->

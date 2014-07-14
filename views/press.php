@@ -1,7 +1,7 @@
 <?php include_once 'common/header.php';?>
 <div class="shade" data-a="pop-mask"></div>
 <div class="pop pop_press">
-	<div class="pop_presspho" style="overflow:hidden;width:785px;"><img src="../images/presspop_pho.jpg" /></div>
+	<div class="pop_presspho"></div>
 	<div class="pop_press_menus">
 		<p class=" popicon popclose " data-a="pop_close"></p>
 		<p class=" popicon popnext " data-a="press_next"></p>
@@ -20,7 +20,7 @@
 		</div>
 	</div>
 	<!-- banner -->
-	<div class="banpho"><img src="../images/PRESS_pho.jpg" /></div>
+	<div class="banpho  banpho-img"><img src="../images/PRESS_pho.jpg" /></div>
 	<!-- section -->
 	<div class="section sec_press">
 		<!--  -->
@@ -36,8 +36,8 @@
 			<div class="press_year">2014</div>
 			<div class="press_list cs-clear">
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img">
+				<div class="press_item">
+					<p class="press_img" data-a="press_img">
 						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" />
 					</p>
@@ -49,8 +49,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img">
+				<div class="press_item">
+					<p class="press_img" data-a="press_img">
 						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" />
 					</p>
@@ -62,8 +62,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img">
+				<div class="press_item">
+					<p class="press_img" data-a="press_img">
 						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" />
 					</p>
@@ -75,8 +75,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img">
+				<div class="press_item">
+					<p class="press_img" data-a="press_img">
 						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" />
 					</p>
@@ -88,8 +88,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img">
+				<div class="press_item">
+					<p class="press_img" data-a="press_img">
 						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" />
 					</p>
@@ -101,8 +101,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img">
+				<div class="press_item">
+					<p class="press_img" data-a="press_img">
 						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" />
 					</p>
@@ -114,8 +114,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img">
+				<div class="press_item">
+					<p class="press_img" data-a="press_img">
 						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" />
 					</p>
@@ -127,8 +127,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img">
+				<div class="press_item">
+					<p class="press_img" data-a="press_img">
 						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" />
 					</p>
@@ -145,8 +145,8 @@
 			<div class="press_year">2013</div>
 			<div class="press_list cs-clear">
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+				<div class="press_item">
+					<p class="press_img" data-a="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" /></p>
 					<h3>ad land</h3>
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
@@ -156,8 +156,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+				<div class="press_item">
+					<p class="press_img" data-a="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" /></p>
 					<h3>ad land</h3>
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
@@ -167,8 +167,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+				<div class="press_item">
+					<p class="press_img" data-a="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" /></p>
 					<h3>ad land</h3>
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
@@ -178,8 +178,8 @@
 					</div>
 				</div>
 				<!--  -->
-				<div class="press_item" data-a="press_item">
-					<p class="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
+				<div class="press_item">
+					<p class="press_img" data-a="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
 						<img src="../images/press_demopho1.jpg" /></p>
 					<h3>ad land</h3>
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>

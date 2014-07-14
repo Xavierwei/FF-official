@@ -184,9 +184,9 @@ a:hover{color:#000}
 	.press_txt{text-align: center;font-size: 36px;padding: 0 0 70px;line-height:40px }
 	.press_year{font-size: 36px;font-weight: bold;text-align: center;line-height: 40px}
 	.press_list{width: 1100px;margin: 0 auto 50px}
-		.press_item{font-size: 14px;color:#666;width: 180px;float: left;display: inline;margin: 50px 46px 0;position: relative;cursor: pointer;}
+		.press_item{font-size: 14px;color:#666;width: 180px;float: left;display: inline;margin: 50px 46px 0;position: relative;}
 			.cover_img{position: absolute;top:0;left:0;z-index: 1;clip:rect(0px 0px 0px 0px);}
-			.press_img{width: 180px;height: 241px}
+			.press_img{width: 180px;height: 241px;cursor: pointer;}
 			.press_item h3{color:#000;text-transform: uppercase;padding:20px 0 18px;}
 			.press_item strong{color:#000;text-transform: uppercase;display: block}
 			.press_itemtxt{height: 75px;overflow: hidden;border-bottom: #d4d4d4 solid 1px;margin:0 0 5px;}
@@ -327,11 +327,11 @@ a:hover{color:#000}
 	.popprev{background-position: 0 -30px;top:150px}
 	.popnext{background-position: 0 -60px;top:250px;}
 	.popnum{top:200px;position: absolute;right: 80px;color:#666;line-height: 30px;}
-.pop_press{padding: 0 95px 0 0;margin:0 0 0 -440px;top:auto; bottom: 100%;background: none;}
+.pop_press{padding: 0 95px 0 0;margin:0 0 0 -440px;top: -100%; background: none;}
 	.pop_press .popicon{right: 30px}
 	.pop_press .popnum{right: 30px}
 	.popdownicon{background: url('../images/popdownicon.png') no-repeat;height: 30px;width: 30px;position: absolute;right:30px;bottom:55px;cursor: pointer;}
-	.pop_presspho{position: relative;z-index: 1;}
+	.pop_presspho{position: relative;z-index: 1;overflow: hidden;}
 	.pop_press_menus{width: 95px;position: absolute;height: 100%;top: 0;right: 95px;background: black;z-index: 0;}
 
 
@@ -342,8 +342,8 @@ a:hover{color:#000}
 .interview-video-wrap .vjs-default-skin .vjs-play-control .vjs-control-text{clip: auto;width: auto;height: auto;left: 20px;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-control{top: 25px;height: 1px;margin: 0 100px;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-holder{background: white;}
-.interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-play-progress,
-.interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-load-progress{background: #e00000;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-play-progress{background: #e00000;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-load-progress{background: #999;}
 .interview-video-wrap .vjs-default-skin .vjs-seek-handle{display: none;}
 .interview-video-wrap .vjs-default-skin .vjs-current-time{float: right;width: 8em;font-size: 14px;color: #fff;}
 .interview-video-wrap .vjs-time-divider,
@@ -365,7 +365,7 @@ a:hover{color:#000}
 .interview-video-wrap .vjs-default-skin .vjs-big-play-button:hover,
 .interview-video-wrap .vjs-default-skin:hover .vjs-big-play-button,
 .interview-video-wrap .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
-.vjs-default-skin.vjs-paused .vjs-big-play-button{display: block !important;}
+
 
 .interview-music-wrap{position: relative;overflow: hidden;}
 .interview-music-wrap .interview_share{top: 60px;left:205px;cursor: pointer;}

@@ -33,7 +33,7 @@
 		</div>
 	</div>
 	<!-- banner -->
-	<div class="banpho"><img src="../images/JOBS_pho.jpg" /></div>
+	<div class="banpho banpho-img"><img src="../images/JOBS_pho.jpg" /></div>
 	<!-- section -->
 	<div class="section sec_jobs">
 		<div class="jobslist cs-clear">

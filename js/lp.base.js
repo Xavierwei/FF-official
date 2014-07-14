@@ -336,6 +336,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         </video></div>' , {id: id  , videoFile: movie , poster: poster}));
 
 		config = $.extend( { "controls": false, "autoplay": false, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , config || {} );
+		console.log( config );
 		var ratio = config.ratio || 3/4;
 		LP.use('video-js' , function(){
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
@@ -715,17 +716,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				var $interviewList = $('.interview_list');
 				$(window).scroll(function(){
 					var stTop = $(window).scrollTop();
-
-					// for top image
-					if( stTop > banphoTop && stTop < banphoTop + banphoImgHeight ){
-						$banpho.height( banphoTop + banphoImgHeight - stTop )
-							.find('img')
-							.css({
-								marginTop: ( banphoImgHeight - ( banphoTop + banphoImgHeight - stTop ) ) / 2
-							});
-					}
-
-
 					// for interview
 					if( $interviewList.length && !$interviewList.data('init') ){
 						if( stTop > banphoTop + banphoImgHeight / 2 ){
@@ -739,6 +729,24 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 							});
 						}
 					}
+				})
+				.trigger('scroll');
+
+
+				$('.press_img').hover(function(){
+					var $img = $(this).find('.cover_img');
+					var width = $img.width();
+					var height = $img.height();
+					new Animate([ height / 2 , width / 2 , height / 2 , width / 2 ] , [0 , width , height , 0] , 500 , '' , function( nums ){
+						$img[0].style.clip = 'rect(' + nums.join('px ') + 'px)';
+					});
+				} , function(){
+					var $img = $(this).find('.cover_img');
+					var width = $img.width();
+					var height = $img.height();
+					new Animate([0 , width , height , 0] , [ height / 2 , width / 2 , height / 2 , width / 2 ] , 500 , '' , function( nums ){
+						$img[0].style.clip = 'rect(' + nums.join('px ') + 'px)';
+					});
 				});
 			}
 		}
@@ -754,7 +762,40 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			init: function(){
 				var $page = $('.page');
 				var fn = pageInits[ $page.data('page') ];
+
+
 				fn && fn();
+
+				// fix common page init
+				// for  banpho-img
+				if( $('.banpho-img').length ){
+					var	$banpho = $('.banpho-img');
+					var banphoTop = $banpho.offset().top;
+					var banphoImgHeight = $('.banpho-img img').height();
+
+					var $interviewList = $('.interview_list');
+					$(window).scroll(function(){
+						var stTop = $(window).scrollTop();
+
+						// for top image
+						if( stTop > banphoTop && stTop < banphoTop + banphoImgHeight ){
+							$banpho.height( banphoTop + banphoImgHeight - stTop )
+								.find('img')
+								.css({
+									marginTop: ( banphoImgHeight - ( banphoTop + banphoImgHeight - stTop ) ) / 2
+								});
+						} else if( stTop < banphoTop ){
+							$banpho.height( 'auto' )
+								.find('img')
+								.css('marginTop' , 0);
+						} else if( stTop > banphoTop + banphoImgHeight ){
+							$banpho.height( 0 )
+								.find('img')
+								.css('marginTop' , -banphoImgHeight / 2);
+						}
+					})
+					.trigger('scroll')
+				}
 			},
 			desctory: function(){
 				$(window).unbind('scroll');
@@ -1185,7 +1226,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		var $item = $('.brand_movie .brands-item').eq(itemIndex);
 
 		renderVideo( $item , $item.data('movie') , $item.find('img').attr('src') , {
-			autoplay: false
+			autoplay: false,
+			controls: false
 		} );
 
 		function showTheMovie (){
@@ -1194,7 +1236,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				marginBottom: 0
 			} , 500 );
 			var $movieWrap = $('.brand_movie')//.height( $(window).height() - $('.header').height() - $('.brand_item_tit').height() )
-				.delay(500)
+				// .delay(500)
 				.fadeIn(function(){
 					$item.data('video-object').play();
 				});
@@ -1215,7 +1257,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			// play the video
 			// resize the video
 			$item.trigger('resize');
-			
 		}
 	});
 
@@ -1310,7 +1351,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 	LP.action('pop_close' , function(){
 		$('.pop:visible').animate({
-			top: '100%',
+			top: '150%',
 			opacity: 0
 		} , 500 )
 		.promise()
@@ -1322,33 +1363,42 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 
 	var press_index = 0;
-	LP.action('press_item' , function(){
-		press_index = $(this).prevAll('.press_item').length;
-		var $img = $(this).find('.cover_img');
-		var width = $img.width();
-		var height = $img.height();
-		new Animate([ height / 2 , width / 2 , height / 2 , width / 2 ] , [0 , width , height , 0] , 500 , '' , function( nums ){
-			$img[0].style.clip = 'rect(' + nums.join('px ') + 'px)';
-		} , function(){
+	LP.action('press_img' , function(){
+		press_index = $(this).closest('.press_item').prevAll('.press_item').length;
+		$('<img/>').load(function(){
+			var width = this.width;
+			var height = this.height;
+			var winHeight = $(window).height();
+			var tHeight = Math.min( height , winHeight );
+			this.style.height = tHeight + 'px';
 			$('.shade').fadeIn();
-			$('.pop_press')
-				.show()
+			$('.pop_press').show()
+				.css({
+					top: '-150%',
+					opacity: 1,
+					marginLeft: - width / height * tHeight / 2,
+					marginTop: - tHeight / 2
+				})
+				.find('.pop_presspho')
+				.width( width / height * tHeight )
+				.html( this )
+
+				.end()
 				.animate({
-					marginBottom:  - $('.pop_press').height() / 2
+					top:  '50%'
 				} , 400 )
 				.promise()
 				.then(function(){
-					$(this).css({
-						top: '50%',
-						marginTop: - $(this).height() / 2,
-						marginBottom: 'auto',
-						bottom: 'auto'
-					});
-					$('.pop_press_menus').animate({
-						right: 0
-					} , 300 , 'easeLightOutBack');
+					$('.pop_press_menus')
+						.delay(100)
+						.animate({
+							right: 0
+						} , 300 , 'easeLightOutBack');
 				});
-		});
+
+			$('.pop_press_menus').css('right' , 95 );
+		})
+		.attr( 'src' , $(this).find('.cover_img').data('cover') );
 	});
 
 	LP.action('press_next' , function(){

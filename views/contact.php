@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<!-- banner -->
-	<div class="banpho"><img src="../images/CONTACT_pho.jpg" /></div>
+	<div class="banpho  banpho-img"><img src="../images/CONTACT_pho.jpg" /></div>
 	<!-- section -->
 	<div class="section sec_contact">
 		<!--  -->

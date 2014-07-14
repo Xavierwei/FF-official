@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<!-- banner -->
-	<div class="banpho"><img src="../images/AWARDS_pho.jpg" /></div>
+	<div class="banpho  banpho-img"><img src="../images/AWARDS_pho.jpg" /></div>
 	<!-- section -->
 	<div class="section sec_awards">
 		<div class="sectit"><h2>213 INTERNATIONAL AWARDS</h2></div>
