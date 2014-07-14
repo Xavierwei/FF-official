@@ -359,6 +359,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                         "margin-top": ( h - vh ) / 2,
                         "margin-left": ( w - vw ) / 2
                     });
+                    return false;
                 }
                 $(window).bind( 'resize.video-' + id , resizeFn )
                 	.trigger('resize.video-' + id);
@@ -671,9 +672,19 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 								$banphoCon.fadeOut();
 								// resize the videos
 								isHeadHide = true;
-								$('.slider-block-inner').animate({
+								var $inner = $('.slider-block-inner');
+								var $item = $inner.children('.slider-item').eq( $inner.data('index') );
+								$inner.animate({
 									height: $(window).height()
-								} , 500);
+								} , 500)
+								.promise()
+								.then(function(){
+									clearInterval( interval );
+								});
+
+								var interval = setInterval(function(){
+									$item.trigger('resize');
+								} , 1000 / 30 );
 							}
 						} , 2000 );
 
@@ -1018,6 +1029,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		} , 500 , '' ,function(){
 			$(document.body).css('overflow' , 'hidden');
 			renderVideo( $wrap , $dom.data('movie') , $img.attr('src') , {
+				autoplay: true
 			} , function(){
 			} );
 		} )

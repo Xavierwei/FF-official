@@ -251,7 +251,7 @@ a:hover{color:#000}
 .sec_gates{ background: rgba(67, 66, 66, 0.97); position: fixed;top: 66px; bottom: 0; width: 100%;z-index: 4;}
 .gates-inner{width: 1100px;margin: -100% auto 0;height: 100%;}
 .gates-inner a:hover,.gates-inner a.active{color: white;}
-	.gates-inner-l{width: 67.8%;float: left;font-size: 44px;font-weight: bold;line-height: 2em;height: 100%;overflow: hidden;}
+	.gates-inner-l{width: 67.8%;float: left;font-size: 44px;font-weight: bold;line-height: 2em;height: 100%;overflow: auto;}
 	.gates-inner-l a{margin-right: 100px;}
 	.gates-inner-c{padding-top: 100px;width: 12%;float: left;font-size: 18px;line-height: 2em;}
 	.gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 2em;text-transform: uppercase;}
