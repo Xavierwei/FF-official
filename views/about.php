@@ -13,7 +13,12 @@
 	<!-- section -->
 	<div class="section sec_about">
 		<!--  -->
-		<div class="about_crumbs">ff group / ff bio / <strong>key people</strong> /  jobs</div>
+		<div class="about_crumbs crumbs">
+			<a href="./group.php" class="active" style="margin-left:150px;" data-a="press_crumbs_link">ff group</a> / 
+			<a href="./bio.php" data-a="press_crumbs_link">ff bio</a> / 
+			<a href="./people.php" data-a="press_crumbs_link">key people</a> /
+			<a href="./jobs.php" data-a="press_crumbs_link">jobs</a>
+		</div>
 		<!--  -->
 		<div class="about_txt">
 			<p>"There should be more agencies challenging <br />the status quo. Fred & Farid is a good example <br />of a young independent agency that has succeeded brilliantly. <br />But we need 10 or 20 Fred & Farids." </p>
@@ -21,11 +26,13 @@
 		</div>
 		<!--  -->
 		<div class="about_down">
-			<a href="#" class="about_downbtn">DOUNLOAD PDF</a>
+			<a href="#" class="about_downbtn transition-wrap">
+				<div class="transition">DOUNLOAD PDF<br/><br/>DOUNLOAD PDF</div>
+			</a>
 		</div>
 		<!--  -->
-		<div class="about_timeline">
-			<div class="timeline_item cs-clear">
+		<div class="about_timeline column">
+			<div class="timeline_item up-fadein cs-clear">
 				<div class="timeline_left">
 					<div class="timeline_txt">After studying design and political sciences (Sciences Po), respectively, Fred Raillard and Farid Mokart started as strategic planner and account manager in Paris. They decided to team up and move to the creative side, working consecutively for 6 major agencies in Paris.</div>
 				</div>
@@ -33,8 +40,8 @@
 					<div class="timeline_txt">They were the youngest creative directors in France, leading the international accounts of CLM/BBDO Paris. They soon became worldwide creative directors of Pepsi International (ROW).</div>
 				</div>
 			</div>
-			<div class="timeline_year">2014</div>
-			<div class="timeline_item cs-clear">
+			<div class="timeline_year up-fadein">2014</div>
+			<div class="timeline_item up-fadein cs-clear">
 				<div class="timeline_left">
 					<div class="timeline_pho"></div>
 				</div>
@@ -44,8 +51,8 @@
 				</div>
 			</div>
 			<!--  -->
-			<div class="timeline_year">2013</div>
-			<div class="timeline_item cs-clear">
+			<div class="timeline_year up-fadein">2013</div>
+			<div class="timeline_item up-fadein cs-clear">
 				<div class="timeline_left timeline_2013left">
 					<div class="timeline_txt timeline_2013txt">Their Shanghai office’s social media activation work for Garnier got 272 million views in just 4 days (Source CIC Monitoring Shanghai). And their French office’s digital activation work for French candy bar Carambar tricked the whole country as the “first social media powered joke”, and best case of earn media.</div>
 					<div class="timeline_txt">Fred & Farid group is a fully digital company with about 350 permanent digital talents from 25 nationalities, in 4 buildings in France and China. It is composed of 2 integrated digital agencies (Fred & Farid Paris+Shanghai, Hello Sunshine), 2  digital production companies (Kill Death, Fo Xin) and 1 digital media company (Fred & Farid Media). The group also owns 2 webzines: BCKSTG to promote young French musicians, and Creative China to promote the new Chinese creative generation.</div>
@@ -58,8 +65,8 @@
 				</div>
 			</div>
 			<!--  -->
-			<div class="timeline_year">2012</div>
-			<div class="timeline_item cs-clear">
+			<div class="timeline_year up-fadein">2012</div>
+			<div class="timeline_item up-fadein cs-clear">
 				<div class="timeline_left ">
 					<div class="timeline_txt timeline_2012txt">Fred & Farid Group decided to develop outside Europe and chose to go East. They opened a new digital agency in a 1000m² warehouse in Shanghai. </div>
 				</div>
@@ -70,8 +77,8 @@
 				</div>
 			</div>
 			<!--  -->
-			<div class="timeline_year">2011</div>
-			<div class="timeline_item cs-clear">
+			<div class="timeline_year up-fadein">2011</div>
+			<div class="timeline_item up-fadein cs-clear">
 				<div class="timeline_left timeline_2011left">
 					<div class="timeline_txt ">
 						<p>Fred & Farid's clients’ reactions were unanimously enthusiastic about the big opening of their very own new building in Paris in 2011:</p>

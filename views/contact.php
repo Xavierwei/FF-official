@@ -11,14 +11,14 @@
 	<!-- banner -->
 	<div class="banpho  banpho-img"><img src="../images/CONTACT_pho.jpg" /></div>
 	<!-- section -->
-	<div class="section sec_contact">
+	<div class="section sec_contact column">
 		<!--  -->
 		<h2 class="contact_tit">Fred & Farid is a digital creative agency<br /> based in shanghai and paris</h2>
 		<!--  -->
 		<div class="contact_item">
 			<!--  -->
-			<h3>communication agencies</h3>
-			<div class="contact_con cs-clear">
+			<h3 class="up-fadein">communication agencies</h3>
+			<div class="up-fadein contact_con cs-clear">
 				<div class="contact_conl">
 					<h4>FRED & FARID</h4>
 					<p class="contact_txt">FRED & FARID PARIS-SHANGHAI is a full-service integrated communication agency founded in 2007 and located in France and China, The offices in Paris and Shanghai are connected 24/7/365 by means of screens that serve as bridges, allowing to work as a single agency.</p>
@@ -48,8 +48,8 @@
 				</div>
 			</div>
 			<!--  -->
-			<h3>MEDIA AND INVESTMENT FUND</h3>
-			<div class="contact_con cs-clear">
+			<h3 class="up-fadein">MEDIA AND INVESTMENT FUND</h3>
+			<div class="up-fadein contact_con cs-clear">
 				<div class="contact_conl">
 					<h4>FRED & FARID MEDIA</h4>
 					<p class="contact_txt">FRED & FARID MEDIA is the media buying agency of xxxxxxxxxxxxxxxxxxxxxx. It offers its clients a full-service plan that involves the design of above the line media ideas and their orchestration. It also offers strategic consulting services for all the xxxxxxxxxxxxxxxxxxxxxx’s brands.</p>
@@ -74,8 +74,8 @@
 				</div>
 			</div>
 			<!--  -->
-			<h3>PRODUCTION</h3>
-			<div class="contact_con cs-clear">
+			<h3 class="up-fadein">PRODUCTION</h3>
+			<div class="up-fadein contact_con cs-clear">
 				<div class="contact_conl">
 					<h4>FO XIN</h4>
 					<p class="contact_txt">eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
@@ -111,8 +111,8 @@
 				</div>
 			</div>
 			<!--  -->
-			<h3>MEDIA</h3>
-			<div class="contact_con cs-clear">
+			<h3 class="up-fadein">MEDIA</h3>
+			<div class="up-fadein contact_con cs-clear">
 				<div class="contact_conl">
 					<h4>CREATIVE CHINA</h4>
 					<div class="cs-clear">
@@ -135,11 +135,11 @@
 				</div>
 			</div>
 			<!--  -->
-			<h3>BRGD</h3>
+			<h3 class="up-fadein">BRGD</h3>
 			<!--  -->
 		</div>
 		<!--  -->
-		<div class="contact_table">
+		<div class="up-fadein contact_table">
 			<table>
 				<tr>
 					<td colspan="3" class="con_tbblack">FRED & FARID GROUP</td>
@@ -173,7 +173,7 @@
 			</table>
 		</div>
 		<!--  -->
-		<div class="contact_mail cs-clear">
+		<div class="up-fadein contact_mail cs-clear">
 			<table>
 				<tr class="contact_mailtit"><td class="contact_maill">NEW BUSINESS</td><td class="contact_mailc">NEW BUSINESS</td><td class="contact_mailr">NEW BUSINESS</td></tr>
 				<tr><td class="contact_maill">newbusiness@fredfarid.com</td><td class="contact_mailc">pressrelations@fredfarid.com</td><td class="contact_mailr">humanressources@fredfarid.com</td></tr>
@@ -181,5 +181,5 @@
 		</div>
 		<!--  -->
 	</div>
-	<div class="contact_map"></div>
+	<div class="up-fadein contact_map"></div>
 <?php include_once 'common/footer.php';?>

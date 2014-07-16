@@ -24,7 +24,7 @@
 	<!-- section -->
 	<div class="section sec_press">
 		<!--  -->
-		<div class="press_crumbs">
+		<div class="press_crumbs crumbs">
 			<a href="./press.php" class="active" style="margin-left:150px;" data-a="press_crumbs_link">articles press</a> / 
 			<a href="./interview.php" data-a="press_crumbs_link">interview</a> /
 			<a href="./conference.php" data-a="press_crumbs_link">conference</a>
@@ -34,7 +34,7 @@
 			<div class="press_txt">Ici un texte de presentation<br />de chapitre utile pour le referencement</div>
 			<!--  -->
 			<div class="press_year">2014</div>
-			<div class="press_list cs-clear">
+			<div class="press_list column cs-clear">
 				<!--  -->
 				<div class="press_item">
 					<p class="press_img" data-a="press_img">
@@ -143,7 +143,7 @@
 			</div>
 			<!--  -->
 			<div class="press_year">2013</div>
-			<div class="press_list cs-clear">
+			<div class="press_list column cs-clear">
 				<!--  -->
 				<div class="press_item">
 					<p class="press_img" data-a="press_img"><img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />

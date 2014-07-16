@@ -13,7 +13,7 @@
 	<!-- section -->
 	<div class="section sec_awards">
 		<div class="sectit"><h2>213 INTERNATIONAL AWARDS</h2></div>
-		<div class="awardicons cs-clear">
+		<div class="up-fadein awardicons cs-clear column">
 			<img src="../images/award_img1.png" />
 			<img src="../images/award_img2.png" />
 			<img src="../images/award_img3.png" />
@@ -23,7 +23,7 @@
 			<img src="../images/award_img7.png" />
 			<img src="../images/award_img5.png" />
 		</div>
-		<div class="awardfilter cs-clear">
+		<div class="up-fadein awardfilter column cs-clear">
 			<div class="awardfilter_item">
 				<a class="selitem ">
 					<span class="selitem_tips">YEAR</span>
@@ -54,7 +54,7 @@
 			</div>
 		</div>
 		<!--  -->
-		<div class="awardlist">
+		<div class="up-fadein awardlist column">
 			<table>
 				<tr><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
 				<tr class="even"><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>

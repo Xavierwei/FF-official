@@ -11,6 +11,7 @@
 	<meta property="og:url" content="http://www.fredfarid.com/" />
 	<meta name="viewport" content="width=640, minimum-scale=0.5, maximum-scale=1, target-densityDpi=290,user-scalable = no" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../css/responsive.css" media="screen and (max-width: 1250px)" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div class="container">
@@ -47,7 +48,7 @@
 	<div class="header <?php if( !$home_page ){ ?>header-fixed<?php }?>">
 		<div class="header-inner">
 			<a href="index.php" data-a="navitem" class="logo"></a>
-			<div class="nav cs-clear">
+			<div class="nav column cs-clear">
 				<a class="navitem" data-a="show-category" href="#">CATEGORIES</a>
 				<a class="navitem" data-a="show-brands" href="#">BRANDS</a>
 				<a class="navitem" data-a="show-category" href="#">SERVICES</a>
@@ -59,7 +60,7 @@
 			<div class="language"><a href="#">EN</a> <a href="#">中国</a></div>
 			<a href="#" data-a="search-toggle" class="search">×</a>
 			<div class="search-wrap">
-				<form class="search-wrap-inner">
+				<form class="search-wrap-inner column">
 					<input type="submit" value="SEARCH" />
 					<input type="text" name="skey"  placeholder="WRITE HERE YOUR SEAERCH" />
 				</form>
@@ -69,7 +70,7 @@
 	<div class="section sec_gates" style="display:none;">
 		<div class="gates-inner cs-clear">
 			<div class="gates-inner-l">
-				<ul>
+				<ul class="column">
 					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
 					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Blcoholic drinks</a> </li>
 					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Clcoholic drinks</a> </li>
@@ -117,7 +118,7 @@
 
 	<div class="section sec_brands">
 		<div class="brand_item_tit" style="margin-top:-88px;margin-bottom: 88px;display:none;" >
-			<div class="sec_brands_tit"><h2>BRAND  |  AUDI  |  MILIMETER</h2></div>
+			<div class="sec_brands_tit"><h2 class="column">BRAND  |  AUDI  |  MILIMETER</h2></div>
 		</div>
 		<div class="brand_movie" style="display:none;">
 			<dl class="cs-clear">
@@ -141,12 +142,12 @@
 		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit">
-				<h2>BRAND  |  AUDI</h2>
+				<h2 class="column">BRAND  |  AUDI</h2>
 				<a href="#" class="pagetitarr pagetitarrtop"></a>
 				<a href="#" class="pagetitarr pagetitarrbottom"></a>
 			</div>
 			<div class="brands-tags">
-				<p>
+				<p class="column">
 					<a href="#">6 &nbsp; × &nbsp;awards</a>
 					<a href="#">6 &nbsp; × &nbsp;tags</a>
 					<a href="#">6 &nbsp; × &nbsp;services</a>

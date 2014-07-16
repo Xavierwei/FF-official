@@ -336,7 +336,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         </video></div>' , {id: id  , videoFile: movie , poster: poster}));
 
 		config = $.extend( { "controls": false, "autoplay": false, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , config || {} );
-		console.log( config );
 		var ratio = config.ratio || 3/4;
 		LP.use('video-js' , function(){
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
@@ -709,28 +708,36 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				initHomeNum();
 			},
 			'press-page': function(){
-				var	$banpho = $('.banpho');
-				var banphoTop = $banpho.offset().top;
-				var banphoImgHeight = $('.banpho img').height();
 
-				var $interviewList = $('.interview_list');
-				$(window).scroll(function(){
-					var stTop = $(window).scrollTop();
-					// for interview
-					if( $interviewList.length && !$interviewList.data('init') ){
-						if( stTop > banphoTop + banphoImgHeight / 2 ){
-							$interviewList.data('init' , 1);
-							$interviewList.children().each(function( i ){
-								$(this).delay( 150 * i )
-									.animate({
-										opacity: 1,
-										marginTop: 0
-									} , 500 );
-							});
-						}
-					}
-				})
-				.trigger('scroll');
+				// reload js conponent
+				LP.use( ['video-js' , '../plugin/jquery.jplayer.min.js'] );
+
+				// var	$banpho = $('.banpho');
+				// var banphoTop = $banpho.offset().top;
+				// var banphoImgHeight = $('.banpho img').height();
+
+				// var $interviewList = $('.interview_list');
+				// var interviewItemOff = $interviewList.children().eq(0).offset();
+				// $(window).scroll(function(){
+				// 	var stTop = $(window).scrollTop();
+				// 	// for interview
+				// 	if( $interviewList.length && !$interviewList.data('init') ){
+				// 		if( stTop > banphoTop + banphoImgHeight / 2
+				// 			|| interviewItemOff.top < stTop + $(window).height() ){
+
+				// 			console.log( stTop > banphoTop + banphoImgHeight / 2 );
+				// 			$interviewList.data('init' , 1);
+				// 			$interviewList.children().each(function( i ){
+				// 				$(this).delay( 150 * i )
+				// 					.animate({
+				// 						opacity: 1,
+				// 						marginTop: 0
+				// 					} , 500 );
+				// 			});
+				// 		}
+				// 	}
+				// })
+				// .trigger('scroll');
 
 
 				$('.press_img').hover(function(){
@@ -768,14 +775,18 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 				// fix common page init
 				// for  banpho-img
-				if( $('.banpho-img').length ){
-					var	$banpho = $('.banpho-img');
-					var banphoTop = $banpho.offset().top;
-					var banphoImgHeight = $('.banpho-img img').height();
+				var $footer = $('.footer');
+				$(window).scroll(function(){
+					var stTop = $(window).scrollTop() + headerHeight;
+					var winHeight = $(window).height();
 
-					var $interviewList = $('.interview_list');
-					$(window).scroll(function(){
-						var stTop = $(window).scrollTop();
+					if( $('.banpho-img').length ){
+						var	$banpho = $('.banpho-img');
+						var banphoTop = $banpho.offset().top;
+						var banphoImgHeight = $('.banpho-img img').height();
+
+						var $interviewList = $('.interview_list');
+						
 
 						// for top image
 						if( stTop > banphoTop && stTop < banphoTop + banphoImgHeight ){
@@ -793,9 +804,36 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 								.find('img')
 								.css('marginTop' , -banphoImgHeight / 2);
 						}
-					})
-					.trigger('scroll')
-				}
+					}
+
+					// fix up-fadein
+					if( $('.up-fadein').length ){
+						var index = 0;
+						$('.up-fadein').each(function(){
+							var $dom = $(this);
+							if( !$dom.data('init') && $dom.offset().top < stTop + winHeight ){
+								$dom.data('init' , 1)
+									.delay( 150 * index++ )
+									.animate({
+										opacity: 1,
+										marginTop: 0
+									} , 500 )
+									.promise()
+									.then(function(){
+										$dom.removeClass('up-fadein');
+									});
+							}
+						});
+					}
+
+					// fix footer 
+					// var containerHeight = $('.container').height();
+					// if( stTop + winHeight > containerHeight ){
+					// 	$footer.css('bottom' , )
+					// }
+				})
+				.trigger('scroll');
+				
 			},
 			desctory: function(){
 				$(window).unbind('scroll');
@@ -1501,7 +1539,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			// start animate
 			$videoWrap.animate({
 				marginTop: 0
-			} , 1000);
+			} , 400);
 		} else {
 
 			$item.removeData('media-dom')
@@ -1510,13 +1548,29 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 			$videoWrap.animate({
 				marginTop: -480
-			} , 1000)
+			} , 400)
 			.promise()
 			.then(function(){
 				var video = $videoWrap.data('video-object');
 				video && video.pause();
 				$container.remove();
 			});
+
+			// follow items animates
+			var $nexts = $container.nextAll()
+				.each(function( i ){
+					$(this).delay( 150 * i ).animate({
+						marginTop: i == 0 ? 0 : -60,
+						marginBottom: 80
+					} , 400 , function(){
+						$(this).css({
+							marginTop: 0
+						}).prev().css({
+							marginTop: 0,
+							marginBottom: 20
+						});
+					} );
+				});
 		}
 	});
 
@@ -1597,7 +1651,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 					    $container.find('.interview-music')
 					    	.animate({
 					    		marginTop: 0
-					    	} , 500 );
+					    	} , 300 );
 			    	}
 			  	});
 			});
@@ -1605,7 +1659,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			$container.find('.interview-music')
 		    	.animate({
 		    		marginTop: -190
-		    	} , 500 )
+		    	} , 300 )
 		    	.promise()
 		    	.then(function(){
 		    		if( $container.find('.jp-pause')
@@ -1619,6 +1673,22 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		    $item.removeData('media-dom')
 				.find('.interview_opt')
 				.removeClass('opened');
+
+			// follow items animates
+			var $nexts = $container.nextAll()
+				.each(function( i ){
+					$(this).delay( 120 * i ).animate({
+						marginTop: i == 0 ? 0 : -60,
+						marginBottom: 80
+					} , 400 , function(){
+						$(this).css({
+							marginTop: 0
+						}).prev().css({
+							marginTop: 0,
+							marginBottom: 20
+						});
+					} );
+				});
 		}
 		
 	});
@@ -1633,8 +1703,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			.removeClass('active')
 			.eq(0)
 			.animate({
-				marginLeft: [150,0,-150][index]
-			} , 500);
+				marginLeft: [300, 150, 0 , -150][index]
+			} , 300);
 
 		var width = $dom.width();
 		var $wrap = $('<div><div></div></div>').find('div')
@@ -1651,16 +1721,16 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			overflow: 'hidden',
 			whiteSpace: 'nowrap'
 		})
-		.delay( 500 )
+		.delay( 300 )
 		.animate({
 			width: width,
 			marginLeft: - width / 2
-		} , 1000)
+		} , 300)
 		.find('div')
-		.delay( 500 )
+		.delay( 300 )
 		.animate({
 			marginLeft: 0
-		} , 1000)
+		} , 300)
 		.promise()
 		.then(function(){
 			$dom.addClass('active');

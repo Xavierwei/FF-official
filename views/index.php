@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<!--  -->
-		<div class="home_view">
+		<div class="home_view column">
 			<div class="home_viewtiem home_twitter cs-clear">
 				<div class="home_viewlogo home_tlogo">11K</div>
 				<div class="home_viewtxt">Social Strip Tease: <a href="#">http://www.socialstriptease.com </a> a new digital campaign of Fred & Farid Shanghai for Vicomte A <a href="#">#socialstriptease</a></div>
@@ -32,14 +32,22 @@
 				<div class="home_viewtxt">还没有微博帐号？现在加入 立即注册. «返回快速登录. 普通登录普通登录|</div>
 			</div>
 			<div class="home_viewbtn cs-clear">
-				<a href="#" class="home_viewbtntw">VIEW ALL TWEETS</a>
-				<a href="#" class="home_viewbtnwb">VIEW ALL WEIBO</a>
+				<a href="#" class="home_viewbtntw transition-wrap">
+					<div class="transition">
+					VIEW ALL TWEETS<br/><br/>VIEW ALL TWEETS
+					</div>
+				</a>
+				<a href="#" class="home_viewbtnwb transition-wrap">
+					<div class="transition">
+						VIEW ALL WEIBO<br/><br/>VIEW ALL WEIBO
+					</div>
+				</a>
 			</div>
 		</div>
 		<!--  -->
 		<div class="home_campaign">
 			<h2>FEATURED CAMPAIGNS</h2>
-			<div class="home_camcon cs-clear">
+			<div class="home_camcon column cs-clear">
 				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
 					<img src="../images/campaign_demo1.jpg" />
 					<p>All starts with an Audi</p>

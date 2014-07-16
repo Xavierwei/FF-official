@@ -24,7 +24,7 @@
 	<!-- section -->
 	<div class="section sec_press">
 		<!--  -->
-		<div class="press_crumbs">
+		<div class="press_crumbs crumbs">
 			<a href="./press.php" data-a="press_crumbs_link">articles press</a> / 
 			<a href="./interview.php" class="active" data-a="press_crumbs_link">interview</a> /
 			<a href="./conference.php" data-a="press_crumbs_link">conference</a>
@@ -35,7 +35,7 @@
 			<!--  -->
 			<div id="press-container" class="interview_list cs-clear">
 				<!--  -->
-				<div class="interview_item interview_odd cs-clear">
+				<div class="interview_item up-fadein interview_odd cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -55,7 +55,7 @@
 					</span>
 				</div>
 				
-				<div class="interview_item interview_even cs-clear">
+				<div class="interview_item up-fadein interview_even cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -72,7 +72,7 @@
 						</div>
 					</span>
 				</div>
-				<div class="interview_item interview_odd cs-clear">
+				<div class="interview_item up-fadein interview_odd cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -92,7 +92,7 @@
 					</span>
 				</div>
 				
-				<div class="interview_item interview_even cs-clear">
+				<div class="interview_item up-fadein interview_even cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -109,7 +109,7 @@
 						</div>
 					</span>
 				</div>
-				<div class="interview_item interview_odd cs-clear">
+				<div class="interview_item up-fadein interview_odd cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -129,7 +129,7 @@
 					</span>
 				</div>
 				
-				<div class="interview_item interview_even cs-clear">
+				<div class="interview_item up-fadein interview_even cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -146,7 +146,7 @@
 						</div>
 					</span>
 				</div>
-				<div class="interview_item interview_odd cs-clear">
+				<div class="interview_item up-fadein interview_odd cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -166,7 +166,7 @@
 					</span>
 				</div>
 				
-				<div class="interview_item interview_even cs-clear">
+				<div class="interview_item up-fadein interview_even cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -183,7 +183,7 @@
 						</div>
 					</span>
 				</div>
-				<div class="interview_item interview_odd cs-clear">
+				<div class="interview_item up-fadein interview_odd cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -203,7 +203,7 @@
 					</span>
 				</div>
 				
-				<div class="interview_item interview_even cs-clear">
+				<div class="interview_item up-fadein interview_even cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -220,7 +220,7 @@
 						</div>
 					</span>
 				</div>
-				<div class="interview_item interview_odd cs-clear">
+				<div class="interview_item up-fadein interview_odd cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
@@ -240,7 +240,7 @@
 					</span>
 				</div>
 				
-				<div class="interview_item interview_even cs-clear">
+				<div class="interview_item up-fadein interview_even cs-clear">
 					<div class="interview_info">
 						<span>
 							<strong> BFM BUSINESS</strong><br/>
