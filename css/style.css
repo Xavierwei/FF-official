@@ -40,7 +40,7 @@ a:hover{color:#000}
 	.search{background: url('../images/hd_search.png') no-repeat;text-indent: -9999px;overflow: hidden; width: 17px;height: 17px;position: absolute;right:46px;top:22px;}
 	.search-close{background: none;text-indent: 0;line-height: 17px;font-size: 24px;text-align: center; color: #666;}
 		.navitem{float: left;margin: 0 40px 0 0;display: inline ;font-weight: 100;color: #555;}
-	.search-wrap{height: 96px; line-height: 96px; background:#e9e9e9;display: none; }
+	.search-wrap{overflow:hidden;line-height: 96px; background:#e9e9e9;display: none; }
 		.search-wrap-inner{font-weight: 100;}
 		.search-wrap-inner input[type="submit"]{float: right;width: auto;margin-top: 35px;cursor: pointer;}
 		.search-wrap-inner input{background: none;border: none;width: 80%;outline: none; font-size: 14px;font-weight: 100;font-family: inherit;}
@@ -380,6 +380,8 @@ a:hover{color:#000}
 
 
 .up-fadein{margin-top: 100px;opacity: 0; filter:alpha(opacity=0);}
+/* 142 */
+.loading{ display: none; width: 10px;height: 10px;background: url(../images/icon_back.gif) no-repeat right -44px;position: fixed;top: 0;z-index: 100;}
 
 
 

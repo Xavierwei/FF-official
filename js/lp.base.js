@@ -380,6 +380,29 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	}
 
 
+	var loadingMgr = (function(){
+		var $loading = $('<div class="loading"></div>')
+			.appendTo(document.body);
+		var positions = [-44,-142,-240,-338,-436,-534];
+		var interval = null;
+		return {
+			show: function( top , left ){
+				var index = 0;
+				$loading.css({
+					top: top , 
+					left: left
+				});
+				interval = setInterval(function(){
+					$loading.css('background-position' , 'right ' +  positions[ ( index++ % positions.length ) ] + 'px' );
+				} , 1000 / 6 );
+			},
+			hide: function(){
+				clearInterval( interval );
+				$loading.hide();
+			}
+		}
+	})();
+
 
 
 	// page init here
@@ -431,16 +454,16 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	var $gatesInnerL = 	$('.gates-inner-l').mousemove(function( ev ){
 		var winHeight = $(window).height();
 
-		if( ev.clientY < ( winHeight - headerHeight ) / 5 + headerHeight ){
+		if( ev.clientY < ( winHeight - headerHeight ) / 4 + headerHeight ){
+			runedNum = ( 1 -  ( ev.clientY - headerHeight ) * 4 / ( winHeight - headerHeight ) ) * 15;
 			if( !isAtTop ){
-				runedNum = 250;
 				isAtTop = true;
 				gatesScrollTop = $gatesInnerL.scrollTop();
 			}
-		} else if( ev.clientY + ( winHeight - headerHeight ) / 5 > winHeight ){
+		} else if( ev.clientY + ( winHeight - headerHeight ) / 4 > winHeight ){
+			runedNum = ( 1 - ( winHeight - ev.clientY ) * 4 / ( winHeight - headerHeight ) ) * 15;
 			if( !isAtBottom ){
 				isAtBottom = true;
-				runedNum = 250;
 				gatesScrollTop = $gatesInnerL.scrollTop();
 			}
 		} else {
@@ -486,12 +509,10 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 	setInterval(function(){
 		if( isAtTop ){
-			runedNum++;
-			gatesScrollTop -= runedNum / 50;
+			gatesScrollTop -= runedNum;
 			$gatesInnerL.scrollTop( gatesScrollTop );
 		} else if( isAtBottom ) {
-			runedNum++;
-			gatesScrollTop += runedNum / 50;
+			gatesScrollTop += runedNum;
 			$gatesInnerL.scrollTop( gatesScrollTop );
 		}
 
@@ -548,10 +569,17 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				var $homeBioBg = $('.home_bio_bg');
 				var $homeNum = $('.home_num');
 				var homeNumInit = false;
+				var $slider = $('.home-slider');
 				var homeBioHeight = $homeBio.height();
+				$header = $('.header');
 				// header fixed effect
 				$(window).scroll(function(){
 					var stTop = $(window).scrollTop();
+					var winHeight = $(window).height();
+
+					// fix home slider
+					var mtop = Math.min( stTop , ( winHeight - headerHeight ) / 2 );
+					$slider.css({marginTop: - mtop , marginBottom: - mtop});
 
 					// header fixed effect
 					if( stTop >= $header.offset().top ){
@@ -836,7 +864,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				
 			},
 			desctory: function(){
-				$(window).unbind('scroll');
+				$(window).unbind('scroll').scrollTop(0);
 				$(document.body).css('overflow' , 'auto');
 			}
 		}
@@ -1380,7 +1408,26 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 
 	LP.action('search-toggle' , function(){
-		$('.search-wrap').toggle();
+		var $wrap = $('.search-wrap');
+		if( $wrap.is(':visible') ){
+			$wrap.find('form').animate({
+				marginTop: -96
+			} , 300 )
+			.promise()
+			.then(function(){
+				$wrap.hide();
+			});
+		} else {
+			$wrap.show().find('form')
+				.css('marginTop' , -96)
+				.animate({
+					marginTop: 0
+				} , 300 )
+				.promise()
+				.then(function(){
+					$wrap.find('input[type="text"]:visible').focus();
+				});
+		}
 		$(this).toggleClass('search-close');
 
 		return false;
