@@ -61,9 +61,42 @@
 			<a href="#" data-a="search-toggle" class="search">×</a>
 			<div class="search-wrap">
 				<form class="search-wrap-inner column">
-					<input type="submit" value="SEARCH" />
-					<input type="text" name="skey"  placeholder="WRITE HERE YOUR SEAERCH" />
-				</form>
+					<input type="submit" value="SEARCH" data-a="search-btn" />
+					<input type="text" name="skey" placeholder="WRITE HERE YOUR SEAERCH" />
+				</form> 
+				<div class="search-result column">
+					<h1>RESULTS FOR :  <span></span> </h1>
+					<p class="search-tags">
+						<a href="#">all (9)</a>
+						<a href="#">campaigns (9)</a>
+						<a href="#">awards (3)</a>
+						<a href="#">others (9)</a>
+					</p>
+					<div class="search-item cs-clear">
+						<span class="search-item-tit">campaigns</span>
+						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+					</div>
+					<div class="search-item cs-clear">
+						<span class="search-item-tit">campaigns</span>
+						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+					</div>
+					<div class="search-item cs-clear">
+						<span class="search-item-tit">campaigns</span>
+						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+					</div>
+					<div class="search-item cs-clear">
+						<span class="search-item-tit">campaigns</span>
+						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+					</div>
+					<div class="search-item cs-clear">
+						<span class="search-item-tit">campaigns</span>
+						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+					</div>
+					<div class="search-item cs-clear">
+						<span class="search-item-tit">campaigns</span>
+						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -118,7 +151,9 @@
 
 	<div class="section sec_brands">
 		<div class="brand_item_tit" style="margin-top:-88px;margin-bottom: 88px;display:none;" >
-			<div class="sec_brands_tit"><h2 class="column">BRAND  |  AUDI  |  MILIMETER</h2></div>
+			<div class="sec_brands_tit">
+				<h2 class="column cs-clear"><span>BRAND</span>  <span class="sep">|</span>  <span>AUDI</span> <span class="sep">|</span>  <span>MILIMETER</span></h2>
+			</div>
 		</div>
 		<div class="brand_movie" style="display:none;">
 			<dl class="cs-clear">
@@ -142,21 +177,21 @@
 		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit">
-				<h2 class="column">BRAND  |  AUDI</h2>
-				<a href="#" class="pagetitarr pagetitarrtop"></a>
-				<a href="#" class="pagetitarr pagetitarrbottom"></a>
+				<h2 class="column cs-clear"><span>BRAND</span>  <span class="sep">|</span>  <span>AUDI</span></h2>
+				<a href="#" class="pagetitarr pagetitarrtop" data-a="pagetitarrtop"></a>
+				<a href="#" class="pagetitarr pagetitarrbottom" data-a="pagetitarrbottom"></a>
 			</div>
 			<div class="brands-tags">
 				<p class="column">
-					<a href="#">6 &nbsp; × &nbsp;awards</a>
-					<a href="#">6 &nbsp; × &nbsp;tags</a>
-					<a href="#">6 &nbsp; × &nbsp;services</a>
-					<a href="#">6 &nbsp; × &nbsp;awards</a>
+					<a href="#" class="transition">6 &nbsp; × &nbsp;awards</a>
+					<a href="#" class="transition">6 &nbsp; × &nbsp;tags</a>
+					<a href="#" class="transition">6 &nbsp; × &nbsp;services</a>
+					<a href="#" class="transition">6 &nbsp; × &nbsp;awards</a>
 				</p>
 			</div>
 		</div>
 		<ul class="brands-con">
-			<li style="margin-left:-600px;">
+			<li class="brands-con-li" style="margin-left:-600px;">
 				<dl class="cs-clear">
 					<dt>
 						<div class="brands-mask"></div>
@@ -170,13 +205,19 @@
 							<span>digital event</span>
 						</div>
 					</dt>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd>
+						<ul class="brands-items cs-clear">
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+						</ul>
+					</dd>
 				</dl>
 			</li>
-			<li style="margin-left:-600px;">
+			<li class="brands-con-li" style="margin-left:-600px;">
 				<dl class="cs-clear">
 					<dt>
 						<div class="brands-mask"></div>
@@ -190,13 +231,19 @@
 							<span>digital event</span>
 						</div>
 					</dt>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd>
+						<ul class="brands-items cs-clear">
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+						</ul>
+					</dd>
 				</dl>
 			</li>
-			<li style="margin-left:-600px;">
+			<li class="brands-con-li" style="margin-left:-600px;">
 				<dl class="cs-clear">
 					<dt>
 						<div class="brands-mask"></div>
@@ -210,13 +257,19 @@
 							<span>digital event</span>
 						</div>
 					</dt>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd>
+						<ul class="brands-items cs-clear">
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+						</ul>
+					</dd>
 				</dl>
 			</li>
-			<li style="margin-left:-600px;">
+			<li class="brands-con-li" style="margin-left:-600px;">
 				<dl class="cs-clear">
 					<dt>
 						<div class="brands-mask"></div>
@@ -230,10 +283,16 @@
 							<span>digital event</span>
 						</div>
 					</dt>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
-					<dd data-a="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></dd>
+					<dd>
+						<ul class="brands-items cs-clear">
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+						</ul>
+					</dd>
 				</dl>
 			</li>
 		</ul>

@@ -272,7 +272,6 @@
         } , true );
 
         var _fireAction = function( type , dom , data ){
-
             var fn = __Cache['actions'][type];
             if( !fn ) return;
 
@@ -290,6 +289,8 @@
             var action = target.getAttribute( actionAttr );
 
             if( !action ) return;
+
+            if( target.getAttribute('disabled') ) return false;
             // login 
             // data-nl === > data need login
             // if( target.getAttribute('data-nl') && !LP.isLogin() ){
