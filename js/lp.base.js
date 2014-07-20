@@ -366,24 +366,25 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 
 	var loadingMgr = (function(){
-		var $loading = $('<div class="loading"></div>')
+		var $loading = $('<div class="loading-wrap"><div class="loading"></div>/div>')
 			.appendTo(document.body);
 		var positions = [-44,-142,-240,-338,-436,-534];
 		var interval = null;
 		return {
 			show: function( top , left ){
 				var index = 0;
-				$loading.css({
-					top: top , 
-					left: left
-				});
+				var $inner = $loading.fadeIn().find('.loading');
+				// $loading.css({
+				// 	top: top , 
+				// 	left: left
+				// });
 				interval = setInterval(function(){
-					$loading.css('background-position' , 'right ' +  positions[ ( index++ % positions.length ) ] + 'px' );
+					$inner.css('background-position' , 'right ' +  positions[ ( index++ % positions.length ) ] + 'px' );
 				} , 1000 / 6 );
 			},
 			hide: function(){
 				clearInterval( interval );
-				$loading.hide();
+				$loading.fadeOut();
 			}
 		}
 	})();
@@ -1003,7 +1004,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				
 			},
 			desctory: function(){
-				$(window).unbind('scroll').scrollTop(0);
+				$(window).unbind('scroll');
 				$(document.body).css('overflow' , 'auto');
 			}
 		}
@@ -1020,6 +1021,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             var State = History.getState(); // Note: We are using History.getState() instead of event.state
             var prev = State.data.prev;
             var type = State.data.type;
+
+            // show loading
+            loadingMgr.show();
             switch( type ){
             	case 'press':
 					$.get( location.href , '' , function( html ){
@@ -1032,9 +1036,16 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 							$( '#press-container' ).html( html )
 								.children()
 								.fadeIn();
+
+							$('html,body').animate({
+								scrollTop: $('.pagetit').height() + $('.banpho-img img').height() / 2
+							} , 400 );
+
 							pageManager.desctory( );
         					pageManager.init( );
-						} , 600);
+
+        					loadingMgr.hide();
+						} , 500);
 					} );
 					break;
 				default: 
@@ -1047,9 +1058,15 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 						setTimeout(function(){
 							$( '.container' ).html( html ).children('.page')
 								.fadeIn();
+
+							$('html,body').animate({
+								scrollTop: 0
+							} , 300 );
 							pageManager.desctory( );
         					pageManager.init( );
-						} , 600);
+
+        					loadingMgr.hide();
+						} , 500);
 					} );
             }
         });
@@ -1663,7 +1680,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			var width = this.width;
 			var height = this.height;
 			var winHeight = $(window).height();
-			var tHeight = Math.min( height , winHeight );
+			var tHeight = Math.min( height , winHeight - 40 );
 			this.style.height = tHeight + 'px';
 			$('.shade').fadeIn();
 			$('.pop_press').show()
