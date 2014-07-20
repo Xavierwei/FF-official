@@ -277,7 +277,7 @@ a:hover{color:#000}
 
 
 
-	.brands-con dl,.brand_movie dl{margin: 0;}
+	.brands-con dl{margin: 0;}
 	.brands-con dl{height: 184px;}
 	.brands-con dt{float: left; width: 350px;background: #030101;color: white;height: 96px;padding: 44px;position: relative;z-index: 1;}
 	.brands-con dd{overflow: hidden;position: absolute;height: 100%;left: 438px;width: auto;right: 0;margin: 0;}
@@ -285,6 +285,10 @@ a:hover{color:#000}
 
 	.brands-con .brands-item{float: left; width: 320px;text-align: center;overflow: hidden;position: relative;}
 	.brands-con .brands-item img{height: 100%;}
+
+	.brand_movie{height: 445px;position: absolute;top: 88px;width: 100%;overflow: hidden;}
+	.brand_movie ul{width: 200%;height: 100%;overflow: hidden;}
+	.brand_movie li{float: left;margin: 0 1px 1px 0; position: relative;font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
 /*
 	.brands-con dt,.brands-con dd,.brand_movie dd{float: left;margin: 0 1px 1px 0; position: relative;}
 	.brands-con dd,.brand_movie dd{font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
@@ -293,8 +297,6 @@ a:hover{color:#000}
 	.brands-con dt .brands-mask{opacity: 0.40;filter:alpha(opacity=40);display: block;}
 	.brand_movie dd .brands-mask{display:none;}
 	.brand_movie dl{width: 200%;height: 100%;overflow: hidden;}*/
-
-	.brand_movie{position: absolute;top: 88px;height: auto;bottom: 0;}
 
 	.brands-con-t{font-size: 20px;font-weight: bold;}
 	.brands-con-time{font-size: 14px;font-weight: 100;margin-top: 24px;}
@@ -399,9 +401,44 @@ a:hover{color:#000}
 .crumbs a.active { color: #333;}
 
 
-.up-fadein{margin-top: 100px;opacity: 0; filter:alpha(opacity=0);}
+.intoview-effect[data-effect="fadeup"]{margin-top: 100px;opacity: 0; filter:alpha(opacity=0);}
+
 /* 142 */
 .loading{ display: none; width: 10px;height: 10px;background: url(../images/icon_back.gif) no-repeat right -44px;position: fixed;top: 0;z-index: 100;}
+
+/* logo transition */
+.logo-wrap{
+	position: absolute;
+	height: 66px;
+	width: 78px;
+	left: 0;
+	top: 0;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-perspective: 70;
+	-moz-perspective: 70;
+	-ms-perspective: 70;
+	-o-perspective: 70;
+	perspective: 70;
+}
+.logo{width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-position: center;
+}
+.logo:hover{
+	-webkit-transform: scaleZ(0) rotateX(360deg);
+	-moz-transform: scaleZ(0) rotateX(360deg);
+	-ms-transform: scaleZ(0) rotateX(360deg);
+	-o-transform: scaleZ(0) rotateX(360deg);
+	transform: scaleZ(0) rotateX(360deg);
+}
+
+
 
 
 

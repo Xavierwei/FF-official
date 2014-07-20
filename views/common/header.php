@@ -47,7 +47,9 @@
 	<!-- header -->
 	<div class="header <?php if( !$home_page ){ ?>header-fixed<?php }?>">
 		<div class="header-inner">
-			<a href="index.php" data-a="navitem" class="logo"></a>
+			<div class="logo-wrap">
+				<a href="index.php" data-a="navitem" class="logo transition"></a>
+			</div>
 			<div class="nav column cs-clear">
 				<a class="navitem" data-a="show-category" href="#">CATEGORIES</a>
 				<a class="navitem" data-a="show-brands" href="#">BRANDS</a>
@@ -156,24 +158,7 @@
 			</div>
 		</div>
 		<div class="brand_movie" style="display:none;">
-			<dl class="cs-clear">
-				<!-- <dt>
-					<div class="brands-mask" style="opacity: 0.7;"></div>
-					<p class="brands-con-t">
-						911 BIRTHDAY ANNIVERSARY<br>
-						-
-					</p>
-					<p class="brands-con-time">2013</p>
-					<div class="cs-clear brands-con-meta">
-						<span class="fr">#53</span>
-						<span>digital event</span>
-					</div>
-				</dt> -->
-				<dd class="brands-item" data-a="show-brands-big-movie" data-movie="../videos/0"><img src="../images/campaign_demo1.jpg"></dd>
-				<dd class="brands-item" data-a="show-brands-big-movie" data-movie="../videos/0"><img src="../images/campaign_demo1.jpg"></dd>
-				<dd class="brands-item" data-a="show-brands-big-movie" data-movie="../videos/0"><img src="../images/campaign_demo1.jpg"></dd>
-				<dd class="brands-item" data-a="show-brands-big-movie" data-movie="../videos/0"><img src="../images/campaign_demo1.jpg"></dd>
-			</dl>
+			
 		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit">
@@ -207,12 +192,12 @@
 					</dt>
 					<dd>
 						<ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 						</ul>
 					</dd>
 				</dl>
@@ -233,12 +218,12 @@
 					</dt>
 					<dd>
 						<ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 						</ul>
 					</dd>
 				</dl>
@@ -259,12 +244,12 @@
 					</dt>
 					<dd>
 						<ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 						</ul>
 					</dd>
 				</dl>
@@ -285,12 +270,12 @@
 					</dt>
 					<dd>
 						<ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 						</ul>
 					</dd>
 				</dl>

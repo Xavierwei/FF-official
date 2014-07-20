@@ -12,8 +12,8 @@
 	<div class="banpho  banpho-img"><img src="../images/AWARDS_pho.jpg" /></div>
 	<!-- section -->
 	<div class="section sec_awards">
-		<div class="sectit"><h2>213 INTERNATIONAL AWARDS</h2></div>
-		<div class="up-fadein awardicons cs-clear column">
+		<div class="sectit"><h2><span class="intoview-effect" data-effect="number-rock">213</span> <span style="vertical-align:middle;">INTERNATIONAL AWARDS</span></h2></div>
+		<div data-effect="fadeup" class="intoview-effect awardicons cs-clear column">
 			<img src="../images/award_img1.png" />
 			<img src="../images/award_img2.png" />
 			<img src="../images/award_img3.png" />
@@ -23,7 +23,7 @@
 			<img src="../images/award_img7.png" />
 			<img src="../images/award_img5.png" />
 		</div>
-		<div class="up-fadein awardfilter column cs-clear">
+		<div data-effect="fadeup" class="intoview-effect awardfilter column cs-clear">
 			<div class="awardfilter_item">
 				<a class="selitem ">
 					<span class="selitem_tips">YEAR</span>
@@ -54,7 +54,7 @@
 			</div>
 		</div>
 		<!--  -->
-		<div class="up-fadein awardlist column">
+		<div data-effect="fadeup" class="intoview-effect awardlist column">
 			<table>
 				<tr><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
 				<tr class="even"><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>

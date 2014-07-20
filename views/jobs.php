@@ -40,7 +40,7 @@
 	<div class="section sec_jobs">
 		<div class="jobslist column cs-clear">
 			<!--  -->
-			<div class="jobsitem up-fadein">
+			<div data-effect="fadeup" class="jobsitem intoview-effect">
 				<h3>devleppeur web</h3>
 				<h4>Fred & Farid<br />Paris<br />CDD</h4>
 				<p>Graduated from the institute of political studies of Lyon, Emmanuel started his advertising career in 1994 as the account manager for BMW at BDDP.</p>
@@ -50,7 +50,7 @@
 				</strong>
 			</div>
 			<!--  -->
-			<div class="jobsitem up-fadein">
+			<div data-effect="fadeup" class="jobsitem intoview-effect">
 				<h3>devleppeur web</h3>
 				<h4>Fred & Farid<br />Paris<br />CDD</h4>
 				<p>Graduated from the institute of political studies of Lyon, Emmanuel started his advertising career in 1994 as the account manager for BMW at BDDP.</p>
@@ -60,7 +60,7 @@
 				</strong>
 			</div>
 			<!--  -->
-			<div class="jobsitem up-fadein">
+			<div data-effect="fadeup" class="jobsitem intoview-effect">
 				<h3>devleppeur web</h3>
 				<h4>Fred & Farid<br />Paris<br />CDD</h4>
 				<p>Graduated from the institute of political studies of Lyon, Emmanuel started his advertising career in 1994 as the account manager for BMW at BDDP.</p>
@@ -70,7 +70,7 @@
 				</strong>
 			</div>
 			<!--  -->
-			<div class="jobsitem up-fadein">
+			<div data-effect="fadeup" class="jobsitem intoview-effect">
 				<h3>devleppeur web</h3>
 				<h4>Fred & Farid<br />Paris<br />CDD</h4>
 				<p>Graduated from the institute of political studies of Lyon, Emmanuel started his advertising career in 1994 as the account manager for BMW at BDDP.</p>
@@ -80,7 +80,7 @@
 				</strong>
 			</div>
 			<!--  -->
-			<div class="jobsitem up-fadein">
+			<div data-effect="fadeup" class="jobsitem intoview-effect">
 				<h3>devleppeur web</h3>
 				<h4>Fred & Farid<br />Paris<br />CDD</h4>
 				<p>Graduated from the institute of political studies of Lyon, Emmanuel started his advertising career in 1994 as the account manager for BMW at BDDP.</p>
@@ -90,7 +90,7 @@
 				</strong>
 			</div>
 			<!--  -->
-			<div class="jobsitem up-fadein">
+			<div data-effect="fadeup" class="jobsitem intoview-effect">
 				<h3>devleppeur web</h3>
 				<h4>Fred & Farid<br />Paris<br />CDD</h4>
 				<p>Graduated from the institute of political studies of Lyon, Emmanuel started his advertising career in 1994 as the account manager for BMW at BDDP.</p>
@@ -100,7 +100,7 @@
 				</strong>
 			</div>
 			<!--  -->
-			<div class="jobsitem up-fadein">
+			<div data-effect="fadeup" class="jobsitem intoview-effect">
 				<h3>devleppeur web</h3>
 				<h4>Fred & Farid<br />Paris<br />CDD</h4>
 				<p>Graduated from the institute of political studies of Lyon, Emmanuel started his advertising career in 1994 as the account manager for BMW at BDDP.</p>
@@ -110,7 +110,7 @@
 				</strong>
 			</div>
 			<!--  -->
-			<div class="jobsitem up-fadein">
+			<div data-effect="fadeup" class="jobsitem intoview-effect">
 				<h3>devleppeur web</h3>
 				<h4>Fred & Farid<br />Paris<br />CDD</h4>
 				<p>Graduated from the institute of political studies of Lyon, Emmanuel started his advertising career in 1994 as the account manager for BMW at BDDP.</p>
@@ -120,7 +120,7 @@
 				</strong>
 			</div>
 			<!--  -->
-			<div class="jobsitem up-fadein">
+			<div data-effect="fadeup" class="jobsitem intoview-effect">
 				<h3>devleppeur web</h3>
 				<h4>Fred & Farid<br />Paris<br />CDD</h4>
 				<p>Graduated from the institute of political studies of Lyon, Emmanuel started his advertising career in 1994 as the account manager for BMW at BDDP.</p>

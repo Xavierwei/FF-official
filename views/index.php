@@ -89,10 +89,10 @@
 			<div class="home_numtable">
 				<table>
 					<tr>
-						<td><strong class="num">2734</strong>PROJECTS</td>
-						<td><strong class="num">135</strong>BRANDS</td>
-						<td><strong class="num">700</strong>PRESS ARTICLES</td>
-						<td><strong class="num">24</strong>SERVICES</td>
+						<td><strong class="intoview-effect" data-effect="number-rock">2734</strong>PROJECTS</td>
+						<td><strong class="intoview-effect" data-effect="number-rock">135</strong>BRANDS</td>
+						<td><strong class="intoview-effect" data-effect="number-rock">700</strong>PRESS ARTICLES</td>
+						<td><strong class="intoview-effect" data-effect="number-rock">24</strong>SERVICES</td>
 						<td><strong>XXX</strong>AWARDS</td>
 					</tr>
 				</table>

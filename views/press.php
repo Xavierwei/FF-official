@@ -33,7 +33,7 @@
 		<div id="press-container" >
 			<div class="press_txt">Ici un texte de presentation<br />de chapitre utile pour le referencement</div>
 			<!--  -->
-			<div class="press_year">2014</div>
+			<div class="press_year"><span class="intoview-effect" data-effect="number-rock">2014</span></div>
 			<div class="press_list column cs-clear">
 				<!--  -->
 				<div class="press_item">
@@ -142,7 +142,7 @@
 				<!--  -->
 			</div>
 			<!--  -->
-			<div class="press_year">2013</div>
+			<div class="press_year"><span class="intoview-effect" data-effect="number-rock">2013</span></div>
 			<div class="press_list column cs-clear">
 				<!--  -->
 				<div class="press_item">
