@@ -26,31 +26,33 @@
 		<div data-effect="fadeup" class="intoview-effect awardfilter column cs-clear">
 			<div class="awardfilter_item">
 				<a class="selitem ">
-					<span class="selitem_tips">YEAR</span>
 					<select>
-						<option>YEAR</option>
-						<option>YEAR</option>
+						<option>YEAR1</option>
+						<option>YEAR3</option>
 					</select>
 				</a>
 			</div>
 			<div class="awardfilter_item">
 				<a class="selitem ">
-					<span class="selitem_tips">BRAND</span>
 					<select>
-						<option>BRAND</option>
+						<option>BRAND3</option>
+						<option>BRAND4</option>
+						<option>BRAND5</option>
+						<option>BRAND6</option>
 					</select>
 				</a>
 			</div>
 			<div class="awardfilter_item">
 				<a class="selitem ">
-					<span class="selitem_tips">AWARD</span>
 					<select>
-						<option>AWARD</option>
+						<option>AWARD7</option>
+						<option>BRAND8</option>
+						<option>BRAND9</option>
 					</select>
 				</a>
 			</div>
 			<div class="awardfilter_item awardfilter_item2">
-				<button class="awardfilter_btn">FILTER</button>
+				<button data-a="awardfilter" class="awardfilter_btn">FILTER</button>
 			</div>
 		</div>
 		<!--  -->

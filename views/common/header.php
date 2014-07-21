@@ -14,6 +14,7 @@
     <link href="../css/responsive.css" media="screen and (max-width: 1250px)" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<div class="loading-wrap" style="display:block;"><div class="loading"></div></div>
 	<div class="container">
 	<?php if( isset($home_page) ){?>
 	<!-- banner -->
@@ -244,12 +245,12 @@
 					</dt>
 					<dd>
 						<ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 						</ul>
 					</dd>
 				</dl>
@@ -270,12 +271,12 @@
 					</dt>
 					<dd>
 						<ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
+							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 						</ul>
 					</dd>
 				</dl>
