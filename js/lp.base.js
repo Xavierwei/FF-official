@@ -119,6 +119,39 @@ LP.use(['jquery' ,'easing'] , function( $ ){
     }
 
 
+   	function textEffect( $dom ){
+   		var width = $dom.width();
+		var $wrap = $('<div><div></div></div>').find('div')
+			.html( $dom.html() )
+			.css('marginLeft' , -width / 2)
+			.end()
+			.appendTo( $dom );
+		$wrap.css({
+			position: 'absolute',
+			top: 0,
+			left: '50%',
+			width: 0,
+			color: '#000',
+			overflow: 'hidden',
+			whiteSpace: 'nowrap'
+		})
+		.delay( 300 )
+		.animate({
+			width: width,
+			marginLeft: - width / 2
+		} , 300)
+		.find('div')
+		.delay( 300 )
+		.animate({
+			marginLeft: 0
+		} , 300)
+		.promise()
+		.then(function(){
+			//$dom.addClass('active');
+			//$wrap.remove();
+		});
+   	}
+
     function initSelect( $select ){
     	$select.each(function(){
     		var $options = $(this).find('option');
@@ -478,6 +511,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 		config = $.extend( { "controls": false, "muted": false, "autoplay": false, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , config || {} );
 		var ratio = config.ratio || 9/16;
+
 		LP.use('video-js' , function(){
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
             var myVideo = videojs( id , config , function(){
@@ -1205,7 +1239,19 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 				// init select
 				initSelect( $('select') );
+
+
+				// init texteffect
+				$('.navitem,.crumbs a').filter(':not(.text-effect-init)')
+					.addClass('text-effect-init')
+					.hover(function(){
+						textEffect( $(this) );
+					} , function(){
+						$(this).children('div').remove();
+					});
+
 				
+				return false;
 			},
 			desctory: function(){
 				$(window).unbind('scroll');
@@ -1221,6 +1267,11 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	LP.use('../plugin/history.js' , function(){
 		History.replaceState( { prev: '' } , undefined , location.href  );
 		pageManager.init( );
+
+
+		$(document).ajaxError(function(){
+			loadingMgr.hide();
+		});
         // Bind to StateChange Event
         History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
             var State = History.getState(); // Note: We are using History.getState() instead of event.state
@@ -1251,7 +1302,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
         					loadingMgr.hide();
 						} , 500);
-					} );
+					});
 					break;
 				default: 
 					$.get( location.href , '' , function( html ){
@@ -1272,7 +1323,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
         					loadingMgr.hide();
 						} , 500);
-					} );
+					});
             }
         });
 	});
@@ -1280,21 +1331,38 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 	// bind keydown events
 	$(document).keydown(function( ev ){
-		console.log( ev.which );
 		switch( ev.which ){
 			case 27:
+				// press popup page
 				if( $('.pop_press').is(':visible') ){
 					LP.triggerAction('pop_close');
+				}
+
+				// brand_movie
+				if( $('.brand_movie').is(':visible') ){
+					
 				}
 				break;
 			case 37:
 				if( $('.pop_press').is(':visible') ){
 					LP.triggerAction('press_prev');
 				}
+				if( $('.page').data('page') == "home-page" ){
+					LP.triggerAction('home-slider-left');
+				}
+				if( $('.brand_movie').is(':visible') ){
+					// TODO...
+				}
 				break;
 			case 39:
 				if( $('.pop_press').is(':visible') ){
 					LP.triggerAction('press_next');
+				}
+				if( $('.page').data('page') == "home-page" ){
+					LP.triggerAction('home-slider-right');
+				}
+				if( $('.brand_movie').is(':visible') ){
+					// TODO...
 				}
 				break;
 		}
@@ -1407,7 +1475,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			$sliderItem.find('.video-wrap').remove();
 			isHomeSliderMoviePlaying = true;
 			renderVideo( $sliderItem , movie , $sliderItem.find('img').attr('src') , {
-				ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
+				// ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
 				autoplay: true
 			} , function(){
 
@@ -2214,37 +2282,38 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				marginLeft: [300, 150, 0 , -150][index]
 			} , 300);
 
-		var width = $dom.width();
-		var $wrap = $('<div><div></div></div>').find('div')
-			.html( $dom.html() )
-			.css('marginLeft' , -width / 2)
-			.end()
-			.appendTo(this);
-		$wrap.css({
-			position: 'absolute',
-			top: 0,
-			left: '50%',
-			width: 0,
-			color: '#000',
-			overflow: 'hidden',
-			whiteSpace: 'nowrap'
-		})
-		.delay( 300 )
-		.animate({
-			width: width,
-			marginLeft: - width / 2
-		} , 300)
-		.find('div')
-		.delay( 300 )
-		.animate({
-			marginLeft: 0
-		} , 300)
-		.promise()
-		.then(function(){
-			$dom.addClass('active');
-			$wrap.remove();
-		});
+		$dom.addClass('active');
 
+		// var width = $dom.width();
+		// var $wrap = $('<div><div></div></div>').find('div')
+		// 	.html( $dom.html() )
+		// 	.css('marginLeft' , -width / 2)
+		// 	.end()
+		// 	.appendTo(this);
+		// $wrap.css({
+		// 	position: 'absolute',
+		// 	top: 0,
+		// 	left: '50%',
+		// 	width: 0,
+		// 	color: '#000',
+		// 	overflow: 'hidden',
+		// 	whiteSpace: 'nowrap'
+		// })
+		// .delay( 300 )
+		// .animate({
+		// 	width: width,
+		// 	marginLeft: - width / 2
+		// } , 300)
+		// .find('div')
+		// .delay( 300 )
+		// .animate({
+		// 	marginLeft: 0
+		// } , 300)
+		// .promise()
+		// .then(function(){
+		// 	$dom.addClass('active');
+		// 	$wrap.remove();
+		// });
 
 		// load press page
 		pageManager.go( $dom.attr('href') , 'press' );
