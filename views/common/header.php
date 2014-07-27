@@ -56,8 +56,8 @@
 				<a class="navitem" data-a="show-brands" href="#">BRANDS</a>
 				<a class="navitem" data-a="show-category" href="#">SERVICES</a>
 				<a class="navitem" data-a="navitem" href="awards.php">AWARDS</a>
-				<a class="navitem" data-a="navitem" href="press.php">PRESS</a>
-				<a class="navitem" data-a="navitem" href="about.php">ABOUT</a>
+				<a class="navitem" data-a="navitem" href="press.php" data-last="interview.php">PRESS</a>
+				<a class="navitem" data-a="navitem" href="about.php" data-last="jobs.php">ABOUT</a>
 				<a class="navitem" data-a="navitem" href="contact.php">CONTACT</a>
 			</div>
 			<div class="language"><a href="#">EN</a> <a href="#">中国</a></div>
@@ -159,20 +159,19 @@
 			</div>
 		</div>
 		<div class="brand_movie" style="display:none;">
-			
+			<div class="brand_big_prev" data-a="brand_big_prev"> <span></span> </div>
+			<div class="brand_big_next" data-a="brand_big_next"> <span></span> </div>
 		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit">
 				<h2 class="column cs-clear"><span>BRAND</span>  <span class="sep">|</span>  <span>AUDI</span></h2>
-				<a href="#" class="pagetitarr pagetitarrtop" data-a="pagetitarrtop"></a>
-				<a href="#" class="pagetitarr pagetitarrbottom" data-a="pagetitarrbottom"></a>
+				<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop"></a>
+				<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom"></a>
 			</div>
 			<div class="brands-tags">
 				<p class="column">
 					<a href="#" class="transition">6 &nbsp; × &nbsp;awards</a>
-					<a href="#" class="transition">6 &nbsp; × &nbsp;tags</a>
 					<a href="#" class="transition">6 &nbsp; × &nbsp;services</a>
-					<a href="#" class="transition">6 &nbsp; × &nbsp;awards</a>
 				</p>
 			</div>
 		</div>

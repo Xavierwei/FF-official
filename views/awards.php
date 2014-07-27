@@ -1,27 +1,24 @@
 <?php include_once 'common/header.php';?>
-<div class="page" data-page="about-page">
+<div class="page" data-page="awards-page">
 	<!-- page title -->
-	<div class="pagetit">
-		<div class="column">
-			<h1>AWARDS</h1>
-			<a href="#" class="pagetitarr pagetitarrtop"></a>
-			<a href="#" class="pagetitarr pagetitarrbottom"></a>
-		</div>
-	</div>
-	<!-- banner -->
-	<div class="banpho  banpho-img"><img src="../images/AWARDS_pho.jpg" /></div>
+	<?php 
+	$pagetit = 'AWARDS';
+	include_once 'common/pagetit.php';?>
+	
 	<!-- section -->
 	<div class="section sec_awards">
 		<div class="sectit"><h2><span class="intoview-effect" data-effect="number-rock">213</span> <span style="vertical-align:middle;">INTERNATIONAL AWARDS</span></h2></div>
 		<div data-effect="fadeup" class="intoview-effect awardicons cs-clear column">
-			<img src="../images/award_img1.png" />
-			<img src="../images/award_img2.png" />
-			<img src="../images/award_img3.png" />
-			<img src="../images/award_img4.png" />
-			<img src="../images/award_img5.png" />
-			<img src="../images/award_img6.png" />
-			<img src="../images/award_img7.png" />
-			<img src="../images/award_img5.png" />
+			<img data-num="40" src="../images/award_img1.png" />
+			<img data-num="60" src="../images/award_img2.png" />
+			<img data-num="8" src="../images/award_img3.png" />
+			<span class="award-num">
+				20
+			</span>
+			<img data-num="108" src="../images/award_img5.png" />
+			<img data-num="518" src="../images/award_img6.png" />
+			<img data-num="518" src="../images/award_img7.png" />
+			<img data-num="518" src="../images/award_img5.png" />
 		</div>
 		<div data-effect="fadeup" class="intoview-effect awardfilter column cs-clear">
 			<div class="awardfilter_item">

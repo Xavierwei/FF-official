@@ -12,22 +12,19 @@
 </div>
 <div class="page" data-page="press-page">
 	<!-- page title -->
-	<div class="pagetit">
-		<div class="column">
-			<h1>PRESS</h1>
-			<a href="#" class="pagetitarr pagetitarrtop"></a>
-			<a href="#" class="pagetitarr pagetitarrbottom"></a>
-		</div>
-	</div>
-	<!-- banner -->
-	<div class="banpho  banpho-img"><img src="../images/PRESS_pho.jpg" /></div>
+	<?php 
+	$pagetit = 'PRESS';
+	include_once 'common/pagetit.php';?>
+
+
 	<!-- section -->
 	<div class="section sec_press">
 		<!--  -->
 		<div class="press_crumbs crumbs">
-			<a href="./press.php" data-a="press_crumbs_link">articles press</a> / 
-			<a href="./interview.php" class="active" data-a="press_crumbs_link">interview</a> /
-			<a href="./conference.php" data-a="press_crumbs_link">conference</a>
+			<a href="./press.php" data-d="type=press" data-a="press_crumbs_link">articles press</a> / 
+			<a href="./interview.php" data-d="type=press" class="active" data-a="press_crumbs_link">interview</a>
+			<!--  /
+			<a href="./conference.php" data-a="press_crumbs_link">conference</a> -->
 		</div>
 		<div id="press-container" >
 			<!--  -->

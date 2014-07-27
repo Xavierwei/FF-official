@@ -1,15 +1,10 @@
 <?php include_once 'common/header.php';?>
 <div class="page" data-page="contact-page">
 	<!-- page title -->
-	<div class="pagetit">
-		<div class="column">
-			<h1>CONTACT</h1>
-			<a href="#" class="pagetitarr pagetitarrtop"></a>
-			<a href="#" class="pagetitarr pagetitarrbottom"></a>
-		</div>
-	</div>
-	<!-- banner -->
-	<div class="banpho  banpho-img"><img src="../images/CONTACT_pho.jpg" /></div>
+	<?php 
+	$pagetit = 'CONTACT';
+	include_once 'common/pagetit.php';?>
+
 	<!-- section -->
 	<div class="section sec_contact column">
 		<!--  -->
