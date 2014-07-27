@@ -1511,6 +1511,19 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                     }
 				}
 
+                // for home-cam-item-big
+                if( $('.home-cam-item-big').length ){
+                    $('.home-cam-item-big').click();
+                }
+
+                if( $('.sec_gates').is(':visible') ){
+                    hideCategory();
+                }
+
+                if( $('.brands-con').is(":visible") ){
+                    hideBrands();
+                }
+
 				break;
 			case 37:
 				if( $('.shade').is(':visible') ){
@@ -1809,6 +1822,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			}
 		var $wrap = $('<div></div>').appendTo(document.body)
 			.css( oriCss )
+            .addClass('home-cam-item-big')
 			.append($img.clone()
 				.css({
 					width: '100%',

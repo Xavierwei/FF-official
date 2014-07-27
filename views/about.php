@@ -268,8 +268,8 @@ Yves Saint Laurent, Giorgio Armani, Mont Blanc, Wrangler, Martini, 1664, Audi, O
 		</div>
 
 		<div class="timeline_bt">
-			<img src="../images/timeline_bt.jpg"> 
-			<div class=" cs-clear">
+			<img src="../images/timeline_bt.jpg" data-effect="fadeup" class="intoview-effect">  
+			<div class="intoview-effect cs-clear" data-effect="fadeup">
 				<div class="timeline_btl">
 					<p>Fred was the first French person to be Foreman of the prestigious Art Direction D&amp;AD jury in London in 2013. He is a member of French Think Tank “Le Siècle Digital”, and in the board of “One Tuesday” Entrepreneurial Digital Network. Fred was selected in Young Leaders 2013 France-China promotion. He is part of the Steering Committee of the France-China Foundation now, with French Consul General Emmanuel Lenain and Chinese Ambassador Cheng Tao. Fred is a strong supporter of French-Chinese business and cultural relationships. He lives in Shanghai with his wife and three sons, and is passionate about Karate.</p>
 					<p style="padding-top:80px">Fred &amp; Farid are also “Chevaliers de l’Olivier des Baux de Provence” for their support to the French Provence region.</p>
@@ -278,7 +278,7 @@ Yves Saint Laurent, Giorgio Armani, Mont Blanc, Wrangler, Martini, 1664, Audi, O
 					<p>Farid was member of Cannes Lions film jury, and prestigious British D&amp;AD music video jury in 2006. Farid is a board member of Olivier Ferrand’s progressive Think Tank “Terra Nova” with Benoît Thieulin from Netscouade, and in the board of “One Tuesday” Entrepreneurial Digital Network. Farid lives in Paris with his wife and two children. He is passionate about film, literature and tennis.</p>
 				</div>
 			</div>
-			<div class="" style="padding-top:100px">
+			<div class="intoview-effect" style="padding-top:100px" data-effect="fadeup">
 				<p style="text-align:center">In their career Fred &amp; Farid have collaborated with leading western figures in digital, music, fashion, photography, politics, sport, features… such as Isabelle Adjani, Will.I.Am, Paul Auster, Jacques Attali, Remy Belvaux, Eric Cantona, Daniel Cohn-Bendit, Eric Besson, Kathryn Bigelow, Cass Bird, Mary J. Blige, Frank Budgen, Etienne De Crecy, Bill Clinton, Common, Penelope Cruz, Yann Delaigue, Christophe Dominici, Philippe Douste-Blazy, Thierry Dusautoir, Olivier Ferrand, Xavier Giannoli, Alejandro Gonzalez Inarritu, Samuel L. Jackson, Laurent Joffrin, Linton Kwesi Johnson, Joseph Kahn, Jean-François Kahn, Shekhar Kapur, Nikola Karabatic, Nicole Kidman, Nick Knight, Jan Kounen, David Lachapelle, Christian Lacroix, Thomas Langmann, Spike Lee, Loïc Le Meur, Peter Lindbergh, Patrick Demarchelier, Ryan Mcginley, Benjamin Millepied, Barbara Palvin, Tony Parker, Frederic Planchon, Rankin, Terry Richardson, Renzo Rosso, Gustavo Santaolalla, Susan Sarandon, Sølve Sundsbø, Uma Thurman, Peter Thwaites, Ellen Von Unwerth, Tony Ward, Robbie Williams, Zinedine Zidane.</p>
  
 				<p>And Recently Chinese Stars Like Hu Ge, Huang Wei Wen, Huo Siyan, Laure Shang, Zhang Liang, Zheng Jun, Dadawa Zhu Zheqin.</p>
