@@ -176,5 +176,6 @@
 		</div>
 		<!--  -->
 	</div>
-	<div data-effect="fadeup" class="intoview-effect contact_map"></div>
+	<div data-effect="fadeup" class="intoview-effect contact_map" id="map">
+	</div>
 <?php include_once 'common/footer.php';?>

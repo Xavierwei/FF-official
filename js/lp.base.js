@@ -1195,6 +1195,37 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                     effects['number-rock']( $('.awardicons span') , 0  , null , 500 );
                 }); 
             },
+            'contact-page': function(){
+
+                LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530');
+                var interval = setInterval(function(){
+                    if( window.BMap ){
+                        clearInterval( interval );
+                        var oMap = new BMap.Map("map");
+                        oMap.addControl(new BMap.NavigationControl());
+                        var point = new BMap.Point(121.478988,31.227919);
+                        oMap.centerAndZoom(point, 15);
+                        //oMap.setMapStyle({style: 'grayscale'});
+                        oMap.setMapStyle({
+                          styleJson:[{
+                                    "featureType": "all",
+                                    "elementType": "all",
+                                    "stylers": {
+                                              "lightness": 13,
+                                              "saturation": -100
+                                    }
+                          }]
+                        });
+                    }
+                } , 100 );
+                // LP.use('http://api.map.baidu.com/api?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk' , function(){
+                //     var oMap = new BMap.Map("map");
+                //     oMap.addControl(new BMap.NavigationControl());
+                //     var point = new BMap.Point(121.478988,31.227919);
+                //     oMap.centerAndZoom(point, 15);
+                //     oMap.setMapStyle({style: 'gray'});
+                // });
+            },
 			'press-page': function(){
 
 				// reload js conponent
