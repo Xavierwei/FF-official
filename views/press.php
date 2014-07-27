@@ -7,7 +7,7 @@
 		<p class="popicon popnext transition" data-a="press_next"></p>
 		<p class="popnum"><span class="pop_index">1</span>/<span class="pop_total">12</span></p>
 		<p class="popicon popprev transition" data-a="press_prev" ></p>
-		<p class="popdownicon" data-a="press_prev"></p>
+		<p class="popdownicon transition" data-a="press_prev"></p>
 	</div>
 </div>
 <div class="page" data-page="press-page">
@@ -41,7 +41,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -54,7 +54,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -67,7 +67,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -80,7 +80,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -93,7 +93,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -106,7 +106,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -119,7 +119,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -132,7 +132,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -148,7 +148,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -159,7 +159,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -170,7 +170,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->
@@ -181,7 +181,7 @@
 					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
 					<div class="cs-clear">
 						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown" href="#"></a>
+						<a class="press_itemdown transition" href="#"></a>
 					</div>
 				</div>
 				<!--  -->

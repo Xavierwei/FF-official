@@ -206,7 +206,8 @@ a:hover{color:#000}
 			.press_item strong{color:#000;text-transform: uppercase;display: block}
 			.press_itemtxt{height: 75px;overflow: hidden;border-bottom: #d4d4d4 solid 1px;margin:0 0 5px;}
 			.press_itempage{float: left}
-			.press_itemdown{background: url('../images/press_downicon.png') no-repeat center;width: 22px;height: 22px;float: right;}
+			.press_itemdown{background: url('../images/press_downicon.png') no-repeat 0 -57px;width: 22px;height: 22px;float: right;}
+			.press_itemdown:hover{background-position: 0 0;}
 
 /* section home */
 .sec_home{}
@@ -363,14 +364,18 @@ a:hover{color:#000}
 		.jobshare_t{background-position: 0 -60px;}
 
 	.popicon{background: url('../images/popicon.png') no-repeat;height: 30px;width: 30px;position: absolute;right:80px;cursor: pointer;}
-	.popclose{top:50px;}
-	.popprev{background-position: 0 -30px;top:150px}
+	.popclose{top:50px; }
+	.popclose:hover{-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);-o-transform: rotate(180deg);-ms-transform: rotate(180deg);transform: rotate(180deg);}
+	.popprev{background-position: -62px -30px;top:150px}
+	.popprev:hover{background-position: 0 -30px; }
 	.popnext{background-position: 0 -60px;top:250px;}
+	.popnext:hover{background-position: -62px -60px; }
 	.popnum{top:200px;position: absolute;right: 80px;color:#666;line-height: 30px;}
 .pop_press{padding: 0 95px 0 0;margin:0 0 0 -440px;top: -100%; background: none;}
 	.pop_press .popicon{right: 30px}
 	.pop_press .popnum{right: 30px}
-	.popdownicon{background: url('../images/popdownicon.png') no-repeat;height: 30px;width: 30px;position: absolute;right:30px;bottom:55px;cursor: pointer;}
+	.popdownicon{background: url('../images/popdownicon.png') no-repeat 3px -51px;height: 30px;width: 30px;position: absolute;right:30px;bottom:55px;cursor: pointer;}
+	.popdownicon:hover{background-position: 3px 3px;}
 	.pop_presspho{position: relative;z-index: 1;overflow: hidden;}
 	.pop_press_menus{width: 95px;position: absolute;height: 100%;top: 0;right: 95px;background: black;z-index: 0;}
 
