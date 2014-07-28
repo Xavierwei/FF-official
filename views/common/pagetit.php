@@ -6,4 +6,10 @@
 	</div>
 </div>
 <!-- banner -->
-<div class="banpho  banpho-img"><img src="../images/<?php echo $pagetit; ?>_pho.jpg" /></div>
+<div class="banpho  banpho-img"><img src="../images/<?php echo $pagetit; ?>_pho.jpg" />
+<?php if( $pagetit == 'ABOUT' ){ ?>
+	<a href="#" class="show-reel transition-wrap">
+		<div class="transition">SHOW REEL<br><br>SHOW REEL</div>
+	</a>
+<?php } ?>
+</div>

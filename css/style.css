@@ -169,6 +169,8 @@ a:hover{color:#000}
 	.about_crumbs{font-size: 14px;text-align: center;text-transform: uppercase;padding:50px 0 ;}
 	.about_txt{text-align: center;font-size: 14px;font-weight: bold;padding: 0 0 70px}
 		.about_txt p{font-size:36px;line-height: 42px;padding:0 0 10px;}
+	.show-reel{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;}
+	.show-reel:hover{color: white;}
 	.about_down{height: 120px}
 		.about_downbtn{font-size: 14px;width: 175px;height: 50px;line-height: 50px;font-weight: bold;margin: 0 auto;display: block;border:#000 solid 2px;text-align: center}
 	.about_timeline{}
