@@ -1,10 +1,53 @@
 @media only screen and (max-width:1250px){
-    .nav{padding-left: 75px;}
+    .nav{padding-left: 75px;height: 100%;overflow: hidden;}
     .column{width: auto;}
 }
 
 
 @media only screen and (max-width:1100px){
     .home_camcon {width:1000px;}
+
+    .home_viewtxt {width: 26%;margin: 0 0 0 5%;}
     .cam_item {width:318px;}
+}
+
+
+@media only screen and (max-width:1000px){
+	.nav{padding-right:150px;}
+    .home_news{width: auto;}
+    .home_view{padding: 0 20px;}
+
+    .home_camcon{width: auto;}
+    .cam_item {width:33%;}
+    .cam_item img{width: 100%;}
+
+    .home_biotxt{width: auto;padding: 0 20px;}
+    .home_bioleft{width: 47%;margin-right: 6%;}
+    .home_bioright{width: 47%;}
+    .home_numtable{width: auto;}
+    .ft_con{width: auto;}
+    .ft_mod{width: 25%;}
+
+
+    .gates-inner-l{font-size: 40px;padding: 0 20px;}
+    .gates-inner-l a{margin-right: 10%;}
+
+
+    .awardfilter_item{width: 23%;margin: 0 1%;}
+
+    .selitem{width: 100%;}
+    .selitem .selitem_tips{width: 100%;text-indent: 2em;background-position: 90% center;padding-left: 0;}
+    .awardfilter_btn{width: 100%;}
+
+
+    .interview_list{width: auto;margin: 0 20px;}
+    .interview_list .interview_info{width: 34%;}
+    .interview_odd .interview_img,.interview_even .interview_img{width: 66%;overflow: hidden;}
+
+    .about_timeline{padding: 0 20px;}
+    .timeline_bt{width: auto;padding: 0 20px;}
+    .timeline_bt img{width: 100%;}
+    .timeline_btl{width: 48%;margin-right: 4%;}
+    .timeline_btr{width: 48%;}
+
 }

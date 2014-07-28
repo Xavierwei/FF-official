@@ -6,10 +6,10 @@
 		<!--  -->
 		<div class="home_news" data-index="0">
 			<h2 class="intoview-effect" data-effect="fadeup">NEWS</h2>
-			<div class="home_news_inner cs-clear intoview-effect" data-effect="fadeup" style="width:3000px;">
-				<p>Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
-				<p>Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
-				<p>Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
+			<div class="home_news_inner cs-clear intoview-effect" data-effect="fadeup" style="width:300%;">
+				<p style="width:33.3333%;">Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
+				<p style="width:33.3333%;">Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
+				<p style="width:33.3333%;">Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
 			</div>
 			<div class="home_newspage">
 				<span>1/3</span>

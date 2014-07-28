@@ -242,7 +242,7 @@ a:hover{color:#000}
 		.home_cambtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto 0;display: block;position: absolute;left: 50%;margin-left: -88px;bottom: -90px;overflow: hidden;}
 		.home_cambtn:hover div{margin-top: -100px;}
 	.home_bio{height: 507px;position: relative;z-index: 1;overflow: hidden;}
-		.home_bio_bg{width: 100%;position: absolute;z-index: -1;bottom: 0; min-width: 1000px;}
+		.home_bio_bg{width: 100%;position: absolute;z-index: -1;bottom: 0; }
 		.home_bio h2{font-size: 48px;line-height: 200px;text-align: center;}
 		.home_biotxt{font-size: 15px;width: 1090px;margin: 0 auto}
 			.home_biotxt strong{text-transform: uppercase;}
