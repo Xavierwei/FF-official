@@ -29,18 +29,12 @@
 		<p class="popicon popprev transition" data-a="pop-jobs-next"></p>
 	</div>
 </div>
-<div class="page" data-page="about-page">
+
+<div class="page" data-page="jobs-page" data-header="career">
 	<!-- page title -->
 	<?php 
 	$pagetit = 'JOBS';
 	include_once 'common/pagetit.php';?>
-
-	<div class="about_crumbs crumbs">
-		<a href="./group.php" class="text-effect-init" style="margin-left: 159.4375px;" data-d="type=about" data-a="press_crumbs_link">ff group</a> / 
-		<a href="./bio.php" data-d="type=about" data-a="press_crumbs_link" class="text-effect-init">ff bio</a> / 
-		<a href="./people.php" data-d="type=about" data-a="press_crumbs_link" class="text-effect-init">key people</a> /
-		<a href="./jobs.php" data-d="type=about" data-a="press_crumbs_link" class="text-effect-init active">jobs</a>
-	</div>
 
 	<!-- section -->
 	<div class="section sec_jobs">

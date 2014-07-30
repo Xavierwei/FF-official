@@ -10,22 +10,16 @@
 		<p class=" popdownicon " data-a="press_prev"></p>
 	</div>
 </div>
-<div class="page" data-page="press-page">
+<div class="page" data-page="interview-page" data-header="about">
 	<!-- page title -->
 	<?php 
-	$pagetit = 'PRESS';
+	$top_title = 'ABOUT';
+	$pagetit = 'INTERVIEW';
 	include_once 'common/pagetit.php';?>
 
 
 	<!-- section -->
 	<div class="section sec_press">
-		<!--  -->
-		<div class="press_crumbs crumbs">
-			<a href="./press.php" data-d="type=press" data-a="press_crumbs_link">articles press</a> / 
-			<a href="./interview.php" data-d="type=press" class="active" data-a="press_crumbs_link">interview</a>
-			<!--  /
-			<a href="./conference.php" data-a="press_crumbs_link">conference</a> -->
-		</div>
 		<div id="press-container" >
 			<!--  -->
 			<div class="press_txt">Ici un texte de presentation<br />de chapitre utile pour le referencement</div>

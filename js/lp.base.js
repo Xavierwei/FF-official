@@ -668,6 +668,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		var ratio = config.ratio || 9/16;
 
 		LP.use('video-js' , function(){
+            var is_playing = false;
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
             var myVideo = videojs( id , config , function(){
             	var v = this;
@@ -701,8 +702,45 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                 	$wrap.find('.video-wrap').fadeIn();
                 	if( config.autoplay ){
                         try{myVideo.play();}catch(e){}
+                    } else if( config.pause_button ){
+                        $wrap.find('.vjs-big-play-button').fadeIn();
                     }
                 } , 20);
+
+                // if need to add pause button
+                if( config.pause_button ){
+                    if( !config.controls ){
+                        $wrap.off('click.video-operation').on('click.video-operation' , function(){
+                            if( is_playing ){
+                                v.pause();
+                            } else {
+                                v.play();
+                            }
+                        });    
+                    }
+                    // add big pause btn
+                    v.on('play' , function(){
+                        is_playing = true;
+                        $wrap.find('.vjs-big-play-button').hide();
+                        var $pauseBtn = $wrap.find('.vjs-big-pause-button');
+                        if( !$pauseBtn.length ){
+                            $pauseBtn = $('<div class="vjs-big-pause-button"></div>').insertAfter( $wrap.find('.vjs-big-play-button') )
+                                .click(function(){
+                                    v.pause();
+                                });
+                        }
+                        $pauseBtn.show()
+                            .delay( 4000 )
+                            .fadeOut();
+                    });
+
+                    v.on('pause' , function(){
+                        is_playing = false;
+                        $wrap.find('.vjs-big-pause-button').hide();
+                        $wrap.find('.vjs-big-play-button').fadeIn();
+                    });
+                }
+
 
                 $wrap.data('video-object' , v);
 
@@ -1195,7 +1233,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                     effects['number-rock']( $('.awardicons span') , 0  , null , 500 );
                 }); 
             },
-            'contact-page': function(){
+            'group-page': function(){
                 var _LP = window.LP;
                 LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
                     window.LP = _LP;
@@ -1228,54 +1266,12 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                 //     oMap.setMapStyle({style: 'gray'});
                 // });
             },
+            'interview-page': function(){
+                // reload js conponent
+                LP.use( ['video-js' , '../plugin/jquery.jplayer.min.js'] );
+            },
 			'press-page': function(){
 
-				// reload js conponent
-				LP.use( ['video-js' , '../plugin/jquery.jplayer.min.js'] );
-
-				// var	$banpho = $('.banpho');
-				// var banphoTop = $banpho.offset().top;
-				// var banphoImgHeight = $('.banpho img').height();
-
-				// var $interviewList = $('.interview_list');
-				// var interviewItemOff = $interviewList.children().eq(0).offset();
-				// $(window).scroll(function(){
-				// 	var stTop = $(window).scrollTop();
-				// 	// for interview
-				// 	if( $interviewList.length && !$interviewList.data('init') ){
-				// 		if( stTop > banphoTop + banphoImgHeight / 2
-				// 			|| interviewItemOff.top < stTop + $(window).height() ){
-
-				// 			console.log( stTop > banphoTop + banphoImgHeight / 2 );
-				// 			$interviewList.data('init' , 1);
-				// 			$interviewList.children().each(function( i ){
-				// 				$(this).delay( 150 * i )
-				// 					.animate({
-				// 						opacity: 1,
-				// 						marginTop: 0
-				// 					} , 500 );
-				// 			});
-				// 		}
-				// 	}
-				// })
-				// .trigger('scroll');
-
-
-				// $('.press_img').hover(function(){
-				// 	var $img = $(this).find('.cover_img');
-				// 	var width = $img.width();
-				// 	var height = $img.height();
-				// 	new Animate([ height / 2 , width / 2 , height / 2 , width / 2 ] , [0 , width , height , 0] , 500 , '' , function( nums ){
-				// 		$img[0].style.clip = 'rect(' + nums.join('px ') + 'px)';
-				// 	});
-				// } , function(){
-				// 	var $img = $(this).find('.cover_img');
-				// 	var width = $img.width();
-				// 	var height = $img.height();
-				// 	new Animate([0 , width , height , 0] , [ height / 2 , width / 2 , height / 2 , width / 2 ] , 500 , '' , function( nums ){
-				// 		$img[0].style.clip = 'rect(' + nums.join('px ') + 'px)';
-				// 	});
-				// });
 			}
 		}
 
@@ -1448,7 +1444,25 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 						$(this).children('div').remove();
 					});
 
-				
+                // init about_crumbs
+                if( $('.about_crumbs').length ){
+                    var pagename = location.href.replace(/^.*\/([^/]+$)/ , '$1');
+                    $('.about_crumbs').find('a').each(function(){
+                        if( $(this).attr('href').indexOf( pagename ) >= 0 ){
+                            var $dom = $(this);
+                            var off = $dom.offset();
+                            var width = $dom.width();
+                            var poff = $dom.parent().offset();
+                            var pwidth = $dom.parent().width();
+
+                            var marginLeft = ( pwidth - width - 2 * ( -poff.left + off.left ) ) / 2;
+                            $dom.addClass('active').parent().css('marginLeft' , marginLeft);
+                            return false;
+                        }
+                    });
+                }
+
+
 				return false;
 			},
 			desctory: function(){
@@ -1466,7 +1480,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		History.replaceState( { prev: '' } , undefined , location.href  );
 		pageManager.init( );
 
-
 		$(document).ajaxError(function(){
 			loadingMgr.hide();
 		});
@@ -1479,29 +1492,29 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             // show loading
             loadingMgr.show();
             switch( type ){
-            	case 'press':
-					$.get( location.href , '' , function( html ){
-						html = $('<div>' + html + '</div>').find('#press-container')
-							.html();
-						$( '#press-container' ).children().animate({
-							opacity: 0
-						} , 500);
-						setTimeout(function(){
-							$( '#press-container' ).html( html )
-								.children()
-								.fadeIn();
+     //        	case 'press':
+					// $.get( location.href , '' , function( html ){
+					// 	html = $('<div>' + html + '</div>').find('#press-container')
+					// 		.html();
+					// 	$( '#press-container' ).children().animate({
+					// 		opacity: 0
+					// 	} , 500);
+					// 	setTimeout(function(){
+					// 		$( '#press-container' ).html( html )
+					// 			.children()
+					// 			.fadeIn();
 
-							$('html,body').animate({
-								scrollTop: $('.pagetit').height() + $('.banpho-img img').height() / 2
-							} , 400 );
+					// 		$('html,body').animate({
+					// 			scrollTop: $('.pagetit').height() + $('.banpho-img img').height() / 2
+					// 		} , 400 );
 
-							pageManager.desctory( );
-        					pageManager.init( );
+					// 		pageManager.desctory( );
+     //    					pageManager.init( );
 
-        					loadingMgr.hide();
-						} , 500);
-					});
-					break;
+     //    					loadingMgr.hide();
+					// 	} , 500);
+					// });
+					// break;
 				default: 
 					$.get( location.href , '' , function( html ){
 						html = $('<div>' + html + '</div>').find('.container')
@@ -1510,8 +1523,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 							opacity: 0
 						} , 500);
 						setTimeout(function(){
-							$( '.container' ).html( html ).children('.page')
-								.fadeIn();
+                            $( '.container' ).html( html ).children('.page')
+                                .fadeIn();
+                            //pagetitarrbottom
 
 							$('html,body').animate({
 								scrollTop: 0
@@ -1628,11 +1642,12 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             } , time )
             .promise()
             .then(function(){
-                if( $dom.data('video-object') ){
+                if( $dom.data('video-object') && isFullScreen ){
                     $dom.data('video-object').play();
                 }
 
                 clearInterval( interval );
+
             });
 
         // remove the clone image
@@ -2091,7 +2106,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			var $movieWrap = $('.brand_movie').fadeIn(function(){
 				if( $bigItem.data('movie') ){
 					renderVideo( $bigItem , $bigItem.data('movie') , $bigItem.find('img').attr('src') , {
-						autoplay: true
+						autoplay: false,
+                        pause_button: true
 					} );
 				}
 
@@ -2437,30 +2453,12 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			$videoWrap.css({marginTop: -480});
 			renderVideo( $videoWrap , '../videos/0' , '../images/interview1.png' , {
 				autoplay: false,
-				controls: true
+				controls: true,
+                pause_button: true
 			} , function(){
 				$('<div class="vjs-default-skin"></div>')
-					.append( $videoWrap.find('.vjs-control-bar') )
-					.appendTo( $videoWrap.parent() );
-
-				// add big pause btn
-				$videoWrap.data('video-object').on('play' , function(){
-					var video = this;
-					var $pauseBtn = $videoWrap.find('.vjs-big-pause-button');
-					if( !$pauseBtn.length ){
-						$pauseBtn = $('<div class="vjs-big-pause-button"></div>').insertAfter( $videoWrap.find('.vjs-big-play-button') )
-							.click(function(){
-								video.pause();
-							});
-					}
-					$pauseBtn.show()
-						.delay( 4000 )
-						.fadeOut();
-				});
-
-				$videoWrap.data('video-object').on('pause' , function(){
-					$videoWrap.find('.vjs-big-pause-button').hide();
-				});
+                    .append( $videoWrap.find('.vjs-control-bar') )
+                    .appendTo( $videoWrap.parent() );
 			});
 
 			// start animate
@@ -2630,12 +2628,16 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         var poff = $dom.parent().offset();
         var pwidth = $dom.parent().width();
 
+        
+
         var marginLeft = ( pwidth - width - 2 * ( -poff.left + off.left ) ) / 2;
+        console.log( off , width , poff , pwidth , marginLeft );
+
 
 		var index = $dom.index();
 		$dom.parent().find('a')
 			.removeClass('active')
-			.eq(0)
+			.end()
 			.animate({
 				marginLeft: marginLeft
 			} , 300);
@@ -2916,11 +2918,11 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             return false;
         }
 
-        var page = $('.page').data('page');
+        var page = $('.page').data('header');
 
         $('.navitem').each(function( i ){
             var text = $.trim( $(this).text() ).toLowerCase();
-            if( text + '-page' == page ){
+            if( text == page ){
                 var $link = $('.navitem').eq( i - 1 );
                 if( $link.data('last') ){
                     pageManager.go( $link.data('last') );
@@ -2943,11 +2945,13 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             return false;
         }
 
-        var page = $('.page').data('page');
+        // var pagename = location.href.replace(/^.*\/([^/]+)$/ , '$1' );
+
+        var page = $('.page').data('header');
 
         $('.navitem').each(function( i ){
             var text = $.trim( $(this).text() ).toLowerCase();
-            if( text + '-page' == page ){
+            if( text == page ){
                 var $link = $('.navitem').eq( i + 1 );
                 $link.get(0) && $link.get(0)
                         .click();
@@ -2998,7 +3002,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
             if( $dom.data('movie') ){
                 renderVideo( $dom , $dom.data('movie') , $dom.find('img').attr('src') , {
-                    autoplay: true
+                    autoplay: false,
+                    pause_button: true
                 } );
             }
         });
@@ -3050,7 +3055,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
             if( $dom.data('movie') ){
                 renderVideo( $dom , $dom.data('movie') , $dom.find('img').attr('src') , {
-                    autoplay: true
+                    autoplay: false,
+                    pause_button: true
                 } );
             }
         });

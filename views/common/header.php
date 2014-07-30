@@ -52,13 +52,13 @@
 				<a href="index.php" data-a="navitem" class="logo transition"></a>
 			</div>
 			<div class="nav column cs-clear">
-				<a class="navitem" data-a="show-category" href="#">CATEGORIES</a>
+				
 				<a class="navitem" data-a="show-brands" href="#">BRANDS</a>
 				<a class="navitem" data-a="show-category" href="#">SERVICES</a>
+				<a class="navitem" data-a="show-category" href="#">TAGS</a>
 				<a class="navitem" data-a="navitem" href="awards.php">AWARDS</a>
-				<a class="navitem" data-a="navitem" href="press.php" data-last="interview.php">PRESS</a>
-				<a class="navitem" data-a="navitem" href="about.php" data-last="jobs.php">ABOUT</a>
-				<a class="navitem" data-a="navitem" href="contact.php">CONTACT</a>
+				<a class="navitem" data-a="navitem" href="jobs.php">CAREER</a>
+				<a class="navitem" data-a="navitem" href="group.php">ABOUT</a>
 			</div>
 			<div class="language"><a href="#">EN</a> <a href="#">中国</a></div>
 			<a href="#" data-a="search-toggle" class="search">×</a>
@@ -70,10 +70,10 @@
 				<div class="search-result column">
 					<h1>RESULTS FOR :  <span></span> </h1>
 					<p class="search-tags">
-						<a href="#">all (9)</a>
-						<a href="#">campaigns (9)</a>
-						<a href="#">awards (3)</a>
-						<a href="#">others (9)</a>
+						<a href="javascript:void(0);">all (9)</a>
+						<a href="javascript:void(0);">campaigns (9)</a>
+						<a href="javascript:void(0);">awards (3)</a>
+						<a href="javascript:void(0);">others (9)</a>
 					</p>
 					<div class="search-item cs-clear">
 						<span class="search-item-tit">campaigns</span>
@@ -165,13 +165,13 @@
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit">
 				<h2 class="column cs-clear"><span>BRAND</span>  <span class="sep">|</span>  <span>AUDI</span></h2>
-				<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop"></a>
-				<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom"></a>
+				<a href="#" class="pagetitarr pagetitarrtop transition" data-a="page-pagetitarrtop"></a>
+				<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="page-pagetitarrbottom"></a>
 			</div>
 			<div class="brands-tags">
 				<p class="column">
-					<a href="#" class="transition">6 &nbsp; × &nbsp;awards</a>
-					<a href="#" class="transition">6 &nbsp; × &nbsp;services</a>
+					<a href="javascript:void(0);" class="transition">6 &nbsp; × &nbsp;awards</a>
+					<a href="javascript:void(0);" class="transition">6 &nbsp; × &nbsp;services</a>
 				</p>
 			</div>
 		</div>
