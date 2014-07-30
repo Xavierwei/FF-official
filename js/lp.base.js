@@ -1196,8 +1196,10 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                 }); 
             },
             'contact-page': function(){
-
-                LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530');
+                var _LP = window.LP;
+                LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
+                    window.LP = _LP;
+                });
                 var interval = setInterval(function(){
                     if( window.BMap ){
                         clearInterval( interval );
@@ -2947,7 +2949,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             var text = $.trim( $(this).text() ).toLowerCase();
             if( text + '-page' == page ){
                 var $link = $('.navitem').eq( i + 1 );
-                $link.get(0)
+                $link.get(0) && $link.get(0)
                         .click();
                 return false;
             }
