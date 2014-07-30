@@ -3058,7 +3058,15 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         // var itemDom = $('.brand_movie').find('.brands-item').eq( index + 1 ).get(0);
         // itemDom && itemDom.click();
     });
+    
 
+    LP.action('showreel' , function( e ){
+        renderVideo($('.banpho-img') , '../videos/0' , '' , {
+            autoplay: true
+        } );
+
+        return false;
+    });
 
 
 });
