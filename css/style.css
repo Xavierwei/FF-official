@@ -169,7 +169,7 @@ a:hover{color:#000}
 /* section about */
 .sec_about{}
 	.about_crumbs{font-size: 14px;text-align: center;text-transform: uppercase;padding:50px 0 ;}
-	.about_txt{text-align: center;font-size: 14px;font-weight: bold;padding: 0 0 70px}
+	.about_txt{text-align: center;font-size: 14px;font-weight: bold;padding: 70px 0 70px}
 		.about_txt p{font-size:36px;line-height: 42px;padding:0 0 10px;}
 	.show-reel{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;}
 	.show-reel:hover{color: white;}
@@ -284,20 +284,24 @@ a:hover{color:#000}
 	.gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 2em;text-transform: uppercase;position: absolute;left: 78.8%;top:0;}
 
 /* for brands */
-.sec_brands{display: none; position: fixed;top: 0px;bottom: 0;overflow: auto; width: 100%;z-index: 40;background: black;min-height: 100%;}
+.sec_brands{display: none; position: fixed;top: 0px;bottom: 0;overflow: auto; width: 100%;z-index: 40;background: black;}
 	.sec_brands_tit{background: #595959;height:88px;line-height: 88px;font-size: 44px;font-weight: bold;overflow: hidden;}
 	.sec_brands_tit h2 span{float: left;}
 	.sec_brands_tit .sep{margin: 26px 30px;background: #000;height: 35px;width: 4px;text-indent: -9999px;}
 	.sec_brands h2{}
 
-	.brand_big_prev,.brand_big_next{position: absolute;height: 100%;width: 15%;left: 0;background: rgba(0,0,0,0.5) ; top: 0;z-index: 40;cursor: pointer;}
+	.brand_big_prev,.brand_big_next{position: absolute;height: 445px;width: 15%;left: 0;background: rgba(0,0,0,0.5) ; top: 0;z-index: 40;cursor: pointer;}
 	.brand_big_next{right: 0; left: auto;}
 	.brand_big_prev:hover,.brand_big_next:hover{opacity: 0; filter:alpha(opacity=0);-webkit-transition: all 0.4s linear;-moz-transition: all 0.4s linear;-o-transition: all 0.4s linear;-ms-transition: all 0.4s linear;transition: all 0.4s linear;}
 	.brand_big_prev span,.brand_big_next span{position: absolute;width: 12px; height: 20px;left: 50%; margin-left: -6px;top: 50%; margin-top: -10px;background: 
 		url(../images/brand_big_nav.png) left center; }
-
 	.brand_big_next span{background:url(../images/brand_big_nav.png) right center; }
 
+	.brand_big_text{padding: 50px 0 150px;color: white;}
+	.brand_big_text_year{font-weight: bold;font-size: 24px;padding-bottom: 1em;	}
+	.brand_big_text_tit {font-size: 14px;font-weight: 100;text-transform: uppercase;}
+	.brand_big_text_val {font-size: 10px;color: #666;}
+	.brand_big_text_item {float: left;width: 20%;line-height: 3em;}
 
 	.brands_tit.fixed{position: fixed;width: 100%;top:0;z-index: 40;}
 	.brands-tags{background: #3b3b3b; height: 88px;overflow: hidden; }
@@ -317,12 +321,14 @@ a:hover{color:#000}
 	.brands-con dd{overflow: hidden;position: absolute;height: 100%;left: 438px;width: auto;right: 0;margin: 0;}
 
 
-	.brands-con .brands-item{float: left; width: 320px;text-align: center;overflow: hidden;position: relative;}
+	.brands-con .brands-item{float: left; width: 320px;text-align: center;overflow: hidden;position: relative;cursor: pointer;}
 	.brands-con .brands-item img{height: 100%;}
 
-	.brand_movie{height: 445px;position: absolute;top: 88px;width: 100%;overflow: hidden;}
-	.brand_movie ul{width: 200%;height: 100%;overflow: hidden;}
-	.brand_movie li{float: left;margin: 0 1px 1px 0; position: relative;font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
+	.brand_movie{position: absolute;top: 88px;width: 100%;overflow: hidden;}
+	.brand_movie .brands-items{width: 200%;height: 100%;overflow: hidden;height: 445px;}
+	.brand_movie .brands-item{float: left;margin: 0 1px 1px 0; position: relative;font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
+	.brand_movie .brands-item .image-zoom{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;font-size: 18px;text-align: center;z-index: 40;}
+	.image-zoom-big{position: fixed;width: 100%;height: 100%;top:0;left:0;z-index: 50;}
 /*
 	.brands-con dt,.brands-con dd,.brand_movie dd{float: left;margin: 0 1px 1px 0; position: relative;}
 	.brands-con dd,.brand_movie dd{font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
@@ -394,24 +400,24 @@ a:hover{color:#000}
 
 
 /* video theme */
-body .vjs-default-skin .vjs-control-bar{position: relative;display: block;background: #000;padding: 7px 0;top: 0;margin-bottom: 20px;}
-body .vjs-default-skin .vjs-play-control{line-height: 36px;display: none;}
-body .vjs-default-skin .vjs-play-control:before{display: none;}
-body .vjs-default-skin .vjs-play-control .vjs-control-text{clip: auto;width: auto;height: auto;left: 20px;}
-body .vjs-default-skin .vjs-progress-control{top: 25px;height: 1px;margin: 0 100px;}
-body .vjs-default-skin .vjs-progress-holder{background: white;}
-body .vjs-default-skin .vjs-progress-holder .vjs-play-progress{background: #e00000;}
-body .vjs-default-skin .vjs-progress-holder .vjs-load-progress{background: #999;}
-body .vjs-default-skin .vjs-seek-handle{display: none;}
-body .vjs-default-skin .vjs-current-time{float: right;width: 8em;font-size: 14px;color: #fff;}
-body .vjs-time-divider,
-body .vjs-default-skin .vjs-duration,
-body .vjs-default-skin .vjs-fullscreen-control,
-body .vjs-default-skin .vjs-volume-control,
-body .vjs-default-skin .vjs-mute-control,
-body .vjs-default-skin .vjs-volume-menu-button,
-body .vjs-time-divider{display: none;}
-body .vjs-default-skin.vjs-has-started .vjs-control-bar{
+.interview-video-wrap .vjs-default-skin .vjs-control-bar{position: relative;display: block;background: #000;padding: 7px 0;top: 0;margin-bottom: 20px;}
+.interview-video-wrap .vjs-default-skin .vjs-play-control{line-height: 36px;display: none;}
+.interview-video-wrap .vjs-default-skin .vjs-play-control:before{display: none;}
+.interview-video-wrap .vjs-default-skin .vjs-play-control .vjs-control-text{clip: auto;width: auto;height: auto;left: 20px;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-control{top: 25px;height: 1px;margin: 0 100px;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-holder{background: white;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-play-progress{background: #e00000;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-load-progress{background: #999;}
+.interview-video-wrap .vjs-default-skin .vjs-seek-handle{display: none;}
+.interview-video-wrap .vjs-default-skin .vjs-current-time{float: right;width: 8em;font-size: 14px;color: #fff;}
+.interview-video-wrap .vjs-time-divider,
+.interview-video-wrap .vjs-default-skin .vjs-duration,
+.interview-video-wrap .vjs-default-skin .vjs-fullscreen-control,
+.interview-video-wrap .vjs-default-skin .vjs-volume-control,
+.interview-video-wrap .vjs-default-skin .vjs-mute-control,
+.interview-video-wrap .vjs-default-skin .vjs-volume-menu-button,
+.interview-video-wrap .vjs-time-divider{display: none;}
+.interview-video-wrap .vjs-default-skin.vjs-has-started .vjs-control-bar{
     visibility: visible !important;
     opacity: 1!important;
     filter:alpha(opacity=100) !important;

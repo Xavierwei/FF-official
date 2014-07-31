@@ -11,6 +11,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
 	}
 
+
 	/*
      * Animate Class
      * {@param originNumArr} 需要变化的初始化数据
@@ -119,6 +120,15 @@ LP.use(['jquery' ,'easing'] , function( $ ){
     }
 
 
+    function disposeVideo(){
+        $(document.body).find('.video-wrap').parent()
+            .each(function(){
+                var video = $(this).data('video-object');
+                try{video && video.dispose();}catch(e){}
+                $(this).removeData('video-object').find('.video-wrap').remove();
+            });
+    }
+
    	function textEffect( $dom ){
    		var width = $dom.width();
 		var $wrap = $('<div><div></div></div>').find('div')
@@ -205,7 +215,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
     }
 
 
-    function initImageMouseMoveEffect( $dom ){
+    function initImageMouseMoveEffect( $dom , onZoom ){
     	// if( $dom.data('image-init') ) return;
         $dom.unbind('.image-effect');
 
@@ -221,69 +231,48 @@ LP.use(['jquery' ,'easing'] , function( $ ){
     	var domHeight = null;
 
     	var init = false;
-
-        var otop = 0;
-        var oleft = 0;
-
         var top = 0;
         var left = 0;
 
-        var ctop = 0 ;
-        var cleft = 0;
-
-
-        var ltop = 0;
-        var lleft = 0;
-        var timer = null;
-        var interval = null;
         var initFn = function(){
             $img = $dom.find('img');
             imgWidth = $img.width();
             imgHeight = $img.height();
-            fixWidth = imgWidth * 0.1;
-            fixHeight = imgHeight * 0.1;
+            fixWidth = imgWidth * 0.05;
+            fixHeight = imgHeight * 0.05;
             $cloneImg =  null ;
 
             off = null;
             domWidth = null;
             domHeight = null;
-
             init = false;
 
-            otop = 0;
-            oleft = 0;
-
-            top = 0;
-            left = 0;
-
-            ctop = 0 ;
-            cleft = 0;
-
-
-            ltop = 0;
-            lleft = 0;
-            timer = null;
-            interval = null;
         }
-        var startAnimate = function(){
-            var tarTop = otop;
-            var tarLeft = oleft;
-            clearInterval( interval );
-            interval = setInterval(function(){
-                if( !$cloneImg ) return;
-                if( Math.abs( ctop ) + Math.abs( cleft ) > 1){
-                    tarTop += ctop / 20;
-                    tarLeft += cleft / 20;
 
-                    //console.log( tarTop , tarLeft );
-                    $cloneImg.css({
-                        top:  tarTop , 
-                        left: tarLeft
-                    });
-                    ctop = ctop * 1.8 / 2;
-                    cleft = cleft * 1.8 / 2;
+
+        var interval;
+        var runAnimate = function( $img ){
+            clearInterval( interval ) ;
+
+            var duration = 800;
+            var start = new Date();
+            var ltop = parseInt( $img.css('top') ) || 0;
+            var lleft = parseInt( $img.css('left') ) || 0;
+            interval = setInterval(function(){
+                // t: current time, b: begInnIng value, c: change In value, d: duration
+                //x, t, b, c, d
+                var dur = ( new Date() - start ) / duration;
+                var per =  dur > 1 ? 1 : $.easing.easeOutQuart( 0 , dur , 0 , 1 , 1 );
+
+                $img.css({
+                    top: ltop + (top - ltop) * per,
+                    left: lleft + (left - lleft) * per
+                });
+
+                if( per == 1 ){
+                    clearInterval( interval )
                 }
-            } , 1000 / 60);
+            } , 1000 / 60 );
         }
 
         // var animate = null;
@@ -302,6 +291,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             // }
 
         }).on('mouseenter.image-effect' , function(){
+            onZoom && onZoom();
+
     		if( $cloneImg && $(this).find('.clone-img').length ){
     			$cloneImg.stop(true);
     			return;
@@ -327,10 +318,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             .addClass('clone-img')
 	    	.appendTo( $dom );
 
-            otop = ltop = top = -fixHeight;
-            oleft = lleft = left = -fixWidth;
-
-
     		$cloneImg.animate({
     			top: - fixHeight,
     			left: - fixWidth,
@@ -340,7 +327,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
     		.promise()
     		.then(function(){
     			init = true;
-                startAnimate();
     		});
     	}).on('mouseleave.image-effect' , function(){
             clearInterval( interval );
@@ -368,69 +354,149 @@ LP.use(['jquery' ,'easing'] , function( $ ){
     		lx = ( domWidth / 2 - px );
     		ly = ( domHeight / 2 - py );
     		if( init ){
-                // if( !animate ){
-                //     animate = new Animate([ top , left ] , [- fixHeight + ly / (domHeight / 2) * fixHeight , - fixWidth + lx / (domWidth / 2) * fixWidth ] , 500 , 'swing' , function( nums ){
-                //         top = nums[0];
-                //         left = nums[1];
-                //     } );
-                // } else {
-                //     animate.turnTo( [- fixHeight + ly / (domHeight / 2) * fixHeight , - fixWidth + lx / (domWidth / 2) * fixWidth ] );
-                // }
-
-                // ctop = ly / (domHeight / 2) * fixHeight;
-                // cleft = lx / (domWidth / 2) * fixWidth;
                 top =  - fixHeight + ly / (domHeight / 2) * fixHeight;
                 left = - fixWidth + lx / (domWidth / 2) * fixWidth;
-
-
-                ctop += top - ltop;
-                cleft += left - lleft;
-
-
-                // console.log( ctop , cleft );
-
-                ltop = top;
-                lleft = left;
-                // console.log( ltop , lleft );
-                // $cloneImg.css({
-                //     top: ltop || top,
-                //     left: lleft || left
-                // });
-
-                // $cloneImg.stop( true )
-                //     .animate({
-                //         top: top,
-                //         left: left
-                //     } , 200 , 'easeOutQuart' );
-                // clearTimeout( timer );
-                // timer = setTimeout(function(){
-                //     $cloneImg.animate({
-                //         top: top,
-                //         left: left
-                //     } , 1000 , 'easeOutQuart' );
-                // } , 1000 );
-
-                // lleft = left;
-                // ltop = top;
-
-                
-       //          lx = - fixWidth + lx / (domWidth / 2) * fixWidth;
-       //          ly = - fixHeight + ly / (domHeight / 2) * fixHeight;
-
-       //          var t = ( Math.abs( lx - lleft ) + Math.abs( ly - ltop ) ) / 10 * 500;
-
-       //          console.log( t );
-
-    			// $cloneImg.stop(true).animate({
-	    		// 	top: ly,
-	    		// 	left: lx
-	    		// } , t );
-
-       //          lleft = lx ;
-       //          ltop = ly;
+                runAnimate( $cloneImg );
     		}
     	});
     }
+
+    // function initImageMouseMoveEffect( $dom , onZoom ){
+    //     $dom.unbind('.image-effect');
+
+    //      var $img = $dom.find('img');
+    //      var imgWidth = $img.width();
+    //      var imgHeight = $img.height();
+    //      var fixWidth = imgWidth * 0.1;
+    //      var fixHeight = imgHeight * 0.1;
+    //      var $cloneImg =  null ;
+
+    //      var off = null;
+    //      var domWidth = null;
+    //      var domHeight = null;
+
+    //      var init = false;
+
+    //     var otop = 0;
+    //     var oleft = 0;
+
+    //     var top = 0;
+    //     var left = 0;
+
+    //     var ctop = 0 ;
+    //     var cleft = 0;
+
+
+    //     var ltop = 0;
+    //     var lleft = 0;
+    //     var timer = null;
+    //     var interval = null;
+    //     var initFn = function(){
+    //         $img = $dom.find('img');
+    //         imgWidth = $img.width();
+    //         imgHeight = $img.height();
+    //         fixWidth = imgWidth * 0.05;
+    //         fixHeight = imgHeight * 0.05;
+    //         $cloneImg =  null ;
+
+    //         off = null;
+    //         domWidth = null;
+    //         domHeight = null;
+
+    //         init = false;
+
+    //         otop = 0;
+    //         oleft = 0;
+
+    //         top = 0;
+    //         left = 0;
+
+    //         ctop = 0 ;
+    //         cleft = 0;
+
+
+    //         ltop = 0;
+    //         lleft = 0;
+    //         timer = null;
+    //         interval = null;
+    //     }
+
+    //     // var animate = null;
+    //     $dom.on('mouseenter.image-effect' , function(){
+    //         onZoom && onZoom();
+
+    //         if( $cloneImg && $(this).find('.clone-img').length ){
+    //              $cloneImg.stop(true);
+    //              return;
+    //         }
+
+    //         initFn();
+
+    //      off = $dom.offset();
+    //      domWidth = $dom.width();
+    //      domHeight = $dom.height();
+
+    //      init = false;
+    //      $cloneImg = $img.clone().css({
+    //          position: 'absolute',
+    //          top: 0,
+    //          left: 0
+    //      })
+    //      .addClass('clone-img')
+    //      .appendTo( $dom );
+
+    //     otop = ltop = top = -fixHeight;
+    //     oleft = lleft = left = -fixWidth;
+
+
+    //      $cloneImg.animate({
+    //          top: - fixHeight,
+    //          left: - fixWidth,
+    //          width: imgWidth + 2 * fixWidth,
+    //          height: imgHeight + 2 * fixHeight
+    //      } , 500 )
+    //      .promise()
+    //      .then(function(){
+    //          init = true;
+    //      });
+    //  }).on('mouseleave.image-effect' , function(){
+    //         clearInterval( interval );
+    //      if( !$cloneImg ) return;
+
+    //      $cloneImg.animate({
+    //          top: 0,
+    //          left: 0,
+    //          width: imgWidth,
+    //          height: imgHeight
+    //      } , 500 )
+    //      .promise()
+    //      .then(function(){
+    //          $(this).remove();
+    //          // $cloneImg = null;
+    //      });
+
+    //         $cloneImg = null
+    //  })
+    //  .on('mousemove.image-effect' , function( ev ){
+    //      if( !off ) return;
+    //      var px = ev.pageX - off.left;
+    //      var py = ev.pageY - off.top;
+    //      var lx , ly;
+    //      lx = ( domWidth / 2 - px );
+    //      ly = ( domHeight / 2 - py );
+    //      if( init ){
+
+    //             // ctop = ly / (domHeight / 2) * fixHeight;
+    //             // cleft = lx / (domWidth / 2) * fixWidth;
+    //             top =  - fixHeight + ly / (domHeight / 2) * fixHeight;
+    //             left = - fixWidth + lx / (domWidth / 2) * fixWidth;
+    //             $cloneImg.css({
+    //                 top: top,
+    //                 left: left
+    //             });
+    //      }
+    //  });
+    // }
 
     // setTimeout(function(){
     // 	initImageMouseMoveEffect( $('.home-slider .slider-item').eq(0) );
@@ -492,9 +558,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			});
 	}
 
-	function showBrands(){
+	function showBrands( isForce ){
 		$('.sec_gates').hide();
-		if( $('.sec_brands').is(':visible') ){
+		if( $('.sec_brands').is(':visible') && !isForce ){
 			hideBrands();
 			return;
 		}
@@ -505,16 +571,16 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			});
 
 		// hide slider video
-		$('.home-slider .slider-item').each(function(){
-			var video = $(this).data('video-object');
-			video && video.pause();
-		});
+        disposeVideo();
+		// $('.home-slider .slider-item').each(function(){
+		// 	var video = $(this).data('video-object');
+		// 	video && video.pause();
+		// });
 
 		$('.brands_tit').show().animate({
 			marginTop: 0,
 			marginBottom: 0
 		} , 200 );
-
 
 		// set brands-items width
 		$('.brands-con').show();
@@ -529,6 +595,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		var nums = $('.brands-con>li .brands-mask').length;
 		var index = 0;
 		$('.brands-con>li').css('opacity' , 1).each(function( i ){
+            console.log( +new Date() );
 			$(this).delay( 400 * i )
 				.animate({
 					marginLeft: 0
@@ -579,10 +646,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			'margin-bottom': 88
 		}).hide();
 
-		// reinit brand_movie
-		$('.brand_movie').find('.brands-item').each(function(){
-			$(this).data('video-object') && $(this).data('video-object').dispose();
-		});
+
+        disposeVideo();
+
 		$('.brand_movie')
             .find('ul')
             .remove()
@@ -940,6 +1006,19 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		}
 	});
 
+    var sec_brands_stop = 0;
+    var sec_brands_timer = null;
+    $('.sec_brands').scroll(function(){
+        //clearTimeout( sec_brands_timer );
+        //sec_brands_timer = setTimeout(function(){
+            var st = $('.sec_brands').scrollTop();
+            if( st > sec_brands_stop ){
+                LP.triggerAction('pagetitarrtop');
+            } else {
+                LP.triggerAction('pagetitarrbottom');
+            }
+        //} , 100 );
+    });
 
 	var brandsInterval = null;
 	$('.brands-con').delegate('.brands-con-li' , 'mouseenter' , function( ev ){
@@ -1002,8 +1081,10 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			$dom.data('video-object').pause();
 			var videoObject = $dom.data('video-object');
 			$dom.find('.video-wrap').fadeOut(function(){
-				videoObject.dispose();
-				$(this).remove();
+                try{
+    				videoObject.dispose();
+    				$(this).remove();
+                }catch(e){}
 			});
 		}
 	});
@@ -1545,6 +1626,16 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	$(document).keydown(function( ev ){
 		switch( ev.which ){
 			case 27:
+                 if( $('.image-zoom-big').length ){
+                    $('.image-zoom-big').fadeOut()
+                        .promise()
+                        .then(function(){
+                            $('.image-zoom-big').remove();
+                        });
+
+                    return false;
+                }
+
 				// press popup page
 				if( $('.shade').is(':visible') ){
 					LP.triggerAction('pop_close');
@@ -1555,6 +1646,21 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                     var index = $('.brand_movie').data('index');
                     if( $('.brand_movie').data('isFullScreen') ){
                         $('.brand_movie').find('.brands-item').eq(index).trigger('dblclick');
+                    } else {
+                        $(window).unbind('resize.brand_movie');
+                        // to brands list
+                        $('.brand_item_tit').animate({
+                            marginTop: -88,
+                            marginBottom: 88
+                        } , 400);
+                        $('.brand_movie').fadeOut( 400 )
+                            .promise()
+                            .then(function(){
+                                $('.brand_item_tit').hide();
+
+                                // $('.brands-con .brands-item').width('auto');
+                                showBrands( true );
+                            });
                     }
 				}
 
@@ -1653,11 +1759,10 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         // remove the clone image
         $dom.parent().find('.clone-img').remove();
 
-
         $('.brand_big_next,.brand_big_prev').animate({
             width: isFullScreen ? 0.05 * winWidth : 0.15 * winWidth
         } , 600 );
-        
+
     } );
 
 
@@ -1665,12 +1770,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	// page actions here
 	// ============================================================================
 	LP.action('navitem' , function(){
-		if($('.home-slider').length){
+		if($('.home-slider').length ){
 			// stop the movie
-			$('.home-slider').find('.slider-item')
-				.each(function(){
-					$(this).data('video-object') && $(this).data('video-object').pause();
-				});
+            disposeVideo();
 
 			// hide the slider
 			$('.home-slider').animate({
@@ -1707,10 +1809,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		}
 
 		// hide slider video
-		$('.home-slider .slider-item').each(function(){
-			var video = $(this).data('video-object');
-			video && video.pause();
-		});
+        disposeVideo();
 
 		return false;
 	});
@@ -1723,15 +1822,17 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		if( index == 0 ){ return false; }
 
 		// stop current video
-		var video = $('.slider-item').eq( index )
-			.data('video-object');
-		video && video.pause();
+		// var video = $('.slider-item').eq( index )
+		// 	.data('video-object');
+		// video && video.pause();
 
 		isHomeSliderMoviePlaying = false;
 
 		$inner.animate({
 			marginLeft: '+=100%'
-		} , 500);
+		} , 500)
+        .promise()
+        .then(disposeVideo);
 
 		$inner.data('index' , index - 1 );
 		$('.banpho-i').html( index + '/' + len );
@@ -1743,15 +1844,17 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		if( index == len - 1 ){ return false; }
 
 		// stop current video
-		var video = $('.slider-item').eq( index )
-			.data('video-object');
-		video && video.pause();
+		// var video = $('.slider-item').eq( index )
+		// 	.data('video-object');
+		// video && video.pause();
 
 		isHomeSliderMoviePlaying = false;
 
 		$inner.animate({
 			marginLeft: '-=100%'
-		} , 500);
+		} , 500)
+        .promise()
+        .then(disposeVideo);
 
 		$inner.data('index' , index + 1 );
 		$('.banpho-i').html( ( index + 2 ) + '/' + len );
@@ -1857,53 +1960,57 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	});
 
 	LP.action('home-cam-item' , function(){
-		var $dom = $(this);
-		var $img = $dom.find('img');
-		var imgOff = $img.offset();
-		var oriCss = {
-				position: 'fixed',
-				width: $img.width(),
-				height: $img.height(),
-				top: imgOff.top - $(window).scrollTop(),
-				left: imgOff.left,
-				zIndex: 200
-			}
-		var $wrap = $('<div></div>').appendTo(document.body)
-			.css( oriCss )
-            .addClass('home-cam-item-big')
-			.append($img.clone()
-				.css({
-					width: '100%',
-					height: '100%'
-				}));
 
-		// zoom out
-		$wrap.animate({
-			width: $(window).width(),
-			height: $(window).height(),
-			top: 0,
-			left: 0
-		} , 500 , '' ,function(){
-			$(document.body).css('overflow' , 'hidden');
-			renderVideo( $wrap , $dom.data('movie') , $img.attr('src') , {
-				autoplay: true
-			} , function(){
-			} );
-		} )
-		.click(function(){
-			$wrap.animate({
-				width: oriCss.width,
-				height: oriCss.height,
-				top: oriCss.top,
-				left: oriCss.left
-			} , 500 )
-			.promise()
-			.then(function(){
-				$(document.body).css('overflow' , 'auto');
-				$(this).data('video-object').dispose();
-				$(this).remove();
-			});
-		});
+
+
+
+		// var $dom = $(this);
+		// var $img = $dom.find('img');
+		// var imgOff = $img.offset();
+		// var oriCss = {
+		// 		position: 'fixed',
+		// 		width: $img.width(),
+		// 		height: $img.height(),
+		// 		top: imgOff.top - $(window).scrollTop(),
+		// 		left: imgOff.left,
+		// 		zIndex: 200
+		// 	}
+		// var $wrap = $('<div></div>').appendTo(document.body)
+		// 	.css( oriCss )
+  //           .addClass('home-cam-item-big')
+		// 	.append($img.clone()
+		// 		.css({
+		// 			width: '100%',
+		// 			height: '100%'
+		// 		}));
+
+		// // zoom out
+		// $wrap.animate({
+		// 	width: $(window).width(),
+		// 	height: $(window).height(),
+		// 	top: 0,
+		// 	left: 0
+		// } , 500 , '' ,function(){
+		// 	$(document.body).css('overflow' , 'hidden');
+		// 	renderVideo( $wrap , $dom.data('movie') , $img.attr('src') , {
+		// 		autoplay: true
+		// 	} , function(){
+		// 	} );
+		// } )
+		// .click(function(){
+		// 	$wrap.animate({
+		// 		width: oriCss.width,
+		// 		height: oriCss.height,
+		// 		top: oriCss.top,
+		// 		left: oriCss.left
+		// 	} , 500 )
+		// 	.promise()
+		// 	.then(function(){
+		// 		$(document.body).css('overflow' , 'auto');
+		// 		$(this).data('video-object').dispose();
+		// 		$(this).remove();
+		// 	});
+		// });
 	});
 
 	LP.action('home-loadmore' , function(){
@@ -2047,25 +2154,18 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		// load movie on item
 		function showBigBrandsItem(){
 
+            disposeVideo();
+
+            $('.sec_brands').scrollTop(0);
+
 			$dom.closest('ul')
 				.children()
 				.each(function(){
-
-					if( $(this).data('video-object') ){
-                        try{
-    						$(this).data('video-object').dispose();
-                        } catch( e ){
-
-                        }
-						$(this).removeData('video-object')
-							.find('.video-wrap')
-							.remove();
-					}
                     $(this).find('.clone-img').remove();
 				})
 				.end()
 				.clone()
-				.appendTo( $('.brand_movie') )
+				.insertBefore( $('.brand_movie .brand_big_text') )
 				.children()
 				.each(function(){
 					$(this).attr('data-a' , 'show-brands-big-movie' );
@@ -2093,6 +2193,12 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             });
 
 
+            if( itemIndex == 0 ){
+                $('.brand_big_prev').hide();
+            } else if( itemIndex == $('.brand_movie').find('.brands-item').length - 1 ){
+                $('.brand_big_next').hide();
+            }
+
 			var $bigItem = $('.brand_movie').find('.brands-item').eq( itemIndex );
 
 
@@ -2113,8 +2219,21 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 
                 $bigItem.parent().children().each(function(){
-                    if( $(this).data('image') ){
-                        initImageMouseMoveEffect( $(this) );
+                    var $dom = $(this);
+                    if( $dom.data('image') ){
+                        initImageMouseMoveEffect( $dom );
+
+                        $dom.hover(function(){
+                            if( !$dom.find('.image-zoom').length ){
+                                $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
+                                        <div class="transition">IMAGE ZOOM<br><br>IMAGE ZOOM</div>\
+                                    </a>')
+                                    .appendTo( $dom );
+                            }
+                            $dom.find('.image-zoom').hide().fadeIn();
+                        } , function(){
+                            $dom.find('.image-zoom').fadeOut();
+                        } );
                     }
                 });
 
@@ -2476,8 +2595,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			} , 400)
 			.promise()
 			.then(function(){
-				var video = $videoWrap.data('video-object');
-				video && video.pause();
+                disposeVideo();
 				$container.remove();
 			});
 
@@ -2699,27 +2817,32 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 	LP.action('pagetitarrtop' , function(){
 
+        if( $('.header-inner').attr('disabled') || $('.header-inner').height() == 0 ) return false;
+        $('.header-inner').attr('disabled' , 'disabled');
         // hide the header
-        $('.header-inner').animate({
-            height: 0
-        } , 500 );
-
-        $('.brands_tit').css({
-            top: 66
-        }).addClass('fixed')
+        $('.header-inner')
+            .stop( true )
             .animate({
-                top: 0
-            } , 500);
+                height: 0
+            } , 500 );
+
+        // $('.brands_tit').css({
+        //     top: 66
+        // }).addClass('fixed')
+        //     .stop( true )
+        //     .animate({
+        //         top: 0
+        //     } , 500);
 
         $('.sec_brands')
             .css({
-                paddingTop: $('.brands_tit').height()
-            }).animate({
+                // paddingTop: $('.brands_tit').height()
+            }).stop( true ).animate({
                 top: 0
             } , 500)
             .promise()
             .then(function(){
-
+                $('.header-inner').removeAttr('disabled');
             });
 
 
@@ -2762,22 +2885,30 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 	LP.action('pagetitarrbottom' , function(){
 
+        if( $('.header-inner').attr('disabled') ) return false;
+        $('.header-inner').attr('disabled' , 'disabled');
+
+
         // show the header
-        $('.header-inner').animate({
+        $('.header-inner')
+        .stop( true )
+        .animate({
             height: 66
         } , 500 );
 
-        $('.brands_tit').removeClass('fixed');
+        // $('.brands_tit').removeClass('fixed');
 
         $('.sec_brands')
             .css({
                 paddingTop: 0
-            }).animate({
+            })
+            .stop( true )
+            .animate({
                 top: 66
             } , 500)
             .promise()
             .then(function(){
-
+                $('.header-inner').removeAttr('disabled');
             });
 
 		// var $dom = $(this).attr('disabled' , 'disabled');
@@ -2995,10 +3126,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         } , time)
         .promise()
         .then(function(){
-            if( $current.data('video-object') ){
-                $current.data('video-object').dispose();
-                $current.removeData( 'video-object' );
-            }
+
+            disposeVideo();
 
             if( $dom.data('movie') ){
                 renderVideo( $dom , $dom.data('movie') , $dom.find('img').attr('src') , {
@@ -3006,6 +3135,11 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                     pause_button: true
                 } );
             }
+
+            if( index - 1 == 0 ){
+                $('.brand_big_prev').hide();
+            }
+            $('.brand_big_next').show();
         });
 
         $('.brand_movie').data('index' , index - 1 );
@@ -3048,10 +3182,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         } , time)
         .promise()
         .then(function(){
-            if( $current.data('video-object') ){
-                $current.data('video-object').dispose();
-                $current.removeData( 'video-object' );
-            }
+            disposeVideo();
 
             if( $dom.data('movie') ){
                 renderVideo( $dom , $dom.data('movie') , $dom.find('img').attr('src') , {
@@ -3059,6 +3190,11 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                     pause_button: true
                 } );
             }
+
+            if( index + 1 == $('.brand_movie').find('.brands-item').length - 1 ){
+                $('.brand_big_next').hide();
+            }
+            $('.brand_big_prev').show();
         });
 
         $('.brand_movie').data('index' , index + 1 );
@@ -3074,6 +3210,65 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         } );
 
         return false;
+    });
+
+    LP.action('image-zoom' , function(){
+        var $imgs = $(this).siblings('img');
+        var $wrap = $('<div class="image-zoom-big"></div>').appendTo(document.body)
+            .append( $imgs.eq(0).clone() )
+            .hide()
+            .fadeIn();
+
+        // TODO:: need to fix image width auto and height auto , show real big image
+        var $img = $wrap.find('img').removeAttr('style').css({
+            position: 'absolute',
+            // width: 'auto',
+            width: 2000,
+            height: 'auto'
+        });
+
+
+        var top = 0;
+        var left = 0;
+
+        var interval;
+        var runAnimate = function(){
+            clearInterval( interval ) ;
+
+            var duration = 800;
+            var start = new Date();
+            var ltop = parseInt( $img.css('top') ) || 0;
+            var lleft = parseInt( $img.css('left') ) || 0;
+            var ctop = top - ltop;
+            var cleft = left - lleft;
+            interval = setInterval(function(){
+                // t: current time, b: begInnIng value, c: change In value, d: duration
+                //x, t, b, c, d
+                var dur = ( new Date() - start ) / duration;
+                var per =  dur > 1 ? 1 : $.easing.easeOutQuart( 0 , dur , 0 , 1 , 1 );
+
+                $img.css({
+                    top: ltop + ctop * per,
+                    left: lleft + cleft * per
+                });
+
+                if( per == 1 ){
+                    clearInterval( interval )
+                }
+            } , 1000 / 60 );
+        }
+
+        var winHeight = $(window).height();
+        var winWidth = $(window).width();
+        var imgWidth = $img.width();
+        var imgHeight = $img.height();
+        var st = $(window).scrollTop();
+        $wrap.on('mousemove' , function( ev ){
+            left = - 2 * ev.pageX / winWidth * ( imgWidth - winWidth ) / 2;
+            top = - 2 * ( ev.pageY ) / winHeight * ( imgHeight - winHeight ) / 2;
+            runAnimate();
+        });
+
     });
 
 

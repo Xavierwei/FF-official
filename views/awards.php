@@ -1,5 +1,5 @@
 <?php include_once 'common/header.php';?>
-<div class="page" data-page="awards-page">
+<div class="page" data-page="awards-page" data-header="awards">
 	<!-- page title -->
 	<?php 
 	$pagetit = 'AWARDS';

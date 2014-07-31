@@ -161,6 +161,25 @@
 		<div class="brand_movie" style="display:none;">
 			<div class="brand_big_prev" data-a="brand_big_prev"> <span></span> </div>
 			<div class="brand_big_next" data-a="brand_big_next"> <span></span> </div>
+			<div class="brand_big_text column cs-clear">
+				<p class="brand_big_text_year"> <strong>2013</strong> </p>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">911 Birthday anniversary</p> <p class="brand_big_text_val">digital event</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">#86</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">client</p> <p class="brand_big_text_val">AUDI</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">year</p> <p class="brand_big_text_val">2013</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">agency</p> <p class="brand_big_text_val">HELLO sunshine</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">GENRE</p> <p class="brand_big_text_val">MOVIE</p><p class="brand_big_text_val">TVC</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">Territory</p> <p class="brand_big_text_val">EUROPE</p> <p class="brand_big_text_val">&nbsp;</p></div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">DIRECTOR</p> <p class="brand_big_text_val">Matias montero</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">PHOTOGRAPHY</p> <p class="brand_big_text_val">philippe lachapelle</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
+				<div class="brand_big_text_item"> <p class="brand_big_text_tit"> RESULT </p> 2 X sss </div>
+			</div>
 		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit">
