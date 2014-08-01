@@ -595,7 +595,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		var nums = $('.brands-con>li .brands-mask').length;
 		var index = 0;
 		$('.brands-con>li').css('opacity' , 1).each(function( i ){
-            console.log( +new Date() );
 			$(this).delay( 400 * i )
 				.animate({
 					marginLeft: 0
@@ -738,32 +737,33 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
             var myVideo = videojs( id , config , function(){
             	var v = this;
-            	var resizeFn = function(){
-                    var w = $wrap.width()  ;
-                    var h = $wrap.height() ;
-                    var vh = 0 ;
-                    var vw = 0 ;
-                    if( h / w > ratio ){
-                        vh = h + 40;
-                        vw = vh / ratio;
-                    } else {
-                        vw = w + 40;
-                        vh = vw * ratio;
+                if( config.resize !== false ){
+                	var resizeFn = function(){
+                        var w = $wrap.width()  ;
+                        var h = $wrap.height() ;
+                        var vh = 0 ;
+                        var vw = 0 ;
+                        if( h / w > ratio ){
+                            vh = h + 40;
+                            vw = vh / ratio;
+                        } else {
+                            vw = w + 40;
+                            vh = vw * ratio;
+                        }
+
+                        try{v.dimensions( vw , vh );}catch(e){}
+
+                        $('#' + v.Q).css({
+                            "margin-top": ( h - vh ) / 2,
+                            "margin-left": ( w - vw ) / 2
+                        });
+                        return false;
                     }
+                    $(window).bind( 'resize.video-' + id , resizeFn )
+                    	.trigger('resize.video-' + id);
 
-                    try{v.dimensions( vw , vh );}catch(e){}
-
-                    $('#' + v.Q).css({
-                        "margin-top": ( h - vh ) / 2,
-                        "margin-left": ( w - vw ) / 2
-                    });
-                    return false;
+                    $wrap.bind('resize.video-' + id , resizeFn);
                 }
-                $(window).bind( 'resize.video-' + id , resizeFn )
-                	.trigger('resize.video-' + id);
-
-                $wrap.bind('resize.video-' + id , resizeFn);
-
                 setTimeout(function(){
                 	$wrap.find('.video-wrap').fadeIn();
                 	if( config.autoplay ){
@@ -810,7 +810,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
                 $wrap.data('video-object' , v);
 
-                cb && cb();
+                cb && cb(v);
             } );
         });
 	}
@@ -1011,6 +1011,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
     $('.sec_brands').scroll(function(){
         //clearTimeout( sec_brands_timer );
         //sec_brands_timer = setTimeout(function(){
+            if( $('.brand_movie').data('isFullScreen') ) return false;
             var st = $('.sec_brands').scrollTop();
             if( st > sec_brands_stop ){
                 LP.triggerAction('pagetitarrtop');
@@ -1021,6 +1022,11 @@ LP.use(['jquery' ,'easing'] , function( $ ){
     });
 
 	var brandsInterval = null;
+    // var lightPrev = function( $dom , prev ){
+    //     setTimeout(function(){
+    //         $dom.prev().find('.')
+    //     } , 50);
+    // }
 	$('.brands-con').delegate('.brands-con-li' , 'mouseenter' , function( ev ){
 
 		var $dom = $(ev.target).closest('li');
@@ -1032,6 +1038,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		var start = 0;
 		var $prevAll = $dom.prevAll();
 		var $nextAll = $dom.nextAll();
+        clearInterval( brandsInterval );
 		brandsInterval = setInterval(function(){
 			if( start == times ){
 				clearInterval( brandsInterval );
@@ -1052,7 +1059,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 					} , 200);
 			}
 			start++;
-		} , 100 );
+		} , 60 );
 	})
 	.delegate('.brands-con-li' , 'mouseleave' , function(){
 		clearInterval( brandsInterval );
@@ -1069,8 +1076,11 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 			// } else {
 			renderVideo( $dom , $dom.data('movie') , $dom.find('img').attr('src') , {
 				muted: true,
-				autoplay: true
-			} );
+				autoplay: true,
+                resize: false
+			} , function( v ){
+                try{v.dimensions( '100%' , '100%' );}catch(e){}
+            } );
 			//}
 		}
 	})
@@ -1314,7 +1324,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                     effects['number-rock']( $('.awardicons span') , 0  , null , 500 );
                 }); 
             },
-            'group-page': function(){
+            'contact-page': function(){
                 var _LP = window.LP;
                 LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
                     window.LP = _LP;
@@ -1339,6 +1349,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                         });
                     }
                 } , 100 );
+
+
+                $('.pagetit .pagetitarrbottom').fadeOut();
                 // LP.use('http://api.map.baidu.com/api?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk' , function(){
                 //     var oMap = new BMap.Map("map");
                 //     oMap.addControl(new BMap.NavigationControl());
@@ -1543,6 +1556,11 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                     });
                 }
 
+                // init banpho-img
+                $('.banpho-img img').css('opacity' , 0)
+                    .animate({
+                        opacity: 1
+                    } , 1000);
 
 				return false;
 			},
@@ -1623,7 +1641,20 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 
 	// bind keydown events
+    // fuck safari,fuck safari
+    // fuck safari,fuck safari
+    var isKeyDown = false;
 	$(document).keydown(function( ev ){
+        if( isKeyDown == true ){
+            return ;
+        }
+        isKeyDown = true;
+        setTimeout(function(){
+            isKeyDown = false;
+        } , 300 );
+
+
+        console.log( + new Date() );
 		switch( ev.which ){
 			case 27:
                  if( $('.image-zoom-big').length ){
@@ -1653,11 +1684,12 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                             marginTop: -88,
                             marginBottom: 88
                         } , 400);
+
+
                         $('.brand_movie').fadeOut( 400 )
                             .promise()
                             .then(function(){
                                 $('.brand_item_tit').hide();
-
                                 // $('.brands-con .brands-item').width('auto');
                                 showBrands( true );
                             });
@@ -1707,8 +1739,12 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
     // big brand video double click event
     $('.brand_movie').on('dblclick' , '.brands-item' , function(){
+        // untrigger stroll event
+        
+
         var isFullScreen = $('.brand_movie').data('isFullScreen');
         isFullScreen = !isFullScreen;
+
         $('.brand_movie').data('isFullScreen' , isFullScreen );
 
         var winWidth = $(window).width();
@@ -1739,11 +1775,12 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
         $('.brand_movie')
             .animate(  {
-                height: isFullScreen ? $(window).height() - headerHeight : 445,
+                // height: isFullScreen ? $(window).height() - $('.header-inner').height() : 445,
                 top: isFullScreen ? 0 : 88
             } , 600 )
 
             .find('ul').animate({
+                height: isFullScreen ? $(window).height() - $('.header-inner').height() : 445,
                 marginLeft: - $(this).prevAll().length * winWidth * 0.7 + winWidth * ( isFullScreen ? 0.05 : 0.15 )
             } , time )
             .promise()
@@ -1765,7 +1802,15 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
     } );
 
-
+    $('.brand_big_prev,.brand_big_next').hover(function(){
+        $(this).animate({
+            opacity: 0
+        } , 700 );
+    } , function(){
+        $(this).animate({
+            opacity: 1
+        } , 700 );
+    });
 
 	// page actions here
 	// ============================================================================
@@ -1960,7 +2005,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	});
 
 	LP.action('home-cam-item' , function(){
-
+        // show brands
+        $('.')
 
 
 
@@ -2116,7 +2162,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 		$realShowLi.slideDown();
 		$realHideLi.slideUp();
-		console.log( $realShowLi , $realHideLi );
 		return false;
 	});
 
@@ -2138,7 +2183,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 						$('.brands-con').hide();
 						$('.brands_tit').hide();
 
-
+                        // clear prev ul element
+                        $('.brand_movie').find('ul').remove();
 						showBigBrandsItem();
 						// if( $dom.data('movie') ){
 						// 	showTheMovie();
@@ -2174,7 +2220,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				.remove();
 
             // bind resize event
-            $(window).bind('resize.brand_movie' , function(){
+            $(window).unbind('resize.brand_movie').bind('resize.brand_movie' , function(){
                 var $items = $('.brand_movie').find('.brands-item');
                 var winWidth = $(window).width();
                 var isFullScreen = $('.brand_movie').data('isFullScreen');
@@ -2194,9 +2240,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 
             if( itemIndex == 0 ){
-                $('.brand_big_prev').hide();
+                $('.brand_big_prev').fadeOut();
             } else if( itemIndex == $('.brand_movie').find('.brands-item').length - 1 ){
-                $('.brand_big_next').hide();
+                $('.brand_big_next').fadeOut();
             }
 
 			var $bigItem = $('.brand_movie').find('.brands-item').eq( itemIndex );
@@ -2226,7 +2272,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
                         $dom.hover(function(){
                             if( !$dom.find('.image-zoom').length ){
                                 $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
-                                        <div class="transition">IMAGE ZOOM<br><br>IMAGE ZOOM</div>\
+                                        <div class="transition">ZOOM<br><br>ZOOM</div>\
                                     </a>')
                                     .appendTo( $dom );
                             }
@@ -2749,7 +2795,6 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         
 
         var marginLeft = ( pwidth - width - 2 * ( -poff.left + off.left ) ) / 2;
-        console.log( off , width , poff , pwidth , marginLeft );
 
 
 		var index = $dom.index();
@@ -3055,6 +3100,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             var text = $.trim( $(this).text() ).toLowerCase();
             if( text == page ){
                 var $link = $('.navitem').eq( i - 1 );
+                console.log( $link.data('last') );
                 if( $link.data('last') ){
                     pageManager.go( $link.data('last') );
                 } else {
@@ -3110,6 +3156,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             $current.data('video-object').muted();
         }
 
+        var interval = setInterval(function(){
+            fixImageToWrap( $dom , $dom.find('img') );
+        } , 1000 / 30 );
 
         $current.animate({
             width: isFullScreen ? winWidth * 0.7 : winWidth * 0.9
@@ -3126,7 +3175,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         } , time)
         .promise()
         .then(function(){
-
+            clearInterval( interval );
             disposeVideo();
 
             if( $dom.data('movie') ){
@@ -3137,9 +3186,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             }
 
             if( index - 1 == 0 ){
-                $('.brand_big_prev').hide();
+                $('.brand_big_prev').fadeOut();
             }
-            $('.brand_big_next').show();
+            $('.brand_big_next').fadeIn();
         });
 
         $('.brand_movie').data('index' , index - 1 );
@@ -3171,6 +3220,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             width: winWidth * 0.7 
         } , time );
 
+        var interval = setInterval(function(){
+            fixImageToWrap( $dom , $dom.find('img') );
+        } , 1000 / 30);
 
         $dom.animate({
             width: isFullScreen ? winWidth * 0.9 : winWidth * 0.7
@@ -3182,6 +3234,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         } , time)
         .promise()
         .then(function(){
+            clearInterval( interval );
             disposeVideo();
 
             if( $dom.data('movie') ){
@@ -3192,9 +3245,9 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             }
 
             if( index + 1 == $('.brand_movie').find('.brands-item').length - 1 ){
-                $('.brand_big_next').hide();
+                $('.brand_big_next').fadeOut();
             }
-            $('.brand_big_prev').show();
+            $('.brand_big_prev').fadeIn();
         });
 
         $('.brand_movie').data('index' , index + 1 );
@@ -3206,7 +3259,8 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
     LP.action('showreel' , function( e ){
         renderVideo($('.banpho-img') , '../videos/0' , '' , {
-            autoplay: true
+            autoplay: true,
+            pause_button: true
         } );
 
         return false;
@@ -3223,7 +3277,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         var $img = $wrap.find('img').removeAttr('style').css({
             position: 'absolute',
             // width: 'auto',
-            width: 2000,
+            width: '150%',
             height: 'auto'
         });
 
@@ -3270,6 +3324,19 @@ LP.use(['jquery' ,'easing'] , function( $ ){
         });
 
     });
+    
 
+    LP.action('people_opt' , function(){
+        var isSlideDown = !$(this).hasClass('expand');
+        if( isSlideDown ){
+            $(this).siblings('.people_download').slideDown();
+            $(this).siblings('.people_desc').slideDown();
+        } else {
+            $(this).siblings('.people_download').slideUp();
+            $(this).siblings('.people_desc').slideUp();
+        }
+
+        $(this).toggleClass('expand');
+    });
 
 });

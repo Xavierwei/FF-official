@@ -5,21 +5,6 @@
 		<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="page-pagetitarrbottom"></a>
 	</div>
 </div>
-<?php if( $top_title == 'ABOUT' ){ ?>
-<div class="column">
-	<div class="about_crumbs crumbs">
-		<span>
-			<a href="./group.php" data-a="press_crumbs_link">ff group</a> / 
-			<a href="./bio.php" data-a="press_crumbs_link">ff bio</a> / 
-			<a href="./ffshowreel.php" data-a="press_crumbs_link">ff showreel</a> / 
-			<a href="./people.php" data-a="press_crumbs_link">key people</a> /
-			<a href="./news.php" data-a="press_crumbs_link">ff news</a> / 
-			<a href="./press.php" data-a="press_crumbs_link">press</a> / 
-			<a href="./interview.php" data-a="press_crumbs_link">interview</a>
-		</span>
-	</div>
-</div>
-<?php } ?>
 <!-- banner -->
 <div class="banpho  banpho-img"><img src="../images/<?php echo str_replace(' ', '', $pagetit); ?>_pho.jpg" />
 <?php if( $pagetit == 'FF BIO' ){ ?>
@@ -28,3 +13,27 @@
 	</a>
 <?php } ?>
 </div>
+
+<?php if( $top_title == 'ABOUT' ){ ?>
+<div class="column">
+	<div class="about_crumbs crumbs">
+		<span>
+			<a href="./group.php" data-a="press_crumbs_link">ff group</a> / 
+			<a href="./bio.php" data-a="press_crumbs_link">ff bio</a> / 
+			<a href="./ffshowreel.php" data-a="press_crumbs_link">ff showreel</a> / 
+			<a href="./people.php" data-a="press_crumbs_link">key people</a> /
+			<a href="./news.php" data-a="press_crumbs_link">ff news</a> /
+			<a href="./jobs.php" data-a="press_crumbs_link">jobs</a>
+		</span>
+	</div>
+</div>
+<?php } else if( $top_title == 'PRESS' ){ ?>
+<div class="column">
+	<div class="about_crumbs crumbs">
+		<span>
+			<a href="./press.php" data-a="press_crumbs_link">press</a> / 
+			<a href="./interview.php" data-a="press_crumbs_link">interview</a>
+		</span>
+	</div>
+</div>
+<?php } ?>

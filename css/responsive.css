@@ -1,6 +1,10 @@
 @media only screen and (max-width:1250px){
     .nav{padding-left: 75px;height: 100%;overflow: hidden;}
+    .pagetit,.sec_brands_tit,.brands-tags{padding-left: 75px;}
+
     .column{width: auto;}
+
+    .awardfilter_item{width: 23%;margin: 0 1%;}
 }
 
 
@@ -32,8 +36,6 @@
     .gates-inner-l{font-size: 40px;padding: 0 20px;}
     .gates-inner-l a{margin-right: 10%;}
 
-
-    .awardfilter_item{width: 23%;margin: 0 1%;}
 
     .selitem{width: 100%;}
     .selitem .selitem_tips{width: 100%;text-indent: 2em;background-position: 90% center;padding-left: 0;}

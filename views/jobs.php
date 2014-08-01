@@ -30,9 +30,10 @@
 	</div>
 </div>
 
-<div class="page" data-page="jobs-page" data-header="career">
+<div class="page" data-page="jobs-page" data-header="about">
 	<!-- page title -->
 	<?php 
+	$top_title = 'ABOUT';
 	$pagetit = 'JOBS';
 	include_once 'common/pagetit.php';?>
 

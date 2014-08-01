@@ -52,13 +52,13 @@
 				<a href="index.php" data-a="navitem" class="logo transition"></a>
 			</div>
 			<div class="nav column cs-clear">
-				
+				<a class="navitem" data-a="show-category" href="#">CATEGORIES</a>
 				<a class="navitem" data-a="show-brands" href="#">BRANDS</a>
 				<a class="navitem" data-a="show-category" href="#">SERVICES</a>
-				<a class="navitem" data-a="show-category" href="#">TAGS</a>
 				<a class="navitem" data-a="navitem" href="awards.php">AWARDS</a>
-				<a class="navitem" data-a="navitem" href="jobs.php">CAREER</a>
-				<a class="navitem" data-a="navitem" href="group.php">ABOUT</a>
+				<a class="navitem" data-a="navitem" href="press.php" data-last="interview.php">PRESS</a>
+				<a class="navitem" data-a="navitem" href="group.php" data-last="jobs.php" >ABOUT</a>
+				<a class="navitem" data-a="navitem" href="contact.php">CONTACT</a>
 			</div>
 			<div class="language"><a href="#">EN</a> <a href="#">中国</a></div>
 			<a href="#" data-a="search-toggle" class="search">×</a>

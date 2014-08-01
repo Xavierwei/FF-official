@@ -10,10 +10,10 @@
 		<p class=" popdownicon " data-a="press_prev"></p>
 	</div>
 </div>
-<div class="page" data-page="interview-page" data-header="about">
+<div class="page" data-page="interview-page" data-header="press">
 	<!-- page title -->
 	<?php 
-	$top_title = 'ABOUT';
+	$top_title = 'PRESS';
 	$pagetit = 'INTERVIEW';
 	include_once 'common/pagetit.php';?>
 

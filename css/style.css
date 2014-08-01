@@ -115,11 +115,11 @@ a:hover{color:#000}
 		.award-num{font-size: 48px; font-weight: bold; line-height: 100px;text-align: center;}
 	/**/
 	.awardfilter{height: 130px;}
-		.awardfilter_item{float: left;width: 300px;height: 50px;}
+		.awardfilter_item{float: left;width: 300px;height: 50px;text-align: center;}
 		.awardfilter_item2{float: right;width: 180px;height: 54px;}
 			.awardfilter_btn{background: #000 ;color:#fff;font-size: 14px;border: 0;font-weight: bold;width: 180px;height: 54px;line-height: 54px;cursor: pointer;}
 				/**/
-			.selitem {position: relative;display: inline-block;background-color: #fff;font-size: 14px;width: 175px;height: 54px;}
+			.selitem {position: relative;display: inline-block;background-color: #fff;font-size: 14px;width: 175px;height: 54px;text-align: left;}
 			.selitem .selitem_tips {position: absolute;display: block;width: 150px;padding-left:25px;font-weight: bold;height: 50px;line-height: 50px;border: #000 solid 2px;background: #fff url('../images/selitem_icon.png') no-repeat 150px center;}
 			.selitem .select-options{background: white; display: none; position: absolute;top: 100%;left: 0;width: 100%;line-height: 54px;border: 2px solid black;margin-top: -2px;}
 			.selitem .select-options li{padding-left: 20px;cursor: pointer;}
@@ -200,7 +200,7 @@ a:hover{color:#000}
 
 /* section press */
 .sec_press{}
-	.press_txt{text-align: center;font-size: 36px;padding: 70px 0 70px;line-height:40px }
+	.press_txt{text-align: center;font-size: 36px;padding: 0 0 70px;line-height:40px }
 	.press_year{font-size: 36px;font-weight: bold;text-align: center;line-height: 40px}
 	.press_list{margin: 0 auto 50px}
 		.press_item{font-size: 14px;color:#666;width: 180px;float: left;display: inline;margin: 50px 46px 0;position: relative;}
@@ -292,7 +292,8 @@ a:hover{color:#000}
 
 	.brand_big_prev,.brand_big_next{position: absolute;height: 445px;width: 15%;left: 0;background: rgba(0,0,0,0.5) ; top: 0;z-index: 40;cursor: pointer;}
 	.brand_big_next{right: 0; left: auto;}
-	.brand_big_prev:hover,.brand_big_next:hover{opacity: 0; filter:alpha(opacity=0);-webkit-transition: all 0.4s linear;-moz-transition: all 0.4s linear;-o-transition: all 0.4s linear;-ms-transition: all 0.4s linear;transition: all 0.4s linear;}
+	/*-webkit-transition: all 0.4s linear;-moz-transition: all 0.4s linear;-o-transition: all 0.4s linear;-ms-transition: all 0.4s linear;transition: all 0.4s linear;
+	.brand_big_prev:hover,.brand_big_next:hover{opacity: 0; filter:alpha(opacity=0);}*/
 	.brand_big_prev span,.brand_big_next span{position: absolute;width: 12px; height: 20px;left: 50%; margin-left: -6px;top: 50%; margin-top: -10px;background: 
 		url(../images/brand_big_nav.png) left center; }
 	.brand_big_next span{background:url(../images/brand_big_nav.png) right center; }
@@ -300,7 +301,7 @@ a:hover{color:#000}
 	.brand_big_text{padding: 50px 0 150px;color: white;}
 	.brand_big_text_year{font-weight: bold;font-size: 24px;padding-bottom: 1em;	}
 	.brand_big_text_tit {font-size: 14px;font-weight: 100;text-transform: uppercase;}
-	.brand_big_text_val {font-size: 10px;color: #666;}
+	.brand_big_text_val {font-size: 11px;color: #666;}
 	.brand_big_text_item {float: left;width: 20%;line-height: 3em;}
 
 	.brands_tit.fixed{position: fixed;width: 100%;top:0;z-index: 40;}
@@ -310,7 +311,7 @@ a:hover{color:#000}
 	.brands-tags a:hover{color: white;}
 
 	.brands-con{width: 100%;overflow: hidden;}
-	.brands-con li{height: 184px;position: relative;overflow: hidden;}
+	.brands-con li{height: 180px;position: relative;overflow: hidden;}
 	.brands-mask{display: none; width: 100%;position: absolute;top: 0; left: 0;height: 100%;background: black; opacity: 0.79;filter:alpha(opacity=79);}
 
 
@@ -342,6 +343,29 @@ a:hover{color:#000}
 	.brands-con-time{font-size: 14px;font-weight: 100;margin-top: 24px;}
 	.brands-con-meta{font-size: 10px;font-weight: 100;color: #666;}
 
+/* key people */
+.people_item{margin: 0 36px;}
+	.people_s {float: left;width: 33%;height: 170px;}
+	.people_b {float: left; width: 67%; height: 170px;}
+	.people_img img{display: block;}
+	.people_opt {position: relative;cursor: pointer;}
+	.people_opt span{ position: absolute;width: 24px;height: 16px;background: url('../images/pagetitarr.png') no-repeat right -44px;top: 50%; margin-top: -8px;left:50%;margin-left: -12px;}
+	.people_opt:hover span{background-position: right top;}
+	.people_opt.expand span{background-position: 0 0;}
+	.people_opt.expand:hover span{background-position: left bottom;}
+
+	.people_addr{background: #f7f7f7;text-align: center;line-height: 170px;font-weight: bold;font-size: 24px;}
+	.people_tit h3{font-size: 24px;margin: 35px 30px 25px;text-transform: uppercase;}
+	.people_tit p{margin: 5px 30px 0;}
+	.people_even .people_tit h3,.people_even .people_tit p{text-align: right;}
+
+	.people_desc{ height: auto;}
+	.people_desc p{margin: 30px;font-size: 14px;color: #666;}
+	.people_download{position: relative;height: 170px;cursor: pointer;text-align: center;}
+	.people_download span{font-size: 14px;text-transform: uppercase;font-weight: bold;line-height: 220px;}
+	.people_download a{position: absolute; background: url('../images/press_downicon.png') no-repeat 0 -57px;
+		width: 22px;height: 22px;position: absolute; top: 50%;margin-top: -11px;left:50%;margin-left: -11px;}
+	.people_download:hover a{background-position: 0 0 ;}
 /* interview_list */
 .interview_list{width: 1030px;margin: 0 auto;}
 .interview_list .interview_info{font-size: 14px;color: #999;text-transform: uppercase;padding-top: 60px;width: 340px;text-align: center;}
