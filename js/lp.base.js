@@ -361,6 +361,115 @@ LP.use(['jquery' ,'easing'] , function( $ ){
     	});
     }
 
+
+    function showBigBrandsItem( $brandsItem ){
+        var $dom = $brandsItem;
+        var itemIndex = $dom.index();
+        disposeVideo();
+
+        $('.sec_brands').scrollTop(0);
+
+        $dom.closest('ul')
+            .children()
+            .each(function(){
+                $(this).find('.clone-img').remove();
+            })
+            .end()
+            .clone()
+            .insertBefore( $('.brand_movie .brand_big_text') )
+            // .children()
+            // .each(function(){
+            //  $(this).attr('data-a' , 'show-brands-big-movie' );
+            // })
+            .find('.brands-mask')
+            .remove();
+
+        // bind resize event
+        $(window).unbind('resize.brand_movie').bind('resize.brand_movie' , function(){
+            var $items = $('.brand_movie').find('.brands-item');
+            var winWidth = $(window).width();
+            var isFullScreen = $('.brand_movie').data('isFullScreen');
+            $('.brand_movie').find('ul')
+                .css({
+                    width: $items.length * winWidth,
+                    marginLeft: - $('.brand_movie').data('index') * winWidth * 0.7 + ( isFullScreen ? winWidth * 0.05 : winWidth * 0.15 )
+                })
+                .children()
+                .width( winWidth * 0.7 )
+                .eq( $('.brand_movie').data('index') )
+                .width( isFullScreen ? winWidth * 0.9 : winWidth * 0.7 );
+
+            $('.brand_big_prev,.brand_big_next').css('width' , isFullScreen ? winWidth * 0.05 : winWidth * 0.15 );
+
+        });
+
+
+        if( itemIndex == 0 ){
+            $('.brand_big_prev').fadeOut();
+        } else if( itemIndex == $('.brand_movie').find('.brands-item').length - 1 ){
+            $('.brand_big_next').fadeOut();
+        }
+
+        var $bigItem = $('.brand_movie').find('.brands-item').eq( itemIndex );
+
+
+        // animte the title
+        $('.brand_item_tit').show().animate({
+            marginTop: 0,
+            marginBottom: 0
+        } , 500 );
+
+
+        var $movieWrap = $('.brand_movie').fadeIn(function(){
+            if( $bigItem.data('movie') ){
+                renderVideo( $bigItem , $bigItem.data('movie') , $bigItem.find('img').attr('src') , {
+                    autoplay: false,
+                    pause_button: true
+                } );
+            }
+
+
+            $bigItem.parent().children().each(function(){
+                var $dom = $(this);
+                if( $dom.data('image') ){
+                    initImageMouseMoveEffect( $dom );
+
+                    $dom.hover(function(){
+                        if( !$dom.find('.image-zoom').length ){
+                            $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
+                                    <div class="transition">ZOOM<br><br>ZOOM</div>\
+                                </a>')
+                                .appendTo( $dom );
+                        }
+                        $dom.find('.image-zoom').hide().fadeIn();
+                    } , function(){
+                        $dom.find('.image-zoom').fadeOut();
+                    } );
+                }
+            });
+
+            $bigItem.trigger('mouseenter');
+        })
+        .data('index' , itemIndex);
+        var winWidth = $(window).width();
+        $movieWrap.find('.brands-item')
+            .width( winWidth * 0.7 )
+            .each(function(){
+                fixImageToWrap( $(this) , $(this).find('img') );
+            });
+
+        
+
+        $movieWrap.find('ul')
+            .css({
+                width: winWidth * $movieWrap.find('.brands-item').length,
+                marginLeft: -itemIndex * winWidth * 0.7 + winWidth * 0.15
+            });
+
+
+    }
+
+
     // function initImageMouseMoveEffect( $dom , onZoom ){
     //     $dom.unbind('.image-effect');
 
@@ -2006,8 +2115,23 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
 	LP.action('home-cam-item' , function(){
         // show brands
-        $('.')
+        $('.sec_brands').show()
+            .scrollTop(0)
+            .css({
+                top: $('.header').height()
+            });
 
+        $('.brands-con').hide();
+        $('.brands_tit').hide();
+        // hide slider video
+        disposeVideo();
+
+        $('.brand_item_tit').show().animate({
+            marginTop: 0,
+            marginBottom: 0
+        } , 200 );
+
+        showBigBrandsItem( $('.brands-con').find('.brands-item').eq(0) );
 
 
 		// var $dom = $(this);
@@ -2185,7 +2309,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 
                         // clear prev ul element
                         $('.brand_movie').find('ul').remove();
-						showBigBrandsItem();
+						showBigBrandsItem( $dom );
 						// if( $dom.data('movie') ){
 						// 	showTheMovie();
 						// } else {
@@ -2195,114 +2319,117 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				} );
 		});
 
-		var itemIndex = $dom.index();
+		// var itemIndex = $dom.index();
 
-		// load movie on item
-		function showBigBrandsItem(){
+		// // load movie on item
+		// function showBigBrandsItem(){
 
-            disposeVideo();
+  //           disposeVideo();
 
-            $('.sec_brands').scrollTop(0);
+  //           $('.sec_brands').scrollTop(0);
 
-			$dom.closest('ul')
-				.children()
-				.each(function(){
-                    $(this).find('.clone-img').remove();
-				})
-				.end()
-				.clone()
-				.insertBefore( $('.brand_movie .brand_big_text') )
-				.children()
-				.each(function(){
-					$(this).attr('data-a' , 'show-brands-big-movie' );
-				})
-				.find('.brands-mask')
-				.remove();
+		// 	$dom.closest('ul')
+		// 		.children()
+		// 		.each(function(){
+  //                   $(this).find('.clone-img').remove();
+		// 		})
+		// 		.end()
+		// 		.clone()
+		// 		.insertBefore( $('.brand_movie .brand_big_text') )
+		// 		// .children()
+		// 		// .each(function(){
+		// 		// 	$(this).attr('data-a' , 'show-brands-big-movie' );
+		// 		// })
+		// 		.find('.brands-mask')
+		// 		.remove();
 
-            // bind resize event
-            $(window).unbind('resize.brand_movie').bind('resize.brand_movie' , function(){
-                var $items = $('.brand_movie').find('.brands-item');
-                var winWidth = $(window).width();
-                var isFullScreen = $('.brand_movie').data('isFullScreen');
-                $('.brand_movie').find('ul')
-                    .css({
-                        width: $items.length * winWidth,
-                        marginLeft: - $('.brand_movie').data('index') * winWidth * 0.7 + ( isFullScreen ? winWidth * 0.05 : winWidth * 0.15 )
-                    })
-                    .children()
-                    .width( winWidth * 0.7 )
-                    .eq( $('.brand_movie').data('index') )
-                    .width( isFullScreen ? winWidth * 0.9 : winWidth * 0.7 );
+  //           // bind resize event
+  //           $(window).unbind('resize.brand_movie').bind('resize.brand_movie' , function(){
+  //               var $items = $('.brand_movie').find('.brands-item');
+  //               var winWidth = $(window).width();
+  //               var isFullScreen = $('.brand_movie').data('isFullScreen');
+  //               $('.brand_movie').find('ul')
+  //                   .css({
+  //                       width: $items.length * winWidth,
+  //                       marginLeft: - $('.brand_movie').data('index') * winWidth * 0.7 + ( isFullScreen ? winWidth * 0.05 : winWidth * 0.15 )
+  //                   })
+  //                   .children()
+  //                   .width( winWidth * 0.7 )
+  //                   .eq( $('.brand_movie').data('index') )
+  //                   .width( isFullScreen ? winWidth * 0.9 : winWidth * 0.7 );
 
-                $('.brand_big_prev,.brand_big_next').css('width' , isFullScreen ? winWidth * 0.05 : winWidth * 0.15 );
+  //               $('.brand_big_prev,.brand_big_next').css('width' , isFullScreen ? winWidth * 0.05 : winWidth * 0.15 );
 
-            });
-
-
-            if( itemIndex == 0 ){
-                $('.brand_big_prev').fadeOut();
-            } else if( itemIndex == $('.brand_movie').find('.brands-item').length - 1 ){
-                $('.brand_big_next').fadeOut();
-            }
-
-			var $bigItem = $('.brand_movie').find('.brands-item').eq( itemIndex );
+  //           });
 
 
-			// animte the title
-			$('.brand_item_tit').show().animate({
-				marginTop: 0,
-				marginBottom: 0
-			} , 500 );
+  //           if( itemIndex == 0 ){
+  //               $('.brand_big_prev').fadeOut();
+  //           } else if( itemIndex == $('.brand_movie').find('.brands-item').length - 1 ){
+  //               $('.brand_big_next').fadeOut();
+  //           }
+
+		// 	var $bigItem = $('.brand_movie').find('.brands-item').eq( itemIndex );
 
 
-			var $movieWrap = $('.brand_movie').fadeIn(function(){
-				if( $bigItem.data('movie') ){
-					renderVideo( $bigItem , $bigItem.data('movie') , $bigItem.find('img').attr('src') , {
-						autoplay: false,
-                        pause_button: true
-					} );
-				}
+		// 	// animte the title
+		// 	$('.brand_item_tit').show().animate({
+		// 		marginTop: 0,
+		// 		marginBottom: 0
+		// 	} , 500 );
 
 
-                $bigItem.parent().children().each(function(){
-                    var $dom = $(this);
-                    if( $dom.data('image') ){
-                        initImageMouseMoveEffect( $dom );
+		// 	var $movieWrap = $('.brand_movie').fadeIn(function(){
+		// 		if( $bigItem.data('movie') ){
+		// 			renderVideo( $bigItem , $bigItem.data('movie') , $bigItem.find('img').attr('src') , {
+		// 				autoplay: false,
+  //                       pause_button: true
+		// 			} );
+		// 		}
 
-                        $dom.hover(function(){
-                            if( !$dom.find('.image-zoom').length ){
-                                $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
-                                        <div class="transition">ZOOM<br><br>ZOOM</div>\
-                                    </a>')
-                                    .appendTo( $dom );
-                            }
-                            $dom.find('.image-zoom').hide().fadeIn();
-                        } , function(){
-                            $dom.find('.image-zoom').fadeOut();
-                        } );
-                    }
-                });
 
-                $bigItem.trigger('mouseenter');
-			})
-            .data('index' , itemIndex);
-			var winWidth = $(window).width();
-			$movieWrap.find('.brands-item')
-				.width( winWidth * 0.7 )
-				.each(function(){
-					fixImageToWrap( $(this) , $(this).find('img') );
-				});
+  //               $bigItem.parent().children().each(function(){
+  //                   var $dom = $(this);
+  //                   if( $dom.data('image') ){
+  //                       initImageMouseMoveEffect( $dom );
+
+  //                       $dom.hover(function(){
+  //                           if( !$dom.find('.image-zoom').length ){
+  //                               $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
+  //                                       <div class="transition">ZOOM<br><br>ZOOM</div>\
+  //                                   </a>')
+  //                                   .appendTo( $dom );
+  //                           }
+  //                           $dom.find('.image-zoom').hide().fadeIn();
+  //                       } , function(){
+  //                           $dom.find('.image-zoom').fadeOut();
+  //                       } );
+  //                   }
+  //               });
+
+  //               $bigItem.trigger('mouseenter');
+		// 	})
+  //           .data('index' , itemIndex);
+		// 	var winWidth = $(window).width();
+		// 	$movieWrap.find('.brands-item')
+		// 		.width( winWidth * 0.7 )
+		// 		.each(function(){
+		// 			fixImageToWrap( $(this) , $(this).find('img') );
+		// 		});
 
             
 
-			$movieWrap.find('ul')
-				.css({
-					width: winWidth * $movieWrap.find('.brands-item').length,
-					marginLeft: -itemIndex * winWidth * 0.7 + winWidth * 0.15
-				});
+		// 	$movieWrap.find('ul')
+		// 		.css({
+		// 			width: winWidth * $movieWrap.find('.brands-item').length,
+		// 			marginLeft: -itemIndex * winWidth * 0.7 + winWidth * 0.15
+		// 		});
 
 
-		}
+		// }
+
+
+
 		// // TODO...
 		// var itemIndex = 0;
 		// var $item = $('.brand_movie .brands-item').eq(itemIndex);
