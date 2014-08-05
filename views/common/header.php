@@ -57,7 +57,7 @@
 				<a class="navitem" data-a="show-category" href="#">SERVICES</a>
 				<a class="navitem" data-a="navitem" href="awards.php">AWARDS</a>
 				<a class="navitem" data-a="navitem" href="press.php" data-last="interview.php">PRESS</a>
-				<a class="navitem" data-a="navitem" href="group.php" data-last="jobs.php" >ABOUT</a>
+				<a class="navitem" data-a="navitem" href="bio.php" data-last="jobs.php" >ABOUT</a>
 				<a class="navitem" data-a="navitem" href="contact.php">CONTACT</a>
 			</div>
 			<div class="language"><a href="#">EN</a> <a href="#">中国</a></div>

@@ -377,10 +377,10 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             .end()
             .clone()
             .insertBefore( $('.brand_movie .brand_big_text') )
-            // .children()
-            // .each(function(){
-            //  $(this).attr('data-a' , 'show-brands-big-movie' );
-            // })
+            .children()
+            .each(function(){
+             $(this).attr('data-a' , 'show-brands-big-movie' );
+            })
             .find('.brands-mask')
             .remove();
 
@@ -710,6 +710,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 				} , 400 )
 				.promise()
 				.then(function(){
+                    $(this).find('dt .brands-mask').show();
 					$(this).find('.brands-item')
 						.each(function( i ){
 							$(this).delay( i * 150 )
@@ -1147,34 +1148,38 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		var start = 0;
 		var $prevAll = $dom.prevAll();
 		var $nextAll = $dom.nextAll();
-        clearInterval( brandsInterval );
-		brandsInterval = setInterval(function(){
-			if( start == times ){
-				clearInterval( brandsInterval );
-				return;
-			}
-			if( start == 0 ){
-				$dom.find('.brands-mask').animate({
-					opacity: 0.2
-				});
-			} else {
-				$prevAll.eq( start - 1 )
-					.find('.brands-mask').animate({
-						opacity: 0.2
-					} , 200);
-				$nextAll.eq( start - 1 )
-					.find('.brands-mask').animate({
-						opacity: 0.2
-					} , 200);
-			}
-			start++;
-		} , 60 );
+        $(this).find('.brands-mask').stop( true , true ).animate({
+            opacity: 0
+        } , 600 );
+
+  //       clearInterval( brandsInterval );
+		// brandsInterval = setInterval(function(){
+		// 	if( start == times ){
+		// 		clearInterval( brandsInterval );
+		// 		return;
+		// 	}
+		// 	if( start == 0 ){
+		// 		$dom.find('.brands-mask').animate({
+		// 			opacity: 0.2
+		// 		});
+		// 	} else {
+		// 		$prevAll.eq( start - 1 )
+		// 			.find('.brands-mask').animate({
+		// 				opacity: 0.2
+		// 			} , 200);
+		// 		$nextAll.eq( start - 1 )
+		// 			.find('.brands-mask').animate({
+		// 				opacity: 0.2
+		// 			} , 200);
+		// 	}
+		// 	start++;
+		// } , 60 );
 	})
 	.delegate('.brands-con-li' , 'mouseleave' , function(){
 		clearInterval( brandsInterval );
 		$(this).find('.brands-mask').stop( true , true ).animate({
 			opacity: 0.7
-		});
+		} , 600);
 	})
 	.delegate('.brands-item' , 'mouseenter' , function(){
 		// init video with silence
@@ -1192,6 +1197,7 @@ LP.use(['jquery' ,'easing'] , function( $ ){
             } );
 			//}
 		}
+        
 	})
 	.delegate('.brands-item' , 'mouseleave' , function(){
 		// stop the movie
