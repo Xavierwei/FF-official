@@ -1,8 +1,9 @@
 /*
  * page base action
  */
-LP.use(['jquery' ,'easing'] , function( $ ){
+LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 	'use strict'
+
 
 	// page components here
 	// ============================================================================	
@@ -1755,6 +1756,22 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 	});
 
 
+    // load categories 
+    api.request('categories' , function( r ){
+        var aHtml = [];
+         //<img src="../images/lock.png">
+        var tpl = '<li> <a data-a="show-brands" data-d="path=#[path]" data-category="CONSULTING" title="#[title]" href="#">#[title]</a> </li>';
+        $.each( r.items || [] , function( i , item ){
+            aHtml.push( LP.format( tpl , {
+                title:  item.title,
+                path: item.path
+            } ) );
+        } );
+
+        $('#categories-wrap').html( aHtml.join('') );
+    });
+
+
 	// bind keydown events
     // fuck safari,fuck safari
     // fuck safari,fuck safari
@@ -2228,19 +2245,53 @@ LP.use(['jquery' ,'easing'] , function( $ ){
 		return false;
 	});
 
-	LP.action('show-brands' , function(){
+	LP.action('show-brands' , function( data ){
+
+        // load data 
+        var $p1 = api.request( 'categories/' +  data.path , function( r ){
+            // build html
+            var tpl = '<li class="brands-con-li" style="margin-left:-600px;">\
+                <dl class="cs-clear">\
+                    <dt>\
+                        <div class="brands-mask"></div>\
+                        <p class="brands-con-t">#[agency]<br/>-#[label]</p>\
+                        <p class="brands-con-time">#[year]</p>\
+                        <div class="cs-clear brands-con-meta">\
+                            <span class="fr">##[id]</span>\
+                            <span>#[cpgn_type]</span>\
+                        </div>\
+                    </dt>\
+                    <dd></dd>\
+                </dl>\
+            </li>';
+            var aHtml = [];
+
+            $.each( r.items || [] , function( i , item ){
+                aHtml.push( LP.format( tpl , {
+                    agency: item.agency,
+                    label : item.label,
+                    year: item.date.replace(/(\d+)-.*/ , '$1'),
+                    id: item.id,
+                    cpgn_type: item.cpgn_type
+                } ) );
+            } );
+
+            $('.brands-con').html( aHtml.join('') );
+        } );
+
 
 		var winTop = $(window).scrollTop();
 		var sliderHeight = $('.home-slider').height();
 		if( $('.home-slider').length && winTop < sliderHeight ){
 			// scroll to $('.home-slider').height()
-			$('html,body').animate({
+			$.when( $p1 ,  $('html,body').animate({
 				scrollTop: sliderHeight
-			} , 500 )
-			.promise()
+			} , 500 ) )
+            .promise()
 			.then(showBrands);
 		} else {
-			showBrands();
+            $.when( $p1 ).promise()
+                .then(showBrands);
 		}
 		return false;
 	});

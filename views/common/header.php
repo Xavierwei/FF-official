@@ -106,8 +106,8 @@
 	<div class="section sec_gates" style="display:none;">
 		<div class="gates-inner cs-clear">
 			<div class="gates-inner-l">
-				<ul class="column">
-					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
+				<ul class="column" id="categories-wrap">
+					<!-- <li> <a data-a="show-brands" data-category="CONSULTING" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
 					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Blcoholic drinks</a> </li>
 					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Clcoholic drinks</a> </li>
 					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Dlcoholic drinks</a>  <img src="../images/lock.png"></li>
@@ -133,7 +133,7 @@
 					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Tlcoholic drinks</a> </li>
 					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
 					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Ilcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
+					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li> -->
 				</ul>
 			</div>
 			<div class="gates-inner-c">
@@ -210,14 +210,14 @@
 						</div>
 					</dt>
 					<dd>
-						<ul class="brands-items cs-clear">
+						<!-- <ul class="brands-items cs-clear">
 							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
 							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-						</ul>
+						</ul> -->
 					</dd>
 				</dl>
 			</li>
