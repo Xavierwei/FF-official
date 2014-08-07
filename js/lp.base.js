@@ -2246,7 +2246,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 	});
 
 	LP.action('show-brands' , function( data ){
-
+        // change tit
+        var tit = $.trim( $(this).text() );
+        $('.sec_brands_tit h2 span').last().html( tit.toUpperCase() );
+        // save path info
+        $('.sec_brands').data('path' , 'categories/' +  data.path );
         // load data 
         var $p1 = api.request( 'categories/' +  data.path , function( r ){
             // build html
@@ -2261,12 +2265,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             <span>#[cpgn_type]</span>\
                         </div>\
                     </dt>\
-                    <dd></dd>\
+                    <dd><ul class="brands-items cs-clear"></ul></dd>\
                 </dl>\
             </li>';
             var aHtml = [];
 
-            $.each( r.items || [] , function( i , item ){
+            $.each( r.items || [] , function( index , item ){
                 aHtml.push( LP.format( tpl , {
                     agency: item.agency,
                     label : item.label,
@@ -2274,6 +2278,29 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     id: item.id,
                     cpgn_type: item.cpgn_type
                 } ) );
+
+                // load all pictures
+                var pics = [];
+                var totalItems = [];
+
+                var path = 'categories/' +  data.path + '/' + item.path;
+                api.request( path , function( r ){
+                    var thtml = [];
+                    var tpl = '<li data-a="brands-item" class="brands-item" data-image="#[image]" data-movie="#[movie]"><div class="brands-mask"></div><img src="http://www.fredfarid.com/eng/file/pages_contents/#[path]/picture/#[picture]"></li>';
+                    totalItems.push( t.items );
+                    $.each( r.items || [] , function( i , item ){
+                        // pics.push( http://www.fredfarid.com/eng/file/pages_contents/#[path]/picture/#[picture] )
+                        thtml.push( LP.format( tpl , {
+                            path: path,
+                            picture: item.picture,
+                            movie : item.movie,
+                            image: item.picture
+                        } ) );
+                    } );
+
+                    $('.brands-con ul').eq( index ).html( thtml.join('') );
+                });
+
             } );
 
             $('.brands-con').html( aHtml.join('') );
@@ -2284,9 +2311,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 		var sliderHeight = $('.home-slider').height();
 		if( $('.home-slider').length && winTop < sliderHeight ){
 			// scroll to $('.home-slider').height()
-			$.when( $p1 ,  $('html,body').animate({
+			$.when( $('html,body').animate({
 				scrollTop: sliderHeight
-			} , 500 ) )
+			} , 500 ) , $p1 )
             .promise()
 			.then(showBrands);
 		} else {
