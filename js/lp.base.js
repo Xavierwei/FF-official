@@ -120,6 +120,188 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         }
     }
 
+    // show image in the biggest view
+    // and make img auto move effect
+    function imageZoom( item ){
+
+        var src = brandItemManager.getPath( item , 'media' );
+
+        var $wrap = $('<div class="image-zoom-big"><img/></div>').appendTo(document.body)
+            .hide()
+            .fadeIn();
+
+            // // set image src
+            // .find('img')
+            // .attr('src' , $imgs.attr('src').replace(/picture_1\/[^/]+$/ , 'media/' + $brandsItem.data('media') ) )
+
+            // .end();
+
+        // TODO:: need to fix image width auto and height auto , show real big image
+        var $img = $wrap.find('img').css({
+            position: 'absolute',
+            // width: 'auto',
+            // width: '150%',
+            // height: 'auto'
+        }).load(function(){
+            var imgWidth = $img.width();
+            var imgHeight = $img.height();
+            var st = $(window).scrollTop();
+
+
+
+            $wrap.on('mousemove' , function( ev ){
+                var winHeight = $(window).height();
+                var winWidth = $(window).width();
+                
+                left = - 2 * ev.pageX / winWidth * ( imgWidth - winWidth ) / 2;
+                top = - 2 * ( ev.pageY ) / winHeight * ( imgHeight - winHeight ) / 2;
+                runAnimate();
+            });
+        })
+        .attr('src' , src);
+
+
+        var top = 0;
+        var left = 0;
+
+        var interval;
+        var runAnimate = function(){
+            clearInterval( interval ) ;
+
+            var duration = 800;
+            var start = new Date();
+            var ltop = parseInt( $img.css('top') ) || 0;
+            var lleft = parseInt( $img.css('left') ) || 0;
+            var ctop = top - ltop;
+            var cleft = left - lleft;
+            interval = setInterval(function(){
+                // t: current time, b: begInnIng value, c: change In value, d: duration
+                //x, t, b, c, d
+                var dur = ( new Date() - start ) / duration;
+                var per =  dur > 1 ? 1 : $.easing.easeOutQuart( 0 , dur , 0 , 1 , 1 );
+
+                $img.css({
+                    top: ltop + ctop * per,
+                    left: lleft + cleft * per
+                });
+
+                if( per == 1 ){
+                    clearInterval( interval )
+                }
+            } , 1000 / 60 );
+        }
+    }
+
+
+    // brand item manager , you should get items from this object's function 'getItems'
+    // It would save the ajax cache and add some useful properties to every items
+    var brandItemManager = (function(){
+        var __CACHE_AJAX__ = {};
+        var __CACHE_ITEM__ = {};
+        var __CACHE_BRAND__ = {};
+
+        var index = 0;
+
+        return {
+            dump: function(){
+                console.log( __CACHE_ITEM__ );
+                console.log( __CACHE_AJAX__ );
+            },
+            getBrands: function( path , success ){
+                if( __CACHE_AJAX__[ path ] ){
+                    success && success( __CACHE_AJAX__[ path ] );
+                } else {
+                    return api.request( path , function( r ){
+                        __CACHE_AJAX__[ path ] = r;
+
+                        $.each( r.items ,  function( i , it ){
+                            __CACHE_BRAND__[ path + '/' + it.path ] = it;
+                        });
+                        success && success( r );
+                    } );
+                }
+            },
+            getBrand: function( path , success ){
+                if( __CACHE_BRAND__[ path ] )
+                    success && success( __CACHE_BRAND__[ path ] );
+                else {
+                    var paths = path.split('/');
+                    this.getBrands( [paths[0],paths[1]].join('/') , function( r ){
+                        success && success( __CACHE_BRAND__[ path ] );
+                    } );
+                }
+            },
+            // path ==> //  categories/{category}/{brand}
+            getItems: function( path , param , success ){
+                // var paths = path.split('/');
+                var ckey = path;
+                if( $.isPlainObject(param) ){
+                    ckey = path + LP.json2query( param );
+                }
+                if( $.isFunction( param ) ){
+                    success = param;
+                    param = '';
+                }
+                if( __CACHE_AJAX__[ckey] ){
+                    success && success( __CACHE_AJAX__[ckey] );
+                } else {
+                    return api.request( path , param , function( r ){
+                        __CACHE_AJAX__[ckey] = r;
+                        // fix items, add key and brand attribute to then
+                        $.each( r.items || [] , function( i , item ){
+                            // save path
+                            item.brand_path = path;
+                            // save cache key
+                            var ckey = 'item-' + ( ++index );
+                            item.key = ckey;
+                            __CACHE_ITEM__[ ckey ] = item;
+
+                        } );
+
+                        success && success( r );
+                    } );    
+                }
+            },
+            // get item from it's key
+            get: function( key ){
+                return __CACHE_ITEM__[ key ];
+            },
+            // get network resource path 
+            // base on brand and item info to get image path or video path
+            // this is works for videos also;
+            // item ==> {object|string}
+            getPath: function( item , type ){
+                // treat as key
+                if( !$.isPlainObject( item ) ){
+                    item = this.get( item );
+                }
+
+                var rpath = 'http://www.fredfarid.com/eng/file/pages_contents/#[brand_path]/#[type]/#[name]';
+                return LP.format( rpath , {
+                    brand_path: item.brand_path,
+                    //path: item.path,
+                    type: type,
+                    name: item[type],
+                } );
+            }
+        }
+    })();
+
+    window.brandItemManager = brandItemManager;
+
+
+    // base on brand and item info to get image path or video path
+    // this is works for videos also;
+    // function getItemPath( item , type ){
+    //     var rpath = 'http://www.fredfarid.com/eng/file/pages_contents/categories/#[brand]/#[path]/#[type]/#[name]';
+    //     return LP.format( rpath , {
+    //         brand: item.brand,
+    //         path: item.path,
+    //         type: type,
+    //         name: item[type],
+    //     } );
+    // }
+
 
     function disposeVideo(){
         $(document.body).find('.video-wrap').parent()
@@ -363,254 +545,153 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     }
 
 
-    function showBigBrandsItem( $brandsItem ){
-        var $dom = $brandsItem;
-        var itemIndex = $dom.index();
+    // show big brand item
+    function showBigBrandsItem( path , itemIndex ){
+        // prev dealing
         disposeVideo();
-
         $('.sec_brands').scrollTop(0);
+        $('.brand_movie').data( 'index' , itemIndex );
 
-        $dom.closest('ul')
-            .children()
-            .each(function(){
-                $(this).find('.clone-img').remove();
-            })
-            .end()
-            .clone()
-            .insertBefore( $('.brand_movie .brand_big_text') )
-            .children()
-            .each(function(){
-             $(this).attr('data-a' , 'show-brands-big-movie' );
-            })
-            .find('.brands-mask')
-            .remove();
 
-        // bind resize event
-        $(window).unbind('resize.brand_movie').bind('resize.brand_movie' , function(){
-            var $items = $('.brand_movie').find('.brands-item');
+        var afterItemsRender = function( item ){
+
             var winWidth = $(window).width();
-            var isFullScreen = $('.brand_movie').data('isFullScreen');
-            $('.brand_movie').find('ul')
-                .css({
-                    width: $items.length * winWidth,
-                    marginLeft: - $('.brand_movie').data('index') * winWidth * 0.7 + ( isFullScreen ? winWidth * 0.05 : winWidth * 0.15 )
-                })
-                .children()
-                .width( winWidth * 0.7 )
-                .eq( $('.brand_movie').data('index') )
-                .width( isFullScreen ? winWidth * 0.9 : winWidth * 0.7 );
-
-            $('.brand_big_prev,.brand_big_next').css('width' , isFullScreen ? winWidth * 0.05 : winWidth * 0.15 );
-
-        });
 
 
-        if( itemIndex == 0 ){
-            $('.brand_big_prev').fadeOut();
-        } else if( itemIndex == $('.brand_movie').find('.brands-item').length - 1 ){
-            $('.brand_big_next').fadeOut();
-        }
+            // bind resize event
+            $(window).unbind('resize.brand_movie').bind('resize.brand_movie' , function(){
+                var $items = $('.brand_movie').find('.brands-item');
+                var winWidth = $(window).width();
+                var isFullScreen = $('.brand_movie').data('isFullScreen');
+                $('.brand_movie').find('ul')
+                    .css({
+                        width: $items.length * winWidth,
+                        marginLeft: - $('.brand_movie').data('index') * winWidth * 0.7 + ( isFullScreen ? winWidth * 0.05 : winWidth * 0.15 )
+                    })
+                    .children()
+                    .width( winWidth * 0.7 )
+                    .eq( $('.brand_movie').data('index') )
+                    .width( isFullScreen ? winWidth * 0.9 : winWidth * 0.7 );
 
-        var $bigItem = $('.brand_movie').find('.brands-item').eq( itemIndex );
+                $('.brand_big_prev,.brand_big_next').css('width' , isFullScreen ? winWidth * 0.05 : winWidth * 0.15 );
 
+            });
 
-        // animte the title
-        $('.brand_item_tit').show().animate({
-            marginTop: 0,
-            marginBottom: 0
-        } , 500 );
-
-
-        var $movieWrap = $('.brand_movie').fadeIn(function(){
-            if( $bigItem.data('movie') ){
-                renderVideo( $bigItem , $bigItem.data('movie') , $bigItem.find('img').attr('src') , {
-                    autoplay: false,
-                    pause_button: true
-                } );
+            // render brand_big_prev and brand_big_next status
+            if( itemIndex == 0 ){
+                $('.brand_big_prev').fadeOut();
+            } else if( itemIndex == $('.brand_movie').find('.brands-item').length - 1 ){
+                $('.brand_big_next').fadeOut();
             }
 
 
-            $bigItem.parent().children().each(function(){
-                var $dom = $(this);
-                if( $dom.data('image') ){
-                    initImageMouseMoveEffect( $dom );
+            var $bigItem = $('.brand_movie').find('.brands-item').eq( itemIndex );
 
-                    $dom.hover(function(){
-                        if( !$dom.find('.image-zoom').length ){
-                            $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
-                                    <div class="transition">ZOOM<br><br>ZOOM</div>\
-                                </a>')
-                                .appendTo( $dom );
-                        }
-                        $dom.find('.image-zoom').hide().fadeIn();
-                    } , function(){
-                        $dom.find('.image-zoom').fadeOut();
+
+
+            // list show with animate effect here
+            $('.brand_item_tit').show().animate({
+                marginTop: 0,
+                marginBottom: 0
+            } , 500 );
+
+
+            var $movieWrap = $('.brand_movie').fadeIn(function(){
+                if( $bigItem.data('movie') ){
+                    renderVideo( $bigItem , $bigItem.data('movie') , $bigItem.find('img').attr('src') , {
+                        autoplay: false,
+                        pause_button: true
                     } );
                 }
+
+
+                $bigItem.parent().children().each(function(){
+                    var $dom = $(this);
+                    if( $dom.data('image') ){
+                        initImageMouseMoveEffect( $dom );
+
+                        $dom.hover(function(){
+                            if( !$dom.find('.image-zoom').length ){
+                                $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
+                                        <div class="transition">ZOOM<br><br>ZOOM</div>\
+                                    </a>')
+                                    .appendTo( $dom );
+                            }
+                            $dom.find('.image-zoom').hide().fadeIn();
+                        } , function(){
+                            $dom.find('.image-zoom').fadeOut();
+                        } );
+                    }
+                });
+
+                $bigItem.trigger('mouseenter');
             });
+            
+            $movieWrap.find('.brands-item')
+                .width( winWidth * 0.7 )
+                .each(function(){
+                    fixImageToWrap( $(this) , $(this).find('img') );
+                });
+            
 
-            $bigItem.trigger('mouseenter');
-        })
-        .data('index' , itemIndex);
-        var winWidth = $(window).width();
-        $movieWrap.find('.brands-item')
-            .width( winWidth * 0.7 )
-            .each(function(){
-                fixImageToWrap( $(this) , $(this).find('img') );
-            });
+            $movieWrap.find('ul')
+                .css({
+                    width: winWidth * $movieWrap.find('.brands-item').length,
+                    marginLeft: -itemIndex * winWidth * 0.7 + winWidth * 0.15
+                });
 
-        
 
-        $movieWrap.find('ul')
-            .css({
-                width: winWidth * $movieWrap.find('.brands-item').length,
-                marginLeft: -itemIndex * winWidth * 0.7 + winWidth * 0.15
-            });
+            // render brand information
+            var textTpl = '<p class="brand_big_text_year"> <strong>#[year]</strong> </p>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">#[title]</p> <p class="brand_big_text_val">#[label]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">##[id]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">client</p> <p class="brand_big_text_val">#[client]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">year</p> <p class="brand_big_text_val">#[year]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">agency</p> <p class="brand_big_text_val">#[agency]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">GENRE</p> <p class="brand_big_text_val">cpgn_type</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">Territory</p> <p class="brand_big_text_val">#[territory]</p> <p class="brand_big_text_val">&nbsp;</p></div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">DIRECTOR</p> <p class="brand_big_text_val">#[director]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">PHOTOGRAPHY</p> <p class="brand_big_text_val">#[photographer]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit"> RESULT </p> #[results] </div>';
 
+            brandItemManager.getBrand( item.brand_path , function( brand ){
+                brand['year'] = brand['date'].split('-')[0];
+                var str = LP.format( textTpl , brand );
+                $('.brand_big_text').html( str );
+            } );
+
+        }
+
+        brandItemManager.getItems( path , function( r ){
+            var item = r.items[ itemIndex ];
+            var aHtml = ['<ul class="brands-items">'];
+            var tpl = '<li class="brands-item" data-image="#[image]" data-video="#[video]" data-key="#[key]"><img src="#[picture]"></li>';
+
+
+            $.each( r.items , function( i , tm ){
+                aHtml.push( LP.format( tpl , {
+                    key: tm.key ,
+                    picture: brandItemManager.getPath( tm , 'picture_1' ),
+                    image: item.video ? '' : 1,
+                    video: item.video ? 1 : ''
+                } ) );
+            } );
+
+            aHtml.push('</ul>');
+
+            $(aHtml.join(''))
+                .insertBefore( $('.brand_movie .brand_big_text') );
+
+            afterItemsRender( item );
+        } );
 
     }
-
-
-    // function initImageMouseMoveEffect( $dom , onZoom ){
-    //     $dom.unbind('.image-effect');
-
-    //      var $img = $dom.find('img');
-    //      var imgWidth = $img.width();
-    //      var imgHeight = $img.height();
-    //      var fixWidth = imgWidth * 0.1;
-    //      var fixHeight = imgHeight * 0.1;
-    //      var $cloneImg =  null ;
-
-    //      var off = null;
-    //      var domWidth = null;
-    //      var domHeight = null;
-
-    //      var init = false;
-
-    //     var otop = 0;
-    //     var oleft = 0;
-
-    //     var top = 0;
-    //     var left = 0;
-
-    //     var ctop = 0 ;
-    //     var cleft = 0;
-
-
-    //     var ltop = 0;
-    //     var lleft = 0;
-    //     var timer = null;
-    //     var interval = null;
-    //     var initFn = function(){
-    //         $img = $dom.find('img');
-    //         imgWidth = $img.width();
-    //         imgHeight = $img.height();
-    //         fixWidth = imgWidth * 0.05;
-    //         fixHeight = imgHeight * 0.05;
-    //         $cloneImg =  null ;
-
-    //         off = null;
-    //         domWidth = null;
-    //         domHeight = null;
-
-    //         init = false;
-
-    //         otop = 0;
-    //         oleft = 0;
-
-    //         top = 0;
-    //         left = 0;
-
-    //         ctop = 0 ;
-    //         cleft = 0;
-
-
-    //         ltop = 0;
-    //         lleft = 0;
-    //         timer = null;
-    //         interval = null;
-    //     }
-
-    //     // var animate = null;
-    //     $dom.on('mouseenter.image-effect' , function(){
-    //         onZoom && onZoom();
-
-    //         if( $cloneImg && $(this).find('.clone-img').length ){
-    //              $cloneImg.stop(true);
-    //              return;
-    //         }
-
-    //         initFn();
-
-    //      off = $dom.offset();
-    //      domWidth = $dom.width();
-    //      domHeight = $dom.height();
-
-    //      init = false;
-    //      $cloneImg = $img.clone().css({
-    //          position: 'absolute',
-    //          top: 0,
-    //          left: 0
-    //      })
-    //      .addClass('clone-img')
-    //      .appendTo( $dom );
-
-    //     otop = ltop = top = -fixHeight;
-    //     oleft = lleft = left = -fixWidth;
-
-
-    //      $cloneImg.animate({
-    //          top: - fixHeight,
-    //          left: - fixWidth,
-    //          width: imgWidth + 2 * fixWidth,
-    //          height: imgHeight + 2 * fixHeight
-    //      } , 500 )
-    //      .promise()
-    //      .then(function(){
-    //          init = true;
-    //      });
-    //  }).on('mouseleave.image-effect' , function(){
-    //         clearInterval( interval );
-    //      if( !$cloneImg ) return;
-
-    //      $cloneImg.animate({
-    //          top: 0,
-    //          left: 0,
-    //          width: imgWidth,
-    //          height: imgHeight
-    //      } , 500 )
-    //      .promise()
-    //      .then(function(){
-    //          $(this).remove();
-    //          // $cloneImg = null;
-    //      });
-
-    //         $cloneImg = null
-    //  })
-    //  .on('mousemove.image-effect' , function( ev ){
-    //      if( !off ) return;
-    //      var px = ev.pageX - off.left;
-    //      var py = ev.pageY - off.top;
-    //      var lx , ly;
-    //      lx = ( domWidth / 2 - px );
-    //      ly = ( domHeight / 2 - py );
-    //      if( init ){
-
-    //             // ctop = ly / (domHeight / 2) * fixHeight;
-    //             // cleft = lx / (domWidth / 2) * fixWidth;
-    //             top =  - fixHeight + ly / (domHeight / 2) * fixHeight;
-    //             left = - fixWidth + lx / (domWidth / 2) * fixWidth;
-    //             $cloneImg.css({
-    //                 top: top,
-    //                 left: left
-    //             });
-    //      }
-    //  });
-    // }
-
-    // setTimeout(function(){
-    // 	initImageMouseMoveEffect( $('.home-slider .slider-item').eq(0) );
-    // } , 2000);
 
 
 	function showCategory(){
@@ -698,7 +779,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 		$('.brands-con>li .brands-items').each(function(){
 			var $ch = $(this).children();
 			$(this).width( $ch.length * itemWidth );
-		});
+		})
+        .find('.brands-item').each(function(){
+            // fix images width and height
+            fixImageToWrap( $(this) , $(this).find('img') );
+        });
 
 		$('.brands-con .brands-item').css( 'width' , 0 );
 
@@ -1680,11 +1765,55 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 				return false;
 			},
-			desctory: function(){
+			destroy: function(){
 				$(window).unbind('scroll');
 
 				$(document.body).unbind('mousemove').css('overflow' , 'auto');
-			}
+			},
+
+            // category and brands path
+            //  categories/{category}/{brand}/{index}/{normal|big|middle}
+            //  categories/commercial_services/suning_2013_may_campaign/0
+            //  categories/commercial_services/suning_2013_may_campaign/1
+            renderPath: function( path ){
+                var paths = path.split('/');
+
+                var category = paths[1] || '';
+                var brand = paths[2] || '';
+                var index = paths[3] || '';
+                var type = paths[4] || '';
+
+
+                api.request( [ 'categories' , category , brand ].join('/') , function( r ){
+                    var items = r.items;
+
+                    if( index ){
+                        // render items to brand-movie
+                        var item = items[ index ];
+                        // TODO ..   check type
+                        switch( type ){
+                            case 'big':
+
+                                break;
+                            default: 
+                                ;
+                        }
+
+                        return ;
+                    }
+
+                    if( brand ){
+
+                        return;
+                    }
+
+                    if( category ){
+
+                        return;
+                    }
+
+                } );
+            }
 		}
 	})();
 
@@ -1723,7 +1852,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 					// 			scrollTop: $('.pagetit').height() + $('.banpho-img img').height() / 2
 					// 		} , 400 );
 
-					// 		pageManager.desctory( );
+					// 		pageManager.destroy( );
      //    					pageManager.init( );
 
      //    					loadingMgr.hide();
@@ -1745,7 +1874,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 							$('html,body').animate({
 								scrollTop: 0
 							} , 300 );
-							pageManager.desctory( );
+							pageManager.destroy( );
         					pageManager.init( );
 
         					loadingMgr.hide();
@@ -2250,9 +2379,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var tit = $.trim( $(this).text() );
         $('.sec_brands_tit h2 span').last().html( tit.toUpperCase() );
         // save path info
-        $('.sec_brands').data('path' , 'categories/' +  data.path );
+        // $('.sec_brands').data('path' , 'categories/' +  data.path );
+
+        // show loading 
+        loadingMgr.show();
         // load data 
-        var $p1 = api.request( 'categories/' +  data.path , function( r ){
+        api.request( 'categories/' +  data.path , function( r ){
             // build html
             var tpl = '<li class="brands-con-li" style="margin-left:-600px;">\
                 <dl class="cs-clear">\
@@ -2270,6 +2402,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             </li>';
             var aHtml = [];
 
+            var whens = [];
             $.each( r.items || [] , function( index , item ){
                 aHtml.push( LP.format( tpl , {
                     agency: item.agency,
@@ -2280,46 +2413,51 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } ) );
 
                 // load all pictures
-                var pics = [];
                 var totalItems = [];
 
-                var path = 'categories/' +  data.path + '/' + item.path;
-                api.request( path , function( r ){
-                    var thtml = [];
-                    var tpl = '<li data-a="brands-item" class="brands-item" data-image="#[image]" data-movie="#[movie]"><div class="brands-mask"></div><img src="http://www.fredfarid.com/eng/file/pages_contents/#[path]/picture/#[picture]"></li>';
-                    totalItems.push( t.items );
+                // TODO... we could do better if there are a lot of items
+                // ajax a full screen items
+                // hide the loading
+                // continue to ajax left
+                var ajax = brandItemManager.getItems( 'categories/' +  data.path + '/' + item.path , function( r ){
+                    var tHtml = [];
+                    var tpl = '<li data-a="brands-item" class="brands-item" data-image="#[image]" data-video="#[video]" data-key="#[key]"><div class="brands-mask"></div><img src="#[picture]"></li>';
+                    totalItems.push( r.items );
                     $.each( r.items || [] , function( i , item ){
-                        // pics.push( http://www.fredfarid.com/eng/file/pages_contents/#[path]/picture/#[picture] )
-                        thtml.push( LP.format( tpl , {
-                            path: path,
-                            picture: item.picture,
-                            movie : item.movie,
-                            image: item.picture
+                        tHtml.push( LP.format( tpl , {
+                            key: item.key,
+                            picture: brandItemManager.getPath( item , 'picture' ),
+                            image: item.video ? '' : 1,
+                            video: item.video ? 1 : ''
                         } ) );
                     } );
 
-                    $('.brands-con ul').eq( index ).html( thtml.join('') );
-                });
+                    $('.brands-con ul').eq( index ).html( tHtml.join('') );
+                } );
 
+                if( ajax ){
+                    whens.push( ajax );
+                }
             } );
+
+
+            $.when.apply('' , whens).promise()
+                .then(function(){
+                    loadingMgr.hide();
+                    showBrands();
+                });
 
             $('.brands-con').html( aHtml.join('') );
         } );
-
 
 		var winTop = $(window).scrollTop();
 		var sliderHeight = $('.home-slider').height();
 		if( $('.home-slider').length && winTop < sliderHeight ){
 			// scroll to $('.home-slider').height()
-			$.when( $('html,body').animate({
-				scrollTop: sliderHeight
-			} , 500 ) , $p1 )
-            .promise()
-			.then(showBrands);
-		} else {
-            $.when( $p1 ).promise()
-                .then(showBrands);
-		}
+            $('html,body').animate({
+                scrollTop: sliderHeight
+            } , 500 );
+		} 
 		return false;
 	});
 
@@ -2374,7 +2512,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 	});
 
 	LP.action('brands-item' , function(){
-		var $dom = $(this);
+		//var $dom = $(this);
+        var key = $(this).data('key');
+        var item = brandItemManager.get( key );
+        var index = $(this).index();
+
 		$('.brands_tit').animate({
 				marginTop: -176,
 				marginBottom: 176
@@ -2393,7 +2535,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                         // clear prev ul element
                         $('.brand_movie').find('ul').remove();
-						showBigBrandsItem( $dom );
+						showBigBrandsItem( item.brand_path , index );
 						// if( $dom.data('movie') ){
 						// 	showTheMovie();
 						// } else {
@@ -3478,61 +3620,72 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     });
 
     LP.action('image-zoom' , function(){
-        var $imgs = $(this).siblings('img');
-        var $wrap = $('<div class="image-zoom-big"></div>').appendTo(document.body)
-            .append( $imgs.eq(0).clone() )
-            .hide()
-            .fadeIn();
+        //var $imgs = $(this).siblings('img');
+        var $brandsItem = $(this).closest('.brands-item');
+        var key = $brandsItem.data('key');
 
-        // TODO:: need to fix image width auto and height auto , show real big image
-        var $img = $wrap.find('img').removeAttr('style').css({
-            position: 'absolute',
-            // width: 'auto',
-            width: '150%',
-            height: 'auto'
-        });
+        imageZoom( brandItemManager.get( key ) );
+
+        // var $wrap = $('<div class="image-zoom-big"><img /></div>').appendTo(document.body)
+        //     //.append( $imgs.eq(0).clone().attr('$') )
+        //     .hide()
+        //     .fadeIn()
+
+        //     // set image src
+        //     .find('img')
+        //     .attr('src' , $imgs.attr('src').replace(/picture_1\/[^/]+$/ , 'media/' + $brandsItem.data('media') ) )
+
+        //     .end();
+
+        // // TODO:: need to fix image width auto and height auto , show real big image
+        // var $img = $wrap.find('img').css({
+        //     position: 'absolute',
+        //     // width: 'auto',
+        //     // width: '150%',
+        //     // height: 'auto'
+        // });
 
 
-        var top = 0;
-        var left = 0;
+        // var top = 0;
+        // var left = 0;
 
-        var interval;
-        var runAnimate = function(){
-            clearInterval( interval ) ;
+        // var interval;
+        // var runAnimate = function(){
+        //     clearInterval( interval ) ;
 
-            var duration = 800;
-            var start = new Date();
-            var ltop = parseInt( $img.css('top') ) || 0;
-            var lleft = parseInt( $img.css('left') ) || 0;
-            var ctop = top - ltop;
-            var cleft = left - lleft;
-            interval = setInterval(function(){
-                // t: current time, b: begInnIng value, c: change In value, d: duration
-                //x, t, b, c, d
-                var dur = ( new Date() - start ) / duration;
-                var per =  dur > 1 ? 1 : $.easing.easeOutQuart( 0 , dur , 0 , 1 , 1 );
+        //     var duration = 800;
+        //     var start = new Date();
+        //     var ltop = parseInt( $img.css('top') ) || 0;
+        //     var lleft = parseInt( $img.css('left') ) || 0;
+        //     var ctop = top - ltop;
+        //     var cleft = left - lleft;
+        //     interval = setInterval(function(){
+        //         // t: current time, b: begInnIng value, c: change In value, d: duration
+        //         //x, t, b, c, d
+        //         var dur = ( new Date() - start ) / duration;
+        //         var per =  dur > 1 ? 1 : $.easing.easeOutQuart( 0 , dur , 0 , 1 , 1 );
 
-                $img.css({
-                    top: ltop + ctop * per,
-                    left: lleft + cleft * per
-                });
+        //         $img.css({
+        //             top: ltop + ctop * per,
+        //             left: lleft + cleft * per
+        //         });
 
-                if( per == 1 ){
-                    clearInterval( interval )
-                }
-            } , 1000 / 60 );
-        }
+        //         if( per == 1 ){
+        //             clearInterval( interval )
+        //         }
+        //     } , 1000 / 60 );
+        // }
 
-        var winHeight = $(window).height();
-        var winWidth = $(window).width();
-        var imgWidth = $img.width();
-        var imgHeight = $img.height();
-        var st = $(window).scrollTop();
-        $wrap.on('mousemove' , function( ev ){
-            left = - 2 * ev.pageX / winWidth * ( imgWidth - winWidth ) / 2;
-            top = - 2 * ( ev.pageY ) / winHeight * ( imgHeight - winHeight ) / 2;
-            runAnimate();
-        });
+        // var winHeight = $(window).height();
+        // var winWidth = $(window).width();
+        // var imgWidth = $img.width();
+        // var imgHeight = $img.height();
+        // var st = $(window).scrollTop();
+        // $wrap.on('mousemove' , function( ev ){
+        //     left = - 2 * ev.pageX / winWidth * ( imgWidth - winWidth ) / 2;
+        //     top = - 2 * ( ev.pageY ) / winHeight * ( imgHeight - winHeight ) / 2;
+        //     runAnimate();
+        // });
 
     });
     
