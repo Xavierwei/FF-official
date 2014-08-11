@@ -52,9 +52,9 @@
 				<a href="index.php" data-a="navitem" class="logo transition"></a>
 			</div>
 			<div class="nav column cs-clear">
-				<a class="navitem" data-a="show-category" href="#">CATEGORIES</a>
-				<a class="navitem" data-a="show-brands" href="#">BRANDS</a>
-				<a class="navitem" data-a="show-category" href="#">SERVICES</a>
+				<a class="navitem" data-a="show-category" data-d="type=categories" href="#">CATEGORIES</a>
+				<a class="navitem" data-a="show-category" data-d="type=brands" href="#">BRANDS</a>
+				<a class="navitem" data-a="show-category" data-d="type=services" href="#">SERVICES</a>
 				<a class="navitem" data-a="navitem" href="awards.php">AWARDS</a>
 				<a class="navitem" data-a="navitem" href="press.php" data-last="interview.php">PRESS</a>
 				<a class="navitem" data-a="navitem" href="bio.php" data-last="jobs.php" >ABOUT</a>

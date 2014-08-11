@@ -152,7 +152,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $wrap.on('mousemove' , function( ev ){
                 var winHeight = $(window).height();
                 var winWidth = $(window).width();
-                
+
                 left = - 2 * ev.pageX / winWidth * ( imgWidth - winWidth ) / 2;
                 top = - 2 * ( ev.pageY ) / winHeight * ( imgHeight - winHeight ) / 2;
                 runAnimate();
@@ -231,7 +231,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     } );
                 }
             },
-            // path ==> //  categories/{category}/{brand}
+            // path ==> //  {category|brand|service}/{cat_path}
             getItems: function( path , param , success ){
                 // var paths = path.split('/');
                 var ckey = path;
@@ -693,48 +693,107 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     }
 
+    // show first cate list
+    // type => {categories|brands|services}
+    function show_cate_list( type ){
 
-	function showCategory(){
-		if( $('.sec_gates').is(':visible') ){
-			hideCategory();
-			return;	
-		}
+        if( $('.sec_brands').is(':visible') ){
+            hideBrands();
+        }
 
-		if( $('.sec_brands').is(':visible') ){
-			hideBrands();
-		}
+        // show loading
+        loadingMgr.show();
+        // get 'type' catelist
+        api.request( type , function( r ){
+            // hide loading
+            loadingMgr.hide();
+            // load categories 
+            var aHtml = [];
+             // biuld html
+            var tpl = '<li> <a data-a="show-brands" data-d="path=#[path]" data-category="CONSULTING" title="#[title]" href="#">#[title]</a> </li>';
+            $.each( r.items || [] , function( i , item ){
+                aHtml.push( LP.format( tpl , {
+                    title:  item.title,
+                    path: type + '/' + item.path
+                } ) );
+            } );
+            $('#categories-wrap').html( aHtml.join('') );
 
-		$('.sec_brands').hide();
-		var winHeight = $(window).height();
-		$('.sec_gates').fadeIn()
-			.promise()
-			.then(function(){
-				$('.gates-inner')
-					.animate({
-						marginTop: 0
-					} , 1000 , 'easeOutBack' );
-			});
+            // start animation
+            var winHeight = $(window).height();
+            $('.sec_gates').fadeIn()
+                .promise()
+                .then(function(){
+                    $('.gates-inner')
+                        .css('marginTop' , '-100%')
+                        .animate({
+                            marginTop: 0
+                        } , 1000 , 'easeOutBack' );
+                });
+
+            // render the letters
+            var letters = [];
+            $('.gates-inner-l a').each(function(){
+                var l = $.trim($(this).text())[0].toUpperCase();
+                if( $.inArray( l , letters ) < 0 ){
+                    letters.push( l );
+                }
+            });
+
+            letters.sort();
+            var html = [];
+            $.each( letters , function( i , l ){
+                html.push('<li> <a data-a="filter-letter" href="#">' + l + '</a> </li>');
+            } );
+            $('.gates-inner-c ul').html( html.join('') );
+
+            $(document.body).css('overflow' , 'hidden');
+        });
+
+    }
+
+
+	// function showCategory(){
+	// 	if( $('.sec_gates').is(':visible') ){
+	// 		hideCategory();
+	// 		return;	
+	// 	}
+
+	// 	if( $('.sec_brands').is(':visible') ){
+	// 		hideBrands();
+	// 	}
+
+	// 	$('.sec_brands').hide();
+	// 	var winHeight = $(window).height();
+	// 	$('.sec_gates').fadeIn()
+	// 		.promise()
+	// 		.then(function(){
+	// 			$('.gates-inner')
+	// 				.animate({
+	// 					marginTop: 0
+	// 				} , 1000 , 'easeOutBack' );
+	// 		});
 
 		
 
-		// render the letters
-		var letters = [];
-		$('.gates-inner-l a').each(function(){
-			var l = $.trim($(this).text())[0].toUpperCase();
-			if( $.inArray( l , letters ) < 0 ){
-				letters.push( l );
-			}
-		});
+	// 	// render the letters
+	// 	var letters = [];
+	// 	$('.gates-inner-l a').each(function(){
+	// 		var l = $.trim($(this).text())[0].toUpperCase();
+	// 		if( $.inArray( l , letters ) < 0 ){
+	// 			letters.push( l );
+	// 		}
+	// 	});
 
-		letters.sort();
-		var html = [];
-		$.each( letters , function( i , l ){
-			html.push('<li> <a data-a="filter-letter" href="#">' + l + '</a> </li>');
-		} );
-		$('.gates-inner-c ul').html( html.join('') );
+	// 	letters.sort();
+	// 	var html = [];
+	// 	$.each( letters , function( i , l ){
+	// 		html.push('<li> <a data-a="filter-letter" href="#">' + l + '</a> </li>');
+	// 	} );
+	// 	$('.gates-inner-c ul').html( html.join('') );
 
-		$(document.body).css('overflow' , 'hidden');
-	}
+	// 	$(document.body).css('overflow' , 'hidden');
+	// }
 
 	function hideCategory( cb ){
 		$('.gates-inner')
@@ -1772,9 +1831,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 			},
 
             // category and brands path
-            //  categories/{category}/{brand}/{index}/{normal|big|middle}
-            //  categories/commercial_services/suning_2013_may_campaign/0
-            //  categories/commercial_services/suning_2013_may_campaign/1
+            //  {category}/{brand}/{index}/{normal|big|middle}
+            //  commercial_services/suning_2013_may_campaign/0
+            //  commercial_services/suning_2013_may_campaign/1
             renderPath: function( path ){
                 var paths = path.split('/');
 
@@ -1784,7 +1843,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var type = paths[4] || '';
 
 
-                api.request( [ 'categories' , category , brand ].join('/') , function( r ){
+                api.request( [ paths[0] , category , brand ].join('/') , function( r ){
                     var items = r.items;
 
                     if( index ){
@@ -1885,22 +1944,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 	});
 
 
-    // load categories 
-    api.request('categories' , function( r ){
-        var aHtml = [];
-         //<img src="../images/lock.png">
-        var tpl = '<li> <a data-a="show-brands" data-d="path=#[path]" data-category="CONSULTING" title="#[title]" href="#">#[title]</a> </li>';
-        $.each( r.items || [] , function( i , item ){
-            aHtml.push( LP.format( tpl , {
-                title:  item.title,
-                path: item.path
-            } ) );
-        } );
-
-        $('#categories-wrap').html( aHtml.join('') );
-    });
-
-
 	// bind keydown events
     // fuck safari,fuck safari
     // fuck safari,fuck safari
@@ -1914,8 +1957,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             isKeyDown = false;
         } , 300 );
 
-
-        console.log( + new Date() );
 		switch( ev.which ){
 			case 27:
                  if( $('.image-zoom-big').length ){
@@ -2100,7 +2141,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 		return false;
 	});
 
-	LP.action('show-category' , function(){
+
+ 	LP.action('show-category' , function( data ){
 		var winTop = $(window).scrollTop();
 		var sliderHeight = $('.home-slider').height();
 		if( $('.home-slider').length && winTop < sliderHeight ){
@@ -2109,9 +2151,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 				scrollTop: sliderHeight
 			} , 500 )
 			.promise()
-			.then(showCategory);
+			.then(function(){
+                show_cate_list( data.type );
+            });
 		} else {
-			showCategory();
+			show_cate_list( data.type );
 		}
 
 		// hide slider video
@@ -2384,7 +2428,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         // show loading 
         loadingMgr.show();
         // load data 
-        api.request( 'categories/' +  data.path , function( r ){
+        api.request( data.path , function( r ){
             // build html
             var tpl = '<li class="brands-con-li" style="margin-left:-600px;">\
                 <dl class="cs-clear">\
@@ -2407,7 +2451,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 aHtml.push( LP.format( tpl , {
                     agency: item.agency,
                     label : item.label,
-                    year: item.date.replace(/(\d+)-.*/ , '$1'),
+                    year: item.created.replace(/(\d+)-.*/ , '$1'),
                     id: item.id,
                     cpgn_type: item.cpgn_type
                 } ) );
@@ -2419,7 +2463,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 // ajax a full screen items
                 // hide the loading
                 // continue to ajax left
-                var ajax = brandItemManager.getItems( 'categories/' +  data.path + '/' + item.path , function( r ){
+                var ajax = brandItemManager.getItems( data.path + '/' + item.path , function( r ){
                     var tHtml = [];
                     var tpl = '<li data-a="brands-item" class="brands-item" data-image="#[image]" data-video="#[video]" data-key="#[key]"><div class="brands-mask"></div><img src="#[picture]"></li>';
                     totalItems.push( r.items );
