@@ -159,8 +159,8 @@
 			</div>
 		</div>
 		<div class="brand_movie" style="display:none;">
-			<div class="brand_big_prev" data-a="brand_big_prev"> <span></span> </div>
-			<div class="brand_big_next" data-a="brand_big_next"> <span></span> </div>
+			<!-- <div class="brand_big_prev" data-a="brand_big_prev"> <span></span> </div>
+			<div class="brand_big_next" data-a="brand_big_next"> <span></span> </div> -->
 			<div class="brand_big_text column cs-clear">
 				<p class="brand_big_text_year"> <strong>2013</strong> </p>
 				<div class="brand_big_text_item"> <p class="brand_big_text_tit">911 Birthday anniversary</p> <p class="brand_big_text_val">digital event</p><p class="brand_big_text_val">&nbsp;</p> </div>

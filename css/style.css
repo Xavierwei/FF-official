@@ -311,22 +311,22 @@ a:hover{color:#000}
 	.brands-tags a:hover{color: white;}
 
 	.brands-con{width: 100%;overflow: hidden;}
-	.brands-con li{height: 180px;position: relative;overflow: hidden;}
+	.brands-con li{height: 120px;position: relative;overflow: hidden;}
 	.brands-mask{display: none; width: 100%;position: absolute;top: 0; left: 0;height: 100%;background: black; opacity: 0.79;filter:alpha(opacity=79);}
 
 
 
 	.brands-con dl{margin: 0;}
 	.brands-con dl{height: 184px;}
-	.brands-con dt{float: left; width: 350px;background: #030101;color: white;height: 96px;padding: 44px;position: relative;z-index: 1;}
-	.brands-con dd{overflow: hidden;position: absolute;height: 100%;left: 438px;width: auto;right: 0;margin: 0;}
+	.brands-con dt{float: left; width: 300px;background: #030101;color: white;height: 80px;padding: 20px;position: relative;z-index: 1;}
+	.brands-con dd{overflow: hidden;position: absolute;height: 100%;left: 340px;width: auto;right: 0;margin: 0;}
+	.brands-con .items-loading{position: absolute;height: 4px;width: 0;left:0; bottom: 0; background: white;}
 
 
-	.brands-con .brands-item{float: left; width: 320px;text-align: center;overflow: hidden;position: relative;cursor: pointer;}
-	.brands-con .brands-item img{height: 100%;}
+	.brands-con .brands-item{float: left; width: 240px;text-align: center;overflow: hidden;position: relative;cursor: pointer;}
 
 	.brand_movie{position: absolute;top: 88px;width: 100%;overflow: hidden;}
-	.brand_movie .brands-items{width: 200%;height: 100%;overflow: hidden;height: 445px;}
+	.brand_movie .brands-items{width: 200%;height: 100%;overflow: hidden;height: 445px;cursor: pointer;}
 	.brand_movie .brands-item{float: left;margin: 0 1px 1px 0; position: relative;font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
 	.brand_movie .brands-item .image-zoom{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;font-size: 18px;text-align: center;z-index: 40;}
 	.image-zoom-big{position: fixed;width: 100%;height: 100%;top:0;left:0;z-index: 50;}
@@ -339,8 +339,8 @@ a:hover{color:#000}
 	.brand_movie dd .brands-mask{display:none;}
 	.brand_movie dl{width: 200%;height: 100%;overflow: hidden;}*/
 
-	.brands-con-t{font-size: 20px;font-weight: bold;}
-	.brands-con-time{font-size: 14px;font-weight: 100;margin-top: 24px;}
+	.brands-con-t{font-size: 16px;font-weight: bold;}
+	.brands-con-time{font-size: 14px;font-weight: 100;margin-top: 10px;}
 	.brands-con-meta{font-size: 10px;font-weight: 100;color: #666;}
 
 /* key people */
@@ -418,7 +418,7 @@ a:hover{color:#000}
 	.pop_press .popnum{right: 30px}
 	.popdownicon{background: url('../images/popdownicon.png') no-repeat 3px -51px;height: 30px;width: 30px;position: absolute;right:30px;bottom:55px;cursor: pointer;}
 	.popdownicon:hover{background-position: 3px 3px;}
-	.pop_presspho{position: relative;z-index: 1;overflow: hidden;}
+	.pop_presspho{position: relative;z-index: 1;overflow: hidden;background: black;}
 	.pop_presspho img{display: block;}
 	.pop_press_menus{width: 95px;position: absolute;height: 100%;top: 0;right: 95px;background: black;z-index: 0;}
 
