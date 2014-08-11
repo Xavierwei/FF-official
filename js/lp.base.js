@@ -2712,7 +2712,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 		var $lis = $('.brands-con>li').each(function( i ){
             var aindex = aniIndex;
-            if( i >= sTop / height - 2 && aniIndex <= aniLength ){
+            if( i >= sTop / height - 3 && aniIndex <= aniLength ){
                 $(this).delay( 400 + 200 * aniIndex++ )
                     .animate({
                         marginLeft: -2000,
