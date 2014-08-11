@@ -501,7 +501,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     		domHeight = $dom.height();
 
     		init = false;
-    		$cloneImg = $cImgs.length ? $cImgs.stop(true , true) : $img.clone().css({
+    		$cloneImg = $cImgs.length ? $cImgs : $img.clone().css({
 	    		position: 'absolute',
 	    		top: 0,
 	    		left: 0
@@ -509,12 +509,15 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             .addClass('clone-img')
 	    	.appendTo( $dom );
 
-    		$cloneImg.animate({
+    		$cloneImg.stop().css({
+                opacity: 1,
+                display: 'block'
+            }).animate({
     			top: - fixHeight,
     			left: - fixWidth,
     			width: imgWidth + 2 * fixWidth,
-    			height: imgHeight + 2 * fixHeight,
-                opacity: 1
+    			height: imgHeight + 2 * fixHeight
+                
     		} , 500 )
     		.promise()
     		.then(function(){
@@ -532,9 +535,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     		} , 500 )
     		.promise()
     		.then(function(){
-                $cloneImg && $cloneImg.fadeOut(300 , function(){
-                    $cloneImg && $cloneImg.remove();
-                    $cloneImg = null;
+                $cloneImg && $cloneImg.fadeOut(100 , function(){
+                    $cloneImg && $cloneImg.hide();
                 });
     		});
     	})
