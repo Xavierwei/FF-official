@@ -148,7 +148,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             var imgHeight = $img.height();
             var st = $(window).scrollTop();
 
+            var winWidth = $(window).width();
+            var winHeight = $(window).height();
 
+            if( imgWidth < winWidth || imgHeight < winHeight ){
+                fixImageToWrap( $wrap , $img );
+                imgWidth = $img.width();
+                imgHeight = $img.height();
+            }
 
             $wrap.on('mousemove' , function( ev ){
                 var winHeight = $(window).height();
@@ -444,7 +451,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var runAnimate = function( $img ){
             clearInterval( interval ) ;
 
-            var duration = 800;
+            var duration = 1000;
             var start = new Date();
             var ltop = parseInt( $img.css('top') ) || 0;
             var lleft = parseInt( $img.css('left') ) || 0;
@@ -1259,7 +1266,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 	var $header = $('.header');
 	var headerHeight = $header.height();
 
-
 	// menu hover event
 	// $('.CATEGORIES').hover(function(){
 	// 	if( $('.sec_gates').is(':visible') ) return;
@@ -1292,7 +1298,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 	// 	$('.gates-inner-c ul').html( html.join('') );
 	// });
 
-	
 
 	var isAtTop = false;
 	var isAtBottom = false;
@@ -3753,6 +3758,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     autoplay: false,
                     pause_button: true
                 } );
+            } else if( $dom.data('image') ){
+                initImageMouseMoveEffect( $dom );
             }
 
             // if( index - 1 == 0 ){
