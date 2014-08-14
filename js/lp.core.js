@@ -248,6 +248,7 @@
             }
             , triggerAction: function( name , data ){
                 var fn = __Cache['actions'] [ name ];
+                data = data || {};
                 fn && fn( data );
                 return this;
             }

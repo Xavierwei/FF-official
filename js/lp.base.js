@@ -124,7 +124,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     // and make img auto move effect
     function imageZoom( item ){
         loadingMgr.show('black');
-        var src = brandItemManager.getPath( item , 'media' );
+        var src = itemsManager.getPath( item , 'media' );
 
         var $wrap = $('<div class="image-zoom-big"><img/></div>').appendTo(document.body)
             .hide()
@@ -203,7 +203,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     // brand item manager , you should get items from this object's function 'getItems'
     // It would save the ajax cache and add some useful properties to every items
-    var brandItemManager = (function(){
+    var itemsManager = (function(){
         var __CACHE_AJAX__ = {};
         var __CACHE_ITEM__ = {};
         var __CACHE_BRAND__ = {};
@@ -295,7 +295,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         }
     })();
 
-    window.brandItemManager = brandItemManager;
+    window.itemsManager = itemsManager;
 
 
     // base on brand and item info to get image path or video path
@@ -689,7 +689,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
                 <div class="brand_big_text_item"> <p class="brand_big_text_tit"> RESULT </p> #[results] </div>';
 
-            brandItemManager.getBrand( item.brand_path , function( brand ){
+            itemsManager.getBrand( item.brand_path , function( brand ){
                 brand['year'] = brand['date'].split('-')[0];
                 var str = LP.format( textTpl , brand );
                 $('.brand_big_text').html( str );
@@ -699,14 +699,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             loadingMgr.hide();
         }
 
-        brandItemManager.getItems( path , function( r ){
+        itemsManager.getItems( path , function( r ){
             var item = r.items[ itemIndex ];
             var aHtml = ['<ul class="brands-items">'];
             var tpl = '<li class="brands-item" data-a="big-brands-item" data-image="#[image]" data-video="#[video]" data-key="#[key]"><div class="brands-mask"></div><img src="#[picture]"></li>';
 
             var pics = [];
             $.each( r.items , function( i , tm ){
-                var pic = brandItemManager.getPath( tm , 'picture_1' );
+                var pic = itemsManager.getPath( tm , 'picture_1' );
                 pics.push( pic )
 
                 aHtml.push( LP.format( tpl , {
@@ -741,6 +741,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         loadingMgr.show('black');
         // get 'type' catelist
         api.request( type , function( r ){
+            // add hash to url
+            location.hash = '##' + type;
+
             // hide loading
             loadingMgr.hide();
             // load categories 
@@ -966,12 +969,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             // ajax a full screen items
             // hide the loading
             // continue to ajax left
-            var ajax = brandItemManager.getItems( path , function( r ){
+            var ajax = itemsManager.getItems( path , function( r ){
                 var tHtml = [];
                 var tpl = '<li data-a="brands-item" class="brands-item" data-image="#[image]" data-video="#[video]" data-key="#[key]"><div class="brands-mask"></div><img src="#[picture]"></li>';
                 var pics = [];
                 $.each( r.items || [] , function( i , item ){
-                    var pic = brandItemManager.getPath( item , 'picture' );
+                    var pic = itemsManager.getPath( item , 'picture' );
                     pics.push( pic );
                     tHtml.push( LP.format( tpl , {
                         key: item.key,
@@ -2041,10 +2044,15 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 		});
         // Bind to StateChange Event
         History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+
             var State = History.getState(); // Note: We are using History.getState() instead of event.state
             var prev = State.data.prev;
             var type = State.data.type;
 
+            // if only change hash
+            if( State.url.indexOf('##') >= 0 ){
+                return false;
+            }
             // show loading
             loadingMgr.show();
             switch( type ){
@@ -2588,6 +2596,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         loadingMgr.show('black');
         // load data 
         api.request( data.path , function( r ){
+
+            location.hash = '##' + data.path;
+
             // build html
             var tpl = '<li class="brands-con-li" data-path="#[path]" style="margin-left:-600px;">\
                 <dl class="cs-clear">\
@@ -2704,7 +2715,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 	LP.action('brands-item' , function(){
 		//var $dom = $(this);
         var key = $(this).data('key');
-        var item = brandItemManager.get( key );
+        var item = itemsManager.get( key );
         var index = $(this).index();
 
 		$('.brands_tit').animate({
@@ -3853,7 +3864,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var $brandsItem = $(this).closest('.brands-item');
         var key = $brandsItem.data('key');
 
-        imageZoom( brandItemManager.get( key ) );
+        imageZoom( itemsManager.get( key ) );
 
         // var $wrap = $('<div class="image-zoom-big"><img /></div>').appendTo(document.body)
         //     //.append( $imgs.eq(0).clone().attr('$') )
