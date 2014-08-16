@@ -155,7 +155,7 @@
 	<div class="section sec_brands">
 		<div class="brand_item_tit" style="margin-top:-88px;margin-bottom: 88px;display:none;" >
 			<div class="sec_brands_tit">
-				<h2 class="column cs-clear"><span>BRAND</span>  <span class="sep">|</span>  <span>AUDI</span> <span class="sep">|</span>  <span>MILIMETER</span></h2>
+				<h2 class="column cs-clear"></h2>
 			</div>
 		</div>
 		<div class="brand_movie" style="display:none;">
@@ -195,110 +195,6 @@
 			</div>
 		</div>
 		<ul class="brands-con">
-			<li class="brands-con-li" style="margin-left:-600px;">
-				<dl class="cs-clear">
-					<dt>
-						<div class="brands-mask"></div>
-						<p class="brands-con-t">
-							911 BIRTHDAY ANNIVERSARY<br/>
-							-
-						</p>
-						<p class="brands-con-time">2013</p>
-						<div class="cs-clear brands-con-meta">
-							<span class="fr">#53</span>
-							<span>digital event</span>
-						</div>
-					</dt>
-					<dd>
-						<!-- <ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-						</ul> -->
-					</dd>
-				</dl>
-			</li>
-			<li class="brands-con-li" style="margin-left:-600px;">
-				<dl class="cs-clear">
-					<dt>
-						<div class="brands-mask"></div>
-						<p class="brands-con-t">
-							911 BIRTHDAY ANNIVERSARY<br/>
-							-
-						</p>
-						<p class="brands-con-time">2013</p>
-						<div class="cs-clear brands-con-meta">
-							<span class="fr">#53</span>
-							<span>digital event</span>
-						</div>
-					</dt>
-					<dd>
-						<ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-movie="../videos/0"><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-						</ul>
-					</dd>
-				</dl>
-			</li>
-			<li class="brands-con-li" style="margin-left:-600px;">
-				<dl class="cs-clear">
-					<dt>
-						<div class="brands-mask"></div>
-						<p class="brands-con-t">
-							911 BIRTHDAY ANNIVERSARY<br/>
-							-
-						</p>
-						<p class="brands-con-time">2013</p>
-						<div class="cs-clear brands-con-meta">
-							<span class="fr">#53</span>
-							<span>digital event</span>
-						</div>
-					</dt>
-					<dd>
-						<ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-						</ul>
-					</dd>
-				</dl>
-			</li>
-			<li class="brands-con-li" style="margin-left:-600px;">
-				<dl class="cs-clear">
-					<dt>
-						<div class="brands-mask"></div>
-						<p class="brands-con-t">
-							911 BIRTHDAY ANNIVERSARY<br/>
-							-
-						</p>
-						<p class="brands-con-time">2013</p>
-						<div class="cs-clear brands-con-meta">
-							<span class="fr">#53</span>
-							<span>digital event</span>
-						</div>
-					</dt>
-					<dd>
-						<ul class="brands-items cs-clear">
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-							<li data-a="brands-item" class="brands-item" data-image="1" ><div class="brands-mask"></div><img src="../images/campaign_demo1.jpg"></li>
-						</ul>
-					</dd>
-				</dl>
-			</li>
 		</ul>
 	</div>
 
