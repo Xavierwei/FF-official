@@ -183,9 +183,9 @@
 		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit">
-				<h2 class="column cs-clear"><span>BRAND</span>  <span class="sep">|</span>  <span>AUDI</span></h2>
-				<a href="#" class="pagetitarr pagetitarrtop transition" data-a="page-pagetitarrtop"></a>
-				<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="page-pagetitarrbottom"></a>
+				<h2 class="column cs-clear"></h2>
+				<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop"></a>
+				<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom"></a>
 			</div>
 			<div class="brands-tags">
 				<p class="column">
