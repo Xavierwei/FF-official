@@ -108,31 +108,6 @@
 			<div class="gates-inner-l">
 				<ul class="column" id="categories-wrap">
 					<!-- <li> <a data-a="show-brands" data-category="CONSULTING" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="CONSULTING" href="#">Blcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Clcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Dlcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Elcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Glcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="DIGITAL" href="#">Hlcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Jlcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Klcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Tlcoholic drinks</a> </li>
-					<li> <a data-a="show-brands" data-category="TRADITIONAL" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Ilcoholic drinks</a> </li>
 					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li> -->
 				</ul>
 			</div>
@@ -162,23 +137,6 @@
 			<!-- <div class="brand_big_prev" data-a="brand_big_prev"> <span></span> </div>
 			<div class="brand_big_next" data-a="brand_big_next"> <span></span> </div> -->
 			<div class="brand_big_text column cs-clear">
-				<p class="brand_big_text_year"> <strong>2013</strong> </p>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">911 Birthday anniversary</p> <p class="brand_big_text_val">digital event</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">#86</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">client</p> <p class="brand_big_text_val">AUDI</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">year</p> <p class="brand_big_text_val">2013</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">agency</p> <p class="brand_big_text_val">HELLO sunshine</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">GENRE</p> <p class="brand_big_text_val">MOVIE</p><p class="brand_big_text_val">TVC</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">Territory</p> <p class="brand_big_text_val">EUROPE</p> <p class="brand_big_text_val">&nbsp;</p></div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">DIRECTOR</p> <p class="brand_big_text_val">Matias montero</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">PHOTOGRAPHY</p> <p class="brand_big_text_val">philippe lachapelle</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>
-				<div class="brand_big_text_item"> <p class="brand_big_text_tit"> RESULT </p> 2 X sss </div>
 			</div>
 		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">

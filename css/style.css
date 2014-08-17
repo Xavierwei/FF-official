@@ -136,9 +136,11 @@ a:hover{color:#000}
 /*section jobs*/
 .sec_jobs{margin: 80px auto 80px;}
 	.jobsitem{float: left;width: 332px;border-top:#000 solid 22px;float: left;margin: 0 8px 80px;height: 390px;font-size: 14px;color:#666}
-		.jobsitem h3{font-size: 24px;text-transform: uppercase;padding: 50px 0 0;color:#000}
+		.jobsitem h3{font-size: 24px;text-transform: uppercase;padding: 50px 0 0;color:#000;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 		.jobsitem h4{padding: 16px 0;color:#000}
+		.jobs-con{height: 153px;overflow: hidden;}
 		.jobs_more{height: 50px;width: 175px;text-align: center;line-height: 50px;border: #000 solid 2px;display: block;margin: 40px auto 0;background: #fff;cursor: pointer;}
+		.pop_jobtxt{white-space: pre-line;}
 
 /* secction contact */
 .sec_contact{}
@@ -204,12 +206,12 @@ a:hover{color:#000}
 	.press_year{font-size: 36px;font-weight: bold;text-align: center;line-height: 40px}
 	.press_list{margin: 0 auto 50px}
 		.press_item{font-size: 14px;color:#666;width: 180px;float: left;display: inline;margin: 50px 46px 0;position: relative;}
-			.cover_img{position: absolute;top:0;left:0;z-index: 1;}
+			.cover_img{position: absolute;top: 18px;left: 16px;z-index: 1; height: 192px; width: 135px;}
 			.press_img{width: 180px;height: 241px;cursor: pointer;position: relative;}
 			.press_img:hover{opacity: 0.9;filter:alpha(opacity=90);}
 
-			.press_item h3{color:#000;text-transform: uppercase;padding:20px 0 18px;}
-			.press_item strong{color:#000;text-transform: uppercase;display: block}
+			.press_item h3{color: #000;text-transform: uppercase;padding: 20px 0 18px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+			.press_item strong{color:#000;text-transform: uppercase;display: block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 			.press_itemtxt{height: 75px;overflow: hidden;border-bottom: #d4d4d4 solid 1px;margin:0 0 5px;}
 			.press_itempage{float: left}
 			.press_itemdown{background: url('../images/press_downicon.png') no-repeat 0 -57px;width: 22px;height: 22px;float: right;}
@@ -417,7 +419,7 @@ a:hover{color:#000}
 	.pop_press .popnum{right: 30px}
 	.popdownicon{background: url('../images/popdownicon.png') no-repeat 3px -51px;height: 30px;width: 30px;position: absolute;right:30px;bottom:55px;cursor: pointer;}
 	.popdownicon:hover{background-position: 3px 3px;}
-	.pop_presspho{position: relative;z-index: 1;overflow: hidden;background: black;}
+	.pop_presspho{position: relative;z-index: 1;overflow-x: hidden;background: black;}
 	.pop_presspho img{display: block;}
 	.pop_press_menus{width: 95px;position: absolute;height: 100%;top: 0;right: 95px;background: black;z-index: 0;}
 

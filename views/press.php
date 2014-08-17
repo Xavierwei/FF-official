@@ -4,10 +4,10 @@
 	<div class="pop_presspho"></div>
 	<div class="pop_press_menus">
 		<p class="popicon popclose transition" data-a="pop_close"></p>
-		<p class="popicon popnext transition" data-a="press_next"></p>
+		<p class="popicon popnext transition" data-a="press_prev"></p>
 		<p class="popnum"><span class="pop_index">1</span>/<span class="pop_total">12</span></p>
-		<p class="popicon popprev transition" data-a="press_prev" ></p>
-		<p class="popdownicon transition" data-a="press_prev"></p>
+		<p class="popicon popprev transition" data-a="press_next" ></p>
+		<a class="popdownicon transition" target="_blank" href="#"></a>
 	</div>
 </div>
 <div class="page" data-page="press-page" data-header="press">
@@ -23,195 +23,12 @@
 		<div id="press-container" >
 			<div class="press_txt">Ici un texte de presentation<br />de chapitre utile pour le referencement</div>
 			<!--  -->
-			<div class="press_year"><span class="intoview-effect" data-effect="number-rock">2014</span></div>
-			<div class="press_list column cs-clear">
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
+			<?php for( $i = date('Y') ; $i >= 1999 ; $i-- ){ ?>
+				<div class="press_year"><span class="intoview-effect" data-effect="number-rock"><?php echo $i; ?></span></div>
+				<div class="press_list column cs-clear intoview-effect" data-effect="press-loading" data-year="<?php echo $i; ?>">
+					<div class="ploading-wrap" style="position: relative;height: 200px;"><div class="loading" style="position: absolute;"></div></div>
 				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-			</div>
-			<!--  -->
-			<div class="press_year"><span class="intoview-effect" data-effect="number-rock">2013</span></div>
-			<div class="press_list column cs-clear">
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-				<div class="press_item">
-					<div class="press_img" data-a="press_img">
-						<img class="cover_img" data-cover="../images/presspop_pho.jpg" src="../images/press_demopho.jpg" />
-						<img src="../images/press_demopho1.jpg" />
-						<img class="press_top_right transition" src="../images/press_top_right.png">
-						<img class="press_bottom_left transition" src="../images/press_bottom_left.png">
-					</div>
-					<h3>ad land</h3>
-					<p class="press_itemtxt"><strong>year of the horse</strong>Fred et farid create wechat icons</p>
-					<div class="cs-clear">
-						<strong class="press_itempage">1/<span class="press_all">12</span></strong>
-						<a class="press_itemdown transition" href="#"></a>
-					</div>
-				</div>
-				<!--  -->
-			</div>
+			<?php } ?>
 		</div>
 		<!--  -->
 	</div>

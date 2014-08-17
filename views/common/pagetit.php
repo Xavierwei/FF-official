@@ -1,6 +1,6 @@
 <div class="pagetit">
 	<div class="column">
-		<h1> <?php echo $pagetit; ?>/</h1>
+		<h1> <?php echo $pagetit; ?></h1>
 		<a href="#" class="pagetitarr pagetitarrtop transition" data-a="page-pagetitarrtop"></a>
 		<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="page-pagetitarrbottom"></a>
 	</div>
@@ -18,11 +18,10 @@
 <div class="column">
 	<div class="about_crumbs crumbs">
 		<span>
-			<a href="./group.php" data-a="press_crumbs_link">ff group</a> / 
+			<!-- <a href="./group.php" data-a="press_crumbs_link">ff group</a> /  -->
 			<a href="./bio.php" data-a="press_crumbs_link">ff bio</a> / 
 			<a href="./ffshowreel.php" data-a="press_crumbs_link">ff showreel</a> / 
 			<a href="./people.php" data-a="press_crumbs_link">key people</a> /
-			<a href="./news.php" data-a="press_crumbs_link">ff news</a> /
 			<a href="./jobs.php" data-a="press_crumbs_link">jobs</a>
 		</span>
 	</div>

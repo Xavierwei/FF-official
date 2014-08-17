@@ -1199,6 +1199,20 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         }
         
         return {
+            showLoading: function( $wrap ){
+                $('<div class="loading-wrap" style="position: absolute;"><div class="loading" style="position:absolute;"></div></div>').appendTo( $wrap )
+                    .fadeIn();
+                var $loading = $wrap.find('.loading');
+                clearInterval( $wrap.data('interval') );
+                var index = 0;
+                $wrap.data('interval' , setInterval(function(){
+                    $loading.css('background-position' , 'right ' +  positions[ ( index++ % positions.length ) ] + 'px' );
+                } , 1000 / 6 ) );
+            },
+            hideLoading: function( $wrap ){
+                clearInterval( $wrap.data('interval') );
+                $wrap.find('.loading-wrap').fadeOut();
+            },
             show: function( bgcolor ){
                 var index = 0;
                 bgcolor = colors[bgcolor] || bgcolor || 'white';
@@ -1508,7 +1522,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     var pageManager = (function(){
 
         var pageInits = {
-            'home-page' : function(){
+            'home-page' : function( cb ){
                 // init home scroll event
                 var $homeCampaign = $('.home_campaign');
                 var homeCampaignTop = $homeCampaign.offset().top;
@@ -1647,16 +1661,20 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                 // init home numbers
                 initHomeNum();
+
+                cb && cb();
             },
-            'awards-page': function(){
+            'awards-page': function( cb ){
                 $('.awardicons img').hover(function(){
                     var num = $(this).data('num');
                     $('.awardicons span').html( num );
 
                     effects['number-rock']( $('.awardicons span') , 0  , null , 500 );
                 }); 
+
+                cb && cb();
             },
-            'contact-page': function(){
+            'contact-page': function( cb ){
                 var _LP = window.LP;
                 LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
                     window.LP = _LP;
@@ -1682,16 +1700,92 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     }
                 } , 100 );
 
-
                 $('.pagetit .pagetitarrbottom').fadeOut();
+
+                // loading concat
+                var aHtml = [];
+                var bHtml = [];
+                api.request('about/contact/peoples' , function( r ){
+                    $.each( r.items , function( i , item ){
+                        var c = i == 0 ? 'contact_maill' : i == r.items.length - 1 ? 'contact_mailr' : 'contact_mailc';
+                        aHtml.push('<td class="' + c + '">' + item.title + '</td>');
+                        bHtml.push('<td class="' + c + '">' + item.content + '</td>');
+                    });
+                    $('.contact_mail').find('tr').eq(0)
+                        .html( aHtml.join('') )
+                        .next()
+                        .html( bHtml.join('') );
+                });
+
+
+                cb && cb();
                 
             },
-            'interview-page': function(){
+            'interview-page': function( cb ){
                 // reload js conponent
                 LP.use( ['video-js' , '../plugin/jquery.jplayer.min.js'] );
-            },
-            'press-page': function(){
 
+                cb && cb();
+            },
+            'press-page': function( cb ){
+
+                var positions = [-44,-142,-240,-338,-436,-534];
+                var index = 0;
+                clearInterval( window.press_interval );
+                window.press_interval = setInterval(function(){
+                    var $wraps = $('.ploading-wrap');
+                    if( !$wraps.length ){
+                        clearInterval( window.press_interval );
+                    }
+
+                    $wraps.find('.loading').css('background-position' , 'right ' + positions[( index++ % positions.length )] + 'px' );
+                } , 1000 / positions.length);
+
+                // loading all articles
+                // var pathContents = [];
+                // for( var year = ( new Date() ).getFullYear() ; year >= 1999 ; year-- ){
+                //     pathContents.push( 'about/press_articles/' + year );
+                // }
+                // api.request( pathContents , function( r ){
+                //     console.log( r );
+                // } );
+                cb && cb();
+            },
+            'jobs-page': function( cb ){
+                api.request('about/jobs' , function( r ){
+                    var contentPaths = [];
+                    $.each( r.items , function( i , item ){
+                        contentPaths.push( 'about/jobs/' + item.path );
+                    } );
+
+
+                    var tpl = '<div data-effect="fadeup" class="jobsitem intoview-effect">\
+                            <h3>#[title]</h3>\
+                            <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
+                            <p class="jobs-con">#[content]</p>\
+                            <strong class="jobs_more transition-wrap"  data-a="jobs-more" data-d="contact=#[contact]">\
+                                <div class="transition">MORE <br><br> MORE</div>\
+                            </strong>\
+                            <div class="pop_jobcon_inner" style="display:none;">\
+                                <div class="">EN 中国</div>\
+                                <h3>#[title]</h3>\
+                                <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
+                                <div class="pop_jobtxt">#[content]</div>\
+                            </div>\
+                        </div>';
+                    // <a href="mailto:#[contact]" class="jobs_more transition-wrap">\
+                    //             <div class="transition">APPLY <br><br> APPLY</div>\
+                    //         </a>\
+                    var aHtml = [];
+                    api.request( contentPaths , function( r ){
+                        $.each( r.items , function( i , item){
+                            aHtml.push( LP.format( tpl , item ) );
+                        } );
+
+                        $('.jobslist').html( aHtml.join('') );
+                        cb && cb();
+                    } );
+                });
             }
         }
 
@@ -1765,6 +1859,49 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         $(this).css('top' , -( Math.random() * 10 ) * spanHeight );
                     });
                 } , 1000 / 15);
+            },
+            'press-loading': function( $dom , index , cb ){
+                var tpl = '<div class="press_item" data-path="#[year]/#[id]">\
+                    <div class="press_img" data-a="press_img" data-path="#[year]/#[id]">\
+                        <img class="cover_img" data-cover="#[cover]" src="#[preview]" />\
+                        <img src="../images/press_demopho1.jpg" />\
+                        <img class="press_top_right transition" src="../images/press_top_right.png">\
+                        <img class="press_bottom_left transition" src="../images/press_bottom_left.png">\
+                    </div>\
+                    <h3>#[title]</h3>\
+                    <p class="press_itemtxt"><strong>#[title]</strong>#[content]</p>\
+                    <div class="cs-clear">\
+                        <strong class="press_itempage">#[index]/<span class="press_all">#[total]</span></strong>\
+                        <a class="press_itemdown transition" target="_blank" href="#[attached_file]"></a>\
+                    </div>\
+                </div>';
+                var biuldPressImageUrl = function( item , type ){
+                    var year = item.date.split('-')[0];
+                    return LP.format( 'http://www.fredfarid.com/eng/file/pages_contents/about/press_articles/#[year]/#[type]/#[name]' , {
+                        year: year,
+                        type: type , 
+                        name: item[type]
+                    });
+                }
+                api.request('about/press_articles/' + $dom.data('year') , function( r ){
+                    var aHtml = [];
+                    $.each( r.items , function( i , item ){
+                        aHtml.push( LP.format( tpl , {
+                            year: item.date.split('-')[0],
+                            title: item.title,
+                            content: item.content,
+                            id: item.id,
+                            cover: biuldPressImageUrl( item , 'picture_2' ),
+                            preview: biuldPressImageUrl( item , 'preview' ),
+                            index: i + 1,
+                            total: r.items.length,
+                            attached_file: biuldPressImageUrl( item , 'attached_file' )
+                        } ) );
+                    } );
+
+                    $dom.html( aHtml.join('') );
+                    console.log( r );
+                });
             }
         }
 
@@ -1777,11 +1914,18 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 },  undefined , url );
             },
             init: function(){
+                loadingMgr.show();
                 var $page = $('.page');
                 var fn = pageInits[ $page.data('page') ];
 
-
-                fn && fn();
+                if( fn ){
+                    fn( function(){
+                        $(window).trigger('scroll');
+                        loadingMgr.hide();
+                    });
+                } else {
+                    loadingMgr.hide();
+                }
 
                 // fix common page init
                 // for  banpho-img
@@ -1831,6 +1975,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             }
                         });
                     }
+
+
+                    // fix load event
                 })
                 .trigger('scroll');
 
@@ -1989,8 +2136,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             } , 300 );
                             pageManager.destroy( );
                             pageManager.init( );
-
-                            loadingMgr.hide();
                         } , 500);
                     });
             }
@@ -2098,7 +2243,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         }
     });
     
-    loadingMgr.show();
     // ==============================================================
     // init location hash here
     if( location.hash && location.hash != '##!' ){
@@ -2145,9 +2289,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 case 5:
             }
         })();
-    } else {
-        $(window).load(loadingMgr.hide);
     }
+
+    //  else {
+    //     $(window).load(loadingMgr.hide);
+    // }
 
 
     // big brand video double click event
@@ -2679,25 +2825,34 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     });
 
 
-    var press_index = 0;
-    LP.action('press_img' , function(){
-        press_index = 1;//$(this).closest('.press_item').prevAll('.press_item').length;
+    LP.action('press_img' , function( data ){
+        var $item = $(this).closest('.press_item') ;
+        var path = $(this).data('path');
+        var press_index = $(this).closest('.press_item').index() + 1;
+        loadingMgr.show();
         $('<img/>').load(function(){
             var width = this.width;
             var height = this.height;
             var winHeight = $(window).height();
+            var winWidth = $(window).width();
             var tHeight = Math.min( height , winHeight - 40 );
-            this.style.height = tHeight + 'px';
+
+            var tWidth = Math.max( winWidth * 2 / 3 , 450 );
+            this.style.width = tWidth + 'px';
+            $('.pop_presspho').css({
+                height: tHeight,
+                width: tWidth
+            });
             $('.shade').fadeIn();
             $('.pop_press').show()
+                .data('path' , path )
                 .css({
                     top: '-150%',
                     opacity: 1,
-                    marginLeft: - width / height * tHeight / 2,
+                    marginLeft: - tWidth / 2,
                     marginTop: - tHeight / 2
                 })
                 .find('.pop_presspho')
-                .width( width / height * tHeight )
                 .html( this )
 
                 .end()
@@ -2714,21 +2869,28 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 });
 
             $('.pop_press_menus').css('right' , 95 );
+
+
+            loadingMgr.hide();
         })
         .attr( 'src' , $(this).find('.cover_img').data('cover') );
 
         $('.pop_index').html( press_index );
-        $('.pop_total').html( $(this).closest('.press_item').find('.press_all').html() );
+        $('.pop_total').html( $(this).closest('.press_list').children().length );
+        $('.pop_press .popdownicon').attr('href' , $item.find('.press_itemdown').attr('href') );
     });
 
     LP.action('press_prev' , function(){
+        var $popPress = $('.pop_press');
         // get next cover image
-
-        if( press_index == $('.pop_total').html() ) return false;
-        press_index++;
-        var $item = $('.press_item').eq( press_index );
+        var path = $popPress.data('path');
+        var $pressItem = $('.press_item[data-path="' + path + '"]');
+        var $item = $pressItem.prev();
         var imgSrc = $item.find('.cover_img').data('cover');
         if( !imgSrc ) return;
+
+        $popPress.data('path' , $item.data('path') );
+        loadingMgr.showLoading( $popPress );
         $('<img/>').load(function(){
             $('.pop_presspho img').animate({
                 marginLeft: '-70%',
@@ -2744,22 +2906,26 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         marginLeft: 0,
                         opacity: 1
                     } , 500);
+                loadingMgr.hideLoading( $popPress );
             })
         }).attr('src' , imgSrc);
 
-        $('.pop_index').html( press_index );
+        $('.pop_index').html( $item.index() + 1 );
+        $('.pop_press .popdownicon').attr('href' , $item.find('.press_itemdown').attr('href') );
     });
     LP.action('press_next' , function(){
+        var $popPress = $('.pop_press');
         // get next cover image
-        if( press_index == 1 ){
-            return false;
-        }
-        press_index--;
-        var $item = $('.press_item').eq( press_index );
+        var path = $popPress.data('path');
+        var $pressItem = $('.press_item[data-path="' + path + '"]');
+        var $item = $pressItem.next();
         var imgSrc = $item.find('.cover_img').data('cover');
         if( !imgSrc ) return;
+
+        $popPress.data('path' , $item.data('path') );
+        loadingMgr.showLoading( $popPress );
         $('<img/>').load(function(){
-            $('.pop_presspho img').animate({
+            $('.pop_presspho img').off('load').animate({
                 marginLeft: '70%',
                 opacity: 0
             } , 500 )
@@ -2773,10 +2939,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         marginLeft: 0,
                         opacity: 1
                     } , 500);
+
+                loadingMgr.hideLoading( $popPress );
             })
         }).attr('src' , imgSrc);
 
-        $('.pop_index').html( press_index );
+
+        $('.pop_index').html( $item.index() + 1 );
+        $('.pop_press .popdownicon').attr('href' , $item.find('.press_itemdown').attr('href') );
     });
 
 
@@ -3063,9 +3233,16 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     });
 
     var job_index = 0;
-    LP.action('jobs-more' , function(){
+    LP.action('jobs-more' , function( data ){
+        var $item = $(this).closest('.jobsitem');
+        job_index = $item.index() + 1;
         $('.shade').fadeIn();
         $('.pop_jobs').show()
+            .find('.pop_jobcon')
+            .html('')
+            .append( $item.find('.pop_jobcon_inner').clone().show() )
+
+            .end()
             .css({
                 top: '-150%',
                 opacity: 1
@@ -3082,30 +3259,37 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     } , 300 , 'easeLightOutBack');
             });
 
+        $('.pop_jobs .jobs_more').attr('href' , 'mailto:' + data.contact );
+        $('.pop_jobs .pop_index').html( job_index );
+        $('.pop_jobs .pop_total').html( $item.parent().children().length );
         $('.pop_job_menus').css('right' , 95 );
     });
+
+
 
     LP.action('pop-jobs-prev' , function(){
         if( job_index == 1 ){
             return false;
         }
-        press_index--;
+        job_index--;
 
-        // TODO:: prepare content
-        var $inner = $('.pop_jobcon_inner');
-        var innerWidth = $inner.width();
+        var $item = $('.jobsitem').eq( job_index - 1 );
 
-        var $dom = $inner.css({
-            width: innerWidth,
-            float: 'left'
-        }).clone().insertBefore($inner)
+        var $newInner = $item.find('.pop_jobcon_inner').clone().show();
+        var $inner = $('.pop_jobs .pop_jobcon_inner');
+        var innerWidth = $('.pop_jobcon').width();
+        $('.pop_jobcon').prepend( $newInner )
+            .children()
             .css({
-                marginLeft: -innerWidth
-            });
+                width: innerWidth,
+                'float': 'left'
+            })
+            .eq(0)
+            .css('marginLeft' , -innerWidth);
 
         $inner.css('marginRight' , -innerWidth );
 
-        $dom.animate({
+        $newInner.animate({
             marginLeft: 0
         } , 500 )
         .promise()
@@ -3113,34 +3297,42 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $inner.remove();
         });
 
-        $('.pop_index').html( press_index );
+
+        var contact = LP.query2json($item.find('.jobs_more').attr('data-d'))['contact'];
+        $('.pop_jobs .jobs_more').attr('href' , 'mailto:' + contact );
+        $('.pop_jobs .pop_index').html( job_index );
     });
 
     LP.action('pop-jobs-next' , function(){
-        // get next cover image
-        press_index++;
+        if( job_index == $('.pop_jobs .pop_index').html( ) ) return false;
+        job_index++;
 
-        // TODO:: prepare content
-        var $inner = $('.pop_jobcon_inner');
-        var innerWidth = $inner.width();
-        var $dom = $inner.css({
-            width: innerWidth,
-            float: 'left'
-        }).clone().insertAfter($inner)
+        var $item = $('.jobsitem').eq( job_index - 1 );
+
+        var $newInner = $item.find('.pop_jobcon_inner').clone().show();
+        var $inner = $('.pop_jobs .pop_jobcon_inner');
+        var innerWidth = $('.pop_jobcon').width();
+        $('.pop_jobcon').append( $newInner )
+            .children()
             .css({
-                marginRight: -innerWidth
-            });
+                width: innerWidth,
+                'float': 'left'
+            })
+            .eq(1)
+            .css('marginRight' , -innerWidth);
 
         $inner.animate({
-            marginLeft: -innerWidth 
+            marginLeft: -innerWidth
         } , 500 )
         .promise()
         .then(function(){
             $inner.remove();
-            $dom.css('marginRight' , 0 );
+            $newInner.css('marginRight' , 0);
         });
 
-        $('.pop_index').html( press_index );
+        var contact = LP.query2json($item.find('.jobs_more').attr('data-d'))['contact'];
+        $('.pop_jobs .jobs_more').attr('href' , 'mailto:' + contact );
+        $('.pop_jobs .pop_index').html( job_index );
     });
 
 
