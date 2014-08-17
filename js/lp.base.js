@@ -1061,33 +1061,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         });
     }
 
-    function initHomeNum(){
-        $('.home_numtable .num').each(function(){
-            var num = $(this).text();
-
-            $(this).html( '<span>' + num + '</span>' ).data('num' , num);
-            var $span = $(this).find('span');
-            var width = $span.width();
-            var height = $span.height();
-            $span.css({
-                height: height,
-                width: width,
-                display: 'block',
-                position: 'relative',
-                margin: '0 auto',
-                overflow: 'hidden'
-            }).html('');
-            $.each( num.split('') , function( i ){
-                $('<div>' + "1234567890".split('').join('<br/>') + '</div>').appendTo( $span )
-                    .css({
-                        position: 'absolute',
-                        left: i * width / num.length,
-                        top: -~~( Math.random() * 10 ) * height
-                    });
-            });
-        });
-    }
-    
 
     function renderVideo ( $wrap , movie , poster , config , cb ){
         var id = 'video-js-' + ( $.guid++ );
@@ -1520,7 +1493,92 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     var isHeadHide = false;
 
     var pageManager = (function(){
+        var initSlider = function(){
+            var $slider = $('.home-slider');
+            // init home slider
+            // ============================
+            var firstLoaded = false;
+            var $sliderInner = $('.slider-block-inner').css('width' , $('.slider-item').length + '00%');
+            $(window).resize(function(){
+                var winWidth = $(window).width();
+                var winHeight = $(window).height();
+                $('.slider-item').css('width' , winWidth).show();
 
+
+                // resize slider height
+                $sliderInner.height( winHeight - 60 );
+                // resize the slider images
+                $('<img />')
+                    .load(function(){
+                        var ratio = this.height / this.width;
+                        var w = winWidth ;
+                        var h = winHeight ;
+                        var vh = 0 ;
+                        var vw = 0 ;
+                        if( h / w > ratio ){
+                            vh = h + 40;
+                            vw = vh / ratio;
+                        } else {
+                            vw = w + 40;
+                            vh = vw * ratio;
+                        }
+                        $sliderInner.find('.slider-item>img').css({
+                            width: vw,
+                            height: vh,
+                            marginTop: ( h - vh ) / 2,
+                            marginLeft: ( w - vw ) / 2
+                        });
+
+                        if( !firstLoaded ){
+                            firstLoaded = true;
+                            $sliderInner.find('.slider-item').css('opacity' , 1).hide().fadeIn();
+                        }
+                        
+                    })
+                    .attr('src' , $sliderInner.find('.slider-item>img').eq(0).attr('src'));
+
+            })
+            .trigger('resize');
+
+            var $banphoCon = $('.banpho-con').hover(function(){
+                clearTimeout( banphoConTimer );
+                isInBanphoCon = true;
+            } , function(){
+                isInBanphoCon = false;
+            });
+            
+
+            intMouseMoveEffect( $slider , function( ev ){
+                if( !isHomeSliderMoviePlaying ) return;
+
+                if( $(ev.target).closest('.banpho-con').length ) return;
+
+                $banphoCon.fadeOut();
+                // resize the videos
+                var $inner = $('.slider-block-inner');
+                var $item = $inner.children('.slider-item').eq( $inner.data('index') );
+                $inner.animate({
+                    height: $(window).height()
+                } , 500)
+                .promise()
+                .then(function(){
+                    clearInterval( interval );
+                });
+
+                var interval = setInterval(function(){
+                    $item.trigger('resize');
+                } , 1000 / 30 );
+
+            } , function( ev ){
+                if( !isHomeSliderMoviePlaying ) return;
+
+                $('.slider-block-inner').animate({
+                    height: $(window).height() - $('.header').height()
+                } , 500);
+
+                $banphoCon.fadeIn();
+            } );
+        }
         var pageInits = {
             'home-page' : function( cb ){
                 // init home scroll event
@@ -1574,93 +1632,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                 });
 
-                // init home slider
-                // ============================
-                var firstLoaded = false;
-                var $sliderInner = $('.slider-block-inner').css('width' , $('.slider-item').length + '00%');
-                $(window).resize(function(){
-                    var winWidth = $(window).width();
-                    var winHeight = $(window).height();
-                    $('.slider-item').css('width' , winWidth).show();
-
-
-                    // resize slider height
-                    $sliderInner.height( winHeight - 60 );
-                    // resize the slider images
-                    $('<img />')
-                        .load(function(){
-                            var ratio = this.height / this.width;
-                            var w = winWidth ;
-                            var h = winHeight ;
-                            var vh = 0 ;
-                            var vw = 0 ;
-                            if( h / w > ratio ){
-                                vh = h + 40;
-                                vw = vh / ratio;
-                            } else {
-                                vw = w + 40;
-                                vh = vw * ratio;
-                            }
-                            $sliderInner.find('.slider-item>img').css({
-                                width: vw,
-                                height: vh,
-                                marginTop: ( h - vh ) / 2,
-                                marginLeft: ( w - vw ) / 2
-                            });
-
-                            if( !firstLoaded ){
-                                firstLoaded = true;
-                                $sliderInner.find('.slider-item').css('opacity' , 1).hide().fadeIn();
-                            }
-                            
-                        })
-                        .attr('src' , $sliderInner.find('.slider-item>img').eq(0).attr('src'));
-
-                })
-                .trigger('resize');
-
-                var $banphoCon = $('.banpho-con').hover(function(){
-                    clearTimeout( banphoConTimer );
-                    isInBanphoCon = true;
-                } , function(){
-                    isInBanphoCon = false;
-                });
-                
-
-                intMouseMoveEffect( $slider , function( ev ){
-                    if( !isHomeSliderMoviePlaying ) return;
-
-                    if( $(ev.target).closest('.banpho-con').length ) return;
-
-                    $banphoCon.fadeOut();
-                    // resize the videos
-                    var $inner = $('.slider-block-inner');
-                    var $item = $inner.children('.slider-item').eq( $inner.data('index') );
-                    $inner.animate({
-                        height: $(window).height()
-                    } , 500)
-                    .promise()
-                    .then(function(){
-                        clearInterval( interval );
-                    });
-
-                    var interval = setInterval(function(){
-                        $item.trigger('resize');
-                    } , 1000 / 30 );
-
-                } , function( ev ){
-                    if( !isHomeSliderMoviePlaying ) return;
-
-                    $('.slider-block-inner').animate({
-                        height: $(window).height() - $('.header').height()
-                    } , 500);
-
-                    $banphoCon.fadeIn();
-                } );
-
-
-                // init home numbers
-                initHomeNum();
+                initSlider();
 
                 cb && cb();
             },
@@ -1785,6 +1757,49 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         $('.jobslist').html( aHtml.join('') );
                         cb && cb();
                     } );
+                });
+            },
+            'bio-page': function( cb ){
+                var aHtml = [];
+                var tpl = '';
+                api.request('about/f_f_bio' , function( r ){
+                    $.each( r.items , function( i , item ){
+                        aHtml.push( LP.format( tpl , item ) );
+                    } );
+
+
+                    cb && cb();
+                });
+            },
+            'ffshowreel-page': function( cb ){
+                var aHtml = [];
+                var tpl = '<div class="slider-item" data-movie="#[movie]"><img src="#[image]"></div>';
+                var getResPath = function( item , type ){
+                    return LP.format( 'http://www.fredfarid.com/eng/file/pages_contents/about/f_f_personal_showreel/#[type]/#[name]' , {
+                        type: type,
+                        name: item[ type ]
+                    });
+                }
+
+                var images = [];
+                api.request('about/f_f_personal_showreel' , function( r ){
+                    $.each( r.items , function( i , item ){
+                        aHtml.push( LP.format( tpl , {
+                            image: getResPath( item , 'preview' ),
+                            movie: getResPath( item , 'video' )
+                        } ) );
+
+                        images.push( getResPath( item , 'preview' ) );
+                    } );
+
+                    $('#slider-block-inner').html( aHtml.join('') ).children()
+                            .eq(0).css('opacity' , 1).fadeIn();
+
+                    initSlider();
+
+                    loadImages( images.slice( 0 , 3 ) , function(){
+                        cb && cb();
+                    });
                 });
             }
         }

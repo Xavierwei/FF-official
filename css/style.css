@@ -140,7 +140,7 @@ a:hover{color:#000}
 		.jobsitem h4{padding: 16px 0;color:#000}
 		.jobs-con{height: 153px;overflow: hidden;}
 		.jobs_more{height: 50px;width: 175px;text-align: center;line-height: 50px;border: #000 solid 2px;display: block;margin: 40px auto 0;background: #fff;cursor: pointer;}
-		.pop_jobtxt{white-space: pre-line;}
+		.pop_jobtxt{white-space: pre-wrap;}
 
 /* secction contact */
 .sec_contact{}
