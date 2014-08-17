@@ -3,7 +3,7 @@
     .pagetit,.sec_brands_tit,.brands-tags{padding-left: 75px;}
 
     .column{width: auto;}
-
+    .search-wrap-inner{margin: 0 75px;}
     .awardfilter_item{width: 23%;margin: 0 1%;}
     .brand_big_text{padding: 75px;}
 }
@@ -35,10 +35,11 @@
     .ft_mod{width: 25%;}
 
 
-    .gates-inner-l{font-size: 40px;padding: 0 20px;}
+    .gates-inner-l{font-size: 36px;padding: 0 20px;}
     .gates-inner-l a{margin-right: 10%;}
 
 
+    .sectit{font-size: 36px;}
     .selitem{width: 100%;}
     .selitem .selitem_tips{width: 100%;text-indent: 2em;background-position: 90% center;padding-left: 0;}
     .awardfilter_btn{width: 100%;}
@@ -53,5 +54,16 @@
     .timeline_bt img{width: 100%;}
     .timeline_btl{width: 48%;margin-right: 4%;}
     .timeline_btr{width: 48%;}
+
+
+    .timeline_2012txt{font-size: 24px;}
+
+}
+
+@media only screen and (max-width:800px){
+    .gates-inner-l{font-size: 30px;}
+
+    .about_txt{padding: 40px 0}
+    .about_txt p{font-size: 24px;}
 
 }
