@@ -1786,7 +1786,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     $.each( r.items , function( i , item ){
                         aHtml.push( LP.format( tpl , {
                             image: getResPath( item , 'preview' ),
-                            movie: getResPath( item , 'video' )
+                            movie: getResPath( item , 'video_small' ).replace(/\.\w+$/ , '')
                         } ) );
 
                         images.push( getResPath( item , 'preview' ) );

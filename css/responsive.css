@@ -6,6 +6,9 @@
     .search-wrap-inner{margin: 0 75px;}
     .awardfilter_item{width: 23%;margin: 0 1%;}
     .brand_big_text{padding: 75px;}
+
+
+    .gates-inner-l{font-size: 40px;padding: 0 75px;}
 }
 
 
@@ -35,7 +38,7 @@
     .ft_mod{width: 25%;}
 
 
-    .gates-inner-l{font-size: 36px;padding: 0 20px;}
+    .gates-inner-l{font-size: 36px;padding: 0 50px;}
     .gates-inner-l a{margin-right: 10%;}
 
 
@@ -66,4 +69,8 @@
     .about_txt{padding: 40px 0}
     .about_txt p{font-size: 24px;}
 
+}
+
+@media only screen and (max-width:640px){
+    .gates-inner-l{font-size: 24px;}
 }
