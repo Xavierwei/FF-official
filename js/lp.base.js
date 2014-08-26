@@ -596,7 +596,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
             var $movieWrap = $('.brand_movie').fadeIn(function(){
                 if( $bigItem.data('movie') ){
-                    renderVideo( $bigItem , $bigItem.data('movie') , $bigItem.find('img').attr('src') , {
+                    var key = $bigItem.data('key');
+                    var item = itemsManager.get( key );
+                    renderVideo( $bigItem , itemsManager.getPath( item , 'media' ) , $bigItem.find('img').attr('src') , {
                         autoplay: false,
                         pause_button: true
                     } );
@@ -682,7 +684,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         itemsManager.getItems( path , function( r ){
             var item = r.items[ itemIndex ];
             var aHtml = ['<ul class="brands-items">'];
-            var tpl = '<li class="brands-item" data-a="big-brands-item" data-image="#[image]" data-video="#[video]" data-key="#[key]"><div class="brands-mask"></div><img src="#[picture]"></li>';
+            var tpl = '<li class="brands-item" data-a="big-brands-item" data-image="#[image]" data-movie="#[video]" data-key="#[key]"><div class="brands-mask"></div><img src="#[picture]"></li>';
 
             var pics = [];
             $.each( r.items , function( i , tm ){
@@ -692,8 +694,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 aHtml.push( LP.format( tpl , {
                     key: tm.key ,
                     picture: pic,
-                    image: item.video ? '' : 1,
-                    video: item.video ? 1 : ''
+                    image: tm.media.match(/\.jpg$/) ? 1 : '',
+                    video: tm.media.match(/\.jpg$/) ? '' : 1 
                 } ) );
             } );
 
@@ -917,7 +919,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             } , 100 , '' , function(){
                                 // fix images width and height
                                 fixImageToWrap( $this , $this.find('img') );
-                                initImageMouseMoveEffect( $this );
+
+                                if( $this.data('image') )
+                                    initImageMouseMoveEffect( $this );
 
                                 if( !render_next && ( i == $items.length - 1 || i >= 10 ) ){
                                     render_next = true;
@@ -950,7 +954,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             // continue to ajax left
             var ajax = itemsManager.getItems( path , function( r ){
                 var tHtml = [];
-                var tpl = '<li data-a="brands-item" class="brands-item" data-image="#[image]" data-video="#[video]" data-key="#[key]"><div class="brands-mask"></div><img src="#[picture]"></li>';
+                var tpl = '<li data-a="brands-item" class="brands-item" data-image="#[image]" data-movie="#[video]" data-key="#[key]"><div class="brands-mask"></div><img src="#[picture]"></li>';
                 var pics = [];
                 $.each( r.items || [] , function( i , item ){
                     var pic = itemsManager.getPath( item , 'picture' );
@@ -958,8 +962,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     tHtml.push( LP.format( tpl , {
                         key: item.key,
                         picture: pic,
-                        image: item.video ? '' : 1,
-                        video: item.video ? 1 : ''
+                        image: item.media.match(/\.jpg$/) ? 1 : '',
+                        video: item.media.match(/\.jpg$/) ? '' : 1 
                     } ) );
                 } );
 
@@ -1067,9 +1071,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $wrap.append( LP.format( '<div class="video-wrap" style="display:none;"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
             preload="auto"\
               poster="#[poster]">\
-             <source src="#[videoFile].mp4" type="video/mp4" />\
-             <source src="#[videoFile].webm" type="video/webm" />\
-             <source src="#[videoFile].ogv" type="video/ogg" />\
+             <source src="#[videoFile]" type="video/mp4" />\
+             <source src="#[videoFile]" type="video/webm" />\
+             <source src="#[videoFile]" type="video/ogg" />\
         </video></div>' , {id: id  , videoFile: movie , poster: poster}));
 
         config = $.extend( { "controls": false, "muted": false, "autoplay": false, "preload": "auto","loop": true, "children": {"loadingSpinner": false} } , config || {} );
@@ -1391,7 +1395,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             // if( $dom.data('video-object') ){
             //  $dom.data('video-object').play();
             // } else {
-            renderVideo( $dom , $dom.data('movie') , $dom.find('img').attr('src') , {
+            var key = $dom.data('key');
+            var item = itemsManager.get( key );
+            renderVideo( $dom , itemsManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
                 muted: true,
                 autoplay: true,
                 resize: false
@@ -2679,6 +2685,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             var aHtml = [];
             // load all pictures
             var loading_pics = [];
+
+            // TODO::  debug
+            r.items = [r.items[r.items.length - 1]];
             //var whens = [];
             $.each( r.items || [] , function( index , item ){
                 aHtml.push( LP.format( tpl , {
@@ -2984,7 +2993,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
             // render video
             $videoWrap.css({marginTop: -480});
-            renderVideo( $videoWrap , '../videos/0' , '../images/interview1.png' , {
+            renderVideo( $videoWrap , '../videos/0.mp4' , '../images/interview1.png' , {
                 autoplay: false,
                 controls: true,
                 pause_button: true
@@ -3468,7 +3477,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             disposeVideo();
 
             if( $dom.data('movie') ){
-                renderVideo( $dom , $dom.data('movie') , $dom.find('img').attr('src') , {
+                var key = $dom.data('key');
+                var item = itemsManager.get( key );
+                renderVideo( $dom , itemsManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
                     autoplay: false,
                     pause_button: true
                 } );
@@ -3541,7 +3552,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             disposeVideo();
 
             if( $dom.data('movie') ){
-                renderVideo( $dom , $dom.data('movie') , $dom.find('img').attr('src') , {
+                var key = $dom.data('key');
+                var item = itemsManager.get( key );
+                console.log( itemsManager.getPath( item , 'media' ) );
+                renderVideo( $dom , itemsManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
                     autoplay: false,
                     pause_button: true
                 } );
@@ -3564,7 +3578,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     
 
     LP.action('showreel' , function( e ){
-        renderVideo($('.banpho-img') , '../videos/0' , '' , {
+        renderVideo($('.banpho-img') , '../videos/0.mp4' , '' , {
             autoplay: true,
             pause_button: true
         } );
