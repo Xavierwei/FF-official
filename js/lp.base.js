@@ -2687,7 +2687,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             var loading_pics = [];
 
             // TODO::  debug
-            r.items = [r.items[r.items.length - 1]];
+            // r.items = [r.items[r.items.length - 1]];
             //var whens = [];
             $.each( r.items || [] , function( index , item ){
                 aHtml.push( LP.format( tpl , {
