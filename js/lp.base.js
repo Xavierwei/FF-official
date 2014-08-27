@@ -278,7 +278,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     return api.request( path , param , function( r ){
                         __CACHE_AJAX__[ckey] = r;
                         // fix items, add key and brand attribute to then
-                        $.each( r && r.items || [] , function( i , item ){
+                        var items = r ? r.items : [];
+                        $.each( items || [] , function( i , item ){
                             // save path
                             item.brand_path = path;
                             // save cache key
@@ -291,9 +292,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         success && success( r );
                     } );    
                 }
-            },
-            stopAllAjax: function(){
-
             },
             // get item from it's key
             get: function( key ){
@@ -960,7 +958,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var tHtml = [];
                 var tpl = '<li data-a="brands-item" class="brands-item" data-image="#[image]" data-movie="#[video]" data-key="#[key]"><div class="brands-mask"></div><img src="#[picture]"></li>';
                 var pics = [];
-                $.each( r.items || [] , function( i , item ){
+                var items = r ? r.items : [];
+                $.each( items || [] , function( i , item ){
                     var pic = itemsManager.getPath( item , 'picture' );
                     pics.push( pic );
                     tHtml.push( LP.format( tpl , {
@@ -1590,6 +1589,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 $banphoCon.fadeIn();
             } );
         }
+
         var pageInits = {
             'home-page' : function( cb ){
                 // init home scroll event
@@ -1643,9 +1643,22 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                 });
 
-                initSlider();
+                // render home page slider
+                api.request('home' , function( r ){
+                    var aHtml = [];
+                    $.each( r.items || [] , function( i , item ){
+                        item.brand_path = 'home';
+                        aHtml.push( LP.format('<div class="slider-item" data-movie="#[video]"><img src="#[image]" /></div>' , {
+                            image: itemsManager.getPath( item , 'picture' ),
+                            video: itemsManager.getPath( item , 'video' )
+                        }));
+                    } );
 
-                cb && cb();
+                    $('#slider-block-inner').html( aHtml.join('') );
+                    initSlider();
+
+                    cb && cb();
+                });
             },
             'awards-page': function( cb ){
                 $('.awardicons img').hover(function(){
@@ -3559,7 +3572,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             if( $dom.data('movie') ){
                 var key = $dom.data('key');
                 var item = itemsManager.get( key );
-                console.log( itemsManager.getPath( item , 'media' ) );
                 renderVideo( $dom , itemsManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
                     autoplay: false,
                     pause_button: true

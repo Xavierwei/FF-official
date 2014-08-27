@@ -19,12 +19,7 @@
 	<?php if( isset($home_page) ){?>
 	<!-- banner -->
 	<div class="banpho home-slider">
-		<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0">
-			<div class="slider-item" style="display:block;" data-movie="../videos/0"><img id="slider-img-1" src="../images/INDEX_pho.jpg" /></div>
-			<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
-			<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
-			<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
-		</div>
+		<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0"></div>
 		<div class="banpho-con">
 			<div><img src="../images/INDEX_c.png"></div>
 			<div class="banpho-bt">
