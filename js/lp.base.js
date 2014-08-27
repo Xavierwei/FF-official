@@ -278,7 +278,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     return api.request( path , param , function( r ){
                         __CACHE_AJAX__[ckey] = r;
                         // fix items, add key and brand attribute to then
-                        $.each( r.items || [] , function( i , item ){
+                        $.each( r && r.items || [] , function( i , item ){
                             // save path
                             item.brand_path = path;
                             // save cache key
@@ -291,6 +291,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         success && success( r );
                     } );    
                 }
+            },
+            stopAllAjax: function(){
+
             },
             // get item from it's key
             get: function( key ){
@@ -715,7 +718,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     // type => {categories|brands|services}
     function show_cate_list( type ){
         $('header-inner').height(66);
-        $('.sec_brands').fadeOut();
+        $('.sec_brands,.brand_movie,.brand_item_tit').fadeOut();
+
         // show loading
         loadingMgr.show('black');
         // get 'type' catelist
@@ -989,9 +993,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $(document.body).css('overflow' , 'hidden');
     }
 
-    function hideBrands(){
+    function hideBrands( changeHash ){
         var category = $('.sec_brands').data('path').split('/')[0];
-        location.hash = '##!' + category;
+        if( changeHash !== false )
+            location.hash = '##!' + category;
 
         $('.brand_item_tit').css({
             'margin-top': -88,
