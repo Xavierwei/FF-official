@@ -13,8 +13,8 @@
 		like strategic, creation etc.
 		</h2>
 		<!--  -->
-		<div class="people_item cs-clear intoview-effect people_odd" data-effect="fadeup">
-			<div class="people_s people_opt" data-a="people_opt"> <span class="transition"></span> </div>
+		<div class="people_item cs-clear intoview-effect people_odd" data-effect="fadeup" data-a="people_opt">
+			<div class="people_s people_opt"> <span class="transition"></span> </div>
 			<div class="people_b people_img"><img src="../images/p1.jpg"></div>
 			<div class="people_s people_addr"> SHANGHAI </div>
 			<div class="people_b people_tit"> 
@@ -37,9 +37,9 @@
 				</p>
 			</div>
 		</div>
-		<div class="people_item cs-clear intoview-effect people_even" data-effect="fadeup">
+		<div class="people_item cs-clear intoview-effect people_even" data-effect="fadeup" data-a="people_opt">
 			<div class="people_b people_img"><img src="../images/p2.jpg"></div>
-			<div class="people_s people_opt" data-a="people_opt"> <span class="transition"></span> </div>
+			<div class="people_s people_opt"> <span class="transition"></span> </div>
 			<div class="people_b people_tit"> 
 				<h3>emmanuel ferry</h3>
 				<p><strong>PARTNER</strong></p>
@@ -62,8 +62,8 @@
 			</div>
 			<div class="people_s people_download" style="display:none;"> <a class="transition" href="#"></a><span>download</span> </div>
 		</div>
-		<div class="people_item cs-clear intoview-effect people_odd" data-effect="fadeup">
-			<div class="people_s people_opt" data-a="people_opt"> <span class="transition"></span> </div>
+		<div class="people_item cs-clear intoview-effect people_odd" data-effect="fadeup" data-a="people_opt">
+			<div class="people_s people_opt"> <span class="transition"></span> </div>
 			<div class="people_b people_img"><img src="../images/p1.jpg"></div>
 			<div class="people_s people_addr"> SHANGHAI </div>
 			<div class="people_b people_tit"> 
@@ -86,9 +86,9 @@
 				</p>
 			</div>
 		</div>
-		<div class="people_item cs-clear intoview-effect people_even" data-effect="fadeup">
+		<div class="people_item cs-clear intoview-effect people_even" data-effect="fadeup" data-a="people_opt">
 			<div class="people_b people_img"><img src="../images/p2.jpg"></div>
-			<div class="people_s people_opt" data-a="people_opt"> <span class="transition"></span> </div>
+			<div class="people_s people_opt"> <span class="transition"></span> </div>
 			<div class="people_b people_tit"> 
 				<h3>GREGOIRE CHALOPIN</h3>
 				<p><strong>PARTNER</strong></p>

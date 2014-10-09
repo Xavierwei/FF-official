@@ -12,6 +12,23 @@
 	<meta name="viewport" content="width=640, minimum-scale=0.5, maximum-scale=1, target-densityDpi=290,user-scalable = no" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link href="../css/responsive.css" media="screen and (max-width: 1250px)" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://backoffice.fredfarid.com/assets/scripts/bo/api/ws_api.min.js"></script>
+    <script type="text/javascript">
+    // Initialize API parameters
+	// document.BO_API.format = 'json';
+	// document.BO_API.wsid = 'fredfarid';
+	// document.BO_API.use_static = false; // Comment this line to use static json files
+	// document.BO_API.requests_xml_source = 'http://preprod.fredfarid.com/data/_requests.xml';
+	
+	// // Send request and use results
+	// document.BO_API.get('alcoholic_drinks', 'eng', function(JSONResult, data) {
+	// 	if (console) {
+	// 		console.log(JSONResult);
+	// 		console.log(document.BO_API.getFilePath() + JSONResult.items[0].picture);
+	// 	}
+	// });
+	
+    </script>
 </head>
 <body>
 	<div class="loading-wrap" style="display:block;"><div class="loading"></div></div>
@@ -55,8 +72,8 @@
 				<a class="navitem" data-a="navitem" href="bio.php" data-last="jobs.php" >ABOUT</a>
 				<a class="navitem" data-a="navitem" href="contact.php">CONTACT</a>
 			</div>
-			<div class="language"><a href="#">EN</a> <a href="#">中国</a></div>
-			<a href="#" data-a="search-toggle" class="search">×</a>
+			<div class="language"><a href="#" data-a="lang" data-d="lang=eng">EN</a> <a href="#" data-a="lang" data-d="lang=zho">中国</a></div>
+			<!-- <a href="#" data-a="search-toggle" class="search">×</a> -->
 			<div class="search-wrap">
 				<form class="search-wrap-inner column">
 					<input type="submit" value="SEARCH" data-a="search-btn" />
@@ -97,6 +114,7 @@
 				</div>
 			</div>
 		</div>
+		<div class="process"></div>
 	</div>
 	<div class="section sec_gates" style="display:none;">
 		<div class="gates-inner cs-clear">
@@ -126,6 +144,7 @@
 		<div class="brand_item_tit" style="margin-top:-88px;margin-bottom: 88px;display:none;" >
 			<div class="sec_brands_tit">
 				<h2 class="column cs-clear"></h2>
+				<a href="#" class="pageback transition" data-a="pageback"></a>
 			</div>
 		</div>
 		<div class="brand_movie" style="display:none;">
@@ -137,6 +156,7 @@
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit">
 				<h2 class="column cs-clear"></h2>
+				<a href="#" class="pageback transition" data-a="pageback"></a>
 				<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop"></a>
 				<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom"></a>
 			</div>

@@ -12,6 +12,17 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
     }
 
+    var getRealPath = function( item , type ){
+        // var lang = LP.getCookie('lang') || 'eng';
+        var lang = 'eng';
+        var rpath = 'http://www.fredfarid.com/#[lang]/file/#[_contentPath]/#[type]/#[name]';
+        return LP.format( rpath , {
+            lang: lang,
+            _contentPath: item._contentPath,
+            type: type,
+            name: item[type],
+        } );
+    }
 
     /*
      * Animate Class
@@ -213,7 +224,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             renderTitle: function( path ){
                 var paths = path.split('/');
                 var key = paths[0] + '/' +  paths[1];
-                console.log( path );
                 if( __CACHE_TITLE__[ key ] ){
                     $('.sec_brands_tit h2').html( 
                         LP.format('<span>#[cate]</span>  <span class="sep">|</span>  <span>#[tit]</span>' , {
@@ -307,13 +317,25 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     item = this.get( item );
                 }
 
-                var rpath = 'http://www.fredfarid.com/eng/file/pages_contents/#[brand_path]/#[type]/#[name]';
-                return LP.format( rpath , {
-                    brand_path: item.brand_path,
-                    //path: item.path,
-                    type: type,
-                    name: item[type],
-                } );
+                return getRealPath( item , type );
+
+                // var rpath = 'http://www.fredfarid.com/eng/file/pages_contents/#[brand_path]/#[type]/#[name]';
+                // if( item._contentPath ){
+                //     return getRealPath( item , type );
+
+                //     // return LP.format( 'http://www.fredfarid.com/eng/file/#[_contentPath]/#[type]/#[name]' , {
+                //     //     _contentPath: item._contentPath,
+                //     //     type: type,
+                //     //     name: item[ type ]
+                //     // } );
+                // } else {
+                //     return LP.format( rpath , {
+                //         brand_path: item.brand_path,
+                //         //path: item.path,
+                //         type: type,
+                //         name: item[type],
+                //     } );
+                // }
             }
         }
     })();
@@ -379,6 +401,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $wrap
                 .find('.selitem_tips')
                 .click(function(){
+                    $('.select-options').fadeOut();
+
                     $wrap.find('ul').fadeIn();
                     return false;
                 })
@@ -389,6 +413,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     index = $(this).index();
                     $options.eq( index ).attr('selected' , 'selected');
                 });
+
 
             $(document.body).click(function(){
                 $wrap.find('ul').fadeOut();
@@ -402,11 +427,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var moving = true;
         $dom.mousemove(function( ev ){
             clearTimeout( timer );
-            
             timer = setTimeout(function(){
                 moving = false;
                 staticFn( ev );
-            } , time || 2000 );
+            } , time || 1000 );
             if( !moving ){
                 moveFn( ev );
             }
@@ -580,7 +604,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } , 300);
             } , function(){
                 $(this).animate({
-                    opacity: 0.79
+                    opacity: 0.5
                 } , 300);
             });
             var $bigItem = $('.brand_movie').find('.brands-item').eq( itemIndex );
@@ -657,13 +681,13 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
             // render brand information
-            var textTpl = '<p class="brand_big_text_year"> <strong>#[year]</strong> </p>\
+            var textTpl = '<p class="brand_big_text_year">#[year]</p>\
                 <div class="brand_big_text_item" style="width:80%;"> <p class="brand_big_text_tit">#[title]</p> <p class="brand_big_text_val">#[label]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
                 <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">##[id]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-                <div class="brand_big_text_item"> <p class="brand_big_text_tit">client</p> <p class="brand_big_text_val">#[client]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">client</p> <p class="brand_big_text_val">#[fid_customer]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
                 <div class="brand_big_text_item"> <p class="brand_big_text_tit">year</p> <p class="brand_big_text_val">#[year]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
                 <div class="brand_big_text_item"> <p class="brand_big_text_tit">agency</p> <p class="brand_big_text_val">#[agency]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-                <div class="brand_big_text_item"> <p class="brand_big_text_tit">GENRE</p> <p class="brand_big_text_val">cpgn_type</p> </div>\
+                <div class="brand_big_text_item"> <p class="brand_big_text_tit">GENRE</p> <p class="brand_big_text_val">#[cpgn_type]</p> </div>\
                 <div class="brand_big_text_item"> <p class="brand_big_text_tit">Territory</p> <p class="brand_big_text_val">#[territory]</p> <p class="brand_big_text_val">&nbsp;</p></div>\
                 <div class="brand_big_text_item"> <p class="brand_big_text_tit">DIRECTOR</p> <p class="brand_big_text_val">#[director]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
                 <div class="brand_big_text_item"> <p class="brand_big_text_tit">PHOTOGRAPHY</p> <p class="brand_big_text_val">#[photographer]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
@@ -738,6 +762,16 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } ) );
             } );
             $('#categories-wrap').html( aHtml.join('') );
+
+            switch( type ){
+                case 'categories':
+                case 'services':
+                    $('.sec_gates').find('.gates-inner-r').hide();
+                    break;
+                case 'brands':
+                    $('.sec_gates').find('.gates-inner-r').show();
+                    break;
+            }
 
             // start animation
             var winHeight = $(window).height();
@@ -853,6 +887,52 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     }
 
 
+    function renderGoogleMap( $dom , points ){
+        if( !window.google ) return;
+        // point[0] = point[0] || 0;
+        // point[1] = point[1] || 0;
+
+        var map = new google.maps.Map($dom[0],{
+            center: new google.maps.LatLng(0,0),//new google.maps.LatLng(point[0],point[1]),
+            zoom:2,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        });
+
+
+        var styleArray = [
+          {
+            featureType: "all",
+            stylers: [
+              { saturation: -80 }
+            ]
+          },{
+            featureType: "road.arterial",
+            elementType: "geometry",
+            stylers: [
+              { hue: "#999" },
+              { saturation: 50 }
+            ]
+          },{
+            featureType: "all",
+            elementType: "labels.text.stroke",
+            stylers: [
+              { hue: "#999" },
+              { saturation: 50 }
+            ]                
+          }
+        ];
+        map.setOptions({styles: styleArray});
+
+        $.each( points , function( i , point ){
+            new google.maps.Marker({
+                map: map,
+                position: new google.maps.LatLng(point[0],point[1]),
+                icon: "../images/marker.png"
+            });
+        } );
+    }
+
+
     function showBrands( ){
         location.hash = '##!' + $('.sec_brands').data('path');
         // set brands-items width
@@ -922,8 +1002,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 // fix images width and height
                                 fixImageToWrap( $this , $this.find('img') );
 
-                                if( $this.data('image') )
-                                    initImageMouseMoveEffect( $this );
+                                // if( $this.data('image') )
+                                //     initImageMouseMoveEffect( $this );
 
                                 if( !render_next && ( i == $items.length - 1 || i >= 10 ) ){
                                     render_next = true;
@@ -940,7 +1020,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             })
                             .delay( i * 200 )
                             .animate({
-                                opacity: 0.6
+                                opacity: 0.5
                             } , 200 );
                         if( ++index == nums ){
                             $('.brands-con').addClass('ready');
@@ -951,6 +1031,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
         $('.brands-con>li').css('opacity' , 1).each(function( i ){
             var path = $(this).data('path');
+
             // ajax a full screen items
             // hide the loading
             // continue to ajax left
@@ -1054,10 +1135,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var vh = 0 ;
         var vw = 0 ;
         if( h / w > ratio ){
-            vh = h + 40;
+            vh = h ;
             vw = vh / ratio;
         } else {
-            vw = w + 40;
+            vw = w ;
             vh = vw * ratio;
         }
 
@@ -1161,7 +1242,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                 $wrap.data('video-object' , v);
 
-                cb && cb(v);
+                cb && cb.call(v,v);
             } );
         });
     }
@@ -1196,22 +1277,35 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             },
             show: function( bgcolor ){
                 var index = 0;
+                var processStep = 5;
+                var processWidth = 0;
+                var processTarget = 0;
                 bgcolor = colors[bgcolor] || bgcolor || 'white';
                 var $inner = $loading.fadeIn().find('.loading');
                 $loading.css({
                     'background-color':  bgcolor
                 });
                 clearInterval( interval );
+
+                var $process = $('.process').show();
                 interval = setInterval(function(){
                     $inner.css('background-position' , 'right ' +  positions[ ( index++ % positions.length ) ] + 'px' );
+                    // processStep -= 1 / 60;
+                    // processTarget += Math.max( processStep , 0 );
+
+                    // processWidth = Math.min( processWidth + 0.5 , processTarget );
+                    // $process.css('width' , processWidth + '%');
+
                 } , 1000 / 6 );
             },
             hide: function(){
+                $('.process').hide();
                 clearInterval( interval );
                 $loading.fadeOut();
             }
         }
     })();
+    window.loadingMgr = loadingMgr;
 
 
     // page init here
@@ -1311,60 +1405,91 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         }
     });
 
-    var sec_brands_stop = 0;
+    //var sec_brands_stop = 0;
     var sec_brands_timer = null;
     $('.sec_brands').scroll(function(){
         //clearTimeout( sec_brands_timer );
         //sec_brands_timer = setTimeout(function(){
             if( $('.brand_movie').data('isFullScreen') ) return false;
+            var headerHeight = $('.header-inner').height();
             var st = $('.sec_brands').scrollTop();
-            if( st > sec_brands_stop ){
-                if( $('.header-inner').attr('disabled') || $('.header-inner').height() == 0 ) return false;
-                $('.header-inner').attr('disabled' , 'disabled');
+            if( st < headerHeight ){
+                $('.sec_brands').css({
+                    top: headerHeight - st
+                })
+                .find('.sec_brands_tit')
+                .css({
+                    'margin-top': st,
+                    position: 'relative'
+                })
+                .next()
+                .css('margin-top' , 0 );
+
+                // if( $('.header-inner').attr('disabled') || $('.header-inner').height() == 0 ) return false;
+                // $('.header-inner').attr('disabled' , 'disabled');
                 // hide the header
-                $('.header-inner')
-                    .stop( true )
-                    .animate({
-                        height: 0
-                    } , 500 );
+                // $('.header-inner')
+                //     .stop( true )
+                //     .animate({
+                //         height: 0
+                //     } , 500 );
 
 
-                $('.sec_brands')
-                    .css({
-                        // paddingTop: $('.brands_tit').height()
-                    }).stop( true ).animate({
-                        top: 0
-                    } , 500)
-                    .promise()
-                    .then(function(){
-                        $('.header-inner').removeAttr('disabled');
-                    });
+                // $('.sec_brands')
+                //     .css({
+                //         paddingTop: $('.sec_brands_tit').height()
+                //     })
+                    // .stop( true ).animate({
+                    //     top: 0
+                    // } , 500)
+                    // .promise()
+                    // .then(function(){
+                    //     $('.header-inner').removeAttr('disabled');
+                    // });
+
+                // $('.sec_brands_tit').css({
+                //     position: 'fixed',
+                //     width: '100%',
+                //     top: st
+                // })
             } else {
-                if( $('.header-inner').attr('disabled') ) return false;
-                $('.header-inner').attr('disabled' , 'disabled');
+                $('.sec_brands').css({
+                    top: 0
+                })
+                .find('.sec_brands_tit')
+                .css({
+                    'margin-top': 0,
+                    position: 'fixed',
+                    width: '100%',
+                    top: 0
+                })
+                .next()
+                .css('margin-top' , $('.sec_brands_tit').height() + headerHeight );
+                // if( $('.header-inner').attr('disabled') ) return false;
+                // $('.header-inner').attr('disabled' , 'disabled');
 
 
                 // show the header
-                $('.header-inner')
-                .stop( true )
-                .animate({
-                    height: 66
-                } , 500 );
+                // $('.header-inner')
+                //  .stop( true )
+                //  .animate({
+                //     height: 66
+                //  } , 500 );
 
                 // $('.brands_tit').removeClass('fixed');
 
-                $('.sec_brands')
-                    .css({
-                        paddingTop: 0
-                    })
-                    .stop( true )
-                    .animate({
-                        top: 66
-                    } , 500)
-                    .promise()
-                    .then(function(){
-                        $('.header-inner').removeAttr('disabled');
-                    });
+                // $('.sec_brands')
+                //     .css({
+                //         paddingTop: 0
+                //     })
+                //     .stop( true )
+                //     .animate({
+                //         top: 66
+                //     } , 500)
+                //     .promise()
+                //     .then(function(){
+                //         $('.header-inner').removeAttr('disabled');
+                //     });
             }
         //} , 100 );
     });
@@ -1392,26 +1517,25 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             opacity: 0.7
         } , 600);
     })
-    .delegate('.brands-item' , 'mouseenter' , function(){
-        // init video with silence
-        var $dom = $(this);
-        if( $dom.data('movie') ){
-            // if( $dom.data('video-object') ){
-            //  $dom.data('video-object').play();
-            // } else {
-            var key = $dom.data('key');
-            var item = itemsManager.get( key );
-            renderVideo( $dom , itemsManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
-                muted: true,
-                autoplay: true,
-                resize: false
-            } , function( v ){
-                try{v.dimensions( '100%' , '100%' );}catch(e){}
-            } );
-            //}
-        }
-        
-    })
+    // .delegate('.brands-item' , 'mouseenter' , function(){
+    //     // init video with silence
+    //     var $dom = $(this);
+    //     if( $dom.data('movie') ){
+    //         // if( $dom.data('video-object') ){
+    //         //  $dom.data('video-object').play();
+    //         // } else {
+    //         var key = $dom.data('key');
+    //         var item = itemsManager.get( key );
+    //         renderVideo( $dom , itemsManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
+    //             muted: true,
+    //             autoplay: true,
+    //             resize: false
+    //         } , function( v ){
+    //             try{v.dimensions( '100%' , '100%' );}catch(e){}
+    //         } );
+    //         //}
+    //     }
+    // })
     .delegate('.brands-item' , 'mouseleave' , function(){
         // stop the movie
         var $dom = $(this);
@@ -1497,18 +1621,22 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     var banphoConTimer ;
     var isInBanphoCon = false;
-    var isHomeSliderMoviePlaying = false;
     // is playing just now
-    var isCurrentPlaying = false;
+    // var isCurrentPlaying = false;
     var isHeadHide = false;
 
     var pageManager = (function(){
-        var initSlider = function(){
+        var initSlider = function( cb ){
             var $slider = $('.home-slider');
             // init home slider
             // ============================
             var firstLoaded = false;
             var $sliderInner = $('.slider-block-inner').css('width' , $('.slider-item').length + '00%');
+            $sliderInner.data('cb' , cb);
+
+            // hide left arrow 
+            $sliderInner.next().find('.banpho-bt-l').hide();
+
             $(window).resize(function(){
                 var winWidth = $(window).width();
                 var winHeight = $(window).height();
@@ -1559,14 +1687,19 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             
 
             intMouseMoveEffect( $slider , function( ev ){
-                if( !isHomeSliderMoviePlaying ) return;
 
-                if( $(ev.target).closest('.banpho-con').length ) return;
-
-                $banphoCon.fadeOut();
+                // if( $(ev.target).closest('.banpho-con').length ) return;
                 // resize the videos
+
                 var $inner = $('.slider-block-inner');
                 var $item = $inner.children('.slider-item').eq( $inner.data('index') );
+
+                // if video is not playing
+                var video = $item.data('video-object');
+                if( !video || video.paused() ) return;
+
+                $banphoCon.fadeOut();
+
                 $inner.animate({
                     height: $(window).height()
                 } , 500)
@@ -1580,7 +1713,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } , 1000 / 30 );
 
             } , function( ev ){
-                if( !isHomeSliderMoviePlaying ) return;
 
                 $('.slider-block-inner').animate({
                     height: $(window).height() - $('.header').height()
@@ -1588,6 +1720,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                 $banphoCon.fadeIn();
             } );
+
+            cb && cb( 0 );
         }
 
         var pageInits = {
@@ -1643,6 +1777,37 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                 });
 
+                // render home news
+                api.request('miscellaneous' , function( r ){
+                    $.each( r.items , function( i , item ){
+                        switch( item.id ){
+                            case '1': 
+                                var htmls = [];
+                                $.each([1,2,3] , function( i , val ){
+                                    if( item[ 'text_' + val ] ){
+                                        htmls.push( '<p>' + item[ 'text_' + val ] + '</p>' );
+                                    }
+                                });
+                                $('#home-news').css('width' , htmls.length * 100 + '%' )
+                                    .html( htmls.join('') )
+                                    .find('p')
+                                    .css('width' , 1 / htmls.length * 100 + '%' );
+
+                                $('.home_newspage span').html( '1/' + htmls.length );
+                                if( htmls.length <= 1 ){
+                                    $('.home_newspage').hide();
+                                }
+                                break;
+                            case '2':
+                                $('.home_bioleft').html( item.content_1 );
+                                $('.home_bioright').html( item.content_2 );
+                                break;
+                            case '3':
+                                // TODO render 
+                        }
+                    } );
+                });
+
                 // render home page slider
                 api.request('home' , function( r ){
                     var aHtml = [];
@@ -1659,6 +1824,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                     cb && cb();
                 });
+
+
+                // init campaigns mouse move effect
+                $('.cam_item div').each(function(){
+                    initImageMouseMoveEffect( $(this) );  
+                });
             },
             'awards-page': function( cb ){
                 $('.awardicons img').hover(function(){
@@ -1671,30 +1842,31 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 cb && cb();
             },
             'contact-page': function( cb ){
-                var _LP = window.LP;
-                LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
-                    window.LP = _LP;
-                });
-                var interval = setInterval(function(){
-                    if( window.BMap ){
-                        clearInterval( interval );
-                        var oMap = new BMap.Map("map");
-                        oMap.addControl(new BMap.NavigationControl());
-                        var point = new BMap.Point(121.478988,31.227919);
-                        oMap.centerAndZoom(point, 15);
-                        //oMap.setMapStyle({style: 'grayscale'});
-                        oMap.setMapStyle({
-                          styleJson:[{
-                                    "featureType": "all",
-                                    "elementType": "all",
-                                    "stylers": {
-                                              "lightness": 13,
-                                              "saturation": -100
-                                    }
-                          }]
-                        });
-                    }
-                } , 100 );
+                renderGoogleMap( $('#map') , [[31.227919,121.478988],[11.227919,111.478988],[50.227919,67.478988],[11.227919,24.478988]] );
+                // var _LP = window.LP;
+                // LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
+                //     window.LP = _LP;
+                // });
+                // var interval = setInterval(function(){
+                //     if( window.BMap ){
+                //         clearInterval( interval );
+                //         var oMap = new BMap.Map("map");
+                //         oMap.addControl(new BMap.NavigationControl());
+                //         var point = new BMap.Point(121.478988,31.227919);
+                //         oMap.centerAndZoom(point, 15);
+                //         //oMap.setMapStyle({style: 'grayscale'});
+                //         oMap.setMapStyle({
+                //           styleJson:[{
+                //                     "featureType": "all",
+                //                     "elementType": "all",
+                //                     "stylers": {
+                //                               "lightness": 13,
+                //                               "saturation": -100
+                //                     }
+                //           }]
+                //         });
+                //     }
+                // } , 100 );
 
                 $('.pagetit .pagetitarrbottom').fadeOut();
 
@@ -1718,10 +1890,57 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 
             },
             'interview-page': function( cb ){
-                // reload js conponent
+                // preload js conponent
                 LP.use( ['video-js' , '../plugin/jquery.jplayer.min.js'] );
 
-                cb && cb();
+                var tpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
+                    <div class="interview_info">\
+                        <span><strong>#[title]</strong><br/>#[content]</span>\
+                    </div>\
+                    <div class="interview_img" data-a="show-video-interview" data-media="#[media]">\
+                        <img src="#[preview]">\
+                    </div>\
+                    <span class="interview_opt" data-a="show-video-interview" data-media="#[media]">\
+                        <div class="transition">#[text]</div>\
+                    </span>\
+                </div>';
+                // var radioTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_even cs-clear">\
+                //     <div class="interview_info">\
+                //         <span><strong>#[title]</strong><br/>#[content]</span>\
+                //     </div>\
+                //     <div class="interview_img"  data-a="show-music-interview" data-media="#[media]"><img src="#[preview]"></div>\
+                //     <span class="interview_opt" data-a="show-music-interview" data-media="#[media]">\
+                //         <div class="transition">LISTEN<br/>CLOSE</div>\
+                //     </span>\
+                // </div>';
+                // get audio and video
+                api.request(['about/interviews/radio','about/interviews/tv'] , function( r ){
+                    var aHtml = [];
+                    var date = [];
+                    
+                    $.each(r.items , function( i , item ){
+                        // var tpl = item._contentPath.match(/tv$/)? tvTpl : radioTpl;
+                        var titles = item.title.split('|');
+                        aHtml.push( LP.format( tpl , {
+                            oddoreven: i % 2 ? 'even' : 'odd',
+                            text: item._contentPath.match(/tv$/) ? 'WATCH<br/>CLOSE' : 'LISTEN<br/>CLOSE',
+                            title: titles[0] ,
+                            content: titles.slice(1).join('<br/>'),
+                            preview: getRealPath( item , 'picture_2' ),
+                            media: getRealPath( item , 'media' )
+                        } ) );
+                    });
+
+                    $('#press-container').html( aHtml.join('') );
+
+                    loadImages( $('#press-container img') , function(){
+                        $('#press-container img').each(function(){
+                            fixImageToWrap( $(this).parent() , $(this) );
+                        });
+                    } );
+                    cb && cb();
+                });
+                
             },
             'press-page': function( cb ){
 
@@ -1763,10 +1982,17 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
                             <div class="pop_jobcon_inner" style="display:none;">\
-                                <div class="">EN 中国</div>\
-                                <h3>#[title]</h3>\
-                                <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
-                                <div class="pop_jobtxt">#[content]</div>\
+                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="cn"> 中国 </a></div>\
+                                <div class="jobcontent content_en">\
+                                    <h3>#[title]</h3>\
+                                    <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
+                                    <div class="pop_jobtxt">#[content]</div>\
+                                </div>\
+                                <div class="jobcontent content_cn" style="display:none;">\
+                                    <h3>#[title_zho]</h3>\
+                                    <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
+                                    <div class="pop_jobtxt">#[content_zho]</div>\
+                                </div>\
                             </div>\
                         </div>';
                     // <a href="mailto:#[contact]" class="jobs_more transition-wrap">\
@@ -1787,23 +2013,27 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var aHtml = [];
                 var tpl = '';
                 api.request('about/f_f_bio' , function( r ){
-                    $.each( r.items , function( i , item ){
-                        aHtml.push( LP.format( tpl , item ) );
-                    } );
+                    // $.each( r.items , function( i , item ){
+                    //     // aHtml.push( LP.format( tpl , item ) );
+                    //     aHtml.push( item.content );
+                    // } );
+                    // $('#sec_content').html( aHtml.join('\n') );
 
-
+                    $('#download').attr('href' , itemsManager.getPath( r.items[0] , 'file' ) );
                     cb && cb();
                 });
             },
             'ffshowreel-page': function( cb ){
                 var aHtml = [];
                 var tpl = '<div class="slider-item" data-movie="#[movie]"><img src="#[image]"></div>';
-                var getResPath = function( item , type ){
-                    return LP.format( 'http://www.fredfarid.com/eng/file/pages_contents/about/f_f_personal_showreel/#[type]/#[name]' , {
-                        type: type,
-                        name: item[ type ]
-                    });
-                }
+                var getResPath = getRealPath;
+
+                // ( item , type )function( item , type ){
+                //     return LP.format( 'http://www.fredfarid.com/eng/file/pages_contents/about/f_f_personal_showreel/#[type]/#[name]' , {
+                //         type: type,
+                //         name: item[ type ]
+                //     });
+                // }
 
                 var images = [];
                 api.request('about/f_f_personal_showreel' , function( r ){
@@ -1819,7 +2049,15 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     $('#slider-block-inner').html( aHtml.join('') ).children()
                             .eq(0).css('opacity' , 1).fadeIn();
 
-                    initSlider();
+
+                    initSlider( function( index ){
+                        var item = r.items[ index ];
+                        $('.showreel-tit').html( LP.format( '<h3>#[brand]</h3><p>#[campaign]</p><p>#[year]</p></div>' , {
+                            brand: item.brand,
+                            campaign: item.campaign,
+                            year: item.date_and_price.split('-')[0]
+                        } ) );
+                    } );
 
                     loadImages( images.slice( 0 , 3 ) , function(){
                         cb && cb();
@@ -1870,7 +2108,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var spanHeight = height;//$dom.find('span').height();
 
                 var st = new Date();
-                var duration = du || 1200;
+                var duration = du || 600;
                 var $divs = $span.find('div');
                 var interval = setInterval(function(){
 
@@ -1914,14 +2152,16 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         <a class="press_itemdown transition" target="_blank" href="#[attached_file]"></a>\
                     </div>\
                 </div>';
-                var biuldPressImageUrl = function( item , type ){
-                    var year = item.date.split('-')[0];
-                    return LP.format( 'http://www.fredfarid.com/eng/file/pages_contents/about/press_articles/#[year]/#[type]/#[name]' , {
-                        year: year,
-                        type: type , 
-                        name: item[type]
-                    });
-                }
+                var biuldPressImageUrl = getRealPath;
+
+                // function( item , type ){
+                //     var year = item.date.split('-')[0];
+                //     return LP.format( 'http://www.fredfarid.com/eng/file/pages_contents/about/press_articles/#[year]/#[type]/#[name]' , {
+                //         year: year,
+                //         type: type , 
+                //         name: item[type]
+                //     });
+                // }
                 api.request('about/press_articles/' + $dom.data('year') , function( r ){
                     var aHtml = [];
                     $.each( r.items , function( i , item ){
@@ -1939,7 +2179,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     } );
 
                     $dom.html( aHtml.join('') );
-                    console.log( r );
                 });
             }
         }
@@ -2015,8 +2254,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         });
                     }
 
-
-                    // fix load event
+                    // fix quote event "banner_footer"
+                    $('.banner_footer').css('background-position' , '0 ' + ~~(stTop / 3) + 'px' );
                 })
                 .trigger('scroll');
 
@@ -2026,13 +2265,13 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
                 // init texteffect
-                $('.navitem,.crumbs a').filter(':not(.text-effect-init)')
-                    .addClass('text-effect-init')
-                    .hover(function(){
-                        textEffect( $(this) );
-                    } , function(){
-                        $(this).children('div').remove();
-                    });
+                // $('.navitem,.crumbs a').filter(':not(.text-effect-init)')
+                //     .addClass('text-effect-init')
+                //     .hover(function(){
+                //         textEffect( $(this) );
+                //     } , function(){
+                //         $(this).children('div').remove();
+                //     });
 
                 // init about_crumbs
                 if( $('.about_crumbs').length ){
@@ -2112,6 +2351,26 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     })();
 
     
+    // load footer json data
+    api.request( 'footer_icons' , function( r ){
+        var shareHtml = [];
+        $.each(r.items , function( i , item ){
+            if( item.role == 'share' ){
+                shareHtml.push( LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="find_item #[name]">#[label]</a>' , item ) )
+            }
+        });
+        $('#share-wrap').html( shareHtml.join('') );
+
+        // render websites
+        var linkHtml = [];
+        $.each(r.items , function( i , item ){
+            if( item.role == 'icon' && item.link ){
+                linkHtml.push( LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="work_item #[name]">#[label]</a>' , item ) )
+            }
+        });
+        $('#icon-wrap').html( linkHtml.join('') );
+
+    });
 
     // change history
     LP.use('../plugin/history.js' , function(){
@@ -2474,17 +2733,22 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         //  .data('video-object');
         // video && video.pause();
 
-        isHomeSliderMoviePlaying = false;
-
         $inner.animate({
             marginLeft: '+=100%'
         } , 500)
         .promise()
         .then(disposeVideo);
-
         $inner.data('index' , index - 1 );
+        $inner.data('cb') && $inner.data('cb')( index - 1 );
+
+        if( index == 1 ){
+            $(this).hide();
+        }
+        $(this).siblings('.banpho-bt-r').show();
+
         $('.banpho-i').html( index + '/' + len );
     });
+
     LP.action('home-slider-right' , function(){
         var $inner = $('.slider-block-inner');
         var index =  parseInt( $inner.data('index') );
@@ -2496,8 +2760,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         //  .data('video-object');
         // video && video.pause();
 
-        isHomeSliderMoviePlaying = false;
-
         $inner.animate({
             marginLeft: '-=100%'
         } , 500)
@@ -2505,6 +2767,13 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         .then(disposeVideo);
 
         $inner.data('index' , index + 1 );
+        $inner.data('cb') && $inner.data('cb')( index + 1 );
+
+        if( index + 2 == len ){
+            $(this).hide();
+        }
+        $(this).siblings('.banpho-bt-l').show();
+
         $('.banpho-i').html( ( index + 2 ) + '/' + len );
     });
 
@@ -2513,35 +2782,39 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         // get movie
         var $sliderItem = $('.slider-item').eq( index );
         var videoObject = $sliderItem.data('video-object');
+        var $btn = $('.slider-block-inner').next();
         if( !videoObject ){
             var movie = $sliderItem.data('movie');
             $sliderItem.find('.video-wrap').remove();
-            isHomeSliderMoviePlaying = true;
             renderVideo( $sliderItem , movie , $sliderItem.find('img').attr('src') , {
                 // ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
                 autoplay: true
             } , function(){
+                console.log( this );
+                this.on('play' , function(){
+                    $btn
+                        .fadeOut()
+                        .find('.banpho-bt-c')
+                        .html('<div class="transition">PAUSE<br><br>PAUSE</div>');
+                });
 
-                isCurrentPlaying = true;
-                setTimeout(function(){
-                    isCurrentPlaying = false;
-                } , 2000);
+                this.on('pause' , function(){
+                    $btn
+                        .fadeIn()
+                        .find('.banpho-bt-c')
+                        .html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
+                });
+                
+                // isCurrentPlaying = true;
+                // setTimeout(function(){
+                //     isCurrentPlaying = false;
+                // } , 2000);
             });
+        } else if( videoObject.paused() ){
+            videoObject.play();
         } else {
-            if( isHomeSliderMoviePlaying ){
-                isHomeSliderMoviePlaying = false;
-                videoObject.pause();
-            } else {
-                isHomeSliderMoviePlaying = true;
-                videoObject.play();
-                isCurrentPlaying = true;
-                setTimeout(function(){
-                    isCurrentPlaying = false;
-                } , 2000);
-            }
+            videoObject.pause();
         }
-        // if( isHomeSliderMoviePlaying )
-        //  $('.banpho-con').fadeOut();
     });
 
     LP.action('home_newsnext' , function(){
@@ -2651,10 +2924,19 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 .removeAttr('style')
                 .appendTo( $homeCamcon )
                 .each(function( i ){
-                    $(this).delay( 300 + ( i + 1 ) * 200 )
+                    $(this)
+                        .find('img')
+                        .eq(1)
+                        .remove()
+                        .end()
+                        .end()
+                        .delay( 300 + ( i + 1 ) * 200 )
                         .animate({
                             marginTop: 0
                         } , 600 , 'easeLightOutBack');
+
+                    // init mouse move effect 
+                    initImageMouseMoveEffect( $(this).find('div') );
                 });
 
             $homeCamcon.animate({
@@ -2689,7 +2971,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 <dl class="cs-clear">\
                     <dt>\
                         <div class="brands-mask"></div>\
-                        <p class="brands-con-t">#[agency]<br/>-#[label]</p>\
+                        <p class="brands-con-t">#[label]</p>\
                         <p class="brands-con-time">#[year]</p>\
                         <div class="cs-clear brands-con-meta">\
                             <span class="fr">##[id]</span>\
@@ -2743,7 +3025,17 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 .removeClass('active');
             $(this).addClass('active');
         }
-        LP.triggerAction('filter-category' , {category: $('.gates-inner-r a.active').data('category')});
+        var letter = $(this).html();
+        // scroll to right position
+        $('.gates-inner-l').find('li a').each(function( i ){
+            if( $.trim($(this).text())[0].toUpperCase() == letter ){
+                $('.gates-inner-l').animate({
+                    scrollTop: $(this).parent().height() * i 
+                } , 1000);
+                return false;
+            }
+        });
+        //LP.triggerAction('filter-category' , {category: $('.gates-inner-r a.active').data('category')});
         return false;
     });
 
@@ -2993,6 +3285,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
     LP.action('show-video-interview' , function(){
+        var media = $(this).data('media');
         var $item = $(this).closest('.interview_item');
         var $container = $item.data('media-dom');
         var $videoWrap = $container && $container.find('.interview-video');
@@ -3011,7 +3304,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
             // render video
             $videoWrap.css({marginTop: -480});
-            renderVideo( $videoWrap , '../videos/0.mp4' , '../images/interview1.png' , {
+            renderVideo( $videoWrap , media , $item.find('img').attr('src') , {
                 autoplay: false,
                 controls: true,
                 pause_button: true
@@ -3059,6 +3352,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     });
 
     LP.action('show-music-interview' , function(){
+        var media = $(this).data('media');
         var $item = $(this).closest('.interview_item');
         var $container = $item.data('media-dom');
         var $musicWrap = $container && $container.find('.interview-music');
@@ -3128,8 +3422,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     warningAlerts: false,
                     ready: function () {
                         $(this).jPlayer("setMedia", {
-                            m4a: "http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-                            oga: "http://jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
+                            m4a: media, //"http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
+                            oga: media//"http://jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
                         });
 
                         $container.find('.interview-music')
@@ -3346,7 +3640,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     });
 
     LP.action('pop-jobs-next' , function(){
-        if( job_index == $('.pop_jobs .pop_index').html( ) ) return false;
+        if( $('.pop_jobs .pop_total').html() == $('.pop_jobs .pop_index').html() ) return false;
         job_index++;
 
         var $item = $('.jobsitem').eq( job_index - 1 );
@@ -3616,19 +3910,51 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
         return false;
     });
+
+    LP.action('lang' , function( data ){
+        LP.setCookie('lang' , data.lang );
+        LP.reload();
+        return false;
+    });
     
 
     LP.action('people_opt' , function(){
-        var isSlideDown = !$(this).hasClass('expand');
+        var $opt = $(this).find('.people_opt');
+        var isSlideDown = !$opt.hasClass('expand');
         if( isSlideDown ){
-            $(this).siblings('.people_download').slideDown();
-            $(this).siblings('.people_desc').slideDown();
+            $opt.siblings('.people_download').slideDown();
+            $opt.siblings('.people_desc').slideDown();
+
+            // go to the top
+            $('html,body').animate({
+                scrollTop: $(this).offset().top - $('.header').height()
+            } , 500);
+
         } else {
-            $(this).siblings('.people_download').slideUp();
-            $(this).siblings('.people_desc').slideUp();
+            $opt.siblings('.people_download').slideUp();
+            $opt.siblings('.people_desc').slideUp();
         }
 
-        $(this).toggleClass('expand');
+        $opt.toggleClass('expand');
+    });
+
+
+    LP.action('jobs-lang' , function(){
+        var lang = $(this).data('lang');
+
+        $('.pop_jobcon_inner .jobcontent').hide()
+            .filter('.content_' + lang )
+            .show();
+        return false;
+    });
+
+
+    LP.action('pageback' , function(){
+        var e = jQuery.Event("keydown");
+        e.which = 27; // # Some key code value
+        $(document).trigger(e);
+
+        return false;
     });
 
 });

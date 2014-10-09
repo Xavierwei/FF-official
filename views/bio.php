@@ -16,8 +16,8 @@
 		</div>
 		<!--  -->
 		<div class="about_down">
-			<a href="#" class="about_downbtn transition-wrap">
-				<div class="transition">DOUNLOAD PDF<br/><br/>DOUNLOAD PDF</div>
+			<a href="#" id="download" class="about_downbtn transition-wrap">
+				<div class="transition">DOWNLOAD PDF<br/><br/>DOWNLOAD PDF</div>
 			</a>
 		</div>
 		<!--  -->

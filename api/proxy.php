@@ -1,4 +1,8 @@
 <?php
+$lang = $_COOKIE['lang'];
+if(  empty($lang) ){
+	$lang = 'eng';
+}
 $lang = 'eng';
 $url = 'http://backoffice.fredfarid.com/' . $lang . '/ws/';
 

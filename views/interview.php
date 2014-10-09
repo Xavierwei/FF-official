@@ -20,7 +20,7 @@
 
 	<!-- section -->
 	<div class="section sec_press">
-		<div id="press-container" >
+		<div>
 			<!--  -->
 			<div class="press_txt">Ici un texte de presentation<br />de chapitre utile pour le referencement</div>
 			<!--  -->

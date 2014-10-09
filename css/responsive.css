@@ -49,7 +49,7 @@
 
 
     .interview_list{width: auto;margin: 0 20px;}
-    .interview_list .interview_info{width: 34%;}
+    .interview_list .interview_info{width: 30%;margin-right: 2%;margin-left: 2%;}
     .interview_odd .interview_img,.interview_even .interview_img{width: 66%;overflow: hidden;}
 
     .about_timeline{padding: 0 20px;}

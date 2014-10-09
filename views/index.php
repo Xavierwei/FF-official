@@ -6,7 +6,8 @@
 		<!--  -->
 		<div class="home_news" data-index="0">
 			<h2 class="intoview-effect" data-effect="fadeup">NEWS</h2>
-			<div class="home_news_inner cs-clear intoview-effect" data-effect="fadeup" style="width:300%;">
+			<div class="home_news_inner cs-clear intoview-effect" data-effect="fadeup" style="width:300%;" id="home-news">
+
 				<p style="width:33.3333%;">Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
 				<p style="width:33.3333%;">Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
 				<p style="width:33.3333%;">Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
@@ -49,15 +50,15 @@
 			<h2 class="intoview-effect" data-effect="fadeup">FEATURED CAMPAIGNS</h2>
 			<div class="home_camcon column cs-clear">
 				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
-					<img src="../images/campaign_demo1.jpg" />
+					<div><img src="../images/campaign_demo1.jpg" /></div>
 					<p>All starts with an Audi</p>
 				</div>
 				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
-					<img src="../images/campaign_demo2.jpg" />
+					<div><img src="../images/campaign_demo2.jpg" /></div>
 					<p>All starts with an Audi</p>
 				</div>
 				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
-					<img src="../images/campaign_demo1.jpg" />
+					<div><img src="../images/campaign_demo1.jpg" /></div>
 					<p>All starts with an Audi</p>
 				</div>
 			</div>
