@@ -1,5 +1,11 @@
 <?php
-$lang = $_COOKIE['lang'];
+
+// $_POST['wsExtraRequest'] = 'getBrandTags';
+// $_POST['brandID'] = '1';
+// $_POST['outputFormat'] = 'json';
+
+
+$lang = isset( $_COOKIE['lang'] ) ? $_COOKIE['lang'] : '';
 if(  empty($lang) ){
 	$lang = 'eng';
 }
