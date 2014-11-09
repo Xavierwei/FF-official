@@ -1842,7 +1842,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 cb && cb();
             },
             'contact-page': function( cb ){
-                renderGoogleMap( $('#map') , [[31.227919,121.478988],[11.227919,111.478988],[50.227919,67.478988],[11.227919,24.478988]] );
+                renderGoogleMap( $('#map') , [[31.245583,121.49472600000001],[48.875137,2.338616000000002]] );
                 // var _LP = window.LP;
                 // LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
                 //     window.LP = _LP;
