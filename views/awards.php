@@ -23,50 +23,30 @@
 		<div data-effect="fadeup" class="intoview-effect awardfilter column cs-clear">
 			<div class="awardfilter_item">
 				<a class="selitem ">
-					<select>
-						<option>YEAR1</option>
-						<option>YEAR3</option>
+					<select id="year"><option value="">year</option>
 					</select>
 				</a>
 			</div>
 			<div class="awardfilter_item">
 				<a class="selitem ">
-					<select>
-						<option>BRAND3</option>
-						<option>BRAND4</option>
-						<option>BRAND5</option>
-						<option>BRAND6</option>
+					<select id="brand"><option value="">brand</option>
 					</select>
 				</a>
 			</div>
 			<div class="awardfilter_item">
 				<a class="selitem ">
-					<select>
-						<option>AWARD7</option>
-						<option>BRAND8</option>
-						<option>BRAND9</option>
+					<select id="award"><option value="">award</option>
 					</select>
 				</a>
 			</div>
 			<div class="awardfilter_item awardfilter_item2">
-				<button data-a="awardfilter" class="awardfilter_btn">FILTER</button>
+				<button data-a="awardfilter" id="awardfilter" class="awardfilter_btn">FILTER</button>
 			</div>
 		</div>
 		<!--  -->
 		<div data-effect="fadeup" class="intoview-effect awardlist column">
-			<table>
-				<tr><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr class="even"><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr class="even"><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr class="even"><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr class="even"><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr class="even"><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
-				<tr class="even"><td>2013 DOMYOS</td><td>TAICHIPOP</td><td>WOLRD LUXURY AWARDS PRINT CAMPAIGN</td></tr>
+			<table id="list-table">
+				
 			</table>
 		</div>
 		<!--  -->

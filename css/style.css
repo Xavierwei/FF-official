@@ -29,7 +29,7 @@ a:hover{color:#000}
 .column{width:1100px;margin:0 auto;}
 .transition{-webkit-transition: all 0.6s ease-in-out;-moz-transition: all 0.6s ease-in-out;-o-transition: all 0.6s ease-in-out;-ms-transition: all 0.6s ease-in-out;transition: all 0.6s ease-in-out;}
 .transition-wrap{overflow: hidden;}
-.transition-wrap:hover .transition{margin-top: -100px;}
+.transition-wrap:hover .transition{margin-top: -100px;background: #000;color:#fff;}
 /* FF Used
 ================================================================================================= */
 .page{background: white;position: relative;z-index: 2;margin-bottom: 550px;}
@@ -76,7 +76,7 @@ a:hover{color:#000}
 	.banpho-bt-l:hover{ background-position: -42px center; }
 	.banpho-bt-r:hover{ background-position: -192px center;}
 	.banpho-bt-c{height: 100%;overflow: hidden;cursor: pointer;}
-	.banpho-bt-c div:hover{margin-top: -100px;}
+	.banpho-bt-c div:hover{margin-top: -100px;background: #fff;color:#000;}
 	
 /**/
 .banner_footer{background: url('../images/banner_ft.png') repeat;height: 360px;}
@@ -93,11 +93,11 @@ a:hover{color:#000}
 			.ft_mbd{padding: 35px 0 0}
 				.ft_mbd p{padding: 0 0 18px;}
 			.ft_findmbd{width: 120px}
-				.find_item{float: left;background: url('../images/ft_find.png') no-repeat 0 0;width: 60px;height: 60px;text-indent: -9999em;}
+				.find_item{float: left;background: url('../images/ft_find.png') no-repeat 7px 0;width: 60px;height: 60px;text-indent: -9999em;}
 				.icon_fb{background-position: right top}
-				.icon_wb{background-position:  0px -60px}
-				.icon_wb{background-position:  -60px -60px;}
-				.find_item5{background-position:  0px -120px;}
+				.icon_linkin{background-position:  0px -60px}
+				.icon_wb{background-position:  -70px -65px;}
+				.find_wx{background-position:  0px -120px;}
 			.ft_workmbd{width: 250px;height: 200px;padding-top:10px;}
 				.work_item{float: left;background: url('../images/ft_network.png') no-repeat 0 0;width: 125px;height: 100px;}
 				.icon_bk{background-position: right top}
@@ -123,7 +123,7 @@ a:hover{color:#000}
 				/**/
 			.selitem {position: relative;display: inline-block;background-color: #fff;font-size: 14px;width: 175px;height: 54px;text-align: left;}
 			.selitem .selitem_tips {position: absolute;display: block;width: 150px;padding-left:25px;font-weight: bold;height: 50px;line-height: 50px;border: #000 solid 2px;background: #fff url('../images/selitem_icon.png') no-repeat 150px center;}
-			.selitem .select-options{background: white; display: none; position: absolute;top: 100%;left: 0;width: 100%;line-height: 54px;border: 2px solid black;margin-top: -2px;}
+			.selitem .select-options{background: white; display: none; position: absolute;top: 100%;left: 0;width: 100%;line-height: 54px;border: 2px solid black;margin-top: -2px;max-height: 300px;overflow: auto;}
 			.selitem .select-options li{padding-left: 20px;cursor: pointer;}
 			.selitem .select-options li:hover{background: black;color: white;}
 			.selitem:hover .selitem_tips {background-color: #fff;;cursor: pointer}
@@ -253,11 +253,12 @@ a:hover{color:#000}
 		.home_campaign h2{font-size:48px; text-align:center;line-height: 220px;}
 		.home_camcon{}
 			.cam_item{text-align: center;width: 365px;font-weight:bold;line-height: 30px;float: left;margin-top: 300px;cursor: pointer;}
-				.cam_item>div{position: relative;overflow: hidden;}
+				.cam_item:hover{background: black;color:white;}
+				.cam_item>div{position: relative;overflow: hidden;border: 1px solid #b5b5b5;margin: 0 -1px;}
 				.cam_item img{width: 100%;display: block;}
-				.cam_item p{padding:23px 0;}
+				.cam_item p{padding:23px 0;text-transform: uppercase;}
 		.home_cambtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto 0;display: block;position: absolute;left: 50%;margin-left: -88px;bottom: -90px;overflow: hidden;}
-		.home_cambtn:hover div{margin-top: -100px;}
+		.home_cambtn:hover div{margin-top: -100px;background: #000;color:#fff;}
 	.home_bio{height: 507px;position: relative;z-index: 1;overflow: hidden;}
 		.home_bio_bg{width: 100%;position: absolute;z-index: -1;bottom: 0; }
 		.home_bio h2{font-size: 48px;line-height: 200px;text-align: center;}
@@ -266,11 +267,11 @@ a:hover{color:#000}
 			.home_bioleft{float:left;width: 515px}
 			.home_bioright{float: right;width: 515px}
 		.home_biobtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto 0;display: block;overflow: hidden;}
-		.home_biobtn:hover div{margin-top: -100px;}
+		.home_biobtn:hover div{margin-top: -100px;background: #000;color:#fff;}
 	.home_num{background: #444;padding:30px;}
 		.home_num h2{font-size: 48px;line-height: 200px;text-align: center;line-height: 180px}
 		.home_numbtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto ;display: block;overflow: hidden;}
-		.home_numbtn:hover div{margin-top: -100px;}
+		.home_numbtn:hover div{margin-top: -100px;background: #000;color:#fff;}
 		.home_numtable{width: 1000px ;margin:0 auto}
 		.home_numtable table{width: 100%;text-align: center;}
 		.home_numtable strong{font-size: 48px;display: block;line-height: 55px}
@@ -281,17 +282,18 @@ a:hover{color:#000}
 
 
 /* for CATEGORIES */
-.sec_gates{ background: rgba(67, 66, 66, 0.97); position: fixed;top: 66px; bottom: 0; width: 100%;z-index: 4;}
-.gates-inner{margin: -100% auto 0;height: 100%;position: relative;}
+.sec_gates{ background: rgba(67, 66, 66, 0.97); position: fixed;top: 66px; bottom: 0; width: 100%;z-index: 4;overflow: hidden;}
+.gates-inner{top: -100% ;height: 100%;position: absolute;width: 100%;}
 .gates-inner a:hover,.gates-inner a.active{color: white;}
-	.gates-inner-l{font-size: 44px;font-weight: bold;line-height: 2em;height: 100%;overflow: auto;}
+	.gates-inner-l{font-size: 44px;font-weight: bold;line-height: 1em;height: 100%;overflow: auto;}
 	.gates-inner-l a{margin-right: 100px;text-transform: uppercase;}
-	.gates-inner-c{padding-top: 100px;width: 12%;float: left;font-size: 18px;line-height: 2em;position: absolute;left: 67.8%;top:0;}
-	.gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 2em;text-transform: uppercase;position: absolute;left: 78.8%;top:0;}
+	.gates-inner-c{padding-top: 100px;width: 12%;float: left;font-size: 18px;line-height: 1.5em;position: absolute;left: 67.8%;top:0;}
+	.gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 1.5em;text-transform: uppercase;position: absolute;left: 78.8%;top:0;}
 
 /* for brands */
 .sec_brands{display: none; position: fixed;top: 0px;bottom: 0;overflow: auto; width: 100%;z-index: 40;background: black;}
-	.sec_brands_tit{background: #595959;height:88px;line-height: 88px;font-size: 44px;font-weight: bold;overflow: hidden;position: relative;z-index: 40;}
+	.brands_tit{height: 88px;}
+	.sec_brands_tit{background: #595959;height:88px;line-height: 88px;font-size: 44px;font-weight: bold;overflow: hidden;position: fixed;z-index: 40;width: 100%;}
 	.sec_brands_tit h2 span{float: left;}
 	.sec_brands_tit .sep{margin: 26px 30px;background: #000;height: 35px;width: 4px;text-indent: -9999px;}
 	.sec_brands h2{}
@@ -307,11 +309,11 @@ a:hover{color:#000}
 	.brand_big_text{padding: 50px 0 150px;color: white;}
 	.brand_big_text_year{font-weight: bold;font-size: 24px;padding-bottom: 1em;	}
 	.brand_big_text_tit {font-size: 14px;font-weight: 100;text-transform: uppercase;}
-	.brand_big_text_val {font-size: 11px;color: #666;}
+	.brand_big_text_val {font-size: 11px;color: #666;height: 36px;}
 	.brand_big_text_item {float: left;width: 20%;line-height: 3em;}
 
 	.brands_tit.fixed{position: fixed;width: 100%;top:0;z-index: 40;}
-	.brands-tags{background: #3b3b3b; height: 88px;overflow: hidden; }
+	.brands-tags{background: #3b3b3b; height: 88px;overflow: hidden; display: none;}
 	.brands-tags p{line-height: 88px;font-size: 18px;font-weight: bold;}
 	.brands-tags a{margin-right: 100px;text-transform: uppercase;}
 	.brands-tags a:hover{color: white;}
@@ -410,12 +412,12 @@ a:hover{color:#000}
 		.jobshareitem{float:left;background: url('../images/jobsshare.png') no-repeat;width: 30px; height:30px;display: inline;margin: 0 6px;}
 		.jobshare_fb{background-position: 0 -30px;}
 		.jobshare_t{background-position: 0 -60px;}
-		.jobshare_lin{background-position: 0 -60px;}
+		.jobshare_lin{background-position: 0 -90px;}
 
 
 	.popicon{background: url('../images/popicon.png') no-repeat;height: 30px;width: 30px;position: absolute;right:80px;cursor: pointer;}
 	.popclose{top:50px; }
-	.popclose:hover{-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);-o-transform: rotate(180deg);-ms-transform: rotate(180deg);transform: rotate(180deg);}
+	.popclose:hover{-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-o-transform: rotate(90deg);-ms-transform: rotate(90deg);transform: rotate(90deg);}
 	.popprev{background-position: -62px -30px;top:150px}
 	.popprev:hover{background-position: 0 -30px; }
 	.popnext{background-position: 0 -60px;top:250px;}
@@ -429,6 +431,10 @@ a:hover{color:#000}
 	.pop_presspho{position: relative;z-index: 1;overflow-x: hidden;background: black;}
 	.pop_presspho img{display: block;}
 	.pop_press_menus{width: 95px;position: absolute;height: 100%;top: 0;right: 95px;background: black;z-index: 0;}
+
+.brands-video-btn{display: none; background: url(../images/video-btn.png) no-repeat left bottom;position: absolute;top: 50%;left: 50%;width: 90px;height: 90px;margin-top: -45px;margin-left: -45px;}
+.brands-item-video:hover .brands-video-btn{display: block;}
+.full_screen_video_wrap{position: fixed;width: 100%;height: 100%;top:0;left:0;z-index: 40;}
 
 
 /* video theme */
@@ -522,4 +528,6 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 
 .process{position: absolute;height: 1px;background: red;bottom: 0;width: 0;z-index: 100;left: 0;}
 
+
+.pagetit-fixed .pagetit-inner{position: fixed;width: 100%;left: 0;top: 0;z-index: 1;background: #f0f0f0;}
 

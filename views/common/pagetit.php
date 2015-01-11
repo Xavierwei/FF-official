@@ -1,8 +1,10 @@
 <div class="pagetit">
-	<div class="column">
-		<h1> <?php echo $pagetit; ?></h1>
-		<a href="#" class="pagetitarr pagetitarrtop transition" data-a="page-pagetitarrtop"></a>
-		<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="page-pagetitarrbottom"></a>
+	<div class="pagetit-inner">
+		<div class="column">
+			<h1> <?php echo $pagetit; ?></h1>
+			<a href="#" class="pagetitarr pagetitarrtop transition" data-a="page-pagetitarrtop"></a>
+			<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="page-pagetitarrbottom"></a>
+		</div>
 	</div>
 </div>
 <!-- banner -->
@@ -14,7 +16,7 @@
 <?php } ?>
 </div>
 
-<?php if( $top_title == 'ABOUT' ){ ?>
+<?php if( isset( $top_title ) && $top_title == 'ABOUT' ){ ?>
 <div class="column">
 	<div class="about_crumbs crumbs">
 		<span>
@@ -26,7 +28,7 @@
 		</span>
 	</div>
 </div>
-<?php } else if( $top_title == 'PRESS' ){ ?>
+<?php } else if( isset( $top_title ) && $top_title == 'PRESS' ){ ?>
 <div class="column">
 	<div class="about_crumbs crumbs">
 		<span>

@@ -1,3 +1,9 @@
+<?php
+// all page init here
+
+
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -58,7 +64,7 @@
 	</script>
 	<?php }?>
 	<!-- header -->
-	<div class="header <?php if( !$home_page ){ ?>header-fixed<?php }?>">
+	<div class="header <?php if( !isset($home_page) && 0 ){ ?>header-fixed<?php }?>">
 		<div class="header-inner">
 			<div class="logo-wrap">
 				<a href="index.php" data-a="navitem" class="logo transition"></a>
@@ -120,8 +126,6 @@
 		<div class="gates-inner cs-clear">
 			<div class="gates-inner-l">
 				<ul class="column" id="categories-wrap">
-					<!-- <li> <a data-a="show-brands" data-category="CONSULTING" href="#">Alcoholic drinks</a>  <img src="../images/lock.png"></li>
-					<li> <a data-a="show-brands" data-category="MEDIA" href="#">Alcoholic drinks</a> </li> -->
 				</ul>
 			</div>
 			<div class="gates-inner-c">

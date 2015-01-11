@@ -12,10 +12,10 @@
 				<h3>FOLLOW US</h3>
 				<div class="ft_mbd ft_findmbd cs-clear" id="share-wrap">
 					<a href="#" class="find_item find_item1"></a>
-					<a href="#" class="find_item find_item2"></a>
-					<a href="#" class="find_item find_item3"></a>
-					<a href="#" class="find_item find_item4"></a>
-					<a href="#" class="find_item find_item5"></a>
+					<a href="#" class="find_item find_fb find_item2"></a>
+					<a href="#" class="find_item find_linkin find_item3"></a>
+					<a href="#" class="find_item find_wb find_item4"></a>
+					<a href="#" class="find_item find_wx find_item5"></a>
 				</div>
 			</div>
 			<div class="ft_mod ft_paris">
