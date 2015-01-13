@@ -33,8 +33,6 @@
 					<p>200 HUANGPU LU, HONGKOU DISTRICT</p>
 					<p>& 109-111 LIYANG LU, HONGKOU DISTRICT</p>
 					<p>200080 SHANGHAI, CHINA</p>
-                    <p>上海虹口区黄浦路200号</p>
-                    <p>& 上海虹口区溧阳路109-111号</p>
 				</div>
 			</div>
 			<div class="ft_mod ft_network">
