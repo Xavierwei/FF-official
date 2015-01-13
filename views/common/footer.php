@@ -21,17 +21,20 @@
 			<div class="ft_mod ft_paris">
 				<h3>PARIS</h3>
 				<div class="ft_mbd">
-					<p>22, rue de la Victoire<br />75009 Paris</p>
-					<p>+33 1 43 22 16 17</p>
-					<p>paris@fredfarid.com</p>
+					<p>22 RUE DE LA VICTOIRE</p>
+                    <p>& 48 rue de Provence</p>
+					<p>75009 PARIS</p>
+					<p>PHONE: +33 (0)1 81 51 50 00</p>
 				</div>
 			</div>
 			<div class="ft_mod ft_shanghai">
 				<h3>SHANGHAI</h3>
 				<div class="ft_mbd">
-					<p>22, rue de la Victoire<br />75009 Paris</p>
-					<p>+33 1 43 22 16 17</p>
-					<p>paris@fredfarid.com</p>
+					<p>200 HUANGPU LU, HONGKOU DISTRICT</p>
+					<p>& 109-111 LIYANG LU, HONGKOU DISTRICT</p>
+					<p>200080 SHANGHAI, CHINA</p>
+                    <p>上海虹口区黄浦路200号</p>
+                    <p>& 上海虹口区溧阳路109-111号</p>
 				</div>
 			</div>
 			<div class="ft_mod ft_network">

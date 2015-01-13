@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/responsive.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/videos/0.mp4" afterPath="$PROJECT_DIR$/videos/0.mp4" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/common/header.php" afterPath="$PROJECT_DIR$/views/common/header.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/common/footer.php" afterPath="$PROJECT_DIR$/views/common/footer.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="ff.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" time="1405064359484" ignored="false" />
+    <file path="/Dummy.txt" changelist="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" time="1421139600162" ignored="false" />
     <file path="/header.php" changelist="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" time="1405064408413" ignored="false" />
     <file path="/responsive.css" changelist="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" time="1405066130255" ignored="false" />
+    <file path="/a.dummy" changelist="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" time="1421141555712" ignored="false" />
+    <file path="/footer.php" changelist="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" time="1421142289461" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,16 +34,16 @@
       <file leaf-file-name="index.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="header.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/common/header.php">
+      <file leaf-file-name="responsive.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/responsive.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="9" selection-start="2481" selection-end="2481" vertical-scroll-proportion="-28.5">
+            <state line="2" column="24" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -57,11 +58,66 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="responsive.css" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/css/responsive.css">
+      <file leaf-file-name="header.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/common/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="24" selection-start="100" selection-end="100" vertical-scroll-proportion="0.031430934">
+            <state line="42" column="9" selection-start="2188" selection-end="2188" vertical-scroll-proportion="65.82143">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lp.base.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/lp.base.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1143" column="122" selection-start="40037" selection-end="40037" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1421137911000" expanded="false" signature="9740:9759" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="9760:10529" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="9807:10502" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="9841:9875" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="10120:10291" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="38336:38466" placeholder="..." />
+                <marker date="1421137911000" expanded="false" signature="39971:39981" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="43588:43694" placeholder="..." />
+                <marker date="1421137911000" expanded="false" signature="60387:60400" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="60401:60757" placeholder="..." />
+                <marker date="1421137911000" expanded="false" signature="60427:60452" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="60487:60751" placeholder="..." />
+                <marker date="1421137911000" expanded="false" signature="64886:64905" placeholder="..." />
+                <marker date="1421137911000" expanded="false" signature="64935:64953" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="93736:94288" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="93786:93893" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="93994:94070" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="94172:94264" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="97816:99240" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="98121:98242" placeholder="..." />
+                <marker date="1421137911000" expanded="false" signature="98310:98323" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="98324:99208" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="98563:98818" placeholder="..." />
+                <marker date="1421137911000" expanded="false" signature="98895:98908" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="98909:99172" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="105394:106320" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="105484:105878" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="106047:106296" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="143870:144001" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="146150:146797" placeholder="..." />
+                <marker date="1421137911000" expanded="false" signature="146205:146224" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="146225:146777" placeholder="..." />
+                <marker date="1421137911000" expanded="false" signature="146447:146461" placeholder="..." />
+                <marker date="1421137911000" expanded="true" signature="146575:146691" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="footer.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/common/footer.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="22" selection-start="883" selection-end="883" vertical-scroll-proportion="0.6288416">
+              <folding>
+                <marker date="1421142308000" expanded="true" signature="2177:2278" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,15 +142,16 @@
       <list>
         <option value="$PROJECT_DIR$/views/common/header.php" />
         <option value="$PROJECT_DIR$/css/responsive.css" />
+        <option value="$PROJECT_DIR$/views/common/footer.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="66" />
-    <option name="y" value="22" />
+    <option name="x" value="39" />
+    <option name="y" value="23" />
     <option name="width" value="2256" />
-    <option name="height" value="1357" />
+    <option name="height" value="835" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -183,6 +240,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ff" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ff" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -212,26 +283,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="22" width="2256" height="1357" extended-state="0" />
+    <frame x="39" y="23" width="2256" height="835" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33006993" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24977376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12081448" sideWeight="0.66993004" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -304,7 +375,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/common/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="9" selection-start="2481" selection-end="2481" vertical-scroll-proportion="-28.5">
+        <state line="42" column="9" selection-start="2188" selection-end="2188" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -318,8 +389,87 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/responsive.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="24" selection-start="100" selection-end="100" vertical-scroll-proportion="0.031430934">
+        <state line="2" column="24" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/responsive.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="24" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/common/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="9" selection-start="2188" selection-end="2188" vertical-scroll-proportion="65.82143">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/lp.base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1143" column="122" selection-start="40037" selection-end="40037" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1421137911000" expanded="false" signature="9740:9759" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="9760:10529" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="9807:10502" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="9841:9875" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="10120:10291" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="38336:38466" placeholder="..." />
+            <marker date="1421137911000" expanded="false" signature="39971:39981" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="43588:43694" placeholder="..." />
+            <marker date="1421137911000" expanded="false" signature="60387:60400" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="60401:60757" placeholder="..." />
+            <marker date="1421137911000" expanded="false" signature="60427:60452" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="60487:60751" placeholder="..." />
+            <marker date="1421137911000" expanded="false" signature="64886:64905" placeholder="..." />
+            <marker date="1421137911000" expanded="false" signature="64935:64953" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="93736:94288" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="93786:93893" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="93994:94070" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="94172:94264" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="97816:99240" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="98121:98242" placeholder="..." />
+            <marker date="1421137911000" expanded="false" signature="98310:98323" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="98324:99208" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="98563:98818" placeholder="..." />
+            <marker date="1421137911000" expanded="false" signature="98895:98908" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="98909:99172" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="105394:106320" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="105484:105878" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="106047:106296" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="143870:144001" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="146150:146797" placeholder="..." />
+            <marker date="1421137911000" expanded="false" signature="146205:146224" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="146225:146777" placeholder="..." />
+            <marker date="1421137911000" expanded="false" signature="146447:146461" placeholder="..." />
+            <marker date="1421137911000" expanded="true" signature="146575:146691" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/common/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="22" selection-start="883" selection-end="883" vertical-scroll-proportion="0.6288416">
+          <folding>
+            <marker date="1421142308000" expanded="true" signature="2177:2278" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
