@@ -49,141 +49,113 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     }
 
 
-    var Animate = (function(){
-        /*
-         * Animate Class
-         * {@param originNumArr} 需要变化的初始化数据
-         * {@param targetNumArr} 数据的最终值
-         * {@param speed} 动画持续时间
-         * {@param easing} 动画特效
-         * {@param step} 动画每一步需要执行的了函数，主要用于更新元素的样式值，其第一个参数是个数组，数组里为数据变化的当前值
-         * {@param callback} 动画结束时的回调函数
-         */
-        var Animate = function(originNumArr,targetNumArr,speed,easing,step,callback){
-            this.queue = [];
-            this.duration = speed;
-            this.easing = easing;
-            this.step = step;
-            this.callback = callback;
-            for (var i = 0; i < originNumArr.length; i++){
-                this.queue.push(new Animate.fx(originNumArr[i],targetNumArr[i]));
-            }
-            // begin animation
-            this.begin();
-        }
-
-        Animate.prototype = {
-            begin: function(){
-                if(this._t) return ;
-                var that = this;
-                this.startTime = +new Date();
-                // loop
-                this._t = setInterval(function(){
-                    var dur = +new Date() - that.startTime;
-                    var queue = that.queue;
-                    if(dur > that.duration){
-                        that.end();
-                        // end Animate
-                        return;
-                    }
-                    var easing = Animate.easing[that.easing] || Animate.easing.linear,
-                        currValues = [];
-                    for (var i = 0,len = queue.length; i < len; i++){
-                        currValues.push(queue[i].update(dur,that.duration,easing));
-                    }
-                    // run step to update
-                    that.step(currValues);
-                },13);
+    var process = function( $proBar, $proMsg ){
+        var prog = 0,
+            step = 0,
+            stepAdd = 12,
+            _timer = function(){
+                if (prog >= 99) return false;
+                stepAdd--;
+                if (stepAdd < 2)stepAdd = 2;
+                prog += stepAdd; 
+                step ++;
+                $proMsg && $proMsg.html(prog+"%");
+                $proBar.animate({width : 100 - prog + '%'}, step*30, null, _timer);
+            };
+        return {
+            stop: function(){
+                $proBar.stop(true);
+                return this;
             },
-            // go to end of the animation
             end: function(){
-                clearInterval(this._t);
-                var queue = this.queue,
-                    currValues = [];
-                for (var i = 0,len = queue.length; i < len; i++){
-                    currValues.push(queue[i].target);
-                }
-                this.step(currValues);
-                // call callback function
-                this.callback && this.callback();
+                $proMsg && $proMsg.html('100%');
+                prog = 100;
+                $proBar.stop(true,true).css('width' , '100%');
+                return this;
             },
-            turnTo: function( targetNumArr ){
-                clearInterval(this._t);
-                var that = this;
-                // reset queue
-                this.startTime = + new Date();
-                for (var i = 0,len = that.queue.length; i < len; i++){
-                    that.queue[i] = new Animate.fx(that.queue[i].current,targetNumArr[i]);
-                }
-                // reset interval
-                this._t = setInterval(function(){
-                    var dur = +new Date() - that.startTime;
-                    var queue = that.queue;
-                    if(dur > that.duration){
-                        that.end();
-                        // end Animate
-                        return;
-                    }
-                    var easing = Animate.easing[that.easing] || Animate.easing.linear,
-                        currValues = [];
-                    for (var i = 0,len = queue.length; i < len; i++){
-                        currValues.push(queue[i].update(dur,that.duration,easing));
-                    }
-                    // run step to update
-                    that.step(currValues);
-                } , 13);
-            }
-        }
-        //
-        Animate.fx = function(origin,target){
-            this.origin = origin;
-            this.target = target;
-            this.dist = target - origin;
-        }
-        Animate.fx.prototype = {
-            update: function(n,duration,easing){
-                var pos = easing(n/duration, n , 0 ,1 , duration);
-                this.current = this.origin + this.dist * pos;
-                return this.current;
-            }
-        }
-        // easing
-        Animate.easing = {
-            linear: function( p, n, firstNum, diff ) {
-                return firstNum + diff * p;
+            start: function(){
+                _timer();
+                return this;
             },
-            swing: function( p, n, firstNum, diff ) {
-                return ((-Math.cos(p*Math.PI)/2) + 0.5) * diff + firstNum;
+            reset: function(){
+                prog = 0;
+                step = 0;
+                stepAdd = 12;
+                $proMsg && $proMsg.html('0%');
+                $proBar.stop(true).css('width' , '0%');
+                return this;
             }
         }
+    }
 
-        return Animate;
-    })();
+    var videoProgress = function( $percent ){
+        $('.loading-wrap').show()
+            .find('.loading')
+            .stop(true,true)
+            .animate( {width: 100 - $percent + '%'} , 300 );
+            // .css('width', 100 - $percent + '%');
+    }
 
+    var videoProgressHide = function(){
+        $('.loading-wrap').fadeOut()
+            .find('.loading')
+            .css('width', '100%');
+    }
+
+
+    var fixHomePageVideo = function( success ){
+        var winTop = $(window).scrollTop();
+        var sliderHeight = $('.home-slider').height();
+
+        disposeVideo();
+        if( $('.page').data('page') == 'home-page' && winTop < sliderHeight ){
+            // scroll to $('.home-slider').height()
+            $('html,body').animate({
+                scrollTop: sliderHeight
+            } , 500 )
+            .promise()
+            .then(function(){
+                $(document.body).css('overflow' , 'hidden');
+                success && success();
+            });
+        } else {
+            success && success();
+        }
+    }
+
+
+    var formatPath2Arr = function( path ){
+        path = path || location.hash;
+        path = path.replace(/.*##!/,'');
+
+        path = path.replace('pages_contents/','');
+        var paths = path.split('/');
+        return paths;
+    }
 
 
     var urlManager = (function(){
 
-        var getPath = function(){
-            return location.hash.replace('##!', '');
+        var getPath = function( href ){
+            return ( href || location.hash ).replace(/.*##!/, '');
         }
         var setPath = function( url ){
             location.hash = '##!' + url;
         }
-        var getItemFromUrl = function( ){
+
+        var getItemPathinfoFromUrl = function(){
             var path = getPath();
             // 如果是brands 和 services
             var paths = path.split('/');
             if( paths[0] == 'brands' || paths[0] == 'services' ){
-                path = paths[2].split('|||').join('/') + '/' + paths[3];
+                path = 'pages_contents/' + paths[2].split('|||').join('/') + '/' + paths[3];
+            } else {
+                path = 'pages_contents/' + paths.slice(0,4).join('/');
             }
-
-            path = 'pages_contents/' + path;
-
-            var item = campaignManager.get( path );
-
-            return item;
+            return path;
         }
+
+        
         //  ===> categories
         // categories ===> 
         var rules = [];
@@ -203,25 +175,29 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             },
             load: function(  ){
                 var path = getPath();
-                var winTop = $(window).scrollTop();
-                var sliderHeight = $('.home-slider').height();
-
-                // hide slider video
-                disposeVideo();
-
-                if( $('.home-slider').length && winTop < sliderHeight ){
-                    // scroll to $('.home-slider').height()
-                    $('html,body').animate({
-                        scrollTop: sliderHeight
-                    } , 500 )
-                    .promise()
-                    .then(function(){
-                        $(document.body).css('overflow' , 'hidden');
-                        show_cate_list( path );
-                    });
-                } else {
+                fixHomePageVideo( function(){
                     show_cate_list( path );
-                }
+                } );
+
+                // var winTop = $(window).scrollTop();
+                // var sliderHeight = $('.home-slider').height();
+
+                // // hide slider video
+                // disposeVideo();
+
+                // if( $('.home-slider').length && winTop < sliderHeight ){
+                //     // scroll to $('.home-slider').height()
+                //     $('html,body').animate({
+                //         scrollTop: sliderHeight
+                //     } , 500 )
+                //     .promise()
+                //     .then(function(){
+                //         $(document.body).css('overflow' , 'hidden');
+                //         show_cate_list( path );
+                //     });
+                // } else {
+                //     show_cate_list( path );
+                // }
             }
         } );
 
@@ -317,23 +293,13 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     showCompains();
                 }
 
-                loadingMgr.setSuccess(renderComapigns);
+                loadingMgr.setSuccess(renderComapigns , 'renderComapigns');
 
 
                 // load data 
                 campaignManager.getCampaigns( path , function( campaigns ){
-                    loadingMgr.success( campaigns );
+                    loadingMgr.success( 'renderComapigns', campaigns );
                 } );
-                
-
-                var winTop = $(window).scrollTop();
-                var sliderHeight = $('.home-slider').height();
-                if( $('.home-slider').length && winTop < sliderHeight ){
-                    // scroll to $('.home-slider').height()
-                    $('html,body').animate({
-                        scrollTop: sliderHeight
-                    } , 500 );
-                } 
             }
         } );
         
@@ -354,37 +320,28 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     });
             },
             load: function(  ){
-                var path = getPath();
-                // 如果是brands 和 services
+
+                var path = getItemPathinfoFromUrl();
                 var paths = path.split('/');
 
-                var item = getItemFromUrl( );
-
-                // if( paths[0] == 'brands' || paths[0] == 'services' ){
-                //     path = paths[2].split('|||').join('/') + '/' + paths[3];
-                // }
-
-                // path = 'pages_contents/' + path;
-
-                // var item = campaignManager.get( path );
-                var index = paths[3];
-
-                showBigBrandsItem( item._contentPath , index );
+                showBigBrandsItem( paths.slice(0,4).join('/') , paths.pop() );
             }
         } );
         
         rules.push( {
             url: /(\/\d+\/big)$/,
             destory: function( cb ){
-                $('.image-zoom-big').fadeOut()
+                $('.preview').fadeOut()
                     .promise()
-                    .then(function(){
-                        $('.image-zoom-big').remove();
-                    });
+                    .then(cb);
             },
             load: function( data ){
-                var item = getItemFromUrl( );
-                imageZoom( item );
+
+                var path = getItemPathinfoFromUrl();
+                // 如果是brands 和 services
+                var paths = path.split('/');
+
+                showBigItem( paths.slice(0,4).join('/') , paths.slice(4,5)[0] );
                 // var path = getPath();
                 // // 如果是brands 和 services
                 // var paths = path.split('/');
@@ -401,24 +358,30 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             }
         } );
         
-        // ==============================================================
-        // init location hash here
-        //$(function(){
-        $(function(){
-            var path = getPath();
-            console.log( path );
-            path && urlManager.go( path );
-        });
-            
-        //});
         
 
-
         return {
-            go: function( toUrl , data ){
+            setFormatHash: function( toUrl , fromUrl, data ){
+                var fromHash = getPath( fromUrl );
+                var currPaths = fromHash.split('/');
+                var paths = toUrl.split('/');
+                if( paths[0] == 'pages_contents' && paths.length == 5 ){
+                    paths.shift();
+                    if ( currPaths[0] == 'brands' || currPaths[0] == 'services' ){
+                        var index = paths.pop();
+                        toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join('|||') + '/' + index;
+                    } else {
+                        toUrl = paths.join('/');
+                    }
+                }
+                setPath( toUrl );
+            },
+            go: function( toUrl , data , fromUrl ){
+
+                disposeVideo();
                 //pages_contents/categories/alcoholic_drinks/16eme_ciel_stand-up_-_lyon_-_2013/0
 
-                var hash = getPath();
+                var hash = getPath( fromUrl );
                 // if( hash == toUrl ){
                 //     return false;
                 // }
@@ -449,11 +412,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     }
                 } );
                 setPath( toUrl );
-                destory ? destory( function(){loadFn && loadFn(data)} ) : loadFn && loadFn( data ) ;
+
+                fixHomePageVideo( function(){
+                    destory ? destory( function(){loadFn && loadFn(data)} ) : loadFn && loadFn( data ) ;
+                } );
             },
             back: function(){
 
-
+                disposeVideo();
                 var path = getPath();
                 var paths = path.split('/');
                 var tarPath = '';
@@ -479,6 +445,38 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         
     })();
     
+
+    function showBigItem( path, index ){
+
+        // show brand
+        $('.sec_brands').fadeIn().css('top',0);
+
+        var tpl = '<li class="big-item"><img src="#[src]" /></li>';
+        loadingMgr.show();
+        loadingMgr.setSuccess(function(){
+            $('.preview').find('ul').fadeIn();
+        }, 'showBigItem');
+        campaignManager.getCampaignItems( path, function( items ){
+            var aHtml = [];
+            var pics = [];
+            $.each( items, function( i, item ){
+                pics.push( campaignManager.getPath( item , 'media' ) );
+                aHtml.push( LP.format( tpl, {src: campaignManager.getPath( item , 'media' )} ) );
+            } );
+
+            var $ul = $('.preview ul').html( aHtml.join('') ).css('marginLeft' , - index * 90 + 5 + '%');
+            $ul.children().css({
+                width: 1 / items.length * 100 + '%'
+            });
+
+            $ul.css('width', items.length * 90 + '%' ).hide();
+
+            $('.preview').fadeIn();
+            loadImages( pics, function(){
+                loadingMgr.success('showBigItem');
+            } );
+        } );
+    }
 
     // show image in the biggest view
     // and make img auto move effect
@@ -512,12 +510,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 top = - 2 * ( ev.pageY - st ) / winHeight * ( imgHeight - winHeight ) / 2;
                 runAnimate();
             });
-        });
+        }, 'image-zoom' );
         // TODO:: need to fix image width auto and height auto , show real big image
         var $img = $wrap.find('img').css({
             position: 'absolute',
         }).load(function(){
-            loadingMgr.success();
+            loadingMgr.success('image-zoom');
         })
         .attr('src' , src);
 
@@ -603,6 +601,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             // },
 
             renderTitle: function( path ){
+                path = __fixRequestPath( path );
                 var paths = path.split('/');
                 var key = paths[0] + '/' +  paths[1];
                 if( __CACHE_TITLE__[ key ] ){
@@ -657,7 +656,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         success && success( campaigns );
                     } );
                 } else if( match && match[1] == 'services' ){
-                    // TODO ... for services api
+                    api.getServiceCampaigns( match[2], function( r ){
+                        var campaigns = __fixCampaigns( r.items || [] );
+                        success && success( campaigns );
+                    } );
                 } else {
                     api.request( path, function( r ){
                         var campaigns = __fixCampaigns( r.items || [] );
@@ -670,7 +672,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 // path = __fixRequestPath( path );
                 var campaigns = this.getCampaigns( path , function( campaigns ){
                     $.each( campaigns , function( i , campaign){
-                        success && success( __CACHE_CAMPAIGN__[ path ] );
+                        if( path.indexOf(campaign._contentPath + '/' + campaign.path ) >= 0 ){
+                            success && success( __CACHE_CAMPAIGN__[ path ] );
+                            return false;
+                        }
                     } );
                 } );
             },
@@ -697,32 +702,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         success && success( items );
                     });
                 }
-                // __fixCampaignItems
-                // if( __CACHE_AJAX__[ckey] ){
-                //     success && success( __CACHE_AJAX__[ckey] );
-                // } else {
-                //     return api.request( path , param , function( r ){
-                //         __CACHE_AJAX__[ckey] = r;
-                //         // fix items, add key and brand attribute to then
-                //         var items = r ? r.items : [];
-                //         $.each( items || [] , function( i , item ){
-                //             // save path
-                //             item.brand_path = path;
-                //             // save cache key
-                //             var ckey = 'item-' + ( ++index );
-                //             item.key = ckey;
-                //             __CACHE_ITEM__[ ckey ] = item;
-
-                //         } );
-
-                //         success && success( r );
-                //     } );    
-                // }
-
-
-                // api.request( path, function( r ){
-                //     success && success( r.items || [] );
-                // } );
             },
 
             // 获取每一个活动的图片的链接
@@ -742,63 +721,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } );
             },
 
-
-            // getBrands: function( path , success ){
-            //     if( __CACHE_AJAX__[ path ] ){
-            //         success && success( __CACHE_AJAX__[ path ] );
-            //     } else {
-            //         return api.request( path , function( r ){
-            //             __CACHE_AJAX__[ path ] = r;
-
-            //             $.each( r.items ,  function( i , it ){
-            //                 __CACHE_BRAND__[ path + '/' + it.path ] = it;
-            //             });
-            //             success && success( r );
-            //         } );
-            //     }
-            // },
-            // getBrand: function( path , success ){
-            //     if( __CACHE_BRAND__[ path ] )
-            //         success && success( __CACHE_BRAND__[ path ] );
-            //     else {
-            //         var paths = path.split('/');
-            //         this.getBrands( [paths[0],paths[1]].join('/') , function( r ){
-            //             success && success( __CACHE_BRAND__[ path ] );
-            //         } );
-            //     }
-            // },
-            // path ==> //  {category|brand|service}/{cat_path}
-            // getItems: function( path , param , success ){
-            //     // var paths = path.split('/');
-            //     var ckey = path;
-            //     if( $.isPlainObject(param) ){
-            //         ckey = path + LP.json2query( param );
-            //     }
-            //     if( $.isFunction( param ) ){
-            //         success = param;
-            //         param = '';
-            //     }
-            //     if( __CACHE_AJAX__[ckey] ){
-            //         success && success( __CACHE_AJAX__[ckey] );
-            //     } else {
-            //         return api.request( path , param , function( r ){
-            //             __CACHE_AJAX__[ckey] = r;
-            //             // fix items, add key and brand attribute to then
-            //             var items = r ? r.items : [];
-            //             $.each( items || [] , function( i , item ){
-            //                 // save path
-            //                 item.brand_path = path;
-            //                 // save cache key
-            //                 var ckey = 'item-' + ( ++index );
-            //                 item.key = ckey;
-            //                 __CACHE_ITEM__[ ckey ] = item;
-
-            //             } );
-
-            //             success && success( r );
-            //         } );    
-            //     }
-            // },
             // get item from it's key
             get: function( key ){
                 return __CACHE_ITEM__[ key ];
@@ -816,41 +738,44 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 try{video && video.dispose();}catch(e){}
                 $(this).removeData('video-object').find('.video-wrap').remove();
             });
+
+        // hide videoProgress
+        videoProgressHide();
     }
 
 
-    function textEffect( $dom ){
-        var width = $dom.width();
-        var $wrap = $('<div><div></div></div>').find('div')
-            .html( $dom.html() )
-            .css('marginLeft' , -width / 2)
-            .end()
-            .appendTo( $dom );
-        $wrap.css({
-            position: 'absolute',
-            top: 0,
-            left: '50%',
-            width: 0,
-            color: '#000',
-            overflow: 'hidden',
-            whiteSpace: 'nowrap'
-        })
-        .delay( 300 )
-        .animate({
-            width: width,
-            marginLeft: - width / 2
-        } , 300)
-        .find('div')
-        .delay( 300 )
-        .animate({
-            marginLeft: 0
-        } , 300)
-        .promise()
-        .then(function(){
-            //$dom.addClass('active');
-            //$wrap.remove();
-        });
-    }
+    // function textEffect( $dom ){
+    //     var width = $dom.width();
+    //     var $wrap = $('<div><div></div></div>').find('div')
+    //         .html( $dom.html() )
+    //         .css('marginLeft' , -width / 2)
+    //         .end()
+    //         .appendTo( $dom );
+    //     $wrap.css({
+    //         position: 'absolute',
+    //         top: 0,
+    //         left: '50%',
+    //         width: 0,
+    //         color: '#000',
+    //         overflow: 'hidden',
+    //         whiteSpace: 'nowrap'
+    //     })
+    //     .delay( 300 )
+    //     .animate({
+    //         width: width,
+    //         marginLeft: - width / 2
+    //     } , 300)
+    //     .find('div')
+    //     .delay( 300 )
+    //     .animate({
+    //         marginLeft: 0
+    //     } , 300)
+    //     .promise()
+    //     .then(function(){
+    //         //$dom.addClass('active');
+    //         //$wrap.remove();
+    //     });
+    // }
 
     function initSelect( $select ){
         $select.each(function(){
@@ -892,153 +817,156 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     function intMouseMoveEffect( $dom , staticFn , moveFn , time ){
         var timer = null;
+        var showTimer = null;
         var moving = true;
         $dom.mousemove(function( ev ){
             clearTimeout( timer );
             timer = setTimeout(function(){
                 moving = false;
                 staticFn( ev );
-            } , time || 1000 );
-            if( !moving ){
+            } , time || 2000 );
+
+            clearTimeout( showTimer );
+            showTimer = setTimeout(function(){
                 moveFn( ev );
-            }
+            }, 200);
             moving = true;
         });
     }
 
-    function unInitImageMouseMoveEffect( $dom ){
-        $dom.unbind('.image-effect');
-        $dom.find('.clone-img').fadeOut( 400 , function(){
-            $(this).remove();
-        } );
-    }
+    // function unInitImageMouseMoveEffect( $dom ){
+    //     $dom.unbind('.image-effect');
+    //     $dom.find('.clone-img').fadeOut( 400 , function(){
+    //         $(this).remove();
+    //     } );
+    // }
 
-    function initImageMouseMoveEffect( $dom , onZoom ){
-        // if( $dom.data('image-init') ) return;
-        $dom.unbind('.image-effect');
+    // function initImageMouseMoveEffect( $dom , onZoom ){
+    //     // if( $dom.data('image-init') ) return;
+    //     $dom.unbind('.image-effect');
 
-        var $img = $dom.find('img');
-        var imgWidth = $img.width();
-        var imgHeight = $img.height();
-        var fixWidth = imgWidth * 0.1;
-        var fixHeight = imgHeight * 0.1;
-        var $cloneImg =  null ;
+    //     var $img = $dom.find('img');
+    //     var imgWidth = $img.width();
+    //     var imgHeight = $img.height();
+    //     var fixWidth = imgWidth * 0.1;
+    //     var fixHeight = imgHeight * 0.1;
+    //     var $cloneImg =  null ;
 
-        var off = null;
-        var domWidth = null;
-        var domHeight = null;
+    //     var off = null;
+    //     var domWidth = null;
+    //     var domHeight = null;
 
-        var init = false;
-        var top = 0;
-        var left = 0;
+    //     var init = false;
+    //     var top = 0;
+    //     var left = 0;
 
-        var initFn = function(){
-            $img = $dom.find('img');
-            imgWidth = $img.width();
-            imgHeight = $img.height();
-            fixWidth = imgWidth * 0.05;
-            fixHeight = imgHeight * 0.05;
-            $cloneImg =  null ;
+    //     var initFn = function(){
+    //         $img = $dom.find('img');
+    //         imgWidth = $img.width();
+    //         imgHeight = $img.height();
+    //         fixWidth = imgWidth * 0.05;
+    //         fixHeight = imgHeight * 0.05;
+    //         $cloneImg =  null ;
 
-            off = null;
-            domWidth = null;
-            domHeight = null;
-            init = false;
+    //         off = null;
+    //         domWidth = null;
+    //         domHeight = null;
+    //         init = false;
 
-        }
+    //     }
 
 
-        var interval;
-        var runAnimate = function( $img ){
-            clearInterval( interval ) ;
+    //     var interval;
+    //     var runAnimate = function( $img ){
+    //         clearInterval( interval ) ;
 
-            var duration = 1000;
-            var start = new Date();
-            var ltop = parseInt( $img.css('top') ) || 0;
-            var lleft = parseInt( $img.css('left') ) || 0;
-            interval = setInterval(function(){
-                // t: current time, b: begInnIng value, c: change In value, d: duration
-                //x, t, b, c, d
-                var dur = ( new Date() - start ) / duration;
-                var per =  dur > 1 ? 1 : $.easing.easeOutQuart( 0 , dur , 0 , 1 , 1 );
+    //         var duration = 1000;
+    //         var start = new Date();
+    //         var ltop = parseInt( $img.css('top') ) || 0;
+    //         var lleft = parseInt( $img.css('left') ) || 0;
+    //         interval = setInterval(function(){
+    //             // t: current time, b: begInnIng value, c: change In value, d: duration
+    //             //x, t, b, c, d
+    //             var dur = ( new Date() - start ) / duration;
+    //             var per =  dur > 1 ? 1 : $.easing.easeOutQuart( 0 , dur , 0 , 1 , 1 );
 
-                $img.css({
-                    top: ltop + (top - ltop) * per,
-                    left: lleft + (left - lleft) * per
-                });
+    //             $img.css({
+    //                 top: ltop + (top - ltop) * per,
+    //                 left: lleft + (left - lleft) * per
+    //             });
 
-                if( per == 1 ){
-                    clearInterval( interval )
-                }
-            } , 1000 / 60 );
-        }
+    //             if( per == 1 ){
+    //                 clearInterval( interval )
+    //             }
+    //         } , 1000 / 60 );
+    //     }
 
-        // var animate = null;
-        $dom.on('mouseenter.image-effect' , function(){
-            onZoom && onZoom();
+    //     // var animate = null;
+    //     $dom.on('mouseenter.image-effect' , function(){
+    //         onZoom && onZoom();
 
-            var $cImgs = $(this).find('.clone-img');
+    //         var $cImgs = $(this).find('.clone-img');
 
-            initFn();
+    //         initFn();
 
-            off = $dom.offset();
-            domWidth = $dom.width();
-            domHeight = $dom.height();
+    //         off = $dom.offset();
+    //         domWidth = $dom.width();
+    //         domHeight = $dom.height();
 
-            init = false;
-            $cloneImg = $cImgs.length ? $cImgs : $img.clone().css({
-                position: 'absolute',
-                top: 0,
-                left: 0
-            })
-            .addClass('clone-img')
-            .appendTo( $dom );
+    //         init = false;
+    //         $cloneImg = $cImgs.length ? $cImgs : $img.clone().css({
+    //             position: 'absolute',
+    //             top: 0,
+    //             left: 0
+    //         })
+    //         .addClass('clone-img')
+    //         .appendTo( $dom );
 
-            $cloneImg.stop().css({
-                opacity: 1,
-                display: 'block'
-            }).animate({
-                top: - fixHeight,
-                left: - fixWidth,
-                width: imgWidth + 2 * fixWidth,
-                height: imgHeight + 2 * fixHeight
+    //         $cloneImg.stop().css({
+    //             opacity: 1,
+    //             display: 'block'
+    //         }).animate({
+    //             top: - fixHeight,
+    //             left: - fixWidth,
+    //             width: imgWidth + 2 * fixWidth,
+    //             height: imgHeight + 2 * fixHeight
                 
-            } , 500 )
-            .promise()
-            .then(function(){
-                init = true;
-            });
-        }).on('mouseleave.image-effect' , function(){
-            clearInterval( interval );
-            if( !$cloneImg ) return;
+    //         } , 500 )
+    //         .promise()
+    //         .then(function(){
+    //             init = true;
+    //         });
+    //     }).on('mouseleave.image-effect' , function(){
+    //         clearInterval( interval );
+    //         if( !$cloneImg ) return;
 
-            $cloneImg.animate({
-                top: 0,
-                left: 0,
-                width: imgWidth,
-                height: imgHeight
-            } , 500 )
-            .promise()
-            .then(function(){
-                $cloneImg && $cloneImg.fadeOut(100 , function(){
-                    $cloneImg && $cloneImg.hide();
-                });
-            });
-        })
-        .on('mousemove.image-effect' , function( ev ){
-            if( !off ) return;
-            var px = ev.pageX - off.left;
-            var py = ev.pageY - off.top;
-            var lx , ly;
-            lx = ( domWidth / 2 - px );
-            ly = ( domHeight / 2 - py );
-            if( init ){
-                top =  - fixHeight + ly / (domHeight / 2) * fixHeight;
-                left = - fixWidth + lx / (domWidth / 2) * fixWidth;
-                runAnimate( $cloneImg );
-            }
-        });
-    }
+    //         $cloneImg.animate({
+    //             top: 0,
+    //             left: 0,
+    //             width: imgWidth,
+    //             height: imgHeight
+    //         } , 500 )
+    //         .promise()
+    //         .then(function(){
+    //             $cloneImg && $cloneImg.fadeOut(100 , function(){
+    //                 $cloneImg && $cloneImg.hide();
+    //             });
+    //         });
+    //     })
+    //     .on('mousemove.image-effect' , function( ev ){
+    //         if( !off ) return;
+    //         var px = ev.pageX - off.left;
+    //         var py = ev.pageY - off.top;
+    //         var lx , ly;
+    //         lx = ( domWidth / 2 - px );
+    //         ly = ( domHeight / 2 - py );
+    //         if( init ){
+    //             top =  - fixHeight + ly / (domHeight / 2) * fixHeight;
+    //             left = - fixWidth + lx / (domWidth / 2) * fixWidth;
+    //             runAnimate( $cloneImg );
+    //         }
+    //     });
+    // }
 
 
     // show big brand item
@@ -1048,10 +976,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
         loadingMgr.show('black');
         // prev dealing
-        disposeVideo();
-        $('.sec_brands').scrollTop(0);
+        $('.sec_brands').scrollTop(0).fadeIn();
         $('.brand_movie').data( 'index' , itemIndex ).fadeIn();
 
+        // render title
+        campaignManager.renderTitle( path );
 
         var afterItemsRender = function( item ){
 
@@ -1093,29 +1022,23 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     if( $dom.data('image') ){
                         // initImageMouseMoveEffect( $dom );
 
-                        $dom.hover(function(){
-                            // if current dom mask is visible, do not show the iamge-zoom btn
-                            if( $dom.find('.brands-mask').is(':visible') ) return;
+                        $dom.hover(null , function(){
+                            $dom.find('.image-zoom').fadeOut();
+                        } )
+                        .mousemove(function(){
+                            if( $dom.find('.brands-mask,.image-zoom').is(':visible') ) return;
                             if( !$dom.find('.image-zoom').length ){
                                 $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
                                         <div class="transition">ZOOM<br><br>ZOOM</div>\
                                     </a>')
                                     .appendTo( $dom );
                             }
-                            $dom.find('.image-zoom').hide().fadeIn();
-                        } , function(){
-                            $dom.find('.image-zoom').fadeOut();
-                        } );
+                            $dom.find('.image-zoom').fadeIn();
+                        });
                     }
                 });
             });
             
-            
-
-            // fix initImageMouseMoveEffect
-            // if( $bigItem.data('image') ){
-            //     initImageMouseMoveEffect( $bigItem );
-            // }
             
             var totalWidth = 0;
             var preWidth = 0;
@@ -1135,7 +1058,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $movieWrap.find('ul')
                 .css({
                     width: totalWidth, //winWidth * $movieWrap.find('.brands-item').length,
-                    marginLeft: Math.max( Math.min( 0 , winWidth / 2 - preWidth ), winWidth - totalWidth )
+                    marginLeft: Math.min( 0 , winWidth / 2 - preWidth )
                 });
 
 
@@ -1177,7 +1100,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $(aHtml.join(''))
                 .insertBefore( $('.brand_movie .brand_big_text') );
             afterItemsRender( item );
-        } )
+        }, 'afterItemsRender' );
 
         campaignManager.getCampaignItems( path , function( items ){
             var item = items[ itemIndex ];
@@ -1204,8 +1127,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
             aHtml.push('</ul>');
 
+            $('.brands-items').remove();
             loadImages( pics , null , function(){
-                loadingMgr.success( aHtml, item );
+                loadingMgr.success( 'afterItemsRender', aHtml, item );
             } );
         } );
 
@@ -1284,70 +1208,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $('.gates-inner-c ul').html( html.join('') );
 
             $(document.body).css('overflow' , 'hidden');
-        });
+        } , 'show_cate_list');
         // get 'type' catelist
         api.request( type , function( r ){
-            loadingMgr.success( r );
+            loadingMgr.success( 'show_cate_list', r );
         });
 
     }
 
-
-    // function showCategory(){
-    //  if( $('.sec_gates').is(':visible') ){
-    //      hideCategory();
-    //      return; 
-    //  }
-
-    //  if( $('.sec_brands').is(':visible') ){
-    //      hideBrands();
-    //  }
-
-    //  $('.sec_brands').hide();
-    //  var winHeight = $(window).height();
-    //  $('.sec_gates').fadeIn()
-    //      .promise()
-    //      .then(function(){
-    //          $('.gates-inner')
-    //              .animate({
-    //                  marginTop: 0
-    //              } , 1000 , 'easeOutBack' );
-    //      });
-
-        
-
-    //  // render the letters
-    //  var letters = [];
-    //  $('.gates-inner-l a').each(function(){
-    //      var l = $.trim($(this).text())[0].toUpperCase();
-    //      if( $.inArray( l , letters ) < 0 ){
-    //          letters.push( l );
-    //      }
-    //  });
-
-    //  letters.sort();
-    //  var html = [];
-    //  $.each( letters , function( i , l ){
-    //      html.push('<li> <a data-a="filter-letter" href="#">' + l + '</a> </li>');
-    //  } );
-    //  $('.gates-inner-c ul').html( html.join('') );
-
-    //  $(document.body).css('overflow' , 'hidden');
-    // }
-
-    function hideCategory( cb ){
-
-        $('.gates-inner')
-            .animate({
-                top: '-100%'
-            } , 1000 , 'easeInBack' )
-            .promise()
-            .then(function(){
-                $('.sec_gates').fadeOut();
-                cb && cb();
-                $(document.body).css('overflow' , 'auto');
-            });
-    }
 
     function loadImages( pics , step , cb ){
         if( !pics.length ){
@@ -1446,7 +1314,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         } , 200 );
 
 
-        var itemWidth = 0;
         var nums = $('.brands-con>li .brands-mask').length;
         var index = 0;
         var loading_pics = {};
@@ -1494,7 +1361,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } );
                 var $li = $(this);
                 $li.find('ul').html( tHtml.join('') )
-                    .width( pics.length * itemWidth )
+                    .width( pics.length * CAMPAIGN_ACT_WIDTH )
                     .find('.brands-item')
                     .css('width' , 0);
 
@@ -1534,7 +1401,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
         }
 
-        var itemWidth = 175;
         // var campaignPicLoading = function( $li , i ){
         //     var $loadingBar = $li.find('.items-loading');
         //     $loadingBar.stop(true).animate({
@@ -1555,13 +1421,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     var $this = $(this);
                     $this.delay( i * 150 )
                         .animate({
-                            width: itemWidth
+                            width: CAMPAIGN_ACT_WIDTH
                         } , 100 , '' , function(){
                             // fix images width and height
                             fixImageToWrap( $this , $this.find('img') );
-
-                            // if( $this.data('image') )
-                            //     initImageMouseMoveEffect( $this );
                         });
 
                     $this.find('.brands-mask')
@@ -1625,54 +1488,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $(document.body).css('overflow' , 'hidden');
 
     }
-
-    function hideBrands( ){
-        var category = $('.sec_brands').data('path').split('/')[0];
-
-        $('.brand_item_tit').css({
-            'margin-top': -88,
-            'margin-bottom': 88
-        }).hide();
-
-        $('.header-inner').height(66);
-
-        disposeVideo();
-
-        $('.brand_movie')
-            .find('ul')
-            .remove()
-            .end()
-            .hide();
-
-
-        $('.brands_tit').animate({
-                marginTop: -176,
-                marginBottom: 176
-            } , 400 );
-
-        var height = $('.brands-con-li .brands-item').height();
-        var sTop = $('.sec_brands').scrollTop();
-        var aniIndex = 0; 
-        var aniLength = ~~( $(window).height() / height ) + 2;
-
-        var $lis = $('.brands-con>li').each(function( i ){
-            var aindex = aniIndex;
-            if( i >= sTop / height - 2 && aniIndex <= aniLength ){
-                $(this).delay( 400 + 200 * aniIndex++ )
-                    .animate({
-                        marginLeft: -2000,
-                        opacity: 0
-                    } , 800 , '' , function(){
-                        if( aindex == aniLength || i == $lis.length - 1 ){
-                            $('.brands_tit').hide();
-                            $('.sec_brands').hide();
-                            show_cate_list( category );
-                        }
-                    });
-            }
-        });
-    }
-
+    
     function fixImageToWrap( $wrap , $img ){
         if( !$img.width() ){
             $img.load(function(){
@@ -1801,74 +1617,80 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     var loadingMgr = (function(){
         var $loading = $('.loading-wrap');
-        if( !$loading.length )
-            $loading = $('<div class="loading-wrap"><div class="loading"></div></div>')
-                .appendTo(document.body);
-        var positions = [-44,-142,-240,-338,-436,-534];
-        var interval = null;
 
-        var colors = {
-            'black': 'rgba(0,0,0,.85)'
-        }
-
+        var mutiSuccess = {};
         var success = null;
-        
+        var pro = null;
         return {
             showLoading: function( $wrap ){
-                $('<div class="loading-wrap" style="position: absolute;"><div class="loading" style="position:absolute;"></div></div>').appendTo( $wrap )
+
+                var $loading = $('<div class="loading-wrap" style="position: absolute;"><div class="loading" style="position:absolute;"></div></div>').appendTo( $wrap )
                     .fadeIn();
-                var $loading = $wrap.find('.loading');
-                clearInterval( $wrap.data('interval') );
-                var index = 0;
-                $wrap.data('interval' , setInterval(function(){
-                    $loading.css('background-position' , 'right ' +  positions[ ( index++ % positions.length ) ] + 'px' );
-                } , 1000 / 6 ) );
+                pro && pro.end();
+                pro = process( $loading.find('div') );
+
+
+                // var $loading = $wrap.find('.loading');
+                // clearInterval( $wrap.data('interval') );
+                // var index = 0;
+                // $wrap.data('interval' , setInterval(function(){
+                //     $loading.css('background-position' , 'right ' +  positions[ ( index++ % positions.length ) ] + 'px' );
+                // } , 1000 / 6 ) );
             },
             hideLoading: function( $wrap ){
-                clearInterval( $wrap.data('interval') );
+                pro.end();
                 $wrap.find('.loading-wrap').fadeOut();
             },
             show: function( bgcolor ){
-                var index = 0;
-                var processStep = 5;
-                var processWidth = 0;
-                var processTarget = 0;
-                bgcolor = colors[bgcolor] || bgcolor || 'white';
-                var $inner = $loading.fadeIn().find('.loading');
-                $loading.css({
-                    'background-color':  bgcolor
-                });
-                clearInterval( interval );
+                pro && pro.end();
+                pro = process( $loading.show().find('div') );
+                pro.start();
+                // var index = 0;
+                // var processStep = 5;
+                // var processWidth = 0;
+                // var processTarget = 0;
+                // bgcolor = colors[bgcolor] || bgcolor || 'white';
+                // var $inner = $loading.fadeIn().find('.loading');
+                // $loading.css({
+                //     'background-color':  bgcolor
+                // });
+                // clearInterval( interval );
 
-                var $process = $('.process').show();
-                interval = setInterval(function(){
-                    $inner.css('background-position' , 'right ' +  positions[ ( index++ % positions.length ) ] + 'px' );
-                    // processStep -= 1 / 60;
-                    // processTarget += Math.max( processStep , 0 );
+                // var $process = $('.process').show();
+                // interval = setInterval(function(){
+                //     $inner.css('background-position' , 'right ' +  positions[ ( index++ % positions.length ) ] + 'px' );
+                //     // processStep -= 1 / 60;
+                //     // processTarget += Math.max( processStep , 0 );
 
-                    // processWidth = Math.min( processWidth + 0.5 , processTarget );
-                    // $process.css('width' , processWidth + '%');
+                //     // processWidth = Math.min( processWidth + 0.5 , processTarget );
+                //     // $process.css('width' , processWidth + '%');
 
-                } , 1000 / 6 );
+                // } , 1000 / 6 );
             },
-            setSuccess: function( fn ){
+            setSuccess: function( fn, key ){
+                console.log( 'setSuccess' );
+                mutiSuccess[key] = fn;
                 success = fn;
             },
             isLoading: function(){
                 return !!$('.process:visible').length;
             },
             success: function( ){
-                success && success.apply('', arguments);
+                var args = Array.prototype.slice.call( arguments );
+                var key = args.shift();
+                console.log( 'success' );
+                mutiSuccess[key] && mutiSuccess[key].apply('', args);
                 loadingMgr.hide();
                 success = null;
             },
             abort: function(){
+                mutiSuccess = {};
+                console.log( 'abort' );
                 loadingMgr.hide();
                 success = null;
             },
             hide: function(){
-                $('.process').hide();
-                clearInterval( interval );
+                pro.end();
                 $loading.fadeOut();
             }
         }
@@ -1969,7 +1791,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     $('.gates-inner').click(function( ev ){
         var target = ev.target;
         if( target.tagName == 'LI' ){
-            hideCategory();
+            urlManager.back();
+            // hideCategory();
         }
     });
 
@@ -1995,41 +1818,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 .next()
                 .css('margin-top' , 0 );
 
-                // if( $('.header-inner').attr('disabled') || $('.header-inner').height() == 0 ) return false;
-                // $('.header-inner').attr('disabled' , 'disabled');
-                // hide the header
-                // $('.header-inner')
-                //     .stop( true )
-                //     .animate({
-                //         height: 0
-                //     } , 500 );
-
-
-                // $('.sec_brands')
-                //     .css({
-                //         paddingTop: $('.sec_brands_tit').height()
-                //     })
-                    // .stop( true ).animate({
-                    //     top: 0
-                    // } , 500)
-                    // .promise()
-                    // .then(function(){
-                    //     $('.header-inner').removeAttr('disabled');
-                    // });
-
-                // $('.sec_brands_tit').css({
-                //     position: 'fixed',
-                //     width: '100%',
-                //     top: st
-                // })
             } else {
                 $('.sec_brands').css({
                     top: 0
                 })
-                // .find('.brands_tit')
-                // .css('margin-bottom' , headerHeight);
-                // .find('.sec_brands_tit')
-                // .css('top' , 0)
                 .find('.sec_brands_tit')
                 .css({
                     'margin-top': 0,
@@ -2039,54 +1831,23 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 })
                 .next()
                 .css('margin-top' , $('.sec_brands_tit').height() + headerHeight );
-                // if( $('.header-inner').attr('disabled') ) return false;
-                // $('.header-inner').attr('disabled' , 'disabled');
-
-
-                // show the header
-                // $('.header-inner')
-                //  .stop( true )
-                //  .animate({
-                //     height: 66
-                //  } , 500 );
-
-                // $('.brands_tit').removeClass('fixed');
-
-                // $('.sec_brands')
-                //     .css({
-                //         paddingTop: 0
-                //     })
-                //     .stop( true )
-                //     .animate({
-                //         top: 66
-                //     } , 500)
-                //     .promise()
-                //     .then(function(){
-                //         $('.header-inner').removeAttr('disabled');
-                //     });
             }
         //} , 100 );
     });
 
-    var brandsInterval = null;
     $('.brands-con').delegate('.brands-con-li' , 'mouseenter' , function( ev ){
 
-        var $dom = $(ev.target).closest('li');
-        var index = $dom.index();
-        var all = $dom.parent().children().length;
-        var times = Math.max( all - index  , index + 1 );
+        // var $dom = $(ev.target).closest('li');
+        // var index = $dom.index();
+        // var all = $dom.parent().children().length;
+        // var times = Math.max( all - index  , index + 1 );
 
-
-        var start = 0;
-        var $prevAll = $dom.prevAll();
-        var $nextAll = $dom.nextAll();
         $(this).find('.brands-mask').stop( true , true ).animate({
             opacity: 0
         } , 600 );
 
     })
     .delegate('.brands-con-li' , 'mouseleave' , function(){
-        clearInterval( brandsInterval );
         $(this).find('.brands-mask').stop( true , true ).animate({
             opacity: 0.7
         } , 600);
@@ -2149,71 +1910,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         });
     });
 
-    // var hashManager = (function(){
-    //     var prefix = '##!';
-
-    //     // ##!categories/travel_transport/klm_world_cup_hijack_1/0
-    //     var deal = function( path ){
-    //          path = path.replace( prefix , '' );
-    //          var paths = path.split('/');
-
-    //          return {
-    //             cate_type   : paths[0],
-    //             cate        : paths[1],
-    //             events      : paths[2],
-    //             index       : paths[3],
-    //             type        : paths[4]
-    //          }
-    //     }
-
-    //     var current_status = null;
-
-    //     var show_anis = {
-    //         'asc_cate_type' : function(){
-    //             if( $('.home-slider').length ){
-    //                 var winTop = $(window).scrollTop();
-    //                 var sliderHeight = $('.home-slider').height();
-    //                 if( winTop < sliderHeight ){
-    //                     $('html,body').animate({
-    //                         scrollTop: sliderHeight
-    //                     } , 500 )
-    //                     .promise()
-    //                     .then(function(){
-    //                         $(document.body).css('overflow' , 'hidden');
-    //                         show_cate_list( current_status.cate_type );
-    //                     });
-    //                 } else {
-    //                     show_cate_list( current_status.cate_type );
-    //                 }
-    //             } else {
-    //                 show_cate_list( current_status.cate_type );
-    //             }
-
-    //             // hide slider video
-    //             disposeVideo();
-    //         },
-    //         'cate' : function(){
-
-    //         },
-    //         'events': function(){
-
-    //         },
-    //         'index': function(){
-
-    //         },
-    //         'type': function(){
-
-    //         }
-    //     }
-        
-
-    //     return {
-    //         go: function( path ){
-    //             current_status = deal( path );
-
-    //         }
-    //     }
-    // })();
 
     var banphoConTimer ;
     var isInBanphoCon = false;
@@ -2222,7 +1918,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     var isHeadHide = false;
 
     var pageManager = (function(){
-        var initSlider = function( cb ){
+        var initSlider = function( cb , hideHeadBar ){
             var $slider = $('.home-slider');
             // init home slider
             // ============================
@@ -2270,7 +1966,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         
                     })
                     .attr('src' , $sliderInner.find('.slider-item>img').eq(0).attr('src'));
-
             })
             .trigger('resize');
 
@@ -2283,7 +1978,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             
 
             intMouseMoveEffect( $slider , function( ev ){
-
                 // if( $(ev.target).closest('.banpho-con').length ) return;
                 // resize the videos
 
@@ -2292,29 +1986,15 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                 // if video is not playing
                 var video = $item.data('video-object');
-                if( !video || video.paused() ) return;
+                if( !video || video.paused() ){
+                    $banphoCon.stop(true,true).fadeIn();
+                    return;
+                }
 
-                $banphoCon.fadeOut();
-
-                $inner.animate({
-                    height: $(window).height()
-                } , 500)
-                .promise()
-                .then(function(){
-                    clearInterval( interval );
-                });
-
-                var interval = setInterval(function(){
-                    $item.trigger('resize');
-                } , 1000 / 30 );
+                $banphoCon.stop(true,true).fadeOut();
 
             } , function( ev ){
-
-                $('.slider-block-inner').animate({
-                    height: $(window).height() - $('.header').height()
-                } , 500);
-
-                $banphoCon.fadeIn();
+                $banphoCon.stop(true,true).fadeIn();
             } );
 
             cb && cb( 0 );
@@ -2339,7 +2019,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     var winHeight = $(window).height();
 
                     // fix home slider
-                    var mtop = Math.min( stTop , ( winHeight - headerHeight ) / 2 );
+                    var mtop = Math.max( 0, Math.min( stTop , ( winHeight - headerHeight ) / 2 ) );
                     $slider.css({marginTop: - mtop , marginBottom: - mtop});
 
                     // header fixed effect
@@ -2350,7 +2030,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     }
 
                     // homeCampaign animate
-
                     if($('.cam_item').eq(0).offset().top < stTop + $(window).height() ){
                         $homeCampaign.data('animate' , 1);
                         $homeCampaign.find('.cam_item')
@@ -2368,8 +2047,17 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
                     // fix $homeBio background image
-                    var bgTop = $homeBio.offset().top - headerHeight - stTop;
-                    $homeBioBg.css('top' , - bgTop / 2 );
+                    var all = $homeBioBg.height() -  $homeBio.height();
+                    var bgTop = stTop + winHeight - $homeBio.offset().top; // - headerHeight - stTop;
+                    var per = bgTop / ( winHeight - headerHeight + $homeBio.height() );
+                    
+                    var trans = 'translate(0px,' + ( - per * all ) + 'px)';
+                    $homeBioBg.css({
+                        'transform': trans,
+                        'mozTransform': trans,
+                        'msTransform': trans,
+                        'webkitTransform': trans
+                    });
 
                 });
 
@@ -2395,8 +2083,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 }
                                 break;
                             case '2':
-                                $('.home_bioleft').html( item.content_1 );
-                                $('.home_bioright').html( item.content_2 );
+                                $('.home_bioleft').html( item.text_1 );
+                                $('.home_bioright').html( item.text_2 );
                                 break;
                             case '3':
                                 // TODO render 
@@ -2422,9 +2110,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
                 // init campaigns mouse move effect
-                $('.cam_item div').each(function(){
-                    initImageMouseMoveEffect( $(this) );  
-                });
+                // $('.cam_item div').each(function(){
+                //     initImageMouseMoveEffect( $(this) );  
+                // });
             },
             'awards-page': function( cb ){
 
@@ -2569,8 +2257,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var aHtml = [];
                 var bHtml = [];
                 api.request('about/contact/peoples' , function( r ){
+                    var items = [];
                     $.each( r.items , function( i , item ){
-                        var c = i == 0 ? 'contact_maill' : i == r.items.length - 1 ? 'contact_mailr' : 'contact_mailc';
+                        if( item.id == 4 || item.id == 5 )
+                            return;
+                        items.push( item );
+                    });
+                    $.each( items , function( i , item ){
+                        var c = i == 0 ? 'contact_maill' : i == items.length - 1 ? 'contact_mailr' : 'contact_mailc';
                         aHtml.push('<td class="' + c + '">' + item.title + '</td>');
                         bHtml.push('<td class="' + c + '">' + item.content + '</td>');
                     });
@@ -2717,6 +2411,41 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     $('#download').attr('href' , campaignManager.getPath( r.items[0] , 'file' ) );
                     cb && cb();
                 });
+
+                !!(function(){
+                    var aHtml = [];
+                    var tpl = '<div class="slider-item" data-movie="#[movie]"><img src="#[image]"></div>';
+
+                    var images = [];
+                    api.request('about/f_f_personal_showreel' , function( r ){
+                        $.each( r.items , function( i , item ){
+                            aHtml.push( LP.format( tpl , {
+                                image: campaignManager.getPath( item , 'preview' ),
+                                movie: campaignManager.getPath( item , 'video_small' ).replace(/\.\w+$/ , '')
+                            } ) );
+
+                            images.push( campaignManager.getPath( item , 'preview' ) );
+                        } );
+
+                        $('#slider-block-inner').html( aHtml.join('') ).children()
+                                .eq(0).css('opacity' , 1).fadeIn();
+
+
+                        initSlider( function( index ){
+                            var item = r.items[ index ];
+                            $('.showreel-tit').html( LP.format( '<h3>#[brand]</h3><p>#[campaign]</p><p>#[year]</p></div>' , {
+                                brand: item.brand,
+                                campaign: item.campaign,
+                                year: item.date_and_price.split('-')[0]
+                            } ) );
+                        } );
+
+                        loadImages( images.slice( 0 , 3 ) , function(){
+                            cb && cb();
+                        });
+                    });
+                })();
+                
             },
             'ffshowreel-page': function( cb ){
                 var aHtml = [];
@@ -2763,10 +2492,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
         var effects = {
             'fadeup': function( $dom , index , cb ){
-                $dom.delay( 150 * index )
+                var marginTop = parseInt( $dom.css('marginTop') ) || 0;
+
+                $dom
+                    .css('marginTop', marginTop + 100)
+                    .delay( 150 * index )
                     .animate({
                         opacity: 1,
-                        marginTop: 0
+                        marginTop: marginTop
                     } , 500 )
                     .promise()
                     .then(function(){
@@ -2876,6 +2609,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             }
         }
 
+        var isFirstLoading = true;
 
         return {
             go: function( url , type ){
@@ -2893,9 +2627,20 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     fn( function(){
                         $(window).trigger('scroll');
                         loadingMgr.success();
+                        if( isFirstLoading ){
+                            var path = location.hash.replace('##!', '');
+                            path && urlManager.go( path );
+                        }
+                        isFirstLoading = false;
                     });
                 } else {
                     loadingMgr.success();
+                    if( isFirstLoading ){
+                        var path = location.hash.replace('##!', '');
+                        path && urlManager.go( path );
+                    }
+                    isFirstLoading = false;
+
                 }
 
                 // fix common page init
@@ -3079,15 +2824,29 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $(document).ajaxError(function(){
             loadingMgr.success();
         });
+
+        History.Adapter.bind(window,'hashchange',function( ev ){
+            var oldURL = ev.oldURL;
+            var newURL = ev.newURL;
+            var oldArr = formatPath2Arr( ev.oldURL );
+            var newArr = formatPath2Arr( ev.newURL );
+            if( ( !newArr[4] && !oldArr[4] ) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) ){
+                return false;
+            }
+
+            urlManager.go( newURL.replace( /.*##!/,'' ), null, oldURL.replace( /.*##!/,'' ) );
+        });
+
         // Bind to StateChange Event
         History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
 
             var State = History.getState(); // Note: We are using History.getState() instead of event.state
             var prev = State.data.prev;
             var type = State.data.type;
-
+            console.log( State );
             // if only change hash
             if( State.url.indexOf('##') >= 0 ){
+
                 return false;
             }
             // show loading
@@ -3109,7 +2868,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     pageManager.destroy( );
                     pageManager.init( );
                 } , 500);
-            });
+            }, 'statechange');
             switch( type ){
      //         case 'press':
                     // $.get( location.href , '' , function( html ){
@@ -3134,7 +2893,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     // });
                     // break;
                 default: 
-                    $.get( location.href , '' , loadingMgr.success);
+                    $.get( location.href , '' , function(){
+                        loadingMgr.success('statechange');
+                    });
             }
         });
     });
@@ -3160,73 +2921,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 }
 
                 urlManager.back();
-
-
-                //  if( $('.image-zoom-big').length ){
-                //     $('.image-zoom-big').fadeOut()
-                //         .promise()
-                //         .then(function(){
-                //             $('.image-zoom-big').remove();
-                //         });
-
-
-                //     return false;
-                // }
-
-                // if( $('.full_screen_video_wrap').length ){
-                //     LP.triggerAction('close_fullscreen_video');
-                //     return false;
-                // }
-
-                // // press popup page
-                // if( $('.shade').is(':visible') ){
-                //     LP.triggerAction('pop_close');
-                //     return false;
-                // }
-
-                // // brand_movie
-                // if( $('.brand_movie').is(':visible') ){
-                //     var index = $('.brand_movie').data('index');
-                //     if( $('.brand_movie').data('isFullScreen') ){
-                //         $('.brand_movie').find('.brands-item').eq(index).trigger('dblclick');
-                //     } else {
-                //         // $(window).unbind('resize.brand_movie');
-                //         // to brands list
-                //         $('.brand_item_tit').animate({
-                //             marginTop: -88,
-                //             marginBottom: 88
-                //         } , 400);
-
-
-                //         $('.brand_movie').fadeOut( 400 )
-                //             .promise()
-                //             .then(function(){
-                //                 $('.brand_item_tit').hide();
-                //                 // $('.brands-con .brands-item').width('auto');
-                //                 showCompains();
-
-                //             });
-
-
-                //     }
-                //     return false;
-                // }
-
-                // // for home-cam-item-big
-                // if( $('.home-cam-item-big').length ){
-                //     $('.home-cam-item-big').click();
-                //     return false;
-                // }
-
-                // if( $('.brands-con').is(":visible") ){
-                //     hideBrands();
-                //     return false;
-                // }
-
-                // if( $('.sec_gates').is(':visible') ){
-                //     hideCategory();
-                //     return false;
-                // }
 
                 break;
             case 37:
@@ -3254,86 +2948,22 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         }
     });
     
+    var CAMPAIGN_ACT_WIDTH = 322;
+    var window_resize_timer = null;
+    $(window).resize( function(){
+        clearTimeout( window_resize_timer );
+        window_resize_timer = setTimeout(function(){
+            CAMPAIGN_ACT_WIDTH = $(this).width() > 1200 ? 322 : 175;
+            $('.brands-items').each(function(){
+                $(this).css( 'width', $(this).children().length * CAMPAIGN_ACT_WIDTH );
+            });
 
-    //  else {
-    //     $(window).load(loadingMgr.hide);
-    // }
-
-
-    // big brand video double click event
-    // $('.brand_movie').on('dblclick' , '.brands-item' , function(){
-    //     // untrigger stroll event
-        
-
-    //     var isFullScreen = $('.brand_movie').data('isFullScreen');
-    //     isFullScreen = !isFullScreen;
-
-    //     $('.brand_movie').data('isFullScreen' , isFullScreen );
-
-    //     var winWidth = $(window).width();
-    //     var time = 600;
-    //     var $dom = $(this);
-
-    //     // stop the video
-    //     if( $dom.data('video-object') ){
-    //         $dom.data('video-object').pause();
-    //     }
-
-    //     var interval = setInterval(function(){
-    //         $dom.trigger('resize');
-
-    //         // fixImageToWrap( $dom , $dom.find('img') );
-    //         $dom.parent()
-    //             .children()
-    //             .each(function(){
-    //                 fixImageToWrap( $(this) , $(this).find('img') );
-    //             });
-    //     } , 1000 / 60 );
-
-
-    //     $(this).animate({
-    //         width: winWidth * ( isFullScreen ? 0.9 : 0.7 )
-    //     } , time );
-
-
-    //     $('.brand_movie')
-    //         .animate(  {
-    //             // height: isFullScreen ? $(window).height() - $('.header-inner').height() : 445,
-    //             top: isFullScreen ? 0 : 88
-    //         } , 600 )
-
-    //         .find('ul').animate({
-    //             height: isFullScreen ? $(window).height() - $('.header-inner').height() : 445,
-    //             marginLeft: - $(this).prevAll().length * winWidth * 0.7 + winWidth * ( isFullScreen ? 0.05 : 0.15 )
-    //         } , time )
-    //         .promise()
-    //         .then(function(){
-    //             if( $dom.data('video-object') && isFullScreen ){
-    //                 $dom.data('video-object').play();
-    //             }
-
-    //             clearInterval( interval );
-
-    //         });
-
-    //     // remove the clone image
-    //     $dom.parent().find('.clone-img').remove();
-
-    //     // $('.brand_big_next,.brand_big_prev').animate({
-    //     //     width: isFullScreen ? 0.05 * winWidth : 0.15 * winWidth
-    //     // } , 600 );
-
-    // } );
-
-    // $('.brand_big_prev,.brand_big_next').hover(function(){
-    //     $(this).animate({
-    //         opacity: 0
-    //     } , 700 );
-    // } , function(){
-    //     $(this).animate({
-    //         opacity: 1
-    //     } , 700 );
-    // });
+            $('.brands-item[data-a="brands-item"]').css('width',CAMPAIGN_ACT_WIDTH ).each(function(){
+                fixImageToWrap( $(this) , $(this).find('img') );
+            });
+        }, 400);
+    } );
+    
 
     // page actions here
     // ============================================================================
@@ -3364,7 +2994,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
     LP.action('show-category' , function( data ){
-        urlManager.go( data.type );
+        urlManager.setFormatHash( data.type );
+        // urlManager.go( data.type );
         return false;
     });
 
@@ -3392,6 +3023,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $(this).hide();
         }
         $(this).siblings('.banpho-bt-r').show();
+        $(this).siblings('.banpho-bt-c').html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
 
         $('.banpho-i').html( index + '/' + len );
     });
@@ -3420,6 +3052,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $(this).hide();
         }
         $(this).siblings('.banpho-bt-l').show();
+        $(this).siblings('.banpho-bt-c').html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
 
         $('.banpho-i').html( ( index + 2 ) + '/' + len );
     });
@@ -3437,7 +3070,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 // ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
                 autoplay: true
             } , function(){
-                console.log( this );
                 this.on('play' , function(){
                     $btn
                         .fadeOut()
@@ -3451,11 +3083,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         .find('.banpho-bt-c')
                         .html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
                 });
-                
-                // isCurrentPlaying = true;
-                // setTimeout(function(){
-                //     isCurrentPlaying = false;
-                // } , 2000);
+
+                this.on('progress', function(){
+                    videoProgress( this.currentTime() / this.duration() * 100 );
+                });
             });
         } else if( videoObject.paused() ){
             videoObject.play();
@@ -3583,7 +3214,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         } , 600 , 'easeLightOutBack');
 
                     // init mouse move effect 
-                    initImageMouseMoveEffect( $(this).find('div') );
+                    // initImageMouseMoveEffect( $(this).find('div') );
                 });
 
             $homeCamcon.animate({
@@ -3599,67 +3230,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     });
 
     LP.action('show-compagins' , function( data ){
-        urlManager.go( data.path );
-
-        // // change tit
-        // campaignManager.renderTitle( data.path );
-
-        // $('.sec_brands').data('path' , data.path);
-        // // save path info
-        // // $('.sec_brands').data('path' , 'categories/' +  data.path );
-
-        // // show loading 
-        // loadingMgr.show('black');
-        // var renderComapigns = function( compaigns ){
-        //     var tpl = '<li class="brands-con-li" data-path="#[path]" data-id="#[id]" style="margin-left:-600px;">\
-        //         <dl class="cs-clear">\
-        //             <dt>\
-        //                 <div class="brands-mask"></div>\
-        //                 <p class="brands-con-t">#[label]</p>\
-        //                 <p class="brands-con-time">#[year]</p>\
-        //                 <div class="cs-clear brands-con-meta">\
-        //                     <span class="fr">##[id]</span>\
-        //                     <span>#[cpgn_type]</span>\
-        //                 </div>\
-        //                 <div class="items-loading"></div>\
-        //             </dt>\
-        //             <dd><ul class="brands-items cs-clear"></ul></dd>\
-        //         </dl>\
-        //     </li>';
-        //     var aHtml = [];
-
-        //     var paths = [];
-        //     $.each( compaigns || [] , function( index , item ){
-        //         aHtml.push( LP.format( tpl , {
-        //             agency: item.agency,
-        //             label : item.label,
-        //             year: item.created.replace(/(\d+)-.*/ , '$1'),
-        //             id: item.id,
-        //             cpgn_type: item.cpgn_type,
-        //             path: item._contentPath.replace('pages_contents/','') + '/' + item.path
-        //         } ) );
-        //     } );
-
-        //     $('.brands-con').html( aHtml.join('') );
-        //     loadingMgr.hide();
-        //     showCompains();
-        // }
-
-
-        // // load data 
-        // campaignManager.getCampaigns( data.path , function( campaigns ){
-        //     renderComapigns( campaigns );
-        // } );
-        
-
-        // var winTop = $(window).scrollTop();
-        // var sliderHeight = $('.home-slider').height();
-        // if( $('.home-slider').length && winTop < sliderHeight ){
-        //     // scroll to $('.home-slider').height()
-        //     $('html,body').animate({
-        //         scrollTop: sliderHeight
-        //     } , 500 );
-        // } 
+        urlManager.setFormatHash( data.path );
+        // urlManager.go( data.path );
         return false;
     });
 
@@ -3682,7 +3254,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 return false;
             }
         });
-        //LP.triggerAction('filter-category' , {category: $('.gates-inner-r a.active').data('category')});
         return false;
     });
 
@@ -3723,45 +3294,39 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         return false;
     });
 
+    LP.action('move-next', function(){
+        var ml = parseInt( $('.preview ul')[0].style.marginLeft );
+
+        var minMl = - ( $('.preview ul').children().length - 1 ) * 90 + 5;
+        if( minMl > ml - 90 ){
+            return false;
+        }
+
+        $('.preview ul').animate({
+            marginLeft: ml - 90 + '%'
+        } , 1000, 'easeOutQuart')
+        .promise()
+        .then(disposeVideo);
+    });
+
+    LP.action('move-prev', function(){
+        var ml = parseInt( $('.preview ul')[0].style.marginLeft );
+
+        var maxMl = 5;
+        if( maxMl < ml + 90 ){
+            return false;
+        }
+
+        $('.preview ul').animate({
+            marginLeft: ml + 90 + '%'
+        } , 1000, 'easeOutQuart')
+        .promise()
+        .then(disposeVideo);
+    });
+
+
     LP.action('brands-item' , function(){
-        urlManager.go( $(this).data('path') );
-        // var $dom = $(this);
-        // //var $dom = $(this);
-        // var item = campaignManager.get( $dom.data('path') );
-
-        // var index = $dom.index();
-
-        // $('.brands_tit').animate({
-        //         marginTop: -176,
-        //         marginBottom: 176
-        //     } , 400 );
-
-        // var height = $dom.height();
-        // var sTop = $('.sec_brands').scrollTop();
-        // var aniIndex = 0; 
-        // var aniLength = ~~( $(window).height() / height ) + 2;
-
-        // var $lis = $('.brands-con>li').each(function( i ){
-        //     var aindex = aniIndex;
-        //     if( i >= sTop / height - 3 && aniIndex <= aniLength ){
-        //         $(this).delay( 400 + 200 * aniIndex++ )
-        //             .animate({
-        //                 marginLeft: -2000,
-        //                 opacity: 0
-        //             } , 800 , '' , function(){
-        //                 if( aindex == aniLength || i == $lis.length - 1 ){
-        //                     $lis.css({marginLeft:-2000,opacity:0});
-        //                     $('.brands-con').hide();
-        //                     $('.brands_tit').hide();
-
-        //                     // clear prev ul element
-        //                     $('.brand_movie').find('ul').remove();
-        //                     showBigBrandsItem( item._contentPath , index );
-        //                 }
-        //             });
-        //     }
-        // });
-
+        urlManager.setFormatHash( $(this).data('path') );
     });
 
 
@@ -3850,9 +3415,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 });
 
             $('.pop_press_menus').css('right' , 95 );
-        });
+        }, 'press_image');
         $('<img/>').load(function(){
-            loadingMgr.success( this );
+            loadingMgr.success( 'press_image', this );
         })
         .attr( 'src' , $(this).find('.cover_img').data('cover') );
 
@@ -3926,9 +3491,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
                     loadingMgr.hideLoading( $popPress );
                 })
-        });
+        }, 'press_next');
         $('<img/>').load(function(){
-            loadingMgr.success();
+            loadingMgr.success('press_next');
         }).attr('src' , imgSrc);
 
 
@@ -4474,19 +4039,20 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         if( $current.data('video-object') ){
             $current.data('video-object').muted();
         }
-        unInitImageMouseMoveEffect( $current );
+        // unInitImageMouseMoveEffect( $current );
 
         // var interval = setInterval(function(){
         //     fixImageToWrap( $dom , $dom.find('img') );
         // } , 1000 / 30 );
 
-        $current.find('.brands-mask').fadeIn( time )
+        $current.find('.brands-mask').stop(true,true)
+            .fadeIn( time )
             .end()
             .find('.image-zoom')
             .fadeOut();
 
         // do width brands-mask
-        $dom.find('.brands-mask').fadeOut( time );
+        $dom.find('.brands-mask').stop(true,true).fadeOut( time );
 
         var totalWidth = $dom.parent().width();
         var preWidth = $dom.width() / 2;
@@ -4515,7 +4081,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 //     pause_button: true
                 // } );
             } else if( $dom.data('image') ){
-                initImageMouseMoveEffect( $dom );
+                // initImageMouseMoveEffect( $dom );
             }
 
             // if( index - 1 == 0 ){
@@ -4546,7 +4112,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         if( $current.data('video-object') ){
             $current.data('video-object').muted();
         }
-        unInitImageMouseMoveEffect( $current );
+        // unInitImageMouseMoveEffect( $current );
 
         $current.find('.brands-mask').fadeIn( time )
             .end()
@@ -4585,7 +4151,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 //     pause_button: true
                 // } );
             } else if( $dom.data('image') ){
-                initImageMouseMoveEffect( $dom );
+                // initImageMouseMoveEffect( $dom );
             }
         });
 
@@ -4605,15 +4171,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     LP.action('image-zoom' , function( data ){
         var hash = location.hash;
-        urlManager.go( hash.replace('##!','') + '/big' );
-
-        // var $brandsItem = $( data.dom || this ).closest('.brands-item');
-        // var key = $brandsItem.data('path');
-
-        // var item = campaignManager.get( key );
-
-        // imageZoom( item );
-
+        urlManager.setFormatHash( hash.replace('##!','') + '/big' );
         return false;
     });
 
@@ -4657,10 +4215,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     LP.action('pageback' , function(){
         urlManager.back();
-        // var e = jQuery.Event("keydown");
-        // e.which = 27; // # Some key code value
-        // $(document).trigger(e);
-
         return false;
     });
 

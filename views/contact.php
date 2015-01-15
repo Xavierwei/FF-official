@@ -129,50 +129,53 @@
 						</div>
 					</div>
 				</div>
+				<div class="contact_conl" style="width: 100%;">
+					<h4>BRGD</h4>
+					<div class="cs-clear">
+						<div data-effect="fadeup" class="intoview-effect contact_table">
+							<table>
+								<tr>
+									<td colspan="3" class="con_tbblack">FRED & FARID GROUP</td>
+								</tr>
+								<tr>
+									<td class="con_tbblack">COmmunication AGENCIES</td>
+									<td class="con_tbblack">PRODUCTION</td>
+									<td class="con_tbblack">CREATIVE MEDIA</td>
+								</tr>
+								<tr>
+									<td class="con_tbwhite">FRED & FARID <br />PARIS</td>
+									<td class="con_tbwhite">KIDS LOVE JETLAG</td>
+									<td class="con_tbwhite">BCKSTG</td>
+								</tr>
+								<tr>
+									<td class="con_tbwhite">FRED & FARID<br /> SHANGHAI</td>
+									<td class="con_tbwhite">KILLDEATH</td>
+									<td class="con_tbwhite">CREATIVE CHINA</td>
+								</tr>
+								<tr>
+									<td class="con_tbwhite">HELLO SUNSHINE</td>
+									<td class="con_tbwhite">FO XIN</td>
+									<td class="con_tbwhite">BRDG</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="con_tbwhite">FRED & FARID MEDIA</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="con_tbwhite">Fred & farid digital investment fund</td>
+								</tr>
+							</table>
+						</div>
+						<!--  -->
+					</div>
+				</div>
 			</div>
 			<!--  -->
-			<h3 data-effect="fadeup" class="intoview-effect">BRGD</h3>
-			<!--  -->
-		</div>
-		<!--  -->
-		<div data-effect="fadeup" class="intoview-effect contact_table">
-			<table>
-				<tr>
-					<td colspan="3" class="con_tbblack">FRED & FARID GROUP</td>
-				</tr>
-				<tr>
-					<td class="con_tbblack">COmmunication AGENCIES</td>
-					<td class="con_tbblack">PRODUCTION</td>
-					<td class="con_tbblack">CREATIVE MEDIA</td>
-				</tr>
-				<tr>
-					<td class="con_tbwhite">FRED & FARID <br />PARIS</td>
-					<td class="con_tbwhite">KIDS LOVE JETLAG</td>
-					<td class="con_tbwhite">BCKSTG</td>
-				</tr>
-				<tr>
-					<td class="con_tbwhite">FRED & FARID<br /> SHANGHAI</td>
-					<td class="con_tbwhite">KILLDEATH</td>
-					<td class="con_tbwhite">CREATIVE CHINA</td>
-				</tr>
-				<tr>
-					<td class="con_tbwhite">HELLO SUNSHINE</td>
-					<td class="con_tbwhite">FO XIN</td>
-					<td class="con_tbwhite">BRDG</td>
-				</tr>
-				<tr>
-					<td colspan="3" class="con_tbwhite">FRED & FARID MEDIA</td>
-				</tr>
-				<tr>
-					<td colspan="3" class="con_tbwhite">Fred & farid digital investment fund</td>
-				</tr>
-			</table>
 		</div>
 		<!--  -->
 		<div data-effect="fadeup" class="intoview-effect contact_mail cs-clear">
 			<table>
-				<tr class="contact_mailtit"><td class="contact_maill">NEW BUSINESS</td><td class="contact_mailc">NEW BUSINESS</td><td class="contact_mailr">NEW BUSINESS</td></tr>
-				<tr><td class="contact_maill">newbusiness@fredfarid.com</td><td class="contact_mailc">pressrelations@fredfarid.com</td><td class="contact_mailr">humanressources@fredfarid.com</td></tr>
+				<tr class="contact_mailtit"></tr>
+				<tr class="contact_mailcon"></tr>
 			</table>
 		</div>
 		<!--  -->

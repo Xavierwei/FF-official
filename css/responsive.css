@@ -1,3 +1,5 @@
+
+
 @media only screen and (max-width:1250px){
     .nav{padding-left: 75px;height: 100%;overflow: hidden;}
     .pagetit,.sec_brands_tit,.brands-tags{padding-left: 75px;}
@@ -9,6 +11,15 @@
 
 
     .gates-inner-l{font-size: 40px;padding: 0 75px;}
+}
+
+@media only screen and (max-width:1200px){
+    .brands-con .brands-item{width: 175px;}
+    .brands-con li{height: 90px;}
+    .brands-con-t {font-size: 14px;}
+    .brands-con dt {width: 280px;padding: 10px;height: 70px;}
+    .brands-con-time {margin-top: 0em;font-size: 12px;}
+    .brands-con dd{left:300px;}
 }
 
 

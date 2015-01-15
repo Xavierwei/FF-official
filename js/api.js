@@ -11,9 +11,32 @@ define(function( require , exports , model ){
 
 	var localStoragePaths = ['pages_contents/awards','pages_contents/footer_icons','pages_contents/brands','pages_contents/categorys'];
 	return {
+		getServiceCampaigns: function( serviceId, success ){
+			var path = 'services/' + serviceId;
+			if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
+				var result = localStorage.getItem( path );
+				if( result ){
+					success && success( JSON.parse( result ) );
+					return;
+				}
+			}
+
+			var cacheKey = path;
+
+			if( __AJAX_CACHE__[cacheKey] ){
+				success && success( __AJAX_CACHE__[cacheKey] );
+			} else {
+				$.post( baseUrl , {wsExtraRequest: 'getServiceCampaigns', serviceID: serviceId, outputFormat: 'json'} , function( r ){
+					success && success( r );
+					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
+						localStorage.setItem( path, JSON.stringify( r ) );
+					}
+				}, 'json');
+			}
+		},
 		getBrandCampaigns: function( brandId, success ){
 			var path = 'brands/' + brandId;
-			if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 || 1 ){
+			if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
 				var result = localStorage.getItem( path );
 				if( result ){
 					success && success( JSON.parse( result ) );
@@ -28,7 +51,7 @@ define(function( require , exports , model ){
 			} else {
 				$.post( baseUrl , {wsExtraRequest: 'getBrandCampaigns', brandID: brandId, outputFormat: 'json'} , function( r ){
 					success && success( r );
-					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 || 1 ){
+					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
 						localStorage.setItem( path, JSON.stringify( r ) );
 					}
 				}, 'json');
@@ -56,7 +79,7 @@ define(function( require , exports , model ){
 			}
 
 			// save cache to localStorage
-			if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 || 1 ){
+			if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
 				var result = localStorage.getItem( path );
 				if( result ){
 					success && success( JSON.parse( result ) );
@@ -75,7 +98,7 @@ define(function( require , exports , model ){
 					success && success( r );
 					__AJAX_CACHE__[cacheKey] = r;
 
-					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 || 1 ){
+					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
 						localStorage.setItem( path, JSON.stringify( r ) );
 					}
 				} , 'json' );

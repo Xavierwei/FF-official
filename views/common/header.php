@@ -18,6 +18,13 @@
 	<meta name="viewport" content="width=640, minimum-scale=0.5, maximum-scale=1, target-densityDpi=290,user-scalable = no" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link href="../css/responsive.css" media="screen and (max-width: 1250px)" rel="stylesheet" type="text/css" />
+    <!--[if gte IE 9]>
+	  <style type="text/css">
+	    .gradient {
+	       filter: none;
+	    }
+	  </style>
+	<![endif]-->
     <script type="text/javascript" src="http://backoffice.fredfarid.com/assets/scripts/bo/api/ws_api.min.js"></script>
     <script type="text/javascript">
     // Initialize API parameters
@@ -37,7 +44,7 @@
     </script>
 </head>
 <body>
-	<div class="loading-wrap" style="display:block;"><div class="loading"></div></div>
+	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
 	<div class="container">
 	<?php if( isset($home_page) ){?>
 	<!-- banner -->
@@ -46,11 +53,11 @@
 		<div class="banpho-con">
 			<div><img src="../images/INDEX_c.png"></div>
 			<div class="banpho-bt">
-				<a href="#" data-a="home-slider-left" class="banpho-bt-l transition"></a>
+				<a href="javascript:;" data-a="home-slider-left" class="banpho-bt-l transition"></a>
 				<div class="banpho-bt-c" data-a="home-play-movie">
 					<div class="transition">play movie<br/><br/>play movie</div>
 				</div>
-				<a href="#" data-a="home-slider-right" class="banpho-bt-r transition"></a>
+				<a href="javascript:;" data-a="home-slider-right" class="banpho-bt-r transition"></a>
 			</div>
 			<div class="banpho-i">1/12</div>
 		</div>
@@ -156,6 +163,12 @@
 			<div class="brand_big_next" data-a="brand_big_next"> <span></span> </div> -->
 			<div class="brand_big_text column cs-clear">
 			</div>
+		</div>
+		<div class="preview">
+			<a href="javascript:;" class="close" data-a="pageback"></a>
+			<a href="javascript:;" class="next" data-a="move-next"><span class="popicon popnext transition"></span></a>
+			<a href="javascript:;" class="prev" data-a="move-prev"><span class="popicon popprev transition"></span></a>
+			<ul></ul>
 		</div>
 		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
 			<div class="sec_brands_tit">
