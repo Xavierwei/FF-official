@@ -160,7 +160,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         // categories ===> 
         var rules = [];
         rules.push( {
-            url: /^([^\/]+)$/,
+            url: /^(categories|brands|services)$/,
             destory: function( cb ){
                 $('.gates-inner')
                     .animate({
@@ -202,7 +202,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         } );
 
         rules.push( {
-            url: /^([^\/]+\/[^\/]+)$/,
+            url: /^((categories|brands|services)\/[^\/]+)$/,
             destory: function( cb ){
 
                 $('.brand_item_tit').css({
@@ -304,7 +304,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         } );
         
         rules.push( {
-            url: /^([^\/]+\/[^\/]+\/[^\/]+\/\d+)$/,
+            url: /^((categories|brands|services)\/[^\/]+\/[^\/]+\/\d+)$/,
             destory: function( cb ){
                 // to brands list
                 $('.brand_item_tit').animate({
@@ -329,7 +329,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         } );
         
         rules.push( {
-            url: /(\/\d+\/big)$/,
+            url: /^(categories|brands|services).*(\/\d+\/big)$/,
             destory: function( cb ){
                 $('.preview').fadeOut()
                     .promise()
@@ -1679,6 +1679,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var args = Array.prototype.slice.call( arguments );
                 var key = args.shift();
                 console.log( 'success' );
+                console.log( arguments );
                 mutiSuccess[key] && mutiSuccess[key].apply('', args);
                 loadingMgr.hide();
                 success = null;
@@ -2091,6 +2092,21 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         }
                     } );
                 });
+
+                // render home numbers
+                api.extraRequest( {wsExtraRequest: 'getNumbers'}, function( r ){
+                    var obj = {};
+                    $.each( r.items || [], function( i, item ){
+                        obj[ item.id ] = item.number;
+                    } );
+
+                    var tpl = '<td><strong class="intoview-effect" data-effect="number-rock">#[projects]</strong>PROJECTS</td>\
+                        <td><strong class="intoview-effect" data-effect="number-rock">#[brands]</strong>BRANDS</td>\
+                        <td><strong class="intoview-effect" data-effect="number-rock">#[press_articles]</strong>PRESS ARTICLES</td>\
+                        <td><strong class="intoview-effect" data-effect="number-rock">#[services]</strong>SERVICES</td>\
+                        <td><strong class="intoview-effect" data-effect="number-rock">#[awards]</strong>AWARDS</td>';
+                    $('#home-num-tr').html( LP.format(tpl, obj) );
+                } );
 
                 // render home page slider
                 api.request('home' , function( r ){
@@ -2618,24 +2634,23 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     type: type
                 },  undefined , url );
             },
-            init: function(){
-                loadingMgr.show();
+            init: function( cb ){
                 var $page = $('.page');
                 var fn = pageInits[ $page.data('page') ];
 
                 if( fn ){
                     fn( function(){
                         $(window).trigger('scroll');
-                        loadingMgr.success();
                         if( isFirstLoading ){
+                            cb && cb();
                             var path = location.hash.replace('##!', '');
                             path && urlManager.go( path );
                         }
                         isFirstLoading = false;
                     });
                 } else {
-                    loadingMgr.success();
                     if( isFirstLoading ){
+                        cb && cb();
                         var path = location.hash.replace('##!', '');
                         path && urlManager.go( path );
                     }
@@ -2819,7 +2834,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     // change history
     LP.use('../plugin/history.js' , function(){
         History.replaceState( { prev: '' } , undefined , location.href  );
-        pageManager.init( );
+        loadingMgr.show();
+        pageManager.init( function(){
+            loadingMgr.success();
+        } );
 
         $(document).ajaxError(function(){
             loadingMgr.success();
@@ -2843,10 +2861,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             var State = History.getState(); // Note: We are using History.getState() instead of event.state
             var prev = State.data.prev;
             var type = State.data.type;
-            console.log( State );
             // if only change hash
             if( State.url.indexOf('##') >= 0 ){
-
                 return false;
             }
             // show loading
@@ -2854,11 +2870,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             loadingMgr.setSuccess(function( html ){
                 html = $('<div>' + html + '</div>').find('.container')
                     .html();
-                $( '.container' ).children(':not(.header)').animate({
-                    opacity: 0
-                } , 500);
+                // $( '.container' ).children(':not(.header)').animate({
+                //     opacity: 0
+                // } , 500);
                 setTimeout(function(){
                     $( '.container' ).html( html ).children('.page')
+                        .stop(true,true)
                         .fadeIn();
                     //pagetitarrbottom
 
@@ -2893,8 +2910,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     // });
                     // break;
                 default: 
-                    $.get( location.href , '' , function(){
-                        loadingMgr.success('statechange');
+                    $.get( location.href , '' , function( r ){
+                        loadingMgr.success('statechange', r );
                     });
             }
         });

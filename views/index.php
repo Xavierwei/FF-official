@@ -78,7 +78,7 @@
 				</div>
 				<div class="home_bioright">TV Awards, Andy's, New York Festival, Eurobest, Creative Circle, Epica – including more than 50 digital awards since 2011. Fred & Farid also has consecutively won 4 years the title of “Agency of the Year” at the World Luxury Awards. Fred & Farid were also members of major juries like the Cannes Lions Festival or the D&AD.</div>
 			</div>
-			<a href="/about/bio" class="home_biobtn">
+			<a href="./bio.php" class="home_biobtn">
 				<div class="transition">
 					READ MORE <br/><br/>READ MORE
 				</div>
@@ -89,12 +89,7 @@
 			<h2>NUMBERS</h2>
 			<div class="home_numtable">
 				<table>
-					<tr>
-						<td><strong class="intoview-effect" data-effect="number-rock">2734</strong>PROJECTS</td>
-						<td><strong class="intoview-effect" data-effect="number-rock">135</strong>BRANDS</td>
-						<td><strong class="intoview-effect" data-effect="number-rock">700</strong>PRESS ARTICLES</td>
-						<td><strong class="intoview-effect" data-effect="number-rock">24</strong>SERVICES</td>
-						<td><strong>XXX</strong>AWARDS</td>
+					<tr id="home-num-tr">
 					</tr>
 				</table>
 			</div>

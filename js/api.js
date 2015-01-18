@@ -57,6 +57,29 @@ define(function( require , exports , model ){
 				}, 'json');
 			}
 		},
+		extraRequest: function( data, success ){
+			var cacheKey = LP.json2query( data );
+			if( window.localStorage && $.inArray( cacheKey, localStoragePaths ) >= 0 ){
+				var result = localStorage.getItem( cacheKey );
+				if( result ){
+					success && success( JSON.parse( result ) );
+					return;
+				}
+			}
+
+			data.outputFormat = 'json';
+
+			if( __AJAX_CACHE__[cacheKey] ){
+				success && success( __AJAX_CACHE__[cacheKey] );
+			} else {
+				$.post( baseUrl , data , function( r ){
+					success && success( r );
+					if( window.localStorage && $.inArray( cacheKey, localStoragePaths ) >= 0 ){
+						localStorage.setItem( cacheKey, JSON.stringify( r ) );
+					}
+				}, 'json');
+			}
+		},
 		request: function( path , params , success ){
 			if( Object.prototype.toString.call( params ) == '[object Function]' ){
 				success = params;

@@ -275,6 +275,7 @@ a:hover{color:#000}
 		.home_numbtn:hover div{margin-top: -100px;background: #000;color:#fff;}
 		.home_numtable{width: 1000px ;margin:0 auto}
 		.home_numtable table{width: 100%;text-align: center;}
+		.home_numtable table td{width: 20%;}
 		.home_numtable strong{font-size: 48px;display: block;line-height: 55px}
 	.home_char{height: 425px;background: url(../images/home_charbg.jpg);color: white; text-align: center;font-weight: 100;}
 		.home_char i{font-size: 24px; font-style: italic;}
