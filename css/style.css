@@ -58,7 +58,7 @@ a:hover{color:#000}
 		.search-item{line-height: 40px;font-weight: 100;}
 		.search-item-tit{float: left; width: 210px;text-align: right;margin-right: 20px;}
 
-.pagetit{background: #f0f0f0;height: 85px;line-height: 85px;position: relative;z-index: 100;}
+.pagetit{background: #f0f0f0;height: 85px;line-height: 85px;position: relative;z-index: 102;}
 	.pagetit h1{color:#000;font-size: 48px;}
 	.pagetitarr{position: absolute;width: 24px;height: 16px;background: url('../images/pagetitarr.png') no-repeat 0 0;right: 150px;top:40px;}
 	.pagetitarr:hover{background-position: 0 -44px;}
@@ -287,10 +287,11 @@ a:hover{color:#000}
 .sec_gates{ background: rgba(67, 66, 66, 0.97); position: fixed;top: 66px; bottom: 0; width: 100%;z-index: 4;overflow: hidden;}
 .gates-inner{top: -100% ;height: 100%;position: absolute;width: 100%;}
 .gates-inner a:hover,.gates-inner a.active{color: white;}
-	.gates-inner-l{font-size: 44px;font-weight: bold;line-height: 1.2em;height: 100%;overflow: auto;padding: 10px 0;}
+	.gates-inner-l{font-size: 44px;font-weight: bold;line-height: 1.2em;height: 100%;overflow: auto;padding: 0;}
 	.gates-inner-l a{margin-right: 100px;text-transform: uppercase;}
 	.gates-inner-c{padding-top: 100px;width: 12%;float: left;font-size: 18px;line-height: 1.5em;position: absolute;left: 67.8%;top:0;}
 	.gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 1.5em;text-transform: uppercase;position: absolute;left: 78.8%;top:0;}
+	.gates-inner-l .column{margin: 15px auto;}
 
 /* for brands */
 .sec_brands{display: none; position: fixed;top: 0px;bottom: 0;overflow: auto; width: 100%;z-index: 40;background: black;}
@@ -337,7 +338,7 @@ a:hover{color:#000}
 	.brand_movie{position: absolute;top: 88px;width: 100%;overflow: hidden;}
 	.brand_movie .brands-items{width: 200%;height: 100%;overflow: hidden;height: 445px;}
 	.brand_movie .brands-item{float: left; position: relative;font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;cursor: pointer;}
-	.brand_movie .brands-item .image-zoom{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;font-size: 18px;text-align: center;z-index: 40;}
+	.brand_movie .brands-item .image-zoom{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;font-size: 18px;text-align: center;z-index: 101;}
 	.image-zoom-big{position: fixed;width: 100%;height: 100%;top:0;left:0;z-index: 50;}
 /*
 	.brands-con dt,.brands-con dd,.brand_movie dd{float: left;margin: 0 1px 1px 0; position: relative;}
@@ -366,7 +367,8 @@ a:hover{color:#000}
 	.people_addr{background: #f7f7f7;text-align: center;line-height: 170px;font-weight: bold;font-size: 24px;}
 	.people_tit h3{font-size: 24px;margin: 35px 30px 25px;text-transform: uppercase;}
 	.people_tit p{margin: 5px 30px 0;}
-	.people_even .people_tit h3,.people_even .people_tit p{text-align: right;}
+	.people_even .people_tit h3,.people_even .people_tit p{text-align: left;}
+	.people_even .people_opt,.people_even .people_addr{float: right;}
 
 	.people_desc{ height: auto;}
 	.people_desc p{margin: 30px;font-size: 14px;color: #666;}
@@ -380,13 +382,15 @@ a:hover{color:#000}
 .interview_list .interview_info{font-size: 14px;color: #999;text-transform: uppercase;padding-top: 60px;width: 340px;text-align: center;}
 .interview_list .interview_info span{display: inline-block;text-align: left;}
 .interview_list .interview_info strong{font-size: 24px;color: #000;}
-.interview_img{cursor: pointer;height: 170px;overflow: hidden;}
+.interview_img{cursor: pointer;height: 170px;overflow: hidden;width: 690px;background: #ccc;}
 .interview_odd .interview_info{float: right;}
 .interview_odd .interview_img{float: left;}
 .interview_even .interview_info{float: left;}
 .interview_even .interview_img{float: right;}
 .interview_list .interview_even span{text-align: right;}
+.interview_img{overflow: hidden;position: relative;}
 .interview_img img{display: block;}
+
 
 .interview_item{position: relative;margin: 100px 0 20px;opacity: 0;filter:alpha(opacity=0);}
 .interview_opt{position: absolute;color: white;left: 50%;top: 50%;margin-top: -15px;margin-left: -25px;cursor: pointer;font-size: 14px; height: 30px;line-height: 30px;overflow: hidden;}
@@ -395,8 +399,7 @@ a:hover{color:#000}
 .interview-video-wrap{position: relative;overflow: hidden;}
 .interview-video{height: 400px;overflow: hidden; margin-bottom: 10px; position: relative;}
 .interview-video .video-wrap{top: auto; bottom: 0;}
-.interview_share{position: absolute;bottom: 20px;width: 100px;text-align: center;height: 50px;line-height: 50px;color: #fff;font-size: 14px;text-transform: uppercase;z-index: 10;font-weight: 100;}
-
+.video-share{position: absolute;width: 100px;text-align: center;height: 50px;line-height: 50px;color: #fff;font-size: 14px;text-transform: uppercase;z-index: 10;font-weight: 100;bottom: 0;z-index: 101;}
 /* pop shade */
 .shade{background: #000 ;opacity: 0.6;filter:alpha(opacity=60);position: fixed;left:0;top: 0;right: 0;bottom: 0;
 	_position: absolute; z-index: 20000; display: none;}
@@ -463,12 +466,18 @@ a:hover{color:#000}
     filter:alpha(opacity=100) !important;
 }
 body .vjs-default-skin .vjs-big-play-button,
-body .vjs-default-skin .vjs-big-pause-button{position: absolute; top: 50%;left: 50%;width: 90px;height: 90px;background: url(../images/video-btn.png) no-repeat left bottom !important;border: none;box-shadow: none;margin-top: -45px;margin-left: -45px;}
+body .vjs-default-skin .vjs-big-pause-button{position: absolute; z-index: 101; top: 50%;left: 50%;width: 90px;height: 90px;background: url(../images/video-btn.png) no-repeat left bottom !important;border: none;box-shadow: none;margin-top: -45px;margin-left: -45px;}
 body .vjs-default-skin .vjs-big-pause-button{background-position: left top !important;}
 body .vjs-default-skin .vjs-big-play-button:before{display: none;box-shadow: none;}
 body .vjs-default-skin .vjs-big-play-button:hover,
 body .vjs-default-skin:hover .vjs-big-play-button,
 body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
+
+.big-item.interview-video-wrap .vjs-default-skin .vjs-control-bar{
+	top: auto;
+	position: absolute;
+	margin-bottom: 0;
+}
 
 
 .interview-music-wrap{position: relative;overflow: hidden;}
@@ -535,8 +544,13 @@ top: 0;}
 
 .banpho:after,
 .preview ul li:after,
+.interview_img:after,
+.vjs-mask,
+.brands-item-image:after,
+.brands-item-video:after,
 .cam_item>div:after{content:''; z-index: 100;position: absolute;top:0;left:0;width: 100%;height: 100%;background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAMAAABFaP0WAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDE0IDc5LjE1Njc5NywgMjAxNC8wOC8yMC0wOTo1MzowMiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEY1RTM3Nzk5MUFBMTFFNEE1QkY4MzI1MzE4OUUyMjciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEY1RTM3N0E5MUFBMTFFNEE1QkY4MzI1MzE4OUUyMjciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0RjVFMzc3NzkxQUExMUU0QTVCRjgzMjUzMTg5RTIyNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0RjVFMzc3ODkxQUExMUU0QTVCRjgzMjUzMTg5RTIyNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnBDtuMAAAAJUExURbKyskxMTP////ItMEAAAAADdFJOU///ANfKDUEAAAAQSURBVHjaYmBkYmBgAggwAAAVAAZKQ4kyAAAAAElFTkSuQmCC);opacity: 0.35;}
 
+.home-slider .vjs-mask{display: none;}
 
 /*.logo:hover{
 	-webkit-transform: scaleZ(0) rotateX(360deg);
@@ -555,11 +569,21 @@ top: 0;}
 .preview ul{height: 100%;margin-left: 5%;}
 .preview ul li{float: left;overflow: hidden;position: relative;height: 100%;}
 .preview ul li img{width: 100%;}
-.next,.prev{position: absolute;height: 100%;width: 5%;right: 0;background: #000;z-index: 101;opacity: 0.5;}
-.next:hover,.prev:hover{opacity: 0;}
+.next,.prev{position: absolute;height: 100%;width: 5%;right: 0;background: #000;z-index: 101;opacity: 0.5; transition: opacity 0.5s;-webkit-transition: opacity 0.5s;}
+.next:hover,.prev:hover{opacity: 0.3;}
 .prev{right: auto;left:0;}
 
-.preview .close{top: 40px;right: 5%;margin-right: -3.5%;z-index: 102;}
+.preview .close{top: 40px;right: 5%;margin-right: -3.5%;z-index: 102;transition: transform 0.5s;-webkit-transition: -webkit-transform 0.5s;
+-o-transition: -o-transform 0.5s;
+-moz-transition: -moz-transform 0.5s;
+-ms-transition: -ms-transform 0.5s;}
+.preview .close:hover{
+		transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+}
 
 .preview .popnext,.preview .popprev{top: 50%;
 margin-top: -15px;

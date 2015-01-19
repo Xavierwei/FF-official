@@ -9,7 +9,7 @@ define(function( require , exports , model ){
 
 	var __AJAX_CACHE__ = {};
 
-	var localStoragePaths = ['pages_contents/awards','pages_contents/footer_icons','pages_contents/brands','pages_contents/categorys'];
+	var localStoragePaths = [];//['pages_contents/awards','pages_contents/footer_icons','pages_contents/brands','pages_contents/categorys'];
 	return {
 		getServiceCampaigns: function( serviceId, success ){
 			var path = 'services/' + serviceId;

@@ -129,7 +129,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="contact_conl" style="width: 100%;">
+				<!-- <div class="contact_conl" style="width: 100%;">
 					<h4>BRGD</h4>
 					<div class="cs-clear">
 						<div data-effect="fadeup" class="intoview-effect contact_table">
@@ -167,7 +167,7 @@
 						</div>
 						<!--  -->
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<!--  -->
 		</div>

@@ -70,7 +70,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             end: function(){
                 $proMsg && $proMsg.html('100%');
                 prog = 100;
-                $proBar.stop(true,true).css('width' , '100%');
+                $proBar.stop(true,true).animate({
+                    width: 0
+                }, 500);
                 return this;
             },
             start: function(){
@@ -331,17 +333,29 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         rules.push( {
             url: /^(categories|brands|services).*(\/\d+\/big)$/,
             destory: function( cb ){
+                $(window).unbind('resize.fixedimg');
                 $('.preview').fadeOut()
                     .promise()
                     .then(cb);
+                
             },
             load: function( data ){
-
                 var path = getItemPathinfoFromUrl();
                 // 如果是brands 和 services
                 var paths = path.split('/');
 
                 showBigItem( paths.slice(0,4).join('/') , paths.slice(4,5)[0] );
+
+                var timer = null;
+                $(window).bind('resize.fixedimg', function(){
+                    clearTimeout( timer );
+                    timer = setTimeout(function(){
+                        $('.preview li').each(function(){
+                            fixImageToWrap( $(this), $(this).find('img') );
+                        });
+                     }, 200);
+                });
+                
                 // var path = getPath();
                 // // 如果是brands 和 services
                 // var paths = path.split('/');
@@ -438,8 +452,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         tarPath = paths.join('/');
                         break;
                 }
-
-                this.go( tarPath );
+                setPath( tarPath );
             }
         }
         
@@ -451,32 +464,64 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         // show brand
         $('.sec_brands').fadeIn().css('top',0);
 
-        var tpl = '<li class="big-item"><img src="#[src]" /></li>';
+        var tpl = '<li class="big-item #[class]" data-video="#[video]"><img src="#[src]" /></li>';
         loadingMgr.show();
         loadingMgr.setSuccess(function(){
-            $('.preview').find('ul').fadeIn();
+            $('.preview').stop().fadeIn().find('ul').fadeIn();
+            $('.preview li').each(function(){
+                fixImageToWrap( $(this) , $(this).find('img') );
+            })
+            .data('fixed-img-wrap',1);
+
+            var $li = $('.preview ul').children().eq( index );
+            var video = $li.data('video');
+            if( video ){
+                // render video and play
+                renderVideo( $li , video , $li.find('img').attr('src') , {
+                    autoplay: true,
+                    pause_button: true
+                }, function(){
+                    $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
+                        .append( $li.find('.vjs-control-bar') )
+                        .appendTo( $li );
+                } );
+            }
+
         }, 'showBigItem');
         campaignManager.getCampaignItems( path, function( items ){
             var aHtml = [];
             var pics = [];
+
             $.each( items, function( i, item ){
-                pics.push( campaignManager.getPath( item , 'media' ) );
-                aHtml.push( LP.format( tpl, {src: campaignManager.getPath( item , 'media' )} ) );
+                var isImage = item.media.match(/\.(jpg|png|bmp|jpeg)$/i);
+
+                // 如果是图片  则取media ， 否则取picture
+                var pic = campaignManager.getPath( item , isImage ? 'media' : 'picture' );
+                pics.push( pic );
+                aHtml.push( LP.format( tpl, {
+                    src: pic,
+                    video: isImage ? '':campaignManager.getPath( item , 'media' ),
+                    'class': isImage ? '': 'interview-video-wrap'
+                } ) );
+
             } );
 
-            var $ul = $('.preview ul').html( aHtml.join('') ).css('marginLeft' , - index * 90 + 5 + '%');
+            var $ul = $('.preview ul').html( aHtml.join('') ).css('marginLeft' , - index * 90 + 5 + '%').data('index', index);
+
+
             $ul.children().css({
                 width: 1 / items.length * 100 + '%'
             });
 
             $ul.css('width', items.length * 90 + '%' ).hide();
 
-            $('.preview').fadeIn();
-            loadImages( pics, function(){
+            loadImages( pics, null,  function(){
                 loadingMgr.success('showBigItem');
             } );
         } );
     }
+
+
 
     // show image in the biggest view
     // and make img auto move effect
@@ -705,14 +750,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             },
 
             // 获取每一个活动的图片的链接
-            getPath: function( item , type ){
+            getPath: function( item , type , isBack ){
                 // treat as key
                 if( !$.isPlainObject( item ) ){
                     item = __CACHE_ITEM__[ item ];
                 }
 
                 var lang = 'eng';
-                var rpath = 'http://www.fredfarid.com/#[lang]/file/#[_contentPath]/#[type]/#[name]';
+                var rpath = 'http://' + ( isBack ? 'backoffice': 'www' ) + '.fredfarid.com/#[lang]/file/#[_contentPath]/#[type]/#[name]';
                 return LP.format( rpath , {
                     lang: lang,
                     _contentPath: item._contentPath,
@@ -738,6 +783,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 try{video && video.dispose();}catch(e){}
                 $(this).removeData('video-object').find('.video-wrap').remove();
             });
+
+        $('.vjs-default-skin').remove();
 
         // hide videoProgress
         videoProgressHide();
@@ -1127,8 +1174,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
             aHtml.push('</ul>');
 
-            $('.brands-items').remove();
             loadImages( pics , null , function(){
+                $('.brands-items').remove();
                 loadingMgr.success( 'afterItemsRender', aHtml, item );
             } );
         } );
@@ -1490,6 +1537,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     }
     
     function fixImageToWrap( $wrap , $img ){
+        $img.width('auto').height('auto');
         if( !$img.width() ){
             $img.load(function(){
                 fixImageToWrap( $wrap , $img );
@@ -1558,10 +1606,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         });
                         return false;
                     }
-                    $(window).bind( 'resize.video-' + id , resizeFn )
-                        .trigger('resize.video-' + id);
+                    $(window).bind( 'resize.video' + id , resizeFn )
+                        .trigger('resize.video' + id);
 
-                    $wrap.bind('resize.video-' + id , resizeFn);
+                    $wrap.bind('resize.video' + id , resizeFn);
                 }
                 setTimeout(function(){
                     $wrap.find('.video-wrap').fadeIn();
@@ -1573,6 +1621,15 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } , 20);
 
                 // if need to add pause button
+                $('<div class="vjs-mask"></div>').insertAfter( $wrap.find('.vjs-poster') )
+                    .click(function(){
+                        if( is_playing ){
+                            v.pause();
+                        } else {
+                            v.play();
+                        }
+                    });
+
                 if( config.pause_button ){
                     if( !config.controls ){
                         $wrap.off('click.video-operation').on('click.video-operation' , function(){
@@ -1621,6 +1678,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var mutiSuccess = {};
         var success = null;
         var pro = null;
+        var timer = null;
         return {
             showLoading: function( $wrap ){
 
@@ -1643,7 +1701,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             },
             show: function( bgcolor ){
                 pro && pro.end();
-                pro = process( $loading.show().find('div') );
+                clearTimeout( timer );
+                pro = process( $loading.stop().fadeIn().find('div') );
                 pro.start();
                 // var index = 0;
                 // var processStep = 5;
@@ -1692,7 +1751,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             },
             hide: function(){
                 pro.end();
-                $loading.fadeOut();
+                clearTimeout( timer );
+                timer = setTimeout(function(){
+                    $loading.fadeOut();
+                }, 800 );
+                
             }
         }
     })();
@@ -2165,8 +2228,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             if( y )
                                 years.push( y );
 
-                            $.each( allCampaigns, function(i, campaigns){
-                                if( campaigns._contentPath == award._contentPath + '/' + award.path ){
+                            $.each( allCampaigns, function(i, campaign){
+                                if( campaign._contentPath == award._contentPath + '/' + award.path ){
                                     award.count = award.count || 0;
                                     award.count++;
                                 }
@@ -2222,7 +2285,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         // render awards
                         var awardsHtml = ['<span class="award-num"></span>'];
                         $.each( awards, function( i , award ){
-                            awardsHtml.push( '<img data-num="' + award.count + '" src="' + award.picture_1 + '">' );
+                            awardsHtml.push( '<img data-num="' + ( award.count || 0 ) + '" src="' + campaignManager.getPath( award, 'preview', true) + '">' );
                         } );
 
                         $('.awardicons').html( awardsHtml.join('') );
@@ -2237,11 +2300,15 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     }
                     
                 });
-
-                
             },
             'contact-page': function( cb ){
-                renderGoogleMap( $('#map') , [[31.245583,121.49472600000001],[48.875137,2.338616000000002]] );
+                var interval = setInterval(function(){
+                    if( window.google ){
+                        clearInterval( interval );
+                        renderGoogleMap( $('#map') , [[31.245583,121.49472600000001],[48.875137,2.338616000000002]] );    
+                    }
+                }, 1000);
+                
                 // var _LP = window.LP;
                 // LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
                 //     window.LP = _LP;
@@ -2298,7 +2365,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 // preload js conponent
                 LP.use( ['video-js' , '../plugin/jquery.jplayer.min.js'] );
 
-                var tpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
+                var tvTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
                     <div class="interview_info">\
                         <span><strong>#[title]</strong><br/>#[content]</span>\
                     </div>\
@@ -2309,36 +2376,37 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         <div class="transition">#[text]</div>\
                     </span>\
                 </div>';
-                // var radioTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_even cs-clear">\
-                //     <div class="interview_info">\
-                //         <span><strong>#[title]</strong><br/>#[content]</span>\
-                //     </div>\
-                //     <div class="interview_img"  data-a="show-music-interview" data-media="#[media]"><img src="#[preview]"></div>\
-                //     <span class="interview_opt" data-a="show-music-interview" data-media="#[media]">\
-                //         <div class="transition">LISTEN<br/>CLOSE</div>\
-                //     </span>\
-                // </div>';
+                var radioTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
+                    <div class="interview_info">\
+                        <span><strong>#[title]</strong><br/>#[content]</span>\
+                    </div>\
+                    <div class="interview_img"  data-a="show-music-interview" data-media="#[media]"><img src="#[preview]"></div>\
+                    <span class="interview_opt" data-a="show-music-interview" data-media="#[media]">\
+                        <div class="transition">LISTEN<br/>CLOSE</div>\
+                    </span>\
+                </div>';
                 // get audio and video
                 api.request(['about/interviews/radio','about/interviews/tv'] , function( r ){
                     var aHtml = [];
                     var date = [];
                     
                     $.each(r.items , function( i , item ){
-                        // var tpl = item._contentPath.match(/tv$/)? tvTpl : radioTpl;
+                        var media = campaignManager.getPath( item , 'media' );
+                        var tpl = !media.match(/.mp3$/) ? tvTpl : radioTpl;
                         var titles = item.title.split('|');
                         aHtml.push( LP.format( tpl , {
                             oddoreven: i % 2 ? 'even' : 'odd',
-                            text: item._contentPath.match(/tv$/) ? 'WATCH<br/>CLOSE' : 'LISTEN<br/>CLOSE',
+                            text: !media.match(/.mp3$/) ? 'WATCH<br/>CLOSE' : 'LISTEN<br/>CLOSE',
                             title: titles[0] ,
                             content: titles.slice(1).join('<br/>'),
                             preview:  campaignManager.getPath( item , 'picture_2' ),
-                            media: campaignManager.getPath( item , 'media' )
+                            media: media
                         } ) );
                     });
 
                     $('#press-container').html( aHtml.join('') );
 
-                    loadImages( $('#press-container img') , function(){
+                    loadImages( $('#press-container img') , null , function(){
                         $('#press-container img').each(function(){
                             fixImageToWrap( $(this).parent() , $(this) );
                         });
@@ -2443,8 +2511,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             images.push( campaignManager.getPath( item , 'preview' ) );
                         } );
 
-                        $('#slider-block-inner').html( aHtml.join('') ).children()
-                                .eq(0).css('opacity' , 1).fadeIn();
+                        $('#slider-block-inner').html( aHtml.join('') )
+                                // .children()
+                                // .eq(0).css('opacity' , 1).fadeIn();
 
 
                         initSlider( function( index ){
@@ -2456,7 +2525,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             } ) );
                         } );
 
-                        loadImages( images.slice( 0 , 3 ) , function(){
+                        loadImages( images.slice( 0 , 3 ), null , function(){
                             cb && cb();
                         });
                     });
@@ -2485,8 +2554,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         images.push( campaignManager.getPath( item , 'preview' ) );
                     } );
 
-                    $('#slider-block-inner').html( aHtml.join('') ).children()
-                            .eq(0).css('opacity' , 1).fadeIn();
+                    $('#slider-block-inner').html( aHtml.join('') )
+                            // .children()
+                            // .eq(0).css('opacity' , 1).fadeIn();
 
 
                     initSlider( function( index ){
@@ -2498,9 +2568,37 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         } ) );
                     } );
 
-                    loadImages( images.slice( 0 , 3 ) , function(){
+                    loadImages( images.slice( 0 , 3 ) , null , function(){
                         cb && cb();
                     });
+                });
+            },
+            'people-page': function( cb ){
+                var tpl = '<div class="people_item cs-clear intoview-effect #[class]" data-effect="fadeup" data-a="people_opt">\
+                        <div class="people_s people_opt"> <span class="transition"></span> </div>\
+                        <div class="people_b people_img"><img src="#[img]"></div>\
+                        <div class="people_s people_addr"> SHANGHAI </div>\
+                        <div class="people_b people_tit"> \
+                            <h3>#[title]</h3>\
+                            <p><strong>PARTNER</strong></p>\
+                            <p><strong>HEAD OF STRATEGY</strong></p>\
+                            <p><strong>FRED & FARID GROUP</strong></p>\
+                        </div>\
+                        <div class="people_s people_download" style="display:none;"> <a class="transition" href="#[file]"></a><span>download</span> </div>\
+                        <div class="people_b people_desc"  style="display:none;"><p> #[content]</p></div>\
+                    </div>';
+                api.request('about/key_people', function( r ){
+                    var aHtml = [];
+                    $.each( r.items || [], function( i, people ){
+                        aHtml.push( LP.format( tpl, {
+                            img: campaignManager.getPath( people , 'background' , true ),
+                            file: campaignManager.getPath( people , 'file' ),
+                            content: people.content.replace(/\n/g,'<p/><p>'),
+                            'class': !( i % 2 ) ? 'people_odd' : 'people_even',
+                            title: people.title
+                        } ) )
+                    } );
+                    $('#people-wrap').html( aHtml.join('') );
                 });
             }
         }
@@ -2874,7 +2972,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 //     opacity: 0
                 // } , 500);
                 setTimeout(function(){
-                    $( '.container' ).html( html ).children('.page')
+                    $( '.container' ).html( html )
+                        .children('.page')
                         .stop(true,true)
                         .fadeIn();
                     //pagetitarrbottom
@@ -2936,6 +3035,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 if( loadingMgr.isLoading() ){
                     loadingMgr.abort();
                 }
+
 
                 urlManager.back();
 
@@ -3043,6 +3143,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $(this).siblings('.banpho-bt-c').html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
 
         $('.banpho-i').html( index + '/' + len );
+
+        return false;
     });
 
     LP.action('home-slider-right' , function(){
@@ -3072,6 +3174,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $(this).siblings('.banpho-bt-c').html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
 
         $('.banpho-i').html( ( index + 2 ) + '/' + len );
+
+        return false;
     });
 
     LP.action('home-play-movie' , function(){
@@ -3312,33 +3416,78 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     });
 
     LP.action('move-next', function(){
-        var ml = parseInt( $('.preview ul')[0].style.marginLeft );
-
-        var minMl = - ( $('.preview ul').children().length - 1 ) * 90 + 5;
-        if( minMl > ml - 90 ){
+        var index = parseInt( $('.preview ul').data('index') );
+        if( index >= $('.preview ul').children().length - 1 ){
             return false;
         }
 
+        index++;
+
+        $('.preview ul').data('index', index);
+
+        var ml = -index * 90 + 5 + '%';
+        
+
         $('.preview ul').animate({
-            marginLeft: ml - 90 + '%'
+            marginLeft: ml
         } , 1000, 'easeOutQuart')
         .promise()
-        .then(disposeVideo);
+        .then(function(){
+            disposeVideo();
+            var $ul = $(this);
+            // if need to render new video
+            var $li = $ul.children().eq( index );
+            var video = $li.data('video');
+            if( video ){
+                // render video and play
+                renderVideo( $li , video , $li.find('img').attr('src') , {
+                    autoplay: true,
+                    pause_button: true
+                }, function(){
+                    $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
+                        .append( $li.find('.vjs-control-bar') )
+                        .appendTo( $li );
+                } );
+            }
+        });
+        
     });
 
     LP.action('move-prev', function(){
-        var ml = parseInt( $('.preview ul')[0].style.marginLeft );
-
-        var maxMl = 5;
-        if( maxMl < ml + 90 ){
+        var index = parseInt( $('.preview ul').data('index') );
+        if( index <= 0 ){
             return false;
         }
 
+        index--;
+        $('.preview ul').data('index', index);
+
+        var ml = -index * 90 + 5 + '%';
+
+        
+
         $('.preview ul').animate({
-            marginLeft: ml + 90 + '%'
+            marginLeft: ml
         } , 1000, 'easeOutQuart')
         .promise()
-        .then(disposeVideo);
+        .then(function(){
+            disposeVideo();
+            var $ul = $(this);
+            // if need to render new video
+            var $li = $ul.children().eq( index );
+            var video = $li.data('video');
+            if( video ){
+                // render video and play
+                renderVideo( $li , video , $li.find('img').attr('src') , {
+                    autoplay: true,
+                    pause_button: true
+                }, function(){
+                    $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
+                        .append( $li.find('.vjs-control-bar') )
+                        .appendTo( $li );
+                } );
+            }
+        });
     });
 
 
@@ -3527,7 +3676,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         if( !$container ){
             $container = $('.<div class="interview-video-wrap">\
                 <div class="interview-video"></div>\
-                <div class="interview_share">share</div>\
             </div>').insertAfter( $item );
 
             $item.data('media-dom' , $container)
@@ -3538,21 +3686,21 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $videoWrap = $container.find('.interview-video');
 
             // render video
-            $videoWrap.css({marginTop: -480});
             renderVideo( $videoWrap , media , $item.find('img').attr('src') , {
                 autoplay: false,
                 controls: true,
                 pause_button: true
             } , function(){
-                $('<div class="vjs-default-skin"></div>')
+                $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
                     .append( $videoWrap.find('.vjs-control-bar') )
                     .appendTo( $videoWrap.parent() );
             });
 
             // start animate
-            $videoWrap.animate({
-                marginTop: 0
-            } , 400);
+            $videoWrap.css({marginTop: -480})
+                .animate({
+                    marginTop: 0
+                } , 400);
         } else {
 
             $item.removeData('media-dom')
@@ -4026,14 +4174,16 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     LP.action('show_fullscreen_video', function( data ){
         // 获取这个元素的信息
-        var item = campaignManager.get( $(data.dom).data('key') );
+        urlManager.setFormatHash( location.hash.replace('##!','') + '/big' );
 
-        // 创建一个dom，显示在全屏
-        var $wrap = $('<div class="full_screen_video_wrap"></div>').appendTo(document.body);
-        renderVideo( $wrap , campaignManager.getPath( item , 'media' ) , campaignManager.getPath( item , 'picture' ) , {
-            autoplay: true,
-            pause_button: true
-        } );
+        // var item = campaignManager.get( $(data.dom).data('path') );
+
+        // // 创建一个dom，显示在全屏
+        // var $wrap = $('<div class="full_screen_video_wrap"></div>').appendTo(document.body);
+        // renderVideo( $wrap , campaignManager.getPath( item , 'media' ) , campaignManager.getPath( item , 'picture' ) , {
+        //     autoplay: true,
+        //     pause_button: true
+        // } );
     });
 
     LP.action('close_fullscreen_video', function(){

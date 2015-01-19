@@ -93,7 +93,7 @@
 					</tr>
 				</table>
 			</div>
-			<a href="/about/ffgroup" class="home_numbtn">
+			<a href="./awards.php" class="home_numbtn">
 				<div class="transition">
 					ABOUT <br/><br/>ABOUT
 				</div>
