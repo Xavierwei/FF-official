@@ -391,7 +391,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 setPath( toUrl );
             },
             go: function( toUrl , data , fromUrl ){
-
                 disposeVideo();
                 //pages_contents/categories/alcoholic_drinks/16eme_ciel_stand-up_-_lyon_-_2013/0
 
@@ -757,7 +756,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 }
 
                 var lang = 'eng';
-                var rpath = 'http://' + ( isBack ? 'backoffice': 'www' ) + '.fredfarid.com/#[lang]/file/#[_contentPath]/#[type]/#[name]';
+                var rpath = 'http://backoffice.fredfarid.com/#[lang]/file/#[_contentPath]/#[type]/#[name]';
                 return LP.format( rpath , {
                     lang: lang,
                     _contentPath: item._contentPath,
@@ -1663,6 +1662,19 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     });
                 }
 
+                // v.on('progress', function(){
+                //     this.pause();
+                //     console.log( 'progress:' + this.bufferedPercent() * this.duration() );
+                // });
+                // v.on('timeupdate', function(){
+                //     console.log( 'timeupdate:' + this.currentTime() );
+
+                // });
+                
+                
+
+                
+
 
                 $wrap.data('video-object' , v);
 
@@ -1738,14 +1750,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var args = Array.prototype.slice.call( arguments );
                 var key = args.shift();
                 console.log( 'success' );
-                console.log( arguments );
                 mutiSuccess[key] && mutiSuccess[key].apply('', args);
                 loadingMgr.hide();
                 success = null;
             },
             abort: function(){
                 mutiSuccess = {};
-                console.log( 'abort' );
                 loadingMgr.hide();
                 success = null;
             },

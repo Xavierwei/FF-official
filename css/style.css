@@ -443,7 +443,7 @@ a:hover{color:#000}
 
 
 /* video theme */
-.interview-video-wrap .vjs-default-skin .vjs-control-bar{position: relative;display: block;background: #000;padding: 7px 0;top: 0;margin-bottom: 20px;}
+.interview-video-wrap .vjs-default-skin .vjs-control-bar{position: relative;display: block;background: #000;padding: 7px 0;top: 0;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control{line-height: 36px;display: none;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control:before{display: none;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control .vjs-control-text{clip: auto;width: auto;height: auto;left: 20px;}
