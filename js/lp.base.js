@@ -60,7 +60,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 prog += stepAdd; 
                 step ++;
                 $proMsg && $proMsg.html(prog+"%");
-                $proBar.animate({width : 100 - prog + '%'}, step*30, null, _timer);
+                $proBar.stop().animate({width : 100 - prog + '%'}, step*30, null, _timer);
             };
         return {
             stop: function(){
@@ -69,13 +69,17 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             },
             end: function(){
                 $proMsg && $proMsg.html('100%');
-                prog = 100;
-                $proBar.stop(true,true).animate({
+                prog = 0;
+                $proBar.stop().animate({
                     width: 0
-                }, 500);
+                }, 500)
+                // .promise()
+                // .then( $proBar.width('100%') );
                 return this;
             },
             start: function(){
+                prog = 0;
+                $proBar.width('100%');
                 _timer();
                 return this;
             },
@@ -478,7 +482,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 // render video and play
                 renderVideo( $li , video , $li.find('img').attr('src') , {
                     autoplay: true,
-                    pause_button: true
+                    pause_button: true,
+                    showLoadingBar: true
                 }, function(){
                     $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
                         .append( $li.find('.vjs-control-bar') )
@@ -786,7 +791,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $('.vjs-default-skin').remove();
 
         // hide videoProgress
-        videoProgressHide();
+        loadingMgr.success();
+        clearTimeout( window.preloadTimer );
     }
 
 
@@ -1662,16 +1668,49 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     });
                 }
 
-                // v.on('progress', function(){
-                //     this.pause();
-                //     console.log( 'progress:' + this.bufferedPercent() * this.duration() );
-                // });
-                // v.on('timeupdate', function(){
-                //     console.log( 'timeupdate:' + this.currentTime() );
+                if( config.showLoadingBar ){
+                    var isWaiting = false;
+                    var waitingTimeout = null;
+                    v.on('waiting', function(){
+                        waitingTimeout = setTimeout(function(){
+                            isWaiting = true;
+                            loadingMgr.show( 'waiting' );
+                        }, 1000);
+                    });
 
-                // });
-                
-                
+                    
+                    window.preloadTimer = null;
+                    var isShowLoading = false;
+                    var currentTime = 0;
+                    v.on('timeupdate', function(){
+                        clearTimeout( preloadTimer );
+                        clearTimeout( waitingTimeout );
+                        // console.log( 'timeupdate' );
+                        if( currentTime != this.currentTime() ){
+                            currentTime = this.currentTime();
+                            if( isWaiting ){
+                                loadingMgr.success();
+                                isWaiting = false;
+                            }
+
+                            preloadTimer = setTimeout(function(){
+                                loadingMgr.show( 'preload' );
+                                isShowLoading = true;
+                            },2000);
+
+                            if( isShowLoading ){
+                                isShowLoading = false;
+                                loadingMgr.success();
+                            }
+                        }
+                        
+                    });
+
+                    v.on('pause',function(){
+                        clearTimeout( preloadTimer );
+                        clearTimeout( waitingTimeout );
+                    });
+                }
 
                 
 
@@ -1712,9 +1751,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 $wrap.find('.loading-wrap').fadeOut();
             },
             show: function( bgcolor ){
+
+                console.log('show:' + bgcolor);
+                $loading.find('div').width('100%');
                 pro && pro.end();
                 clearTimeout( timer );
-                pro = process( $loading.stop().fadeIn().find('div') );
+                pro = process( $loading.stop(true,true).fadeIn().find('div') );
                 pro.start();
                 // var index = 0;
                 // var processStep = 5;
@@ -2427,17 +2469,17 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             },
             'press-page': function( cb ){
 
-                var positions = [-44,-142,-240,-338,-436,-534];
-                var index = 0;
-                clearInterval( window.press_interval );
-                window.press_interval = setInterval(function(){
-                    var $wraps = $('.ploading-wrap');
-                    if( !$wraps.length ){
-                        clearInterval( window.press_interval );
-                    }
+                // var positions = [-44,-142,-240,-338,-436,-534];
+                // var index = 0;
+                // clearInterval( window.press_interval );
+                // window.press_interval = setInterval(function(){
+                //     var $wraps = $('.ploading-wrap');
+                //     if( !$wraps.length ){
+                //         clearInterval( window.press_interval );
+                //     }
 
-                    $wraps.find('.loading').css('background-position' , 'right ' + positions[( index++ % positions.length )] + 'px' );
-                } , 1000 / positions.length);
+                //     $wraps.find('.loading').css('background-position' , 'right ' + positions[( index++ % positions.length )] + 'px' );
+                // } , 1000 / positions.length);
 
                 // loading all articles
                 // var pathContents = [];
@@ -3199,7 +3241,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $sliderItem.find('.video-wrap').remove();
             renderVideo( $sliderItem , movie , $sliderItem.find('img').attr('src') , {
                 // ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
-                autoplay: true
+                autoplay: true,
+                showLoadingBar: true
             } , function(){
                 this.on('play' , function(){
                     $btn
@@ -3215,9 +3258,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         .html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
                 });
 
-                this.on('progress', function(){
-                    videoProgress( this.currentTime() / this.duration() * 100 );
-                });
+                // this.on('progress', function(){
+                //     videoProgress( this.currentTime() / this.duration() * 100 );
+                // });
             });
         } else if( videoObject.paused() ){
             videoObject.play();
@@ -3452,7 +3495,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 // render video and play
                 renderVideo( $li , video , $li.find('img').attr('src') , {
                     autoplay: true,
-                    pause_button: true
+                    pause_button: true,
+                    showLoadingBar: true
                 }, function(){
                     $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
                         .append( $li.find('.vjs-control-bar') )
@@ -3490,7 +3534,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 // render video and play
                 renderVideo( $li , video , $li.find('img').attr('src') , {
                     autoplay: true,
-                    pause_button: true
+                    pause_button: true,
+                    showLoadingBar: true
                 }, function(){
                     $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
                         .append( $li.find('.vjs-control-bar') )
@@ -3699,7 +3744,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             renderVideo( $videoWrap , media , $item.find('img').attr('src') , {
                 autoplay: false,
                 controls: true,
-                pause_button: true
+                pause_button: true,
+                showLoadingBar: true
             } , function(){
                 $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
                     .append( $videoWrap.find('.vjs-control-bar') )
@@ -4337,14 +4383,15 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     });
     
 
-    LP.action('showreel' , function( e ){
-        renderVideo($('.banpho-img') , '../videos/0.mp4' , '' , {
-            autoplay: true,
-            pause_button: true
-        } );
+    // LP.action('showreel' , function( e ){
+    //     renderVideo($('.banpho-img') , '../videos/0.mp4' , '' , {
+    //         autoplay: true,
+    //         pause_button: true,
+    //         showLoadingBar: true
+    //     } );
 
-        return false;
-    });
+    //     return false;
+    // });
 
     LP.action('image-zoom' , function( data ){
         var hash = location.hash;
