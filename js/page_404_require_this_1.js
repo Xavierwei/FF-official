@@ -219,7 +219,13 @@ COMMANDS.clear = function (argv, cb) {
 COMMANDS.y = function (argv, cb) {
   window.location.replace('http://preprod.fredfarid.com/ff/views/');
 }
+COMMANDS.yes = function (argv, cb) {
+  window.location.replace('http://preprod.fredfarid.com/ff/views/');
+}
 COMMANDS.Y = function (argv, cb) {
+  window.location.replace('http://preprod.fredfarid.com/ff/views/');
+}
+COMMANDS.YES = function (argv, cb) {
   window.location.replace('http://preprod.fredfarid.com/ff/views/');
 }
 COMMANDS.find_page = function (argv, cb) {
