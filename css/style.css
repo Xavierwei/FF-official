@@ -85,7 +85,7 @@ a:hover{color:#000}
 	.banft_txt span{font-size: 14px;display: block;}
 /**/
 .footer{background: #000;height: 370px;padding:180px 0 0 ; position: fixed;width: 100%;bottom: 0;}
-	.ft_con{width: 1000px;margin: 0 auto 0;color:#ccc;font-size: 14px;}
+	.ft_con{width: 1000px;margin: 0 auto 0;color:#525252;font-size: 14px;}
 		.ft_mod{float: left;width: 250px;}
 			.ft_mod h3{}
 				.ft_find h3{padding:0 0 0 8px}
@@ -93,7 +93,8 @@ a:hover{color:#000}
 			.ft_mbd{padding: 35px 0 0}
 				.ft_mbd p{padding: 0 0 18px;}
 			.ft_findmbd{width: 120px}
-				.find_item{float: left;background: url('../images/ft_find.png') no-repeat 7px 0;width: 60px;height: 60px;text-indent: -9999em;}
+				.find_item{float: left;background: url('../images/ft_find.png') no-repeat 7px 0;width: 60px;height: 60px;text-indent: -9999em;opacity:0.5;}
+                .find_item:hover {opacity: 1;}
 				.icon_fb{background-position: right top}
 				.icon_linkin{background-position:  0px -60px}
 				.icon_wb{background-position:  -70px -65px;}
