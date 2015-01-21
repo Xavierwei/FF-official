@@ -184,26 +184,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     $(document.body).css('overflow' , 'hidden');
                     show_cate_list( path );
                 } );
-
-                // var winTop = $(window).scrollTop();
-                // var sliderHeight = $('.home-slider').height();
-
-                // // hide slider video
-                // disposeVideo();
-
-                // if( $('.home-slider').length && winTop < sliderHeight ){
-                //     // scroll to $('.home-slider').height()
-                //     $('html,body').animate({
-                //         scrollTop: sliderHeight
-                //     } , 500 )
-                //     .promise()
-                //     .then(function(){
-                //         $(document.body).css('overflow' , 'hidden');
-                //         show_cate_list( path );
-                //     });
-                // } else {
-                //     show_cate_list( path );
-                // }
             }
         } );
 
@@ -315,6 +295,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         rules.push( {
             url: /^((categories|brands|services)\/[^\/]+\/[^\/]+\/\d+)$/,
             destory: function( cb ){
+                $(document).unbind('keydown.level3');
                 // to brands list
                 $('.brand_item_tit').animate({
                     marginTop: -88,
@@ -335,6 +316,17 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var paths = path.split('/');
 
                 showBigBrandsItem( paths.slice(0,4).join('/') , paths.pop() );
+
+                $(document).bind('keydown.level3', function( ev ){
+                    switch( ev.which ){
+                        case 37: // prev
+                            LP.triggerAction('brand_big_prev') ;
+                            break;
+                        case 39: // next
+                            LP.triggerAction('brand_big_next') ;
+                            break;
+                    }
+                });
             }
         } );
         
@@ -342,15 +334,13 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             url: /^(categories|brands|services).*(\/\d+\/big)$/,
             destory: function( cb ){
                 $(window).unbind('resize.fixedimg');
+                $(document).unbind('keydown.level4');
                 $('.preview').fadeOut()
                     .promise()
                     .then(function(){
                         $(document.body).css('overflow' , 'auto');
                         cb && cb();
                     });
-
-
-                
             },
             load: function( data ){
                 $(document.body).css('overflow' , 'hidden');
@@ -369,20 +359,16 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         });
                      }, 200);
                 });
-                
-                // var path = getPath();
-                // // 如果是brands 和 services
-                // var paths = path.split('/');
-                // if( paths[0] == 'brands' || paths[0] == 'services' ){
-                //     path = paths[2].split('|||').join('/') + '/' + paths[3];
-                // }
-
-                // path = 'pages_contents/' + path;
-
-                // var item = campaignManager.get( path );
-                // var index = paths[3];
-
-                // showBigBrandsItem( item._contentPath , index );
+                $(document).bind('keydown.level4', function( ev ){
+                    switch( ev.which ){
+                        case 37: // prev
+                            LP.triggerAction('move-prev');
+                            break;
+                        case 39: // next
+                            LP.triggerAction('move-next');
+                            break;
+                    }
+                });
             }
         } );
 
@@ -520,11 +506,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var tpl = '<li class="big-item #[class]" data-video="#[video]"><img src="#[src]" /></li>';
         loadingMgr.show();
         loadingMgr.setSuccess(function(){
-            $('.preview').stop().fadeIn().find('ul').fadeIn();
-            $('.preview li').each(function(){
-                fixImageToWrap( $(this) , $(this).find('img') );
-            })
-            .data('fixed-img-wrap',1);
+            $('.preview').stop().css('opacity',1).hide().fadeIn().find('ul').fadeIn();
+            $('.preview li img')
+                .load(function(){
+                    fixImageToWrap( $(this).parent().data('fixed-img-wrap',1) , $(this) );
+                });
 
             var $li = $('.preview ul').children().eq( index );
             var video = $li.data('video');
@@ -550,7 +536,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var isImage = item.media.match(/\.(jpg|png|bmp|jpeg)$/i);
 
                 // 如果是图片  则取media ， 否则取picture
-                var pic = campaignManager.getPath( item , isImage ? 'media' : 'picture' );
+                var pic = campaignManager.getPath( item , isImage ? 'media' : 'picture_1' );
                 pics.push( pic );
                 aHtml.push( LP.format( tpl, {
                     src: pic,
@@ -569,7 +555,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
             $ul.css('width', items.length * 90 + '%' ).hide();
 
-            loadImages( pics, null,  function(){
+
+            // 只载入前后的3张
+            console.log( pics.slice( Math.max( index - 2 , 0 ), index + 2 ) );
+            loadImages( pics.slice( Math.max( index - 2 , 0 ), index + 2 ) , null , function(){
                 loadingMgr.success('showBigItem');
             } );
         } );
@@ -695,9 +684,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 console.log( __CACHE_AJAX__ );
             },
 
-            // renderPath: function( path ){
-
-            // },
 
             renderTitle: function( path ){
                 path = __fixRequestPath( path );
@@ -1105,6 +1091,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     opacity: 0.5
                 } , 300);
             });
+
             var $bigItem = $('.brand_movie').find('.brands-item').eq( itemIndex );
             // hide the mask
             $bigItem.find('.brands-mask').hide();
@@ -1146,7 +1133,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             var preWidth = 0;
             $movieWrap.find('.brands-item').css('width' , 'auto')
                 .each(function( i ){
-                    var itemWidth = $(this).width();
+                    var itemWidth = $(this).is(':hidden') ? 0 : $(this).width();
                     totalWidth += itemWidth;
                     if( i < itemIndex ){
                         preWidth += itemWidth;
@@ -1161,6 +1148,25 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 .css({
                     width: totalWidth, //winWidth * $movieWrap.find('.brands-item').length,
                     marginLeft: Math.min( 0 , winWidth / 2 - preWidth )
+                });
+
+
+            // set other width
+            $('.brand_movie .brands-item').filter(':hidden')
+                .css('width','auto')
+                .find('img')
+                .load(function(){
+                    var $item = $(this).closest('.brands-item')
+                        .show();
+
+                    var width = $item.width();
+                    console.log( width );
+                    var $ul = $movieWrap.find('ul').width('+=' + width);
+                    if( $item.data('pos') == 'prev' ){
+                        $ul.css('marginLeft', '-=' + width);
+                    }
+
+                    $(this).unbind('load');
                 });
 
 
@@ -1207,20 +1213,24 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         campaignManager.getCampaignItems( path , function( items ){
             var item = items[ itemIndex ];
             var aHtml = ['<ul class="brands-items">'];
-            var tpl = '<li class="brands-item #[brands-class]" data-a="big-brands-item" data-image="#[image]" data-movie="#[video]" data-path="#[path]">\
+            var tpl = '<li class="brands-item #[brands-class]" #[style] data-pos=#[pos] data-a="big-brands-item" data-image="#[image]" data-movie="#[video]" data-path="#[path]">\
                 #[video-btn]<div class="brands-mask"></div><img src="#[picture]">\
                 </li>';
 
             var pics = [];
+            // 只载入前后的5张
+            var preloadNum = 3;
             $.each( items , function( i , tm ){
                 var pic = campaignManager.getPath( tm , 'picture_1' );
                 pics.push( pic )
 
-                var isImage = tm.media.match(/\.(jpg|png|bmp|jpeg)$/i);
+                var isImage = tm.media && tm.media.match(/\.(jpg|png|bmp|jpeg)$/i);
                 aHtml.push( LP.format( tpl , {
                     path: tm._contentPath + '/' + i,
                     picture: pic,
                     image: isImage ? 1 : '',
+                    style: Math.abs( i - itemIndex ) <= preloadNum  ? '': 'style="display:none;"',
+                    pos: i < itemIndex ? 'prev' : 'next',
                     'brands-class': isImage ? 'brands-item-image' : 'brands-item-video',
                     'video-btn': isImage ? '' : '<div class="brands-video-btn"></div>' 
                     //video: tm.media.match(/\.(jpg|png|bmp|jpeg)$/i) ? '' : 1 
@@ -1229,7 +1239,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
             aHtml.push('</ul>');
 
-            loadImages( pics , null , function(){
+            loadImages( pics.slice( Math.max( itemIndex - preloadNum , 0 ), itemIndex + preloadNum + 1 ) , null , function(){
                 $('.brands-items').remove();
                 loadingMgr.success( 'afterItemsRender', aHtml, item );
             } );
@@ -1468,19 +1478,20 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
                 // 每一个li去载入完图片后，做动画处理
+                var $loadingBar = $li.find('.items-loading');
                 loadImages( pics, function( i ){
                     $li.attr('loading' , 1);
-
                     var percent = ( i + 1 ) / pics.length;
-                    var $loadingBar = $li.find('.items-loading');
                     $loadingBar.stop(true).animate({
                         width: percent * 100 + '%'
-                    } , 200 , '' , function(){
-                        if( percent == 1 ){
-                            $loadingBar.fadeOut();
-                        }
-                    } );
+                    } , 200);
                 } , function(){
+
+                    $loadingBar.stop(true).animate({
+                        width: 100 + '%'
+                    } , 300, '', function(){
+                        $loadingBar.fadeOut();
+                    });
                     $li.attr('loading' , 2);
                 } );
 
@@ -1974,7 +1985,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 .find('.sec_brands_tit')
                 .css({
                     'margin-top': st,
-                    position: 'relative'
+                    position: 'relative',
+                    width: 'auto'
                 })
                 .next()
                 .css('margin-top' , 0 );
@@ -2706,6 +2718,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         } ) )
                     } );
                     $('#people-wrap').html( aHtml.join('') );
+
+                    cb && cb();
                 });
             }
         }
@@ -2839,10 +2853,17 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     prev: location.href,
                     type: type
                 },  undefined , url );
+
+                $('.page-mask').stop().fadeIn();
             },
             init: function( cb ){
                 var $page = $('.page');
                 var fn = pageInits[ $page.data('page') ];
+
+                // hide page mask
+                $('.page-mask').stop().fadeOut()
+                    .addClass('lighter');
+
 
                 if( fn ){
                     fn( function(){
@@ -2967,50 +2988,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             destroy: function(){
                 $(window).unbind('scroll');
                 $(document.body).unbind('mousemove').css('overflow' , 'auto');
-            },
-
-            // category and brands path
-            //  {category}/{brand}/{index}/{normal|big|middle}
-            //  commercial_services/suning_2013_may_campaign/0
-            //  commercial_services/suning_2013_may_campaign/1
-            renderPath: function( path ){
-                var paths = path.split('/');
-
-                var category = paths[1] || '';
-                var brand = paths[2] || '';
-                var index = paths[3] || '';
-                var type = paths[4] || '';
-
-
-                api.request( [ paths[0] , category , brand ].join('/') , function( r ){
-                    var items = r.items;
-
-                    if( index ){
-                        // render items to brand-movie
-                        var item = items[ index ];
-                        // TODO ..   check type
-                        switch( type ){
-                            case 'big':
-
-                                break;
-                            default: 
-                                ;
-                        }
-
-                        return ;
-                    }
-
-                    if( brand ){
-
-                        return;
-                    }
-
-                    if( category ){
-
-                        return;
-                    }
-
-                } );
             }
         }
     })();
@@ -3074,48 +3051,38 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             // show loading
             loadingMgr.show();
             loadingMgr.setSuccess(function( html ){
-                html = $('<div>' + html + '</div>').find('.container')
-                    .html();
-                // $( '.container' ).children(':not(.header)').animate({
-                //     opacity: 0
-                // } , 500);
-                setTimeout(function(){
-                    $( '.container' ).html( html )
-                        .children('.page')
-                        .stop(true,true)
-                        .fadeIn();
-                    //pagetitarrbottom
+                var $dom = $('<div>' + html + '</div>').find('.container');
+                html = $dom.html();
 
-                    $('html,body').animate({
-                        scrollTop: 0
-                    } , 300 );
-                    pageManager.destroy( );
-                    pageManager.init( );
-                } , 500);
+                var imgs = [];
+                $dom.find('img').each(function(){
+                    imgs.push( this.getAttribute('src') );
+                });
+
+
+                // preload all images
+                loadImages( imgs, null, function(){
+                    $( '.container' ).children(':not(.header)').animate({
+                        opacity: 0
+                    } , 500);
+                    setTimeout(function(){
+
+                        $( '.container' ).html( html )
+                            .children('.page')
+                            .stop()
+                            .fadeIn();
+                        //pagetitarrbottom
+
+                        $('html,body').animate({
+                            scrollTop: 0
+                        } , 300 );
+
+                        pageManager.destroy( );
+                        pageManager.init( );
+                    }, 500);
+                } );
             }, 'statechange');
             switch( type ){
-     //         case 'press':
-                    // $.get( location.href , '' , function( html ){
-                    //  html = $('<div>' + html + '</div>').find('#press-container')
-                    //      .html();
-                    //  $( '#press-container' ).children().animate({
-                    //      opacity: 0
-                    //  } , 500);
-                    //  setTimeout(function(){
-                    //      $( '#press-container' ).html( html )
-                    //          .children()
-                    //          .fadeIn();
-
-                    //      $('html,body').animate({
-                    //          scrollTop: $('.pagetit').height() + $('.banpho-img img').height() / 2
-                    //      } , 400 );
-
-                    //      pageManager.destroy( );
-     //                     pageManager.init( );
-
-                    //  } , 500);
-                    // });
-                    // break;
                 default: 
                     $.get( location.href , '' , function( r ){
                         loadingMgr.success('statechange', r );
@@ -3144,7 +3111,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     loadingMgr.abort();
                 }
 
-
                 urlManager.back();
 
                 break;
@@ -3155,9 +3121,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 if( $('.page').data('page') == "home-page" ){
                     LP.triggerAction('home-slider-left');
                 }
-                if( $('.brand_movie').is(':visible') ){
-                    LP.triggerAction('brand_big_prev') ;
-                }
                 break;
             case 39:
                 if( $('.shade').is(':visible') ){
@@ -3165,9 +3128,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 }
                 if( $('.page').data('page') == "home-page" ){
                     LP.triggerAction('home-slider-right');
-                }
-                if( $('.brand_movie').is(':visible') ){
-                    LP.triggerAction('brand_big_next') ;
                 }
                 break;
         }
@@ -3179,11 +3139,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         clearTimeout( window_resize_timer );
         window_resize_timer = setTimeout(function(){
             CAMPAIGN_ACT_WIDTH = $(this).width() > 1200 ? 322 : 175;
-            $('.brands-items').each(function(){
+            $('.brands-con .brands-items').each(function(){
                 $(this).css( 'width', $(this).children().length * CAMPAIGN_ACT_WIDTH );
             });
 
-            $('.brands-item[data-a="brands-item"]').css('width',CAMPAIGN_ACT_WIDTH ).each(function(){
+            $('.brands-con .brands-item[data-a="brands-item"]').css('width',CAMPAIGN_ACT_WIDTH ).each(function(){
                 fixImageToWrap( $(this) , $(this).find('img') );
             });
         }, 400);
@@ -3526,7 +3486,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     LP.action('move-next', function(){
         var index = parseInt( $('.preview ul').data('index') );
-        if( index >= $('.preview ul').children().length - 1 ){
+        if( index >= $('.preview ul').children('.big-item').length - 1 ){
             return false;
         }
 

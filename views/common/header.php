@@ -1,6 +1,15 @@
 <?php
 // all page init here
+// $userip = $_SERVER['REMOTE_ADDR'];
+// //引用ip库的文件 把ip.zip里的全部文件放在lib目录下
+// include_once '../ip/iplimit.class.php';
+// $iplimit = new iplimit;
 
+// if($iplimit->setup($userip)){
+//     echo 1;
+// } else {
+//     echo 2;
+// }
 
 ?>
 
@@ -45,6 +54,7 @@
 </head>
 <body>
 	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
+	<div class="page-mask"></div>
 	<div class="container">
 	<?php if( isset($home_page) ){?>
 	<!-- banner -->
