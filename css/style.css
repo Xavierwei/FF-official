@@ -86,7 +86,7 @@ a:hover{color:#000}
 	.banft_txt span{font-size: 14px;display: block;}
 /**/
 .footer{background: #000;height: 370px;padding:180px 0 0 ; position: fixed;width: 100%;bottom: 0;}
-	.ft_con{width: 1000px;margin: 0 auto 0;color:#ccc;font-size: 14px;}
+	.ft_con{width: 1000px;margin: 0 auto 0;color:#525252;font-size: 14px;}
 		.ft_mod{float: left;width: 250px;}
 			.ft_mod h3{}
 				.ft_find h3{padding:0 0 0 8px}
@@ -94,7 +94,8 @@ a:hover{color:#000}
 			.ft_mbd{padding: 35px 0 0}
 				.ft_mbd p{padding: 0 0 18px;}
 			.ft_findmbd{width: 120px}
-				.find_item{float: left;background: url('../images/ft_find.png') no-repeat 7px 0;width: 60px;height: 60px;text-indent: -9999em;}
+				.find_item{float: left;background: url('../images/ft_find.png') no-repeat 7px 0;width: 60px;height: 60px;text-indent: -9999em;opacity:0.5;}
+                .find_item:hover {opacity: 1;}
 				.icon_fb{background-position: right top}
 				.icon_linkin{background-position:  0px -60px}
 				.icon_wb{background-position:  -70px -65px;}
@@ -483,12 +484,19 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 
 
 .interview-music-wrap{position: relative;overflow: hidden;}
-.interview-music-wrap .interview_share{top: 60px;left:205px;cursor: pointer;}
+.interview-music-wrap .interview_share{top: 78px;left:205px;cursor: pointer;font-size: 19px;line-height:14px;text-transform:uppercase;position: absolute;color: #ffffff;}
 .interview-music{height: 170px !important;width: 100% !important;margin-bottom: 20px;background: #000;position: relative;}
+.interview-audio{width: 65%;height:100%;position: relative;margin-left: 35%;}
 .jp-progress{ width: 573px;height: 127px; position: absolute;top: 21px; left: 315px;background: #fff url(../images/music-bg.png) center;}
 .jp-seek-bar{height: 100%;}
 .jp-play-bar{background: url(../images/music-bg-bar.png) no-repeat left center;height: 170px;border-right: 2px solid red;margin-top: -21px;}
-.jp-play,.jp-pause{position: absolute;width: 90px;height: 90px;left: 80px; top: 40px;background: url(../images/video-btn.png) no-repeat left bottom;text-indent: 9999px;overflow: hidden;}
+.wavesurfer-playPause-btn {position: absolute;width: 90px;height: 90px;left: 70px; top: 40px;background: url(../images/video-btn.png) no-repeat left bottom;text-indent: 9999px;overflow: hidden;}
+.wavesurfer-playPause-btn:hover{cursor: pointer;}
+.wavesurfer-play{background-position:left 0;}
+.wavesurfer-pause{background-position: left bottom;}
+.audio-loading-wrapper{position: absolute;bottom: 0px;width: 100%;height: 3px;background-color: white;}
+.audio-loading-wrapper-progress{position: absolute;top: 0px;width: 0;height: 3px;background-color: red;}
+.interview-audio>wave wave{border-right: 1px solid #fd0000;}
 .jp-pause{background-position: left top;}
 .jp-current-time{position: absolute;top: 50%;right: 37px;color: white;margin-top: -10px;font-weight: 100;}
 

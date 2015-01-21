@@ -79,10 +79,13 @@ seajs.config({
     }
     ,skrollr:{
       src: "../plugin/skrollr.min.js"
-    }
-    ,queryloader:{
-      src: "../plugin/jquery.queryloader22.js"
-      ,deps: ['jquery']
+    },
+    queryloader: {
+      src: "../plugin/jquery.queryloader22.js",
+      deps: ['jquery']
+    },
+    wavesurfer: {
+      src: "../plugin/wavesurfer.min.js"
     }
   }
   , alias: {
