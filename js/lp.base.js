@@ -2415,7 +2415,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             },
             'interview-page': function( cb ){
                 // preload js conponent
-                LP.use( ['video-js' , '../plugin/jquery.jplayer.min.js'] );
+                LP.use(['video-js', '../plugin/jquery.jplayer.min.js']);
+                LP.use(['wavesurfer']);
 
                 var tvTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
                     <div class="interview_info">\
@@ -2432,7 +2433,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     <div class="interview_info">\
                         <span><strong>#[title]</strong><br/>#[content]</span>\
                     </div>\
-                    <div class="interview_img"  data-a="show-music-interview" data-media="#[media]"><img src="#[preview]"></div>\
+                    <div class="interview_img hold-audio-url"  data-a="show-music-interview" data-media="#[media]"><img src="#[preview]"></div>\
                     <span class="interview_opt" data-a="show-music-interview" data-media="#[media]">\
                         <div class="transition">LISTEN<br/>CLOSE</div>\
                     </span>\
@@ -3795,83 +3796,132 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var $item = $(this).closest('.interview_item');
         var $container = $item.data('media-dom');
         var $musicWrap = $container && $container.find('.interview-music');
-        if( !$container ){
+        if (!$container) {
+            //$container = $('<div class="interview-music-wrap">\
+            //    <div class="interview-music" style="margin-top: -190px;">\
+            //        <div class="interview-audio"></div>\
+            //        <a href="javascript:;" class="jp-play" tabindex="1">play</a>\
+            //        <a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;">pause</a>\
+            //        <div class="jp-current-time"></div>\
+            //        <div class="jp-progress">\
+            //            <div class="jp-seek-bar"><div class="jp-play-bar"></div></div>\
+            //        </div>\
+            //        <div class="interview_share">share</div>\
+            //    </div>\
+            //</div>').insertAfter( $item );
             $container = $('<div class="interview-music-wrap">\
                 <div class="interview-music" style="margin-top: -190px;">\
                     <div class="interview-audio"></div>\
-                    <a href="javascript:;" class="jp-play" tabindex="1">play</a>\
-                    <a href="javascript:;" class="jp-pause" tabindex="1" style="display: none;">pause</a>\
-                    <div class="jp-current-time"></div>\
-                    <div class="jp-progress">\
-                        <div class="jp-seek-bar"><div class="jp-play-bar"></div></div>\
-                    </div>\
+                    <div class="wavesurfer-playPause-btn wavesurfer-pause" tabindex="1">play</div>\
                     <div class="interview_share">share</div>\
                 </div>\
-            </div>').insertAfter( $item );
+            </div>').insertAfter($item);
 
-            var randomId = 'audio-' + ( $.guid++ );
-            $container.attr( 'id' , randomId );
+            var randomId = 'audio-' + ($.guid++);
+            $container.attr('id', randomId);
 
-            $item.data('media-dom' , $container)
+            $item.data('media-dom', $container)
                 .find('.interview_opt')
                 .addClass('opened');
             $musicWrap = $container.find('.interview-audio');
 
             // render audio
-            LP.use(['../plugin/jquery.jplayer.min.js'] , function(){
-                $musicWrap.jPlayer({
-                    wmode: "window",
-                    smoothPlayBar: true,
-                    keyEnabled: true,
-                    remainingDuration: true,
-                    toggleDuration: true,
+            LP.use(['wavesurfer'], function () {
+                var $audio_loading_wrapper = $('<div class="audio-loading-wrapper"><div class="audio-loading-wrapper-progress"></div></div>');
+                $audio_loading_wrapper.appendTo($item.find('.interview_img'));
+                var h = $musicWrap.height();
+                var audio_url = $container.prev('.interview_item').find('.hold-audio-url').data('media') + '';
+                var tmp_audio_url = audio_url.replace("backoffice", "www");
+                var $playPause_btn = $musicWrap.next('.wavesurfer-playPause-btn');
+                var wavesurfer = Object.create(WaveSurfer);
+                wavesurfer.init({
+                    container: $musicWrap.get(0),
+                    waveColor: 'white',
+                    progressColor: '#fd0000',
+                    cursorColor: '#fd0000',
+                    height: h
+                });
+                //wavesurfer.load('http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a');
+                tmp_audio_url && wavesurfer.load(tmp_audio_url);
 
-                    swfPath: '../',
-                    solution: 'html, flash',
-                    supplied: 'm4a, oga',
-                    preload: 'metadata',
-                    volume: 0.8,
-                    muted: false,
-                    cssSelectorAncestor: '#' + randomId,
-                    cssSelector: {
-                        videoPlay: '.jp-video-play',
-                        play: '.jp-play',
-                        pause: '.jp-pause',
-                        stop: '.jp-stop',
-                        seekBar: '.jp-seek-bar',
-                        playBar: '.jp-play-bar',
-                        mute: '.jp-mute',
-                        unmute: '.jp-unmute',
-                        volumeBar: '.jp-volume-bar',
-                        volumeBarValue: '.jp-volume-bar-value',
-                        volumeMax: '.jp-volume-max',
-                        playbackRateBar: '.jp-playback-rate-bar',
-                        playbackRateBarValue: '.jp-playback-rate-bar-value',
-                        currentTime: '.jp-current-time',
-                        duration: '.jp-duration',
-                        title: '.jp-title',
-                        fullScreen: '.jp-full-screen',
-                        restoreScreen: '.jp-restore-screen',
-                        repeat: '.jp-repeat',
-                        repeatOff: '.jp-repeat-off',
-                        gui: '.jp-gui',
-                        noSolution: '.jp-no-solution'
-                    },
-                    errorAlerts: false,
-                    warningAlerts: false,
-                    ready: function () {
-                        $(this).jPlayer("setMedia", {
-                            m4a: media, //"http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-                            oga: media//"http://jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-                        });
-
-                        $container.find('.interview-music')
-                            .animate({
-                                marginTop: 0
-                            } , 300 );
+                wavesurfer.on('loading',function(progress,e) {
+                    $item.find('.audio-loading-wrapper-progress').width(progress + '%');
+                    if (progress > 99) {
+                        $item.find('.audio-loading-wrapper').fadeOut();
                     }
                 });
+                wavesurfer.on('ready', function () {
+                    console.log('wavesurfer ready')
+                    $musicWrap.closest('.interview-music').animate({
+                        marginTop: 0
+                    }, 300);
+                    $playPause_btn.on('click', function (e) {
+                        if ($(this).hasClass('wavesurfer-play')) {
+                            wavesurfer.pause();
+                            $(this).removeClass('wavesurfer-play').addClass('wavesurfer-pause');
+                        } else {
+                            wavesurfer.play();
+                            $(this).addClass('wavesurfer-play').removeClass('wavesurfer-pause');
+                        }
+                    });
+                });
+
+
             });
+            //LP.use(['../plugin/jquery.jplayer.min.js'] , function(){
+            //    $musicWrap.jPlayer({
+            //        wmode: "window",
+            //        smoothPlayBar: true,
+            //        keyEnabled: true,
+            //        remainingDuration: true,
+            //        toggleDuration: true,
+            //
+            //        swfPath: '../',
+            //        solution: 'html, flash',
+            //        supplied: 'm4a, oga',
+            //        preload: 'metadata',
+            //        volume: 0.8,
+            //        muted: false,
+            //        cssSelectorAncestor: '#' + randomId,
+            //        cssSelector: {
+            //            videoPlay: '.jp-video-play',
+            //            play: '.jp-play',
+            //            pause: '.jp-pause',
+            //            stop: '.jp-stop',
+            //            seekBar: '.jp-seek-bar',
+            //            playBar: '.jp-play-bar',
+            //            mute: '.jp-mute',
+            //            unmute: '.jp-unmute',
+            //            volumeBar: '.jp-volume-bar',
+            //            volumeBarValue: '.jp-volume-bar-value',
+            //            volumeMax: '.jp-volume-max',
+            //            playbackRateBar: '.jp-playback-rate-bar',
+            //            playbackRateBarValue: '.jp-playback-rate-bar-value',
+            //            currentTime: '.jp-current-time',
+            //            duration: '.jp-duration',
+            //            title: '.jp-title',
+            //            fullScreen: '.jp-full-screen',
+            //            restoreScreen: '.jp-restore-screen',
+            //            repeat: '.jp-repeat',
+            //            repeatOff: '.jp-repeat-off',
+            //            gui: '.jp-gui',
+            //            noSolution: '.jp-no-solution'
+            //        },
+            //        errorAlerts: false,
+            //        warningAlerts: false,
+            //        ready: function () {
+            //            $(this).jPlayer("setMedia", {
+            //                m4a: media, //"http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
+            //                oga: media//"http://jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
+            //            });
+            //
+            //            $container.find('.interview-music')
+            //                .animate({
+            //                    marginTop: 0
+            //                } , 300 );
+            //        }
+            //    });
+            //});
         } else {
             $container.find('.interview-music')
                 .animate({
