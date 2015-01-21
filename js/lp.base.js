@@ -121,7 +121,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             } , 500 )
             .promise()
             .then(function(){
-                $(document.body).css('overflow' , 'hidden');
                 success && success();
             });
         } else {
@@ -175,13 +174,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     .promise()
                     .then(function(){
                         $('.sec_gates').fadeOut();
-                        cb && cb();
                         $(document.body).css('overflow' , 'auto');
+                        cb && cb();
                     });
             },
             load: function(  ){
                 var path = getPath();
                 fixHomePageVideo( function(){
+                    $(document.body).css('overflow' , 'hidden');
                     show_cate_list( path );
                 } );
 
@@ -247,6 +247,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             } , 800 , '' , function(){
                                 if( aindex == aniLength || i == $lis.length - 1 ){
                                     $('.brands_tit,.brands-con').hide();
+                                    $(document.body).css('overflow' , 'auto');
                                     cb && cb();
                                 }
                             });
@@ -254,10 +255,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 });
 
                 if( !$lis.length ){
+                    $(document.body).css('overflow' , 'auto');
                     cb && cb();
                 }
             },
             load: function(  ){
+                $(document.body).css('overflow' , 'hidden');
                 $('.sec_brands').show();
                 var path = getPath();
                 // change tit
@@ -322,11 +325,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     .promise()
                     .then(function(){
                         $('.brand_item_tit').hide();
+                        $(document.body).css('overflow' , 'auto');
                         cb && cb();
                     });
             },
             load: function(  ){
-
+                $(document.body).css('overflow' , 'hidden');
                 var path = getItemPathinfoFromUrl();
                 var paths = path.split('/');
 
@@ -340,10 +344,16 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 $(window).unbind('resize.fixedimg');
                 $('.preview').fadeOut()
                     .promise()
-                    .then(cb);
+                    .then(function(){
+                        $(document.body).css('overflow' , 'auto');
+                        cb && cb();
+                    });
+
+
                 
             },
             load: function( data ){
+                $(document.body).css('overflow' , 'hidden');
                 var path = getItemPathinfoFromUrl();
                 // 如果是brands 和 services
                 var paths = path.split('/');
@@ -373,6 +383,46 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 // var index = paths[3];
 
                 // showBigBrandsItem( item._contentPath , index );
+            }
+        } );
+
+        
+        // press page
+        rules.push( {
+            url: /^jobs\/\d+$/,
+            destory: function( cb ){
+
+            },
+            load: function( data ){
+                var $item = $(this).closest('.jobsitem');
+                job_index = $item.index() + 1;
+                $('.shade').fadeIn();
+                $('.pop_jobs').show()
+                    .find('.pop_jobcon')
+                    .html('')
+                    .append( $item.find('.pop_jobcon_inner').clone().show() )
+
+                    .end()
+                    .css({
+                        top: '-150%',
+                        opacity: 1
+                    })
+                    .animate({
+                        top:  '50%'
+                    } , 400 )
+                    .promise()
+                    .then(function(){
+                        $('.pop_press_menus')
+                            .delay(100)
+                            .animate({
+                                right: 0
+                            } , 300 , 'easeLightOutBack');
+                    });
+
+                $('.pop_jobs .jobs_more').attr('href' , 'mailto:' + data.contact );
+                $('.pop_jobs .pop_index').html( job_index );
+                $('.pop_jobs .pop_total').html( $item.parent().children().length );
+                $('.pop_job_menus').css('right' , 95 );
             }
         } );
         
@@ -1029,7 +1079,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         loadingMgr.show('black');
         // prev dealing
         $('.sec_brands').scrollTop(0).fadeIn();
-        $('.brand_movie').data( 'index' , itemIndex ).fadeIn();
+        $('.brand_movie').data( 'index' , itemIndex ).css('opacity',1).hide().fadeIn();
 
         // render title
         campaignManager.renderTitle( path );
@@ -1258,8 +1308,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 html.push('<li> <a data-a="filter-letter" href="#">' + l + '</a> </li>');
             } );
             $('.gates-inner-c ul').html( html.join('') );
-
-            $(document.body).css('overflow' , 'hidden');
+            
         } , 'show_cate_list');
         // get 'type' catelist
         api.request( type , function( r ){
@@ -1534,11 +1583,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             campaignItemGroups.ready = true;
 
             $('.sec_brands').trigger('scroll.loading-con');
-        } );
-        
-
-        $(document.body).css('overflow' , 'hidden');
-
+        } );        
     }
     
     function fixImageToWrap( $wrap , $img ){
@@ -2250,6 +2295,15 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var datas = [];
                 var paths = [];
                 var awards = [];
+
+                // get awards number
+                api.extraRequest( {wsExtraRequest: 'getNumbers'}, function( r ){
+                    var obj = {};
+                    $.each( r.items || [], function( i, item ){
+                        obj[ item.id ] = item.number;
+                    } );
+                    $('#awards-number').html( obj.awards );
+                } );
                 // get awards page
                 api.request( 'awards' , function( r ){
                     awards = r.items;
@@ -2731,6 +2785,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } , 1000 / 15);
             },
             'press-loading': function( $dom , index , cb ){
+                console.log(111);
                 var tpl = '<div class="press_item" data-path="#[year]/#[id]">\
                     <div class="press_img" data-a="press_img" data-path="#[year]/#[id]">\
                         <img class="cover_img" data-cover="#[cover]" src="#[preview]" />\

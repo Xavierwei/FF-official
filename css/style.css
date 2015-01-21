@@ -64,10 +64,11 @@ a:hover{color:#000}
 	.pagetitarr:hover{background-position: 0 -44px;}
 	.pagetitarrbottom{background-position: right -44px;right:55px;}
 	.pagetitarrbottom:hover{background-position: right top;}
-.pageback{position: absolute;left: 0;height: 100%;width: 80px;top: 0;background: url(../images/back.png) no-repeat center center;}
+.pageback{position: absolute;left: 0;height: 100%;width: 80px;top: 0;background: url(../images/back.png) no-repeat 30px center;}
+.pageback:hover{background-position: -55px center; }
 .banpho{text-align: center;background: white;overflow: hidden; position: relative;}
 	.banpho img{width: 100%}
-	.banpho-con{position: absolute;top: 50%;margin-top: -100px;left: 50%;margin-left: -165px;width: 330px;height: 200px;color: white;font-size: 14px;font-weight: bold;text-transform: uppercase;line-height: 50px;z-index: 101;}
+	.banpho-con{position: absolute;top: 50%;margin-top: -30px;left: 50%;margin-left: -165px;width: 330px;height: 200px;color: white;font-size: 14px;font-weight: bold;text-transform: uppercase;line-height: 50px;z-index: 101;}
 	.banpho-con img{width: auto;}
 
 	.banpho-bt{width: 208px;height: 50px;border: 2px solid white;position: relative;margin: 0 auto;}
@@ -414,7 +415,8 @@ a:hover{color:#000}
 	.joblang a{color: white;}
 	.jobshare{color:#fff;font-size: 14px;position: absolute;left:90px;bottom:40px;}
 		.jobshare strong{float: left;padding:7px 15px 0 0}
-		.jobshareitem{float:left;background: url('../images/jobsshare.png') no-repeat;width: 30px; height:30px;display: inline;margin: 0 6px;}
+		.jobshareitem{ opacity: 0.8; float:left;background: url('../images/jobsshare.png') no-repeat;width: 30px; height:30px;display: inline;margin: 0 6px;}
+		.jobshareitem:hover{opacity: 1;}
 		.jobshare_fb{background-position: 0 -30px;}
 		.jobshare_t{background-position: 0 -60px;}
 		.jobshare_lin{background-position: 0 -90px;}

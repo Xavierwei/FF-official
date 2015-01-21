@@ -7,7 +7,7 @@
 	
 	<!-- section -->
 	<div class="section sec_awards">
-		<div class="sectit"><h2><span class="intoview-effect" data-effect="number-rock">213</span> <span style="vertical-align:middle;">INTERNATIONAL AWARDS</span></h2></div>
+		<div class="sectit"><h2><span class="intoview-effect" data-effect="number-rock" id="awards-number"></span> <span style="vertical-align:middle;">INTERNATIONAL AWARDS</span></h2></div>
 		<div data-effect="fadeup" class="intoview-effect awardicons cs-clear column">
 			<img data-num="40" src="../images/award_img1.png" />
 			<img data-num="60" src="../images/award_img2.png" />

@@ -8,7 +8,6 @@ $lang = isset( $_COOKIE['lang'] ) ? $_COOKIE['lang'] : '';
 if(  empty($lang) ){
 	$lang = 'eng';
 }
-$lang = 'eng'; // zho
 $url = 'http://backoffice.fredfarid.com/' . $lang . '/ws/';
 $key = md5( $url . json_encode( $_POST ) );
 // check file
