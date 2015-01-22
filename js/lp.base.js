@@ -2704,11 +2704,16 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
                             <div class="pop_jobcon_inner" style="display:none;">\
-                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="cn"> 中国 </a></div>\
+                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="fr"> FR </a><a href="#" data-a="jobs-lang" data-lang="cn"> 中国 </a></div>\
                                 <div class="jobcontent content_en">\
                                     <h3>#[title]</h3>\
                                     <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
                                     <div class="pop_jobtxt">#[content]</div>\
+                                </div>\
+                                <div class="jobcontent content_fr">\
+                                    <h3>#[title_fr]</h3>\
+                                    <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
+                                    <div class="pop_jobtxt">#[content_fr]</div>\
                                 </div>\
                                 <div class="jobcontent content_cn" style="display:none;">\
                                     <h3>#[title_zho]</h3>\
