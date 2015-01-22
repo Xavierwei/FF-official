@@ -2624,7 +2624,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         $.each( r.items , function( i , item ){
                             aHtml.push( LP.format( tpl , {
                                 image: campaignManager.getPath( item , 'preview' ),
-                                movie: campaignManager.getPath( item , 'video_small' ).replace(/\.\w+$/ , '')
+                                movie: campaignManager.getPath( item , 'video' )
                             } ) );
 
                             images.push( campaignManager.getPath( item , 'preview' ) );
@@ -2643,7 +2643,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 year: item.date_and_price.split('-')[0]
                             } ) );
                         } );
-
+                        $(window).resize(function(){
+                                 $('#slider-block-inner').css('height',($(window).height() -$('.header').height()-$('.pagetit').height() )+ 'px');
+                        }).trigger('resize');
                         loadImages( images.slice( 0 , 3 ), null , function(){
                             cb && cb();
                         });
@@ -2667,7 +2669,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     $.each( r.items , function( i , item ){
                         aHtml.push( LP.format( tpl , {
                             image: campaignManager.getPath( item , 'preview' ),
-                            movie: campaignManager.getPath( item , 'video_small' ).replace(/\.\w+$/ , '')
+                            movie: campaignManager.getPath( item , 'video')
                         } ) );
 
                         images.push( campaignManager.getPath( item , 'preview' ) );
@@ -2677,7 +2679,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             // .children()
                             // .eq(0).css('opacity' , 1).fadeIn();
 
-
                     initSlider( function( index ){
                         var item = r.items[ index ];
                         $('.showreel-tit').html( LP.format( '<h3>#[brand]</h3><p>#[campaign]</p><p>#[year]</p></div>' , {
@@ -2685,23 +2686,70 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             campaign: item.campaign,
                             year: item.date_and_price.split('-')[0]
                         } ) );
-                    } );
 
+                    } );
+                    $(window).resize(function(){
+                        var winWidth = $(window).width();
+                        var winHeight = $(window).height();
+                        var $sliderInner = $('.slider-block-inner');
+                        $('#slider-block-inner').css('height',($(window).height() -$('.header').height() )+ 'px');
+                        // resize the slider images
+                        $('<img />')
+                            .load(function(){
+                                var ratio = this.height / this.width;
+                                var w = winWidth ;
+                                var h = winHeight ;
+                                var vh = 0 ;
+                                var vw = 0 ;
+                                if( h / w > ratio ){
+                                    vh = h + 40;
+                                    vw = vh / ratio;
+                                } else {
+                                    vw = w + 40;
+                                    vh = vw * ratio;
+                                }
+                                $sliderInner.find('.slider-item>img').css({
+                                    width: vw,
+                                    height: vh,
+                                    marginTop: ( h - vh ) / 2,
+                                    marginLeft: ( w - vw ) / 2
+                                });
+
+                                //if( !firstLoaded ){
+                                //    firstLoaded = true;
+                                //    $sliderInner.find('.slider-item').css('opacity' , 1).hide().fadeIn();
+                                //}
+
+                            })
+                            .attr('src' , $sliderInner.find('.slider-item>img').eq(0).attr('src'));
+                    }).trigger('resize');
                     loadImages( images.slice( 0 , 3 ) , null , function(){
                         cb && cb();
                     });
                 });
             },
             'people-page': function( cb ){
+                //var tpl = '<div class="people_item cs-clear intoview-effect #[class]" data-effect="fadeup" data-a="people_opt">\
+                //        <div class="people_s people_opt"> <span class="transition"></span> </div>\
+                //        <div class="people_b people_img"><img src="#[img]"></div>\
+                //        <div class="people_s people_addr"> SHANGHAI </div>\
+                //        <div class="people_b people_tit"> \
+                //            <h3>#[title]</h3>\
+                //            <p><strong>PARTNER</strong></p>\
+                //            <p><strong>HEAD OF STRATEGY</strong></p>\
+                //            <p><strong>FRED & FARID GROUP</strong></p>\
+                //        </div>\
+                //        <div class="people_s people_download" style="display:none;"> <a class="transition" href="#[file]"></a><span>download</span> </div>\
+                //        <div class="people_b people_desc"  style="display:none;"><p> #[content]</p></div>\
+                //    </div>';
                 var tpl = '<div class="people_item cs-clear intoview-effect #[class]" data-effect="fadeup" data-a="people_opt">\
                         <div class="people_s people_opt"> <span class="transition"></span> </div>\
                         <div class="people_b people_img"><img src="#[img]"></div>\
-                        <div class="people_s people_addr"> SHANGHAI </div>\
+                        <div class="people_s people_addr">#[city]</div>\
                         <div class="people_b people_tit"> \
                             <h3>#[title]</h3>\
                             <p><strong>PARTNER</strong></p>\
                             <p><strong>HEAD OF STRATEGY</strong></p>\
-                            <p><strong>FRED & FARID GROUP</strong></p>\
                         </div>\
                         <div class="people_s people_download" style="display:none;"> <a class="transition" href="#[file]"></a><span>download</span> </div>\
                         <div class="people_b people_desc"  style="display:none;"><p> #[content]</p></div>\
@@ -2714,7 +2762,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             file: campaignManager.getPath( people , 'file' ),
                             content: people.content.replace(/\n/g,'<p/><p>'),
                             'class': !( i % 2 ) ? 'people_odd' : 'people_even',
-                            title: people.title
+                            title: people.title,
+                            city: people.city
                         } ) )
                     } );
                     $('#people-wrap').html( aHtml.join('') );
@@ -3262,14 +3311,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             } , function(){
                 this.on('play' , function(){
                     $btn
-                        .fadeOut()
+                        .fadeOut('fast')
                         .find('.banpho-bt-c')
                         .html('<div class="transition">PAUSE<br><br>PAUSE</div>');
                 });
 
                 this.on('pause' , function(){
                     $btn
-                        .fadeIn()
+                        .fadeIn('fast')
                         .find('.banpho-bt-c')
                         .html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
                 });
@@ -3866,7 +3915,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     }
                 });
                 wavesurfer.on('ready', function () {
-                    console.log('wavesurfer ready')
+                    //console.log('wavesurfer ready')
                     $musicWrap.closest('.interview-music').animate({
                         marginTop: 0
                     }, 300);
