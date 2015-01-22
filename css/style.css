@@ -341,7 +341,7 @@ a:hover{color:#000}
 
 	.brand_movie{position: absolute;top: 88px;width: 100%;overflow: hidden;}
 	.brand_movie .brands-items{width: 200%;height: 100%;overflow: hidden;height: 445px;}
-	.brand_movie .brands-item{float: left; position: relative;font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;cursor: pointer;}
+	.brand_movie .brands-item{float: left; position: relative;font-size: 0;line-height: 0;height: 100%; width:auto; overflow: hidden;cursor: pointer;}
 	.brand_movie .brands-item .image-zoom{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;font-size: 18px;text-align: center;z-index: 101;}
 	.image-zoom-big{position: fixed;width: 100%;height: 100%;top:0;left:0;z-index: 50;}
 /*

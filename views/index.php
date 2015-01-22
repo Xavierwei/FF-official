@@ -49,18 +49,6 @@
 		<div class="home_campaign">
 			<h2 class="intoview-effect" data-effect="fadeup">FEATURED CAMPAIGNS</h2>
 			<div class="home_camcon column cs-clear">
-				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
-					<div><img src="" /></div>
-					<p></p>
-				</div>
-				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
-					<div><img src="" /></div>
-					<p></p>
-				</div>
-				<div class="cam_item" data-a="home-cam-item" data-movie="../videos/0">
-					<div><img src="" /></div>
-					<p></p>
-				</div>
 			</div>
 			<a class="home_cambtn" data-a="home-loadmore" href="#">
 				<div class="transition">
