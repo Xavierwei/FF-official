@@ -38,6 +38,7 @@ a:hover{color:#000}
 	.header-fixed .header-inner{position: fixed;top: 0;z-index: 100;}
 	.logo{background: url('../images/logo.png') no-repeat;width: 14px;height: 14px;position: absolute;left:32px;top:24px;}
 	.language{position: absolute;right: 98px;top:0;height: 100%;line-height: 66px;}
+    .language a{margin-left: 10px;}
 	.search{background: url('../images/hd_search.png') no-repeat;text-indent: -9999px;overflow: hidden; width: 17px;height: 17px;position: absolute;right:46px;top:22px;top: 50%;margin-top: -8px;}
 	.search-close{background: none;text-indent: 0;line-height: 17px;font-size: 24px;text-align: center; color: #666;}
 		.navitem{float: left;margin: 0 40px 0 0;display: inline ;font-weight: 100;color: #555;position: relative;height: 100%;line-height: 66px;}
