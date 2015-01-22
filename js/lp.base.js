@@ -2201,7 +2201,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     } else {
                         $header.removeClass('header-fixed');
                     }
-
                     // homeCampaign animate
                     if($('.cam_item').eq(0).offset().top < stTop + $(window).height() ){
                         $homeCampaign.data('animate' , 1);
@@ -2217,8 +2216,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 bottom: 90
                             } , 400 , 'easeLightOutBack' );
                     }
-
-
                     // fix $homeBio background image
                     var all = $homeBioBg.height() -  $homeBio.height();
                     var bgTop = stTop + winHeight - $homeBio.offset().top; // - headerHeight - stTop;
@@ -2296,6 +2293,47 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     cb && cb();
                 });
 
+                // render home page featured_campaigns
+                // 完成:图片的加载,文字的替换
+                // 未完成:图片的依次淡入效果,loadMore按钮的边界判断,点击div.cam_item后的跳转
+                // issues: 第一张图片不对,原因是代码中Ajax返回的JSON对象与直接取get返回的JSON内容不一致
+                //
+                api.request('featured_campaigns' , function( r ){
+                    $.each( r.items , function( i , item ){
+                        var $container = $('.home_campaign').find('.cam_item').eq(i);
+                        $container.find('p').text(item.label);
+                        $container.find('img').prop('src',campaignManager.getPath( item , 'preview' ));
+                        $container.find('img').load(function(){
+                            var ratio = this.height / this.width;
+                            var w = $(this).closest('div').width() ;
+                            var h = $(this).closest('div').height() ;
+                            var vh = 0 ;
+                            var vw = 0 ;
+                            if( h / w > ratio ){
+                                vw = w;
+                                vh = (h - (w / ratio)) / 2;
+                            } else {
+                                vh = h;
+                                vw = (w - (h * ratio)) / 2;
+                            }
+                            $(this).css({'margin-left': (-vw + 'px'),
+                            'margin-top': (-vh + 'px')});
+                        });
+                        $container.off('click');
+                        $container.on('click',function() {
+                            var url_surfix = item.fid_campaign.split('#')[0];
+                            var id = item.fid_campaign.split('#')[1];
+                            var current_url =  window.location + '';
+                            var tmp_url = current_url.replace(/index.*$/,"##!categories/");
+                            var url = tmp_url + url_surfix;
+                            console.log('url: ',url)
+                            //window.location.replace(url);
+                            //urlManager.setFormatHash(url);
+                        });
+                        fixImageToWrap( $container.find('div') , $container.find('img') );
+                    } );
+                        cb && cb();
+                });
 
                 // init campaigns mouse move effect
                 // $('.cam_item div').each(function(){
