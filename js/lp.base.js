@@ -734,17 +734,24 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             tit: __CACHE_TITLE__[ key ].toUpperCase()
                         }));
 
-                        var path = getPath();
-                        var tmpPaths = path.split('/').pop();
-                        if( __CACHE_NEXT_ITEM__[ key ] ){
-                            var nextPath = tmpPaths.push( __CACHE_NEXT_ITEM__[ key ].path ).join('/');
-                            $('a[data-a="pagetitarrbottom"]').attr('href', nextPath);
-                        }
-                        tmpPaths.pop();
-                        if( __CACHE_PREV_ITEM__[ key ] ){
-                            var nextPath = tmpPaths.push( __CACHE_PREV_ITEM__[ key ].path ).join('/');
-                            $('a[data-a="pagetitarrbottom"]').attr('href', nextPath);
-                        }
+                    var path = getPath();
+                    var tmpPaths = path.split('/');
+                    tmpPaths.pop();
+                    if( __CACHE_NEXT_ITEM__[ key ] ){
+                        tmpPaths.push( __CACHE_NEXT_ITEM__[ key ].path );
+                        var nextPath = tmpPaths.join('/');
+                        $('a[data-a="pagetitarrbottom"]').attr('href', nextPath).show();
+                    } else {
+                        $('a[data-a="pagetitarrbottom"]').hide();
+                    }
+                    tmpPaths.pop();
+                    if( __CACHE_PREV_ITEM__[ key ] ){
+                        tmpPaths.push( __CACHE_PREV_ITEM__[ key ].path );
+                        var nextPath = tmpPaths.join('/');
+                        $('a[data-a="pagetitarrtop"]').attr('href', nextPath).show();
+                    } else {
+                        $('a[data-a="pagetitarrtop"]').hide();
+                    }
                 } else {
                     api.request( paths[0] , function( r ){
                         $.each( r.items , function( i , item ){
@@ -760,15 +767,22 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                     }));
 
                                 var path = getPath();
-                                var tmpPaths = path.split('/').pop();
+                                var tmpPaths = path.split('/');
+                                tmpPaths.pop();
                                 if( __CACHE_NEXT_ITEM__[ key ] ){
-                                    var nextPath = tmpPaths.push( __CACHE_NEXT_ITEM__[ key ].path ).join('/');
-                                    $('a[data-a="pagetitarrbottom"]').attr('href', nextPath);
+                                    tmpPaths.push( __CACHE_NEXT_ITEM__[ key ].path );
+                                    var nextPath = tmpPaths.join('/');
+                                    $('a[data-a="pagetitarrbottom"]').attr('href', nextPath).show();
+                                } else {
+                                    $('a[data-a="pagetitarrbottom"]').hide();
                                 }
                                 tmpPaths.pop();
                                 if( __CACHE_PREV_ITEM__[ key ] ){
-                                    var nextPath = tmpPaths.push( __CACHE_PREV_ITEM__[ key ].path ).join('/');
-                                    $('a[data-a="pagetitarrbottom"]').attr('href', nextPath);
+                                    tmpPaths.push( __CACHE_PREV_ITEM__[ key ].path );
+                                    var nextPath = tmpPaths.join('/');
+                                    $('a[data-a="pagetitarrtop"]').attr('href', nextPath).show();
+                                } else {
+                                    $('a[data-a="pagetitarrtop"]').hide();
                                 }
                                 return false;
                             }
@@ -4409,35 +4423,20 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
     LP.action('pagetitarrtop' , function(){
-        var paths = $('.sec_brands').data('path').split('/');
-        var prePath = '';
-        api.request(paths[0] , function( r ){
-            $.each( r.items , function( i , item ){
-                if( paths[1] == item.path ){
-                    return false;
-                }
-                prePath = item.path;
-            } );
-
-            LP.triggerAction('show-compagins' , {path: paths[0] + '/' + prePath});
-        });
+        var href = $(this).attr('href');
+        if( href ){
+            urlManager.setFormatHash( href );
+        }
 
         return false;
     });
 
     LP.action('pagetitarrbottom' , function(){
-        var paths = $('.sec_brands').data('path').split('/');
-        var nextPath = '';
-        api.request(paths[0] , function( r ){
-            $.each( r.items , function( i , item ){
-                if( paths[1] == item.path ){
-                    nextPath = r.items[i + 1].path;
-                    return false;
-                }
-            } );
-
-            LP.triggerAction('show-compagins' , {path: paths[0] + '/' + nextPath});
-        });
+        var href = $(this).attr('href');
+        if( href ){
+            urlManager.setFormatHash( href );
+        }
+        
         return false;
     });
 
