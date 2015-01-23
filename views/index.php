@@ -22,15 +22,11 @@
 		<div class="home_view column">
 			<div class="home_viewtiem home_twitter cs-clear intoview-effect" data-effect="fadeup">
 				<div class="home_viewlogo home_tlogo">11K</div>
-				<div class="home_viewtxt">Social Strip Tease: <a href="#">http://www.socialstriptease.com </a> a new digital campaign of Fred & Farid Shanghai for Vicomte A <a href="#">#socialstriptease</a></div>
-				<div class="home_viewtxt">RT <a href="#">@designtaxi</a>: Beautiful visualizations of flight patterns around the world <a href="#">http://ow.ly/mnUkb </a></div>
-				<div class="home_viewtxt">Reclameduo Fred & Farid boekt succes in Shanghai <a href="#">#Profnews http://www.profnews.nl/node/160697 </a></div>
+                <div id="home_twitter_wrap"></div>
 			</div>
 			<div class="home_viewtiem home_weibo cs-clear intoview-effect" data-effect="fadeup">
 				<div class="home_viewlogo home_wlogo">11K</div>
-				<div class="home_viewtxt">还没有微博帐号？现在加入 立即注册. «返回快速登录. 普通登录普通登录|二维码登录二维码登录. 检测到您已登录微博账号.</div>
-				<div class="home_viewtxt">还没有微博帐号？现在加入 立即注册. «返回快速登录. 普通登录普通登</div>
-				<div class="home_viewtxt">还没有微博帐号？现在加入 立即注册. «返回快速登录. 普通登录普通登录|</div>
+                <div id="home_weibo_wrap"></div>
 			</div>
 			<div class="home_viewbtn cs-clear">
 				<a href="#" class="home_viewbtntw transition-wrap">

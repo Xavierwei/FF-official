@@ -2375,6 +2375,28 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     $('#home-num-tr').html( LP.format(tpl, obj) );
                 } );
 
+                // render weibo
+                api.localRequest('/ff/api/weibo/weibolist.php' , function( r ){
+                    var aHtml = [];
+                    $.each( r.statuses || [] , function( i , item ){
+                        aHtml.push( LP.format('<div class="home_viewtxt">#[text]</div>' , {
+                            text: item.text
+                        }));
+                    } );
+                    $('#home_weibo_wrap').html( aHtml.join('') );
+                });
+
+                // render twitter
+                api.localRequest('/ff/api/twitter/twitterlist.php' , function( r ){
+                    var aHtml = [];
+                    $.each( r || [] , function( i , item ){
+                        aHtml.push( LP.format('<div class="home_viewtxt">#[text]</div>' , {
+                            text: item.text
+                        }));
+                    } );
+                    $('#home_twitter_wrap').html( aHtml.join('') );
+                });
+
                 // render home page slider
                 api.request('home' , function( r ){
                     var aHtml = [];
