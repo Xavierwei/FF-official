@@ -16,5 +16,10 @@ else {
 $ip = new IPToLatlng();
 //$userIp = (isset($_SERVER["HTTP_VIA"])) ? $_SERVER["HTTP_X_FORWARDED_FOR"] : $_SERVER["REMOTE_ADDR"];
 $country = $ip->toCountry($userIp);
-echo $country;
+if($country == "CN") {
+    echo 1;
+}
+else {
+    echo 2;
+}
 ?>
