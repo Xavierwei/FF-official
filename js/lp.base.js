@@ -2375,6 +2375,31 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     $('#home-num-tr').html( LP.format(tpl, obj) );
                 } );
 
+                // render weibo
+                api.localRequest('/ff/api/weibo/weibolist.php' , function( r ){
+                    var aHtml = [];
+                    $.each( r.statuses || [] , function( i , item ){
+                        aHtml.push( LP.format('<div class="home_viewtxt">#[text]</div>' , {
+                            text: item.text
+                        }));
+                    } );
+                    $('#home_weibo_wrap').html( aHtml.join('') );
+                    $('#home_weibo_follow').html(~~(r.userinfo.followers_count / 1000) + 'k');
+                });
+
+                // render twitter
+                api.localRequest('/ff/api/twitter/twitterlist.php' , function( r ){
+                    var aHtml = [];
+                    $.each( r.status || [] , function( i , item ){
+                        aHtml.push( LP.format('<div class="home_viewtxt"><a href="https://twitter.com/engadget/status/#[url]" target="_blank">#[text]</a></div>' , {
+                            text: item.text,
+                            url: item.id_str
+                        }));
+                    } );
+                    $('#home_twitter_wrap').html( aHtml.join('') );
+                    $('#home_twitter_follow').html(~~(r.user[0].followers_count / 1000) + 'k');
+                });
+
                 // render home page slider
                 api.request('home' , function( r ){
                     var aHtml = [];

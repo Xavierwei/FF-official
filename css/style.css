@@ -259,7 +259,7 @@ a:hover{color:#000}
 			.cam_item{text-align: center;width: 322px;font-weight:bold;line-height: 30px;float: left;margin-top: 300px;cursor: pointer;}
 			/*.cam_item{text-align: center;width: 365px;font-weight:bold;line-height: 30px;float: left;margin-top: 300px;cursor: pointer;}*/
 				.cam_item:hover{background: black;color:white;}
-				.cam_item>div{position: relative;overflow: hidden;border: 1px solid #b5b5b5;margin: 0 -1px;max-height:230px;max-width:322px;width: 322px;height: 230px;}
+				.cam_item>div{position: relative;overflow: hidden;border: 1px solid #b5b5b5;margin: 0 -1px;max-height:184px;max-width:322px;width: 322px;height: 184px;}
 				.cam_item img{width: 100%;display: block;}
 				.cam_item p{padding:23px 0;text-transform: uppercase;}
 		.home_cambtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto 0;display: block;position: absolute;left: 50%;margin-left: -88px;bottom: -90px;overflow: hidden;}
