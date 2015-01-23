@@ -2391,9 +2391,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 api.localRequest('/ff/api/twitter/twitterlist.php' , function( r ){
                     var aHtml = [];
                     $.each( r.status || [] , function( i , item ){
-                        aHtml.push( LP.format('<div class="home_viewtxt"><a href="#[url]" target="_blank">#[text]</a></div>' , {
+                        aHtml.push( LP.format('<div class="home_viewtxt"><a href="https://twitter.com/engadget/status/#[url]" target="_blank">#[text]</a></div>' , {
                             text: item.text,
-                            url: item.url
+                            url: item.id_str
                         }));
                     } );
                     $('#home_twitter_wrap').html( aHtml.join('') );
