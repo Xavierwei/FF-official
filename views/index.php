@@ -21,11 +21,11 @@
 		<!--  -->
 		<div class="home_view column">
 			<div class="home_viewtiem home_twitter cs-clear intoview-effect" data-effect="fadeup">
-				<div class="home_viewlogo home_tlogo" id="home_twitter_follow"></div>
+				<a href="https://twitter.com/FredFarid" target="_blank" class="home_viewlogo home_tlogo" id="home_twitter_follow"></a>
                 <div id="home_twitter_wrap"></div>
 			</div>
 			<div class="home_viewtiem home_weibo cs-clear intoview-effect" data-effect="fadeup">
-				<div class="home_viewlogo home_wlogo">11K</div>
+				<a href="http://weibo.com/fredfaridgroup" target="_blank" class="home_viewlogo home_wlogo" id="home_weibo_follow"></a>
                 <div id="home_weibo_wrap"></div>
 			</div>
 			<div class="home_viewbtn cs-clear">
@@ -34,7 +34,7 @@
 					VIEW ALL TWEETS<br/><br/>VIEW ALL TWEETS
 					</div>
 				</a>
-				<a href="#" class="home_viewbtnwb transition-wrap">
+				<a href="http://weibo.com/fredfaridgroup" target="_blank" class="home_viewbtnwb transition-wrap">
 					<div class="transition">
 						VIEW ALL WEIBO<br/><br/>VIEW ALL WEIBO
 					</div>

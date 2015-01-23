@@ -2384,20 +2384,19 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         }));
                     } );
                     $('#home_weibo_wrap').html( aHtml.join('') );
+                    $('#home_weibo_follow').html(~~(r.userinfo.followers_count / 1000) + 'k');
                 });
 
                 // render twitter
                 api.localRequest('/ff/api/twitter/twitterlist.php' , function( r ){
                     var aHtml = [];
                     $.each( r.status || [] , function( i , item ){
-                        console.log(item);
                         aHtml.push( LP.format('<div class="home_viewtxt"><a href="#[url]" target="_blank">#[text]</a></div>' , {
                             text: item.text,
                             url: item.url
                         }));
                     } );
                     $('#home_twitter_wrap').html( aHtml.join('') );
-
                     $('#home_twitter_follow').html(~~(r.user[0].followers_count / 1000) + 'k');
                 });
 
