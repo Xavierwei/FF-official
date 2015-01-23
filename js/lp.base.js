@@ -2388,7 +2388,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     $('#slider-block-inner').html( aHtml.join('') );
                     initSlider();
 
-                    cb && cb();
+                    fixImgsDomLoaded( $('#slider-block-inner img') , cb );
                 });
 
                 // render home page featured_campaigns
@@ -3044,13 +3044,13 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var $page = $('.page');
                 var fn = pageInits[ $page.data('page') ];
 
-                // hide page mask
-                $('.page-mask').stop().fadeOut()
-                    .addClass('lighter');
-
 
                 if( fn ){
                     fn( function(){
+                        // hide page mask
+                        $('.page-mask').stop().fadeOut()
+                            .addClass('lighter');
+
                         $(window).trigger('scroll');
                         if( isFirstLoading ){
                             cb && cb();
@@ -3060,6 +3060,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         isFirstLoading = false;
                     });
                 } else {
+                    // hide page mask
+                    $('.page-mask').stop().fadeOut()
+                        .addClass('lighter');
+                        
                     if( isFirstLoading ){
                         cb && cb();
                         var path = location.hash.replace('##!', '');
