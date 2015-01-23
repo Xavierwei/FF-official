@@ -31,7 +31,11 @@ $connection = $twitter->connectAsApplication();
  */
 $data = $connection->get('/statuses/user_timeline',array('screen_name' => 'FredFarid', 'count' => 3, 'exclude_replies' => 'true'));
 
-$twitter_data = json_encode($data);
+$user = $connection->get('/users/lookup',array('screen_name' => 'FredFarid'));
+
+$result = Array("status"=>$data,"user"=>$user);
+
+$twitter_data = json_encode($result);
 
 print_r($twitter_data);
 ?>

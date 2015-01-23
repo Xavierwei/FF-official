@@ -21,7 +21,7 @@
 		<!--  -->
 		<div class="home_view column">
 			<div class="home_viewtiem home_twitter cs-clear intoview-effect" data-effect="fadeup">
-				<div class="home_viewlogo home_tlogo">11K</div>
+				<div class="home_viewlogo home_tlogo" id="home_twitter_follow"></div>
                 <div id="home_twitter_wrap"></div>
 			</div>
 			<div class="home_viewtiem home_weibo cs-clear intoview-effect" data-effect="fadeup">
@@ -29,7 +29,7 @@
                 <div id="home_weibo_wrap"></div>
 			</div>
 			<div class="home_viewbtn cs-clear">
-				<a href="#" class="home_viewbtntw transition-wrap">
+				<a href="https://twitter.com/FredFarid" target="_blank" class="home_viewbtntw transition-wrap">
 					<div class="transition">
 					VIEW ALL TWEETS<br/><br/>VIEW ALL TWEETS
 					</div>
