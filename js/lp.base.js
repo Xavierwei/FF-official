@@ -2413,7 +2413,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     $('#slider-block-inner').html( aHtml.join('') );
                     initSlider();
 
-                    fixImgsDomLoaded( $('#slider-block-inner img') , cb );
+                    fixImgsDomLoaded( $($('#slider-block-inner img').slice(0,3)) , cb );
                 });
 
                 // render home page featured_campaigns
