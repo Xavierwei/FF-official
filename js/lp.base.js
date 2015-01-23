@@ -681,6 +681,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var __CACHE_BRAND__ = {};
         var __CACHE_CAMPAIGN__ = {};
         var __CACHE_TITLE__ = {};
+        var __CACHE_PREV_ITEM__ = {};
+        var __CACHE_NEXT_ITEM__ = {};
         var index = 0;
 
 
@@ -721,23 +723,53 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 path = __fixRequestPath( path );
                 var paths = path.split('/');
                 var key = paths[0] + '/' +  paths[1];
+
+                var fixTitle = function( prev, curr, next ){
+
+                }
                 if( __CACHE_TITLE__[ key ] ){
                     $('.sec_brands_tit h2').html( 
                         LP.format('<span>#[cate]</span>  <span class="sep">|</span>  <span>#[tit]</span>' , {
                             cate: paths[0].toUpperCase(),
                             tit: __CACHE_TITLE__[ key ].toUpperCase()
                         }));
+
+                        var path = getPath();
+                        var tmpPaths = path.split('/').pop();
+                        if( __CACHE_NEXT_ITEM__[ key ] ){
+                            var nextPath = tmpPaths.push( __CACHE_NEXT_ITEM__[ key ].path ).join('/');
+                            $('a[data-a="pagetitarrbottom"]').attr('href', nextPath);
+                        }
+                        tmpPaths.pop();
+                        if( __CACHE_PREV_ITEM__[ key ] ){
+                            var nextPath = tmpPaths.push( __CACHE_PREV_ITEM__[ key ].path ).join('/');
+                            $('a[data-a="pagetitarrbottom"]').attr('href', nextPath);
+                        }
                 } else {
                     api.request( paths[0] , function( r ){
                         $.each( r.items , function( i , item ){
                             // 如果是brands和services则，只能从id中获取
                             if( item.path == paths[1] || ( ( paths[0] == 'brands' || paths[0] == 'services' ) && item.id == paths[1] ) ){
+                                __CACHE_PREV_ITEM__[ key ] = r.items[ i - 1 ];
+                                __CACHE_NEXT_ITEM__[ key ] = r.items[ i + 1 ];
                                 __CACHE_TITLE__[ key ] = item.title;
                                 $('.sec_brands_tit h2').html( 
                                     LP.format('<span>#[cate]</span>  <span class="sep">|</span>  <span>#[tit]</span>' , {
                                         cate: paths[0].toUpperCase(),
                                         tit: item.title.toUpperCase()
                                     }));
+
+                                var path = getPath();
+                                var tmpPaths = path.split('/').pop();
+                                if( __CACHE_NEXT_ITEM__[ key ] ){
+                                    var nextPath = tmpPaths.push( __CACHE_NEXT_ITEM__[ key ].path ).join('/');
+                                    $('a[data-a="pagetitarrbottom"]').attr('href', nextPath);
+                                }
+                                tmpPaths.pop();
+                                if( __CACHE_PREV_ITEM__[ key ] ){
+                                    var nextPath = tmpPaths.push( __CACHE_PREV_ITEM__[ key ].path ).join('/');
+                                    $('a[data-a="pagetitarrbottom"]').attr('href', nextPath);
+                                }
                                 return false;
                             }
                         } );
@@ -960,21 +992,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             cb && cb();
         } else {
             var index = 0;
+            var imgs = [];
             $imgs.each(function(){
-                if( this.width ){
-                    index ++;
-                    if( index == $imgs.length ){
-                        cb && cb();
-                    }
-                } else {
-                    this.onload = function(){
-                        index ++;
-                        if( index == $imgs.length ){
-                            cb && cb();
-                        }
-                    }
-                }
+                imgs.push( this.getAttribute('src') );
             });
+
+            loadImages( imgs, null, cb );
         }
     }
 
@@ -2097,7 +2120,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             success: function( ){
                 var args = Array.prototype.slice.call( arguments );
                 var key = args.shift();
-                // console.log( 'success' );
+                console.log( 'success: ' + key );
                 mutiSuccess[key] && mutiSuccess[key].apply('', args);
                 loadingMgr.hide();
                 success = null;
@@ -3395,9 +3418,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             loadingMgr.success();
         } );
 
-        $(document).ajaxError(function(){
-            loadingMgr.success();
-        });
+        // $(document).ajaxError(function(){
+        //     loadingMgr.success();
+        // });
 
         History.Adapter.bind(window,'hashchange',function( ev ){
             var oldURL = ev.oldURL;
