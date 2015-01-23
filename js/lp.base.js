@@ -1427,6 +1427,158 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     }
 
 
+	var mapHelper = (function(){
+		return {
+			renderBaidu: function( $dom , points ){
+				// var html = '<img class="map-marker" src="#[markerPath]" />\
+				//     <img src="http://api.map.baidu.com/staticimage?center=#[pointer]&width=#[width]&height=#[height]&zoom=11" />';
+				// $dom.html( LP.format( html , {
+				//     markerPath: SOURCE_PATH + '/images/map-marker.png',
+				//     pointer: point.join(','),
+				//     width: $dom.width(),
+				//     height: $dom.height()
+				// } ) );
+
+				var id = $dom.attr('id') || 'baidu-map-' + ( + new Date() );
+				$dom.attr( 'id' , id ) ;
+				if( !window.BMap ){
+					var _LP = window.LP;
+					LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
+						window.LP = _LP;
+					});
+				}
+				var interval = setInterval(function(){
+					if( window.BMap ){
+						clearInterval( interval );
+						var oMap = new BMap.Map( id );
+						oMap.addControl(new BMap.NavigationControl());
+						var point = new BMap.Point( points[0][0] , points[0][1] );
+						oMap.centerAndZoom(point, 15);
+						oMap.setMapStyle({
+							styleJson:[
+								{
+									"featureType": "all",
+									"elementType": "geometry.fill",
+									"stylers": {
+										"lightness": 13,
+										"saturation": -100
+									}
+								},
+								{
+									"featureType": "road",
+									"elementType": "geometry.stroke",
+									"stylers": {
+										"color": "#cac4b5"
+									}
+								},
+								{
+									"featureType": "building",
+									"elementType": "all",
+									"stylers": {
+										"color": "#9e927a"
+									}
+								},
+								{
+									"featureType": "administrative",
+									"elementType": "labels.text.fill",
+									"stylers": {
+										"color": "#9e927a"
+									}
+								},
+								{
+									"featureType": "administrative",
+									"elementType": "labels.text.stroke",
+									"stylers": {
+										"color": "#ffffff",
+										"saturation": 100
+									}
+								},
+								{
+									"featureType": "road",
+									"elementType": "labels.text.fill",
+									"stylers": {
+										"color": "#9e927a"
+									}
+								},
+								{
+									"featureType": "road",
+									"elementType": "labels.text.stroke",
+									"stylers": {
+										"color": "#ffffff"
+									}
+								}
+							]
+						});
+
+						var myIcon = new BMap.Icon("../images/marker.png", new BMap.Size(34,40));
+
+						$.each( points , function( i , point ){
+							var new_point = new BMap.Point( point[0] , point[1] );
+							var marker2 = new BMap.Marker(new_point,{icon:myIcon});
+							oMap.addOverlay(marker2);
+						} );
+
+					}
+				} , 100 );
+			},
+			renderGoogle: function( $dom , points ){
+				if( !window.google ) return;
+
+				var map = new google.maps.Map($dom[0],{
+					center: new google.maps.LatLng(points[0][0],points[0][1]),
+					zoom:17,
+					mapTypeId:google.maps.MapTypeId.ROADMAP
+				});
+
+
+				var styleArray = [
+					{
+						featureType: "all",
+						stylers: [
+							{ saturation: -80 }
+						]
+					},{
+						featureType: "road.arterial",
+						elementType: "geometry",
+						stylers: [
+							{ hue: "#4b3700" },
+							{ saturation: 50 }
+						]
+					},{
+						featureType: "all",
+						elementType: "labels.text.stroke",
+						stylers: [
+							{ hue: "#4b3700" },
+							{ saturation: 50 }
+						]
+					}
+				];
+				map.setOptions({styles: styleArray});
+
+
+
+				$.each( points , function( i , point ){
+					new google.maps.Marker({
+						map: map,
+						position: new google.maps.LatLng(point[0],point[1]),
+						icon: "../images/marker.png"
+					});
+				} );
+
+				// var map = new google.maps.Map($dom[0],{
+				//     center: new google.maps.LatLng(point[0],point[1]),
+				//     zoom:5,
+				//     mapTypeId:google.maps.MapTypeId.ROADMAP
+				// });
+
+				// new google.maps.Marker({
+				//     map: map,
+				//     position: new google.maps.LatLng(point[0],point[1])
+				//   });
+			}
+		}
+	})();
+
     function renderGoogleMap( $dom , points ){
         if( !window.google ) return;
         // point[0] = point[0] || 0;
@@ -2579,12 +2731,16 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 });
             },
             'contact-page': function( cb ){
-                var interval = setInterval(function(){
-                    if( window.google ){
-                        clearInterval( interval );
-                        renderGoogleMap( $('#map') , [[31.245583,121.49472600000001],[48.875137,2.338616000000002]] );    
-                    }
-                }, 1000);
+
+				// render twitter
+				api.localRequest('/ff/api/city/isChina.php' , function( r ){
+					if(r==1) {
+						mapHelper.renderBaidu( $('#map') , [[121.498732,31.249766]] );
+					} else {
+						mapHelper.renderGoogle( $('#map') , [[48.875137,2.338616000000002],[31.245583,121.49472600000001]] );
+					}
+				});
+
                 
                 // var _LP = window.LP;
                 // LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
