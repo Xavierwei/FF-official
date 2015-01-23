@@ -64,7 +64,6 @@ class IPToLatlng {
      */
     public function toCity($ip = NULL) {
         $parse = $this->parseIP($ip);
-        print_r($parse);
         if ($parse && $parse["status"] == 0) {
             $city = $parse["content"]["address_detail"]["city"];
             return Yii::t("strings", $city);
@@ -72,6 +71,19 @@ class IPToLatlng {
         // 默认是上海市
         else {
             return FALSE;
+        }
+    }
+
+    public function toCountry($ip = NULL) {
+        $parse = $this->parseIP($ip);
+        if ($parse && $parse["status"] == 0) {
+            $str = $parse["address"];
+            $str_array = explode('|',$str);
+            return $str_array[0];
+        }
+        // 默认是上海市
+        else {
+            return "OHTER";
         }
     }
 
