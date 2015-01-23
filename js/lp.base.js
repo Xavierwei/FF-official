@@ -2246,6 +2246,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             } , function(){
                 isInBanphoCon = false;
             });
+            $banphoCon.css('margin-top',function() {
+                var h = $(this).find('.banpho-bt').height() + $(this).find('.banpho-i').height();
+                return (-h / 2) + 'px';
+            });
             
 
             intMouseMoveEffect( $slider , function( ev ){
