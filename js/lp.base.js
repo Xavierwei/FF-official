@@ -6,7 +6,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     var lang = LP.getCookie('lang');
     // page components here
-    // ============================================================================
+    // ============================================================================ 
     $.easing.easeLightOutBack = function (x, t, b, c, d, s) {
         if (s == undefined) s = 0.70158;
         return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
@@ -68,7 +68,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 if (prog >= 99) return false;
                 stepAdd--;
                 if (stepAdd < 2)stepAdd = 2;
-                prog += stepAdd;
+                prog += stepAdd; 
                 step ++;
                 $proMsg && $proMsg.html(prog+"%");
                 $proBar.stop().animate({width : 100 - prog + '%'}, step*30, null, _timer);
@@ -110,7 +110,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             .find('.loading')
             .stop(true,true)
             .animate( {width: 100 - $percent + '%'} , 300 );
-        // .css('width', 100 - $percent + '%');
+            // .css('width', 100 - $percent + '%');
     }
 
     var videoProgressHide = function(){
@@ -130,10 +130,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $('html,body').animate({
                 scrollTop: sliderHeight
             } , 500 )
-                .promise()
-                .then(function(){
-                    success && success();
-                });
+            .promise()
+            .then(function(){
+                success && success();
+            });
         } else {
             success && success();
         }
@@ -172,9 +172,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             return path;
         }
 
-
+        
         //  ===> categories
-        // categories ===>
+        // categories ===> 
         var rules = [];
         rules.push( {
             url: /^(categories|brands|services)$/,
@@ -218,13 +218,13 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
                 $('.brands_tit').animate({
-                    marginTop: -176,
-                    marginBottom: 176
-                } , 400 );
+                        marginTop: -176,
+                        marginBottom: 176
+                    } , 400 );
 
                 var height = $('.brands-con-li').height();
                 var sTop = $('.sec_brands').scrollTop();
-                var aniIndex = 0;
+                var aniIndex = 0; 
                 var aniLength = ~~( $(window).height() / height ) + 2;
 
                 var $lis = $('.brands-con-li').each(function( i ){
@@ -263,7 +263,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 // change tit
                 campaignManager.renderTitle( path );
 
-                // show loading
+                // show loading 
                 loadingMgr.show('black');
                 var renderComapigns = function( compaigns ){
                     if( !compareVersion( path, ver ) ){
@@ -305,13 +305,13 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 loadingMgr.setSuccess(renderComapigns , 'renderComapigns');
 
 
-                // load data
+                // load data 
                 campaignManager.getCampaigns( path , function( campaigns ){
                     loadingMgr.success( 'renderComapigns', campaigns );
                 } );
             }
         } );
-
+        
         rules.push( {
             url: /^((categories|brands|services)\/[^\/]+\/[^\/]+\/\d+)$/,
             destory: function( cb ){
@@ -349,7 +349,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 });
             }
         } );
-
+        
         rules.push( {
             url: /^(categories|brands|services).*(\/\d+\/big)$/,
             destory: function( cb ){
@@ -378,7 +378,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         $('.preview li').each(function(){
                             fixImageToWrap( $(this), $(this).find('img') );
                         });
-                    }, 200);
+                     }, 200);
                 });
                 $(document).bind('keydown.level4', function( ev ){
                     switch( ev.which ){
@@ -393,7 +393,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             }
         } );
 
-
+        
         // press page
         rules.push( {
             url: /^jobs\/\d+$/,
@@ -432,8 +432,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 $('.pop_job_menus').css('right' , 95 );
             }
         } );
-
-
+        
+        
 
         return {
             setFormatHash: function( toUrl , fromUrl, data ){
@@ -526,9 +526,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 setPath( tarPath );
             }
         }
-
+        
     })();
-
+    
 
     function showBigItem( path, index ){
 
@@ -637,7 +637,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         }).load(function(){
             loadingMgr.success('image-zoom');
         })
-            .attr('src' , src);
+        .attr('src' , src);
 
 
         var top = 0;
@@ -722,7 +722,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var paths = path.split('/');
                 var key = paths[0] + '/' +  paths[1];
                 if( __CACHE_TITLE__[ key ] ){
-                    $('.sec_brands_tit h2').html(
+                    $('.sec_brands_tit h2').html( 
                         LP.format('<span>#[cate]</span>  <span class="sep">|</span>  <span>#[tit]</span>' , {
                             cate: paths[0].toUpperCase(),
                             tit: __CACHE_TITLE__[ key ].toUpperCase()
@@ -733,7 +733,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             // 如果是brands和services则，只能从id中获取
                             if( item.path == paths[1] || ( ( paths[0] == 'brands' || paths[0] == 'services' ) && item.id == paths[1] ) ){
                                 __CACHE_TITLE__[ key ] = item.title;
-                                $('.sec_brands_tit h2').html(
+                                $('.sec_brands_tit h2').html( 
                                     LP.format('<span>#[cate]</span>  <span class="sep">|</span>  <span>#[tit]</span>' , {
                                         cate: paths[0].toUpperCase(),
                                         tit: item.title.toUpperCase()
@@ -1074,7 +1074,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     //             left: - fixWidth,
     //             width: imgWidth + 2 * fixWidth,
     //             height: imgHeight + 2 * fixHeight
-
+                
     //         } , 500 )
     //         .promise()
     //         .then(function(){
@@ -1170,46 +1170,46 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         $dom.hover(null , function(){
                             $dom.find('.image-zoom').fadeOut();
                         } )
-                            .mousemove(function(){
-                                if( $dom.find('.brands-mask,.image-zoom').is(':visible') ) return;
-                                if( !$dom.find('.image-zoom').length ){
-                                    $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
+                        .mousemove(function(){
+                            if( $dom.find('.brands-mask,.image-zoom').is(':visible') ) return;
+                            if( !$dom.find('.image-zoom').length ){
+                                $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
                                         <div class="transition">ZOOM<br><br>ZOOM</div>\
                                     </a>')
-                                        .appendTo( $dom );
-                                }
-                                $dom.find('.image-zoom').fadeIn();
-                            });
+                                    .appendTo( $dom );
+                            }
+                            $dom.find('.image-zoom').fadeIn();
+                        });
                     }
                 });
             });
-
-
+            
+            
             var totalWidth = 0;
             var preWidth = 0;
 
             // fixImgsDomLoaded( $movieWrap
             //     .find('img'), function(){
-            $movieWrap.find('.brands-item')
-                .each(function( i ){
-                    console.log( $(this).is(':visible') );
-                    var itemWidth = $(this).width();//$(this).is(':hidden') ? 0 : $(this).width();
-                    totalWidth += itemWidth;
-                    if( i < itemIndex ){
-                        preWidth += itemWidth;
-                    } else if( i == itemIndex ){
-                        preWidth += itemWidth / 2
-                    }
-                });
+                    $movieWrap.find('.brands-item')
+                        .each(function( i ){
+                            console.log( $(this).is(':visible') );
+                            var itemWidth = $(this).width();//$(this).is(':hidden') ? 0 : $(this).width();
+                            totalWidth += itemWidth;
+                            if( i < itemIndex ){
+                                preWidth += itemWidth;
+                            } else if( i == itemIndex ){
+                                preWidth += itemWidth / 2
+                            }
+                        });
 
-            console.log( 'totalWidth : ' + totalWidth );
-            console.log( 'preWidth : ' + preWidth );
-            $movieWrap.find('ul')
-                .css({
-                    width: totalWidth, //winWidth * $movieWrap.find('.brands-item').length,
-                    marginLeft: Math.min( 0 , winWidth / 2 - preWidth )
-                });
-            // } );
+                    console.log( 'totalWidth : ' + totalWidth );
+                    console.log( 'preWidth : ' + preWidth );
+                    $movieWrap.find('ul')
+                        .css({
+                            width: totalWidth, //winWidth * $movieWrap.find('.brands-item').length,
+                            marginLeft: Math.min( 0 , winWidth / 2 - preWidth )
+                        });
+               // } );
 
             // set other width
             // $('.brand_movie .brands-item').filter(':hidden')
@@ -1243,9 +1243,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 <div class="brand_big_text_item" #[photographer_visible]> <p class="brand_big_text_tit">PHOTOGRAPHY</p> <p class="brand_big_text_val">#[photographer]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
                 <div class="brand_big_text_item" #[results_visible]> <p class="brand_big_text_tit"> RESULT </p> #[results] </div>';
 
-            // <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-            // <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-            // <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                // <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                // <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
+                // <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
 
             campaignManager.getCampaignInfo( item._contentPath , function( campaign ){
                 campaign['year'] = campaign['date'].split('-')[0];
@@ -1265,12 +1265,12 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         }
 
         loadingMgr.setSuccess( function( aHtml, item ){
+            
 
-
-
+            
             $('.brand_movie .brands-items').show();
             afterItemsRender( item );
-
+            
         }, 'afterItemsRender' );
 
         campaignManager.getCampaignItems( path , function( items ){
@@ -1295,8 +1295,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     // style: Math.abs( i - itemIndex ) <= preloadNum  ? '': 'style="display:none;"',
                     // pos: i < itemIndex ? 'prev' : 'next',
                     'brands-class': isImage ? 'brands-item-image' : 'brands-item-video',
-                    'video-btn': isImage ? '' : '<div class="brands-video-btn"></div>'
-                    //video: tm.media.match(/\.(jpg|png|bmp|jpeg)$/i) ? '' : 1
+                    'video-btn': isImage ? '' : '<div class="brands-video-btn"></div>' 
+                    //video: tm.media.match(/\.(jpg|png|bmp|jpeg)$/i) ? '' : 1 
                 } ) );
             } );
 
@@ -1311,7 +1311,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 loadingMgr.success( 'afterItemsRender', aHtml, item );
             } );
             // loadImages( pics/*.slice( Math.max( itemIndex - preloadNum , 0 ), itemIndex + preloadNum + 1 ) */ , null , function(){
-
+                
             //     loadingMgr.success( 'afterItemsRender', aHtml, item );
             // } );
         } );
@@ -1327,9 +1327,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         // show loading
         loadingMgr.show('black');
         loadingMgr.setSuccess(function( r ){
-            // load categories
+            // load categories 
             var aHtml = [];
-            // biuld html
+             // biuld html
             var tpl = '<li> <a data-a="show-compagins" data-d="path=#[path]" data-id="#[id]" data-category="CONSULTING" title="#[title]" href="#">#[title]</a> </li>';
             $.each( r.items || [] , function( i , item ){
                 var path = type + '/';
@@ -1391,7 +1391,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } );
                 $('.gates-inner-c ul').html( html.join('') );
             }
-
+            
         } , 'show_cate_list');
         // get 'type' catelist
         api.request( type , function( r ){
@@ -1415,14 +1415,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     cb && cb();
                 }
             })
-                .error(function(){
-                    step && step( index );
-                    index++;
-                    if( index == pics.length ){
-                        cb && cb();
-                    }
-                })
-                .attr('src' , pic );
+            .error(function(){
+                step && step( index );
+                index++;
+                if( index == pics.length ){
+                    cb && cb();
+                }
+            })
+            .attr('src' , pic );
         });
     }
 
@@ -1592,26 +1592,26 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
         var styleArray = [
-            {
-                featureType: "all",
-                stylers: [
-                    { saturation: -80 }
-                ]
-            },{
-                featureType: "road.arterial",
-                elementType: "geometry",
-                stylers: [
-                    { hue: "#999" },
-                    { saturation: 50 }
-                ]
-            },{
-                featureType: "all",
-                elementType: "labels.text.stroke",
-                stylers: [
-                    { hue: "#999" },
-                    { saturation: 50 }
-                ]
-            }
+          {
+            featureType: "all",
+            stylers: [
+              { saturation: -80 }
+            ]
+          },{
+            featureType: "road.arterial",
+            elementType: "geometry",
+            stylers: [
+              { hue: "#999" },
+              { saturation: 50 }
+            ]
+          },{
+            featureType: "all",
+            elementType: "labels.text.stroke",
+            stylers: [
+              { hue: "#999" },
+              { saturation: 50 }
+            ]                
+          }
         ];
         map.setOptions({styles: styleArray});
 
@@ -1844,9 +1844,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             campaignItemGroups.ready = true;
 
             $('.sec_brands').trigger('scroll.loading-con');
-        } );
+        } );        
     }
-
+    
     function fixImageToWrap( $wrap , $img ){
         $img.width('auto').height('auto');
         if( !$img.width() ){
@@ -1949,7 +1949,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             } else {
                                 v.play();
                             }
-                        });
+                        });    
                     }
                     // add big pause btn
                     v.on('play' , function(){
@@ -1984,7 +1984,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         }, 1000);
                     });
 
-
+                    
                     window.preloadTimer = null;
                     var isShowLoading = false;
                     var currentTime = 0;
@@ -2009,7 +2009,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 loadingMgr.success();
                             }
                         }
-
+                        
                     });
 
                     v.on('pause',function(){
@@ -2018,7 +2018,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     });
                 }
 
-
+                
 
 
                 $wrap.data('video-object' , v);
@@ -2113,7 +2113,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 timer = setTimeout(function(){
                     $loading.fadeOut();
                 }, 800 );
-
+                
             }
         }
     })();
@@ -2162,7 +2162,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     var $dd = null;
     var brandsNum = 0;
     var brandsScrollNum = 0;
-
+    
     $('.brands-con').delegate('.brands-con-li dd' , 'mousemove' , function( ev ){
         $dd = $(this);
         var off = $dd.offset();
@@ -2175,7 +2175,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             }
             brandsNum = ( 1 - ( ev.pageX - off.left ) * 4 / width ) * 16;
         } else if( width + off.left - ev.pageX < width / 4 ){
-            brandsNum = ( 1 - ( width + off.left - ev.pageX ) * 4 / width ) * 16;
+            brandsNum = ( 1 - ( width + off.left - ev.pageX ) * 4 / width ) * 16; 
             if( !isAtRight ){
                 isAtRight = true;
             }
@@ -2184,11 +2184,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             isAtRight = false;
         }
     })
-        .delegate('.brands-con-li' , 'mouseleave' , function(){
-            isAtRight = false;
-            isAtLeft = false;
-        });
-
+    .delegate('.brands-con-li' , 'mouseleave' , function(){
+        isAtRight = false;
+        isAtLeft = false;
+    });
+ 
 
     setInterval(function(){
         if( isAtTop ){
@@ -2223,13 +2223,13 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     $('.sec_brands').scroll(function(){
         //clearTimeout( sec_brands_timer );
         //sec_brands_timer = setTimeout(function(){
-        if( $('.brand_movie').data('isFullScreen') ) return false;
-        var headerHeight = $('.header-inner').height();
-        var st = $('.sec_brands').scrollTop();
-        if( st < headerHeight ){
-            $('.sec_brands').css({
-                top: headerHeight - st
-            })
+            if( $('.brand_movie').data('isFullScreen') ) return false;
+            var headerHeight = $('.header-inner').height();
+            var st = $('.sec_brands').scrollTop();
+            if( st < headerHeight ){
+                $('.sec_brands').css({
+                    top: headerHeight - st
+                })
                 // .find('.brands_tit')
                 // .css('margin-bottom' , st);
                 .find('.sec_brands_tit')
@@ -2241,10 +2241,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 .next()
                 .css('margin-top' , 0 );
 
-        } else {
-            $('.sec_brands').css({
-                top: 0
-            })
+            } else {
+                $('.sec_brands').css({
+                    top: 0
+                })
                 .find('.sec_brands_tit')
                 .css({
                     'margin-top': 0,
@@ -2254,7 +2254,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 })
                 .next()
                 .css('margin-top' , $('.sec_brands_tit').height() + headerHeight );
-        }
+            }
         //} , 100 );
     });
 
@@ -2270,47 +2270,47 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         } , 600 );
 
     })
-        .delegate('.brands-con-li' , 'mouseleave' , function(){
-            $(this).find('.brands-mask').stop( true , true ).animate({
-                opacity: 0.7
-            } , 600);
-        })
-        // .delegate('.brands-item' , 'mouseenter' , function(){
-        //     // init video with silence
-        //     var $dom = $(this);
-        //     if( $dom.data('movie') ){
-        //         // if( $dom.data('video-object') ){
-        //         //  $dom.data('video-object').play();
-        //         // } else {
-        //         var key = $dom.data('key');
-        //         var item = campaignManager.get( key );
-        //         renderVideo( $dom , campaignManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
-        //             muted: true,
-        //             autoplay: true,
-        //             resize: false
-        //         } , function( v ){
-        //             try{v.dimensions( '100%' , '100%' );}catch(e){}
-        //         } );
-        //         //}
-        //     }
-        // })
-        .delegate('.brands-item' , 'mouseleave' , function(){
-            // stop the movie
-            var $dom = $(this);
-            if( $dom.data('video-object') ){
-                $dom.data('video-object').pause();
-                var videoObject = $dom.data('video-object');
-                $dom.find('.video-wrap').fadeOut(function(){
-                    try{
-                        videoObject.dispose();
-                        $(this).remove();
-                    }catch(e){}
-                });
-            }
-        });
+    .delegate('.brands-con-li' , 'mouseleave' , function(){
+        $(this).find('.brands-mask').stop( true , true ).animate({
+            opacity: 0.7
+        } , 600);
+    })
+    // .delegate('.brands-item' , 'mouseenter' , function(){
+    //     // init video with silence
+    //     var $dom = $(this);
+    //     if( $dom.data('movie') ){
+    //         // if( $dom.data('video-object') ){
+    //         //  $dom.data('video-object').play();
+    //         // } else {
+    //         var key = $dom.data('key');
+    //         var item = campaignManager.get( key );
+    //         renderVideo( $dom , campaignManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
+    //             muted: true,
+    //             autoplay: true,
+    //             resize: false
+    //         } , function( v ){
+    //             try{v.dimensions( '100%' , '100%' );}catch(e){}
+    //         } );
+    //         //}
+    //     }
+    // })
+    .delegate('.brands-item' , 'mouseleave' , function(){
+        // stop the movie
+        var $dom = $(this);
+        if( $dom.data('video-object') ){
+            $dom.data('video-object').pause();
+            var videoObject = $dom.data('video-object');
+            $dom.find('.video-wrap').fadeOut(function(){
+                try{
+                    videoObject.dispose();
+                    $(this).remove();
+                }catch(e){}
+            });
+        }
+    });
 
     // init scroll event
-    $('.gates-inner-l').scroll(function(){
+    $('.gates-inner-l').scroll(function(){ 
         var st = $(this).scrollTop();
         var cHeight = 0;
         var $li = null;
@@ -2324,7 +2324,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
         var letter = $.trim( $li.text() )[0];
         $('.gates-inner-c li').each(function(){
-
+            
             if( letter.toUpperCase() == $.trim( $(this).text().toUpperCase()) ){
                 $('.gates-inner-c a').removeClass('active');
                 $(this).find('a').addClass('active');
@@ -2349,7 +2349,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             var $sliderInner = $('.slider-block-inner').css('width' , $('.slider-item').length + '00%');
             $sliderInner.data('cb' , cb);
 
-            // hide left arrow
+            // hide left arrow 
             $sliderInner.next().find('.banpho-bt-l').hide();
 
             $(window).resize(function(){
@@ -2386,11 +2386,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             firstLoaded = true;
                             $sliderInner.find('.slider-item').css('opacity' , 1).hide().fadeIn();
                         }
-
+                        
                     })
                     .attr('src' , $sliderInner.find('.slider-item>img').eq(0).attr('src'));
             })
-                .trigger('resize');
+            .trigger('resize');
 
             var $banphoCon = $('.banpho-con').hover(function(){
                 clearTimeout( banphoConTimer );
@@ -2402,7 +2402,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 var h = $(this).find('.banpho-bt').height() + $(this).find('.banpho-i').height();
                 return (-h / 2) + 'px';
             });
-
+            
 
             intMouseMoveEffect( $slider , function( ev ){
                 // if( $(ev.target).closest('.banpho-con').length ) return;
@@ -2474,7 +2474,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     var all = $homeBioBg.height() -  $homeBio.height();
                     var bgTop = stTop + winHeight - $homeBio.offset().top; // - headerHeight - stTop;
                     var per = bgTop / ( winHeight - headerHeight + $homeBio.height() );
-
+                    
                     var trans = 'translate(0px,' + ( - per * all ) + 'px)';
                     $homeBioBg.css({
                         'transform': trans,
@@ -2489,7 +2489,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 api.request('miscellaneous' , function( r ){
                     $.each( r.items , function( i , item ){
                         switch( item.id ){
-                            case '1':
+                            case '1': 
                                 var htmls = [];
                                 $.each([1,2,3] , function( i , val ){
                                     if( item[ 'text_' + val ] ){
@@ -2511,7 +2511,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 $('.home_bioright').html( item.text_2 );
                                 break;
                             case '3':
-                            // TODO render
+                                // TODO render 
                         }
                     } );
                 });
@@ -2605,118 +2605,113 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             $this.hide();
                         }
                     });
-
+                    
                 });
 
                 // init campaigns mouse move effect
                 // $('.cam_item div').each(function(){
-                //     initImageMouseMoveEffect( $(this) );
+                //     initImageMouseMoveEffect( $(this) );  
                 // });
             },
             'awards-page': function( cb ){
 
-                //var datas = [];
+                var datas = [];
                 var paths = [];
                 var awards = [];
 
-                //get awards number
-                //api.extraRequest( {wsExtraRequest: 'getNumbers'}, function( r ){
-                //    var obj = {};
-                //    $.each( r.items || [], function( i, item ){
-                //        obj[ item.id ] = item.number;
-                //    } );
-                //    $('#awards-number').html( obj.awards );
-                //} );
-                api.extraRequest( {wsExtraRequest: 'getAwardsExtended'}, function( r ){
-                    console.log(r.items);
-                    var uniq_arr = [];
-                    $.each(r.items, function( i, item ){
-                        uniq_arr[item.id] = item;
+                // get awards number
+                api.extraRequest( {wsExtraRequest: 'getNumbers'}, function( r ){
+                    var obj = {};
+                    $.each( r.items || [], function( i, item ){
+                        obj[ item.id ] = item.number;
                     } );
-                    $.each(uniq_arr, function(i,item) {
-                        if(item) {
-                            awards.push(item);
-                        }
+                    $('#awards-number').html( obj.awards );
+                } );
+                // get awards page
+                api.request( 'awards' , function( r ){
+                    awards = r.items;
+                    paths = array_column( awards, 'path' );
+                    $.each(paths, function(i){
+                        paths[i] = 'awards/' + paths[i];
                     });
-                    //console.log(uniq_arr);
-                    //console.log(Object.keys(uniq_arr));
-                    //$('#awards-number').html( (Object.keys(uniq_arr)).length );
-                    $('#awards-number').html( awards.length );
-                    console.log('awards: ',awards);
-                    //paths = array_column( awards, 'path' );
-                    $.each(awards, function(i,item){
-                        paths[i] = item._awardPath;
+                    
+                    api.request( paths, function( r ){
+                        var allCampaigns = r.items;
+                        
+                        // 获取所有的brands
+                        api.request( 'brands', function( r ){
+                            var allBrands = r.items;
 
-                    });
-                    console.log('paths: ',paths);
+                            renderPage( allBrands, awards, allCampaigns );
+                        } );
 
-                    renderPage(awards);
-                    function renderPage(awards){
+                    } );
+
+
+                    function renderPage(allBrands, awards, allCampaigns){
                         // render filters year
                         var years = [];
-                        var fid_customers = [];
-                        var brandHtml = [];
-                        var awardHtml = [];
-
+                        
                         $.each( awards, function( i , award ){
                             var y = award['created'].replace(/^(\d{4}).*/, '$1');
-                            if( y ) {
-                                years.push(y);
-                            }
-                            fid_customers.push( award.fid_author );
-                            brandHtml.push( '<option value="' + award.fid_customer + '">' + award.label + '</option>' );
-                            awardHtml.push( '<option value="' + award.id + '">' + award.award_label + '</option>' );
+                            if( y )
+                                years.push( y );
 
-                            //$.each( allCampaigns, function(i, campaign){
-                            //    if( campaign._contentPath == award._contentPath + '/' + award.path ){
-                            //        award.count = award.count || 0;
-                            //        award.count++;
-                            //    }
-                            //} );
+                            $.each( allCampaigns, function(i, campaign){
+                                if( campaign._contentPath == award._contentPath + '/' + award.path ){
+                                    award.count = award.count || 0;
+                                    award.count++;
+                                }
+                            } );
                         });
-
                         years = array_unique( years ).sort();
-                        fid_customers = array_unique( fid_customers ).sort();
-
                         var yearHtml = [];
                         $.each( years, function( i, year ){
                             yearHtml.push( '<option value="' + year + '">' + year + '</option>' );
                         } );
+
                         $('#year').append( yearHtml.join('') );
 
-                        // render filters brands
-                        //allBrands = array_column( allBrands, null, 'id' );
-                        //$.each( allCampaigns, function( i , campaign){
-                        //    fid_customers.push( campaign.fid_author );
-                        //} );
 
-                        //var brandHtml = [];
-                        //$.each( fid_customers, function( i , fid_customer ){
-                        //    var name = allBrands[ fid_customer ].label;
-                        //    brandHtml.push( '<option value="' + fid_customer + '">' + name + '</option>' );
-                        //} );
+                        // render filters brands
+                        allBrands = array_column( allBrands, null, 'id' );
+                        var fid_customers = [];
+                        $.each( allCampaigns, function( i , campaign){
+                            fid_customers.push( campaign.fid_author );
+                        } );
+
+                        fid_customers = array_unique( fid_customers ).sort();
+                        var brandHtml = [];
+                        $.each( fid_customers, function( i , fid_customer ){
+                            var name = allBrands[ fid_customer ].label;
+                            brandHtml.push( '<option value="' + fid_customer + '">' + name + '</option>' );
+                        } );
 
                         $('#brand').append( brandHtml.join('') );
 
                         // render filter awards
-                        //var awardHtml = [];
-                        //$.each( awards, function( i , award ){
-                        //    awardHtml.push( '<option value="' + award.id + '">' + award.label + '</option>' );
-                        //} );
+                        var awardHtml = [];
+                        $.each( awards, function( i , award ){
+                            awardHtml.push( '<option value="' + award.id + '">' + award.label + '</option>' );
+                        } );
 
                         $('#award').append( awardHtml.join('') );
 
-                        //$('#awardfilter')
-                            //.data('campaigns' , allCampaigns )
-                            //.data('brands', allBrands)
-                        $('#awardfilter').data('awards', awards);
 
-                        //LP.triggerAction( 'awardfilter' );
+                        $('#awardfilter')
+                            .data('campaigns' , allCampaigns )
+                            .data('brands', allBrands)
+                            .data('awards', awards);
+
+                        LP.triggerAction( 'awardfilter' );
+
 
                         // init select
                         initSelect( $('select') );
 
-                        //render awards
+
+
+                        // render awards
                         var awardsHtml = ['<span class="award-num"></span>'];
                         $.each( awards, function( i , award ){
                             awardsHtml.push( '<img data-num="' + ( award.count || 0 ) + '" src="' + campaignManager.getPath( award, 'preview', true) + '">' );
@@ -2728,113 +2723,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             $('.awardicons span').html( num );
 
                             effects['number-rock']( $('.awardicons span') , 0  , null , 500 );
-                        });
+                        }); 
 
                         cb && cb();
                     }
-                } );
-                // get awards page
-                api.request( 'awards' , function( r  ){
-                    //awards = r.items;
-                    //var old_paths = array_column( awards, 'path' );
-                    //$.each(old_paths, function(i){
-                    //    old_paths[i] = 'awards/' + old_paths[i];
-                    //});
-                    //console.log('old paths: ',old_paths);
-                    //api.request( old_paths, function( r ){
-                    //    var allCampaigns = r.items;
-                    //    console.log('allCampaigns: ',allCampaigns);
-                    //    // 获取所有的brands
-                    //    api.request( 'brands', function( r ){
-                    //        var allBrands = r.items;
-                    //        console.log('allBrands: ',allBrands);
-                    //        renderPage( allBrands, awards, allCampaigns );
-                    //    } );
-                    //
-                    //} );
-
-
-
-                    //function renderPage(allBrands, awards, allCampaigns){
-                    //    // render filters year
-                    //    var years = [];
-                    //
-                    //    $.each( awards, function( i , award ){
-                    //        var y = award['created'].replace(/^(\d{4}).*/, '$1');
-                    //        if( y )
-                    //            years.push( y );
-                    //
-                    //        $.each( allCampaigns, function(i, campaign){
-                    //            if( campaign._contentPath == award._contentPath + '/' + award.path ){
-                    //                award.count = award.count || 0;
-                    //                award.count++;
-                    //            }
-                    //        } );
-                    //    });
-                    //    years = array_unique( years ).sort();
-                    //    var yearHtml = [];
-                    //    $.each( years, function( i, year ){
-                    //        yearHtml.push( '<option value="' + year + '">' + year + '</option>' );
-                    //    } );
-                    //
-                    //    $('#year').append( yearHtml.join('') );
-                    //
-                    //
-                    //    // render filters brands
-                    //    allBrands = array_column( allBrands, null, 'id' );
-                    //    var fid_customers = [];
-                    //    $.each( allCampaigns, function( i , campaign){
-                    //        fid_customers.push( campaign.fid_author );
-                    //    } );
-                    //
-                    //    fid_customers = array_unique( fid_customers ).sort();
-                    //    var brandHtml = [];
-                    //    $.each( fid_customers, function( i , fid_customer ){
-                    //        var name = allBrands[ fid_customer ].label;
-                    //        brandHtml.push( '<option value="' + fid_customer + '">' + name + '</option>' );
-                    //    } );
-                    //
-                    //    $('#brand').append( brandHtml.join('') );
-                    //
-                    //    // render filter awards
-                    //    var awardHtml = [];
-                    //    $.each( awards, function( i , award ){
-                    //        awardHtml.push( '<option value="' + award.id + '">' + award.label + '</option>' );
-                    //    } );
-                    //
-                    //    $('#award').append( awardHtml.join('') );
-                    //
-                    //
-                    //    $('#awardfilter')
-                    //        .data('campaigns' , allCampaigns )
-                    //        .data('brands', allBrands)
-                    //        .data('awards', awards);
-                    //
-                    //    LP.triggerAction( 'awardfilter' );
-                    //
-                    //
-                    //    // init select
-                    //    initSelect( $('select') );
-                    //
-                    //
-                    //
-                    //    // render awards
-                    //    var awardsHtml = ['<span class="award-num"></span>'];
-                    //    $.each( awards, function( i , award ){
-                    //        awardsHtml.push( '<img data-num="' + ( award.count || 0 ) + '" src="' + campaignManager.getPath( award, 'preview', true) + '">' );
-                    //    } );
-                    //
-                    //    $('.awardicons').html( awardsHtml.join('') );
-                    //    $('.awardicons img').hover(function(){
-                    //        var num = $(this).data('num');
-                    //        $('.awardicons span').html( num );
-                    //
-                    //        effects['number-rock']( $('.awardicons span') , 0  , null , 500 );
-                    //    });
-                    //
-                    //    cb && cb();
-                    //}
-
+                    
                 });
             },
             'contact-page': function( cb ){
@@ -2845,10 +2738,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 						mapHelper.renderBaidu( $('#map') , [[121.501577,31.251566]] );
 					} else {
 						mapHelper.renderGoogle( $('#map') , [[48.875137,2.338616000000002],[31.245583,121.49472600000001]] );
-                    }
+					}
 				});
 
-
+                
                 // var _LP = window.LP;
                 // LP.use('http://api0.map.bdimg.com/getscript?v=2.0&ak=AwxxvHue9bTdFietVWM4PLtk&services=&t=20140725172530' , function(){
                 //     window.LP = _LP;
@@ -2899,7 +2792,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
                 cb && cb();
-
+                
             },
             'interview-page': function( cb ){
                 // preload js conponent
@@ -2930,7 +2823,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 api.request(['about/interviews/radio','about/interviews/tv'] , function( r ){
                     var aHtml = [];
                     var date = [];
-
+                    
                     $.each(r.items , function( i , item ){
                         var media = campaignManager.getPath( item , 'media' );
                         var tpl = !media.match(/.mp3$/) ? tvTpl : radioTpl;
@@ -2954,7 +2847,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     } );
                     cb && cb();
                 });
-
+                
             },
             'press-page': function( cb ){
 
@@ -3058,8 +2951,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         } );
 
                         $('#slider-block-inner').html( aHtml.join('') )
-                        // .children()
-                        // .eq(0).css('opacity' , 1).fadeIn();
+                                // .children()
+                                // .eq(0).css('opacity' , 1).fadeIn();
 
 
                         initSlider( function( index ){
@@ -3071,15 +2964,14 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                             } ) );
                         } );
                         $(window).resize(function(){
-                            $('#slider-block-inner').css('height',($(window).height() -$('.header').height()-$('.pagetit').height() )+ 'px');
+                                 $('#slider-block-inner').css('height',($(window).height() -$('.header').height()-$('.pagetit').height() )+ 'px');
                         }).trigger('resize');
-                        //loadImages( images.slice( 0 , 3 ), null , function(){
-                        //    cb && cb();
-                        //});
-                        fixImgsDomLoaded( $($('#slider-block-inner img').slice(0,3)) , cb );
+                        loadImages( images.slice( 0 , 3 ), null , function(){
+                            cb && cb();
+                        });
                     });
                 })();
-
+                
             },
             'ffshowreel-page': function( cb ){
                 var aHtml = [];
@@ -3104,8 +2996,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     } );
 
                     $('#slider-block-inner').html( aHtml.join('') )
-                    // .children()
-                    // .eq(0).css('opacity' , 1).fadeIn();
+                            // .children()
+                            // .eq(0).css('opacity' , 1).fadeIn();
 
                     initSlider( function( index ){
                         var item = r.items[ index ];
@@ -3261,7 +3153,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 top = - 9 * spanHeight
                             }
                             $(this).animate({
-                                'top': top
+                                'top': top 
                             } , 800 , 'easeOutQuart' , function(){
                                 if( i == nums.length - 1 ){
                                     //$dom.html( num );
@@ -3297,7 +3189,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 //     var year = item.date.split('-')[0];
                 //     return LP.format( 'http://www.fredfarid.com/eng/file/pages_contents/about/press_articles/#[year]/#[type]/#[name]' , {
                 //         year: year,
-                //         type: type ,
+                //         type: type , 
                 //         name: item[type]
                 //     });
                 // }
@@ -3356,7 +3248,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     // hide page mask
                     $('.page-mask').stop().fadeOut()
                         .addClass('lighter');
-
+                        
                     if( isFirstLoading ){
                         cb && cb();
                         var path = location.hash.replace('##!', '');
@@ -3379,7 +3271,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         var banphoImgHeight = $('.banpho-img img').height();
 
                         var $interviewList = $('.interview_list');
-
+                        
 
                         // for top image
                         if( stTop > banphoTop && stTop < banphoTop + banphoImgHeight ){
@@ -3410,7 +3302,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                                 effects[ $dom.data('effect') ] && effects[ $dom.data('effect') ]( $dom , index , function(){
                                     $dom.removeClass('intoview-effect');
                                 } );
-
+                                
                             }
                         });
                     }
@@ -3427,7 +3319,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     // fix quote event "banner_footer"
                     $('.banner_footer').css('background-position' , '0 ' + ~~(stTop / 3) + 'px' );
                 })
-                    .trigger('scroll');
+                .trigger('scroll');
 
 
 
@@ -3473,7 +3365,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         }
     })();
 
-
+    
     // load footer json data
     api.request( 'footer_icons' , function( r ){
         var shareHtml = [];
@@ -3564,7 +3456,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } );
             }, 'statechange');
             switch( type ){
-                default:
+                default: 
                     $.get( location.href , '' , function( r ){
                         loadingMgr.success('statechange', r );
                     });
@@ -3613,7 +3505,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 break;
         }
     });
-
+    
     var CAMPAIGN_ACT_WIDTH = 322;
     var window_resize_timer = null;
     $(window).resize( function(){
@@ -3629,7 +3521,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             });
         }, 400);
     } );
-
+    
 
     // page actions here
     // ============================================================================
@@ -3645,7 +3537,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 $(this).remove();
             });
 
-            // scroll to top
+            // scroll to top 
             $('html,body').animate({
                 scrollTop: 0
             } , 500);
@@ -3680,8 +3572,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $inner.animate({
             marginLeft: '+=100%'
         } , 500)
-            .promise()
-            .then(disposeVideo);
+        .promise()
+        .then(disposeVideo);
         $inner.data('index' , index - 1 );
         $inner.data('cb') && $inner.data('cb')( index - 1 );
 
@@ -3710,8 +3602,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $inner.animate({
             marginLeft: '-=100%'
         } , 500)
-            .promise()
-            .then(disposeVideo);
+        .promise()
+        .then(disposeVideo);
 
         $inner.data('index' , index + 1 );
         $inner.data('cb') && $inner.data('cb')( index + 1 );
@@ -3870,7 +3762,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 if( $img.width() ){
                     $img.trigger('load');
                 }
-                // init mouse move effect
+                // init mouse move effect 
                 // initImageMouseMoveEffect( $(this).find('div') );
 
                 if( i == 0 ){
@@ -3907,7 +3799,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $('.gates-inner-l').find('li a').each(function( i ){
             if( $.trim($(this).text())[0].toUpperCase() == letter ){
                 $('.gates-inner-l').animate({
-                    scrollTop: $(this).parent().height() * i
+                    scrollTop: $(this).parent().height() * i 
                 } , 1000);
                 return false;
             }
@@ -3923,7 +3815,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             .removeClass('active');
         $(this).addClass('active');
 
-
+        
         var $showLi = null;
         var $hideLi = null;
         if( !category ){
@@ -3963,32 +3855,32 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $('.preview ul').data('index', index);
 
         var ml = -index * 90 + 5 + '%';
-
+        
 
         $('.preview ul').animate({
             marginLeft: ml
         } , 1000, 'easeOutQuart')
-            .promise()
-            .then(function(){
-                disposeVideo();
-                var $ul = $(this);
-                // if need to render new video
-                var $li = $ul.children().eq( index );
-                var video = $li.data('video');
-                if( video ){
-                    // render video and play
-                    renderVideo( $li , video , $li.find('img').attr('src') , {
-                        autoplay: true,
-                        pause_button: true,
-                        showLoadingBar: true
-                    }, function(){
-                        $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
-                            .append( $li.find('.vjs-control-bar') )
-                            .appendTo( $li );
-                    } );
-                }
-            });
-
+        .promise()
+        .then(function(){
+            disposeVideo();
+            var $ul = $(this);
+            // if need to render new video
+            var $li = $ul.children().eq( index );
+            var video = $li.data('video');
+            if( video ){
+                // render video and play
+                renderVideo( $li , video , $li.find('img').attr('src') , {
+                    autoplay: true,
+                    pause_button: true,
+                    showLoadingBar: true
+                }, function(){
+                    $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
+                        .append( $li.find('.vjs-control-bar') )
+                        .appendTo( $li );
+                } );
+            }
+        });
+        
     });
 
     LP.action('move-prev', function(){
@@ -4002,31 +3894,31 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
         var ml = -index * 90 + 5 + '%';
 
-
+        
 
         $('.preview ul').animate({
             marginLeft: ml
         } , 1000, 'easeOutQuart')
-            .promise()
-            .then(function(){
-                disposeVideo();
-                var $ul = $(this);
-                // if need to render new video
-                var $li = $ul.children().eq( index );
-                var video = $li.data('video');
-                if( video ){
-                    // render video and play
-                    renderVideo( $li , video , $li.find('img').attr('src') , {
-                        autoplay: true,
-                        pause_button: true,
-                        showLoadingBar: true
-                    }, function(){
-                        $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
-                            .append( $li.find('.vjs-control-bar') )
-                            .appendTo( $li );
-                    } );
-                }
-            });
+        .promise()
+        .then(function(){
+            disposeVideo();
+            var $ul = $(this);
+            // if need to render new video
+            var $li = $ul.children().eq( index );
+            var video = $li.data('video');
+            if( video ){
+                // render video and play
+                renderVideo( $li , video , $li.find('img').attr('src') , {
+                    autoplay: true,
+                    pause_button: true,
+                    showLoadingBar: true
+                }, function(){
+                    $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
+                        .append( $li.find('.vjs-control-bar') )
+                        .appendTo( $li );
+                } );
+            }
+        });
     });
 
 
@@ -4042,10 +3934,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $wrap.find('form').animate({
                 marginTop: -96
             } , 300 )
-                .promise()
-                .then(function(){
-                    $wrap.hide();
-                });
+            .promise()
+            .then(function(){
+                $wrap.hide();
+            });
         } else {
             $wrap.show().find('form')
                 .css('marginTop' , -96)
@@ -4068,11 +3960,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             top: '150%',
             opacity: 0
         } , 500 )
-            .promise()
-            .then(function(){
-                $(this).hide();
-                $('.shade').fadeOut();
-            });
+        .promise()
+        .then(function(){
+            $(this).hide();
+            $('.shade').fadeOut();
+        });
     });
 
 
@@ -4124,7 +4016,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $('<img/>').load(function(){
             loadingMgr.success( 'press_image', this );
         })
-            .attr( 'src' , $(this).find('.cover_img').data('cover') );
+        .attr( 'src' , $(this).find('.cover_img').data('cover') );
 
         $('.pop_index').html( press_index );
         $('.pop_total').html( $(this).closest('.press_list').children().length );
@@ -4144,9 +4036,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         loadingMgr.showLoading( $popPress );
         laodingMgr.setSuccess( function(){
             $('.pop_presspho img').animate({
-                marginLeft: '-70%',
-                opacity: 0
-            } , 500 )
+                    marginLeft: '-70%',
+                    opacity: 0
+                } , 500 )
                 .promise()
                 .then(function(){
                     $(this).attr('src' , imgSrc)
@@ -4180,9 +4072,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         loadingMgr.showLoading( $popPress );
         loadingMgr.setSuccess(function(){
             $('.pop_presspho img').off('load').animate({
-                marginLeft: '70%',
-                opacity: 0
-            } , 500 )
+                    marginLeft: '70%',
+                    opacity: 0
+                } , 500 )
                 .promise()
                 .then(function(){
                     $(this).attr('src' , imgSrc)
@@ -4250,11 +4142,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             $videoWrap.animate({
                 marginTop: -480
             } , 400)
-                .promise()
-                .then(function(){
-                    disposeVideo();
-                    $container.remove();
-                });
+            .promise()
+            .then(function(){
+                disposeVideo();
+                $container.remove();
+            });
 
             // follow items animates
             var $nexts = $container.nextAll()
@@ -4439,7 +4331,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     } );
                 });
         }
-
+        
     });
 
 
@@ -4452,7 +4344,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         var poff = $dom.parent().offset();
         var pwidth = $dom.parent().width();
 
-
+        
 
         var marginLeft = ( pwidth - width - 2 * ( -poff.left + off.left ) ) / 2;
 
@@ -4645,10 +4537,10 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $newInner.animate({
             marginLeft: 0
         } , 500 )
-            .promise()
-            .then(function(){
-                $inner.remove();
-            });
+        .promise()
+        .then(function(){
+            $inner.remove();
+        });
 
 
         var contact = LP.query2json($item.find('.jobs_more').attr('data-d'))['contact'];
@@ -4677,11 +4569,11 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         $inner.animate({
             marginLeft: -innerWidth
         } , 500 )
-            .promise()
-            .then(function(){
-                $inner.remove();
-                $newInner.css('marginRight' , 0);
-            });
+        .promise()
+        .then(function(){
+            $inner.remove();
+            $newInner.css('marginRight' , 0);
+        });
 
         var contact = LP.query2json($item.find('.jobs_more').attr('data-d'))['contact'];
         $('.pop_jobs .jobs_more').attr('href' , 'mailto:' + contact );
@@ -4733,7 +4625,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             if( text == page ){
                 var $link = $('.navitem').eq( i + 1 );
                 $link.get(0) && $link.get(0)
-                    .click();
+                        .click();
                 return false;
             }
         });
@@ -4819,31 +4711,31 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         //     width: isFullScreen ? winWidth * 0.9 : winWidth * 0.7
         // } , time )
         $dom
-            .parent()
-            .animate({
-                marginLeft: Math.max( Math.min( 0 , winWidth / 2 - preWidth ), winWidth - totalWidth ) // - ( $dom.prevAll().length * ( winWidth * 0.7 ) - (isFullScreen ? winWidth * 0.05 : winWidth * 0.15) )
-            } , time)
-            .promise()
-            .then(function(){
-                //clearInterval( interval );
-                disposeVideo();
+        .parent()
+        .animate({
+            marginLeft: Math.max( Math.min( 0 , winWidth / 2 - preWidth ), winWidth - totalWidth ) // - ( $dom.prevAll().length * ( winWidth * 0.7 ) - (isFullScreen ? winWidth * 0.05 : winWidth * 0.15) )
+        } , time)
+        .promise()
+        .then(function(){
+            //clearInterval( interval );
+            disposeVideo();
 
-                if( $dom.data('movie') ){
-                    // var key = $dom.data('key');
-                    // var item = campaignManager.get( key );
-                    // renderVideo( $dom , campaignManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
-                    //     autoplay: false,
-                    //     pause_button: true
-                    // } );
-                } else if( $dom.data('image') ){
-                    // initImageMouseMoveEffect( $dom );
-                }
+            if( $dom.data('movie') ){
+                // var key = $dom.data('key');
+                // var item = campaignManager.get( key );
+                // renderVideo( $dom , campaignManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
+                //     autoplay: false,
+                //     pause_button: true
+                // } );
+            } else if( $dom.data('image') ){
+                // initImageMouseMoveEffect( $dom );
+            }
 
-                // if( index - 1 == 0 ){
-                //     $('.brand_big_prev').fadeOut();
-                // }
-                // $('.brand_big_next').fadeIn();
-            });
+            // if( index - 1 == 0 ){
+            //     $('.brand_big_prev').fadeOut();
+            // }
+            // $('.brand_big_next').fadeIn();
+        });
 
         $('.brand_movie').data('index' , index - 1 );
         location.hash = location.hash.replace(/\d+$/ , index - 1);
@@ -4889,31 +4781,31 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         });
 
         $dom
-            .parent()
-            .animate({
-                marginLeft: Math.max( Math.min( 0 , winWidth / 2 - preWidth ), winWidth - totalWidth ) //- ( $dom.prevAll().length * ( winWidth * 0.7 ) - (isFullScreen ? winWidth * 0.05 : winWidth * 0.15) )
-            } , time)
-            .promise()
-            .then(function(){
-                //clearInterval( interval );
-                disposeVideo();
+        .parent()
+        .animate({
+            marginLeft: Math.max( Math.min( 0 , winWidth / 2 - preWidth ), winWidth - totalWidth ) //- ( $dom.prevAll().length * ( winWidth * 0.7 ) - (isFullScreen ? winWidth * 0.05 : winWidth * 0.15) )
+        } , time)
+        .promise()
+        .then(function(){
+            //clearInterval( interval );
+            disposeVideo();
 
-                if( $dom.data('movie') ){
-                    // var key = $dom.data('key');
-                    // var item = campaignManager.get( key );
-                    // renderVideo( $dom , campaignManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
-                    //     autoplay: false,
-                    //     pause_button: true
-                    // } );
-                } else if( $dom.data('image') ){
-                    // initImageMouseMoveEffect( $dom );
-                }
-            });
+            if( $dom.data('movie') ){
+                // var key = $dom.data('key');
+                // var item = campaignManager.get( key );
+                // renderVideo( $dom , campaignManager.getPath( item , 'media' ) , $dom.find('img').attr('src') , {
+                //     autoplay: false,
+                //     pause_button: true
+                // } );
+            } else if( $dom.data('image') ){
+                // initImageMouseMoveEffect( $dom );
+            }
+        });
 
         $('.brand_movie').data('index' , index + 1 );
         location.hash = location.hash.replace(/\d+$/ , index + 1);
     });
-
+    
 
     // LP.action('showreel' , function( e ){
     //     renderVideo($('.banpho-img') , '../videos/0.mp4' , '' , {
@@ -4936,7 +4828,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         LP.reload();
         return false;
     });
-
+    
 
     LP.action('people_opt' , function(){
         var $opt = $(this).find('.people_opt');
