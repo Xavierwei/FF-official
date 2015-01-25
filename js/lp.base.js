@@ -2701,7 +2701,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }, function (r) {
                     awards = array_unique(r.items);
                     var awards_for_renderPage = array_unique(awards);
-                    $('#awards-number').text(awards.length);
+                    var a = {};
+                    var b = [];
+                    $.each(awards, function (i, item) {
+                        a[item.id] = item;
+                    });
+                    $.each(a, function (i, item) {
+                        if (item) {
+                            b.push(item);
+                        }
+                    });
+                    $('#awards-number').text(b.length);
                     api.request('awards', function (r) {
                         $.each(r.items, function (i, old_award) {
                             old_awards[i] = old_award.label;
@@ -4282,7 +4292,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     cursorColor: '#fd0000',
                     height: h
                 });
-                //wavesurfer.load('http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a');
+                wavesurfer.load('http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a');
                 tmp_audio_url && wavesurfer.load(tmp_audio_url);
 
                 wavesurfer.on('loading', function (progress, e) {
