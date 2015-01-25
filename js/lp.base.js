@@ -3694,6 +3694,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
                         .html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
                 });
 
+                this.on('end', function(){
+                    LP.triggerAction('home-slider-right');
+                });
+
                 // this.on('progress', function(){
                 //     videoProgress( this.currentTime() / this.duration() * 100 );
                 // });
