@@ -5,7 +5,7 @@
 define(function( require , exports , model ){
 
 	// http://backoffice.fredfarid.com/eng/ws/
-	var baseUrl = '../api/proxy.php'; 
+	var baseUrl = '/api/proxy.php'; 
 
 	var __AJAX_CACHE__ = {};
 

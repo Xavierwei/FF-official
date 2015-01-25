@@ -2,7 +2,7 @@
 // all page init here
 // $userip = $_SERVER['REMOTE_ADDR'];
 // //引用ip库的文件 把ip.zip里的全部文件放在lib目录下
-// include_once '../ip/iplimit.class.php';
+// include_once '../ip/iplimit.class';
 // $iplimit = new iplimit;
 
 // if($iplimit->setup($userip)){
@@ -25,8 +25,8 @@
 	<meta property="og:description" content="FRED & FARID GROUP is the first French independent Digital Creative Group, founded in 2007 by Fred Raillard and Farid Mokart, Cannes Grand Prix 2009 winner." />
 	<meta property="og:url" content="http://www.fredfarid.com/" />
 	<meta name="viewport" content="width=640, minimum-scale=0.5, maximum-scale=1, target-densityDpi=290,user-scalable = no" />
-    <link href="../css/style.css" rel="stylesheet" type="text/css" />
-    <link href="../css/responsive.css" media="screen and (max-width: 1250px)" rel="stylesheet" type="text/css" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/responsive.css" media="screen and (max-width: 1250px)" rel="stylesheet" type="text/css" />
     <!--[if gte IE 9]>
 	  <style type="text/css">
 	    .gradient {
@@ -83,16 +83,16 @@
 	<div class="header <?php if( !isset($home_page) && 0 ){ ?>header-fixed<?php }?>">
 		<div class="header-inner">
 			<div class="logo-wrap">
-				<a href="index.php" data-a="navitem" class="logo transition"></a>
+				<a href="/" data-a="navitem" class="logo transition"></a>
 			</div>
 			<div class="nav column cs-clear">
 				<a class="navitem" data-a="show-category" data-d="type=categories" href="#">CATEGORIES</a>
 				<a class="navitem" data-a="show-category" data-d="type=brands" href="#">BRANDS</a>
 				<a class="navitem" data-a="show-category" data-d="type=services" href="#">SERVICES</a>
-				<a class="navitem" data-a="navitem" href="awards.php">AWARDS</a>
-				<a class="navitem" data-a="navitem" href="press.php" data-last="interview.php">PRESS</a>
-				<a class="navitem" data-a="navitem" href="bio.php" data-last="jobs.php" >ABOUT</a>
-				<a class="navitem" data-a="navitem" href="contact.php">CONTACT</a>
+				<a class="navitem" data-a="navitem" href="/awards">AWARDS</a>
+				<a class="navitem" data-a="navitem" href="/press" data-last="interview">PRESS</a>
+				<a class="navitem" data-a="navitem" href="/bio" data-last="jobs" >ABOUT</a>
+				<a class="navitem" data-a="navitem" href="/contact">CONTACT</a>
 			</div>
 			<div class="language"><a href="#" data-a="lang" data-d="lang=eng">EN</a> <a href="#" data-a="lang" data-d="lang=zho">中国</a></div>
 			<!-- <a href="#" data-a="search-toggle" class="search">×</a> -->

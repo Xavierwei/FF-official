@@ -1,7 +1,7 @@
 /*
  * page base action
  */
-LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
+LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api ){
     'use strict'
 
     var lang = LP.getCookie('lang');
@@ -141,20 +141,25 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
     var formatPath2Arr = function( path ){
-        path = path || location.hash;
-        path = path.replace(/.*##!/,'');
-
+        path = getPath( path );
         path = path.replace('pages_contents/','');
         var paths = path.split('/');
         return paths;
     }
 
     var getPath = function( href ){
-        return ( href || location.hash ).replace(/.*##!/, '');
+        var match = (href || location.href).match(/(categories|brands|services).*$/);
+        if( match ){
+            return match[0];
+        }
+        return '';
     }
 
     var setPath = function( url ){
-        location.hash = '##!' + url;
+        if( !url.match(/^\//) ){
+            url = '/' + url;
+        }
+        pageManager.go( url );
     }
 
 
@@ -486,7 +491,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         return false;
                     }
                 } );
-                setPath( toUrl );
 
                 fixHomePageVideo( function(){
                     if( destory ){
@@ -522,6 +526,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                         paths.pop();
                         tarPath = paths.join('/');
                         break;
+                }
+                if( !tarPath ){
+                    tarPath = LP.getCookie('page') || '';
                 }
                 setPath( tarPath );
             }
@@ -1666,14 +1673,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         if( !compareVersion( loadpath, ver ) ){
             return;
         }
-        // location.hash = '##!' + $('.sec_brands').data('path');
         // set brands-items width
         $('.brands-con').stop(true,true).show();
-        // if( !$('.brands-con').children().length ){
-        //     LP.triggerAction('show-compagins' , {path: $('.sec_brands').data('path')});
-        //     return false;
-        // }
-
 
         $('.sec_brands').show()
             .scrollTop(0)
@@ -2569,7 +2570,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 } );
 
                 // render weibo
-                api.localRequest('/ff/api/weibo/weibolist.php' , function( r ){
+                api.localRequest('/api/weibo/weibolist.php' , function( r ){
                     var aHtml = [];
                     $.each( r.statuses || [] , function( i , item ){
                         aHtml.push( LP.format('<div class="home_viewtxt">#[text]</div>' , {
@@ -2581,7 +2582,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 });
 
                 // render twitter
-                api.localRequest('/ff/api/twitter/twitterlist.php' , function( r ){
+                api.localRequest('/api/twitter/twitterlist.php' , function( r ){
                     var aHtml = [];
                     $.each( r.status || [] , function( i , item ){
                         aHtml.push( LP.format('<div class="home_viewtxt"><a href="https://twitter.com/engadget/status/#[url]" target="_blank">#[text]</a></div>' , {
@@ -2770,7 +2771,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             'contact-page': function( cb ){
 
 				// render twitter
-				api.localRequest('/ff/api/city/isChina.php' , function( r ){
+				api.localRequest('/api/city/isChina.php' , function( r ){
 					if(r==1) {
 						mapHelper.renderBaidu( $('#map') , [[121.501577,31.251566]] );
 					} else {
@@ -3259,8 +3260,6 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     prev: location.href,
                     type: type
                 },  undefined , url );
-
-                $('.page-mask').stop().fadeIn();
             },
             init: function( cb ){
                 var $page = $('.page');
@@ -3270,25 +3269,25 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                 if( fn ){
                     fn( function(){
                         // hide page mask
-                        $('.page-mask').stop().fadeOut()
+                        $('.page-mask').stop(true,true).fadeOut()
                             .addClass('lighter');
 
                         $(window).trigger('scroll');
                         if( isFirstLoading ){
                             cb && cb();
-                            var path = location.hash.replace('##!', '');
+                            var path = getPath();
                             path && urlManager.go( path );
                         }
                         isFirstLoading = false;
                     });
                 } else {
                     // hide page mask
-                    $('.page-mask').stop().fadeOut()
+                    $('.page-mask').stop(true,true).fadeOut()
                         .addClass('lighter');
                         
                     if( isFirstLoading ){
                         cb && cb();
-                        var path = location.hash.replace('##!', '');
+                        var path = getPath();
                         path && urlManager.go( path );
                     }
                     isFirstLoading = false;
@@ -3436,17 +3435,17 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         //     loadingMgr.success();
         // });
 
-        History.Adapter.bind(window,'hashchange',function( ev ){
-            var oldURL = ev.oldURL;
-            var newURL = ev.newURL;
-            var oldArr = formatPath2Arr( ev.oldURL );
-            var newArr = formatPath2Arr( ev.newURL );
-            if( ( !newArr[4] && !oldArr[4] ) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) ){
-                return false;
-            }
+        // History.Adapter.bind(window,'hashchange',function( ev ){
+        //     var oldURL = ev.oldURL;
+        //     var newURL = ev.newURL;
+        //     var oldArr = formatPath2Arr( ev.oldURL );
+        //     var newArr = formatPath2Arr( ev.newURL );
+        //     if( ( !newArr[4] && !oldArr[4] ) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) ){
+        //         return false;
+        //     }
 
-            urlManager.go( newURL.replace( /.*##!/,'' ), null, oldURL.replace( /.*##!/,'' ) );
-        });
+        //     urlManager.go( newURL.replace( /.*##!/,'' ), null, oldURL.replace( /.*##!/,'' ) );
+        // });
 
         // Bind to StateChange Event
         History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
@@ -3454,10 +3453,24 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
             var State = History.getState(); // Note: We are using History.getState() instead of event.state
             var prev = State.data.prev;
             var type = State.data.type;
+            
+            var path = LP.parseUrl( State.url ).path.replace(/^\//,'');
+            var prevPath = LP.parseUrl( prev ).path.replace(/^\//,'');
             // if only change hash
-            if( State.url.indexOf('##') >= 0 ){
+            if( path.match(/^(categories|brands|services)/) ){
+                var oldArr = formatPath2Arr( prevPath );
+                var newArr = formatPath2Arr( path );
+                if( ( !newArr[4] && !oldArr[4] ) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) ){
+                    return false;
+                }
+
+                urlManager.go( path, null, prevPath );
                 return false;
             }
+            $('.page-mask').stop(true,true).fadeIn();
+            // if( State.url.indexOf('##') >= 0 ){
+            //     return false;
+            // }
             // show loading
             loadingMgr.show();
             loadingMgr.setSuccess(function( html ){
@@ -3492,12 +3505,9 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
                     }, 500);
                 } );
             }, 'statechange');
-            switch( type ){
-                default: 
-                    $.get( location.href , '' , function( r ){
-                        loadingMgr.success('statechange', r );
-                    });
-            }
+            $.get( location.href , '' , function( r ){
+                loadingMgr.success('statechange', r );
+            });
         });
     });
 
@@ -3960,7 +3970,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
 
     LP.action('brands-item' , function(){
-        urlManager.setFormatHash( $(this).data('path') );
+        urlManager.setFormatHash( getPath( $(this).data('path') ) );
     });
 
 
@@ -4676,7 +4686,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 
     LP.action('show_fullscreen_video', function( data ){
         // 获取这个元素的信息
-        urlManager.setFormatHash( location.hash.replace('##!','') + '/big' );
+        urlManager.setFormatHash( LP.parseUrl().path + '/big' );
 
         // var item = campaignManager.get( $(data.dom).data('path') );
 
@@ -4760,7 +4770,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         });
 
         $('.brand_movie').data('index' , index - 1 );
-        location.hash = location.hash.replace(/\d+$/ , index - 1);
+        var path = getPath();
+        setPath( path.replace(/\d+$/ , index - 1) );
 
         // var itemDom = $('.brand_movie').find('.brands-item').eq( index - 1 ).get(0);
         // itemDom && itemDom.click();
@@ -4825,7 +4836,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
         });
 
         $('.brand_movie').data('index' , index + 1 );
-        location.hash = location.hash.replace(/\d+$/ , index + 1);
+        var path = getPath();
+        setPath( path.replace(/\d+$/ , index + 1) );
     });
     
 
@@ -4840,8 +4852,8 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
     // });
 
     LP.action('image-zoom' , function( data ){
-        var hash = location.hash;
-        urlManager.setFormatHash( hash.replace('##!','') + '/big' );
+        var path = LP.parseUrl().path;
+        urlManager.setFormatHash( path + '/big' );
         return false;
     });
 

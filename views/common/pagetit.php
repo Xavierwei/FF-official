@@ -43,11 +43,11 @@
 <div class="column">
 	<div class="about_crumbs crumbs">
 		<span>
-			<!-- <a href="./group.php" data-a="press_crumbs_link">ff group</a> /  -->
-			<a href="./bio.php" data-a="press_crumbs_link">ff bio</a> / 
-			<a href="./ffshowreel.php" data-a="press_crumbs_link">ff showreel</a> / 
-			<a href="./people.php" data-a="press_crumbs_link">key people</a> /
-			<a href="./jobs.php" data-a="press_crumbs_link">jobs</a>
+			<!-- <a href="./group" data-a="press_crumbs_link">ff group</a> /  -->
+			<a href="/bio" data-a="press_crumbs_link">ff bio</a> / 
+			<a href="/ffshowreel" data-a="press_crumbs_link">ff showreel</a> / 
+			<a href="/people" data-a="press_crumbs_link">key people</a> /
+			<a href="/jobs" data-a="press_crumbs_link">jobs</a>
 		</span>
 	</div>
 </div>
@@ -55,8 +55,8 @@
 <div class="column">
 	<div class="about_crumbs crumbs">
 		<span>
-			<a href="./press.php" data-a="press_crumbs_link">press</a> / 
-			<a href="./interview.php" data-a="press_crumbs_link">interview</a>
+			<a href="/press" data-a="press_crumbs_link">press</a> / 
+			<a href="/interview" data-a="press_crumbs_link">interview</a>
 		</span>
 	</div>
 </div>
