@@ -5,12 +5,8 @@
 	<div class="section sec_home">
 		<!--  -->
 		<div class="home_news" data-index="0">
-			<h2 class="intoview-effect" data-effect="fadeup">NEWS</h2>
+			<h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEWS'); ?></h2>
 			<div class="home_news_inner cs-clear intoview-effect" data-effect="fadeup" style="width:300%;" id="home-news">
-
-				<p style="width:33.3333%;">Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
-				<p style="width:33.3333%;">Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
-				<p style="width:33.3333%;">Brand new Epica Awards at the agency Silver for Orangina 'Stay Alive' rand new Epica Awards at the agency Silver for Orangina 'Stay Alive'</p>
 			</div>
 			<div class="home_newspage">
 				<span>1/3</span>
@@ -31,55 +27,52 @@
 			<div class="home_viewbtn cs-clear">
 				<a href="https://twitter.com/FredFarid" target="_blank" class="home_viewbtntw transition-wrap">
 					<div class="transition">
-					VIEW ALL TWEETS<br/><br/>VIEW ALL TWEETS
+					<?php _e('VIEW ALL TWEETS'); ?><br/><br/><?php _e('VIEW ALL TWEETS'); ?>
 					</div>
 				</a>
 				<a href="http://weibo.com/fredfaridgroup" target="_blank" class="home_viewbtnwb transition-wrap">
 					<div class="transition">
-						VIEW ALL WEIBO<br/><br/>VIEW ALL WEIBO
+						<?php _e('VIEW ALL WEIBO'); ?><br/><br/><?php _e('VIEW ALL WEIBO'); ?>
 					</div>
 				</a>
 			</div>
 		</div>
 		<!--  -->
 		<div class="home_campaign">
-			<h2 class="intoview-effect" data-effect="fadeup">FEATURED CAMPAIGNS</h2>
+			<h2 class="intoview-effect" data-effect="fadeup"><?php _e('FEATURED CAMPAIGNS'); ?></h2>
 			<div class="home_camcon column cs-clear">
 			</div>
 			<a class="home_cambtn" data-a="home-loadmore" href="#">
 				<div class="transition">
-					LOAD MORE <br/><br/>LOAD MORE
+					<?php _e('LOAD MORE'); ?><br/><br/><?php _e('LOAD MORE'); ?>
 				</div>
 			</a>
 		</div>		
 		<!--  -->
 		<div class="home_bio">
 			<img class="home_bio_bg" src="../images/home_biobg.jpg">
-			<h2>BIOGRAPHY</h2>
+			<h2><?php _e('BIOGRAPHY'); ?></h2>
 			<div class="home_biotxt cs-clear">
-				<div class="home_bioleft">
-					<strong>Overall, in their career, Fred & Farid have worked for over 200 brands, </strong>and have won more than 340 international creative and marketing effectiveness awards in the most prestigious international festivals: Cannes Lions Festival, D&AD, Clio, One Show, FWA, Lovie Awards, Webby Awards, London International Awards, British TV Awards, Andy's, New York Festival, 
-				</div>
-				<div class="home_bioright">TV Awards, Andy's, New York Festival, Eurobest, Creative Circle, Epica – including more than 50 digital awards since 2011. Fred & Farid also has consecutively won 4 years the title of “Agency of the Year” at the World Luxury Awards. Fred & Farid were also members of major juries like the Cannes Lions Festival or the D&AD.</div>
+				<div class="home_bioleft"></div>
+				<div class="home_bioright"></div>
 			</div>
-			<a href="./bio.php" class="home_biobtn">
+			<a href="/bio" class="home_biobtn">
 				<div class="transition">
-					READ MORE <br/><br/>READ MORE
+					<?php _e('READ MORE'); ?><br/><br/><?php _e('READ MORE'); ?>
 				</div>
 			</a>
 		</div>
 		<!--  -->
 		<div class="home_num">
-			<h2>NUMBERS</h2>
+			<h2><?php _e('NUMBERS'); ?></h2>
 			<div class="home_numtable">
 				<table>
-					<tr id="home-num-tr">
-					</tr>
+					<tr id="home-num-tr"></tr>
 				</table>
 			</div>
-			<a href="./awards.php" class="home_numbtn">
+			<a href="/awards" class="home_numbtn">
 				<div class="transition">
-					ABOUT <br/><br/>ABOUT
+					<?php _e('ABOUT'); ?> <br/><br/><?php _e('ABOUT'); ?>
 				</div>
 			</a>
 		</div>

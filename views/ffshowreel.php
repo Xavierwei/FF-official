@@ -14,7 +14,7 @@
 			<div class="banpho-bt">
 				<a href="#" data-a="home-slider-left" class="banpho-bt-l transition"></a>
 				<div class="banpho-bt-c" data-a="home-play-movie">
-					<div class="transition">play movie<br/><br/>play movie</div>
+					<div class="transition"><?php _e('play movie'); ?><br/><br/><?php _e('play movie'); ?></div>
 				</div>
 				<a href="#" data-a="home-slider-right" class="banpho-bt-r transition"></a>
 			</div>

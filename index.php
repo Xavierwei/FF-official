@@ -1,5 +1,8 @@
 <?php
 define('ROOT', __DIR__);
+require_once ROOT . '/views/common/ins.php';
+
+
 // router
 $path = $_GET['path'];
 $paths = array_filter( explode('/', $path) );
@@ -9,6 +12,7 @@ if( empty( $paths ) || in_array($paths[0], array('categories','brands','services
 	$page = $paths[0];
 }
 $file = ROOT . "/views/{$page}.php";
+
 if( file_exists( $file ) ){
 	setcookie( 'page', $page == 'index' ? '/' : $page );
 	require_once $file;

@@ -17,7 +17,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-    <title>FRED &amp; FARID GROUP</title>
+    <title><?php _e('FRED &amp; FARID GROUP');?></title>
 	<meta name="keywords" content="Fred & Farid, Fred&Farid, Fred & Farid Group, Fred&Farid Group, FFL Paris, Frédéric Raillard, Farid Mokart, agence de publicité, agence de communication" />
 	<meta name="description" content="FRED & FARID GROUP is the first French independent Digital Creative Group, founded in 2007 by Fred Raillard and Farid Mokart, Cannes Grand Prix 2009 winner." />
 	<meta property="og:title" content="FRED &amp;AMP; FARID GROUP" />
@@ -64,7 +64,7 @@
 			<div class="banpho-bt">
 				<a href="javascript:;" data-a="home-slider-left" class="banpho-bt-l transition"></a>
 				<div class="banpho-bt-c" data-a="home-play-movie">
-					<div class="transition">play movie<br/><br/>play movie</div>
+					<div class="transition"><?php _e('play movie');?><br/><br/><?php _e('play movie');?></div>
 				</div>
 				<a href="javascript:;" data-a="home-slider-right" class="banpho-bt-r transition"></a>
 			</div>
@@ -86,13 +86,13 @@
 				<a href="/" data-a="navitem" class="logo transition"></a>
 			</div>
 			<div class="nav column cs-clear">
-				<a class="navitem" data-a="show-category" data-d="type=categories" href="#">CATEGORIES</a>
-				<a class="navitem" data-a="show-category" data-d="type=brands" href="#">BRANDS</a>
-				<a class="navitem" data-a="show-category" data-d="type=services" href="#">SERVICES</a>
-				<a class="navitem" data-a="navitem" href="/awards">AWARDS</a>
-				<a class="navitem" data-a="navitem" href="/press" data-last="interview">PRESS</a>
-				<a class="navitem" data-a="navitem" href="/bio" data-last="jobs" >ABOUT</a>
-				<a class="navitem" data-a="navitem" href="/contact">CONTACT</a>
+				<a class="navitem" data-a="show-category" data-d="type=categories" href="#"><?php _e('CATEGORIES');?></a>
+				<a class="navitem" data-a="show-category" data-d="type=brands" href="#"><?php _e('BRANDS');?></a>
+				<a class="navitem" data-a="show-category" data-d="type=services" href="#"><?php _e('SERVICES');?></a>
+				<a class="navitem" data-a="navitem" href="/awards"><?php _e('AWARDS');?></a>
+				<a class="navitem" data-a="navitem" href="/press" data-last="interview"><?php _e('PRESS');?></a>
+				<a class="navitem" data-a="navitem" href="/bio" data-last="jobs" ><?php _e('ABOUT');?></a>
+				<a class="navitem" data-a="navitem" href="/contact"><?php _e('CONTACT');?></a>
 			</div>
 			<div class="language"><a href="#" data-a="lang" data-d="lang=eng">EN</a> <a href="#" data-a="lang" data-d="lang=zho">中国</a></div>
 			<!-- <a href="#" data-a="search-toggle" class="search">×</a> -->
@@ -148,7 +148,7 @@
 				<ul>
 				</ul>
 			</div>
-			<div class="gates-inner-r">
+			<!-- <div class="gates-inner-r">
 				<ul>
 					<li> <a data-a="filter-category" data-category="" class="active" href="#">all</a> </li>
 					<li> <a data-a="filter-category" data-category="CONSULTING" href="#">CONSULTING</a> </li>
@@ -156,7 +156,7 @@
 					<li> <a data-a="filter-category" data-category="TRADITIONAL" href="#">TRADITIONAL</a> </li>
 					<li> <a data-a="filter-category" data-category="MEDIA" href="#">MEDIA / SOCIAL MEDIA</a> </li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 	</div>
 
@@ -186,12 +186,12 @@
 				<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop"></a>
 				<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom"></a>
 			</div>
-			<div class="brands-tags">
+			<!-- <div class="brands-tags">
 				<p class="column">
 					<a href="javascript:void(0);" class="transition">6 &nbsp; × &nbsp;awards</a>
 					<a href="javascript:void(0);" class="transition">6 &nbsp; × &nbsp;services</a>
 				</p>
-			</div>
+			</div> -->
 		</div>
 		<ul class="brands-con">
 		</ul>

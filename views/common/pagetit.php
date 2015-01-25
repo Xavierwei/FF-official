@@ -25,7 +25,7 @@
 		<div class="banpho-bt">
 			<a href="javascript:;" data-a="home-slider-left" class="banpho-bt-l transition"></a>
 			<div class="banpho-bt-c" data-a="home-play-movie">
-				<div class="transition">play movie<br/><br/>play movie</div>
+				<div class="transition"><?php _e('play movie'); ?><br/><br/><?php _e('play movie'); ?></div>
 			</div>
 			<a href="javascript:;" data-a="home-slider-right" class="banpho-bt-r transition"></a>
 		</div>
@@ -44,10 +44,10 @@
 	<div class="about_crumbs crumbs">
 		<span>
 			<!-- <a href="./group" data-a="press_crumbs_link">ff group</a> /  -->
-			<a href="/bio" data-a="press_crumbs_link">ff bio</a> / 
-			<a href="/ffshowreel" data-a="press_crumbs_link">ff showreel</a> / 
-			<a href="/people" data-a="press_crumbs_link">key people</a> /
-			<a href="/jobs" data-a="press_crumbs_link">jobs</a>
+			<a href="/bio" data-a="press_crumbs_link"><?php _e('ff bio'); ?></a> / 
+			<a href="/ffshowreel" data-a="press_crumbs_link"><?php _e('ff showreel'); ?></a> / 
+			<a href="/people" data-a="press_crumbs_link"><?php _e('key people'); ?></a> /
+			<a href="/jobs" data-a="press_crumbs_link"><?php _e('jobs'); ?></a>
 		</span>
 	</div>
 </div>
@@ -55,8 +55,8 @@
 <div class="column">
 	<div class="about_crumbs crumbs">
 		<span>
-			<a href="/press" data-a="press_crumbs_link">press</a> / 
-			<a href="/interview" data-a="press_crumbs_link">interview</a>
+			<a href="/press" data-a="press_crumbs_link"><?php _e('press'); ?></a> / 
+			<a href="/interview" data-a="press_crumbs_link"><?php _e('interview'); ?></a>
 		</span>
 	</div>
 </div>

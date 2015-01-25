@@ -9,8 +9,8 @@
 	<!-- section -->
 	<div class="section sec_people column">
 		<!--  -->
-		<h2 class="contact_tit intoview-effect" data-effect="fadeup">Nine key people leads the group in all field <br>
-		like strategic, creation etc.
+		<h2 class="contact_tit intoview-effect" data-effect="fadeup">
+			<?php _e('Nine key people leads the group in all field <br>like strategic, creation etc.'); ?>
 		</h2>
 		<!--  -->
 		<div id="people-wrap">

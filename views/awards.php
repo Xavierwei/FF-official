@@ -46,7 +46,6 @@
 		<!--  -->
 		<div data-effect="fadeup" class="intoview-effect awardlist column">
 			<table id="list-table">
-				
 			</table>
 		</div>
 		<!--  -->
