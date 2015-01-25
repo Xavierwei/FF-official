@@ -52,6 +52,7 @@
 	// });
 	
     </script>-->
+    <script type="text/javascript">document.domain='fredfarid.com';</script>
 </head>
 <body class="lang-<?php echo $_COOKIE['lang'];?>">
 	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
