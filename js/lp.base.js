@@ -335,7 +335,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
                         cb && cb();
                     });
             },
-            load: function(  ){
+            load: function( ){
                 $(document.body).css('overflow' , 'hidden');
                 var path = getItemPathinfoFromUrl();
                 var paths = path.split('/');
@@ -1159,6 +1159,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
 
     // show big brand item
     function showBigBrandsItem( path , itemIndex ){
+        $('.brand_big_text').html('');
         itemIndex = parseInt( itemIndex );
         // change hash
 
@@ -1303,14 +1304,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
                 campaignManager.getBrandById( campaign.fid_customer, function( brand ){
                     campaign.brand = brand.title;
                     var str = LP.format( textTpl , campaign );
-                    $('.brand_big_text').html( str );
+                    $('.brand_big_text').html( str ).fadeIn();
                 } );
             } );
         }
 
         loadingMgr.setSuccess( function( aHtml, item ){
-            
-
             
             $('.brand_movie .brands-items').show();
             afterItemsRender( item );
