@@ -217,16 +217,16 @@ COMMANDS.clear = function (argv, cb) {
 //   cb();
 // }
 COMMANDS.y = function (argv, cb) {
-  window.location.replace('http://preprod.fredfarid.com/ff/views/');
+  window.location.replace('http://preprod.fredfarid.com/');
 }
 COMMANDS.yes = function (argv, cb) {
-  window.location.replace('http://preprod.fredfarid.com/ff/views/');
+  window.location.replace('http://preprod.fredfarid.com/');
 }
 COMMANDS.Y = function (argv, cb) {
-  window.location.replace('http://preprod.fredfarid.com/ff/views/');
+  window.location.replace('http://preprod.fredfarid.com/');
 }
 COMMANDS.YES = function (argv, cb) {
-  window.location.replace('http://preprod.fredfarid.com/ff/views/');
+  window.location.replace('http://preprod.fredfarid.com/');
 }
 COMMANDS.find_page = function (argv, cb) {
   this._terminal.write('••• STOP: OxOOOOOOlE (Ox80000003,0x80106fc0,0x8025ea21,0xfd6829e8) <br>' +

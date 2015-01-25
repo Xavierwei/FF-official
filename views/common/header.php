@@ -60,7 +60,7 @@
 	<!-- banner -->
 	<div class="banpho home-slider">
 		<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0"></div>
-		<div class="banpho-con">
+		<div class="banpho-con" data-height="94">
 			<div class="banpho-bt">
 				<a href="javascript:;" data-a="home-slider-left" class="banpho-bt-l transition"></a>
 				<div class="banpho-bt-c" data-a="home-play-movie">

@@ -18,7 +18,7 @@
 		<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
 		<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
 	</div>
-	<div class="banpho-con">
+	<div class="banpho-con" data-height="188">
 		<div class="showreel-tit">
 			<h3></h3><p></p><p></p>
 		</div>

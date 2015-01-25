@@ -2436,7 +2436,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
                 isInBanphoCon = false;
             });
             $banphoCon.css('margin-top',function() {
-                var h = $(this).find('.banpho-bt').height() + $(this).find('.banpho-i').height();
+                var h = $(this).data('height');//height();//$(this).find('.banpho-bt').height() + $(this).find('.banpho-tit').height();
                 return (-h / 2) + 'px';
             });
             
