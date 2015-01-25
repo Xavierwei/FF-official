@@ -3906,7 +3906,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
 
         $('.preview ul').animate({
             marginLeft: ml
-        } , 1000, 'easeOutQuart')
+        } , 600, 'easeOutQuart')
         .promise()
         .then(function(){
             disposeVideo();
@@ -3945,7 +3945,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
 
         $('.preview ul').animate({
             marginLeft: ml
-        } , 1000, 'easeOutQuart')
+        } , 600, 'easeOutQuart')
         .promise()
         .then(function(){
             disposeVideo();
