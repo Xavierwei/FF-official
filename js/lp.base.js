@@ -3457,7 +3457,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
             var path = LP.parseUrl( State.url ).path.replace(/^\//,'');
             var prevPath = LP.parseUrl( prev ).path.replace(/^\//,'');
             // if only change hash
-            if( path.match(/^(categories|brands|services)/) ){
+            if( path.match(/^(categories|brands|services)/) || prevPath.match(/^(categories|brands|services)/) ){
                 var oldArr = formatPath2Arr( prevPath );
                 var newArr = formatPath2Arr( path );
                 if( ( !newArr[4] && !oldArr[4] ) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) ){
@@ -3467,6 +3467,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
                 urlManager.go( path, null, prevPath );
                 return false;
             }
+
             $('.page-mask').stop(true,true).fadeIn();
             // if( State.url.indexOf('##') >= 0 ){
             //     return false;

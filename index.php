@@ -10,7 +10,7 @@ if( empty( $paths ) || in_array($paths[0], array('categories','brands','services
 }
 $file = ROOT . "/views/{$page}.php";
 if( file_exists( $file ) ){
-	setcookie( 'page', $page );
+	setcookie( 'page', $page == 'index' ? '/' : $page );
 	require_once $file;
 } else {
 	require_once '404.html';
