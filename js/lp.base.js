@@ -2772,7 +2772,7 @@ LP.use(['jquery' ,'easing' , '../api'] , function( $ , easing , api ){
 				// render twitter
 				api.localRequest('/ff/api/city/isChina.php' , function( r ){
 					if(r==1) {
-						mapHelper.renderBaidu( $('#map') , [[121.498732,31.249766]] );
+						mapHelper.renderBaidu( $('#map') , [[121.501577,31.251566]] );
 					} else {
 						mapHelper.renderGoogle( $('#map') , [[48.875137,2.338616000000002],[31.245583,121.49472600000001]] );
 					}
