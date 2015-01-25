@@ -40,7 +40,13 @@
 				</a>
 			</div>
 			<div class="awardfilter_item awardfilter_item2">
-				<button data-a="awardfilter" id="awardfilter" class="awardfilter_btn">FILTER</button>
+				<a data-a="awardfilter" id="awardfilter" class="awardfilter_btn transition-wrap">
+                    <div class="transition">
+                        				    FILTER
+                        				    <br><br>
+                        				    FILTER
+                    </div>
+				</a>
 			</div>
 		</div>
 		<!--  -->
