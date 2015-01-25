@@ -8,6 +8,10 @@ function getLang(){
 	return $lang;
 }
 
+function setLang( $lang ){
+	$_COOKIE['lang'] = $lang;
+}
+
 function getStrings(){
 	static $strings;
 	if( $strings ){

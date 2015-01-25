@@ -2,6 +2,9 @@
 define('ROOT', __DIR__);
 require_once ROOT . '/views/common/ins.php';
 
+// sent lange
+setLang( getLang() );
+header('Access-Control-Allow-Origin: *');
 
 // router
 $path = $_GET['path'];

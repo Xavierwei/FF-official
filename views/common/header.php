@@ -34,6 +34,7 @@
 	    }
 	  </style>
 	<![endif]-->
+    <!--
     <script type="text/javascript" src="http://backoffice.fredfarid.com/assets/scripts/bo/api/ws_api.min.js"></script>
     <script type="text/javascript">
     // Initialize API parameters
@@ -50,9 +51,9 @@
 	// 	}
 	// });
 	
-    </script>
+    </script>-->
 </head>
-<body>
+<body class="lang-<?php echo $_COOKIE['lang'];?>">
 	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
 	<div class="page-mask"></div>
 	<div class="container">
