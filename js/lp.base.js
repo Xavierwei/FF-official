@@ -2560,11 +2560,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js' , '../api'] , function( easing , api )
                         obj[ item.id ] = item.number;
                     } );
 
-                    var tpl = '<td><strong class="intoview-effect" data-effect="number-rock">#[projects]</strong>PROJECTS</td>\
-                        <td><strong class="intoview-effect" data-effect="number-rock">#[brands]</strong>BRANDS</td>\
-                        <td><strong class="intoview-effect" data-effect="number-rock">#[press_articles]</strong>PRESS ARTICLES</td>\
-                        <td><strong class="intoview-effect" data-effect="number-rock">#[services]</strong>SERVICES</td>\
-                        <td><strong class="intoview-effect" data-effect="number-rock">#[awards]</strong>AWARDS</td>';
+                    var tpl = $('#num-tpl').html();
+                    // <td><strong class="intoview-effect" data-effect="number-rock">#[projects]</strong>PROJECTS</td>\
+                    //     <td><strong class="intoview-effect" data-effect="number-rock">#[brands]</strong>BRANDS</td>\
+                    //     <td><strong class="intoview-effect" data-effect="number-rock">#[press_articles]</strong>PRESS ARTICLES</td>\
+                    //     <td><strong class="intoview-effect" data-effect="number-rock">#[services]</strong>SERVICES</td>\
+                    //     <td><strong class="intoview-effect" data-effect="number-rock">#[awards]</strong>AWARDS</td>';
                     $('#home-num-tr').html( LP.format(tpl, obj) );
                 } );
 

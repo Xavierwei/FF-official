@@ -77,4 +77,11 @@
 			</a>
 		</div>
 	</div>
+<script type="text/tpl" id="num-tpl" >
+<td><strong class="intoview-effect" data-effect="number-rock">#[projects]</strong><?php _e('PROJECTS');?></td>
+<td><strong class="intoview-effect" data-effect="number-rock">#[brands]</strong><?php _e('BRANDS');?></td>
+<td><strong class="intoview-effect" data-effect="number-rock">#[press_articles]</strong><?php _e('PRESS ARTICLES');?></td>
+<td><strong class="intoview-effect" data-effect="number-rock">#[services]</strong><?php _e('SERVICES');?></td>
+<td><strong class="intoview-effect" data-effect="number-rock">#[awards]</strong><?php _e('AWARDS');?></td>
+ </script>
 <?php include_once 'common/footer.php';?>
