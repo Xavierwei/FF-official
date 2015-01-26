@@ -554,7 +554,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $('.preview').stop().css('opacity', 1).hide().fadeIn().find('ul').fadeIn();
             $('.preview li img')
                 .load(function () {
-
                     fixImageToWrap($(this).parent().data('fixed-img-wrap', 1), $(this));
                 });
 
@@ -2907,11 +2906,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 api.request(['about/interviews/radio', 'about/interviews/tv'], function (r) {
                     var aHtml = [];
                     var date = [];
+                    var images = [];
 
                     $.each(r.items, function (i, item) {
                         var media = campaignManager.getPath(item, 'media');
                         var tpl = !media.match(/.mp3$/) ? tvTpl : radioTpl;
                         var titles = item.title.split('|');
+                        images.push(campaignManager.getPath(item, 'picture_2'));
                         aHtml.push(LP.format(tpl, {
                             oddoreven: i % 2 ? 'even' : 'odd',
                             text: !media.match(/.mp3$/) ? 'WATCH<br/>CLOSE' : 'LISTEN<br/>CLOSE',
@@ -2921,15 +2922,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             media: media
                         }));
                     });
-
-                    $('#press-container').html(aHtml.join(''));
-
-                    loadImages($('#press-container img'), null, function () {
-                        $('#press-container img').each(function () {
-                            fixImageToWrap($(this).parent(), $(this));
+                    loadImages_2(images.slice(0,5), function () {
+                        loadImages($('#press-container img'), null, function () {
+                            $('#press-container img').each(function () {
+                                fixImageToWrap($(this).parent(), $(this));
+                            });
                         });
+                        cb && cb();
                     });
-                    cb && cb();
+                    $('#press-container').html(aHtml.join(''));
                 });
 
             },
