@@ -107,7 +107,8 @@ a:hover{color:#000}
 .icon_yt{background-position:  -63px -115px;}
 .find_wx{background-position:  0px -120px;}
 .ft_workmbd{width: 250px;height: 200px;padding-top:35px;}
-.work_item{float: left;background: url('../images/ft_network.png') no-repeat 0 0;width: 125px;height: 100px;}
+.work_item{float: left;background: url('../images/ft_network.png') no-repeat 0 0;width: 125px;height: 100px;opacity: 0.5;}
+.work_item:hover{opacity: 1;}
 .icon_bk{background-position: 100% 3%;}
 a.icon_bg{background-position: 0px -115px;}
 .icon_cc{background-position: 112% 95%;}

@@ -19,20 +19,20 @@
 				</div>
 			</div>
 			<div class="ft_mod ft_paris">
-				<h3>PARIS</h3>
+				<h3><?php _e('PARIS');?></h3>
 				<div class="ft_mbd">
-					<p>22 RUE DE LA VICTOIRE</p>
-                    <p>& 48 rue de Provence</p>
-					<p>75009 PARIS</p>
-					<p>PHONE: +33 (0)1 81 51 50 00</p>
+				    <p><?php _e('PARIS_ADDR_L1');?></p>
+				    <p><?php _e('PARIS_ADDR_L2');?></p>
+				    <p><?php _e('PARIS_ADDR_L3');?></p>
+				    <p><?php _e('PARIS_ADDR_L4');?></p>
 				</div>
 			</div>
 			<div class="ft_mod ft_shanghai">
-				<h3>SHANGHAI</h3>
+				<h3><?php _e('SHANGHAI');?></h3>
 				<div class="ft_mbd">
-					<p>200 HUANGPU LU, HONGKOU DISTRICT</p>
-					<p>& 109-111 LIYANG LU, HONGKOU DISTRICT</p>
-					<p>200080 SHANGHAI, CHINA</p>
+					<p><?php _e('SHANGHAI_ADDR_L1');?></p>
+                    <p><?php _e('SHANGHAI_ADDR_L2');?></p>
+                    <p><?php _e('SHANGHAI_ADDR_L3');?></p>
 				</div>
 			</div>
 			<div class="ft_mod ft_network">

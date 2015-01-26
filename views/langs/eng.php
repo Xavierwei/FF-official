@@ -28,5 +28,13 @@
   'Ici un texte de presentation<br />de chapitre utile pour le referencement' => '',
   'APPLY' => '',
   'SHARE' => '',
+    'PARIS_ADDR_L1' => '22 RUE DE LA VICTOIRE',
+    'PARIS_ADDR_L2' => '& 48 rue de Provence',
+    'PARIS_ADDR_L3' => '75009 PARIS',
+    'PARIS_ADDR_L4'  => 'PHONE: +33 (0)1 81 51 50 00',
+    'SHANGHAI_ADDR_L1' => '200 HUANGPU LU, HONGKOU DISTRICT',
+    'SHANGHAI_ADDR_L2' => '& 109-111 LIYANG LU, HONGKOU DISTRICT',
+    'SHANGHAI_ADDR_L3' => '200080 SHANGHAI, CHINA',
+
   'Nine key people leads the group in all field <br>like strategic, creation etc.' => '',
 );
