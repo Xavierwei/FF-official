@@ -1,5 +1,5 @@
 <?php return array (
-  'FRED &amp; FARID GROUP' => '福海福瑞',
+  'FRED &amp; FARID GROUP' => '佛海佛瑞',
   'FOLLOW US' => '关于我们',
   'OUR MEDIAS' => '我们的平台',
   'play movie' => '播放视频',

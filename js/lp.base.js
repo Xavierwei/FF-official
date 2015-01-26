@@ -3440,6 +3440,27 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('#icon-wrap').html(linkHtml.join(''));
 
     });
+    // load media links in footer
+    api.request('footer_icons', function (r) {
+        console.log(r);
+        //var shareHtml = [];
+        //$.each(r.items, function (i, item) {
+        //    if (item.role == 'share') {
+        //        shareHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="find_item #[name]">#[label]</a>', item))
+        //    }
+        //});
+        //$('#share-wrap').html(shareHtml.join(''));
+        //
+        //// render websites
+        //var linkHtml = [];
+        //$.each(r.items, function (i, item) {
+        //    if (item.role == 'icon' && item.link) {
+        //        linkHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="work_item #[name]">#[label]</a>', item))
+        //    }
+        //});
+        //$('#icon-wrap').html(linkHtml.join(''));
+
+    });
 
     // change history
     LP.use('../plugin/history.js', function () {
@@ -4292,7 +4313,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     cursorColor: '#fd0000',
                     height: h
                 });
-                wavesurfer.load('http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a');
+                //wavesurfer.load('http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a');
                 tmp_audio_url && wavesurfer.load(tmp_audio_url);
 
                 wavesurfer.on('loading', function (progress, e) {
@@ -4481,6 +4502,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var campaigns = $('#awardfilter').data('campaigns');
         var brands = $('#awardfilter').data('brands');
         var all_replicated = $('#awardfilter').data('all');
+        console.log('all_replicated: ',all_replicated);
 
         var all_obj = {};
         var all = [];
@@ -4514,6 +4536,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             });
         }
 
+        console.log('filtered all: ',all);
 
         var _comtentPaths = [];
         $.each(all, function (i, award) {
@@ -4525,7 +4548,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         campaigns = array_filter(campaigns, function (campaign) {
             return $.inArray(campaign._contentPath, _comtentPaths) >= 0;
         });
-        var tpl = '<tr class="#[class]"><td>#[year] #[award]</td><td>#[brand]</td><td>#[campaign]</td></tr>';
+        var tpl = '<tr class="#[class]"><td>#[year] #[award]</td><td>#[brand]</td><td><a href="#[campaign_link]">#[campaign]</a></td></tr>';
 
         var listHtml = [];
         $.each(all, function (i, all_item) {
@@ -4534,7 +4557,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 year: all_item['created'].replace(/^(\d{4}).*/, '$1'),
                 award: all_item.award_label,
                 brand: all_item.brand_title,
-                campaign: all_item.label
+                campaign: all_item.label,
+                campaign_link: all_item._awardPath
             }));
         });
 
