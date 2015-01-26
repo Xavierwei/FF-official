@@ -351,8 +351,9 @@ url(../images/brand_big_nav.png) left center; }
 .brand_movie{position: absolute;top: 88px;width: 100%;overflow: hidden;}
 .brand_movie .brands-items{width: 200%;height: 100%;overflow: hidden;height: 445px;}
 .brand_movie .brands-item{float: left; position: relative;font-size: 0;line-height: 0;height: 100%; width:auto; overflow: hidden;cursor: pointer;}
-.brand_movie .brands-item .image-zoom{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;font-size: 18px;text-align: center;z-index: 101;}
-.image-zoom-big{position: fixed;width: 100%;height: 100%;top:0;left:0;z-index: 50;}
+/*.brand_movie .brands-item .image-zoom{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;font-size: 18px;text-align: center;z-index: 101;}*/
+.brand_movie .brands-item .image-zoom{background: url('../images/zoom_plus.png') no-repeat;position: absolute;top: 50%;left: 50%;width: 90px;height: 90px;margin-top: -45px;margin-left: -45px;z-index: 101;}
+/*.image-zoom-big{position: fixed;width: 100%;height: 100%;top:0;left:0;z-index: 50;}*/
 /*
 	.brands-con dt,.brands-con dd,.brand_movie dd{float: left;margin: 0 1px 1px 0; position: relative;}
 	.brands-con dd,.brand_movie dd{font-size: 0;line-height: 0;height: 100%; width:0; overflow: hidden;}
@@ -588,7 +589,8 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 .showreel-tit{line-height: 2em;font-weight:normal;}
 .showreel-tit p{font-size: 20px;}
 .showreel-tit h3{font-size: 24px;}
-.ffwheel-close,.close{width: 24px;height: 24px;position: absolute;top:20px;right:40px; background: url(../images/close.png) no-repeat;z-index: 3;}
+/*.ffwheel-close,.close{width: 24px;height: 24px;position: absolute;top:20px;right:40px; background: url(../images/close.png) no-repeat;z-index: 3;}*/
+.ffwheel-close,.close{position: absolute;top:20px;right:40px; z-index: 3;}
 
 .process{position: absolute;height: 1px;background: red;bottom: 0;width: 0;z-index: 100;left: 0;}
 .preview{position: fixed;top:0;left:0;width: 100%;height: 100%;display: none;background: #000;}

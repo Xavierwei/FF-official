@@ -176,7 +176,7 @@
 			</div>
 		</div>
 		<div class="preview">
-			<a href="javascript:;" class="close" data-a="pageback"></a>
+			<a href="javascript:;" class="close popicon popclose transition" data-a="pageback"></a>
 			<a href="javascript:;" class="next" data-a="move-next"><span class="popicon popnext transition"></span></a>
 			<a href="javascript:;" class="prev" data-a="move-prev"><span class="popicon popprev transition"></span></a>
 			<ul></ul>

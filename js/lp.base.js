@@ -1239,10 +1239,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             .mousemove(function () {
                                 if ($dom.find('.brands-mask,.image-zoom').is(':visible')) return;
                                 if (!$dom.find('.image-zoom').length) {
-                                    $('<a href="#" data-a="image-zoom" class="image-zoom transition-wrap" data-a="showreel">\
-                                        <div class="transition">ZOOM<br><br>ZOOM</div>\
-                                    </a>')
-                                        .appendTo($dom);
+                                    $('<a href="#" data-a="image-zoom" class="image-zoom" data-a="showreel"></a>').appendTo($dom);
                                 }
                                 $dom.find('.image-zoom').fadeIn();
                             });
@@ -2695,11 +2692,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var awards = [];
                 var old_awards = [];
                 var old_awards_for_imgs = [];
+                var pics = [];
+
 
                 api.extraRequest({
                     wsExtraRequest: 'getAwardsExtended'
                 }, function (r) {
                     awards = array_unique(r.items);
+                    console.log('awards: ',awards);
+                    $.each(awards, function(i, item) {
+
+                    });
                     var awards_for_renderPage = array_unique(awards);
                     var a = {};
                     var b = [];
@@ -2778,6 +2781,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             $('.awardicons span').html(num);
                             effects['number-rock']($('.awardicons span'), 0, null, 500);
                         });
+
                         cb && cb();
                     }
                 });
