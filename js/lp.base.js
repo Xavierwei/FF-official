@@ -4357,7 +4357,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $audio_loading_wrapper.appendTo($item.find('.interview_img'));
                 var h = $musicWrap.height();
                 var audio_url = $container.prev('.interview_item').find('.hold-audio-url').data('media') + '';
-                var tmp_audio_url = audio_url.replace("backoffice", "www");
+                //var tmp_audio_url = audio_url.replace("backoffice", "www");
+                var tmp_audio_url = audio_url;
                 var $playPause_btn = $musicWrap.next('.wavesurfer-playPause-btn');
                 var wavesurfer = Object.create(WaveSurfer);
                 wavesurfer.init({
