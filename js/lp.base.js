@@ -174,7 +174,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             // 如果是brands 和 services
             var paths = path.split('/');
             if (paths[0] == 'brands' || paths[0] == 'services') {
-                path = 'pages_contents/' + paths[2].split('|||').join('/') + '/' + paths[3];
+                path = 'pages_contents/' + paths[2].split(',,').join('/') + '/' + paths[3];
             } else {
                 path = 'pages_contents/' + paths.slice(0, 4).join('/');
             }
@@ -449,11 +449,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var fromHash = getPath(fromUrl);
                 var currPaths = fromHash.split('/');
                 var paths = toUrl.split('/');
-                if (paths[0] == 'pages_contents' && paths.length == 5) {
-                    paths.shift();
-                    if (currPaths[0] == 'brands' || currPaths[0] == 'services') {
+                if ( paths.length >= 4 ){
+                    if( paths[0] == 'pages_contents' ) {
+                        paths.shift();
+                    }
+                    if ( ( currPaths[0] == 'brands' || currPaths[0] == 'services' ) && paths[0] == 'categories' ) {
                         var index = paths.pop();
-                        toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join('|||') + '/' + index;
+                        toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join(',,') + '/' + index;
                     } else {
                         toUrl = paths.join('/');
                     }
@@ -470,15 +472,27 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // }
                 var currPaths = hash.split('/');
                 var paths = toUrl.split('/');
-                if (paths[0] == 'pages_contents' && paths.length == 5) {
-                    paths.shift();
-                    if (currPaths[0] == 'brands' || currPaths[0] == 'services') {
+                if ( paths.length >= 4 ){
+                    if( paths[0] == 'pages_contents' ) {
+                        paths.shift();
+                    }
+                    if ( ( currPaths[0] == 'brands' || currPaths[0] == 'services' ) && paths[0] == 'categories' ) {
                         var index = paths.pop();
-                        toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join('|||') + '/' + index;
+                        toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join(',,') + '/' + index;
                     } else {
                         toUrl = paths.join('/');
                     }
                 }
+                
+                // if (paths[0] == 'pages_contents' && paths.length == 5) {
+                //     paths.shift();
+                //     if (currPaths[0] == 'brands' || currPaths[0] == 'services') {
+                //         var index = paths.pop();
+                //         toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join(',,') + '/' + index;
+                //     } else {
+                //         toUrl = paths.join('/');
+                //     }
+                // }
 
                 var loadFn = null,
                     destory = null,
@@ -2879,7 +2893,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             },
             'interview-page': function (cb) {
                 // preload js conponent
-                LP.use(['video-js', '../plugin/jquery.jplayer.min.js']);
+                // LP.use(['video-js', '../plugin/jquery.jplayer.min.js']);
                 LP.use(['wavesurfer']);
 
                 var tvTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
@@ -3539,7 +3553,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             var prevPath = LP.parseUrl(prev).path.replace(/^\//, '');
             // if only change hash
             if (path.match(/^(categories|brands|services)/) || prevPath.match(/^(categories|brands|services)/)) {
-                var oldArr = formatPath2Arr(prevPath);
+                var oldArr = prevPath ? formatPath2Arr(prevPath) : [];
                 var newArr = formatPath2Arr(path);
                 if ((!newArr[4] && !oldArr[4]) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/)) {
                     return false;
