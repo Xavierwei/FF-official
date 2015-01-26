@@ -3433,7 +3433,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         // render websites
         var linkHtml = [];
         $.each(r.items, function (i, item) {
-            if (item.role == 'icon' && item.link) {
+            if (item.role == 'media' && item.link) {
                 linkHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="work_item #[name]">#[label]</a>', item))
             }
         });
