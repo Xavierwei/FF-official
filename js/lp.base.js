@@ -1994,7 +1994,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
             var myVideo = videojs(id, config, function () {
                 var v = this;
-                //var $poster = $(v).find('img');
                 if (config.resize !== false) {
                     var resizeFn = function () {
                         var w = $wrap.width();
@@ -4303,6 +4302,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
                     .append($videoWrap.find('.vjs-control-bar'))
                     .appendTo($videoWrap.parent());
+                console.log($videoWrap.find('video').prop('poster'));
+                $videoWrap.find('video').prop('poster','');
             });
 
             // start animate
