@@ -40,4 +40,6 @@
   'SHANGHAI' => '',
   'PROJECTS' => '',
   'PRESS ARTICLES' => '',
+  'PAUSE' => '',
+  'PLAY MOVIE' => '',
 );

@@ -48,6 +48,8 @@
 		</div>
 	</div>
 </div>
+<script type="text/tpl" id="video-pause-tpl"><div class="transition"><?php _e('PAUSE'); ?><br><br><?php _e('PAUSE'); ?></div></script>
+<script type="text/tpl" id="video-play-tpl"><div class="transition"><?php _e('PLAY MOVIE'); ?><br><br><?php _e('PLAY MOVIE'); ?></div></script>
 <script type="text/javascript" src="/js/plugin/modernizr-2.5.3.min.js"></script>
 <script type="text/javascript" src="/js/sea/sea-debug.js" data-config="/js/config.js"></script>
 <script type="text/javascript" src="/js/sea/plugin-shim.js"></script>

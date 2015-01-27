@@ -7,7 +7,7 @@ setLang( getLang() );
 header('Access-Control-Allow-Origin: *');
 
 // router
-$path = $_GET['path'];
+$path =  isset($_GET['path']) ? $_GET['path'] : '/' ;
 $paths = array_filter( explode('/', $path) );
 if( empty( $paths ) || in_array($paths[0], array('categories','brands','services')) ){
 	$page = 'index';

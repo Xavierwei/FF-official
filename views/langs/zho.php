@@ -40,4 +40,6 @@
   'Nine key people leads the group in all field <br>like strategic, creation etc.' => '',
   'PROJECTS' => '项目',
   'PRESS ARTICLES' => '媒体报道',
+  'PAUSE' => '暂停',
+  'PLAY MOVIE' => '播放视频',
 );
