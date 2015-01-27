@@ -3,8 +3,8 @@
 @media only screen and (max-width:1250px){
     .nav{padding-left: 75px;height: 100%;overflow: hidden;}
     .pagetit,.sec_brands_tit,.brands-tags{padding-left: 75px;}
-
-    .column{width: auto;}
+    .pagetit-fixed .pagetit-inner{padding-left: 75px;}
+    .column, .pagetit{width: auto; }
     .search-wrap-inner{margin: 0 75px;}
     .awardfilter_item{width: 23%;margin: 0 1%;}
     .brand_big_text{padding: 75px;}
