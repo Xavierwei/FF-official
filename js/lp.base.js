@@ -351,7 +351,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
             },
             load: function () {
-                $('.sec_brands').stop().css({
+                $('.sec_brands').stop(true,true).css({
                     display: 'block',
                     opacity: 1
                 });
@@ -1364,6 +1364,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     campaign.brand = brand.title;
                     var str = LP.format(textTpl, campaign);
                     $('.brand_big_text').html(str).fadeIn();
+                    // 如果页面不够高，则需要设置height
+                    if( $('.brand_movie').height() < $(window).height() + 3000 ){
+                        $('.brand_movie').height( $(window).height() + 3000 );
+
+                        $('.sec_brands').scrollTop( 66 );
+                    }
                 });
             });
         }
