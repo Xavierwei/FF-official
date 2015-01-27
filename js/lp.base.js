@@ -144,7 +144,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     }
 
 
-
     var formatPath2Arr = function (path) {
         path = getPath(path);
         path = path.replace('pages_contents/', '');
@@ -254,7 +253,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     if (!getPath().match(url)) {
                                         $('.brands_tit,.brands-con').hide();
                                         $(document.body).css('overflow', 'auto');
-                                        $('.sec_brands').fadeOut();
                                     }
                                     cb && cb();
                                 }
@@ -270,10 +268,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             load: function () {
                 $('.page-mask').stop(true,true).fadeOut();
                 $(document.body).css('overflow', 'hidden');
-                $('.sec_brands').stop().css({
-                    display: 'block',
-                    opacity: 1
-                });
+                $('.sec_brands').show();
                 var path = getPath();
 
                 var ver = setVersion(path);
@@ -352,7 +347,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     .then(function () {
                         $('.brand_item_tit').hide();
                         $(document.body).css('overflow', 'auto');
-                        $('.sec_brands').fadeOut();
                         cb && cb();
                     });
             },
@@ -362,7 +356,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     opacity: 1
                 });
                 // hide nav bar
-
                 $(document.body).css('overflow', 'hidden');
                 var path = getItemPathinfoFromUrl();
                 var paths = path.split('/');
@@ -391,7 +384,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     .promise()
                     .then(function () {
                         $(document.body).css('overflow', 'auto');
-                        $('.sec_brands').fadeOut();
                         cb && cb();
                     });
             },
@@ -403,8 +395,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     opacity: 1,
                     top: 0
                 });
-
-
                 var path = getItemPathinfoFromUrl();
 
                 // 如果是brands 和 services
@@ -515,7 +505,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         toUrl = paths.join('/');
                     }
                 }
-                
+
                 // if (paths[0] == 'pages_contents' && paths.length == 5) {
                 //     paths.shift();
                 //     if (currPaths[0] == 'brands' || currPaths[0] == 'services') {
@@ -603,9 +593,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             console.log( $('.sec_brands').css('top') );
             $('.preview').stop().css('opacity', 1).hide().fadeIn().find('ul').fadeIn();
             $('.preview li img')
-                .each(function(){
-                    fixImageToWrap($(this).parent().data('fixed-img-wrap', 1), $(this));
-                })
                 .load(function () {
                     fixImageToWrap($(this).parent().data('fixed-img-wrap', 1), $(this));
                 });
@@ -1305,10 +1292,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             var totalWidth = 0;
             var preWidth = 0;
 
+            // fixImgsDomLoaded( $movieWrap
+            //     .find('img'), function(){
             $movieWrap.find('.brands-item')
                 .each(function (i) {
                     console.log($(this).is(':visible'));
-                    var itemWidth = $(this).is(':hidden') ? 0 : $(this).width();
+                    var itemWidth = $(this).width(); //$(this).is(':hidden') ? 0 : $(this).width();
                     totalWidth += itemWidth;
                     if (i < itemIndex) {
                         preWidth += itemWidth;
@@ -1668,11 +1657,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }, {
                     featureType: "road.arterial",
                     elementType: "geometry",
-						stylers: [
-							{ hue: "#4b3700" },
-							{ saturation: 50 }
-						]
-                    }, {
+                    stylers: [
+                        { hue: "#4b3700" },
+                        { saturation: 50 }
+                    ]
+                }, {
                     featureType: "all",
                     elementType: "labels.text.stroke",
                     stylers: [{
@@ -1730,10 +1719,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             featureType: "road.arterial",
             elementType: "geometry",
             stylers: [
-              { hue: "#999" },
-              { saturation: 50 }
+                { hue: "#999" },
+                { saturation: 50 }
             ]
-            }, {
+        }, {
             featureType: "all",
             elementType: "labels.text.stroke",
             stylers: [{
@@ -2047,20 +2036,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }
                         try {
                             v.dimensions(vw, vh);
-                            //$poster.css({
-                            //    'width': vw,
-                            //    'height': vh
-                            //})
                         } catch (e) {}
-
                         $('#' + v.Q).css({
                             "margin-top": (h - vh) / 2,
                             "margin-left": (w - vw) / 2
                         });
-                        //$poster.css({
-                        //    "margin-top": (h - vh) / 2,
-                        //    "margin-left": (w - vw) / 2
-                        //});
                         return false;
                     }
                     $(window).bind('resize.video' + id, resizeFn)
@@ -2102,6 +2082,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     // add big pause btn
                     v.on('play', function () {
                         is_playing = true;
+                        var $poster = $wrap.find('.vjs-poster');
+                        $poster.show();
+                        v.on('timeupdate',function() {
+                            if (this.currentTime() > 0) {
+                                $poster.remove();
+                            }
+                        });
+
                         $wrap.find('.vjs-big-play-button').hide();
                         var $pauseBtn = $wrap.find('.vjs-big-pause-button');
                         if (!$pauseBtn.length) {
@@ -3134,8 +3122,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 marginTop: -Math.abs((h - img_h) / 2)
                             });
                             $img.data({'width': img_w,
-                            'height' : img_h,
-                            'marginLeft' : -Math.abs((w - img_w) / 2),
+                                'height' : img_h,
+                                'marginLeft' : -Math.abs((w - img_w) / 2),
                                 'marginTop' : -Math.abs((h - img_h) / 2)
                             });
                         }
@@ -3752,7 +3740,27 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     // page actions here
     // ============================================================================
     LP.action('navitem', function () {
-        pageManager.go($(this).attr('href'));
+        if ($('.home-slider').length) {
+            // stop the movie
+            disposeVideo();
+
+            // hide the slider
+            $('.home-slider').animate({
+                height: 0
+            }, 500, '', function () {
+                $(this).remove();
+            });
+
+            // scroll to top
+            $('html,body').animate({
+                scrollTop: 0
+            }, 500);
+        }
+
+        // load next page
+        var href = $(this).attr('href');
+
+        pageManager.go(href);
         return false;
     });
 
@@ -3789,7 +3797,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $(this).hide();
         }
         $(this).siblings('.banpho-bt-r').show();
-        $(this).siblings('.banpho-bt-c').html( $('#video-play-tpl').html() );
+        $(this).siblings('.banpho-bt-c').html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
 
         $('.banpho-i').html(index + '/' + len);
 
@@ -3822,7 +3830,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $(this).hide();
         }
         $(this).siblings('.banpho-bt-l').show();
-        $(this).siblings('.banpho-bt-c').html( $('#video-play-tpl').html() );
+        $(this).siblings('.banpho-bt-c').html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
 
         $('.banpho-i').html((index + 2) + '/' + len);
 
@@ -3847,14 +3855,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $btn
                         .fadeOut('fast')
                         .find('.banpho-bt-c')
-                        .html( $('#video-pause-tpl').html() );
+                        .html('<div class="transition">PAUSE<br><br>PAUSE</div>');
                 });
 
                 this.on('pause', function () {
                     $btn
                         .fadeIn('fast')
                         .find('.banpho-bt-c')
-                        .html($('#video-play-tpl').html());
+                        .html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
                 });
 
                 this.on('end', function () {
@@ -3865,11 +3873,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 //     videoProgress( this.currentTime() / this.duration() * 100 );
                 // });
             });
-
-            $btn
-                .fadeOut('fast')
-                .find('.banpho-bt-c')
-                .html($('#video-pause-tpl').html());
         } else if (videoObject.paused()) {
             videoObject.play();
         } else {
@@ -4341,8 +4344,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
                     .append($videoWrap.find('.vjs-control-bar'))
                     .appendTo($videoWrap.parent());
-                console.log($videoWrap.find('video').prop('poster'));
-                $videoWrap.find('video').prop('poster','');
+                //console.log($videoWrap.find('video').prop('poster'));
+                //$videoWrap.find('video').prop('poster','');
             });
 
             // start animate
