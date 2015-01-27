@@ -1497,24 +1497,26 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             });
         });
     }
-    function loadImages_2(pics,callback) {
+    function loadImages_2(pics,callback_when_all_done,callback_when_each_done) {
         if (!pics.length) {
-            return callback && callback();
+            return callback_when_all_done && callback_when_all_done();
         }
+        //console.log('load ',pics.length,' images: ');
         var _index = 0;
         $.each(pics,function(i,url) {
             var $img = $('<img>');
             $img.load(function() {
-                //console.log($img.prop('src'), ' loaded');
                 _index = i + 1;
+                //console.log(_index,'th ', $img.prop('src'), ' loaded');
+                callback_when_each_done && callback_when_each_done($(this));
                 if (_index == pics.length) {
-                    return callback && callback();
+                    return callback_when_all_done && callback_when_all_done();
                 }
             }).error(function() {
                 _index = i + 1;
-                //console.log($img.prop('src'), ' fail loaded');
+                //console.log(_index,'th ', $img.prop('src'), ' fail to loaded');
                 if (_index == pics.length) {
-                    return callback && callback();
+                    return callback_when_all_done && callback_when_all_done();
                 }
             }).prop("src", url);
         });
@@ -1992,6 +1994,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
             var myVideo = videojs(id, config, function () {
                 var v = this;
+                //var $poster = $(v).find('img');
                 if (config.resize !== false) {
                     var resizeFn = function () {
                         var w = $wrap.width();
@@ -2005,15 +2008,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             vw = w + 0;
                             vh = vw * ratio;
                         }
-
                         try {
                             v.dimensions(vw, vh);
+                            //$poster.css({
+                            //    'width': vw,
+                            //    'height': vh
+                            //})
                         } catch (e) {}
 
                         $('#' + v.Q).css({
                             "margin-top": (h - vh) / 2,
                             "margin-left": (w - vw) / 2
                         });
+                        //$poster.css({
+                        //    "margin-top": (h - vh) / 2,
+                        //    "margin-left": (w - vw) / 2
+                        //});
                         return false;
                     }
                     $(window).bind('resize.video' + id, resizeFn)
@@ -2461,6 +2471,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 // resize slider height
                 $sliderInner.height(winHeight - 60);
+
                 // resize the slider images
                 $('<img />')
                     .load(function () {
@@ -2731,7 +2742,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     wsExtraRequest: 'getAwardsExtended'
                 }, function (r) {
                     awards = array_unique(r.items);
-                    console.log('awards: ',awards);
                     //$.each(awards, function(i, item) {
                     //    console.log(campaignManager.getPath(item, 'award_preview'));
                     //    pics.push(campaignManager.getPath(item, 'award_preview'));
@@ -2907,11 +2917,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         <div class="transition">#[text]</div>\
                     </span>\
                 </div>';
+
                 var radioTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
                     <div class="interview_info">\
                         <span><strong>#[title]</strong><br/>#[content]</span>\
                     </div>\
-                    <div class="interview_img hold-audio-url"  data-a="show-music-interview" data-media="#[media]"><img src="#[preview]"></div>\
+                    <div class="interview_img hold-audio-url"  data-a="show-music-interview" data-media="#[media]">\
+                        <img src="#[preview]">\
+                    </div>\
                     <span class="interview_opt" data-a="show-music-interview" data-media="#[media]">\
                         <div class="transition">LISTEN<br/>CLOSE</div>\
                     </span>\
@@ -2919,14 +2932,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // get audio and video
                 api.request(['about/interviews/radio', 'about/interviews/tv'], function (r) {
                     var aHtml = [];
-                    var date = [];
                     var images = [];
+                    var audio_images_num = 0,
+                        video_images_num = 0;
 
                     $.each(r.items, function (i, item) {
                         var media = campaignManager.getPath(item, 'media');
                         var tpl = !media.match(/.mp3$/) ? tvTpl : radioTpl;
                         var titles = item.title.split('|');
-                        images.push(campaignManager.getPath(item, 'picture_2'));
                         aHtml.push(LP.format(tpl, {
                             oddoreven: i % 2 ? 'even' : 'odd',
                             text: !media.match(/.mp3$/) ? 'WATCH<br/>CLOSE' : 'LISTEN<br/>CLOSE',
@@ -2935,8 +2948,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             preview: campaignManager.getPath(item, 'picture_2'),
                             media: media
                         }));
+
+                        if (!media.match(/.mp3$/)) {
+                            if (video_images_num++ <= 5) {
+                                images.push(campaignManager.getPath(item, 'picture_2'));
+                            }
+                        } else {
+                            if (audio_images_num++ <= 5) {
+                                images.push(campaignManager.getPath(item, 'picture_2'));
+                            }
+                        }
                     });
-                    loadImages_2(images.slice(0,5), function () {
+                    loadImages_2(images, function () {
                         loadImages($('#press-container img'), null, function () {
                             $('#press-container img').each(function () {
                                 fixImageToWrap($(this).parent(), $(this));
@@ -2946,7 +2969,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
                     $('#press-container').html(aHtml.join(''));
                 });
-
             },
             'press-page': function (cb) {
 
@@ -3024,12 +3046,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var aHtml = [];
                 var tpl = '';
                 api.request('about/f_f_bio', function (r) {
-                    // $.each( r.items , function( i , item ){
-                    //     // aHtml.push( LP.format( tpl , item ) );
-                    //     aHtml.push( item.content );
-                    // } );
-                    // $('#sec_content').html( aHtml.join('\n') );
-
                     $('#download').attr('href', campaignManager.getPath(r.items[0], 'file'));
                     //cb && cb();
                 });
@@ -3037,9 +3053,43 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 !!(function () {
                     var aHtml = [];
                     var tpl = '<div class="slider-item" data-movie="#[movie]"><img src="#[image]"></div>';
-
                     var images = [];
+
+                    function resize_slide_img(img) {
+                        //console.log('resize_slide_img(', $img, ')');
+                        //console.log('is jQ obj? ', ($img instanceof jQuery), ')');
+                        var $img = $(img);
+                        if ($img) {
+                            var ratio = $img[0].width / $img[0].height;
+                            //console.log('ratio: ', ratio);
+                            var w = $(window).width();
+                            var h = $(window).height() - $('.header').height() - $('.pagetit').height();
+                            var img_w = 0;
+                            var img_h = 0;
+                            if (w / h > ratio) {
+                                img_h = h;
+                                img_w = img_h * ratio;
+                            } else {
+                                img_w = w;
+                                img_h = img_w / ratio;
+                            }
+                            //console.log($img.prop('src'), ' width: ', img_w, ' height: ', img_h);
+                            $img.css({
+                                width: img_w,
+                                height: img_h,
+                                marginLeft: -Math.abs((w - img_w) / 2),
+                                marginTop: -Math.abs((h - img_h) / 2)
+                            });
+                            $img.data({'width': img_w,
+                            'height' : img_h,
+                            'marginLeft' : -Math.abs((w - img_w) / 2),
+                                'marginTop' : -Math.abs((h - img_h) / 2)
+                            });
+                        }
+                    }
+
                     api.request('about/f_f_personal_showreel', function (r) {
+                        var firstImg = null;
                         $.each(r.items, function (i, item) {
                             aHtml.push(LP.format(tpl, {
                                 image: campaignManager.getPath(item, 'preview'),
@@ -3047,38 +3097,38 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             }));
                             images.push(campaignManager.getPath(item, 'preview'));
                         });
-                        loadImages_2(images,function () {
+
+                        $.each(images,function(i,url) {
+                            var $img = $('<img>');
+                            //console.log('src: ',url);
+                            $img.load(function() {
+                                resize_slide_img($img);
+                            }).error(function() {
+
+                            }).prop('src',url);
+
+                        });
+                        loadImages_2(images.slice(0,5),function () {
                             initSlider(function (index) {
+
                                 var item = r.items[index];
+                                //console.log(item);
                                 $('.showreel-tit').html(LP.format('<h3>#[brand]</h3><p>#[campaign]</p><p>#[year]</p></div>', {
                                     brand: item.brand,
                                     campaign: item.campaign,
                                     year: item.date_and_price.split('-')[0]
                                 }));
+                                $('.slider-block-inner').find('.slider-item >img').each(function(i,img) {
+                                    fixImageToWrap($(this).closest('.slider-item'),$(this));
+                                });
                             });
+                            firstImg = $('.slider-block-inner').find('.slider-item >img').eq(0);
                             cb && cb();
                         });
-
-                        //loadImages(images, null, function () {
-                        //    initSlider(function (index) {
-                        //        var item = r.items[index];
-                        //        $('.showreel-tit').html(LP.format('<h3>#[brand]</h3><p>#[campaign]</p><p>#[year]</p></div>', {
-                        //            brand: item.brand,
-                        //            campaign: item.campaign,
-                        //            year: item.date_and_price.split('-')[0]
-                        //        }));
-                        //    });
-                        //    cb && cb();
-                        //});
-                        $('#slider-block-inner').html(aHtml.join(''))
-                        // .children()
-                        // .eq(0).css('opacity' , 1).fadeIn();
+                        $('#slider-block-inner').html(aHtml.join(''));
                         $(window).resize(function () {
-                            $('#slider-block-inner').css('height', ($(window).height() - $('.header').height() - $('.pagetit').height()) + 'px');
+                            $('#slider-block-inner, .home-slider').css('height', ($(window).height() - $('.header').height() - $('.pagetit').height()) + 'px');
                         }).trigger('resize');
-                        //loadImages(images, null, function () {
-                        //    cb && cb();
-                        //});
                     });
                 })();
 
@@ -3116,7 +3166,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             campaign: item.campaign,
                             year: item.date_and_price.split('-')[0]
                         }));
-
+                        $('.slider-block-inner').find('.slider-item >img').each(function(i,img) {
+                            fixImageToWrap($(this).closest('.slider-item'),$(this));
+                        });
                     });
                     $(window).resize(function () {
                         var winWidth = $(window).width();
@@ -3754,7 +3806,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             var movie = $sliderItem.data('movie');
             $sliderItem.find('.video-wrap').remove();
             renderVideo($sliderItem, movie, $sliderItem.find('img').attr('src'), {
-                // ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
+                ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
                 autoplay: true,
                 showLoadingBar: true
             }, function () {
@@ -4533,7 +4585,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var campaigns = $('#awardfilter').data('campaigns');
         var brands = $('#awardfilter').data('brands');
         var all_replicated = $('#awardfilter').data('all');
-        console.log('all_replicated: ',all_replicated);
+        //console.log('all_replicated: ',all_replicated);
 
         var all_obj = {};
         var all = [];
@@ -4567,7 +4619,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             });
         }
 
-        console.log('filtered all: ',all);
+        //console.log('filtered all: ',all);
 
         var _comtentPaths = [];
         $.each(all, function (i, award) {
