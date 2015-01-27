@@ -161,14 +161,27 @@
 			</div> -->
 		</div>
 	</div>
-
-	<div class="section sec_brands">
-		<div class="brand_item_tit" style="margin-top:-88px;margin-bottom: 88px;display:none;" >
-			<div class="sec_brands_tit">
-				<h2 class="column cs-clear"></h2>
-				<a href="#" class="pageback transition" data-a="pageback"></a>
-			</div>
+	<div class="brands_tit" style="display:none;">
+		<div class="sec_brands_tit">
+			<h2 class="column cs-clear"></h2>
+			<a href="#" class="pageback transition" data-a="pageback"></a>
+			<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop"></a>
+			<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom"></a>
 		</div>
+		<!-- <div class="brands-tags">
+			<p class="column">
+				<a href="javascript:void(0);" class="transition">6 &nbsp; × &nbsp;awards</a>
+				<a href="javascript:void(0);" class="transition">6 &nbsp; × &nbsp;services</a>
+			</p>
+		</div> -->
+	</div>
+	<div class="brand_item_tit" style="display:none;" >
+		<div class="sec_brands_tit">
+			<h2 class="column cs-clear"></h2>
+			<a href="#" class="pageback transition" data-a="pageback"></a>
+		</div>
+	</div>
+	<div class="section sec_brands">
 		<div class="brand_movie" style="display:none;">
 			<!-- <div class="brand_big_prev" data-a="brand_big_prev"> <span></span> </div>
 			<div class="brand_big_next" data-a="brand_big_next"> <span></span> </div> -->
@@ -180,20 +193,6 @@
 			<a href="javascript:;" class="next" data-a="move-next"><span class="popicon popnext transition"></span></a>
 			<a href="javascript:;" class="prev" data-a="move-prev"><span class="popicon popprev transition"></span></a>
 			<ul></ul>
-		</div>
-		<div class="brands_tit" style="margin-top:-176px;margin-bottom: 176px;">
-			<div class="sec_brands_tit">
-				<h2 class="column cs-clear"></h2>
-				<a href="#" class="pageback transition" data-a="pageback"></a>
-				<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop"></a>
-				<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom"></a>
-			</div>
-			<!-- <div class="brands-tags">
-				<p class="column">
-					<a href="javascript:void(0);" class="transition">6 &nbsp; × &nbsp;awards</a>
-					<a href="javascript:void(0);" class="transition">6 &nbsp; × &nbsp;services</a>
-				</p>
-			</div> -->
 		</div>
 		<ul class="brands-con">
 		</ul>

@@ -213,10 +213,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             url: /^((categories|brands|services)\/[^\/]+)$/,
             destory: function (cb) {
                 var url = /^((categories|brands|services)\/[^\/]+)$/;
-                $('.brand_item_tit').css({
-                    'margin-top': -88,
-                    'margin-bottom': 88
-                }).hide();
+                $('.brand_item_tit').hide();
 
                 $('.header-inner').height(66);
 
@@ -226,11 +223,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     .end()
                     .hide();
 
-
-                $('.brands_tit').animate({
-                    marginTop: -176,
-                    marginBottom: 176
-                }, 400);
+                if( $('.sec_brands').scrollTop() < 66 ){
+                    $('.sec_brands').animate({
+                        scrollTop: 66
+                    }, 300 )
+                    .promise()
+                    .then( function(){
+                        $('.brands_tit').animate({
+                            height: 0
+                        }, 400);
+                    } );
+                }
+                
 
                 var height = $('.brands-con-li').height();
                 var sTop = $('.sec_brands').scrollTop();
@@ -264,7 +268,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }
             },
             load: function () {
-
+                $('.page-mask').stop(true,true).fadeOut();
                 $(document.body).css('overflow', 'hidden');
                 $('.sec_brands').stop().css({
                     display: 'block',
@@ -278,7 +282,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 campaignManager.renderTitle(path);
 
                 // show loading
-                loadingMgr.show('black');
+                loadingMgr.show();
                 var renderComapigns = function (compaigns) {
                     if (!compareVersion(path, ver)) {
                         return;
@@ -331,10 +335,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             destory: function (cb) {
                 $(document).unbind('keydown.level3');
                 // to brands list
-                $('.brand_item_tit').animate({
-                    marginTop: -88,
-                    marginBottom: 88
-                }, 400);
+                if( $('.sec_brands').scrollTop() < 66 ){
+                    $('.sec_brands').animate({
+                        scrollTop: 66
+                    }, 300 )
+                    .promise()
+                    .then( function(){
+                        $('.brand_item_tit').animate({
+                            height: 0
+                        }, 400);
+                    } );
+                }
 
                 $('.brand_movie').fadeOut(400)
                     .promise()
@@ -350,6 +361,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     display: 'block',
                     opacity: 1
                 });
+                // hide nav bar
+
                 $(document.body).css('overflow', 'hidden');
                 var path = getItemPathinfoFromUrl();
                 var paths = path.split('/');
@@ -383,11 +396,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
             },
             load: function (data) {
-                $('.sec_brands').stop().css({
-                    display: 'block',
-                    opacity: 1
-                });
                 $(document.body).css('overflow', 'hidden');
+
+                $('.sec_brands').stop(true,true).show().css({
+                    display: 'block',
+                    opacity: 1,
+                    top: 0
+                });
+
+
                 var path = getItemPathinfoFromUrl();
 
                 // 如果是brands 和 services
@@ -575,11 +592,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     function showBigItem(path, index) {
 
         // show brand
-        $('.sec_brands').fadeIn().css('top', 0);
+        $('.sec_brands').css('top', 0);
 
         var tpl = '<li class="big-item #[class]" data-video="#[video]"><img src="#[src]" /></li>';
         loadingMgr.show();
+        $('.page-mask').stop(true,true).show();
         loadingMgr.setSuccess(function () {
+            $('.sec_brands').css('top', 0);
+            $('.page-mask').stop(true,true).fadeOut();
+            console.log( $('.sec_brands').css('top') );
             $('.preview').stop().css('opacity', 1).hide().fadeIn().find('ul').fadeIn();
             $('.preview li img')
                 .each(function(){
@@ -603,7 +624,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         .appendTo($li);
                 });
             }
-
         }, 'showBigItem');
         campaignManager.getCampaignItems(path, function (items) {
             var aHtml = [];
@@ -651,7 +671,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             .hide()
             .fadeIn();
 
-        loadingMgr.show('black');
+        loadingMgr.show();
         loadingMgr.setSuccess(function () {
             var imgWidth = $img.width();
             var imgHeight = $img.height();
@@ -1215,7 +1235,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         itemIndex = parseInt(itemIndex);
         // change hash
 
-        loadingMgr.show('black');
+        loadingMgr.show( );
+        $('.page-mask').stop(true, true).removeClass('lighter').show();
         // prev dealing
         $('.sec_brands').scrollTop(0).fadeIn();
         $('.brand_movie').data('index', itemIndex).css('opacity', 1).hide().fadeIn();
@@ -1252,9 +1273,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             // list show with animate effect here
             $('.brand_item_tit').show().animate({
-                marginTop: 0,
-                marginBottom: 0
-            }, 500);
+                height: 88
+            }, 400);
+
+            $('.page-mask').stop(true, true).fadeOut();
+            $('.sec_brands').scrollTop( 66 );
 
 
             var $movieWrap = $('.brand_movie').fadeIn(function () {
@@ -1415,7 +1438,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('.sec_brands,.brand_movie,.brand_item_tit').fadeOut();
 
         // show loading
-        loadingMgr.show('black');
+        loadingMgr.show();
         loadingMgr.setSuccess(function (r) {
             // load categories
             var aHtml = [];
@@ -1747,9 +1770,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             });
 
         $('.brands_tit').show().animate({
-            marginTop: 0,
-            marginBottom: 0
-        }, 200);
+            height: 88
+        }, 400);
 
 
         var nums = $('.brands-con>li .brands-mask').length;
@@ -2349,37 +2371,53 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     $('.sec_brands').scroll(function () {
         //clearTimeout( sec_brands_timer );
         //sec_brands_timer = setTimeout(function(){
-        if ($('.brand_movie').data('isFullScreen')) return false;
+        if ($('.preview').is(':visible')) return false;
         var headerHeight = $('.header-inner').height();
         var st = $('.sec_brands').scrollTop();
         if (st < headerHeight) {
             $('.sec_brands').css({
                 top: headerHeight - st
             })
-                // .find('.brands_tit')
-                // .css('margin-bottom' , st);
-                .find('.sec_brands_tit')
+            .find('.brands-con,.brand_movie')
+            .css({
+                marginTop: 88 + st
+            });
+
+            $('.brands_tit,.brand_item_tit')
                 .css({
-                    'margin-top': st,
-                    position: 'relative',
-                    width: 'auto'
-                })
-                .next()
-                .css('margin-top', 0);
+                    top: headerHeight - st
+                });
+
+                // // .find('.brands_tit')
+                // // .css('margin-bottom' , st);
+                // .find('.sec_brands_tit')
+                // .css({
+                //     'margin-top': st,
+                //     position: 'relative',
+                //     width: 'auto'
+                // })
+                // .next()
+                // .css('margin-top', 0);
 
         } else {
             $('.sec_brands').css({
                 top: 0
-            })
-                .find('.sec_brands_tit')
+            }).find('.brands-con,.brand_movie')
                 .css({
-                    'margin-top': 0,
-                    position: 'fixed',
-                    width: '100%',
-                    top: 0
-                })
-                .next()
-                .css('margin-top', $('.sec_brands_tit').height() + headerHeight);
+                    marginTop: 88 + headerHeight
+                });
+
+            $('.brands_tit,.brand_item_tit').css('top', 0);
+
+                // .find('.sec_brands_tit')
+                // .css({
+                //     'margin-top': 0,
+                //     position: 'fixed',
+                //     width: '100%',
+                //     top: 0
+                // })
+                // .next()
+                // .css('margin-top', $('.sec_brands_tit').height() + headerHeight);
         }
         //} , 100 );
     });

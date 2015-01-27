@@ -307,12 +307,14 @@ a.icon_bg{background-position: 0px -115px;}
 .gates-inner-l .column{margin: 15px auto;}
 
 /* for brands */
-.sec_brands{display: none; position: fixed;top: 0px;bottom: 0;overflow: auto; width: 100%;z-index: 40;background: black;}
-.brands_tit{height: 88px;}
-.sec_brands_tit{background: #595959;height:88px;line-height: 88px;font-size: 44px;font-weight: bold;overflow: hidden;position: fixed;z-index: 120;width: 100%;}
+.sec_brands{display: none; position: fixed;top: 66px;bottom: 0;overflow: auto; width: 100%;z-index: 40;background: black;}
+.brands_tit{height: 0px;position: fixed;width: 100%;z-index: 100;top: 66px;overflow: hidden;}
+.sec_brands_tit{background: #595959;height:88px;line-height: 88px;font-size: 44px;font-weight: bold;overflow: hidden;position: absolute;z-index: 120;left: 0;right: 0;bottom: 0;}
 .sec_brands_tit h2 span{float: left;}
 .sec_brands_tit .sep{margin: 26px 30px;background: #000;height: 35px;width: 4px;text-indent: -9999px;}
 .sec_brands h2{}
+
+.brand_item_tit{height: 0;position: fixed;width: 100%;z-index: 100;top: 66px;overflow: hidden;}
 
 .brand_big_prev,.brand_big_next{position: absolute;height: 445px;width: 15%;left: 0;background: rgba(0,0,0,0.5) ; top: 0;z-index: 40;cursor: pointer;}
 .brand_big_next{right: 0; left: auto;}
@@ -334,7 +336,7 @@ url(../images/brand_big_nav.png) left center; }
 .brands-tags a{margin-right: 100px;text-transform: uppercase;}
 .brands-tags a:hover{color: white;}
 
-.brands-con{width: 100%;overflow: hidden;}
+.brands-con{width: 100%;overflow: hidden;margin-top: 88px;}
 .brands-con li{height: 184px;position: relative;overflow: hidden;}
 .brands-mask{z-index: 101;display: none; width: 100%;position: absolute;top: 0; left: 0;height: 100%;background: black; opacity: 0.5;filter:alpha(opacity=50);}
 
@@ -348,7 +350,7 @@ url(../images/brand_big_nav.png) left center; }
 
 .brands-con .brands-item{float: left; width: 322px;text-align: center;overflow: hidden;position: relative;cursor: pointer;}
 
-.brand_movie{position: absolute;top: 88px;width: 100%;overflow: hidden;}
+.brand_movie{position: absolute;margin-top: 88px;width: 100%;overflow: hidden;}
 .brand_movie .brands-items{width: 200%;height: 100%;overflow: hidden;height: 445px;}
 .brand_movie .brands-item{float: left; position: relative;font-size: 0;line-height: 0;height: 100%; width:auto; overflow: hidden;cursor: pointer;}
 /*.brand_movie .brands-item .image-zoom{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;font-size: 18px;text-align: center;z-index: 101;}*/
@@ -594,7 +596,7 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 .ffwheel-close,.close{position: absolute;top:20px;right:40px; z-index: 3;}
 
 .process{position: absolute;height: 1px;background: red;bottom: 0;width: 0;z-index: 100;left: 0;}
-.preview{position: fixed;top:0;left:0;width: 100%;height: 100%;display: none;background: #000;}
+.preview{position: absolute;top:0;left:0;width: 100%;height: 100%;display: none;background: #000;z-index: 10000;}
 .preview ul{height: 100%;margin-left: 5%;}
 .preview ul li{float: left;overflow: hidden;position: relative;height: 100%;}
 .preview ul li img{width: 100%;}
