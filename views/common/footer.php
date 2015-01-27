@@ -11,11 +11,13 @@
 			<div class="ft_mod ft_find">
 				<h3><?php _e('FOLLOW US');?></h3>
 				<div class="ft_mbd ft_findmbd cs-clear" id="share-wrap">
-					<a href="#" class="find_item find_item1"></a>
-					<a href="#" class="find_item find_fb find_item2"></a>
-					<a href="#" class="find_item find_linkin find_item3"></a>
-					<a href="#" class="find_item find_wb find_item4"></a>
-					<a href="#" class="find_item find_wx find_item5"></a>
+					<a href="#" class="find_item icon_fb"></a>
+					<a href="#" class="find_item icon_wb"></a>
+					<a href="#" class="find_item icon_tw"></a>
+					<a href="#" class="find_item icon_ch"></a>
+					<a href="#" class="find_item icon_hb"></a>
+					<a href="#" class="find_item icon_yk"></a>
+					<a href="#" class="find_item icon_yt"></a>
 				</div>
 			</div>
 			<div class="ft_mod ft_paris">
@@ -38,10 +40,9 @@
 			<div class="ft_mod ft_network">
 				<h3><?php _e('OUR MEDIAS');?></h3>
 				<div class="ft_mbd ft_workmbd" id="icon-wrap">
-					<a href="#" class="work_item work_item1"></a>
-					<a href="#" class="work_item work_item2"></a>
-					<a href="#" class="work_item work_item3"></a>
-					<a href="#" class="work_item work_item4"></a>
+					<a href="#" class="work_item icon_bg"></a>
+					<a href="#" class="work_item icon_bk"></a>
+					<a href="#" class="work_item icon_cc"></a>
 				</div>
 			</div>
 		</div>

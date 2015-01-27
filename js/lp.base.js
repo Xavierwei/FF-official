@@ -3494,28 +3494,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('#icon-wrap').html(linkHtml.join(''));
 
     });
-    // load media links in footer
-    api.request('footer_icons', function (r) {
-        console.log(r);
-        //var shareHtml = [];
-        //$.each(r.items, function (i, item) {
-        //    if (item.role == 'share') {
-        //        shareHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="find_item #[name]">#[label]</a>', item))
-        //    }
-        //});
-        //$('#share-wrap').html(shareHtml.join(''));
-        //
-        //// render websites
-        //var linkHtml = [];
-        //$.each(r.items, function (i, item) {
-        //    if (item.role == 'icon' && item.link) {
-        //        linkHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="work_item #[name]">#[label]</a>', item))
-        //    }
-        //});
-        //$('#icon-wrap').html(linkHtml.join(''));
-
-    });
-
     // change history
     LP.use('../plugin/history.js', function () {
         History.replaceState({
@@ -4146,7 +4124,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 })
                 .find('.pop_presspho')
                 .html(img)
-
                 .end()
                 .animate({
                     top: '50%'
@@ -4164,8 +4141,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         }, 'press_image');
         $('<img/>').load(function () {
             loadingMgr.success('press_image', this);
-        })
-            .attr('src', $(this).find('.cover_img').data('cover'));
+        }).attr('src', $(this).find('.cover_img').data('cover'));
 
         $('.pop_index').html(press_index);
         $('.pop_total').html($(this).closest('.press_list').children().length);
