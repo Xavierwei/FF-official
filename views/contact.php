@@ -2,8 +2,8 @@
 <div class="page" data-page="contact-page" data-header="contact">
 	<!-- page title -->
 	<?php 
-	$top_title = 'CONTACT';
-	$pagetit = 'CONTACT';
+	$top_title = _e('CONTACT', false);
+	$pagetit = _e('CONTACT', false);
 	include_once 'common/pagetit.php';?>
 
 	<!-- section -->

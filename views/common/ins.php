@@ -23,7 +23,11 @@ function getStrings(){
 	return $strings;
 }
 
-function _e( $str ){
+function _e( $str, $echo = true ){
 	$strings = getStrings();
-	echo !isset( $strings[ $str ] ) || empty( $strings[ $str ] ) ? $str : $strings[ $str ];
+	$r = !isset( $strings[ $str ] ) || empty( $strings[ $str ] ) ? $str : $strings[ $str ];
+	if( $echo ){
+		echo $r;
+	}
+	return $r;
 }
