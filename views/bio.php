@@ -2,8 +2,8 @@
 <div class="page" data-page="bio-page" data-header="about">
 	<!-- page title -->
 	<?php 
-	$top_title = 'ABOUT'; 
-	$pagetit = 'FF BIO';
+	$top_title = _e('ABOUT',false); 
+	$pagetit = _e('FF BIO',false);
 	include_once 'common/pagetit.php';?>
 
 

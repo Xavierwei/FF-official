@@ -1,7 +1,7 @@
 	<div class="banner_footer">
 		<div class="banft_txt">
-			<p>“il n’est de richesse que d’homme.”</p>
-			<span>Rene Char</span>
+			<p><?php _e('“il n’est de richesse que d’homme.”');?></p>
+			<span><?php _e('Rene Char');?></span>
 		</div>
 	</div>
 </div>

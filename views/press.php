@@ -13,8 +13,8 @@
 <div class="page" data-page="press-page" data-header="press">
 	<!-- page title -->
 	<?php 
-	$top_title = 'PRESS';
-	$pagetit = 'PRESS';
+	$top_title = _e('PRESS',false);
+	$pagetit = _e('PRESS',false);
 	include_once 'common/pagetit.php';?>
 
 	<!-- section -->

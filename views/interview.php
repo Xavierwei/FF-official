@@ -13,8 +13,8 @@
 <div class="page" data-page="interview-page" data-header="press">
 	<!-- page title -->
 	<?php 
-	$top_title = 'PRESS';
-	$pagetit = 'INTERVIEW';
+	$top_title = _e('PRESS',false);
+	$pagetit = _e('INTERVIEW',false);
 	include_once 'common/pagetit.php';?>
 
 

@@ -9,14 +9,10 @@
 </div>
 <!-- banner -->
 
-<?php if( $pagetit == 'FF BIO' ){ ?>
+<?php if( $page == 'bio' ){ ?>
 <div class="banpho home-slider">
 	<!-- <a href="#" class="ffwheel-close"></a> -->
 	<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0">
-		<div class="slider-item" style="display:block;" data-movie="../videos/0"><img id="slider-img-1" src="../images/INDEX_pho.jpg" /></div>
-		<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
-		<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
-		<div class="slider-item" data-movie="../videos/0"><img src="../images/INDEX_pho.jpg" /></div>
 	</div>
 	<div class="banpho-con" data-height="188">
 		<div class="showreel-tit">
@@ -34,12 +30,12 @@
 </div>
 <?php } else { ?>
 <div class="banpho  banpho-img">
-	<img src="../images/<?php echo str_replace(' ', '', $pagetit); ?>_pho.jpg" />
+	<img src="../images/page_<?php echo $page; ?>_pho.jpg" />
 </div>
 <?php } ?>
 
 
-<?php if( isset( $top_title ) && $top_title == 'ABOUT' ){ ?>
+<?php if( isset( $top_title ) && $top_title == _e('ABOUT',false) ){ ?>
 <div class="column">
 	<div class="about_crumbs crumbs">
 		<span>
@@ -51,7 +47,7 @@
 		</span>
 	</div>
 </div>
-<?php } else if( isset( $top_title ) && $top_title == 'PRESS' ){ ?>
+<?php } else if( isset( $top_title ) && $top_title == _e('PRESS',false) ){ ?>
 <div class="column">
 	<div class="about_crumbs crumbs">
 		<span>

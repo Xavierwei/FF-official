@@ -34,8 +34,8 @@
 <div class="page" data-page="jobs-page" data-header="about">
 	<!-- page title -->
 	<?php 
-	$top_title = 'ABOUT';
-	$pagetit = 'JOBS';
+	$top_title = _e('ABOUT',false);
+	$pagetit = _e('JOBS',false);
 	include_once 'common/pagetit.php';?>
 
 	<!-- section -->
