@@ -341,7 +341,8 @@ url(../images/brand_big_nav.png) left center; }
 .brands-mask{z-index: 101;display: none; width: 100%;position: absolute;top: 0; left: 0;height: 100%;background: black; opacity: 0.5;filter:alpha(opacity=50);}
 
 
-
+.brands-con .brands-mask{display: block;transition:opacity 0.6s;-ms-transition:opacity 0.6s;-webkit-transition:opacity 0.6s;-moz-transition:opacity 0.6s;-o-transition:opacity 0.6s;}
+.brands-con .brands-con-li:hover .brands-mask{opacity: 0 !important;}
 .brands-con dl{margin: 0;}
 .brands-con dt{float: left;width: 310px;background: #030101;color: white;padding: 40px;position: relative;z-index: 1;height: 104px;}
 .brands-con dd{overflow: hidden;position: absolute;height: 100%;left: 390px;width: auto;right: 0;margin: 0;}

@@ -52,7 +52,6 @@
 	// });
 	
     </script>-->
-    <script type="text/javascript">document.domain='fredfarid.com';</script>
 </head>
 <body class="lang-<?php echo $_COOKIE['lang'];?>">
 	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
@@ -179,6 +178,8 @@
 		<div class="sec_brands_tit">
 			<h2 class="column cs-clear"></h2>
 			<a href="#" class="pageback transition" data-a="pageback"></a>
+			<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop-level3"></a>
+			<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom-level3"></a>
 		</div>
 	</div>
 	<div class="section sec_brands">

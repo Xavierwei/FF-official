@@ -28,6 +28,7 @@ define(function( require , exports , model ){
 			} else {
 				$.post( baseUrl , {wsExtraRequest: 'getServiceCampaigns', serviceID: serviceId, outputFormat: 'json'} , function( r ){
 					success && success( r );
+					__AJAX_CACHE__[cacheKey] = r;
 					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
 						localStorage.setItem( path, JSON.stringify( r ) );
 					}
@@ -51,6 +52,7 @@ define(function( require , exports , model ){
 			} else {
 				$.post( baseUrl , {wsExtraRequest: 'getBrandCampaigns', brandID: brandId, outputFormat: 'json'} , function( r ){
 					success && success( r );
+					__AJAX_CACHE__[cacheKey] = r;
 					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
 						localStorage.setItem( path, JSON.stringify( r ) );
 					}
@@ -74,6 +76,7 @@ define(function( require , exports , model ){
 			} else {
 				$.post( baseUrl , data , function( r ){
 					success && success( r );
+					__AJAX_CACHE__[cacheKey] = r;
 					if( window.localStorage && $.inArray( cacheKey, localStoragePaths ) >= 0 ){
 						localStorage.setItem( cacheKey, JSON.stringify( r ) );
 					}
@@ -96,6 +99,7 @@ define(function( require , exports , model ){
             } else {
                 $.get( url , function( r ){
                     success && success( r );
+                    __AJAX_CACHE__[cacheKey] = r;
                     if( window.localStorage && $.inArray( url, localStoragePaths ) >= 0 ){
                         localStorage.setItem( cacheKey, JSON.stringify( r ) );
                     }
