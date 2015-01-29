@@ -14,7 +14,8 @@
     .gates-inner-l{font-size: 40px;padding: 0 75px;}
     .press_list{width: 1100px;margin: 0 auto 50px;}
     .press_item{font-size: 14px;color:#666;width: 180px;float: left;display: inline;margin: 50px 46px 0;position: relative;}
-    .awardicons{width: 1100px;}
+    .awardicons, .contact_item{width: 1100px;}
+    .contact_item{margin: 0 auto;}
 }
 
 @media only screen and (max-width:1200px){
@@ -35,8 +36,10 @@
     .press_item {margin: 50px 60px;}
     .home_viewtxt {width: 26%;margin: 0 0 0 5%;}
     .cam_item {width:318px;}
-    .awardicons{width: 900px;}
+    .awardicons, .contact_item{width: 900px;}
     .awardicons img, .award-num{margin: 0px 62.5px 10px;}
+    .contact_conl, .contact_conr {width:50%;}
+    .contact_conr{padding-right: 0px;}
 }
 
 
@@ -84,7 +87,8 @@
 @media only screen and (max-width:900px){
     .press_list {width: 780px;}
     .press_item {margin: 50px 40px;}
-    .awardicons{width: 800px;}
+    .awardicons, .contact_item{width: 800px;}
+    .contact_con{width: auto;}
     .awardicons img, .award-num{margin: 0px 50px 10px;}
 }
 @media only screen and (max-width:810px){
@@ -95,7 +99,7 @@
 
     .about_txt{padding: 40px 0}
     .about_txt p{font-size: 24px;}
-    .awardicons{width: 600px;}
+    .awardicons, .contact_item{width: 600px;}
     .awardicons img, .award-num{margin: 0px 25px 10px;}
 }
 
