@@ -19,7 +19,7 @@
 			<div data-effect="fadeup" class="intoview-effect contact_con cs-clear">
 				<div class="contact_conl">
 					<h4>FRED & FARID</h4>
-					<p class="contact_txt">FRED & FARID PARIS-SHANGHAI is a full-service integrated communication agency founded in 2007 and located in France and China, The offices in Paris and Shanghai are connected 24/7/365 by means of screens that serve as bridges, allowing to work as a single agency.</p>
+					<p class="contact_txt"><?php _e('FRED & FARID PARIS-SHANGHAI is a full-service integrated communication agency founded in 2007 and located in France and China, The offices in Paris and Shanghai are connected 24/7/365 by means of screens that serve as bridges, allowing to work as a single agency.'); ?></p>
 					<div class="cs-clear">
 						<strong class="contact_city"><?php _e('PARIS'); ?></strong>
 						<div class="contact_ad"><p>22, rue de la Victoire <br />75009 Paris</p>
@@ -27,7 +27,7 @@
 							<p>paris@fredfarid.com</p>
 						</div>
 						<strong class="contact_city"><?php _e('SHANGHAI'); ?></strong>
-						<div class="contact_ad"><p>22, rue de la Victoire <br />75009 Paris</p>
+						<div class="contact_ad"><p><?php _e('SHANGHAI_ADDR_L1'); ?><br /><?php _e('SHANGHAI_ADDR_L2'); ?></p>
 							<p>+33 1 43 22 16 17</p>
 							<p>paris@fredfarid.com</p>
 						</div>
@@ -35,7 +35,7 @@
 				</div>
 				<div class="contact_conr">
 					<h4>HELLO SUNSHINE</h4>
-					<p class="contact_txt">HELLO SUNSHINE is a creative agency based on a single, powerful notion that optimism drives successful brands and popular culture. It’s ambition is to bring a much needed breath of fresh air to the advertising world</p>
+					<p class="contact_txt"><?php _e('HELLO SUNSHINE is a creative agency based on a single, powerful notion that optimism drives successful brands and popular culture. It’s ambition is to bring a much needed breath of fresh air to the advertising world'); ?></p>
 					<div class="cs-clear">
 						<strong class="contact_city"><?php _e('PARIS'); ?></strong>
 						<div class="contact_ad"><p>22, rue de la Victoire<br />75009 Paris</p>
@@ -50,7 +50,7 @@
 			<div data-effect="fadeup" class="intoview-effect contact_con cs-clear">
 				<div class="contact_conl">
 					<h4>FRED & FARID MEDIA</h4>
-					<p class="contact_txt">FRED & FARID MEDIA is the media buying agency of xxxxxxxxxxxxxxxxxxxxxx. It offers its clients a full-service plan that involves the design of above the line media ideas and their orchestration. It also offers strategic consulting services for all the xxxxxxxxxxxxxxxxxxxxxx’s brands.</p>
+					<p class="contact_txt"><?php _e('FRED & FARID MEDIA is the media buying agency of xxxxxxxxxxxxxxxxxxxxxx. It offers its clients a full-service plan that involves the design of above the line media ideas and their orchestration. It also offers strategic consulting services for all the xxxxxxxxxxxxxxxxxxxxxx’s brands.'); ?></p>
 					<div class="cs-clear">
 						<strong class="contact_city"><?php _e('PARIS'); ?></strong>
 						<div class="contact_ad"><p>22, rue de la Victoire <br />75009 Paris</p>
@@ -61,7 +61,7 @@
 				</div>
 				<div class="contact_conr">
 					<h4>FRED & FARID INVESTMENT FUND</h4>
-					<p class="contact_txt">FRED & FARID DIGITAL INVESTMENT FUND is a business fund which takes participation and promotes startups in the area of digital technology.</p>
+					<p class="contact_txt"><?php _e('FRED & FARID DIGITAL INVESTMENT FUND is a business fund which takes participation and promotes startups in the area of digital technology'); ?></p>
 					<div class="cs-clear">
 						<strong class="contact_city"><?php _e('PARIS'); ?></strong>
 						<div class="contact_ad"><p>22, rue de la Victoire <br />75009 Paris</p>
@@ -87,7 +87,7 @@
 				</div>
 				<div class="contact_conr">
 					<h4>KILLDEATH</h4>
-					<p class="contact_txt">KILLDEATH is the film production company of xxxxxxxxxxxxxxxxxxxxxx</p>
+					<p class="contact_txt"><?php _e('KILLDEATH is the film production company of xxxxxxxxxxxxxxxxxxxxxx'); ?></p>
 					<div class="cs-clear">
 						<strong class="contact_city"><?php _e('PARIS'); ?></strong>
 						<div class="contact_ad"><p>22, rue de la Victoire <br />75009 Paris</p>
@@ -98,7 +98,7 @@
 				</div>
 				<div class="contact_conl">
 					<h4>KIDSLOVEJETLAG</h4>
-					<p class="contact_txt">KIDS LOVE JETLAG is a creative digital agency, fully integrated and specialized in digital strategy, digital influence, interactive design, mobile, retail and out-of home experiences and delivering vision, ideas, plateform, and solutions that people want to share.</p>
+					<p class="contact_txt"><?php _e('KIDS LOVE JETLAG is a creative digital agency, fully integrated and specialized in digital strategy, digital influence, interactive design, mobile, retail and out-of home experiences and delivering vision, ideas, plateform, and solutions that people want to share'); ?></p>
 					<div class="cs-clear">
 						<strong class="contact_city"><?php _e('PARIS'); ?></strong>
 						<div class="contact_ad"><p>22, rue de la Victoire <br />75009 Paris</p>
