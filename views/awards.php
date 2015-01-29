@@ -23,19 +23,19 @@
 		<div data-effect="fadeup" class="intoview-effect awardfilter column cs-clear">
 			<div class="awardfilter_item">
 				<a class="selitem ">
-					<select id="year"><option value=""><?php _e('year');?></option>
+					<select id="year"><option value=""><?php _e('YEAR');?></option>
 					</select>
 				</a>
 			</div>
 			<div class="awardfilter_item">
 				<a class="selitem ">
-					<select id="brand"><option value=""><?php _e('brand');?></option>
+					<select id="brand"><option value=""><?php _e('BRANDS');?></option>
 					</select>
 				</a>
 			</div>
 			<div class="awardfilter_item">
 				<a class="selitem ">
-					<select id="award"><option value=""><?php _e('award');?></option>
+					<select id="award"><option value=""><?php _e('AWARDS');?></option>
 					</select>
 				</a>
 			</div>

@@ -17,7 +17,7 @@
 		<!--  -->
 		<div class="about_down">
 			<a href="#" id="download" class="about_downbtn transition-wrap">
-				<div class="transition">DOWNLOAD PDF<br/><br/>DOWNLOAD PDF</div>
+				<div class="transition"><?php _e('DOWNLOAD'); ?> PDF<br/><br/><?php _e('DOWNLOAD'); ?> PDF</div>
 			</a>
 		</div>
 		<!--  -->
