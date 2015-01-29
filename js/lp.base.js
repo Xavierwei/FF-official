@@ -2813,31 +2813,28 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var old_awards = [];
                 var old_awards_for_imgs = [];
                 //var pics = [];
-
+                var preload_imgs = [];
 
                 api.extraRequest({
                     wsExtraRequest: 'getAwardsExtended'
                 }, function (r) {
                     awards = array_unique(r.items);
-                    //$.each(awards, function(i, item) {
-                    //    console.log(campaignManager.getPath(item, 'award_preview'));
-                    //    pics.push(campaignManager.getPath(item, 'award_preview'));
-                    //});
-                    //var unique_pics = array_unique(pics);
-                    //loadImages(unique_pics, null, function () {
-                    //    cb && cb();
-                    //});
+                    console.log('awards.length: ',awards.length);
                     var a = {};
                     var b = [];
                     $.each(awards, function (i, item) {
                         a[item.id] = item;
+
                     });
                     $.each(a, function (i, item) {
                         if (item) {
                             b.push(item);
                         }
+                        //preload_imgs.push(item.award_preview);
                     });
                     $('#awards-number').text(b.length);
+                    // preloading awards icons
+                    console.log('preload_imgs: ',preload_imgs);
                     api.request('awards', function (r) {
                         $.each(r.items, function (i, old_award) {
                             old_awards[i] = old_award.label;
@@ -2897,15 +2894,19 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $.each(old_awards_for_imgs, function (i, old_award_for_imgs) {
                             var num = award_count[old_award_for_imgs.label] || 0;
                             awardsHtml.push('<img data-num="' + num + '" src="' + campaignManager.getPath(old_award_for_imgs, 'preview', true) + '">');
+                            console.log('get : ',campaignManager.getPath(old_award_for_imgs, 'preview', true));
+                            preload_imgs.push(campaignManager.getPath(old_award_for_imgs, 'preview', true));
                         });
+
                         $('.awardicons').html(awardsHtml.join(''));
                         $('.awardicons img').hover(function () {
                             var num = $(this).data('num');
                             $('.awardicons span').html(num);
                             effects['number-rock']($('.awardicons span'), 0, null, 500);
                         });
-
-                        cb && cb();
+                        loadImages_2(preload_imgs, function () {
+                            cb && cb();
+                        });
                     }
                 });
             },
@@ -3048,6 +3049,38 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
             },
             'press-page': function (cb) {
+                var preview_imgs = [];
+                var $year_dom = $('div.press_list.column.cs-clear.intoview-effect').slice(0,2);
+                var year_arr = [];
+
+                $year_dom.each(function(i,el) {
+                    year_arr.push($(el).data('year'));
+                });
+                year_arr.length && $.each(year_arr,function(i, year) {
+                    api.request('about/press_articles/' + year, function (r) {
+                        console.log('r: ',r);
+                        if (!r.items.length) {
+                            return;
+                        }
+                        $.each(r.items, function (i, item) {
+                            console.log('i: ',i);
+                            if (i < 10) {
+                                console.log(campaignManager.getPath(item, 'picture_2'));
+                                preview_imgs.push(campaignManager.getPath(item, 'picture_2'));
+                                if (preview_imgs.length > 8) {
+                                    loadImages_2(preview_imgs, function () {
+                                        console.log('preview_imgs: ',preview_imgs);
+                                        cb && cb();
+                                    });
+                                    return false;
+                                }
+                            } else {
+                                return false;
+                            }
+                        });
+                    });
+                });
+
 
                 // var positions = [-44,-142,-240,-338,-436,-534];
                 // var index = 0;

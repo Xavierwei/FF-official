@@ -8,9 +8,13 @@
     .search-wrap-inner{margin: 0 75px;}
     .awardfilter_item{width: 23%;margin: 0 1%;}
     .brand_big_text{padding: 75px;}
-
+    .home_camcon{width: 966px;}
+    .home_view.column{padding: 0px 78px;}
 
     .gates-inner-l{font-size: 40px;padding: 0 75px;}
+    .press_list{width: 1100px;margin: 0 auto 50px;}
+    .press_item{font-size: 14px;color:#666;width: 180px;float: left;display: inline;margin: 50px 46px 0;position: relative;}
+    .awardicons{width: 1100px;}
 }
 
 @media only screen and (max-width:1200px){
@@ -20,15 +24,19 @@
     .brands-con dt {width: 280px;padding: 10px;height: 70px;}
     .brands-con-time {margin-top: 0em;font-size: 12px;}
     .brands-con dd{left:300px;}
+    .home_viewtxt {width: 26%;margin: 0 0 0 5%;}
 }
 
 
 
 @media only screen and (max-width:1100px){
-    .home_camcon {width:1000px;}
-
+    .home_camcon {width:100%;}
+    .press_list {width: 900px;}
+    .press_item {margin: 50px 60px;}
     .home_viewtxt {width: 26%;margin: 0 0 0 5%;}
     .cam_item {width:318px;}
+    .awardicons{width: 900px;}
+    .awardicons img, .award-num{margin: 0px 62.5px 10px;}
 }
 
 
@@ -73,13 +81,22 @@
     .timeline_2012txt{font-size: 24px;}
 
 }
-
+@media only screen and (max-width:900px){
+    .press_list {width: 780px;}
+    .press_item {margin: 50px 40px;}
+    .awardicons{width: 800px;}
+    .awardicons img, .award-num{margin: 0px 50px 10px;}
+}
+@media only screen and (max-width:810px){
+    .home_viewtxt{width: 25%;margin: 0px 0px 0px 5%;}
+}
 @media only screen and (max-width:800px){
     .gates-inner-l{font-size: 30px;}
 
     .about_txt{padding: 40px 0}
     .about_txt p{font-size: 24px;}
-
+    .awardicons{width: 600px;}
+    .awardicons img, .award-num{margin: 0px 25px 10px;}
 }
 
 @media only screen and (max-width:640px){
