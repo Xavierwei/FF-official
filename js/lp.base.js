@@ -2,7 +2,6 @@
  * page base action
  */
 LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
-    'use strict'
 
     var lang = LP.getCookie('lang');
     // page components here
@@ -130,9 +129,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         disposeVideo();
         if ($('.page').data('page') == 'home-page' && winTop < sliderHeight) {
+            console.log( sliderHeight );
             // scroll to $('.home-slider').height()
             $('html,body').animate({
-                scrollTop: sliderHeight
+                scrollTop: sliderHeight * 2
             }, 500)
                 .promise()
                 .then(function () {
@@ -224,7 +224,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             load: function () {
                 var path = getPath();
                 fixHomePageVideo(function () {
-                    $(document.body).css('overflow', 'hidden');
+                    $(document.body).stop(true,true).css('overflow', 'hidden');
                     show_cate_list(path);
                 });
             }
@@ -291,7 +291,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             load: function () {
 
                 $('.page-mask').stop(true, true).fadeOut();
-                $(document.body).css('overflow', 'hidden');
+                $(document.body).stop(true,true).css('overflow', 'hidden');
                 $('.sec_brands').stop(true, true).show();
                 var path = getPath();
 
@@ -383,7 +383,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     opacity: 1
                 });
                 // hide nav bar
-                $(document.body).css('overflow', 'hidden');
+                $(document.body).stop(true,true).css('overflow', 'hidden');
                 var path = getItemPathinfoFromUrl();
                 var paths = path.split('/');
 
@@ -415,7 +415,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
             },
             load: function (data) {
-                $(document.body).css('overflow', 'hidden');
+                $(document.body).stop(true,true).css('overflow', 'hidden');
 
                 $('.sec_brands').stop(true, true).show().css({
                     display: 'block',
@@ -1452,12 +1452,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     campaign.brand = brand.title;
                     var str = LP.format(textTpl, campaign);
                     $('.brand_big_text').html(str).fadeIn();
-                    // 如果页面不够高，则需要设置height
-                    if ($('.brand_movie').height() < $(window).height() + 3000) {
-                        $('.brand_movie').height($(window).height() + 3000);
-
-                        $('.sec_brands').scrollTop(66);
-                    }
                 });
             });
         }
@@ -2967,7 +2961,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
             },
             'contact-page': function (cb) {
-
                 // render twitter
                 api.localRequest('/api/city/isChina.php', function (r) {
                     if (r == 1) {
@@ -3577,7 +3570,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         }
 
         var isFirstLoading = true;
-
         return {
             go: function (url, type) {
                 History.pushState({
@@ -3586,7 +3578,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }, undefined, url);
             },
             init: function (cb) {
-                //debugger;
+
                 var $page = $('.page');
                 var fn = pageInits[$page.data('page')];
 

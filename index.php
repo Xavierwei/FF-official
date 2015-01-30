@@ -20,6 +20,6 @@ if( file_exists( $file ) ){
 	setcookie( 'page', $page == 'index' ? '/' : $page );
 	require_once $file;
 } else {
-	require_once '404.html';
-	//header('Location:/404.html');
+	//require_once '404.html';
+	header('Location:/404.html');
 }
