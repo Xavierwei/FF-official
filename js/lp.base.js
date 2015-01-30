@@ -459,13 +459,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
             }
         });
-
+        
 
         // press page
         rules.push({
             url: /^jobs\/\d+$/,
             destory: function (cb) {
-
+                cb && cb();
             },
             load: function (data) {
                 var $item = $(this).closest('.jobsitem');
@@ -3593,8 +3593,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
                 if (fn) {
+                    loadingMgr.show();
                     fn(function () {
                         // hide page mask
+                        loadingMgr.success();
                         $('.page-mask').stop(true, true).fadeOut()
                             .addClass('lighter');
 
@@ -3774,26 +3776,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         // });
 
         // Bind to StateChange Event
-        History.Adapter.bind(window, 'statechange', function () { // Note: We are using statechange instead of popstate
-
-            var State = History.getState(); // Note: We are using History.getState() instead of event.state
-            var prev = State.data.prev;
-            var type = State.data.type;
-
-            var path = LP.parseUrl(State.url).path.replace(/^\//, '');
-            var prevPath = LP.parseUrl(prev).path.replace(/^\//, '');
-            // if only change hash
-            if (path.match(/^(categories|brands|services)/) || prevPath.match(/^(categories|brands|services)/)) {
-                var oldArr = prevPath ? formatPath2Arr(prevPath) : [];
-                var newArr = formatPath2Arr(path);
-                if ((!newArr[4] && !oldArr[4]) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) && oldArr[2] == newArr[2]) {
-                    return false;
-                }
-
-                urlManager.go(path, null, prevPath);
-                return false;
-            }
-
+        function loadPage(){
             $('.page-mask').stop(true, true).fadeIn();
             // if( State.url.indexOf('##') >= 0 ){
             //     return false;
@@ -3801,6 +3784,21 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             // show loading
             loadingMgr.show();
             loadingMgr.setSuccess(function (html) {
+                pageManager.destroy();
+                $('.container').html(html)
+                    .children('.page')
+                    .stop()
+                    .fadeIn();
+                //pagetitarrbottom
+
+                $('html,body').animate({
+                    scrollTop: 0
+                }, 300);
+                
+                pageManager.init();
+
+            }, 'statechange');
+            $.get(location.href, '', function (html) {
                 var $dom = $('<div>' + html + '</div>').find('.container');
                 html = $dom.html();
 
@@ -3816,25 +3814,39 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         opacity: 0
                     }, 500);
                     setTimeout(function () {
-
-                        $('.container').html(html)
-                            .children('.page')
-                            .stop()
-                            .fadeIn();
-                        //pagetitarrbottom
-
-                        $('html,body').animate({
-                            scrollTop: 0
-                        }, 300);
-
-                        pageManager.destroy();
-                        pageManager.init();
+                        loadingMgr.success('statechange', html);
                     }, 500);
                 });
-            }, 'statechange');
-            $.get(location.href, '', function (r) {
-                loadingMgr.success('statechange', r);
+
             });
+        }
+        History.Adapter.bind(window, 'statechange', function () { // Note: We are using statechange instead of popstate
+
+            var State = History.getState(); // Note: We are using History.getState() instead of event.state
+            var prev = State.data.prev;
+            var type = State.data.type;
+
+            var path = LP.parseUrl(State.url).path.replace(/^\//, '');
+            var prevPath = LP.parseUrl(prev).path.replace(/^\//, '');
+
+            if( prevPath.match(/^(categories|brands|services)/) && !path.match(/^(categories|brands|services)/) ){
+                if( LP.parseUrl(prev).path != LP.getCookie('page') ){
+                    loadPage();
+                }
+            }
+            // if only change hash
+            if (path.match(/^(categories|brands|services)/) || prevPath.match(/^(categories|brands|services)/)) {
+                var oldArr = prevPath ? formatPath2Arr(prevPath) : [];
+                var newArr = formatPath2Arr(path);
+                if ((!newArr[4] && !oldArr[4]) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) && oldArr[2] == newArr[2]) {
+                    return false;
+                }
+
+                urlManager.go(path, null, prevPath);
+                return false;
+            }
+            loadPage();
+
         });
     });
 
