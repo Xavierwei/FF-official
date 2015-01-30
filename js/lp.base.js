@@ -3033,46 +3033,69 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         .next()
                         .html(bHtml.join(''));
                 });
-                var tpl = '<h3 data-effect="fadeup" class="intoview-effect contact_page_department">#[department]</h3>\
-                            <div data-effect="fadeup" class="intoview-effect contact_con cs-clear">\
-                                <div class="#[leftORright]">\
-                                    <h4 class="contact_title"> #[title] </h4>\
-                                    <p class="contact_txt contact_content">#[content]</p>\
-                                    <div class="cs-clear">\
-                                    <strong class="contact_city">#[city_1]</strong>\
-                                    <div class="contact_ad contact_address">\
-                                    <p class="contact_address_p">#[contact_address]</p>\
-                                    </div>\
-                                    </div>\
-                                    </div>\
+                var tpl = '<div class="#[leftORright]"> \
+                                <h4 class="contact_title"> #[title] </h4> \
+                                <p class="contact_txt contact_content">#[content]</p> \
+                                <div class="cs-clear"> \
+                                  <strong class="contact_city">#[city_1]</strong> \
+                                  <div class="contact_ad contact_address"> \
+                                    <p class="contact_address_p">#[contact_address_1]</p> \
+                                  </div> \
+                                  <strong class="contact_city">#[city_2]</strong> \
+                                  <div class="contact_ad contact_address"> \
+                                    <p class="contact_address_p">#[contact_address_2]</p> \
+                                  </div> \
+                                  <strong class="contact_city">#[city_3]</strong> \
+                                  <div class="contact_ad contact_address"> \
+                                    <p class="contact_address_p">#[contact_address_3]</p> \
+                                  </div> \
+                                </div> \
+                              </div> \
                             ';
                 var cHtml = [];
                 api.request('about/contact/entities', function (r) {
-                    //console.log('r: ', r);
                     var entities = [];
+                    var departments = {};
                     $.each(r.items, function (i, item) {
                         entities.push(item);
                     });
-                    console.log('entities: ', entities);
                     $.each(entities, function (i, entity) {
-                        console.log('content: ', entity.content);
-                        console.log('i: ',i);
-                        cHtml.push(LP.format(tpl, {
-                            leftORright: i % 2 ? 'contact_conr' : 'contact_conl',
-                            department: entity.department,
-                            title: entity.title,
-                            content: entity.content.split('\n').join('<br/>'),
-                            city_1: entity.city_1,
-                            contact_address: entity.address_1
-                        }));
+                        if (!departments[entity.department]) {
+                            departments[entity.department] = [];
+                        }
+                        departments[entity.department][entity.order] = entity;
                     });
-                    //console.log('cHTML: ',cHtml);
+                    console.log('departments: ',departments);
+                    Object.getOwnPropertyNames(departments).forEach(function(val, idx, array) {
+                        console.log(val + ' -> ' + departments[val]);
+                        cHtml.push('<h3 data-effect="fadeup" class="intoview-effect contact_page_department">');
+                        cHtml.push(val);
+                        cHtml.push('</h3>');
+                        cHtml.push('<div data-effect="fadeup" class="intoview-effect contact_con cs-clear">');
+
+                        var num = 0;
+                        $.each(departments[val],function(i,item) {
+                            if (item) {
+                                console.log(num++);
+                                cHtml.push(LP.format(tpl, {
+                                    leftORright: num % 2 ? 'contact_conl' : 'contact_conr',
+                                    department: item.department,
+                                    title: item.title,
+                                    content: item.content.split('\n').join('<br/>'),
+                                    city_1: item.city_1 || '',
+                                    city_2: item.city_2 || '',
+                                    city_3: item.city_3 || '',
+                                    contact_address_1: item.address_1 || '',
+                                    contact_address_2: item.address_2 || '',
+                                    contact_address_3: item.address_3 || ''
+                                }));
+                            }
+                        });
+                        cHtml.push('</div>');
+                    });
                     $('.contact_item').html(cHtml.join(''));
                 });
-
-
                 cb && cb();
-
             },
             'interview-page': function (cb) {
                 // preload js conponent

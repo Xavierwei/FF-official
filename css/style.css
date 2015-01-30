@@ -165,7 +165,7 @@ a.icon_bg{background-position: 0px -115px;}
 .contact_conl{float:left;width: 520px;padding-bottom: 40px;}
 .contact_conr{float:right;width: 510px;padding:0 10px 40px 0;}
 .contact_con h4{padding:15px 0;}
-.contact_txt{height: 125px;}
+.contact_txt{min-height: 125px;height: auto;}
 .contact_city{float: left;}
 .contact_ad{float: left;padding-left:20px;width: 180px}
 .contact_ad p{padding: 0 0 10px;}
