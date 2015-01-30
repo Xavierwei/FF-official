@@ -132,12 +132,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             console.log( sliderHeight );
             // scroll to $('.home-slider').height()
             $('html,body').animate({
-                scrollTop: sliderHeight * 2
+                scrollTop: sliderHeight
             }, 500)
-                .promise()
-                .then(function () {
-                    success && success();
-                });
+            .promise()
+            .then(function () {
+                success && success();
+            });
         } else {
             success && success();
         }
@@ -291,7 +291,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             load: function () {
 
                 $('.page-mask').stop(true, true).fadeOut();
-                $(document.body).stop(true,true).css('overflow', 'hidden');
+                fixHomePageVideo(function(){
+                    $(document.body).stop(true,true).css('overflow', 'hidden');
+                })
                 $('.sec_brands').stop(true, true).show();
                 var path = getPath();
 
@@ -383,7 +385,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     opacity: 1
                 });
                 // hide nav bar
-                $(document.body).stop(true,true).css('overflow', 'hidden');
+                fixHomePageVideo(function(){
+                    console.log( 'fix hidden' );
+                    //setTimeout(function(){
+                    $(document.body).stop(true,true).css('overflow', 'hidden');
+                    //}, 600 );
+                });
                 var path = getItemPathinfoFromUrl();
                 var paths = path.split('/');
 
@@ -415,7 +422,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
             },
             load: function (data) {
-                $(document.body).stop(true,true).css('overflow', 'hidden');
+                fixHomePageVideo(function(){
+                    $(document.body).stop(true,true).css('overflow', 'hidden');
+                });
 
                 $('.sec_brands').stop(true, true).show().css({
                     display: 'block',
@@ -1373,7 +1382,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $movieWrap.find('ul')
                     .css({
                         width: totalWidth, //winWidth * $movieWrap.find('.brands-item').length,
-                        marginLeft: Math.min(0, winWidth / 2 - preWidth)
+                        marginLeft: Math.max( Math.min(0, winWidth / 2 - preWidth) , winWidth -  totalWidth )
                     });
             }
 
@@ -3891,27 +3900,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     // page actions here
     // ============================================================================
     LP.action('navitem', function () {
-        if ($('.home-slider').length) {
-            // stop the movie
-            disposeVideo();
-
-            // hide the slider
-            $('.home-slider').animate({
-                height: 0
-            }, 500, '', function () {
-                $(this).remove();
-            });
-
-            // scroll to top
-            $('html,body').animate({
-                scrollTop: 0
-            }, 500);
-        }
-
         // load next page
-        var href = $(this).attr('href');
-
-        pageManager.go(href);
+        pageManager.go($(this).attr('href'));
         return false;
     });
 
@@ -5077,18 +5067,21 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var winWidth = $(window).width();
         var time = 600;
 
-        if ($current.data('video-object')) {
-            $current.data('video-object').muted();
-        }
+        // if ($current.data('video-object')) {
+        //     $current.data('video-object').muted();
+        // }
         // unInitImageMouseMoveEffect( $current );
 
         // var interval = setInterval(function(){
         //     fixImageToWrap( $dom , $dom.find('img') );
         // } , 1000 / 30 );
+        
+        $('.brand_movie').find('.brands-mask').stop(true,true).fadeIn( 600 );
 
-        $current.find('.brands-mask').stop(true, true)
-            .fadeIn(time)
-            .end()
+        $current
+            // .find('.brands-mask').stop(true, true)
+            // .fadeIn(time)
+            // .end()
             .find('.image-zoom')
             .fadeOut();
 
