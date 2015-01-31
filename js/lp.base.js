@@ -3038,15 +3038,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 <p class="contact_txt contact_content">#[content]</p> \
                                 <div class="cs-clear"> \
                                   <strong class="contact_city">#[city_1]</strong> \
-                                  <div class="contact_ad contact_address"> \
+                                  <div class="contact_ad contact_address_1"> \
                                     <p class="contact_address_p">#[contact_address_1]</p> \
                                   </div> \
                                   <strong class="contact_city">#[city_2]</strong> \
-                                  <div class="contact_ad contact_address"> \
+                                  <div class="contact_ad contact_address_2"> \
                                     <p class="contact_address_p">#[contact_address_2]</p> \
                                   </div> \
                                   <strong class="contact_city">#[city_3]</strong> \
-                                  <div class="contact_ad contact_address"> \
+                                  <div class="contact_ad contact_address_3"> \
                                     <p class="contact_address_p">#[contact_address_3]</p> \
                                   </div> \
                                 </div> \
