@@ -604,7 +604,7 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 .ffwheel-close,.close{position: absolute;top:20px;right:40px; z-index: 3;}
 
 .process{position: absolute;height: 1px;background: red;bottom: 0;width: 0;z-index: 100;left: 0;}
-.preview{position: absolute;top:0;left:0;width: 100%;height: 100%;display: none;background: #000;z-index: 10000;}
+.preview{position: absolute;top:0;left:0;width: 100%;height: 100%;display: none;background: #000;z-index: 10000;overflow: hidden;}
 .preview ul{height: 100%;margin-left: 5%;}
 .preview ul li{float: left;overflow: hidden;position: relative;height: 100%;}
 .preview ul li img{width: 100%;}

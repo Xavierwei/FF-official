@@ -2963,7 +2963,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             $('.awardicons span').html(num);
                             effects['number-rock']($('.awardicons span'), 0, null, 500);
                         });
-                        loadImages_2(preload_imgs, function () {
+
+                        loadImages_2(preload_imgs.slice(0,8), function () {
                             cb && cb();
                         });
                     }
