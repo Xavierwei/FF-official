@@ -3036,7 +3036,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var tpl = '<div class="#[leftORright]"> \
                                 <h4 class="contact_title"> #[title] </h4> \
                                 <p class="contact_txt contact_content">#[content]</p> \
-                                <div class="cs-clear"> \
+                                <div class="cs-clear contact_citys"> \
                                   <strong class="contact_city">#[city_1]</strong> \
                                   <div class="contact_ad contact_address_1"> \
                                     <p class="contact_address_p">#[contact_address_1]</p> \
@@ -3094,6 +3094,45 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         cHtml.push('</div>');
                     });
                     $('.contact_item').html(cHtml.join(''));
+                    // fix style:
+                    $(window).resize(function() {
+                        $('.contact_con').each(function(i,con) {
+                            var $con = $(this);
+                            var Height_contact_content_arr = [];
+                            var Height_contact_citys_arr = [];
+                            var Height_contact_citys_arr_1 = [];
+
+                            $con.find('.contact_content').each(function(i,el) {
+                                Height_contact_content_arr.push($(el).height());
+                            });
+                            $con.find('.contact_ad').each(function(i,el) {
+                                Height_contact_citys_arr.push($(el).height());
+                            });
+                            $con.find('.contact_address_3').each(function(i,el) {
+                                Height_contact_citys_arr_1.push($(el).height());
+                            });
+
+                            var maxHeight_contact_content = Math.max.apply(null, Height_contact_content_arr);
+                            var maxHeight_contact_citys = Math.max.apply(null, Height_contact_citys_arr);
+                            var maxHeight_contact_citys_1 = Math.max.apply(null, Height_contact_citys_arr_1);
+
+                            console.log('max height: ',maxHeight_contact_content);
+                            $con.find('.contact_content').each(function(i,el) {
+                                $(el).height(maxHeight_contact_content);
+                            });
+                            $con.find('.contact_ad').each(function(i,el) {
+                                $(el).height(maxHeight_contact_citys);
+                            });
+                            $con.find('.contact_address_3').each(function(i,el) {
+                                $(el).height(maxHeight_contact_citys_1);
+                            });
+                        });
+                        $('.contact_address_p').each(function(i,item) {
+                            if ($(item).html() == '') {
+                                $(item).closest('.contact_ad').add($(item).closest('.contact_ad').prev('strong.contact_city')).remove();
+                            }
+                        });
+                    }).trigger('resize');
                 });
                 cb && cb();
             },

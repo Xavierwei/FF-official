@@ -162,11 +162,13 @@ a.icon_bg{background-position: 0px -115px;}
 .contact_item{}
 .contact_item h3{font-size: 16px;border-bottom: #000 solid 1px;text-transform: uppercase;height: 32px;padding:0 8px;}
 .contact_con{padding:8px 8px 40px;font-size: 14px;}
-.contact_conl{float:left;width: 520px;padding-bottom: 40px;}
-.contact_conr{float:right;width: 510px;padding:0 10px 40px 0;}
-.contact_conl .cs-clear , .contact_conr .cs-clear{min-height: 200px;}
+/*.contact_conl{float:left;width: 520px;padding-bottom: 40px;}*/
+.contact_conl{float:left;width: 520px;}
+.contact_conr{float:right;width: 510px;padding:0 10px 0px 0;}
+/*.contact_conl .cs-clear , .contact_conr .cs-clear{min-height: 200px;}*/
 .contact_con h4{padding:15px 0;}
-.contact_txt{min-height: 125px;height: auto;margin-bottom: 40px;}
+/*.contact_txt{min-height: 125px;height: auto;margin-bottom: 40px;}*/
+.contact_txt{height: auto;margin-bottom: 40px;}
 .contact_city{float: left;font-size: 13px;}
 .contact_ad{float: left;padding-left:20px;width: 180px}
 .contact_ad p{padding: 0 0 10px;font-size: 13px;}
