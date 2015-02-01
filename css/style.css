@@ -145,6 +145,8 @@ a.icon_bg{background-position: 0px -115px;}
 .awardlist{}
 .awardlist table{width: 100%;}
 .awardlist td{text-align: center;font-size: 14px;font-weight: bold;line-height: 30px;}
+.awardlist td.cam_item{width: auto;text-align: center;margin-top: 0;float: none;}
+.awardlist td.cam_item:hover{background: inherit;color:inherit;}
 .even{background: #ebebeb;}
 
 /*section jobs*/
