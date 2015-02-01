@@ -4628,7 +4628,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     <div class="wavesurfer-playPause-btn wavesurfer-pause" tabindex="1">play</div>\
                     <div class="interview_share">share</div>\
                 </div>\
-            </div>').insertAfter($item);
+            </div>').insertAfter($item)
+            .find('.interview-music')
+            .animate({
+                marginTop: 0
+            }, 500);
 
             var randomId = 'audio-' + ($.guid++);
             $container.attr('id', randomId);
@@ -4664,22 +4668,20 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $item.find('.audio-loading-wrapper').fadeOut();
                     }
                 });
-                wavesurfer.on('ready', function () {
-                    $musicWrap.closest('.interview-music').animate({
-                        marginTop: 0
-                    }, 300);
-                    $playPause_btn.on('click', function (e) {
-                        if ($(this).hasClass('wavesurfer-play')) {
-                            wavesurfer.pause();
-                            $(this).removeClass('wavesurfer-play').addClass('wavesurfer-pause');
-                        } else {
-                            wavesurfer.play();
-                            $(this).addClass('wavesurfer-play').removeClass('wavesurfer-pause');
-                        }
-                    });
-                });
-
-
+                // wavesurfer.on('ready', function () {
+                //     $musicWrap.closest('.interview-music').animate({
+                //         marginTop: 0
+                //     }, 300);
+                //     $playPause_btn.on('click', function (e) {
+                //         if ($(this).hasClass('wavesurfer-play')) {
+                //             wavesurfer.pause();
+                //             $(this).removeClass('wavesurfer-play').addClass('wavesurfer-pause');
+                //         } else {
+                //             wavesurfer.play();
+                //             $(this).addClass('wavesurfer-play').removeClass('wavesurfer-pause');
+                //         }
+                //     });
+                // });
             });
             //LP.use(['../plugin/jquery.jplayer.min.js'] , function(){
             //    $musicWrap.jPlayer({
@@ -4739,7 +4741,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $container.find('.interview-music')
                 .animate({
                     marginTop: -190
-                }, 300)
+                }, 500)
                 .promise()
                 .then(function () {
                     if ($container.find('.jp-pause')
