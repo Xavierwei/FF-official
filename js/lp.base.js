@@ -4907,17 +4907,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         campaigns = array_filter(campaigns, function (campaign) {
             return $.inArray(campaign._contentPath, _comtentPaths) >= 0;
         });
-        var tpl = '<tr class="#[class]"><td>#[year] #[award]</td><td>#[brand]</td><td><a href="#[campaign_link]">#[campaign]</a></td></tr>';
+        var tpl = '<tr class="#[class]"><td>#[year] #[award]</td><td>#[brand]</td><td class="cam_item" data-a="home-cam-item" data-d="#[campaign_link]">#[campaign]</td></tr>';
 
         var listHtml = [];
         $.each(all, function (i, all_item) {
+
             listHtml.push(LP.format(tpl, {
                 'class': i % 2 ? '' : 'even',
                 year: all_item['created'].replace(/^(\d{4}).*/, '$1'),
                 award: all_item.award_label,
                 brand: all_item.brand_title,
                 campaign: all_item.label,
-                campaign_link: all_item._awardPath
+                campaign_link: 'path=categories/' + all_item._awardPath + '&id=' + all_item.fid_award
             }));
         });
 
