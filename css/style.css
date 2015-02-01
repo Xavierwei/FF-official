@@ -36,7 +36,7 @@ a:hover{color:#000}
 .header{height: 66px;position: relative;z-index: 40;}
 .header-inner{height: 66px;position: relative;z-index: 2; width: 100%;font-size: 14px;line-height: 60px;background: white;}
 .header-fixed .header-inner{position: fixed;top: 0;z-index: 100;}
-.logo{background: url('../images/logo.png') no-repeat;width: 14px;height: 14px;position: absolute;left:32px;top:24px;}
+.logo{/*background: url('../images/logo.png') no-repeat;*/width: 14px;height: 14px;position: absolute;left:32px;top:24px;text-align: center;line-height: 73px;}
 .language{position: absolute;right: 98px;top:0;height: 100%;line-height: 66px;}
 .language a{margin-left: 10px;}
 .search{background: url('../images/hd_search.png') no-repeat;text-indent: -9999px;overflow: hidden; width: 17px;height: 17px;position: absolute;right:46px;top:22px;top: 50%;margin-top: -8px;}
@@ -418,7 +418,7 @@ url(../images/brand_big_nav.png) left center; }
 .interview_img img{display: block;}
 
 
-.interview_item{position: relative;margin: 100px 0 20px;opacity: 0;filter:alpha(opacity=0);}
+.interview_item{position: relative;margin: 0px 0 20px;opacity: 0;filter:alpha(opacity=0);}
 .interview_opt{position: absolute;color: white;left: 50%;top: 50%;margin-top: -15px;margin-left: -25px;cursor: pointer;font-size: 14px; height: 30px;line-height: 30px;overflow: hidden;}
 .interview_opt.opened div{margin-top: -30px;}
 

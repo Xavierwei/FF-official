@@ -1,7 +1,7 @@
 /*
  * page base action
  */
-LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
+LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, api) {
 
     var lang = LP.getCookie('lang');
     // page components here
@@ -9,6 +9,20 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     $.easing.easeLightOutBack = function (x, t, b, c, d, s) {
         if (s == undefined) s = 0.70158;
         return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+    }
+
+    var reloadLogo = function() {
+        var canvas, stage, exportRoot;
+        canvas = document.getElementById("canvas");
+        exportRoot = new lib._2();
+
+        stage = new createjs.Stage(canvas);
+        stage.addChild(exportRoot);
+        stage.update();
+        stage.enableMouseOver();
+
+        createjs.Ticker.setFPS(lib.properties.fps);
+        createjs.Ticker.addEventListener("tick", stage);
     }
 
     var array_column = function (arr, val, key) {
@@ -1397,8 +1411,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }
                     });
 
-                console.log('totalWidth : ' + totalWidth);
-                console.log('preWidth : ' + preWidth);
                 $movieWrap.find('ul')
                     .css({
                         width: totalWidth, //winWidth * $movieWrap.find('.brands-item').length,
@@ -1418,10 +1430,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
                     $img
+                        .load(function(){
+                            renderItems();
+                            $img.unbind('load');
+                        })
                         .attr('src', $img.data('img'))
                         .data('img', '');
 
-                    renderItems();
                     // var index = $(this).closest('li').index();
                     // var realIndex = $('.brand_movie').data('index');
                     // if( index < realIndex ){
@@ -3227,33 +3242,55 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
             },
             'press-page': function (cb) {
-                var preview_imgs = [];
-                var $year_dom = $('div.press_list.column.cs-clear.intoview-effect').slice(0, 2);
-                var year_arr = [];
 
-                $year_dom.each(function (i, el) {
-                    year_arr.push($(el).data('year'));
-                });
-                year_arr.length && $.each(year_arr, function (i, year) {
-                    api.request('about/press_articles/' + year, function (r) {
-                        if (!r.items.length) {
-                            return;
-                        }
-                        $.each(r.items, function (i, item) {
-                            if (i < 10) {
-                                preview_imgs.push(campaignManager.getPath(item, 'picture_2'));
-                                if (preview_imgs.length > 8) {
-                                    loadImages_2(preview_imgs, function () {
-                                        cb && cb();
-                                    });
-                                    return false;
-                                }
-                            } else {
-                                return false;
+                var loadIndex = 0;
+                $('[data-year]').slice(0,2)
+                    .each(function(){
+                        effects['press-loading']( $(this) , 0 , function(){
+                            loadIndex++;
+                            if( loadIndex == 2 ){
+                                var imgs = [];
+                                $('.cover_img').slice(0,20).each(function(){
+                                    imgs.push( this.getAttribute('src') );
+                                });
+
+                                loadImages( imgs, null, cb );
                             }
-                        });
+                        } );
                     });
-                });
+                // var preview_imgs = [];
+                // var $year_dom = $('div.press_list.column.cs-clear.intoview-effect').slice(0, 2);
+                // var year_arr = [];
+
+                // $year_dom.each(function (i, el) {
+                //     year_arr.push($(el).data('year'));
+                // });
+
+
+                // year_arr.length && $.each(year_arr, function (i, year) {
+                //     api.request('about/press_articles/' + year, function (r) {
+                //         if (!r.items.length) {
+                //             return;
+                //         }
+                //         $.each(r.items, function (i, item) {
+                //             if ( i < 10 ) {
+                //                 preview_imgs.push(campaignManager.getPath(item, 'preview'));
+                //             }
+                //         });
+
+
+                //                 if (preview_imgs.length > 8) {
+                //                     loadImages_2(preview_imgs, function () {
+                //                         cb && cb();
+                //                     });
+                //                     return false;
+                //                 }
+                //             } else {
+                //                 return false;
+                //             }
+                //         });
+                //     });
+                // });
 
 
                 // var positions = [-44,-142,-240,-338,-436,-534];
@@ -3276,7 +3313,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // api.request( pathContents , function( r ){
                 //     console.log( r );
                 // } );
-                cb && cb();
+                // cb && cb();
             },
             'jobs-page': function (cb) {
                 api.request('about/jobs', function (r) {
@@ -3657,6 +3694,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
 
                     $dom.html(aHtml.join(''));
+
+                    cb && cb();
                 });
             }
         }
@@ -3670,7 +3709,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }, undefined, url);
             },
             init: function (cb) {
-
+                reloadLogo();
                 var $page = $('.page');
                 var fn = pageInits[$page.data('page')];
 
@@ -4638,9 +4677,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     LP.action('show-music-interview', function () {
         var media = $(this).data('media');
         var $item = $(this).closest('.interview_item');
-        var $container = $item.data('media-dom');
-        var $musicWrap = $container && $container.find('.interview-music');
-        if (!$container) {
+        var $container = $item.next();
+
+        var $musicWrap = $container.find('.interview-music');
+
+        if( !$container.hasClass('interview-music-wrap') ){
             //$container = $('<div class="interview-music-wrap">\
             //    <div class="interview-music" style="margin-top: -190px;">\
             //        <div class="interview-audio"></div>\
@@ -4678,9 +4719,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var $audio_loading_wrapper = $('<div class="audio-loading-wrapper"><div class="audio-loading-wrapper-progress"></div></div>');
                 $audio_loading_wrapper.appendTo($item.find('.interview_img'));
                 var h = $musicWrap.height();
-                var audio_url = $container.prev('.interview_item').find('.hold-audio-url').data('media') + '';
+                var audio_url = $item.find('.hold-audio-url').data('media');
                 //var tmp_audio_url = audio_url.replace("backoffice", "www");
-                var tmp_audio_url = audio_url;
                 var $playPause_btn = $musicWrap.next('.wavesurfer-playPause-btn');
                 var wavesurfer = Object.create(WaveSurfer);
                 wavesurfer.init({
@@ -4690,28 +4730,52 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     cursorColor: '#fd0000',
                     height: h
                 });
-                //wavesurfer.load('http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a');
-                tmp_audio_url && wavesurfer.load(tmp_audio_url);
-
+                
                 wavesurfer.on('loading', function (progress, e) {
                     $item.find('.audio-loading-wrapper-progress').width(progress + '%');
                     if (progress > 99) {
                         $item.find('.audio-loading-wrapper').fadeOut();
                     }
                 });
+                $playPause_btn.on('click', function (e) {
+                    if ($(this).hasClass('wavesurfer-play')) {
+                        wavesurfer.pause();
+                        $(this).removeClass('wavesurfer-play').addClass('wavesurfer-pause');
+                    } else {
+                        wavesurfer.play();
+                        $(this).addClass('wavesurfer-play').removeClass('wavesurfer-pause');
+                    }
+                });
+
+                wavesurfer.load('http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a',[
+                0.01, 0.02, 0.011, 0.017, 0.016, 0.007, 0.015, 0.01, 0.011,
+                0.01, 0.025, 0.013, 0.01, 0.3, 0.3, 0., 0.32, 0.2, 0.2, 0.2, 0.18,
+                0.30, 0.1, 0.24, 0.1, 0.2, 0.23, 0.2, 0.23, 0., 0.2, 0.21, 0.23,
+                0.25, 0.26, 0.2, 0.28, 0.2, 0.24, 0.22, 0.21, 0.17, 0.25, 0.25,
+                0.26, 0.18, 0.22, 0.17, 0.24, 0.22, 0.09, 0.12, 0.2, 0.13, 0.22,
+                0.2, 0.20, 0.29, 0.25, 0.31, 0.25, 0.26, 0.20, 0.37, 0.29, 0.,
+                0.34, 0.2, 0.26, 0.17, 0.2, 0., 0.29, 0., 0.1, 0.18, 0.29, 0.2,
+                0.27, 0.18, 0.19, 0.24, 0.24, 0.21, 0.26, 0.19, 0.18, 0.23, 0.3,
+                0.3, 0.3, 0.29, 0.24, 0.3, 0.3, 0.15, 0.1, 0.23, 0.2, 0.23, 0.18,
+                0.2, 0.2, 0.30, 0.2, 0.20, 0., 0.29, 0.3, 0.1, 0.14, 0.1, 0.,
+                0.27, 0.23, 0.29, 0.18, 0.20, 0.1, 0.3, 0.23, 0.27, 0.19, 0.2,
+                0.19, 0.22, 0.19, 0.12, 0.23, 0.21, 0.12, 0.1, 0.1, 0.1, 0.15,
+                0.24, 0.1, 0.1, 0.1, 0.1, 0.14, 0.13, 0.10, 0.11, 0.13, 0.1, 0.10,
+                0.10, 0.1, 0.14, 0.13, 0.12, 0.1, 0.1, 0.14, 0.13, 0.14, 0.12,
+                0.1, 0.12, 0.1, 0.16, 0.1, 0.1, 0.16, 0.15, 0.1, 0.13, 0.15, 0.1,
+                0.13, 0.16, 0.15, 0.12, 0.14, 0.13, 0.13, 0.14, 0.13, 0.17, 0.16,
+                0.17, 0.14, 0.1, 0.16, 0.1, 0.15, 0.14, 0.08, 0.1, 0.11, 0.1,
+                0.09, 0.11, 0.1, 0.11, 0.10, 0.10, 0.11, 0.10, 0.0, 0.08, 0.07,
+                0.05, 0.04, 0.023, 0.007, 0.007, 0.007, 0.015, 0.00, 0.008, 0.007,
+                0.007, 0.007, 0.007, 0.0, 0.010
+            ]);
+
+                //wavesurfer.play();
                 // wavesurfer.on('ready', function () {
-                //     $musicWrap.closest('.interview-music').animate({
-                //         marginTop: 0
-                //     }, 300);
-                //     $playPause_btn.on('click', function (e) {
-                //         if ($(this).hasClass('wavesurfer-play')) {
-                //             wavesurfer.pause();
-                //             $(this).removeClass('wavesurfer-play').addClass('wavesurfer-pause');
-                //         } else {
-                //             wavesurfer.play();
-                //             $(this).addClass('wavesurfer-play').removeClass('wavesurfer-pause');
-                //         }
-                //     });
+                    // $musicWrap.closest('.interview-music').animate({
+                    //     marginTop: 0
+                    // }, 300);
+                    
                 // });
             });
             //LP.use(['../plugin/jquery.jplayer.min.js'] , function(){
@@ -4769,39 +4833,38 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             //    });
             //});
         } else {
+            var marginTop = parseInt( $container.find('.interview-music').css('marginTop') );
+
             $container.find('.interview-music')
                 .animate({
-                    marginTop: -190
+                    marginTop: marginTop == 0 ? -190 : 0
                 }, 500)
                 .promise()
                 .then(function () {
-                    if ($container.find('.jp-pause')
-                        .is(':visible')) {
-                        $container.find('.jp-pause').trigger('click');
+                    if ($container.find('.wavesurfer-play').length) {
+                        $container.find('.wavesurfer-play').trigger('click');
                     }
-
-                    $container.remove();
                 });
 
-            $item.removeData('media-dom')
+            $item
                 .find('.interview_opt')
                 .removeClass('opened');
 
-            // follow items animates
-            var $nexts = $container.nextAll()
-                .each(function (i) {
-                    $(this).delay(120 * i).animate({
-                        marginTop: i == 0 ? 0 : -60,
-                        marginBottom: 80
-                    }, 400, function () {
-                        $(this).css({
-                            marginTop: 0
-                        }).prev().css({
-                            marginTop: 0,
-                            marginBottom: 20
-                        });
-                    });
-                });
+            // // follow items animates
+            // var $nexts = $container.nextAll()
+            //     .each(function (i) {
+            //         $(this).delay(120 * i).animate({
+            //             marginTop: i == 0 ? 0 : -60,
+            //             marginBottom: 80
+            //         }, 400, function () {
+            //             $(this).css({
+            //                 marginTop: 0
+            //             }).prev().css({
+            //                 marginTop: 0,
+            //                 marginBottom: 20
+            //             });
+            //         });
+            //     });
         }
 
     });

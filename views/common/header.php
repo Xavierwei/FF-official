@@ -84,7 +84,7 @@
 	<div class="header <?php if( !isset($home_page) && 0 ){ ?>header-fixed<?php }?>">
 		<div class="header-inner">
 			<div class="logo-wrap">
-				<a href="/" data-a="navitem" class="logo transition"></a>
+				<a href="/" data-a="navitem" class="logo transition"><canvas id="canvas" width="14" height="14" style="background-color:#FFFFFF"></canvas></a>
 			</div>
 			<div class="nav column cs-clear">
 				<a class="navitem" data-a="show-category" data-d="type=categories" href="#"><?php _e('CATEGORIES');?></a>

@@ -86,6 +86,18 @@ seajs.config({
     },
     wavesurfer: {
       src: "/js/plugin/wavesurfer.min.js"
+    },
+    logo: {
+      src: "/js/other/2.js"
+      , deps: ['movieclip']
+    },
+    'tweenjs': {
+      src: "/js/other/tweenjs-0.5.0.min.js"
+      , deps: [ '/js/other/easeljs-0.7.0.min.js' ]
+    },
+    'movieclip': {
+      src: "/js/other/movieclip-0.7.0.min.js"
+      , deps: [ '/js/other/easeljs-0.7.0.min.js','tweenjs' ]
     }
   }
   , alias: {
