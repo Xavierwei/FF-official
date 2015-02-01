@@ -520,6 +520,24 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 toUrl = getPath(toUrl);
                 setPath(toUrl);
             },
+            destory: function( url ){
+                disposeVideo();
+
+                var loadFn = null,
+                    destory = null,
+                    currUrlMatch = null;
+                
+                $.each(rules, function (i, rule) {
+                    if (rule.url.test(url)) {
+                        destory = rule.destory;;
+                        return false;
+                    }
+                });
+
+                destory && destory( function(){
+                    $('.page-mask').stop(true,true).fadeOut();
+                } );
+            },
             go: function (toUrl, data, fromUrl) {
                 disposeVideo();
                 //pages_contents/categories/alcoholic_drinks/16eme_ciel_stand-up_-_lyon_-_2013/0
@@ -598,7 +616,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     tarPath = paths[0];
                     break;
                 case 4:
-                    if (LP.getCookie('level2')) {
+                    if( LP.getCookie('prev') ){
+                        tarPath = LP.getCookie('prev');
+                    } else if (LP.getCookie('level2')) {
                         tarPath = LP.getCookie('level2');
                     } else {
                         tarPath = paths[0] + '/' + paths[1];
@@ -3840,6 +3860,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         // Bind to StateChange Event
         function loadPage(){
+            // if( LP.parseUrl().path == '/' + LP.getCookie('page') ){
+            //     return false;
+            // }
+
             $('.page-mask').stop(true, true).fadeIn();
             // if( State.url.indexOf('##') >= 0 ){
             //     return false;
@@ -3894,7 +3918,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             if( prevPath.match(/^(categories|brands|services)/) && !path.match(/^(categories|brands|services)/) ){
                 if( LP.parseUrl(prev).path != LP.getCookie('page') ){
-                    loadPage();
+                    if( path == LP.getCookie('page') ){
+                        urlManager.destory( prevPath );
+                    } else {
+                        loadPage();
+                    }
+                    return false;
                 }
             }
             // if only change hash
@@ -4359,7 +4388,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     });
 
 
-    LP.action('brands-item', function () {
+    LP.action('brands-item', function ( data ) {
+        var prev = data.prev;
+        LP.setCookie('prev', prev);
         urlManager.setFormatHash(getPath($(this).data('path')));
     });
 
@@ -4909,18 +4940,19 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         campaigns = array_filter(campaigns, function (campaign) {
             return $.inArray(campaign._contentPath, _comtentPaths) >= 0;
         });
-        var tpl = '<tr class="#[class]"><td>#[year] #[award]</td><td>#[brand]</td><td class="cam_item" data-a="home-cam-item" data-d="#[campaign_link]">#[campaign]</td></tr>';
+        var tpl = '<tr class="#[class]"><td>#[year] #[award]</td><td>#[brand]</td><td class="cam_item" data-a="brands-item" data-path="#[path]" data-d="prev=/awards">#[campaign]</td></tr>';
 
+        // data-a="brands-item" data-path="pages_contents/categories/alcoholic_drinks/huang_lei_interview/0"
         var listHtml = [];
         $.each(all, function (i, all_item) {
-
             listHtml.push(LP.format(tpl, {
                 'class': i % 2 ? '' : 'even',
                 year: all_item['created'].replace(/^(\d{4}).*/, '$1'),
                 award: all_item.award_label,
                 brand: all_item.brand_title,
                 campaign: all_item.label,
-                campaign_link: 'path=categories/' + all_item._awardPath + '&id=' + all_item.fid_award
+                path: all_item._contentPath.replace('pages_contents/','') + '/' + all_item.path + '/0'
+                //campaign_link: 'path=categories/' + all_item._awardPath + '&id=' + all_item.fid_award
             }));
         });
 
