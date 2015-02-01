@@ -3086,9 +3086,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }
                         departments[entity.department][entity.order] = entity;
                     });
-                    console.log('departments: ',departments);
                     Object.getOwnPropertyNames(departments).forEach(function(val, idx, array) {
-                        console.log(val + ' -> ' + departments[val]);
+                        //console.log(val + ' -> ' + departments[val]);
+                        val = val.replace(/\+/g,' ');
                         cHtml.push('<h3 data-effect="fadeup" class="intoview-effect contact_page_department">');
                         cHtml.push(val);
                         cHtml.push('</h3>');
