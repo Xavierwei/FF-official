@@ -1,7 +1,8 @@
 /*
  * page base action
  */
-LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, api) {
+LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
+//LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, api) {
 
     var lang = LP.getCookie('lang');
     // page components here
@@ -10,21 +11,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
         if (s == undefined) s = 0.70158;
         return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
     }
-
-    var reloadLogo = function() {
-        var canvas, stage, exportRoot;
-        canvas = document.getElementById("canvas");
-        exportRoot = new lib._2();
-
-        stage = new createjs.Stage(canvas);
-        stage.addChild(exportRoot);
-        stage.update();
-        stage.enableMouseOver();
-
-        createjs.Ticker.setFPS(lib.properties.fps);
-        createjs.Ticker.addEventListener("tick", stage);
-    }
-
     var array_column = function (arr, val, key) {
         if (val) {
             var vals = [];
@@ -2861,7 +2847,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
                 //
                 api.request('featured_campaigns', function (r) {
                     var tpl = '<div class="cam_item" data-d="path=#[path]&id=#[id]" data-a="home-cam-item">\
-                            <div><img src="#[src]" /><div class="cover_cam_item"><p>#[label]</p></div></div>\
+                            <div><img src="#[src]" /><div class="cover_cam_item transition"><p>#[label]</p></div></div>\
                         </div>';
                     var aHtml = [];
                     $.each(r.items || [], function (i, item) {
@@ -3715,7 +3701,24 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
                 }, undefined, url);
             },
             init: function (cb) {
-                reloadLogo();
+                if ($('html').hasClass('canvas')) {
+                    LP.use(['logo'],function() {
+                        var reloadLogo = function() {
+                            var canvas, stage, exportRoot;
+                            canvas = document.getElementById("canvas");
+                            exportRoot = new lib._2();
+
+                            stage = new createjs.Stage(canvas);
+                            stage.addChild(exportRoot);
+                            stage.update();
+                            stage.enableMouseOver();
+
+                            createjs.Ticker.setFPS(lib.properties.fps);
+                            createjs.Ticker.addEventListener("tick", stage);
+                        }
+                        reloadLogo();
+                    })
+                }
                 var $page = $('.page');
                 var fn = pageInits[$page.data('page')];
 

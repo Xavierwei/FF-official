@@ -5,6 +5,7 @@
   'BIOGRAPHY' => '',
   'BRANDS' => '',
   'CATEGORIES' => '',
+  'COMMUNICATION AGENCIES' => 'CONTACT',
   'CONTACT' => '',
   'FEATURED CAMPAIGNS' => '',
   'ff bio' => '',
