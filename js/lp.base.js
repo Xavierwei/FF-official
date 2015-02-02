@@ -2861,8 +2861,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
                 //
                 api.request('featured_campaigns', function (r) {
                     var tpl = '<div class="cam_item" data-d="path=#[path]&id=#[id]" data-a="home-cam-item">\
-                            <div><img src="#[src]" /></div>\
-                            <p>#[label]</p>\
+                            <div><img src="#[src]" /><div class="cover_cam_item"><p>#[label]</p></div></div>\
                         </div>';
                     var aHtml = [];
                     $.each(r.items || [], function (i, item) {
@@ -2877,6 +2876,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
                     });
 
                     $('.home_camcon').html(aHtml.join(''));
+                    $('.cover_cam_item').each(function(i,item) {
+                        var p = $(this).find('p');
+                        var w = p.width();
+                        var h = p.height();
+                        p.css({
+                            'margin-top': -(h/2) + 'px',
+                            'margin-left': -(w/2) + 'px'
+                        });
+                    });
                     $('.home_camcon').children().each(function (i) {
                         var $this = $(this);
                         if (i <= 2) {
