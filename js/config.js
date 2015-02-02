@@ -98,6 +98,14 @@ seajs.config({
     'movieclip': {
       src: "/js/other/movieclip-0.7.0.min.js"
       , deps: [ '/js/other/easeljs-0.7.0.min.js','tweenjs' ]
+    },
+    'waveform':{
+      src: "/js/dancer/plugins/dancer.waveform.js"
+      , deps: [ 'fft','/js/dancer/dancer.js' ]
+    },
+    'fft':{
+      src: "/js/dancer/plugins/dancer.fft.js"
+      , deps: [ '/js/dancer/dancer.js' ]
     }
   }
   , alias: {

@@ -642,4 +642,4 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 .page-mask{position: fixed;top: 0;width: 100%;z-index: 199;height: 100%;background: #000;}
 .page-mask.lighter{opacity: 0.6;}
 
-
+.move-line{position: absolute;width: 1px;background: red;height: 100%;top: 0;}
