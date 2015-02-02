@@ -1467,17 +1467,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
 
 
             // render brand information
-            var textTpl = '<p class="brand_big_text_year">#[year]</p>\
-                <div class="brand_big_text_item" style="width:80%;"> <p class="brand_big_text_tit">#[title]</p> <p class="brand_big_text_val">#[label]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-                <div class="brand_big_text_item" #[id_visible]> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">##[id]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-                <div class="brand_big_text_item" #[fid_customer_visible]> <p class="brand_big_text_tit">client</p> <p class="brand_big_text_val">#[brand]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-                <div class="brand_big_text_item" #[year_visible]> <p class="brand_big_text_tit">year</p> <p class="brand_big_text_val">#[year]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-                <div class="brand_big_text_item" #[agency_visible]> <p class="brand_big_text_tit">agency</p> <p class="brand_big_text_val">#[agency]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-                <div class="brand_big_text_item" #[cpgn_type_visible]> <p class="brand_big_text_tit">GENRE</p> <p class="brand_big_text_val">#[cpgn_type]</p> </div>\
-                <div class="brand_big_text_item" #[territory_visible]> <p class="brand_big_text_tit">Territory</p> <p class="brand_big_text_val">#[territory]</p> <p class="brand_big_text_val">&nbsp;</p></div>\
-                <div class="brand_big_text_item" #[director_visible]> <p class="brand_big_text_tit">DIRECTOR</p> <p class="brand_big_text_val">#[director]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-                <div class="brand_big_text_item" #[photographer_visible]> <p class="brand_big_text_tit">PHOTOGRAPHY</p> <p class="brand_big_text_val">#[photographer]</p><p class="brand_big_text_val">&nbsp;</p> </div>\
-                <div class="brand_big_text_item" #[results_visible]> <p class="brand_big_text_tit"> RESULT </p> #[results] </div>';
+            var textTpl = $('#brand_big_text_year').html();
+
 
             // <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
             // <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
@@ -3054,11 +3045,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
 
                 api.request('about/contact/peoples', function (r) {
                     var items = [];
+
                     $.each(r.items, function (i, item) {
-                        if (item.id == 4 || item.id == 5)
+                        if (item.id == 4 || item.id == 5) {
                             return;
+                        }
                         items.push(item);
                     });
+                    console.log('people: ',items)
                     $.each(items, function (i, item) {
                         var c = i == 0 ? 'contact_maill' : i == items.length - 1 ? 'contact_mailr' : 'contact_mailc';
                         aHtml.push('<td class="' + c + '">' + item.title + '</td>');
@@ -3095,21 +3089,24 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
                     $.each(r.items, function (i, item) {
                         entities.push(item);
                     });
+                    console.log('entities: ',entities)
                     $.each(entities, function (i, entity) {
                         if (!departments[entity.department]) {
                             departments[entity.department] = [];
                         }
                         departments[entity.department][entity.order] = entity;
                     });
+
                     Object.getOwnPropertyNames(departments).forEach(function(val, idx, array) {
                         //console.log(val + ' -> ' + departments[val]);
-                        val = val.replace(/\+/g,' ');
+                        var value = val.replace(/\+/g,' ');
                         cHtml.push('<h3 data-effect="fadeup" class="intoview-effect contact_page_department">');
-                        cHtml.push(val);
+                        cHtml.push(value);
                         cHtml.push('</h3>');
                         cHtml.push('<div data-effect="fadeup" class="intoview-effect contact_con cs-clear">');
 
                         var num = 0;
+
                         $.each(departments[val],function(i,item) {
                             if (item) {
                                 console.log(num++);
@@ -3129,6 +3126,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
                         });
                         cHtml.push('</div>');
                     });
+                    console.log('cHtml: ',cHtml);
                     $('.contact_item').html(cHtml.join(''));
                     // fix style:
                     $(window).resize(function() {
@@ -4747,7 +4745,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
                     }
                 });
 
-                wavesurfer.load('http://jplayer.org/audio/m4a/Miaow-07-Bubble.m4a',[
+                wavesurfer.load(audio_url,[
                 0.01, 0.02, 0.011, 0.017, 0.016, 0.007, 0.015, 0.01, 0.011,
                 0.01, 0.025, 0.013, 0.01, 0.3, 0.3, 0., 0.32, 0.2, 0.2, 0.2, 0.18,
                 0.30, 0.1, 0.24, 0.1, 0.2, 0.23, 0.2, 0.23, 0., 0.2, 0.21, 0.23,
@@ -4957,8 +4955,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, a
         var campaigns = $('#awardfilter').data('campaigns');
         var brands = $('#awardfilter').data('brands');
         var all_replicated = $('#awardfilter').data('all');
-        //console.log('all_replicated: ',all_replicated);
-
         var all_obj = {};
         var all = [];
         $.each(all_replicated, function (i, item) {

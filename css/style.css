@@ -9,6 +9,7 @@
 ================================================================================================= */
 html{}
 body{font-family:Helvetica,"Microsoft Yahei",simsun,arial,sans-serif;color:#000;font-size:12px;line-height:1.666em;background: #000;}
+body.lang-zho{font-family: "Microsoft Yahei", "Hiragino Sans GB", simsun,arial,sans-serif;color:#000;font-size:12px;line-height:1.666em;background: #000;}
 h1,h2,h3{font-size:100%;}
 body,h1,h2,h3,h4,ul,li,p,img,div{margin:0;padding:0;border:0;}
 img{margin:0;line-height:normal;}
@@ -161,7 +162,6 @@ a.icon_bg{background-position: 0px -115px;}
 /* secction contact */
 .sec_contact{}
 .contact_tit{font-size: 36px;padding:100px 0;text-align: center;line-height: 40px;}
-.contact_item{}
 .contact_item h3{font-size: 16px;border-bottom: #000 solid 1px;text-transform: uppercase;height: 32px;padding:0 8px;}
 .contact_con{padding:8px 8px 40px;font-size: 14px;}
 /*.contact_conl{float:left;width: 520px;padding-bottom: 40px;}*/

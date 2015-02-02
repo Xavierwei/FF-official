@@ -50,6 +50,57 @@
 </div>
 <script type="text/tpl" id="video-pause-tpl"><div class="transition"><?php _e('PAUSE'); ?><br><br><?php _e('PAUSE'); ?></div></script>
 <script type="text/tpl" id="video-play-tpl"><div class="transition"><?php _e('PLAY MOVIE'); ?><br><br><?php _e('PLAY MOVIE'); ?></div></script>
+<script type="text/tpl" id="brand_big_text_year">
+<p class="brand_big_text_year">#[year]</p>
+<div class="brand_big_text_item" style="width:80%;">
+  <p class="brand_big_text_tit">#[title]</p>
+  <p class="brand_big_text_val">#[label]</p>
+  <p class="brand_big_text_val">&nbsp;</p>
+</div>
+<div class="brand_big_text_item" #[id_visible]>
+  <p class="brand_big_text_tit">&nbsp;</p>
+  <p class="brand_big_text_val">##[id]</p>
+  <p class="brand_big_text_val">&nbsp;</p>
+</div>
+<div class="brand_big_text_item" #[fid_customer_visible]>
+  <p class="brand_big_text_tit"><?php _e('CLIENT');?></p>
+  <p class="brand_big_text_val">#[brand]</p>
+  <p class="brand_big_text_val">&nbsp;</p>
+</div>
+<div class="brand_big_text_item" #[year_visible]>
+  <p class="brand_big_text_tit"><?php _e('YEAR');?></p>
+  <p class="brand_big_text_val">#[year]</p>
+  <p class="brand_big_text_val">&nbsp;</p>
+</div>
+<div class="brand_big_text_item" #[agency_visible]>
+  <p class="brand_big_text_tit"><?php _e('AGENCY');?></p>
+  <p class="brand_big_text_val">#[agency]</p>
+  <p class="brand_big_text_val">&nbsp;</p>
+</div>
+<div class="brand_big_text_item" #[cpgn_type_visible]>
+  <p class="brand_big_text_tit"><?php _e('GENRE');?></p>
+  <p class="brand_big_text_val">#[cpgn_type]</p>
+</div>
+<div class="brand_big_text_item" #[territory_visible]>
+  <p class="brand_big_text_tit"><?php _e('TERRITORY');?></p>
+  <p class="brand_big_text_val">#[territory]</p>
+  <p class="brand_big_text_val">&nbsp;</p>
+</div>
+<div class="brand_big_text_item" #[director_visible]>
+  <p class="brand_big_text_tit"><?php _e('DIRECTOR');?></p>
+  <p class="brand_big_text_val">#[director]</p>
+  <p class="brand_big_text_val">&nbsp;</p>
+</div>
+<div class="brand_big_text_item" #[photographer_visible]>
+  <p class="brand_big_text_tit"><?php _e('PHOTOGRAPHY');?></p>
+  <p class="brand_big_text_val">#[photographer]</p>
+  <p class="brand_big_text_val">&nbsp;</p>
+</div>
+<div class="brand_big_text_item" #[results_visible]>
+  <p class="brand_big_text_tit"><?php _e('RESULT');?></p>
+   #[results] 
+</div>
+</script>
 <script type="text/javascript" src="/js/plugin/modernizr-2.5.3.min.js"></script>
 <script type="text/javascript" src="/js/sea/sea-debug.js" data-config="/js/config.js"></script>
 <script type="text/javascript" src="/js/sea/plugin-shim.js"></script>

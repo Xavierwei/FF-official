@@ -1,7 +1,7 @@
 <?php include_once 'common/header.php';?>
 <div class="page" data-page="contact-page" data-header="contact">
   <!-- page title -->
-  <?php $top_title= _e( 'CONTACT', false); $pagetit= _e( 'CONTACT', false); include_once 'common/pagetit.php';?>
+  <?php $top_title= _e( 'CONTACT', false); $pagetit= _e( 'COMMUNICATION AGENCIES', false); include_once 'common/pagetit.php';?>
 
   <!-- section -->
   <div class="section sec_contact column">
