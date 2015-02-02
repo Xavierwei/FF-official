@@ -3824,7 +3824,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     }, 1000);
 
 
-                if( $('.banner_footer').length ){
+                if( $('.banner_footer').length && !$('.banft_txt div').length ){
                     // render home news
                     api.request('miscellaneous', function (r) {
                         $.each(r.items, function (i, item) {
@@ -3852,14 +3852,20 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 break;
                             case '3':
                                 var quoteHtmls = [];
-                                quoteHtmls.push( '<p>' + item.text_1 + '</p>' );
-                                quoteHtmls.push( '<p>' + item.text_2 + '</p>' );
-                                quoteHtmls.push( '<p>' + item.text_3 + '</p>' );
+                                var tpl = '<div><p>#[text]</p><span>#[author]</span></div>';
+                                var text_1 = item.text_1.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
+                                quoteHtmls.push( LP.format( tpl, {text: $.trim(text_1[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_1[3]).replace(/\n+/g,'<br/>')} ) );
+
+                                var text_2 = item.text_2.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
+                                quoteHtmls.push( LP.format( tpl, {text: $.trim(text_2[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_2[3]).replace(/\n+/g,'<br/>')} ) );
+
+                                var text_3 = item.text_3.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
+                                quoteHtmls.push( LP.format( tpl, {text: $.trim(text_3[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_3[3]).replace(/\n+/g,'<br/>')} ) );
                                 $('.banft_txt').html( quoteHtmls.join('') )
                                     .css({
                                         width: '300%'
                                     })
-                                    .find('p')
+                                    .children()
                                     .css({
                                         float: 'left',
                                         width: '33.3%'
@@ -3869,7 +3875,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 var index = 0 ;
                                 setInterval(function(){
                                     index++;
-                                    index = index % $('.banft_txt p').length;
+                                    index = index % $('.banft_txt div').length;
                                     $('.banft_txt').animate({
                                         marginLeft: -index * 100 + '%'
                                     }, 500);
