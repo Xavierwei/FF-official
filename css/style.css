@@ -83,9 +83,9 @@ a:hover{color:#000}
 
 /**/
 .banner_footer{background: url('../images/banner_ft.png') repeat;height: 360px;}
-.banft_txt{text-align: center;padding: 160px 0 0;color:#fff;line-height: 30px;}
-.banft_txt p{text-align: center;font-size: 24px;font-style:italic }
-.banft_txt span{font-size: 14px;display: block;}
+.banft_txt{text-align: center;padding: 128px 0 0;color:#fff;line-height: 30px;}
+.banft_txt p{text-align: center;font-size: 24px;font-style:italic;font-weight: bold;font-size: 30px;text-transform: uppercase;line-height:36px;}
+.banft_txt span{font-size: 12px;display: block;font-style:italic;line-height: 36px;}
 /**/
 .footer{background: #000;height: 370px;padding:180px 0 0 ; position: fixed;width: 100%;bottom: 0;}
 .ft_con{width: 1000px;margin: 0 auto 0;color:#525252;font-size: 14px;}

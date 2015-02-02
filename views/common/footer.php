@@ -1,7 +1,7 @@
 	<div class="banner_footer">
 		<div class="banft_txt">
-			<p><?php _e('“il n’est de richesse que d’homme.”');?></p>
-			<span><?php _e('Rene Char');?></span>
+			<p><?php _e('"THERE IS ONE WORD THAT SPRINGS TO MY MIND: PRIDE.<br/>I AM PROUD TO HAVE CHOSEN YOU AS OUR AGENCY<br/> WHEN YOU WERE STILL SMALL“');?></p>
+			<span><?php _e('JEAN-PAUL TORRIS (VICE PRESIDENT, BONGRAIN SA)');?></span>
 		</div>
 	</div>
 </div>
