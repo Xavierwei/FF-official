@@ -211,6 +211,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             url: /^(categories|brands|services)$/,
             destory: function (cb) {
                 $('.gates-inner')
+                    .stop(true,true)
                     .animate({
                         top: '-100%'
                     }, 1000, 'easeInBack')
@@ -218,12 +219,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     .then(function () {
                         $('.sec_gates').fadeOut();
                         $(document.body).css('overflow', 'auto');
+                        $('.header').removeClass('header-fixed');
                         cb && cb();
                     });
             },
             load: function () {
                 var path = getPath();
                 fixHomePageVideo(function () {
+                    $('.header').addClass('header-fixed');
                     $(document.body).stop(true,true).css('overflow', 'hidden');
                     show_cate_list(path);
                 });
@@ -275,6 +278,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     if (!getPath().match(url)) {
                                         $('.brands_tit,.brands-con').hide();
                                         $(document.body).css('overflow', 'auto');
+                                        $('.header').removeClass('header-fixed');
                                         $('.sec_brands').fadeOut();
                                     }
                                     cb && cb();
@@ -284,7 +288,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
 
                 if (!$lis.length) {
+                    $('.brands_tit,.brands-con').hide();
                     $(document.body).css('overflow', 'auto');
+                    $('.header').removeClass('header-fixed');
+                    $('.sec_brands').fadeOut();
                     cb && cb();
                 }
             },
@@ -292,6 +299,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 $('.page-mask').stop(true, true).fadeOut();
                 fixHomePageVideo(function(){
+                    $('.header').addClass('header-fixed');
                     $(document.body).stop(true,true).css('overflow', 'hidden');
                 })
                 $('.sec_brands').stop(true, true).show();
@@ -376,6 +384,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $('.brand_item_tit').hide();
                         $(document.body).css('overflow', 'auto');
                         $('.sec_brands').fadeOut();
+                        $('.header').removeClass('header-fixed');
                         cb && cb();
                     });
             },
@@ -386,7 +395,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
                 // hide nav bar
                 fixHomePageVideo(function(){
-                    console.log( 'fix hidden' );
+                    $('.header').addClass('header-fixed');
                     //setTimeout(function(){
                     $(document.body).stop(true,true).css('overflow', 'hidden');
                     //}, 600 );
@@ -520,7 +529,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 toUrl = getPath(toUrl);
                 setPath(toUrl);
             },
-            destory: function( url ){
+            destory: function( url , cb ){
                 disposeVideo();
 
                 var loadFn = null,
@@ -536,6 +545,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 destory && destory( function(){
                     $('.page-mask').stop(true,true).fadeOut();
+                    cb && cb();
                 } );
             },
             go: function (toUrl, data, fromUrl) {
@@ -1400,7 +1410,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $movieWrap.find('ul')
                     .css({
                         width: totalWidth, //winWidth * $movieWrap.find('.brands-item').length,
-                        marginLeft: Math.max( Math.min(0, winWidth / 2 - preWidth) , winWidth -  totalWidth )
+                        marginLeft: winWidth -  totalWidth > 0 ? 0 : Math.max( Math.min(0, winWidth / 2 - preWidth) , winWidth -  totalWidth )
                     });
             }
 
@@ -2750,36 +2760,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 });
 
-                // render home news
-                api.request('miscellaneous', function (r) {
-                    $.each(r.items, function (i, item) {
-                        switch (item.id) {
-                        case '1':
-                            var htmls = [];
-                            $.each([1, 2, 3], function (i, val) {
-                                if (item['text_' + val]) {
-                                    htmls.push('<p>' + item['text_' + val] + '</p>');
-                                }
-                            });
-                            $('#home-news').css('width', htmls.length * 100 + '%')
-                                .html(htmls.join(''))
-                                .find('p')
-                                .css('width', 1 / htmls.length * 100 + '%');
-
-                            $('.home_newspage span').html('1/' + htmls.length);
-                            if (htmls.length <= 1) {
-                                $('.home_newspage').hide();
-                            }
-                            break;
-                        case '2':
-                            $('.home_bioleft').html(item.text_1);
-                            $('.home_bioright').html(item.text_2);
-                            break;
-                        case '3':
-                            // TODO render
-                        }
-                    });
-                });
 
                 // render home numbers
                 api.extraRequest({
@@ -2899,7 +2879,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 api.extraRequest({
                     wsExtraRequest: 'getAwardsExtended'
                 }, function (r) {
-                    console.log('r: ', r);
                     awards = array_unique(r.items);
                     var a = {};
                     var b = [];
@@ -3369,12 +3348,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     var images = [];
 
                     function resize_slide_img(img) {
-                        //console.log('resize_slide_img(', $img, ')');
-                        //console.log('is jQ obj? ', ($img instanceof jQuery), ')');
                         var $img = $(img);
                         if ($img) {
                             var ratio = $img[0].width / $img[0].height;
-                            //console.log('ratio: ', ratio);
                             var w = $(window).width();
                             var h = $(window).height() - $('.header').height() - $('.pagetit').height();
                             var img_w = 0;
@@ -3386,7 +3362,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 img_w = w;
                                 img_h = img_w / ratio;
                             }
-                            //console.log($img.prop('src'), ' width: ', img_w, ' height: ', img_h);
                             $img.css({
                                 width: img_w,
                                 height: img_h,
@@ -3414,7 +3389,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                         $.each(images, function (i, url) {
                             var $img = $('<img>');
-                            //console.log('src: ',url);
                             $img.load(function () {
                                 resize_slide_img($img);
                             }).error(function () {
@@ -3426,7 +3400,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             initSlider(function (index) {
 
                                 var item = r.items[index];
-                                //console.log(item);
                                 $('.showreel-tit').html(LP.format('<h3>#[brand]</h3><p>#[campaign]</p><p>#[year]</p></div>', {
                                     brand: item.brand,
                                     campaign: item.campaign,
@@ -3850,6 +3823,63 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         opacity: 1
                     }, 1000);
 
+
+                if( $('.banner_footer').length ){
+                    // render home news
+                    api.request('miscellaneous', function (r) {
+                        $.each(r.items, function (i, item) {
+                            switch (item.id) {
+                            case '1':
+                                var htmls = [];
+                                $.each([1, 2, 3], function (i, val) {
+                                    if (item['text_' + val]) {
+                                        htmls.push('<p>' + item['text_' + val] + '</p>');
+                                    }
+                                });
+                                $('#home-news').css('width', htmls.length * 100 + '%')
+                                    .html(htmls.join(''))
+                                    .find('p')
+                                    .css('width', 1 / htmls.length * 100 + '%');
+
+                                $('.home_newspage span').html('1/' + htmls.length);
+                                if (htmls.length <= 1) {
+                                    $('.home_newspage').hide();
+                                }
+                                break;
+                            case '2':
+                                $('.home_bioleft').html(item.text_1);
+                                $('.home_bioright').html(item.text_2);
+                                break;
+                            case '3':
+                                var quoteHtmls = [];
+                                quoteHtmls.push( '<p>' + item.text_1 + '</p>' );
+                                quoteHtmls.push( '<p>' + item.text_2 + '</p>' );
+                                quoteHtmls.push( '<p>' + item.text_3 + '</p>' );
+                                $('.banft_txt').html( quoteHtmls.join('') )
+                                    .css({
+                                        width: '300%'
+                                    })
+                                    .find('p')
+                                    .css({
+                                        float: 'left',
+                                        width: '33.3%'
+                                    });
+
+                                // interview to scroll
+                                var index = 0 ;
+                                setInterval(function(){
+                                    index++;
+                                    index = index % $('.banft_txt p').length;
+                                    $('.banft_txt').animate({
+                                        marginLeft: -index * 100 + '%'
+                                    }, 500);
+                                }, 3000);
+                                
+                            }
+                        });
+                    });
+                }
+
                 return false;
             },
             destroy: function () {
@@ -3880,6 +3910,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('#icon-wrap').html(linkHtml.join(''));
 
     });
+
+    
     // change history
     LP.use('../plugin/history.js', function () {
         History.replaceState({
@@ -3966,9 +3998,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             if( prevPath.match(/^(categories|brands|services)/) && !path.match(/^(categories|brands|services)/) ){
                 if( LP.parseUrl(prev).path != LP.getCookie('page') ){
-                    if( path == LP.getCookie('page') ){
-                        urlManager.destory( prevPath );
-                    } else {
+                    urlManager.destory( prevPath );
+                    if( path != LP.getCookie('page') ){
                         loadPage();
                     }
                     return false;
@@ -4438,7 +4469,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     LP.action('brands-item', function ( data ) {
         var prev = data.prev;
-        LP.setCookie('prev', prev);
+        prev && LP.setCookie('prev', prev);
         urlManager.setFormatHash(getPath($(this).data('path')));
     });
 
@@ -5280,7 +5311,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $dom
             .parent()
             .animate({
-                marginLeft: Math.max(Math.min(0, winWidth / 2 - preWidth), winWidth - totalWidth) // - ( $dom.prevAll().length * ( winWidth * 0.7 ) - (isFullScreen ? winWidth * 0.05 : winWidth * 0.15) )
+                marginLeft: winWidth - totalWidth > 0 ? 0 : Math.max(Math.min(0, winWidth / 2 - preWidth), winWidth - totalWidth) // - ( $dom.prevAll().length * ( winWidth * 0.7 ) - (isFullScreen ? winWidth * 0.05 : winWidth * 0.15) )
             }, time)
             .promise()
             .then(function () {
@@ -5351,7 +5382,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $dom
             .parent()
             .animate({
-                marginLeft: Math.max(Math.min(0, winWidth / 2 - preWidth), winWidth - totalWidth) //- ( $dom.prevAll().length * ( winWidth * 0.7 ) - (isFullScreen ? winWidth * 0.05 : winWidth * 0.15) )
+                marginLeft: winWidth - totalWidth > 0 ? 0 : Math.max(Math.min(0, winWidth / 2 - preWidth), winWidth - totalWidth) //- ( $dom.prevAll().length * ( winWidth * 0.7 ) - (isFullScreen ? winWidth * 0.05 : winWidth * 0.15) )
             }, time)
             .promise()
             .then(function () {

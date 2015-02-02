@@ -56,89 +56,6 @@
 <body class="lang-<?php echo $_COOKIE['lang'];?>">
 	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
 	<div class="page-mask"></div>
-	<div class="container">
-	<?php if( isset($home_page) ){?>
-	<!-- banner -->
-	<div class="banpho home-slider">
-		<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0"></div>
-		<div class="banpho-con" data-height="94">
-			<div class="banpho-bt">
-				<a href="javascript:;" data-a="home-slider-left" class="banpho-bt-l transition"></a>
-				<div class="banpho-bt-c" data-a="home-play-movie">
-					<div class="transition"><?php _e('play movie');?><br/><br/><?php _e('play movie');?></div>
-				</div>
-				<a href="javascript:;" data-a="home-slider-right" class="banpho-bt-r transition"></a>
-			</div>
-			<div class="banpho-i">1/12</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-	(function(){
-		var winHeight = document.documentElement.clientHeight;
-		var sliderInner = document.getElementById('slider-block-inner');
-		sliderInner.style.height = winHeight - 60 + 'px';
-	})();
-	</script>
-	<?php }?>
-	<!-- header -->
-	<div class="header <?php if( !isset($home_page) && 0 ){ ?>header-fixed<?php }?>">
-		<div class="header-inner">
-			<div class="logo-wrap">
-				<a href="/" data-a="navitem" class="logo transition"><canvas id="canvas" width="14" height="14" style="background-color:#FFFFFF"></canvas></a>
-			</div>
-			<div class="nav column cs-clear">
-				<a class="navitem" data-a="show-category" data-d="type=categories" href="#"><?php _e('CATEGORIES');?></a>
-				<a class="navitem" data-a="show-category" data-d="type=brands" href="#"><?php _e('BRANDS');?></a>
-				<a class="navitem" data-a="show-category" data-d="type=services" href="#"><?php _e('SERVICES');?></a>
-				<a class="navitem" data-a="navitem" href="/awards"><?php _e('AWARDS');?></a>
-				<a class="navitem" data-a="navitem" href="/press" data-last="interview"><?php _e('PRESS');?></a>
-				<a class="navitem" data-a="navitem" href="/bio" data-last="jobs" ><?php _e('ABOUT');?></a>
-				<a class="navitem" data-a="navitem" href="/contact"><?php _e('CONTACT');?></a>
-			</div>
-			<div class="language"><a href="#" data-a="lang" data-d="lang=eng">EN</a> <a href="#" data-a="lang" data-d="lang=zho">中国</a></div>
-			<!-- <a href="#" data-a="search-toggle" class="search">×</a> -->
-			<div class="search-wrap">
-				<form class="search-wrap-inner column">
-					<input type="submit" value="SEARCH" data-a="search-btn" />
-					<input type="text" name="skey" placeholder="WRITE HERE YOUR SEAERCH" />
-				</form> 
-				<div class="search-result column">
-					<h1>RESULTS FOR :  <span></span> </h1>
-					<p class="search-tags">
-						<a href="javascript:void(0);">all (9)</a>
-						<a href="javascript:void(0);">campaigns (9)</a>
-						<a href="javascript:void(0);">awards (3)</a>
-						<a href="javascript:void(0);">others (9)</a>
-					</p>
-					<div class="search-item cs-clear">
-						<span class="search-item-tit">campaigns</span>
-						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
-					</div>
-					<div class="search-item cs-clear">
-						<span class="search-item-tit">campaigns</span>
-						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
-					</div>
-					<div class="search-item cs-clear">
-						<span class="search-item-tit">campaigns</span>
-						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
-					</div>
-					<div class="search-item cs-clear">
-						<span class="search-item-tit">campaigns</span>
-						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
-					</div>
-					<div class="search-item cs-clear">
-						<span class="search-item-tit">campaigns</span>
-						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
-					</div>
-					<div class="search-item cs-clear">
-						<span class="search-item-tit">campaigns</span>
-						Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="process"></div>
-	</div>
 	<div class="section sec_gates" style="display:none;">
 		<div class="gates-inner cs-clear">
 			<div class="gates-inner-l">
@@ -198,6 +115,89 @@
 		<ul class="brands-con">
 		</ul>
 	</div>
+	<div class="container">
+		<?php if( isset($home_page) ){?>
+		<!-- banner -->
+		<div class="banpho home-slider">
+			<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0"></div>
+			<div class="banpho-con" data-height="94">
+				<div class="banpho-bt">
+					<a href="javascript:;" data-a="home-slider-left" class="banpho-bt-l transition"></a>
+					<div class="banpho-bt-c" data-a="home-play-movie">
+						<div class="transition"><?php _e('play movie');?><br/><br/><?php _e('play movie');?></div>
+					</div>
+					<a href="javascript:;" data-a="home-slider-right" class="banpho-bt-r transition"></a>
+				</div>
+				<div class="banpho-i">1/12</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		(function(){
+			var winHeight = document.documentElement.clientHeight;
+			var sliderInner = document.getElementById('slider-block-inner');
+			sliderInner.style.height = winHeight - 60 + 'px';
+		})();
+		</script>
+		<?php }?>
+		<!-- header -->
+		<div class="header <?php if( !isset($home_page) && 0 ){ ?>header-fixed<?php }?>">
+			<div class="header-inner">
+				<div class="logo-wrap">
+					<a href="/" data-a="navitem" class="logo transition"><canvas id="canvas" width="14" height="14" style="background-color:#FFFFFF"></canvas></a>
+				</div>
+				<div class="nav column cs-clear">
+					<a class="navitem" data-a="show-category" data-d="type=categories" href="#"><?php _e('CATEGORIES');?></a>
+					<a class="navitem" data-a="show-category" data-d="type=brands" href="#"><?php _e('BRANDS');?></a>
+					<a class="navitem" data-a="show-category" data-d="type=services" href="#"><?php _e('SERVICES');?></a>
+					<a class="navitem" data-a="navitem" href="/awards"><?php _e('AWARDS');?></a>
+					<a class="navitem" data-a="navitem" href="/press" data-last="interview"><?php _e('PRESS');?></a>
+					<a class="navitem" data-a="navitem" href="/bio" data-last="jobs" ><?php _e('ABOUT');?></a>
+					<a class="navitem" data-a="navitem" href="/contact"><?php _e('CONTACT');?></a>
+				</div>
+				<div class="language"><a href="#" data-a="lang" data-d="lang=eng">EN</a> <a href="#" data-a="lang" data-d="lang=zho">中国</a></div>
+				<!-- <a href="#" data-a="search-toggle" class="search">×</a> -->
+				<div class="search-wrap">
+					<form class="search-wrap-inner column">
+						<input type="submit" value="SEARCH" data-a="search-btn" />
+						<input type="text" name="skey" placeholder="WRITE HERE YOUR SEAERCH" />
+					</form> 
+					<div class="search-result column">
+						<h1>RESULTS FOR :  <span></span> </h1>
+						<p class="search-tags">
+							<a href="javascript:void(0);">all (9)</a>
+							<a href="javascript:void(0);">campaigns (9)</a>
+							<a href="javascript:void(0);">awards (3)</a>
+							<a href="javascript:void(0);">others (9)</a>
+						</p>
+						<div class="search-item cs-clear">
+							<span class="search-item-tit">campaigns</span>
+							Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+						</div>
+						<div class="search-item cs-clear">
+							<span class="search-item-tit">campaigns</span>
+							Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+						</div>
+						<div class="search-item cs-clear">
+							<span class="search-item-tit">campaigns</span>
+							Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+						</div>
+						<div class="search-item cs-clear">
+							<span class="search-item-tit">campaigns</span>
+							Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+						</div>
+						<div class="search-item cs-clear">
+							<span class="search-item-tit">campaigns</span>
+							Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+						</div>
+						<div class="search-item cs-clear">
+							<span class="search-item-tit">campaigns</span>
+							Natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ips sit voluptatem accusantium  
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="process"></div>
+		</div>
 
 
 
