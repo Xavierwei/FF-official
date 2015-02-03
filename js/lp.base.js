@@ -3723,8 +3723,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         return {
             go: function (url, type) {
                 if( !needAjax ){
-                    window.location.hash = url;
-                    // window.location.href = url;
+                    // window.location.hash = url;
+                    window.location.href = url;
                 } else {
                     History.pushState({
                         prev: location.href,
