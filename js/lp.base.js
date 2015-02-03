@@ -5,7 +5,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 //LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, api) {
 
     var lang = LP.getCookie('lang');
-    var needAjax = false;
+    var needAjax = $('html').hasClass('history');
     // page components here
     // ============================================================================
     $.easing.easeLightOutBack = function (x, t, b, c, d, s) {
@@ -3723,8 +3723,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         return {
             go: function (url, type) {
                 if( !needAjax ){
-                    // window.location.hash = url;
-                    window.location.href = url;
+                    window.location.hash = url;
+                    // window.location.href = url;
                 } else {
                     History.pushState({
                         prev: location.href,
