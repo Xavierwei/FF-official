@@ -310,7 +310,7 @@ a.icon_bg{background-position: 0px -115px;}
 
 
 /* for CATEGORIES */
-.sec_gates{ background: rgba(67, 66, 66, 0.97); position: fixed;top: 66px; bottom: 0; width: 100%;z-index: 99;overflow: hidden;}
+.sec_gates{ background: rgba(67, 66, 66, 0.97);background: rgb(67, 66, 66)\9;position: fixed;top: 66px; bottom: 0; width: 100%;z-index: 99;overflow: hidden;}
 .gates-inner{top: -100% ;height: 100%;position: absolute;width: 100%;}
 .gates-inner a:hover,.gates-inner a.active{color: white;}
 .gates-inner-l{font-size: 44px;font-weight: bold;line-height: 1.2em;height: 100%;overflow: auto;padding: 0;}
@@ -355,7 +355,7 @@ url(../images/brand_big_nav.png) left center; }
 
 
 .brands-con .brands-mask{display: block;transition:opacity 0.6s;-ms-transition:opacity 0.6s;-webkit-transition:opacity 0.6s;-moz-transition:opacity 0.6s;-o-transition:opacity 0.6s;}
-.brands-con .brands-con-li:hover .brands-mask{opacity: 0 !important;}
+.brands-con .brands-con-li:hover .brands-mask{opacity: 0 !important;filter:alpha(opacity=0) !important;}
 .brands-con dl{margin: 0;}
 .brands-con dt{float: left;width: 310px;background: #030101;color: white;padding: 40px;position: relative;z-index: 1;height: 104px;}
 .brands-con dd{overflow: hidden;position: absolute;height: 100%;left: 390px;width: auto;right: 0;margin: 0;}
@@ -548,7 +548,8 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
     background: -o-linear-gradient(left,  #F00 0%,#e40071 100%); /* Opera 11.10+ */
     background: -ms-linear-gradient(left,  #F00 0%,#e40071 100%); /* IE10+ */
     background: linear-gradient(to right,  #F00 0%,#e40071 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F00', endColorstr='#e40071',GradientType=1 ); /* IE6-8 */
+    background: #F00 \9;
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#F00', endColorstr='#F00',GradientType=1 ); /* IE6-8 */*/
 }
 .loading{width: 100%;
     background: #e6e6e6;
@@ -642,5 +643,5 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 
 .page-mask{position: fixed;top: 0;width: 100%;z-index: 199;height: 100%;background: #000;}
 .page-mask.lighter{opacity: 0.6;}
-
+.slider-block-inner{overflow: hidden;}
 .move-line{position: absolute;width: 1px;background: red;height: 100%;top: 0;}

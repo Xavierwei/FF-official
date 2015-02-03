@@ -5,11 +5,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 //LP.use(['/js/plugin/jquery.easing.1.3.js', '../api','logo'], function (easing, api) {
 
     var lang = LP.getCookie('lang');
+    var needAjax = false;
     // page components here
     // ============================================================================
     $.easing.easeLightOutBack = function (x, t, b, c, d, s) {
         if (s == undefined) s = 0.70158;
         return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+    }
+
+    Object.getOwnPropertyNames = Object.getOwnPropertyNames || function(departments){
+        return {
+            forEach: function( fn ){
+                for( var key in departments ){
+                    fn && fn( key, departments[key] );
+                }
+            }
+        }
     }
 
 
@@ -357,7 +368,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $('.sec_brands').stop(true, true).show();
                 var path = getPath();
 
-                LP.setCookie('level2', path);
+                LP.setCookie('level2', path || '');
 
                 var ver = setVersion(path);
 
@@ -523,43 +534,43 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         
 
         // press page
-        rules.push({
-            url: /^jobs\/\d+$/,
-            destory: function (cb) {
-                cb && cb();
-            },
-            load: function (data) {
-                var $item = $(this).closest('.jobsitem');
-                job_index = $item.index() + 1;
-                $('.shade').fadeIn();
-                $('.pop_jobs').show()
-                    .find('.pop_jobcon')
-                    .html('')
-                    .append($item.find('.pop_jobcon_inner').clone().show())
+        // rules.push({
+        //     url: /^jobs\/\d+$/,
+        //     destory: function (cb) {
+        //         cb && cb();
+        //     },
+        //     load: function (data) {
+        //         var $item = $(this).closest('.jobsitem');
+        //         job_index = $item.index() + 1;
+        //         $('.shade').fadeIn();
+        //         $('.pop_jobs').show()
+        //             .find('.pop_jobcon')
+        //             .html('')
+        //             .append($item.find('.pop_jobcon_inner').clone().show())
 
-                .end()
-                    .css({
-                        top: '-150%',
-                        opacity: 1
-                    })
-                    .animate({
-                        top: '50%'
-                    }, 400)
-                    .promise()
-                    .then(function () {
-                        $('.pop_press_menus')
-                            .delay(100)
-                            .animate({
-                                right: 0
-                            }, 300, 'easeLightOutBack');
-                    });
+        //         .end()
+        //             .css({
+        //                 top: '-150%',
+        //                 opacity: 1
+        //             })
+        //             .animate({
+        //                 top: '50%'
+        //             }, 400)
+        //             .promise()
+        //             .then(function () {
+        //                 $('.pop_press_menus')
+        //                     .delay(100)
+        //                     .animate({
+        //                         right: 0
+        //                     }, 300, 'easeLightOutBack');
+        //             });
 
-                $('.pop_jobs .jobs_more').attr('href', 'mailto:' + data.contact);
-                $('.pop_jobs .pop_index').html(job_index);
-                $('.pop_jobs .pop_total').html($item.parent().children().length);
-                $('.pop_job_menus').css('right', 95);
-            }
-        });
+        //         $('.pop_jobs .jobs_more').attr('href', 'mailto:' + data.contact);
+        //         $('.pop_jobs .pop_index').html(job_index);
+        //         $('.pop_jobs .pop_total').html($item.parent().children().length);
+        //         $('.pop_job_menus').css('right', 95);
+        //     }
+        // });
 
 
         return {
@@ -610,31 +621,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // }
                 var currPaths = hash.split('/');
                 var paths = toUrl.split('/');
-                //console.log('currPaths: ',currPaths);
-                //console.log('paths: ',paths);
-                if( $('html').hasClass('history') ) {
-                    if (paths.length >= 4) {
-                        if (paths[0] == 'pages_contents') {
-                            paths.shift();
-                        }
-                        if ((currPaths[0] == 'brands' || currPaths[0] == 'services') && paths[0] == 'categories') {
-                            var index = paths.pop();
-                            toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join(',,') + '/' + index;
-                        } else {
-                            toUrl = paths.join('/');
-                        }
+                if (paths.length >= 4) {
+                    if (paths[0] == 'pages_contents') {
+                        paths.shift();
+                    }
+                    if ((currPaths[0] == 'brands' || currPaths[0] == 'services') && paths[0] == 'categories') {
+                        var index = paths.pop();
+                        toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join(',,') + '/' + index;
+                    } else {
+                        toUrl = paths.join('/');
                     }
                 }
-
-                // if (paths[0] == 'pages_contents' && paths.length == 5) {
-                //     paths.shift();
-                //     if (currPaths[0] == 'brands' || currPaths[0] == 'services') {
-                //         var index = paths.pop();
-                //         toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join(',,') + '/' + index;
-                //     } else {
-                //         toUrl = paths.join('/');
-                //     }
-                // }
 
                 var loadFn = null,
                     destory = null,
@@ -695,7 +692,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     tarPath = paths.join('/');
                     break;
                 }
-                if (!tarPath) {
+                if (!tarPath || tarPath == 'undefined') {
                     tarPath = LP.getCookie('page') || '';
                 }
 
@@ -2196,6 +2193,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         LP.use('video-js', function () {
             var is_playing = false;
+            // videojs.options.techOrder = ['flash'];
             videojs.options.flash.swf = "/js/video-js/video-js.swf";
             var myVideo = videojs(id, config, function () {
                 var v = this;
@@ -3202,7 +3200,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             'interview-page': function (cb) {
                 // preload js conponent
                 // LP.use(['video-js', '../plugin/jquery.jplayer.min.js']);
-                LP.use(['wavesurfer']);
+                // LP.use(['wavesurfer']);
 
                 var tvTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
                     <div class="interview_info">\
@@ -3724,10 +3722,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var isFirstLoading = true;
         return {
             go: function (url, type) {
-                History.pushState({
-                    prev: location.href,
-                    type: type
-                }, undefined, url);
+                if( !needAjax ){
+                    // window.location.hash = url;
+                    window.location.href = url;
+                } else {
+                    History.pushState({
+                        prev: location.href,
+                        type: type
+                    }, undefined, url);
+                }
             },
             init: function (cb) {
                 if ($('html').hasClass('canvas')) {
@@ -3976,9 +3979,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     
     // change history
     LP.use('../plugin/history.js', function () {
-        History.replaceState({
-            prev: ''
-        }, undefined, location.href);
+        // History.replaceState({
+        //     prev: ''
+        // }, undefined, location.href);
+        
         loadingMgr.show();
         pageManager.init(function () {
             loadingMgr.success();
@@ -3988,17 +3992,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         //     loadingMgr.success();
         // });
 
-        // History.Adapter.bind(window,'hashchange',function( ev ){
-        //     var oldURL = ev.oldURL;
-        //     var newURL = ev.newURL;
-        //     var oldArr = formatPath2Arr( ev.oldURL );
-        //     var newArr = formatPath2Arr( ev.newURL );
-        //     if( ( !newArr[4] && !oldArr[4] ) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) ){
-        //         return false;
-        //     }
-
-        //     urlManager.go( newURL.replace( /.*##!/,'' ), null, oldURL.replace( /.*##!/,'' ) );
-        // });
 
         // Bind to StateChange Event
         function loadPage(){
@@ -4049,38 +4042,53 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             });
         }
-        History.Adapter.bind(window, 'statechange', function () { // Note: We are using statechange instead of popstate
 
-            var State = History.getState(); // Note: We are using History.getState() instead of event.state
-            var prev = State.data.prev;
-            var type = State.data.type;
+        if( !needAjax ){
+            // History.Adapter.bind(window,'hashchange',function( ev ){
+            //     var oldURL = ev.oldURL;
+            //     var newURL = ev.newURL;
+            //     var oldArr = formatPath2Arr( ev.oldURL );
+            //     var newArr = formatPath2Arr( ev.newURL );
+            //     if( ( !newArr[4] && !oldArr[4] ) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) ){
+            //         return false;
+            //     }
 
-            var path = LP.parseUrl(State.url).path.replace(/^\//, '');
-            var prevPath = LP.parseUrl(prev).path.replace(/^\//, '');
+            //     urlManager.go( newURL.replace( /.*##!/,'' ), null, oldURL.replace( /.*##!/,'' ) );
+            // });
+        } else {
+            History.Adapter.bind(window, 'statechange', function () { // Note: We are using statechange instead of popstate
+                // debugger-----------
 
-            if( prevPath.match(/^(categories|brands|services)/) && !path.match(/^(categories|brands|services)/) ){
-                if( LP.parseUrl(prev).path != LP.getCookie('page') ){
-                    urlManager.destory( prevPath );
-                    if( path != LP.getCookie('page') ){
-                        loadPage();
+                var State = History.getState(); // Note: We are using History.getState() instead of event.state
+                var prev = State.data.prev;
+                var type = State.data.type;
+
+                var path = LP.parseUrl(State.url).path.replace(/^\//, '');
+                var prevPath = LP.parseUrl(prev).path.replace(/^\//, '');
+                if( prevPath.match(/^(categories|brands|services)/) && !path.match(/^(categories|brands|services)/) ){
+                    if( LP.parseUrl(prev).path != LP.getCookie('page') ){
+                        urlManager.destory( prevPath );
+                        if( path != LP.getCookie('page') ){
+                            loadPage();
+                        }
+                        return false;
                     }
+                }
+                // if only change hash
+                if (path.match(/^(categories|brands|services)/) || prevPath.match(/^(categories|brands|services)/)) {
+                    var oldArr = prevPath ? formatPath2Arr(prevPath) : [];
+                    var newArr = formatPath2Arr(path);
+                    if ((!newArr[4] && !oldArr[4]) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) && oldArr[2] == newArr[2]) {
+                        return false;
+                    }
+
+                    urlManager.go(path, null, prevPath);
                     return false;
                 }
-            }
-            // if only change hash
-            if (path.match(/^(categories|brands|services)/) || prevPath.match(/^(categories|brands|services)/)) {
-                var oldArr = prevPath ? formatPath2Arr(prevPath) : [];
-                var newArr = formatPath2Arr(path);
-                if ((!newArr[4] && !oldArr[4]) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) && oldArr[2] == newArr[2]) {
-                    return false;
-                }
+                loadPage();
 
-                urlManager.go(path, null, prevPath);
-                return false;
-            }
-            loadPage();
-
-        });
+            });
+        }
     });
 
 
@@ -4531,7 +4539,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     LP.action('brands-item', function ( data ) {
         var prev = data.prev;
-        prev && LP.setCookie('prev', prev);
+        prev && LP.setCookie('prev', prev || '');
         urlManager.setFormatHash(getPath($(this).data('path')));
     });
 
