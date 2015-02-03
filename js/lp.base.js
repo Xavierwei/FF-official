@@ -3931,7 +3931,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     $('.banft_txt').animate({
                                         marginLeft: -index * 100 + '%'
                                     }, 500);
-                                }, 3000);
+                                }, 5000);
                                 
                             }
                         });
@@ -5137,7 +5137,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             }));
         });
 
-        $('#list-table').html(listHtml.join('') || '<tr> empty </tr>');
+        $('#list-table').html(listHtml.join('') || '<tr></tr>');
         return false;
     });
 
