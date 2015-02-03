@@ -23,19 +23,13 @@
     var index = 0;
     this.bind( 'update', function() {
       var percent = this.getTime() / this.audio.duration;
-      if( index >= percent * 500 ){
+      if( index >= percent * 1000 ){
         return;
       }
       // if( index % 100 > 0 ) return;
       index ++;
       var waveform = this.getWaveform();
-      var max = 0,min =0;
-      for( var i = 0 ; i < waveform.length ; i ++ ){
-        max = Math.max( max, waveform[i] );
-        min = Math.min( min, waveform[i] );
-      }
-      arrs.push( min );
-      arrs.push( max );
+      arrs.push( waveform[ ~~Math.random() * waveform.length ] );
       waveform = arrs;
       ctx.clearRect( 0, 0, w, h );
       ctx.lineWidth   = options.strokeWidth || 10;
