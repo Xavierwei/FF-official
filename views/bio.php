@@ -37,7 +37,7 @@
 				</div>
 				<div class="timeline_right">
 					<div class="timeline_txt"><?php _e('Fred & Farid have also launched a Digital Business Fund (Fred & Farid Digital Investment Fund) taking participations and promoting young digital companies (Meltygroup, BonjourBonjour, Wezzoo, State), and digital fund Fashion Capital Partners (FCP).');?></div>
-					<div class="timeline_txt2"><?php _e('The successful team was selected in Shots Top 100 Creative Minds in 2007, Technikart\’s 100 who made 2008, Gala\’s 15 who marked 2010, L\’Optimum\’s 2011 popular persons, Technikart\’s who made 2011, Les Echos\’ 100 who will take over in 2011 and in 2013, and GQ\’s 30 most influential media persons in France for three years consecutively (17th rank in 2010, 11th in 2011, 11th in 2012).');?></div>
+					<div class="timeline_txt2"><?php _e('The successful team was selected in Shots Top 100 Creative Minds in 2007, Technikart\’s 100 who made 2008, Gala\’s 15 who marked 2010, L’Optimum\’s 2011 popular persons, Technikart\’s who made 2011, Les Echos\’ 100 who will take over in 2011 and in 2013, and GQ\’s 30 most influential media persons in France for three years consecutively (17th rank in 2010, 11th in 2011, 11th in 2012).');?></div>
 				</div>
 			</div>
 			<!--  -->
@@ -63,7 +63,7 @@
 				<div class="timeline_right timeline_2012right">
 					<div class="timeline_txt ">
 						<p><img src="../images/timeline_2012img.jpg" /></p>
-						<?php _e('This new agency is 100% social media orientated. In just one year, their Chinese office has worked for 27 brands in China, including Porsche, Coca-Cola, Shang Xia, Sunning, Sogou, Avène… and renowned groups like L\’Oréal and Pernod Ricard.');?></div>
+						<?php _e('This new agency is 100% social media orientated. In just one year, their Chinese office has worked for 27 brands in China, including Porsche, Coca-Cola, Shang Xia, Sunning, Sogou, Avène… and renowned groups like L’Oréal and Pernod Ricard.');?></div>
 				</div>
 			</div>
 			<!--  -->
@@ -113,7 +113,7 @@
 					<div class="timeline_txt" style="padding-top:90px">
 						<p><strong><?php _e('Fred & Farid Group won and produced international campaigns for more than 90 brands, including prestigious iconic brands like Van Cleef & Arpels, Yves Saint Laurent, Giorgio Armani, Mont Blanc, Wrangler, Martini, 1664, Audi, Orangina… etc.');?></strong></p>
 						<p><?php _e('The team is chosen by the most serious and respected names in the business:');?></p>
-						<p><?php _e('Frederic Oudea (CEO Société Générale), Jean-Paul Agon (CEO L\’Oréal), Renzo Rosso (CEO Diesel), Jean-Paul Constant (International Brands Director Oxylane Group), Jean-Paul Torris (Vice President Bongrain SA), Philippe Benacin, (CEO Interparfums).');?></p>
+						<p><?php _e('Frederic Oudea (CEO Société Générale), Jean-Paul Agon (CEO L’Oréal), Renzo Rosso (CEO Diesel), Jean-Paul Constant (International Brands Director Oxylane Group), Jean-Paul Torris (Vice President Bongrain SA), Philippe Benacin, (CEO Interparfums).');?></p>
 						<p><img src="../images/timeline_2009img.jpg"></p>
 					</div>
 				</div>
@@ -140,7 +140,7 @@
 				<div class="timeline_right timeline_2011right" style="padding-top:20px">
 					<div class="timeline_txt ">
 						<p><?php _e('A new big chapter started, when French financial tycoon Vincent Bolloré offered to finance their own group, Fred & Farid Group. “Fred & Farid are so talented that it was a too good opportunity to pass up” Vincent Bolloré / Campaign (13 Oct 2006).');?></p>
-						<p style="padding-top:80px"><?php _e('Founders, CEO and Executive Creative Directors Fred Raillard and Farid Mokart own 70% of their company. The independent digital group started winning some fiercely sought-after clients like L’Oréal-Diesel, Société Générale, Schweppes, Audi… making the largest growth in the market in the last 5 years, with a turnover of nearly 50 million € in 2011. Fred & Farid have done one of the biggest worldwide buzz by hijacking the Rugby World Cup 2007 with their “Dim Dim Girls” for French underwear brand Dim.<');?>/p>
+						<p style="padding-top:80px"><?php _e('Founders, CEO and Executive Creative Directors Fred Raillard and Farid Mokart own 70% of their company. The independent digital group started winning some fiercely sought-after clients like L’Oréal-Diesel, Société Générale, Schweppes, Audi… making the largest growth in the market in the last 5 years, with a turnover of nearly 50 million € in 2011. Fred & Farid have done one of the biggest worldwide buzz by hijacking the Rugby World Cup 2007 with their “Dim Dim Girls” for French underwear brand Dim.');?></p>
 					</div>
 				</div>
 			</div>
@@ -175,7 +175,7 @@
 					<div class="timeline_txt ">
 						<p><strong><?php _e('In 2005, Publicis Group chairman Maurice Levy personally hired “the already legendary advertising duo” to launch Marcel, a new international digital agency based in Paris, named after the founder of Publicis’ group, Bleustein-Blanchet. </strong>');?></p>
 						<p><?php _e('18 June 2005');?></p>
-						<p><?php _e('Maurice Levy<br />Paris Match');?></p>
+						<p><?php _e('Maurice Levy<br/>Paris Match');?></p>
 					</div>
 				</div>
 			</div>
@@ -231,7 +231,7 @@
 						<p ><?php _e('Sir John Hegarty <br />Stratégies');?></p>
 						<p  style="padding-top:390px;text-transform: uppercase;font-size:18px;color:#000;font-weight:bold"><strong><?php _e('In his 2002 novel "L\'Egoiste romantique", famous French writer Frederic Beigbeder mentioned them as "Fred & Farid, the world\'s best advertising creatives".');?></strong></p>
 						<p ><?php _e('06 June 2002');?></p>
-						<p ><?php _e('Fredeirc Beigbeder<br />L\’Egoiste romatique');?></p>
+						<p ><?php _e('Fredeirc Beigbeder<br />L’Egoiste romatique');?></p>
 						<p style="padding-top:110px"><img src="../images/timeline_2002img2.jpg"></p>
 					</div>
 				</div>
@@ -263,7 +263,7 @@
 			<div class="intoview-effect cs-clear" data-effect="fadeup">
 				<div class="timeline_btl">
 					<p><?php _e('Fred was the first French person to be Foreman of the prestigious Art Direction D&amp;AD jury in London in 2013. He is a member of French Think Tank “Le Siècle Digital”, and in the board of “One Tuesday” Entrepreneurial Digital Network. Fred was selected in Young Leaders 2013 France-China promotion. He is part of the Steering Committee of the France-China Foundation now, with French Consul General Emmanuel Lenain and Chinese Ambassador Cheng Tao. Fred is a strong supporter of French-Chinese business and cultural relationships. He lives in Shanghai with his wife and three sons, and is passionate about Karate.');?></p>
-					<p style="padding-top:80px"><?php _e('Fred &amp; Farid are also “Chevaliers de l\’Olivier des Baux de Provence” for their support to the French Provence region.');?></p>
+					<p style="padding-top:80px"><?php _e('Fred &amp; Farid are also “Chevaliers de l’Olivier des Baux de Provence” for their support to the French Provence region.');?></p>
 				</div>
 				<div class="timeline_btr">
 					<p><?php _e('Farid was member of Cannes Lions film jury, and prestigious British D&amp;AD music video jury in 2006. Farid is a board member of Olivier Ferrand\’s progressive Think Tank “Terra Nova” with Benoît Thieulin from Netscouade, and in the board of “One Tuesday” Entrepreneurial Digital Network. Farid lives in Paris with his wife and two children. He is passionate about film, literature and tennis.');?></p>

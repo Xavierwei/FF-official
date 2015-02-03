@@ -7,7 +7,7 @@
 
 /* Reset
 ================================================================================================= */
-html{}
+html{width: 100%;}
 body{font-family:Helvetica,"Microsoft Yahei",simsun,arial,sans-serif;color:#000;font-size:12px;line-height:1.666em;background: #000;}
 body.lang-zho{font-family: "Microsoft Yahei", "Hiragino Sans GB", simsun,arial,sans-serif;color:#000;font-size:12px;line-height:1.666em;background: #000;}
 h1,h2,h3{font-size:100%;}
@@ -73,6 +73,7 @@ a:hover{color:#000}
 .banpho-con{position: absolute;top: 50%;margin-top: -30px;left: 50%;margin-left: -165px;width: 330px;color: white;font-size: 14px;font-weight: bold;text-transform: uppercase;line-height: 50px;z-index: 101;}
 .banpho-con img{width: auto;}
 
+.container{height: 100%;overflow: hidden;}
 .banpho-bt{width: 208px;height: 50px;border: 2px solid white;position: relative;margin: 0 auto;}
 .banpho-bt-l,.banpho-bt-r{position: absolute;left: -55px;width: 45px;border:2px solid white;background: none;height: 50px; top: -2px; background: url(../images/home_bio_an.png) no-repeat 16px center ;}
 .banpho-bt-r{left: auto;right: -55px; background-position: -253px center;}

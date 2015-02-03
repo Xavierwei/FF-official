@@ -808,7 +808,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         }, 'image-zoom');
         // TODO:: need to fix image width auto and height auto , show real big image
         var $img = $wrap.find('img').css({
-                position: 'absolute',
+                position: 'absolute'
             }).load(function () {
                 loadingMgr.success('image-zoom');
             })
