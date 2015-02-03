@@ -181,7 +181,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         disposeVideo();
         if ($('.page').data('page') == 'home-page' && winTop < sliderHeight) {
-            console.log( sliderHeight );
+            //console.log( sliderHeight );
             // scroll to $('.home-slider').height()
             $('html,body').animate({
                 scrollTop: sliderHeight
@@ -610,15 +610,19 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // }
                 var currPaths = hash.split('/');
                 var paths = toUrl.split('/');
-                if (paths.length >= 4) {
-                    if (paths[0] == 'pages_contents') {
-                        paths.shift();
-                    }
-                    if ((currPaths[0] == 'brands' || currPaths[0] == 'services') && paths[0] == 'categories') {
-                        var index = paths.pop();
-                        toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join(',,') + '/' + index;
-                    } else {
-                        toUrl = paths.join('/');
+                //console.log('currPaths: ',currPaths);
+                //console.log('paths: ',paths);
+                if( $('html').hasClass('history') ) {
+                    if (paths.length >= 4) {
+                        if (paths[0] == 'pages_contents') {
+                            paths.shift();
+                        }
+                        if ((currPaths[0] == 'brands' || currPaths[0] == 'services') && paths[0] == 'categories') {
+                            var index = paths.pop();
+                            toUrl = currPaths[0] + '/' + currPaths[1] + '/' + paths.join(',,') + '/' + index;
+                        } else {
+                            toUrl = paths.join('/');
+                        }
                     }
                 }
 
@@ -889,8 +893,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         return {
             dump: function () {
-                console.log(__CACHE_ITEM__);
-                console.log(__CACHE_AJAX__);
+                //console.log(__CACHE_ITEM__);
+                //console.log(__CACHE_AJAX__);
             },
 
 
@@ -3077,7 +3081,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }
                         items.push(item);
                     });
-                    console.log('people: ',items)
+                    //console.log('people: ',items)
                     $.each(items, function (i, item) {
                         var c = i == 0 ? 'contact_maill' : i == items.length - 1 ? 'contact_mailr' : 'contact_mailc';
                         aHtml.push('<td class="' + c + '">' + item.title + '</td>');
@@ -3114,7 +3118,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $.each(r.items, function (i, item) {
                         entities.push(item);
                     });
-                    console.log('entities: ',entities)
+                    //console.log('entities: ',entities)
                     $.each(entities, function (i, entity) {
                         if (!departments[entity.department]) {
                             departments[entity.department] = [];
@@ -3134,7 +3138,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                         $.each(departments[val],function(i,item) {
                             if (item) {
-                                console.log(num++);
+                                //console.log(num++);
                                 cHtml.push(LP.format(tpl, {
                                     leftORright: num % 2 ? 'contact_conl' : 'contact_conr',
                                     department: item.department,
@@ -3151,7 +3155,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         });
                         cHtml.push('</div>');
                     });
-                    console.log('cHtml: ',cHtml);
+                    //console.log('cHtml: ',cHtml);
                     $('.contact_item').html(cHtml.join(''));
                     // fix style:
                     $(window).resize(function() {
@@ -3175,7 +3179,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             var maxHeight_contact_citys = Math.max.apply(null, Height_contact_citys_arr);
                             var maxHeight_contact_citys_1 = Math.max.apply(null, Height_contact_citys_arr_1);
 
-                            console.log('max height: ',maxHeight_contact_content);
+                            //console.log('max height: ',maxHeight_contact_content);
                             $con.find('.contact_content').each(function(i,el) {
                                 $(el).height(maxHeight_contact_content);
                             });
