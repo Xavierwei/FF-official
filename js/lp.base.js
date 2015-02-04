@@ -52,11 +52,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
           //   }
           // }).on();
 
-          var width = waveform.width / 1000;
+          var num = 1000;
+          var width = waveform.width / num;
 
           dancer
             .load({ src: AUDIO_FILE})
-            .waveform( waveform, { strokeStyle: 'red', strokeWidth: 2 , width: width});
+            .waveform( waveform, { width: width, num: num});
 
           if( Dancer.isSupported() ){
             cb && cb( dancer );
@@ -65,6 +66,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
           var moveElement = $canves.siblings()[0];
           dancer.bind('update', function(){
             moveElement.style.left = dancer.getTime() / dancer.audio.duration * 100 + '%'
+          });
+
+
+          $canves.click(function( ev ){
+            var percent = ev.offsetX / $canves.width();
+            $canves.attr('percent', percent);
           });
 
           window.dancer = dancer;
@@ -2789,11 +2796,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
 
                     // header fixed effect
-                    if (stTop >= $header.offset().top) {
-                        $header.addClass('header-fixed');
-                    } else {
-                        $header.removeClass('header-fixed');
-                    }
+                    // if (stTop >= $header.offset().top) {
+                    //     $header.addClass('header-fixed');
+                    // } else {
+                    //     $header.removeClass('header-fixed');
+                    // }
                     // homeCampaign animate
                     if ($('.cam_item').length && $('.cam_item').eq(0).offset().top < stTop + $(window).height()) {
                         $homeCampaign.data('animate', 1);
@@ -4750,8 +4757,21 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
                     .append($videoWrap.find('.vjs-control-bar'))
                     .appendTo($videoWrap.parent());
-                //console.log($videoWrap.find('video').prop('poster'));
-                //$videoWrap.find('video').prop('poster','');
+                
+                this.on('play', function(){
+                    // hide videos
+                    $videoWrap.closest('.interview-video-wrap').siblings()
+                        .find('.interview-video')
+                        .each(function(){
+                            var video = $(this).data('video-object');
+                            video && video.pause();
+                        });
+                    // hide audios
+                    $videoWrap.closest('.interview-video-wrap').siblings()
+                        .siblings()
+                        .find('.wavesurfer-play')
+                        .click();
+                });
             });
 
             // start animate
@@ -4846,6 +4866,20 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             initSoundWave( audio_url, $musicWrap.find('canvas'), function( dancer ){
                 $container.find('.wavesurfer-playPause-btn').click(function(){
+                    // hide others
+                    $(this).closest('.interview-music-wrap')
+                        .siblings()
+                        .find('.wavesurfer-play')
+                        .click();
+
+                    $(this).closest('.interview-music-wrap')
+                        .siblings()
+                        .find('.interview-video')
+                        .each(function(){
+                            var video = $(this).data('video-object');
+                            video && video.pause();
+                        });
+
                     if( dancer.isPlaying() ){
                         dancer.pause();
                         $(this).addClass('wavesurfer-pause')
@@ -4855,7 +4889,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $(this).removeClass('wavesurfer-pause')
                             .addClass('wavesurfer-play');
                     }
-                });
+                })
+                .click();
             } );
             // render audio
             // LP.use(['wavesurfer'], function () {
@@ -4983,9 +5018,16 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }, 500)
                 .promise()
                 .then(function () {
-                    if ($container.find('.wavesurfer-play').length) {
-                        $container.find('.wavesurfer-play').trigger('click');
+                    if( marginTop ){
+                        if ($container.find('.wavesurfer-pause').length) {
+                            $container.find('.wavesurfer-pause').click();
+                        }
+                    } else {
+                        if ($container.find('.wavesurfer-play').length) {
+                            $container.find('.wavesurfer-play').click();
+                        }
                     }
+                    
                 });
 
             $item

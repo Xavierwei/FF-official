@@ -121,7 +121,7 @@
 	</div>
 	<div class="container">
 		<!-- header -->
-		<div class="header <?php if( !isset($home_page) && 0 ){ ?>header-fixed<?php }?>">
+		<div class="header">
 			<div class="header-inner">
 				<div class="logo-wrap">
 					<a href="/" data-a="navitem" class="logo transition">
