@@ -36,8 +36,18 @@
 					<p><?php _e('SHANGHAI_ADDR_L1');?></p>
                     <p><?php _e('SHANGHAI_ADDR_L2');?></p>
                     <p><?php _e('SHANGHAI_ADDR_L3');?></p>
+                    <p><?php _e('SHANGHAI_ADDR_L4');?></p>
 				</div>
 			</div>
+            <div class="ft_mod ft_newyork">
+                <h3><?php _e('NEWYORK');?></h3>
+                <div class="ft_mbd">
+                    <p><?php _e('SHANGHAI_ADDR_L1');?></p>
+                    <p><?php _e('SHANGHAI_ADDR_L2');?></p>
+                    <p><?php _e('SHANGHAI_ADDR_L3');?></p>
+                    <p><?php _e('SHANGHAI_ADDR_L4');?></p>
+                </div>
+            </div>
 			<div class="ft_mod ft_network">
 				<h3><?php _e('OUR MEDIAS');?></h3>
 				<div class="ft_mbd ft_workmbd" id="icon-wrap">
@@ -54,7 +64,7 @@
 <script type="text/tpl" id="brand_big_text_year">
 <p class="brand_big_text_year">#[year]</p>
 <div class="brand_big_text_item" style="width:80%;">
-  <p class="brand_big_text_tit">#[title]</p>
+  <p class="brand_big_text_tit not-shown">#[title]</p>
   <p class="brand_big_text_val">#[label]</p>
   <p class="brand_big_text_val">&nbsp;</p>
 </div>

@@ -34,7 +34,7 @@ a:hover{color:#000}
 /* FF Used
 ================================================================================================= */
 .page{background: white;position: relative;z-index: 2;margin-bottom: 550px;}
-.header{height: 66px;position: relative;z-index: 40;}
+.header{height: 66px;position: relative;z-index: 40;width: 100%;}
 .header-inner{height: 66px;position: relative;z-index: 2; width: 100%;font-size: 14px;line-height: 60px;background: white;}
 .header-fixed .header-inner{position: fixed;top: 0;z-index: 100;}
 .logo{/*background: url('../images/logo.png') no-repeat;*/width: 14px;height: 14px;position: absolute;left:32px;top:24px;text-align: center;line-height: 73px;}
@@ -90,7 +90,7 @@ a:hover{color:#000}
 /**/
 .footer{background: #000;height: 370px;padding:180px 0 0 ; position: fixed;width: 100%;bottom: 0;}
 .ft_con{width: 1000px;margin: 0 auto 0;color:#525252;font-size: 14px;}
-.ft_mod{float: left;width: 250px;}
+.ft_mod{float: left;width: 200px;}
 .ft_mod h3{}
 .ft_find h3{padding:0 0 0 8px}
 .ft_network h3{padding:0 0 0 26px}
@@ -342,6 +342,7 @@ url(../images/brand_big_nav.png) left center; }
 .brand_big_text_tit {font-size: 14px;font-weight: 100;text-transform: uppercase;}
 .brand_big_text_val {font-size: 11px;color: #666;height: 36px;}
 .brand_big_text_item {float: left;width: 20%;line-height: 3em;}
+.not-shown{visibility: hidden;}
 
 .brands_tit.fixed{position: fixed;width: 100%;top:0;z-index: 40;}
 .brands-tags{background: #3b3b3b; height: 88px;overflow: hidden; display: none;}
