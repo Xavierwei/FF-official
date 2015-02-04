@@ -187,6 +187,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
     var fixHomePageVideo = function (success) {
+        disposeVideo();
+        success && success();
+        return;
+        // fuck
         var winTop = $(window).scrollTop();
         var sliderHeight = $('.home-slider').height();
 
@@ -2167,7 +2171,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     function renderVideo($wrap, movie, poster, config, cb) {
         var id = 'video-js-' + ($.guid++);
-        $wrap.append(LP.format('<div class="video-wrap" style="display:none;"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
+        $wrap.append(LP.format('<div class="video-wrap" style="z-index:-1;"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
             preload="auto"\
               poster="#[poster]">\
              <source src="#[videoFile]" type="video/mp4" />\
@@ -2225,7 +2229,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $wrap.bind('resize.video' + id, resizeFn);
                 }
                 setTimeout(function () {
-                    $wrap.find('.video-wrap').fadeIn();
+                    $wrap.find('.video-wrap').css('z-index',1);
                     if (config.autoplay) {
                         try {
                             myVideo.play();
@@ -2233,7 +2237,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     } else if (config.pause_button) {
                         $wrap.find('.vjs-big-play-button').fadeIn();
                     }
-                }, 20);
+                }, 200);
 
                 // if need to add pause button
                 $('<div class="vjs-mask"></div>').insertAfter($wrap.find('.vjs-poster'))
@@ -3723,8 +3727,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         return {
             go: function (url, type) {
                 if( !needAjax ){
-                    // window.location.hash = url;
-                    window.location.href = url;
+                    window.location.hash = url;
+                    // window.location.href = url;
                 } else {
                     History.pushState({
                         prev: location.href,

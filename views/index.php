@@ -1,5 +1,26 @@
 <?php $home_page = true; ?>
 <?php include_once 'common/header.php';?>
+<!-- banner -->
+<div class="banpho home-slider">
+	<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0"></div>
+	<div class="banpho-con" data-height="94">
+		<div class="banpho-bt">
+			<a href="javascript:;" data-a="home-slider-left" class="banpho-bt-l transition"></a>
+			<div class="banpho-bt-c" data-a="home-play-movie">
+				<div class="transition"><?php _e('play movie');?><br/><br/><?php _e('play movie');?></div>
+			</div>
+			<a href="javascript:;" data-a="home-slider-right" class="banpho-bt-r transition"></a>
+		</div>
+		<div class="banpho-i">1/12</div>
+	</div>
+</div>
+<script type="text/javascript">
+(function(){
+	var winHeight = document.documentElement.clientHeight;
+	var sliderInner = document.getElementById('slider-block-inner');
+	sliderInner.style.height = winHeight - 60 + 'px';
+})();
+</script>
 <div class="page" data-page="home-page">
 	<!-- section -->
 	<div class="section sec_home">
