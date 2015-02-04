@@ -19,6 +19,8 @@
 					<a href="#" class="find_item icon_hb"></a>
 					<a href="#" class="find_item icon_yk"></a>
 					<a href="#" class="find_item icon_yt"></a>
+					<a href="#" class="find_item icon_wx"></a>
+					<a href="#" class="find_item icon_lk"></a>
 				</div>
 			</div>
 			<div class="ft_mod ft_paris">
