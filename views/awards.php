@@ -50,7 +50,7 @@
 		</div>
 		<!--  -->
 		<div data-effect="fadeup" class="intoview-effect awardlist column">
-			<table id="list-table" class="take-no-space'>
+			<table id="list-table" class="take-no-space">
 			</table>
 		</div>
 		<!--  -->
