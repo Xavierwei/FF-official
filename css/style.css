@@ -150,6 +150,7 @@ a.icon_bg{background-position: 0px -115px;}
 .awardlist td.cam_item{width: auto;text-align: center;margin-top: 0;float: none;}
 .awardlist td.cam_item:hover{background: inherit;color:inherit;}
 .even{background: #ebebeb;}
+/*#list-table tr {opacity: 0;display: none;}*/
 
 /*section jobs*/
 .sec_jobs{margin: 80px auto 80px;}
@@ -343,6 +344,7 @@ url(../images/brand_big_nav.png) left center; }
 .brand_big_text_val {font-size: 11px;color: #666;height: 36px;}
 .brand_big_text_item {float: left;width: 20%;line-height: 3em;}
 .not-shown{visibility: hidden;}
+.take-no-space{display: none;}
 
 .brands_tit.fixed{position: fixed;width: 100%;top:0;z-index: 40;}
 .brands-tags{background: #3b3b3b; height: 88px;overflow: hidden; display: none;}

@@ -2173,6 +2173,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
              <source src="#[videoFile]" type="video/mp4" />\
              <source src="#[videoFile]" type="video/webm" />\
              <source src="#[videoFile]" type="video/ogg" />\
+             <object class="vjs-flash-fallback" type="application/x-shockwave-flash" data="http://vjs.zencdn.net/c/video-js.swf">\
+                 <param name="movie" value="http://vjs.zencdn.net/c/video-js.swf" />\
+                 <param name="allowfullscreen" value="true" />\
+                 <param name="flashvars" value=\'config={"playlist":["#[poster]", {"url": "#[videoFile]","autoPlay":false,"autoBuffering":true}]}\' />\
+                 <img src="#[poster]" alt="Poster Image" title="No video playback capabilities." />\
+             </object>\
         </video></div>', {
             id: id,
             videoFile: movie,
@@ -5148,8 +5154,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 //campaign_link: 'path=categories/' + all_item._awardPath + '&id=' + all_item.fid_award
             }));
         });
-
         $('#list-table').html(listHtml.join('') || '<tr></tr>');
+        $('#awardfilter').one('click',function() {
+            $('#list-table').removeClass('take-no-space');
+        });
+        //$('#awardfilter').on('click',function() {
+        //    $('#list-table').show();
+        //    //$('#list-table').toggleClass('take-no-space');
+        //    $('#list-table').find('tr').each(function(i, row) {
+        //        //$(row).removeClass('take-no-space');
+        //        console.log('tr: ',row);
+        //        setTimeout(function() {
+        //            $(this).show();
+        //            $(this).css('opacity',1);
+        //        }, 300 * i);
+        //    });
+        //});
         return false;
     });
 

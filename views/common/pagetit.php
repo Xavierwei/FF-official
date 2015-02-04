@@ -52,7 +52,7 @@
 	<div class="about_crumbs crumbs">
 		<span>
 			<a href="/press" data-a="press_crumbs_link"><?php _e('press'); ?></a> / 
-			<a href="/interview" data-a="press_crumbs_link"><?php _e('interview'); ?></a>
+			<a href="/interview" data-a="press_crumbs_link"><?php _e('INTERVIEW'); ?></a>
 		</span>
 	</div>
 </div>

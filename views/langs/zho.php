@@ -25,7 +25,7 @@
   'HELLO SUNSHINE is a creative agency based on a single, powerful notion that optimism drives successful brands and popular culture. It’s ambition is to bring a much needed breath of fresh air to the advertising world' => 'HELLO SUNSHINE是一家基于一个单一的,有力的概念的广告公司，即乐观推动成功的品牌和流行文化。它的目标是带给广告界急需的一口新鲜空气',
   'Ici un texte de presentation<br />de chapitre utile pour le referencement' => '',
   'INTERNATIONAL AWARDS' => '项国际奖项',
-  'interview' => '访谈',
+  'INTERVIEW' => '访谈',
   'jobs' => '职位',
   'KEY PEOPLE' => '核心团队',
   'KIDS LOVE JETLAG is a creative digital agency, fully integrated and specialized in digital strategy, digital influence, interactive design, mobile, retail and out-of home experiences and delivering vision, ideas, plateform, and solutions that people want to share' => 'KILLDEATH是一家创意数字广告公司，全面整合和专门的数字战略，数字影响力，交互设计，移动，零售和超凡体验,并提供人们乐意分享的视觉，创意，平台和解决方案',
