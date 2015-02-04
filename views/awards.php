@@ -1,7 +1,7 @@
 <?php include_once 'common/header.php';?>
 <div class="page" data-page="awards-page" data-header="awards">
 	<!-- page title -->
-	<?php 
+	<?php
 	$pagetit = _e('AWARDS',false);
 	include_once 'common/pagetit.php';?>
 	
@@ -50,7 +50,7 @@
 		</div>
 		<!--  -->
 		<div data-effect="fadeup" class="intoview-effect awardlist column">
-			<table id="list-table">
+			<table id="list-table" class="take-no-space">
 			</table>
 		</div>
 		<!--  -->
