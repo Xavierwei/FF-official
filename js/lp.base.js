@@ -3210,6 +3210,44 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 $(item).closest('.contact_ad').add($(item).closest('.contact_ad').prev('strong.contact_city')).remove();
                             }
                         });
+                        ///////// Footer /////////
+
+                        var heights_p1 = [];
+                        $('.ft-addr-p-1').each(function(i,p) {
+                            heights_p1.push($(p).height());
+                        });
+                        var p1_max = Math.max.apply(null, heights_p1);
+                        $('.ft-addr-p-1').each(function(i,p) {
+                            $(p).height(p1_max);
+                        });
+
+                        var heights_p2 = [];
+                        $('.ft-addr-p-2').each(function(i,p) {
+                            heights_p2.push($(p).height());
+                        });
+                        var p2_max = Math.max.apply(null, heights_p2);
+                        $('.ft-addr-p-2').each(function(i,p) {
+                            $(p).height(p2_max);
+                        });
+
+                        var heights_p3 = [];
+                        $('.ft-addr-p-3').each(function(i,p) {
+                            heights_p3.push($(p).height());
+                        });
+                        var p3_max = Math.max.apply(null, heights_p3);
+                        $('.ft-addr-p-3').each(function(i,p) {
+                            $(p).height(p3_max);
+                        });
+
+                        var heights_p4 = [];
+                        $('.ft-addr-p-4').each(function(i,p) {
+                            heights_p4.push($(p).height());
+                        });
+                        var p4_max = Math.max.apply(null, heights_p4);
+                        $('.ft-addr-p-4').each(function(i,p) {
+                            $(p).height(p4_max);
+                        });
+
                     }).trigger('resize');
                 });
                 cb && cb();
@@ -3718,7 +3756,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     </div>\
                 </div>';
 
-
+                //$('body').on('mouseleave','.press_img',function() {
+                //    $(this).addClass('js-mouseout');
+                //});
+                //$('body').on('mouseenter','.press_img',function() {
+                //    $(this).removeClass('js-mouseout');
+                //});
                 // function( item , type ){
                 //     var year = item.date.split('-')[0];
                 //     return LP.format( 'http://www.fredfarid.com/eng/file/pages_contents/about/press_articles/#[year]/#[type]/#[name]' , {
@@ -3783,6 +3826,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     })
                 }
                 var random_num = Math.floor((Math.random() * 3));
+                console.log('random_num: ',random_num);
                 $('.banft_txt').css({
                     marginLeft: -(random_num) * 100 + '%'
                 });
@@ -4000,6 +4044,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 shareHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="find_item #[name]">#[label]</a>', item))
             }
         });
+        //Place holders
+        shareHtml.push('<a role="share" href="#" target="_blank" class="find_item icon_wx">Weixin</a>');
+        shareHtml.push('<a role="share" href="#" target="_blank" class="find_item icon_lk">Linkedin</a>');
         $('#share-wrap').html(shareHtml.join(''));
 
         // render websites
@@ -4009,6 +4056,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 linkHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="work_item #[name]">#[label]</a>', item))
             }
         });
+        linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_butterfly"></a>');
         $('#icon-wrap').html(linkHtml.join(''));
 
     });
