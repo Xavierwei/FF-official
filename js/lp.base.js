@@ -3690,12 +3690,25 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }, 1000 / 15);
             },
             'press-loading': function ($dom, index, cb) {
+                //var tpl = '<div class="press_item" data-path="#[year]/#[id]">\
+                //    <div class="press_img" data-a="press_img" data-path="#[year]/#[id]">\
+                //        <img class="cover_img" data-cover="#[cover]" src="#[preview]" />\
+                //        <img src="../images/press_demopho1.jpg" />\
+                //        <img class="press_top_right transition" src="../images/press_top_right.png">\
+                //        <img class="press_bottom_left transition" src="../images/press_bottom_left.png">\
+                //    </div>\
+                //    <h3>#[title]</h3>\
+                //    <p class="press_itemtxt"><strong>#[title]</strong>#[content]</p>\
+                //    <div class="cs-clear">\
+                //        <strong class="press_itempage">#[index]/<span class="press_all">#[total]</span></strong>\
+                //        <a class="press_itemdown transition" target="_blank" href="#[attached_file]"></a>\
+                //    </div>\
+                //</div>';
                 var tpl = '<div class="press_item" data-path="#[year]/#[id]">\
                     <div class="press_img" data-a="press_img" data-path="#[year]/#[id]">\
                         <img class="cover_img" data-cover="#[cover]" src="#[preview]" />\
                         <img src="../images/press_demopho1.jpg" />\
-                        <img class="press_top_right transition" src="../images/press_top_right.png">\
-                        <img class="press_bottom_left transition" src="../images/press_bottom_left.png">\
+                        <div class="press_folding_corner"></div>\
                     </div>\
                     <h3>#[title]</h3>\
                     <p class="press_itemtxt"><strong>#[title]</strong>#[content]</p>\
@@ -3704,6 +3717,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         <a class="press_itemdown transition" target="_blank" href="#[attached_file]"></a>\
                     </div>\
                 </div>';
+
 
                 // function( item , type ){
                 //     var year = item.date.split('-')[0];
@@ -3768,9 +3782,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         reloadLogo();
                     })
                 }
+                var random_num = Math.floor((Math.random() * 3));
+                $('.banft_txt').css({
+                    marginLeft: -(random_num) * 100 + '%'
+                });
                 var $page = $('.page');
                 var fn = pageInits[$page.data('page')];
-
 
                 if (fn) {
                     loadingMgr.show();
@@ -3948,15 +3965,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     });
 
                                 // interview to scroll
-                                var index = 0 ;
-                                setInterval(function(){
-                                    index++;
-                                    index = index % $('.banft_txt div').length;
-                                    $('.banft_txt').animate({
-                                        marginLeft: -index * 100 + '%'
-                                    }, 500);
-                                }, 5000);
-                                
+                                //var index = 0 ;
+                                //setInterval(function(){
+                                //    index++;
+                                //    index = index % $('.banft_txt div').length;
+                                //    $('.banft_txt').animate({
+                                //        marginLeft: -index * 100 + '%'
+                                //    }, 500);
+                                //}, 5000);
+                                //var index = Math.floor((Math.random() * 3));
+                                //$('.banft_txt').animate({
+                                //    marginLeft: -index * 100 + '%'
+                                //}, 500);
                             }
                         });
                     });
