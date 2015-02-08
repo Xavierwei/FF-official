@@ -30,7 +30,7 @@
 </div>
 <?php } else { ?>
 <div class="banpho  banpho-img">
-	<img src="../images/page_<?php echo $page; ?>_pho.jpg" />
+	<img src="/images/page_<?php echo $page; ?>_pho.jpg" />
 </div>
 <?php } ?>
 

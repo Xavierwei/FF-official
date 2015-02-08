@@ -25,7 +25,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
     var initSoundWave = function( file, $canves , cb ){
-
+        file = 'http://f.cn/audios/1.ogg'
         LP.use('waveform', function(){
 
           var
@@ -65,12 +65,16 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
           var moveElement = $canves.siblings()[0];
           dancer.bind('update', function(){
-            moveElement.style.left = dancer.getTime() / dancer.audio.duration * 100 + '%'
+
+            moveElement.style.left = dancer.getTime() / dancer.getDuration() * 100 + '%';
+            console.log( moveElement.style.left );
+            console.log( dancer.audio.duration );
           });
 
 
           $canves.click(function( ev ){
             var percent = ev.offsetX / $canves.width();
+            dancer.seekTo( percent );
             $canves.attr('percent', percent);
           });
 
@@ -543,7 +547,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             }
         });
         
+        
 
+        // press page
+        // rules.push({
+        //     url: /^press\/\d+\/\d+/,
+        //     destory: function(){
+        //         LP.triggerAction('pop-mask');
+        //     },
+        //     load: function( data ){
+
+        //     }
+        // })
         // press page
         // rules.push({
         //     url: /^jobs\/\d+$/,
@@ -754,7 +769,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             var pics = [];
 
             $.each(items, function (i, item) {
-                var isImage = item.media.match(/\.(jpg|png|bmp|jpeg)$/i);
+                var isImage = !item.media || item.media.match(/\.(jpg|png|bmp|jpeg)$/i);
 
                 // 如果是图片  则取media ， 否则取picture
                 var pic = campaignManager.getPath(item, isImage ? 'media' : 'picture_1');
@@ -1123,8 +1138,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     window.campaignManager = campaignManager;
     window.api = api;
 
-    function disposeVideo() {
-        $(document.body).find('.video-wrap').parent()
+    function disposeVideo( $dom ) {
+        ( $dom || $(document.body) ).find('.video-wrap').parent()
             .each(function () {
                 var video = $(this).data('video-object');
                 try {
@@ -1133,7 +1148,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $(this).removeData('video-object').find('.video-wrap').remove();
             });
 
-        $('.vjs-default-skin').remove();
+        ( $dom || $(document.body) ).find('.vjs-default-skin').remove();
 
         // hide videoProgress
         loadingMgr.success();
@@ -1572,7 +1587,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var pic = campaignManager.getPath(tm, 'picture_1');
                 pics.push(pic)
 
-                var isImage = tm.media && tm.media.match(/\.(jpg|png|bmp|jpeg)$/i);
+                var isImage = !tm.media && tm.media.match(/\.(jpg|png|bmp|jpeg)$/i);
                 aHtml.push(LP.format(tpl, {
                     path: tm._contentPath + '/' + i,
                     picture: Math.abs(i - itemIndex) <= preloadNum ? '' : pic,
@@ -1812,7 +1827,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             }]
                         });
 
-                        var myIcon = new BMap.Icon("../images/marker.png", new BMap.Size(34, 40));
+                        var myIcon = new BMap.Icon("/images/marker.png", new BMap.Size(34, 40));
 
                         $.each(points, function (i, point) {
                             var new_point = new BMap.Point(point[0], point[1]);
@@ -1866,7 +1881,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     new google.maps.Marker({
                         map: map,
                         position: new google.maps.LatLng(point[0], point[1]),
-                        icon: "../images/marker.png"
+                        icon: "/images/marker.png"
                     });
                 });
 
@@ -1926,7 +1941,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             new google.maps.Marker({
                 map: map,
                 position: new google.maps.LatLng(point[0], point[1]),
-                icon: "../images/marker.png"
+                icon: "/images/marker.png"
             });
         });
     }
@@ -1992,8 +2007,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     // render items
                     tHtml.push(LP.format(tpl, {
                         picture: pic,
-                        image: item.media.match(/\.jpg$/) ? 1 : '',
-                        video: item.media.match(/\.jpg$/) ? '' : 1,
+                        image: !item.media || item.media.match(/\.jpg$/) ? 1 : '',
+                        video: !item.media || item.media.match(/\.jpg$/) ? '' : 1,
                         path: item._contentPath + '/' + i
                     }));
                 });
@@ -2550,6 +2565,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         //clearTimeout( sec_brands_timer );
         //sec_brands_timer = setTimeout(function(){
         if ($('.preview').is(':visible')) return false;
+        if( !$('.header').hasClass('header-fixed') ){
+            $('.header').addClass('header-fixed')
+        }
         var headerHeight = $('.header-inner').height();
         var st = $('.sec_brands').scrollTop();
         if (st < headerHeight) {
@@ -3323,21 +3341,33 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             },
             'press-page': function (cb) {
 
+                var match = location.href.match(/\/press\/(\d+)\/(\d+)$/);
+
+                var $doms = $('[data-year]').slice(0,2);
+                if( match ){
+                    // console.log( $('[data-year="' + match[1] + '"]') );
+                    $doms = $doms.add( $('[data-year="' + match[1] + '"]') );
+                }
+
                 var loadIndex = 0;
-                $('[data-year]').slice(0,2)
-                    .each(function(){
+                $doms.each(function(){
                         effects['press-loading']( $(this) , 0 , function(){
-                            loadIndex++;
-                            if( loadIndex == 2 ){
+                            if( ++loadIndex == $doms.length ){
                                 var imgs = [];
                                 $('.cover_img').slice(0,20).each(function(){
                                     imgs.push( this.getAttribute('src') );
                                 });
 
+                                if( match ){
+                                    $('[data-path="' + match[1] + '/' + match[2] + '"]').click();
+                                    console.log( $('[data-path="' + match[1] + '/' + match[2] + '"]') );
+                                }
+
                                 loadImages( imgs, null, cb );
                             }
                         } );
                     });
+
                 // var preview_imgs = [];
                 // var $year_dom = $('div.press_list.column.cs-clear.intoview-effect').slice(0, 2);
                 // var year_arr = [];
@@ -3728,6 +3758,19 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }, 1000 / 15);
             },
             'press-loading': function ($dom, index, cb) {
+                if( $dom.data('loaded') ){
+                    cb && cb();
+                    return false;
+                }
+
+                var callbacks = [ cb ];
+                if( $dom.data('loading') ){
+                    callbacks = $dom.data('callbacks') || [];
+                    callbacks.push( cb );
+                }
+                $dom.data('loading', true);
+                $dom.data('callbacks', callbacks);
+
                 //var tpl = '<div class="press_item" data-path="#[year]/#[id]">\
                 //    <div class="press_img" data-a="press_img" data-path="#[year]/#[id]">\
                 //        <img class="cover_img" data-cover="#[cover]" src="#[preview]" />\
@@ -3744,8 +3787,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 //</div>';
                 var tpl = '<div class="press_item" data-path="#[year]/#[id]">\
                     <div class="press_img" data-a="press_img" data-path="#[year]/#[id]">\
-                        <img class="cover_img" data-cover="#[cover]" src="#[preview]" />\
-                        <img src="../images/press_demopho1.jpg" />\
+                        <img class="cover_img" data-path="/press/#[year]/#[id]" data-cover="#[cover]" src="#[preview]" />\
+                        <img src="/images/press_demopho1.jpg" />\
                         <div class="press_folding_corner"></div>\
                     </div>\
                     <h3>#[title]</h3>\
@@ -3787,8 +3830,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
 
                     $dom.html(aHtml.join(''));
+                    $dom.data('loaded', true);
 
-                    cb && cb();
+                    $.each(callbacks, function( i, cb ){
+                        cb && cb();
+                    });
                 });
             }
         }
@@ -4150,6 +4196,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 var path = LP.parseUrl(State.url).path.replace(/^\//, '');
                 var prevPath = LP.parseUrl(prev).path.replace(/^\//, '');
+
+
+
+                if( prevPath.match(/^press/) && path.match(/^press/) ){
+                    return false;
+                }
+                
+
+
                 if( prevPath.match(/^(categories|brands|services)/) && !path.match(/^(categories|brands|services)/) ){
                     if( LP.parseUrl(prev).path != LP.getCookie('page') ){
                         urlManager.destory( prevPath );
@@ -4666,6 +4721,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $(this).hide();
                 $('.shade').fadeOut();
             });
+
+        pageManager.go('/press');
     });
 
 
@@ -4673,6 +4730,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var $item = $(this).closest('.press_item');
         var path = $(this).data('path');
         var press_index = $(this).closest('.press_item').index() + 1;
+        var total = $(this).closest('.press_list').children().length;
         loadingMgr.show();
         loadingMgr.setSuccess(function (img) {
             var width = img.width;
@@ -4712,13 +4770,25 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
 
             $('.pop_press_menus').css('right', 95);
+
+            // if( press_index == 1 ){
+            //     $('.pop_press .popprev').hide();
+            // }
+            // if( press_index == total ){
+            //     $('.pop_press .popnext').hide();
+            // }
+
+
+            // change url 
+            pageManager.go('/press/' + path );
+
         }, 'press_image');
         $('<img/>').load(function () {
             loadingMgr.success('press_image', this);
         }).attr('src', $(this).find('.cover_img').data('cover'));
 
         $('.pop_index').html(press_index);
-        $('.pop_total').html($(this).closest('.press_list').children().length);
+        $('.pop_total').html(total);
         $('.pop_press .popdownicon').attr('href', $item.find('.press_itemdown').attr('href'));
     });
 
@@ -4732,8 +4802,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         if (!imgSrc) return;
 
         $popPress.data('path', $item.data('path'));
-        loadingMgr.showLoading($popPress);
-        laodingMgr.setSuccess(function () {
+        loadingMgr.show();
+        loadingMgr.setSuccess(function () {
             $('.pop_presspho img').animate({
                 marginLeft: '-70%',
                 opacity: 0
@@ -4750,14 +4820,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }, 500);
                     loadingMgr.hideLoading($popPress);
                 });
+
+            $('.pop_index').html($item.index() + 1);
+            $('.pop_press .popdownicon').attr('href', $item.find('.press_itemdown').attr('href'));
+
+            pageManager.go('/press/' + $item.data('path') );
+            // if( $item.index() + 1 == 1 ){
+            //     $('.pop_press .popprev').hide();
+            // }
+            // $('.pop_press .popnext').show();
         });
         $('<img/>').load(function () {
-            laodingMgr.success();
+            loadingMgr.success();
         }).attr('src', imgSrc);
-
-        $('.pop_index').html($item.index() + 1);
-        $('.pop_press .popdownicon').attr('href', $item.find('.press_itemdown').attr('href'));
     });
+
+
     LP.action('press_next', function () {
         var $popPress = $('.pop_press');
         // get next cover image
@@ -4768,7 +4846,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         if (!imgSrc) return;
 
         $popPress.data('path', $item.data('path'));
-        loadingMgr.showLoading($popPress);
+        loadingMgr.show();
         loadingMgr.setSuccess(function () {
             $('.pop_presspho img').off('load').animate({
                 marginLeft: '70%',
@@ -4786,21 +4864,53 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }, 500);
 
                     loadingMgr.hideLoading($popPress);
-                })
+                });
+
+            $('.pop_index').html($item.index() + 1);
+            $('.pop_press .popdownicon').attr('href', $item.find('.press_itemdown').attr('href'));
+
+            pageManager.go('/press/' + $item.data('path') );
+            // if( $item.index() + 1 == $item.parent().children().length ){
+            //     $('.pop_press .popnext').hide();
+            // }
+            // $('.pop_press .popprev').show();
+
         }, 'press_next');
         $('<img/>').load(function () {
             loadingMgr.success('press_next');
         }).attr('src', imgSrc);
-
-
-        $('.pop_index').html($item.index() + 1);
-        $('.pop_press .popdownicon').attr('href', $item.find('.press_itemdown').attr('href'));
+        
     });
 
 
     LP.action('show-video-interview', function () {
         var media = $(this).data('media');
         var $item = $(this).closest('.interview_item');
+
+        // hide others
+        $item.siblings('.interview-music-wrap')
+            .each(function(){
+                if( $(this).height() != 0 ){
+                    $(this).prev()
+                        .find('.interview_opt')
+                        .click();
+                }
+            });
+
+        if( $item.next().hasClass('interview-video-wrap') ){
+            $item.next().siblings('.interview-video-wrap')
+                .prev()
+                .find('.interview_img')
+                .click();
+        } else {
+            $item.siblings('.interview-video-wrap')
+            .prev()
+            .find('.interview_img')
+            .click();
+        }
+        
+
+
         var $container = $item.data('media-dom');
         var $videoWrap = $container && $container.find('.interview-video');
         if (!$container) {
@@ -4826,20 +4936,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     .append($videoWrap.find('.vjs-control-bar'))
                     .appendTo($videoWrap.parent());
                 
-                this.on('play', function(){
-                    // hide videos
-                    $videoWrap.closest('.interview-video-wrap').siblings()
-                        .find('.interview-video')
-                        .each(function(){
-                            var video = $(this).data('video-object');
-                            video && video.pause();
-                        });
-                    // hide audios
-                    $videoWrap.closest('.interview-video-wrap').siblings()
-                        .siblings()
-                        .find('.wavesurfer-play')
-                        .click();
-                });
             });
 
             // start animate
@@ -4860,7 +4956,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             }, 400)
                 .promise()
                 .then(function () {
-                    disposeVideo();
+                    disposeVideo( $videoWrap );
+
                     $container.remove();
                 });
 
@@ -4885,6 +4982,32 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     LP.action('show-music-interview', function () {
         var media = $(this).data('media');
         var $item = $(this).closest('.interview_item');
+
+        // hide others
+        $item.siblings('.interview-music-wrap')
+            .each(function(){
+                if( $(this).height() != 0 ){
+                    $(this).prev()
+                        .find('.interview_opt')
+                        .click();
+                }
+            });
+
+        $item.siblings('.interview-video-wrap')
+            .prev()
+            .find('.interview_img')
+            .click();
+            
+
+        // $item.closest('.interview-music-wrap')
+        //     .siblings()
+        //     .find('.interview-video')
+        //     .each(function(){
+        //         var video = $(this).data('video-object');
+        //         video && video.pause();
+        //     });
+
+
         var $container = $item.next();
 
         var $musicWrap = $container.find('.interview-music');
@@ -4934,19 +5057,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             initSoundWave( audio_url, $musicWrap.find('canvas'), function( dancer ){
                 $container.find('.wavesurfer-playPause-btn').click(function(){
-                    // hide others
-                    $(this).closest('.interview-music-wrap')
-                        .siblings()
-                        .find('.wavesurfer-play')
-                        .click();
-
-                    $(this).closest('.interview-music-wrap')
-                        .siblings()
-                        .find('.interview-video')
-                        .each(function(){
-                            var video = $(this).data('video-object');
-                            video && video.pause();
-                        });
 
                     if( dancer.isPlaying() ){
                         dancer.pause();
