@@ -96,7 +96,7 @@ a:hover{color:#000}
 .banft_txt, #random-quotes{text-align: center;padding: 128px 0 0;color:#fff;line-height: 30px;}
 .banft_txt p, #random-quotes p{text-align: center;font-size: 24px;font-style:italic;font-weight: bold;font-size: 30px;text-transform: uppercase;line-height:36px;}
 .banft_txt span, #random-quotes span{font-size: 12px;display: block;font-style:italic;line-height: 36px;}
-#random-quotes {display: table-cell;vertical-align: middle;}
+#random-quotes {display: table-cell;vertical-align: middle;padding: 0;}
 #random-quotes .banft_txt{padding: 0px;opacity: 0;}
 
 /**/
