@@ -23,6 +23,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         }
     }
 
+    window.console = window.console || {log:function(){}};
+
 
     var initSoundWave = function( file, $canves , cb ){
         file = 'http://f.cn/audios/1.ogg'
@@ -67,8 +69,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
           dancer.bind('update', function(){
 
             moveElement.style.left = dancer.getTime() / dancer.getDuration() * 100 + '%';
-            console.log( moveElement.style.left );
-            console.log( dancer.audio.duration );
           });
 
 
@@ -306,6 +306,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 fixHomePageVideo(function () {
                     $('.header').addClass('header-fixed');
                     $(document.body).stop(true,true).css('overflow', 'hidden');
+
+                    document.title = $(document.body).data('title') + ' | ' + $('a[data-d="type='+ path +'"]').html();
                     show_cate_list(path);
                 });
             }
@@ -471,6 +473,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     display: 'block',
                     opacity: 1
                 });
+                
                 // hide nav bar
                 fixHomePageVideo(function(){
                     $('.header').addClass('header-fixed');
@@ -772,7 +775,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var isImage = !item.media || item.media.match(/\.(jpg|png|bmp|jpeg)$/i);
 
                 // 如果是图片  则取media ， 否则取picture
-                var pic = campaignManager.getPath(item, isImage ? 'media' : 'picture_1');
+                var pic = campaignManager.getPath(item, isImage && item.media ? 'media' : 'picture_1');
                 pics.push(pic);
                 aHtml.push(LP.format(tpl, {
                     src: pic,
@@ -999,6 +1002,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             tit: __CACHE_TITLE__[key].toUpperCase()
                         }));
 
+                    document.title = $(document.body).data('title') + ' | ' + paths[0].toUpperCase() + ' | ' + __CACHE_TITLE__[key].toUpperCase();
+
                     isLevel3 ? fixLevel3Title() : fixLevel2Title();
                 } else {
                     api.request(paths[0], function (r) {
@@ -1013,6 +1018,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                         cate: paths[0].toUpperCase(),
                                         tit: item.title.toUpperCase()
                                     }));
+
+                                document.title = $(document.body).data('title') + ' | ' + paths[0].toUpperCase() + ' | ' + item.title.toUpperCase();
+
                                 isLevel3 ? fixLevel3Title() : fixLevel2Title();
                                 return false;
                             }
@@ -1571,6 +1579,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $('.brand_movie .brands-items').show();
             afterItemsRender(item);
 
+
+            $('.sec_brands').trigger('scroll');
+
         }, 'afterItemsRender');
 
         campaignManager.getCampaignItems(path, function (items) {
@@ -1587,7 +1598,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var pic = campaignManager.getPath(tm, 'picture_1');
                 pics.push(pic)
 
-                var isImage = !tm.media && tm.media.match(/\.(jpg|png|bmp|jpeg)$/i);
+                var isImage = !tm.media || tm.media.match(/\.(jpg|png|bmp|jpeg)$/i);
                 aHtml.push(LP.format(tpl, {
                     path: tm._contentPath + '/' + i,
                     picture: Math.abs(i - itemIndex) <= preloadNum ? '' : pic,
@@ -3360,7 +3371,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                                 if( match ){
                                     $('[data-path="' + match[1] + '/' + match[2] + '"]').click();
-                                    console.log( $('[data-path="' + match[1] + '/' + match[2] + '"]') );
                                 }
 
                                 loadImages( imgs, null, cb );
@@ -3701,7 +3711,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             },
             'number-rock': function ($dom, index, cb, du) {
                 // init humbers
-                var num = $dom.text();
+                var num = $dom.text() || '';
                 var $span = $('<span>' + num + '</span>').appendTo($dom.html('').data('num', num));
                 var width = $span.width();
                 var height = $span.height();
@@ -3715,6 +3725,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     overflow: 'hidden',
                     verticalAlign: 'middle'
                 }).html('');
+
                 $.each(num.split(''), function (i) {
                     $('<div>' + "1234567890".split('').join('<br/>') + '</div>').appendTo($span)
                         .css({
@@ -3733,7 +3744,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var interval = setInterval(function () {
 
                     if (new Date - st >= duration) {
-                        var num = $dom.data('num');
+                        var num = $dom.data('num') || '';
                         var nums = num.split('');
                         $divs.each(function (i) {
                             var top = -(nums[i] - 1) * spanHeight;
@@ -4150,6 +4161,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 
                 pageManager.init();
 
+                var subTitle = $.trim($('.pagetit h1').html());
+                document.title = document.title + ( subTitle ? ' | ' + subTitle : '' );
+
             }, 'statechange');
             $.get(location.href, '', function (html) {
                 var $dom = $('<div>' + html + '</div>').find('.container');
@@ -4188,7 +4202,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             // });
         } else {
             History.Adapter.bind(window, 'statechange', function () { // Note: We are using statechange instead of popstate
-                // debugger-----------
 
                 var State = History.getState(); // Note: We are using History.getState() instead of event.state
                 var prev = State.data.prev;
@@ -4196,8 +4209,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 var path = LP.parseUrl(State.url).path.replace(/^\//, '');
                 var prevPath = LP.parseUrl(prev).path.replace(/^\//, '');
-
-
+                if( !document.title ){
+                    document.title = $(document.body).data('title');
+                }
 
                 if( prevPath.match(/^press/) && path.match(/^press/) ){
                     return false;

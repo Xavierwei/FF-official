@@ -57,7 +57,7 @@
 	
     </script>-->
 </head>
-<body class="lang-<?php echo $_COOKIE['lang'];?>">
+<body class="lang-<?php echo $_COOKIE['lang'];?>" data-title="<?php _e('FRED &amp; FARID GROUP');?>">
 	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
 	<div class="page-mask"></div>
 	<div class="section sec_gates" style="display:none;">
