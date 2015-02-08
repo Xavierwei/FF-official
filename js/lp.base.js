@@ -3888,14 +3888,19 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     marginLeft: -(random_num) * 100 + '%'
                 });
 
-                var index = 0 ;
-                setInterval(function(){
-                    index++;
-                    index = index % $('.banft_txt div').length;
-                    $('#random-quotes .banft_txt').animate({
-                        marginLeft: -index * 100 + '%'
-                    }, 500);
-                }, 5000);
+                //var index = 0 ;
+                //if (window.quote_timer) {
+                //    window.clearInterval(quote_timer);
+                //}
+                //window.quote_timer = setInterval(function(){
+                //    console.log('quote_timer() ',index);
+                //    index++;
+                //    index = index % $('.banft_txt div').length;
+                //    $('#random-quotes .banft_txt').animate({
+                //        marginLeft: -index * 100 + '%'
+                //    }, 500);
+                //}, 5000);
+
                 //var index = Math.floor((Math.random() * 3));
                 //$('.banft_txt').animate({
                 //    marginLeft: -index * 100 + '%'
@@ -4078,7 +4083,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                         float: 'left',
                                         width: '33.3%'
                                     });
-                                $('.banft_txt').clone().appendTo('#random-quotes').fadeIn();
+                                $('.banft_txt').clone().appendTo('#random-quotes').animate({ opacity: 1 });
+
+                                window.index = 0 ;
+                                window.quote_timer = setInterval(function(){
+                                    console.log('quote_timer() ',index);
+                                    index++;
+                                    index = index % $('#random-quotes .banft_txt div').length;
+                                    $('#random-quotes .banft_txt').animate({
+                                        marginLeft: -index * 100 + '%'
+                                    }, 500);
+                                    window.clearInterval(quote_timer);
+                                }, 5000);
 
                                 // interview to scroll
                                 //var index = 0 ;

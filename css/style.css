@@ -89,7 +89,7 @@ a:hover{color:#000}
 .banft_txt p, #random-quotes p{text-align: center;font-size: 24px;font-style:italic;font-weight: bold;font-size: 30px;text-transform: uppercase;line-height:36px;}
 .banft_txt span, #random-quotes span{font-size: 12px;display: block;font-style:italic;line-height: 36px;}
 #random-quotes {display: table-cell;vertical-align: middle;}
-#random-quotes .banft_txt{padding: 0px;}
+#random-quotes .banft_txt{padding: 0px;opacity: 0;}
 /**/
 .footer{background: #000;height: 370px;padding:180px 0 0 ; position: fixed;width: 100%;bottom: 0;}
 .ft_con{width: 1000px;margin: 0 auto 0;color:#525252;font-size: 14px;}
