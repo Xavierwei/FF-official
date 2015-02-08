@@ -4115,6 +4115,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     }, 500);
                                 }, 5000);
 
+
                                 // interview to scroll
                                 //var index = 0 ;
                                 //setInterval(function(){
@@ -4132,7 +4133,44 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         });
                     });
                 }
+                ///////// Footer /////////
+                $(window).on('resize',function() {
+                    var heights_p1 = [];
+                    $('.ft-addr-p-1').each(function(i,p) {
+                        heights_p1.push($(p).height());
+                    });
+                    var p1_max = Math.max.apply(null, heights_p1);
+                    $('.ft-addr-p-1').each(function(i,p) {
+                        $(p).height(p1_max);
+                    });
 
+                    var heights_p2 = [];
+                    $('.ft-addr-p-2').each(function(i,p) {
+                        heights_p2.push($(p).height());
+                    });
+                    var p2_max = Math.max.apply(null, heights_p2);
+                    $('.ft-addr-p-2').each(function(i,p) {
+                        $(p).height(p2_max);
+                    });
+
+                    var heights_p3 = [];
+                    $('.ft-addr-p-3').each(function(i,p) {
+                        heights_p3.push($(p).height());
+                    });
+                    var p3_max = Math.max.apply(null, heights_p3);
+                    $('.ft-addr-p-3').each(function(i,p) {
+                        $(p).height(p3_max);
+                    });
+
+                    var heights_p4 = [];
+                    $('.ft-addr-p-4').each(function(i,p) {
+                        heights_p4.push($(p).height());
+                    });
+                    var p4_max = Math.max.apply(null, heights_p4);
+                    $('.ft-addr-p-4').each(function(i,p) {
+                        $(p).height(p4_max);
+                    });
+                }).trigger('resize');
                 return false;
             },
             destroy: function () {
