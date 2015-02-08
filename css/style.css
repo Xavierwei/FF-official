@@ -474,7 +474,7 @@ url(../images/brand_big_nav.png) left center; }
 	.brand_movie dd .brands-mask{display:none;}
 	.brand_movie dl{width: 200%;height: 100%;overflow: hidden;}*/
 
-.brands-con-t{font-size: 20px;}
+.brands-con-t{font-size: 18px;line-height: 20px;}
 body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .brands-con-time{font-size: 14px;font-weight: 100;margin-top: 2em;}
 .brands-con-meta{font-size: 10px;font-weight: 100;color: #666;}
