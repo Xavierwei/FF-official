@@ -3197,7 +3197,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                         $.each(departments[val],function(i,item) {
                             if (item) {
-                                //console.log(num++);
+                                num++;
                                 cHtml.push(LP.format(tpl, {
                                     leftORright: num % 2 ? 'contact_conl' : 'contact_conr',
                                     department: item.department,
