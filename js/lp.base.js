@@ -3883,10 +3883,24 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     })
                 }
                 var random_num = Math.floor((Math.random() * 3));
-                console.log('random_num: ',random_num);
+                //console.log('random_num: ',random_num);
                 $('.banft_txt').css({
                     marginLeft: -(random_num) * 100 + '%'
                 });
+
+                var index = 0 ;
+                setInterval(function(){
+                    index++;
+                    index = index % $('.banft_txt div').length;
+                    $('#random-quotes .banft_txt').animate({
+                        marginLeft: -index * 100 + '%'
+                    }, 500);
+                }, 5000);
+                //var index = Math.floor((Math.random() * 3));
+                //$('.banft_txt').animate({
+                //    marginLeft: -index * 100 + '%'
+                //}, 500);
+
                 var $page = $('.page');
                 var fn = pageInits[$page.data('page')];
 
@@ -4064,6 +4078,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                         float: 'left',
                                         width: '33.3%'
                                     });
+                                $('.banft_txt').clone().appendTo('#random-quotes').fadeIn();
 
                                 // interview to scroll
                                 //var index = 0 ;
