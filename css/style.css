@@ -38,7 +38,15 @@ a:hover{color:#000}
 .header-inner{height: 66px;position: relative;z-index: 2; width: 100%;font-size: 14px;line-height: 60px;background: white;}
 .header-fixed .header-inner{position: fixed;top: 0;z-index: 100;}
 /*.logo{width: 14px;height: 14px;position: absolute;left:32px;top:24px;text-align: center;line-height: 73px;}*/
-.logo{/*background: url('../images/logo.png') no-repeat;*/width: 14px;height: 14px;position: absolute;left:32px;top:24px;text-align: center;line-height: 73px;}
+.logo{position: absolute;text-align: center;line-height: 73px;}
+.logo{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-position: center center;
+    display: block;
+}
 .language{position: absolute;right: 98px;top:0;height: 100%;line-height: 66px;}
 .language a{margin-left: 10px;}
 .search{background: url('../images/hd_search.png') no-repeat;text-indent: -9999px;overflow: hidden; width: 17px;height: 17px;position: absolute;right:46px;top:22px;top: 50%;margin-top: -8px;}
@@ -662,17 +670,6 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
     -o-perspective: 70;
     perspective: 70;
 }
-.logo{
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-position: center;
-    display: block;
-}
-#canvas {
-
-}
 
 
 /*.interview_img:after,*/
@@ -739,4 +736,4 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 
 /*IE8*/
 html.no-canvas #canvas{display: none;}
-html.no-canvas .logo{background: url('../images/logo.png') no-repeat;}
+html.no-canvas .logo{background: url('../images/logo.png') no-repeat;background-position: center center;}
