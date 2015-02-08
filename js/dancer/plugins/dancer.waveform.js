@@ -28,12 +28,20 @@
 
     var index = 0;
     this.bind( 'update', function() {
+      if( canvasEl.getAttribute('percent') ){
+        index = ~~ (canvasEl.getAttribute('percent') * num );
+        canvasEl.removeAttribute('percent');
+      }
+
       var percent = this.getTime() / this.audio.duration;
+      if( index > percent * num + 1 || index < percent * num - 1 ){
+        index = ~~(percent * num);
+      }
       if( index >= percent * num ){
         return;
       }
 
-      
+
       // if( index % 100 > 0 ) return;
       index ++;
       if( arrs[index] == 0 ){
@@ -47,15 +55,17 @@
       ctx.moveTo( 0, h / 2 );
       var lastx = 0 , lasty = 0;
       for ( var i = 0, l = arrs.length; i < l ; i++ ) {
-        if( i > index ){
+        lastx = i * ( spacing + width );
+        lasty = ( h / 2 ) + arrs[ i ] * ( h / 2 );
+
+        if( i == index ){
           ctx.stroke();
           ctx.beginPath();
           ctx.strokeStyle = 'white';
           ctx.moveTo( lastx, lasty );
+        } else {
+          ctx.lineTo( lastx, lasty);
         }
-        lastx = i * ( spacing + width );
-        lasty = ( h / 2 ) + arrs[ i ] * ( h / 2 );
-        ctx.lineTo( lastx, lasty);
       }
       ctx.stroke();
       ctx.closePath();

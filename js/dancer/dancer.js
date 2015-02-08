@@ -44,6 +44,12 @@
       this.audioAdapter.play();
       return this;
     },
+    seekTo: function( percent ){
+      this.pause();
+      this.audioAdapter.seekTo(percent);
+      this.play();
+      return this;
+    },
 
     pause : function () {
       this.audioAdapter.pause();
@@ -53,6 +59,10 @@
     setVolume : function ( volume ) {
       this.audioAdapter.setVolume( volume );
       return this;
+    },
+
+    getDuration: function(){
+      return this.audioAdapter.getDuration();
     },
 
 
@@ -220,10 +230,10 @@
   Dancer.isSupported = function () {
     if ( !window.Float32Array || !window.Uint32Array ) {
       return null;
-    } else if ( !isUnsupportedSafari() && ( window.AudioContext || window.webkitAudioContext )) {
-      return 'webaudio';
     } else if ( audioEl && audioEl.mozSetup ) {
       return 'audiodata';
+    } else if ( !isUnsupportedSafari() && ( window.AudioContext || window.webkitAudioContext )) {
+      return 'webaudio';
     } else if ( FlashDetect.versionAtLeast( 9 ) ) {
       return 'flash';
     } else {
@@ -432,12 +442,20 @@
       this.gain.gain.value = volume;
     },
 
+    seekTo: function( percent ){
+      this.audio.currentTime = percent * this.audio.duration;
+    },
+
     getVolume : function () {
       return this.gain.gain.value;
     },
 
     getProgress : function() {
       return this.progress;
+    },
+
+    getDuration: function(){
+      return this.audio.duration;
     },
 
     getWaveform : function () {
@@ -479,6 +497,9 @@
   };
 
   function connectContext () {
+    if( this.source ){
+       return;
+    }
     this.source = this.context.createMediaElementSource( this.audio );
     this.source.connect( this.proc );
     this.source.connect( this.gain );
@@ -544,6 +565,9 @@
     setVolume : function ( volume ) {
       this.audio.volume = volume;
     },
+    seekTo: function( percent ){
+      this.audio.currentTime = percent * this.audio.duration;
+    },
 
     getVolume : function () {
       return this.audio.volume;
@@ -551,6 +575,10 @@
 
     getProgress : function () {
       return this.progress;
+    },
+
+    getDuration: function(){
+      return this.audio.duration;
     },
 
     getWaveform : function () {
@@ -651,8 +679,14 @@
     },
 
     play : function () {
-      this.audio.play();
-      this.isPlaying = true;
+      var t = this;
+      var interval = setInterval(function(){
+        if( t.audio ){
+          t.audio.play();
+          t.isPlaying = true;
+          clearInterval( interval );
+        }
+      }, 50);
     },
 
     pause : function () {
@@ -662,6 +696,10 @@
 
     setVolume : function ( volume ) {
       this.audio.setVolume( volume * 100 );
+    },
+
+    seekTo: function( percent ){
+      this.audio.setPosition(percent * this.audio.duration / 1000) ;
     },
 
     getVolume : function () {
@@ -684,11 +722,16 @@
       return this.audio.position / 1000;
     },
 
+    getDuration: function(){
+      return this.audio.duration / 1000;
+    },
+
     update : function () {
       if ( !this.isPlaying && !this.isLoaded ) return;
       this.wave_L = this.audio.waveformData.left;
       this.wave_R = this.audio.waveformData.right;
       var avg;
+      this.dancer.trigger( 'update' );
       for ( var i = 0, j = this.wave_L.length; i < j; i++ ) {
         avg = parseFloat(this.wave_L[ i ]) + parseFloat(this.wave_R[ i ]);
         this.waveform[ 2 * i ]     = avg / 2;
@@ -698,7 +741,7 @@
       }
 
       this.fft.forward( this.signal );
-      this.dancer.trigger( 'update' );
+      
     }
   };
 

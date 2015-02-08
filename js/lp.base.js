@@ -3447,7 +3447,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             <h3>#[title]</h3>\
                             <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
                             <p class="jobs-con">#[content]</p>\
-                            <strong class="jobs_more transition-wrap"  data-a="jobs-more" data-d="contact=#[contact]">\
+                            <strong class="jobs_more transition-wrap"  data-a="jobs-more" data-path="/jobs/#[id]" data-d="contact=#[contact]">\
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
                             <div class="pop_jobcon_inner" style="display:none;">\
@@ -3479,6 +3479,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         });
 
                         $('.jobslist').html(aHtml.join(''));
+
+                        var match = location.href.match(/(\/jobs\/\d+)/)
+                        if( match ){
+                            $('.jobs_more[data-path="' + match[1] + '"]').click();
+                        }
+
                         cb && cb();
                     });
                 });
@@ -4085,15 +4091,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     });
                                 $('.banft_txt').clone().appendTo('#random-quotes').animate({ opacity: 1 });
 
-                                window.index = 0 ;
+                                window.quote_timer_index = 0 ;
                                 window.quote_timer = setInterval(function(){
-                                    console.log('quote_timer() ',index);
-                                    index++;
-                                    index = index % $('#random-quotes .banft_txt div').length;
+                                    quote_timer_index++;
+                                    quote_timer_index = quote_timer_index % $('#random-quotes .banft_txt div').length;
                                     $('#random-quotes .banft_txt').animate({
-                                        marginLeft: -index * 100 + '%'
+                                        marginLeft: - quote_timer_index * 100 + '%'
                                     }, 500);
-                                    window.clearInterval(quote_timer);
                                 }, 5000);
 
                                 // interview to scroll
@@ -4245,6 +4249,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }
 
                 if( prevPath.match(/^press/) && path.match(/^press/) ){
+                    return false;
+                }
+
+                if( prevPath.match(/^jobs/) && path.match(/^jobs/) ){
                     return false;
                 }
                 
@@ -4767,7 +4775,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $('.shade').fadeOut();
             });
 
-        pageManager.go('/press');
+        pageManager.go( LP.parseUrl().path.match(/^(\/\w+)/)[1] );
     });
 
 
@@ -5477,6 +5485,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('.pop_jobs .pop_index').html(job_index);
         $('.pop_jobs .pop_total').html($item.parent().children().length);
         $('.pop_job_menus').css('right', 95);
+
+
+        // change path
+        pageManager.go( $(this).data('path') );
     });
 
 
@@ -5514,6 +5526,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var contact = LP.query2json($item.find('.jobs_more').attr('data-d'))['contact'];
         $('.pop_jobs .jobs_more').attr('href', 'mailto:' + contact);
         $('.pop_jobs .pop_index').html(job_index);
+
+        // change path
+        pageManager.go( $item.find('[data-path]').data('path') );
     });
 
     LP.action('pop-jobs-next', function () {
@@ -5546,6 +5561,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var contact = LP.query2json($item.find('.jobs_more').attr('data-d'))['contact'];
         $('.pop_jobs .jobs_more').attr('href', 'mailto:' + contact);
         $('.pop_jobs .pop_index').html(job_index);
+
+        // change path
+        pageManager.go( $item.find('[data-path]').data('path') );
     });
 
 
