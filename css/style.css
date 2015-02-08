@@ -191,8 +191,10 @@ a.icon_bg{background-position: 0px -115px;}
 /*.contact_txt{min-height: 125px;height: auto;margin-bottom: 40px;}*/
 .contact_txt{height: auto;margin-bottom: 40px;}
 .contact_city{float: left;font-size: 13px;}
+body.lang-zho .contact_city{float: left;font-size: 11px;}
 .contact_ad{float: left;padding-left:20px;width: 180px}
 .contact_ad p{padding: 0 0 10px;font-size: 13px;}
+body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 .contact_address_1{}
 .contact_address_2 p.contact_address_p{float: right;}
 .contact_address_3{}
