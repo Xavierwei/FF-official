@@ -4237,7 +4237,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             loadingMgr.show();
             loadingMgr.setSuccess(function (html) {
                 pageManager.destroy();
+
+                var $banner_footer = $('.container').find('.banner_footer');
+                console.log( $banner_footer );
                 $('.container').html(html)
+                    .find('.banner_footer')
+                    .html('')
+                    .append( $banner_footer.children() )
+                    .end()
                     .children('.page')
                     .stop()
                     .fadeIn();
