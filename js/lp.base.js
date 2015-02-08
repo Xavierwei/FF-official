@@ -4058,33 +4058,33 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     }, 1000);
 
 
-                if( $('.banner_footer').length && !$('.banft_txt div').length ){
-                    // render home news
-                    api.request('miscellaneous', function (r) {
-                        $.each(r.items, function (i, item) {
-                            switch (item.id) {
-                            case '1':
-                                var htmls = [];
-                                $.each([1, 2, 3], function (i, val) {
-                                    if (item['text_' + val]) {
-                                        htmls.push('<p>' + item['text_' + val] + '</p>');
-                                    }
-                                });
-                                $('#home-news').css('width', htmls.length * 100 + '%')
-                                    .html(htmls.join(''))
-                                    .find('p')
-                                    .css('width', 1 / htmls.length * 100 + '%');
-
-                                $('.home_newspage span').html('1/' + htmls.length);
-                                if (htmls.length <= 1) {
-                                    $('.home_newspage').hide();
+                // render home news
+                api.request('miscellaneous', function (r) {
+                    $.each(r.items, function (i, item) {
+                        switch (item.id) {
+                        case '1':
+                            var htmls = [];
+                            $.each([1, 2, 3], function (i, val) {
+                                if (item['text_' + val]) {
+                                    htmls.push('<p>' + item['text_' + val] + '</p>');
                                 }
-                                break;
-                            case '2':
-                                $('.home_bioleft').html(item.text_1);
-                                $('.home_bioright').html(item.text_2);
-                                break;
-                            case '3':
+                            });
+                            $('#home-news').css('width', htmls.length * 100 + '%')
+                                .html(htmls.join(''))
+                                .find('p')
+                                .css('width', 1 / htmls.length * 100 + '%');
+
+                            $('.home_newspage span').html('1/' + htmls.length);
+                            if (htmls.length <= 1) {
+                                $('.home_newspage').hide();
+                            }
+                            break;
+                        case '2':
+                            $('.home_bioleft').html(item.text_1);
+                            $('.home_bioright').html(item.text_2);
+                            break;
+                        case '3':
+                            if( $('.banner_footer').length && !$('.banft_txt div').length ){
                                 var quoteHtmls = [];
                                 var tpl = '<div><p>#[text]</p><span>#[author]</span></div>';
                                 var text_1 = item.text_1.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
@@ -4114,25 +4114,23 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                         marginLeft: - quote_timer_index * 100 + '%'
                                     }, 500);
                                 }, 5000);
-
-
-                                // interview to scroll
-                                //var index = 0 ;
-                                //setInterval(function(){
-                                //    index++;
-                                //    index = index % $('.banft_txt div').length;
-                                //    $('.banft_txt').animate({
-                                //        marginLeft: -index * 100 + '%'
-                                //    }, 500);
-                                //}, 5000);
-                                //var index = Math.floor((Math.random() * 3));
-                                //$('.banft_txt').animate({
-                                //    marginLeft: -index * 100 + '%'
-                                //}, 500);
                             }
-                        });
+                            // interview to scroll
+                            //var index = 0 ;
+                            //setInterval(function(){
+                            //    index++;
+                            //    index = index % $('.banft_txt div').length;
+                            //    $('.banft_txt').animate({
+                            //        marginLeft: -index * 100 + '%'
+                            //    }, 500);
+                            //}, 5000);
+                            //var index = Math.floor((Math.random() * 3));
+                            //$('.banft_txt').animate({
+                            //    marginLeft: -index * 100 + '%'
+                            //}, 500);
+                        }
                     });
-                }
+                });
                 ///////// Footer /////////
                 $(window).on('resize',function() {
                     var heights_p1 = [];
