@@ -2389,6 +2389,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var success = null;
         var pro = null;
         var timer = null;
+        var loadingTimes = 0;
         return {
             showLoading: function ($wrap) {
 
@@ -2406,17 +2407,24 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // } , 1000 / 6 ) );
             },
             hideLoading: function ($wrap) {
-                pro.end();
+                pro && pro.end();
                 $wrap.find('.loading-wrap').fadeOut();
             },
             show: function (bgcolor) {
 
-                // console.log('show:' + bgcolor);
-                $loading.find('div').width('100%');
-                pro && pro.end();
+                //pro && pro.end();
                 clearTimeout(timer);
-                pro = process($loading.stop(true, true).fadeIn().find('div'));
-                pro.start();
+
+                if( !pro ){
+                    loadingTimes = 1;
+                    $loading.find('div').width('100%');
+                    pro = process($loading.stop(true, true).fadeIn().find('div'));
+                    pro.start();
+                } else {
+                    loadingTimes++;
+                }
+                
+                
                 // var index = 0;
                 // var processStep = 5;
                 // var processWidth = 0;
@@ -2451,19 +2459,26 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var args = Array.prototype.slice.call(arguments);
                 var key = args.shift();
                 mutiSuccess[key] && mutiSuccess[key].apply('', args);
-                loadingMgr.hide();
                 success = null;
+                loadingTimes--;
+                loadingTimes = Math.max(0, loadingTimes);
+                if( loadingTimes == 0 ){
+                    loadingMgr.hide();
+                }
             },
             abort: function () {
                 mutiSuccess = {};
                 loadingMgr.hide();
+
+                loadingTimes = 0;
                 success = null;
             },
             hide: function () {
-                pro.end();
+                pro && pro.end();
                 clearTimeout(timer);
                 timer = setTimeout(function () {
                     $loading.fadeOut();
+                    pro = null;
                 }, 800);
 
             }
@@ -4871,7 +4886,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             marginLeft: 0,
                             opacity: 1
                         }, 500);
-                    loadingMgr.hideLoading($popPress);
                 });
 
             $('.pop_index').html($item.index() + 1);
@@ -4915,8 +4929,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             marginLeft: 0,
                             opacity: 1
                         }, 500);
-
-                    loadingMgr.hideLoading($popPress);
                 });
 
             $('.pop_index').html($item.index() + 1);
