@@ -40,10 +40,10 @@
 	<p><?php _e('FOR THE BEST EXPERIENCE, PLEASE UPDATE YOUR BROWSERS TO THE LATEST. <br/>THANK YOU !');?></p>
 	
 	<div class="browsers">
-		<a class="b1" href=""></a>
-		<a class="b2" href=""></a>
-		<a class="b3" href=""></a>
-		<a class="b4" href=""></a>
+	    <a class="b1" href="https://www.google.com/chrome/browser/desktop/"></a>
+		<a class="b2" href="http://windows.microsoft.com/en-HK/internet-explorer/download-ie"></a>
+		<a class="b3" href="http://support.apple.com/downloads/#safari"></a>
+		<a class="b4" href="https://www.mozilla.org/en-US/firefox/new/"></a>
 	</div>
 </div>
 

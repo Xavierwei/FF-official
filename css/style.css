@@ -85,9 +85,11 @@ a:hover{color:#000}
 
 /**/
 .banner_footer{background: url('../images/banner_ft.png') repeat;height: 360px;}
-.banft_txt{text-align: center;padding: 128px 0 0;color:#fff;line-height: 30px;}
-.banft_txt p{text-align: center;font-size: 24px;font-style:italic;font-weight: bold;font-size: 30px;text-transform: uppercase;line-height:36px;}
-.banft_txt span{font-size: 12px;display: block;font-style:italic;line-height: 36px;}
+.banft_txt, #random-quotes{text-align: center;padding: 128px 0 0;color:#fff;line-height: 30px;}
+.banft_txt p, #random-quotes p{text-align: center;font-size: 24px;font-style:italic;font-weight: bold;font-size: 30px;text-transform: uppercase;line-height:36px;}
+.banft_txt span, #random-quotes span{font-size: 12px;display: block;font-style:italic;line-height: 36px;}
+#random-quotes {display: table-cell;vertical-align: middle;}
+#random-quotes .banft_txt{padding: 0px;}
 /**/
 .footer{background: #000;height: 370px;padding:180px 0 0 ; position: fixed;width: 100%;bottom: 0;}
 .ft_con{width: 1000px;margin: 0 auto 0;color:#525252;font-size: 14px;}
@@ -729,8 +731,8 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 
 .pagetit-fixed .pagetit-inner{position: fixed;right: 0;left: 0;top: 0;z-index: 1;background: #f0f0f0;}
 
-.page-mask{position: fixed;top: 0;width: 100%;z-index: 199;height: 100%;background: #000;}
-.page-mask.lighter{opacity: 0.6;}
+.page-mask{position: fixed;top: 0;width: 100%;z-index: 199;height: 100%;background: #000;display: table;}
+.page-mask.lighter{opacity: 0.8;}
 .slider-block-inner{overflow: hidden;}
 .move-line{position: absolute;width: 1px;background: red;height: 100%;top: 0;}
 
