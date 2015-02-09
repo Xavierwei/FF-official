@@ -31,6 +31,7 @@ a:hover{color:#000}
 .transition{-webkit-transition: all 0.6s ease-in-out;-moz-transition: all 0.6s ease-in-out;-o-transition: all 0.6s ease-in-out;-ms-transition: all 0.6s ease-in-out;transition: all 0.6s ease-in-out;}
 .transition-wrap{overflow: hidden;}
 .transition-wrap:hover .transition{margin-top: -100px;background: #000;color:#fff;}
+html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;background: #000;color:#fff;}
 /* FF Used
 ================================================================================================= */
 .page{background: white;position: relative;z-index: 2;margin-bottom: 550px;}
@@ -172,11 +173,14 @@ a.icon_bg{background-position: 0px -115px;}
 /*section jobs*/
 .sec_jobs{margin: 80px auto 80px;}
 .jobsitem{float: left;width: 332px;border-top:#000 solid 22px;float: left;margin: 0 8px 80px;height: 390px;font-size: 14px;color:#666}
+html.ie8 .jobsitem {height: 400px;}
 .jobsitem h3{font-size: 24px;text-transform: uppercase;padding: 50px 0 0;color:#000;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .jobsitem h4{padding: 16px 0;color:#000}
-.jobs-con{height: 153px;overflow: hidden;}
+.jobs-con{height: 170px;overflow: hidden;}
 .jobs_more{height: 50px;width: 175px;text-align: center;line-height: 50px;border: #000 solid 2px;display: block;margin: 40px auto 0;background: #fff;cursor: pointer;color:black;}
+html.ie8 .jobs_more{margin-top: 10px;height: 40px;line-height: 40px;}
 .pop_jobtxt{white-space: pre-wrap;}
+html.ie8 .pop_jobtxt{overflow-x: hidden;}
 
 /* secction contact */
 .sec_contact{}
@@ -382,7 +386,8 @@ body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 .home_bio{height: 507px;position: relative;z-index: 1;overflow: hidden; color: white;}
 .home_bio_bg{width: 100%;position: absolute;z-index: -1;}
 .home_bio h2{font-size: 48px;line-height: 200px;text-align: center;}
-.home_biotxt{font-size: 15px;width: 1090px;margin: 0 auto}
+.home_biotxt{font-size: 15px;width: 1090px;margin: 0 auto;}
+body.lang-zho .home_biotxt{font-size: 14px;width: 1090px;margin: 0 auto;line-height: 1.8em;}
 .home_biotxt strong{text-transform: uppercase;}
 .home_bioleft{float:left;width: 515px}
 .home_bioright{float: right;width: 515px}

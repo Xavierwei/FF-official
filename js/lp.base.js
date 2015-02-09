@@ -3500,6 +3500,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             $('.jobs_more[data-path="' + match[1] + '"]').click();
                         }
 
+                        $(window).on('resize',function() {
+                            var heights_h4 = [];
+                            $('.jobsitem h4').each(function(i,h) {
+                                heights_h4.push($(h).height());
+                            });
+                            var h4_max = Math.max.apply(null, heights_h4);
+                            $('.jobsitem h4').each(function(i,h) {
+                                $(h).height(h4_max);
+                            });
+                        }).trigger('resize');
+
                         cb && cb();
                     });
                 });
