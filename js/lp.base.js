@@ -3034,7 +3034,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             brands.push(award.brand_title);
                             award_count[award.award_label] = award_count[award.award_label] || 0;
                             award_count[award.award_label]++;
-                            var y = award['created'].replace(/^(\d{4}).*/, '$1');
+                            var y = award['date'].replace(/^(\d{4}).*/, '$1');
                             if (y) {
                                 years.push(y);
                             }
@@ -3067,12 +3067,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         var awardsHtml = ['<span class="award-num"></span>'];
                         $.each(old_awards_for_imgs, function (i, old_award_for_imgs) {
                             var num = award_count[old_award_for_imgs.label] || 0;
-                            awardsHtml.push('<img data-num="' + num + '" src="' + campaignManager.getPath(old_award_for_imgs, 'preview', true) + '">');
+                            awardsHtml.push('<div class="award-image-num">' + '<p class="transition">' + num + '</p>' + '<img class="transition"' + 'data-num=\"' + num + '" src="' + campaignManager.getPath(old_award_for_imgs, 'preview', true) + '">' + '</div>');
                             preload_imgs.push(campaignManager.getPath(old_award_for_imgs, 'preview', true));
                         });
 
                         $('.awardicons').html(awardsHtml.join(''));
-                        $('.awardicons img').hover(function () {
+                        $('.awardicons').on('hover', 'img' , function () {
                             var num = $(this).data('num');
                             $('.awardicons span').html(num);
                             effects['number-rock']($('.awardicons span'), 0, null, 500);
@@ -5487,9 +5487,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         // data-a="brands-item" data-path="pages_contents/categories/alcoholic_drinks/huang_lei_interview/0"
         var listHtml = [];
         $.each(all, function (i, all_item) {
+            console.log(all_item['date'],'-->',all_item['date'].replace(/^(\d{4}).*/, '$1'));
             listHtml.push(LP.format(tpl, {
                 'class': i % 2 ? '' : 'even',
-                year: all_item['created'].replace(/^(\d{4}).*/, '$1'),
+                year: all_item['date'].replace(/^(\d{4}).*/, '$1'),
                 award: all_item.award_label,
                 brand: all_item.brand_title,
                 campaign: all_item.label,
