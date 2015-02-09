@@ -60,7 +60,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="fullcover-background"></div>
 	</div>
 </div>
 <script type="text/tpl" id="video-pause-tpl"><div class="transition"><?php _e('PAUSE'); ?><br><br><?php _e('PAUSE'); ?></div></script>

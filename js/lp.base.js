@@ -3515,21 +3515,23 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         });
 
                         $('.jobslist').html(aHtml.join(''));
-                        //$('.pop_jobcon_inner').each(function(i,el) {
-                        //    var $self = $(this);
-                        //    $self.find('.jobcontent').each(function(i,el) {
-                        //        if($(el).text() == '') {
-                        //            var id = $(el).prop('class').split(' ')[1].split('_')[1];
-                        //            console.log('id: ',id);
-                        //            $self.find('a').each(function(i,a) {
-                        //                if($(a).data('lang') == id) {
-                        //                    console.log(a);
-                        //                    $(a).hide();
-                        //                }
-                        //            });
-                        //        }
-                        //    });
-                        //});
+
+                        $('.pop_jobcon_inner').each(function(i,el) {
+                            var $self = $(this);
+                            $self.find('.jobcontent').each(function(i,el) {
+                                if($(el).text() == '') {
+                                    var id = $(el).prop('class').split(' ')[1].split('_')[1];
+                                    console.log('id: ',id);
+                                    $self.find('a').each(function(i,a) {
+                                        console.log($(a).data('lang'));
+                                        if($(a).data('lang') == id) {
+                                            console.log(a);
+                                            $(a).hide();
+                                        }
+                                    });
+                                }
+                            });
+                        });
 
                         var match = location.href.match(/(\/jobs\/\d+)/)
                         if( match ){
