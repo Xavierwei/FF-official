@@ -772,6 +772,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     initImageMouseMoveEffect( $(this) );
                 }
             });
+
+            if( index == 0 ){
+                $('.preview .prev').hide();
+            }
+            if( index == $('.preview ul').children().length - 1 ){
+                $('.preview .next').hide();
+            }
+
         }, 'showBigItem');
         campaignManager.getCampaignItems(path, function (items) {
             var aHtml = [];
@@ -1289,13 +1297,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var $img = $dom.find('img');
         var imgWidth = $img.width();
         var imgHeight = $img.height();
-        var fixWidth = imgWidth * 0.1;
-        var fixHeight = imgHeight * 0.1;
+        var fixWidth = imgWidth * 0;
+        var fixHeight = imgHeight * 0;
         var $cloneImg =  null ;
 
         var off = null;
-        var domWidth = null;
-        var domHeight = null;
+        var domWidth = $dom.width();
+        var domHeight = $dom.height();
 
         var init = false;
         var top = 0;
@@ -1305,14 +1313,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $img = $dom.find('img');
             imgWidth = $img.width();
             imgHeight = $img.height();
-            fixWidth = imgWidth * 0.05;
-            fixHeight = imgHeight * 0.05;
+            
             $cloneImg =  null ;
 
-            off = null;
-            domWidth = null;
-            domHeight = null;
+
+            off = $dom.offset();
+            domWidth = $dom.width();
+            domHeight = $dom.height();
+
             init = false;
+
+            fixWidth = Math.abs( parseInt( $img.css('marginLeft') ) );
+            fixHeight = Math.abs( parseInt( $img.css('marginTop') ) );
 
         }
 
@@ -1350,34 +1362,34 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             initFn();
 
-            off = $dom.offset();
-            domWidth = $dom.width();
-            domHeight = $dom.height();
 
-            init = false;
             $cloneImg = $cImgs.length ? $cImgs : $img.clone().css({
                 position: 'absolute',
-                top: 0,
-                left: 0
+                top: - fixHeight,
+                left: - fixWidth,
+                marginLeft:0,
+                marginTop: 0
             })
             .addClass('clone-img')
             .appendTo( $dom );
+            init = true;
 
-            $cloneImg.stop().css({
-                opacity: 1,
-                display: 'block'
-            }).animate({
-                top: - fixHeight,
-                left: - fixWidth,
-                width: imgWidth + 2 * fixWidth,
-                height: imgHeight + 2 * fixHeight
+            // $cloneImg.stop().css({
+            //     opacity: 1,
+            //     display: 'block'
+            // }).animate({
+            //     top: - fixHeight,
+            //     left: - fixWidth
+            //     // width: imgWidth + 2 * fixWidth,
+            //     // height: imgHeight + 2 * fixHeight
 
-            } , 500 )
-            .promise()
-            .then(function(){
-                init = true;
-            });
+            // } , 500 )
+            // .promise()
+            // .then(function(){
+            //     init = true;
+            // });
         }).on('mouseleave.image-effect' , function(){
+            return
             clearInterval( interval );
             if( !$cloneImg ) return;
 
@@ -4786,6 +4798,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             .appendTo($li);
                     });
                 }
+
+                $('.preview .prev').show();
+                if( index == $ul.children().length - 1 ){
+                    $('.preview .next').hide();
+                }
             });
 
     });
@@ -4823,6 +4840,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             .append($li.find('.vjs-control-bar'))
                             .appendTo($li);
                     });
+                }
+
+                $('.preview .next').show();
+                if( index == 0 ){
+                    $('.preview .prev').hide();
                 }
             });
     });
@@ -4873,6 +4895,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $('.shade').fadeOut();
             });
 
+
+        loadingMgr.abort();
+
         pageManager.go( LP.parseUrl().path.match(/^(\/\w+)/)[1] );
     });
 
@@ -4922,12 +4947,16 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             $('.pop_press_menus').css('right', 95);
 
-            // if( press_index == 1 ){
-            //     $('.pop_press .popprev').hide();
-            // }
-            // if( press_index == total ){
-            //     $('.pop_press .popnext').hide();
-            // }
+            if( press_index == 1 ){
+                $('.pop_press .popnext').hide();
+            } else {
+                $('.pop_press .popnext').show();
+            }
+            if( press_index == total ){
+                $('.pop_press .popprev').hide();
+            } else {
+                $('.pop_press .popprev').show();
+            }
 
 
             // change url 
@@ -4975,10 +5004,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $('.pop_press .popdownicon').attr('href', $item.find('.press_itemdown').attr('href'));
 
             pageManager.go('/press/' + $item.data('path') );
-            // if( $item.index() + 1 == 1 ){
-            //     $('.pop_press .popprev').hide();
-            // }
-            // $('.pop_press .popnext').show();
+            if( $item.index() + 1 == 1 ){
+                $('.pop_press .popnext').hide();
+            }
+            $('.pop_press .popprev').show();
         });
         $('<img/>').load(function () {
             loadingMgr.success();
@@ -5018,10 +5047,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $('.pop_press .popdownicon').attr('href', $item.find('.press_itemdown').attr('href'));
 
             pageManager.go('/press/' + $item.data('path') );
-            // if( $item.index() + 1 == $item.parent().children().length ){
-            //     $('.pop_press .popnext').hide();
-            // }
-            // $('.pop_press .popprev').show();
+            if( $item.index() + 1 == $item.parent().children().length ){
+                $('.pop_press .popprev').hide();
+            }
+            $('.pop_press .popnext').show();
 
         }, 'press_next');
         $('<img/>').load(function () {
@@ -5598,6 +5627,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('.pop_jobs .pop_total').html($item.parent().children().length);
         $('.pop_job_menus').css('right', 95);
 
+        if( job_index == 1 ){
+            $('.pop_job_menus .popnext').hide();
+        } else {
+            $('.pop_job_menus .popnext').show();
+        }
+
+        if( job_index == $item.parent().children().length ){
+            $('.pop_job_menus .popprev').hide();
+        } else {
+            $('.pop_job_menus .popprev').show();
+        }
 
         // change path
         pageManager.go( $(this).data('path') );
@@ -5639,6 +5679,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('.pop_jobs .jobs_more').attr('href', 'mailto:' + contact);
         $('.pop_jobs .pop_index').html(job_index);
 
+        if( job_index == 1 ){
+            $('.pop_job_menus .popnext').hide();
+        }
+        $('.pop_job_menus .popprev').show();
+
         // change path
         pageManager.go( $item.find('[data-path]').data('path') );
     });
@@ -5673,6 +5718,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var contact = LP.query2json($item.find('.jobs_more').attr('data-d'))['contact'];
         $('.pop_jobs .jobs_more').attr('href', 'mailto:' + contact);
         $('.pop_jobs .pop_index').html(job_index);
+
+        if( job_index == $item.parent().children().length ){
+            $('.pop_job_menus .popprev').hide();
+        }
+        $('.pop_job_menus .popnext').show();
 
         // change path
         pageManager.go( $item.find('[data-path]').data('path') );
