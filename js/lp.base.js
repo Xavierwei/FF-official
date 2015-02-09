@@ -420,7 +420,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         aHtml.push(LP.format(tpl, {
                             agency: item.agency,
                             label: item.label,
-                            year: item.created.replace(/(\d+)-.*/, '$1'),
+                            year: item.date.replace(/(\d+)-.*/, '$1'),
                             id: item.id,
                             cpgn_type: item.cpgn_type,
                             path: item._contentPath.replace('pages_contents/', '') + '/' + item.path
@@ -3034,7 +3034,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             brands.push(award.brand_title);
                             award_count[award.award_label] = award_count[award.award_label] || 0;
                             award_count[award.award_label]++;
-                            var y = award['created'].replace(/^(\d{4}).*/, '$1');
+                            var y = award['date'].replace(/^(\d{4}).*/, '$1');
                             if (y) {
                                 years.push(y);
                             }
@@ -3067,15 +3067,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         var awardsHtml = ['<span class="award-num"></span>'];
                         $.each(old_awards_for_imgs, function (i, old_award_for_imgs) {
                             var num = award_count[old_award_for_imgs.label] || 0;
-                            awardsHtml.push('<img data-num="' + num + '" src="' + campaignManager.getPath(old_award_for_imgs, 'preview', true) + '">');
+                            awardsHtml.push('<div class="award-image-num">' + '<p class="transition">' + num + '</p>' + '<img class="transition"' + 'data-num=\"' + num + '" src="' + campaignManager.getPath(old_award_for_imgs, 'preview', true) + '">' + '</div>');
                             preload_imgs.push(campaignManager.getPath(old_award_for_imgs, 'preview', true));
                         });
 
                         $('.awardicons').html(awardsHtml.join(''));
-                        $('.awardicons img').hover(function () {
+                        $('.awardicons').on('hover', 'img' , function () {
                             var num = $(this).data('num');
                             $('.awardicons span').html(num);
-                            effects['number-rock']($('.awardicons span'), 0, null, 500);
+                            effects['number-rock']($('span.award-num'), 0, null, 500);
+                            effects['number-rock']($(this).closest('.award-image-num').find('p'), 0, null, 500);
+
                         });
 
                         loadImages_2(preload_imgs.slice(0,8), function () {
@@ -3466,7 +3468,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
                             <div class="pop_jobcon_inner" style="display:none;">\
-                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="fr"> FR </a><a href="#" data-a="jobs-lang" data-lang="cn"> 中国 </a></div>\
+                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="fr"> FR </a><a href="#" data-a="jobs-lang" data-lang="zho"> 中国 </a></div>\
                                 <div class="jobcontent content_en">\
                                     <h3>#[title]</h3>\
                                     <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
@@ -3491,14 +3493,41 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     api.request(contentPaths, function (r) {
                         $.each(r.items, function (i, item) {
                             aHtml.push(LP.format(tpl, item));
+
                         });
 
                         $('.jobslist').html(aHtml.join(''));
+                        //$('.pop_jobcon_inner').each(function(i,el) {
+                        //    var $self = $(this);
+                        //    $self.find('.jobcontent').each(function(i,el) {
+                        //        if($(el).text() == '') {
+                        //            var id = $(el).prop('class').split(' ')[1].split('_')[1];
+                        //            console.log('id: ',id);
+                        //            $self.find('a').each(function(i,a) {
+                        //                if($(a).data('lang') == id) {
+                        //                    console.log(a);
+                        //                    $(a).hide();
+                        //                }
+                        //            });
+                        //        }
+                        //    });
+                        //});
 
                         var match = location.href.match(/(\/jobs\/\d+)/)
                         if( match ){
                             $('.jobs_more[data-path="' + match[1] + '"]').click();
                         }
+
+                        $(window).on('resize',function() {
+                            var heights_h4 = [];
+                            $('.jobsitem h4').each(function(i,h) {
+                                heights_h4.push($(h).height());
+                            });
+                            var h4_max = Math.max.apply(null, heights_h4);
+                            $('.jobsitem h4').each(function(i,h) {
+                                $(h).height(h4_max);
+                            });
+                        }).trigger('resize');
 
                         cb && cb();
                     });
@@ -3904,7 +3933,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     })
                 }
                 var random_num = Math.floor((Math.random() * 3));
-                //console.log('random_num: ',random_num);
                 $('.banft_txt').css({
                     marginLeft: -(random_num) * 100 + '%'
                 });
@@ -4168,6 +4196,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $('.ft-addr-p-4').each(function(i,p) {
                         $(p).height(p4_max);
                     });
+
+                    $('.banft_txt').css('width','300%');
                 }).trigger('resize');
                 return false;
             },
@@ -4202,6 +4232,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_butterfly"></a>');
         $('#icon-wrap').html(linkHtml.join(''));
 
+        $('.icon_wx').on('click',function(e) {
+            e.preventDefault();
+            $('.fullcover-background').addClass('show');
+        });
     });
 
     
@@ -5444,7 +5478,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         if (year) {
             all = array_filter(all, function (award) {
-                return award.created.indexOf(year) == 0;
+                return award.date.indexOf(year) == 0;
             });
         }
         if (brand_id) {
@@ -5478,7 +5512,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $.each(all, function (i, all_item) {
             listHtml.push(LP.format(tpl, {
                 'class': i % 2 ? '' : 'even',
-                year: all_item['created'].replace(/^(\d{4}).*/, '$1'),
+                year: all_item['date'].replace(/^(\d{4}).*/, '$1'),
                 award: all_item.award_label,
                 brand: all_item.brand_title,
                 campaign: all_item.label,
@@ -5511,6 +5545,23 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     var job_index = 0;
     LP.action('jobs-more', function (data) {
+        $('.pop_jobcon_inner').each(function(i,el) {
+            var $self = $(this);
+            $self.find('.jobcontent').each(function(i,el) {
+                if($(el).text() == '') {
+                    var id = $(el).prop('class').split(' ')[1].split('_')[1];
+                    console.log('id: ',id);
+                    $self.find('a').each(function(i,a) {
+                        if($(a).data('lang') == id) {
+                            console.log(a);
+                            $(a).hide();
+                        }
+                    });
+                }
+            });
+        });
+
+
         var $item = $(this).closest('.jobsitem');
         job_index = $item.index() + 1;
         $('.shade').fadeIn();
