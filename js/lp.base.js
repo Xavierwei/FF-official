@@ -766,6 +766,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         .appendTo($li);
                 });
             }
+
+            $('.preview ul').children().each(function(){
+                if( !$(this).data('video') ){
+                    initImageMouseMoveEffect( $(this) );
+                }
+            });
         }, 'showBigItem');
         campaignManager.getCampaignItems(path, function (items) {
             var aHtml = [];
@@ -1269,139 +1275,139 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         }
     }
 
-    // function unInitImageMouseMoveEffect( $dom ){
-    //     $dom.unbind('.image-effect');
-    //     $dom.find('.clone-img').fadeOut( 400 , function(){
-    //         $(this).remove();
-    //     } );
-    // }
+    function unInitImageMouseMoveEffect( $dom ){
+        $dom.unbind('.image-effect');
+        $dom.find('.clone-img').fadeOut( 400 , function(){
+            $(this).remove();
+        } );
+    }
 
-    // function initImageMouseMoveEffect( $dom , onZoom ){
-    //     // if( $dom.data('image-init') ) return;
-    //     $dom.unbind('.image-effect');
+    function initImageMouseMoveEffect( $dom , onZoom ){
+        // if( $dom.data('image-init') ) return;
+        $dom.unbind('.image-effect');
 
-    //     var $img = $dom.find('img');
-    //     var imgWidth = $img.width();
-    //     var imgHeight = $img.height();
-    //     var fixWidth = imgWidth * 0.1;
-    //     var fixHeight = imgHeight * 0.1;
-    //     var $cloneImg =  null ;
+        var $img = $dom.find('img');
+        var imgWidth = $img.width();
+        var imgHeight = $img.height();
+        var fixWidth = imgWidth * 0.1;
+        var fixHeight = imgHeight * 0.1;
+        var $cloneImg =  null ;
 
-    //     var off = null;
-    //     var domWidth = null;
-    //     var domHeight = null;
+        var off = null;
+        var domWidth = null;
+        var domHeight = null;
 
-    //     var init = false;
-    //     var top = 0;
-    //     var left = 0;
+        var init = false;
+        var top = 0;
+        var left = 0;
 
-    //     var initFn = function(){
-    //         $img = $dom.find('img');
-    //         imgWidth = $img.width();
-    //         imgHeight = $img.height();
-    //         fixWidth = imgWidth * 0.05;
-    //         fixHeight = imgHeight * 0.05;
-    //         $cloneImg =  null ;
+        var initFn = function(){
+            $img = $dom.find('img');
+            imgWidth = $img.width();
+            imgHeight = $img.height();
+            fixWidth = imgWidth * 0.05;
+            fixHeight = imgHeight * 0.05;
+            $cloneImg =  null ;
 
-    //         off = null;
-    //         domWidth = null;
-    //         domHeight = null;
-    //         init = false;
+            off = null;
+            domWidth = null;
+            domHeight = null;
+            init = false;
 
-    //     }
+        }
 
 
-    //     var interval;
-    //     var runAnimate = function( $img ){
-    //         clearInterval( interval ) ;
+        var interval;
+        var runAnimate = function( $img ){
+            clearInterval( interval ) ;
 
-    //         var duration = 1000;
-    //         var start = new Date();
-    //         var ltop = parseInt( $img.css('top') ) || 0;
-    //         var lleft = parseInt( $img.css('left') ) || 0;
-    //         interval = setInterval(function(){
-    //             // t: current time, b: begInnIng value, c: change In value, d: duration
-    //             //x, t, b, c, d
-    //             var dur = ( new Date() - start ) / duration;
-    //             var per =  dur > 1 ? 1 : $.easing.easeOutQuart( 0 , dur , 0 , 1 , 1 );
+            var duration = 1000;
+            var start = new Date();
+            var ltop = parseInt( $img.css('top') ) || 0;
+            var lleft = parseInt( $img.css('left') ) || 0;
+            interval = setInterval(function(){
+                // t: current time, b: begInnIng value, c: change In value, d: duration
+                //x, t, b, c, d
+                var dur = ( new Date() - start ) / duration;
+                var per =  dur > 1 ? 1 : $.easing.easeOutQuart( 0 , dur , 0 , 1 , 1 );
 
-    //             $img.css({
-    //                 top: ltop + (top - ltop) * per,
-    //                 left: lleft + (left - lleft) * per
-    //             });
+                $img.css({
+                    top: ltop + (top - ltop) * per,
+                    left: lleft + (left - lleft) * per
+                });
 
-    //             if( per == 1 ){
-    //                 clearInterval( interval )
-    //             }
-    //         } , 1000 / 60 );
-    //     }
+                if( per == 1 ){
+                    clearInterval( interval )
+                }
+            } , 1000 / 60 );
+        }
 
-    //     // var animate = null;
-    //     $dom.on('mouseenter.image-effect' , function(){
-    //         onZoom && onZoom();
+        // var animate = null;
+        $dom.on('mouseenter.image-effect' , function(){
+            onZoom && onZoom();
 
-    //         var $cImgs = $(this).find('.clone-img');
+            var $cImgs = $(this).find('.clone-img');
 
-    //         initFn();
+            initFn();
 
-    //         off = $dom.offset();
-    //         domWidth = $dom.width();
-    //         domHeight = $dom.height();
+            off = $dom.offset();
+            domWidth = $dom.width();
+            domHeight = $dom.height();
 
-    //         init = false;
-    //         $cloneImg = $cImgs.length ? $cImgs : $img.clone().css({
-    //             position: 'absolute',
-    //             top: 0,
-    //             left: 0
-    //         })
-    //         .addClass('clone-img')
-    //         .appendTo( $dom );
+            init = false;
+            $cloneImg = $cImgs.length ? $cImgs : $img.clone().css({
+                position: 'absolute',
+                top: 0,
+                left: 0
+            })
+            .addClass('clone-img')
+            .appendTo( $dom );
 
-    //         $cloneImg.stop().css({
-    //             opacity: 1,
-    //             display: 'block'
-    //         }).animate({
-    //             top: - fixHeight,
-    //             left: - fixWidth,
-    //             width: imgWidth + 2 * fixWidth,
-    //             height: imgHeight + 2 * fixHeight
+            $cloneImg.stop().css({
+                opacity: 1,
+                display: 'block'
+            }).animate({
+                top: - fixHeight,
+                left: - fixWidth,
+                width: imgWidth + 2 * fixWidth,
+                height: imgHeight + 2 * fixHeight
 
-    //         } , 500 )
-    //         .promise()
-    //         .then(function(){
-    //             init = true;
-    //         });
-    //     }).on('mouseleave.image-effect' , function(){
-    //         clearInterval( interval );
-    //         if( !$cloneImg ) return;
+            } , 500 )
+            .promise()
+            .then(function(){
+                init = true;
+            });
+        }).on('mouseleave.image-effect' , function(){
+            clearInterval( interval );
+            if( !$cloneImg ) return;
 
-    //         $cloneImg.animate({
-    //             top: 0,
-    //             left: 0,
-    //             width: imgWidth,
-    //             height: imgHeight
-    //         } , 500 )
-    //         .promise()
-    //         .then(function(){
-    //             $cloneImg && $cloneImg.fadeOut(100 , function(){
-    //                 $cloneImg && $cloneImg.hide();
-    //             });
-    //         });
-    //     })
-    //     .on('mousemove.image-effect' , function( ev ){
-    //         if( !off ) return;
-    //         var px = ev.pageX - off.left;
-    //         var py = ev.pageY - off.top;
-    //         var lx , ly;
-    //         lx = ( domWidth / 2 - px );
-    //         ly = ( domHeight / 2 - py );
-    //         if( init ){
-    //             top =  - fixHeight + ly / (domHeight / 2) * fixHeight;
-    //             left = - fixWidth + lx / (domWidth / 2) * fixWidth;
-    //             runAnimate( $cloneImg );
-    //         }
-    //     });
-    // }
+            $cloneImg.animate({
+                top: 0,
+                left: 0,
+                width: imgWidth,
+                height: imgHeight
+            } , 500 )
+            .promise()
+            .then(function(){
+                $cloneImg && $cloneImg.fadeOut(100 , function(){
+                    $cloneImg && $cloneImg.hide();
+                });
+            });
+        })
+        .on('mousemove.image-effect' , function( ev ){
+            if( !off ) return;
+            var px = ev.pageX - off.left;
+            var py = ev.pageY - off.top;
+            var lx , ly;
+            lx = ( domWidth / 2 - px );
+            ly = ( domHeight / 2 - py );
+            if( init ){
+                top =  - fixHeight + ly / (domHeight / 2) * fixHeight;
+                left = - fixWidth + lx / (domWidth / 2) * fixWidth;
+                runAnimate( $cloneImg );
+            }
+        });
+    }
 
 
     // show big brand item
