@@ -3075,7 +3075,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $('.awardicons').on('hover', 'img' , function () {
                             var num = $(this).data('num');
                             $('.awardicons span').html(num);
-                            effects['number-rock']($('.awardicons span'), 0, null, 500);
+                            effects['number-rock']($('span.award-num'), 0, null, 500);
+                            effects['number-rock']($(this).closest('.award-image-num').find('p'), 0, null, 500);
+
                         });
 
                         loadImages_2(preload_imgs.slice(0,8), function () {
@@ -5455,7 +5457,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         if (year) {
             all = array_filter(all, function (award) {
-                return award.created.indexOf(year) == 0;
+                return award.date.indexOf(year) == 0;
             });
         }
         if (brand_id) {
