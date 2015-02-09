@@ -4235,7 +4235,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 linkHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="work_item #[name]">#[label]</a>', item))
             }
         });
-        linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_butterfly"></a>');
+        //linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_butterfly"></a>');
         $('#icon-wrap').html(linkHtml.join(''));
 
         $('.icon_wx').on('click',function(e) {
