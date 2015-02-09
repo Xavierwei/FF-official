@@ -33,7 +33,7 @@
 			<div data-effect="fadeup" class="timeline_year intoview-effect"><span class="intoview-effect" data-effect="number-rock">2014</span></div>
 			<div data-effect="fadeup" class="timeline_item intoview-effect cs-clear">
 				<div class="timeline_left">
-					<div class="timeline_pho"><a href="ffdif.com"></a></div>
+					<div class="timeline_pho"><a href="http://ffdif.com" target="_blank"></a></div>
 				</div>
 				<div class="timeline_right">
 					<div class="timeline_txt"><?php _e('Fred & Farid have also launched a Digital Business Fund (Fred & Farid Digital Investment Fund) taking participations and promoting young digital companies (Meltygroup, BonjourBonjour, Wezzoo, State), and digital fund Fashion Capital Partners (FCP).');?></div>

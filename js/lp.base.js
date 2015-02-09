@@ -420,7 +420,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         aHtml.push(LP.format(tpl, {
                             agency: item.agency,
                             label: item.label,
-                            year: item.created.replace(/(\d+)-.*/, '$1'),
+                            year: item.date.replace(/(\d+)-.*/, '$1'),
                             id: item.id,
                             cpgn_type: item.cpgn_type,
                             path: item._contentPath.replace('pages_contents/', '') + '/' + item.path
@@ -4232,6 +4232,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_butterfly"></a>');
         $('#icon-wrap').html(linkHtml.join(''));
 
+        $('.icon_wx').on('click',function(e) {
+            e.preventDefault();
+            $('.fullcover-background').addClass('show');
+        });
     });
 
     

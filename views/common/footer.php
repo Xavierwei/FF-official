@@ -8,6 +8,7 @@
 </div>
 	<!-- footer -->
 	<div class="footer">
+
 		<div class="ft_con cs-clear">
 			<div class="ft_mod ft_find">
 				<h3><?php _e('FOLLOW US');?></h3>
@@ -59,6 +60,7 @@
 				</div>
 			</div>
 		</div>
+		<div class="fullcover-background"></div>
 	</div>
 </div>
 <script type="text/tpl" id="video-pause-tpl"><div class="transition"><?php _e('PAUSE'); ?><br><br><?php _e('PAUSE'); ?></div></script>
