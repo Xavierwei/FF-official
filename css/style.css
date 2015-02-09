@@ -514,9 +514,9 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .interview_list .interview_info span{display: inline-block;text-align: left;}
 .interview_list .interview_info strong{font-size: 24px;color: #000;}
 .interview_img{cursor: pointer;height: 170px;overflow: hidden;width: 690px;background: #ccc;}
-.interview_odd .interview_info{float: right;}
+.interview_odd .interview_info{float: right;padding-left:40px;width: 300px;}
 .interview_odd .interview_img{float: left;}
-.interview_even .interview_info{float: left;}
+.interview_even .interview_info{float: left;padding-right:40px;width: 300px;}
 .interview_even .interview_img{float: right;}
 .interview_list .interview_even span{text-align: right;}
 .interview_img{overflow: hidden;position: relative;}
