@@ -696,6 +696,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             },
             back: function () {
 
+                LP.triggerAction('pop_close');
+
                 disposeVideo();
                 var path = getPath();
                 var paths = path.split('/');
@@ -3486,7 +3488,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
                             <div class="pop_jobcon_inner" style="display:none;">\
-                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="fr"> FR </a><a href="#" data-a="jobs-lang" data-lang="zho"> 中国 </a></div>\
+                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> #[fr-lang] #[zho-lang] </div>\
                                 <div class="jobcontent content_en">\
                                     <h3>#[title]</h3>\
                                     <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
@@ -3510,8 +3512,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     var aHtml = [];
                     api.request(contentPaths, function (r) {
                         $.each(r.items, function (i, item) {
+                            item['fr-lang'] = item['content_fr'] ? '<a href="#" data-a="jobs-lang" data-lang="fr"> FR </a>' : '';
+                            item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中国 </a>' : '';
                             aHtml.push(LP.format(tpl, item));
-
                         });
 
                         $('.jobslist').html(aHtml.join(''));
@@ -4270,7 +4273,16 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         $('.icon_wx').on('click',function(e) {
             e.preventDefault();
-            $('.fullcover-background').addClass('show');
+            $('.shade').fadeIn();
+            $('.fullcover-background').show()
+                .css({
+                    top: '-100%',
+                    opacity: 1
+                })
+                .animate({
+                    top: '0%'
+                }, 400);
+            //$('.fullcover-background').addClass('show');
         });
     });
 
