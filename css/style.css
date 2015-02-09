@@ -71,7 +71,7 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 .search-item-tit{float: left; width: 210px;text-align: right;margin-right: 20px;}
 
 .pagetit{background: #f0f0f0;height: 85px;line-height: 85px;position: relative;z-index: 102;}
-.pagetit h1{color:#000;font-size: 48px;}
+.pagetit h1{color:#000;font-size: 48px;line-height: 90px;}
 .pagetitarr{position: absolute;width: 24px;height: 16px;background: url('../images/pagetitarr.png') no-repeat 0 0;right: 150px;top:40px;}
 .pagetitarr:hover{background-position: 0 -44px;}
 .pagetitarrbottom{background-position: right -44px;right:55px;}
@@ -540,6 +540,7 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .interview-video{height: 400px;overflow: hidden; margin-bottom: 10px; position: relative;}
 .interview-video .video-wrap{top: auto; bottom: 0;}
 .video-share{position: absolute;width: 100px;text-align: center;height: 50px;line-height: 50px;color: #fff;font-size: 14px;text-transform: uppercase;z-index: 10;font-weight: 100;bottom: 0;z-index: 102;}
+.video-share{display: none;}
 /* pop shade */
 .shade{background: #000 ;opacity: 0.6;filter:alpha(opacity=60);position: fixed;left:0;top: 0;right: 0;bottom: 0;
     _position: absolute; z-index: 20000; display: none;}
@@ -589,7 +590,7 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control{line-height: 36px;display: none;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control:before{display: none;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control .vjs-control-text{clip: auto;width: auto;height: auto;left: 20px;}
-.interview-video-wrap .vjs-default-skin .vjs-progress-control{top: 25px;height: 1px;margin: 0 100px;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-control{top: 34px;height: 1px;margin: 0 100px;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-holder{background: white;border-top: 5px solid black;border-bottom: 5px solid black;margin-top: -5px;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-play-progress{background: #e00000;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-load-progress{background: #999;}
@@ -621,6 +622,7 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
     position: absolute;
     margin-bottom: 0;
     z-index: 101;
+    height: 50px;
 }
 
 
