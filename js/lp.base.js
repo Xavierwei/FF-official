@@ -3936,7 +3936,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     LP.use(['logo'],function() {
                         var reloadLogo = function() {
                             var canvas, stage, exportRoot;
-                            canvas = document.getElementById("canvas");
+                            canvas = document.getElementById("ff_logo_canvas");
                             exportRoot = new lib._2();
 
                             stage = new createjs.Stage(canvas);
@@ -3948,7 +3948,23 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             createjs.Ticker.addEventListener("tick", stage);
                         }
                         reloadLogo();
-                    })
+                    });
+                    LP.use(['loading_logo'],function() {
+                        var loading_logo = function () {
+                            var canvas, stage, exportRoot;
+                            canvas = document.getElementById("ff_loading_logo_canvas");
+                            exportRoot = new lib.white();
+
+                            stage = new createjs.Stage(canvas);
+                            stage.addChild(exportRoot);
+                            stage.update();
+                            stage.enableMouseOver();
+
+                            createjs.Ticker.setFPS(lib.properties.fps);
+                            createjs.Ticker.addEventListener("tick", stage);
+                        }
+                        loading_logo();
+                    });
                 }
                 var random_num = Math.floor((Math.random() * 3));
                 $('.banft_txt').css({
@@ -4247,7 +4263,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 linkHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="work_item #[name]">#[label]</a>', item))
             }
         });
-        linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_butterfly"></a>');
+        //linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_butterfly"></a>');
         $('#icon-wrap').html(linkHtml.join(''));
 
         $('.icon_wx').on('click',function(e) {
@@ -4718,7 +4734,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('.gates-inner-l').find('li a').each(function (i) {
             if ($.trim($(this).text())[0].toUpperCase() == letter) {
                 $('.gates-inner-l').animate({
-                    scrollTop: ($(this).parent().height() + 38) * i
+                    scrollTop: ($(this).parent().height() + 28) * i
                 }, 1000);
                 return false;
             }

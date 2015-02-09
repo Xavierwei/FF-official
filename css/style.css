@@ -423,7 +423,7 @@ body.lang-zho .home_biotxt{font-size: 14px;width: 1090px;margin: 0 auto;line-hei
 .gates-inner-c{padding-top: 100px;width: 12%;float: left;font-size: 18px;line-height: 1.5em;position: absolute;left: 67.8%;top:0;}
 .gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 1.5em;text-transform: uppercase;position: absolute;left: 78.8%;top:0;}
 .gates-inner-l .column{margin: 15px auto;}
-#categories-wrap>li {margin-bottom:38px;}
+#categories-wrap>li {margin-bottom:28px;}
 
 /* for brands */
 .sec_brands{display: none; position: fixed;top: 66px;bottom: 0;overflow: auto; width: 100%;z-index: 99;background: black;}
@@ -754,7 +754,8 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 .page-mask.lighter{opacity: 0.8;}
 .slider-block-inner{overflow: hidden;}
 .move-line{position: absolute;width: 1px;background: red;height: 100%;top: 0;}
-
+/*#ff_loading_logo_canvas {position: absolute;left: 50%;top: 50%;margin-left: -24px;margin-top: -160px;}*/
+#ff_loading_logo_canvas {margin: 0 auto 30px auto;}
 /*IE8*/
 html.no-canvas #canvas{display: none;}
 html.no-canvas .logo{background: url('../images/logo.png') no-repeat;background-position: center center;}
