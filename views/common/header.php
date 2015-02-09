@@ -61,7 +61,7 @@
 	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
 	<div class="page-mask"><div id="random-quotes"><canvas id="ff_loading_logo_canvas" width="48" height="48" style="background-color:black"></canvas></div></div>
 	<div class="fullcover-background pop">
-	    <p class="popicon popclose transition" data-a="pop_close"></p>
+	    <p class="popicon popclose transition" data-a="pop_close" data-d="noRefresh=1"></p>
 	    <div class="popcon transition qr_pop popcon-show">
             <div class="popup_qr">
                 <img src="../../images/weixin_QR.jpg">
@@ -133,7 +133,7 @@
 			<div class="header-inner">
 				<div class="logo-wrap">
 					<a href="/" data-a="navitem" class="logo transition">
-					    <canvas id="ff_logo_canvas" width="14" height="14" style="background-color:#FFFFFF"></canvas>
+					    <!-- <canvas id="ff_logo_canvas" width="14" height="14" style="background-color:#FFFFFF"></canvas> -->
 
                     </a>
 				</div>

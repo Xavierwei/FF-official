@@ -3499,7 +3499,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
                                     <div class="pop_jobtxt">#[content_fr]</div>\
                                 </div>\
-                                <div class="jobcontent content_cn" style="display:none;">\
+                                <div class="jobcontent content_zho" style="display:none;">\
                                     <h3>#[title_zho]</h3>\
                                     <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
                                     <div class="pop_jobtxt">#[content_zho]</div>\
@@ -3514,6 +3514,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $.each(r.items, function (i, item) {
                             item['fr-lang'] = item['content_fr'] ? '<a href="#" data-a="jobs-lang" data-lang="fr"> FR </a>' : '';
                             item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中国 </a>' : '';
+                            console.log( item );
                             aHtml.push(LP.format(tpl, item));
                         });
 
@@ -3938,22 +3939,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             },
             init: function (cb) {
                 if ($('html').hasClass('canvas')) {
-                    LP.use(['logo'],function() {
-                        var reloadLogo = function() {
-                            var canvas, stage, exportRoot;
-                            canvas = document.getElementById("ff_logo_canvas");
-                            exportRoot = new lib._2();
+                    // LP.use(['logo'],function() {
+                    //     var reloadLogo = function() {
+                    //         var canvas, stage, exportRoot;
+                    //         canvas = document.getElementById("ff_logo_canvas");
+                    //         exportRoot = new lib._2();
 
-                            stage = new createjs.Stage(canvas);
-                            stage.addChild(exportRoot);
-                            stage.update();
-                            stage.enableMouseOver();
+                    //         stage = new createjs.Stage(canvas);
+                    //         stage.addChild(exportRoot);
+                    //         stage.update();
+                    //         stage.enableMouseOver();
 
-                            createjs.Ticker.setFPS(lib.properties.fps);
-                            createjs.Ticker.addEventListener("tick", stage);
-                        }
-                        reloadLogo();
-                    });
+                    //         createjs.Ticker.setFPS(lib.properties.fps);
+                    //         createjs.Ticker.addEventListener("tick", stage);
+                    //     }
+                    //     reloadLogo();
+                    // });
                     LP.use(['loading_logo'],function() {
                         var loading_logo = function () {
                             var canvas, stage, exportRoot;
@@ -4257,7 +4258,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             }
         });
         //Place holders
-        shareHtml.push('<a role="share" href="#" target="_blank" class="find_item icon_wx">Weixin</a>');
+        shareHtml.push('<a role="share" href="#" target="_blank" data-a="icon-wx" class="find_item icon_wx">Weixin</a>');
         shareHtml.push('<a role="share" href="#" target="_blank" class="find_item icon_lk">Linkedin</a>');
         $('#share-wrap').html(shareHtml.join(''));
 
@@ -4271,19 +4272,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         //linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_butterfly"></a>');
         $('#icon-wrap').html(linkHtml.join(''));
 
-        $('.icon_wx').on('click',function(e) {
-            e.preventDefault();
-            $('.shade').fadeIn();
-            $('.fullcover-background').show()
-                .css({
-                    top: '-100%',
-                    opacity: 1
-                })
-                .animate({
-                    top: '0%'
-                }, 400);
-            //$('.fullcover-background').addClass('show');
-        });
     });
 
     
@@ -4485,6 +4473,20 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     // page actions here
     // ============================================================================
+    LP.action('icon-wx',function(){
+        $('.shade').fadeIn();
+        $('.fullcover-background').show()
+            .css({
+                top: '-100%',
+                opacity: 1
+            })
+            .animate({
+                top: '0%'
+            }, 400);
+            //$('.fullcover-background').addClass('show');
+        return false;
+    });
+
     LP.action('navitem', function () {
         // load next page
         pageManager.go($(this).attr('href'));
@@ -4914,7 +4916,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     });
 
 
-    LP.action('pop_close', function () {
+    LP.action('pop_close', function ( data ) {
         $('.pop:visible').animate({
             top: '150%',
             opacity: 0
@@ -4928,7 +4930,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         loadingMgr.abort();
 
-        pageManager.go( LP.parseUrl().path.match(/^(\/\w+)/)[1] );
+        if( !data.noRefresh ){
+            pageManager.go( LP.parseUrl().path.match(/^(\/\w+)/)[1] );
+        }
+
     });
 
 
