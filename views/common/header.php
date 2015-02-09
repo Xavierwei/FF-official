@@ -59,7 +59,7 @@
 </head>
 <body class="lang-<?php echo $_COOKIE['lang'];?>" data-title="<?php _e('FRED &amp; FARID GROUP');?>">
 	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
-	<div class="page-mask"><canvas id="ff_loading_logo_canvas" width="48" height="48" style="background-color:black"></canvas><div id="random-quotes"></div></div>
+	<div class="page-mask"><div id="random-quotes"><canvas id="ff_loading_logo_canvas" width="48" height="48" style="background-color:black"></canvas></div></div>
 	<div class="section sec_gates" style="display:none;">
 		<div class="gates-inner cs-clear">
 			<div class="gates-inner-l">
