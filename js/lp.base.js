@@ -3906,7 +3906,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             title: item.title,
                             content: item.content,
                             id: item.id,
-                            cover: campaignManager.getPath(item, 'picture_2'),
+                            cover: campaignManager.getPath(item, 'preview'),
                             preview: campaignManager.getPath(item, 'preview'),
                             index: i + 1,
                             total: r.items.length,
@@ -5025,7 +5025,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             }, 500)
                 .promise()
                 .then(function () {
-                    $(this).attr('src', imgSrc)
+                    $(this)
+                        .unbind('load')
+                        .attr('src', imgSrc)
                         .css({
                             marginLeft: '70%'
                         })
@@ -5035,6 +5037,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }, 500);
                 });
 
+            
+
             $('.pop_index').html($item.index() + 1);
             $('.pop_press .popdownicon').attr('href', $item.find('.press_itemdown').attr('href'));
 
@@ -5043,10 +5047,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $('.pop_press .popnext').hide();
             }
             $('.pop_press .popprev').show();
-        });
+        }, 'press-img-load');
         $('<img/>').load(function () {
-            loadingMgr.success();
+            loadingMgr.success('press-img-load');
         }).attr('src', imgSrc);
+
     });
 
 
@@ -5068,7 +5073,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             }, 500)
                 .promise()
                 .then(function () {
-                    $(this).attr('src', imgSrc)
+                    $(this)
+                        .unbind('load')
+                        .attr('src', imgSrc)
                         .css({
                             marginLeft: '-70%'
                         })
