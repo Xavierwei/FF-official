@@ -96,14 +96,16 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 .banner_footer{background: url('../images/banner_ft.png') repeat;height: 360px;}
 .banft_txt, #random-quotes{text-align: center;padding: 128px 0 0;color:#fff;line-height: 30px;}
 .banft_txt p, #random-quotes p{text-align: center;font-size: 24px;font-style:italic;font-weight: bold;font-size: 30px;text-transform: uppercase;line-height:36px;}
+#random-quotes p {width: 90%;margin: 0 auto;}
+.banft_txt p {max-width: 1090px;margin: auto;}
 .banft_txt span, #random-quotes span{font-size: 12px;display: block;font-style:italic;line-height: 36px;}
 #random-quotes {display: table-cell;vertical-align: middle;padding: 0;}
 #random-quotes .banft_txt{padding: 0px;opacity: 0;}
 
 /**/
 .footer{background: #000;height: 370px;padding:180px 0 0 ; position: fixed;width: 100%;bottom: 0;}
-.ft_con{width: 1000px;margin: 0 auto 0;color:#525252;font-size: 14px;}
-.ft_mod{float: left;width: 195px;padding: 0 2.5px;}
+.ft_con{width: 1090px;margin: 0 auto 0;color:#525252;font-size: 14px;}
+.ft_mod{float: left;width: 213px;padding: 0 2.5px;}
 .ft_mod h3{}
 .ft_find h3{padding:0 0 0 8px}
 .ft_network h3{padding:0 0 0 26px}
@@ -549,6 +551,7 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .pop_jobcon h4{padding: 16px 0;color:#fff}
 .pop_jobs .jobs_more{height: 50px;width: 175px;text-align: center;line-height: 50px;border: #fff solid 2px;display: block;margin: 40px auto 0;background: #000;cursor: pointer;color:#fff}
 .joblang a{color: white;margin-right:10px;}
+.joblang a:hover{opacity: 0.6;filter:alpha(opacity=60);}
 .jobshare{color:#fff;font-size: 14px;position: absolute;left:90px;bottom:40px;}
 .jobshare strong{float: left;padding:7px 15px 0 0}
 .jobshareitem{ opacity: 0.8; float:left;background: url('../images/jobsshare.png') no-repeat;width: 30px; height:30px;display: inline;margin: 0 6px;}

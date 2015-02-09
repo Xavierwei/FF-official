@@ -3468,7 +3468,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
                             <div class="pop_jobcon_inner" style="display:none;">\
-                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="fr"> FR </a><a href="#" data-a="jobs-lang" data-lang="cn"> 中国 </a></div>\
+                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="fr"> FR </a><a href="#" data-a="jobs-lang" data-lang="zho"> 中国 </a></div>\
                                 <div class="jobcontent content_en">\
                                     <h3>#[title]</h3>\
                                     <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
@@ -3493,9 +3493,25 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     api.request(contentPaths, function (r) {
                         $.each(r.items, function (i, item) {
                             aHtml.push(LP.format(tpl, item));
+
                         });
 
                         $('.jobslist').html(aHtml.join(''));
+                        //$('.pop_jobcon_inner').each(function(i,el) {
+                        //    var $self = $(this);
+                        //    $self.find('.jobcontent').each(function(i,el) {
+                        //        if($(el).text() == '') {
+                        //            var id = $(el).prop('class').split(' ')[1].split('_')[1];
+                        //            console.log('id: ',id);
+                        //            $self.find('a').each(function(i,a) {
+                        //                if($(a).data('lang') == id) {
+                        //                    console.log(a);
+                        //                    $(a).hide();
+                        //                }
+                        //            });
+                        //        }
+                        //    });
+                        //});
 
                         var match = location.href.match(/(\/jobs\/\d+)/)
                         if( match ){
@@ -3917,7 +3933,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     })
                 }
                 var random_num = Math.floor((Math.random() * 3));
-                //console.log('random_num: ',random_num);
                 $('.banft_txt').css({
                     marginLeft: -(random_num) * 100 + '%'
                 });
@@ -4181,6 +4196,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $('.ft-addr-p-4').each(function(i,p) {
                         $(p).height(p4_max);
                     });
+
+                    $('.banft_txt').css('width','300%');
                 }).trigger('resize');
                 return false;
             },
@@ -5524,6 +5541,23 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     var job_index = 0;
     LP.action('jobs-more', function (data) {
+        $('.pop_jobcon_inner').each(function(i,el) {
+            var $self = $(this);
+            $self.find('.jobcontent').each(function(i,el) {
+                if($(el).text() == '') {
+                    var id = $(el).prop('class').split(' ')[1].split('_')[1];
+                    console.log('id: ',id);
+                    $self.find('a').each(function(i,a) {
+                        if($(a).data('lang') == id) {
+                            console.log(a);
+                            $(a).hide();
+                        }
+                    });
+                }
+            });
+        });
+
+
         var $item = $(this).closest('.jobsitem');
         job_index = $item.index() + 1;
         $('.shade').fadeIn();
