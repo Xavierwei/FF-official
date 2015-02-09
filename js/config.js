@@ -88,7 +88,11 @@ seajs.config({
       src: "/js/plugin/wavesurfer.min.js"
     },
     logo: {
-      src: "/js/other/2.js"
+      src: "/js/other/ff_logo_canvas.js"
+      , deps: ['movieclip']
+    },
+    loading_logo: {
+      src: "/js/other/ff_loading_logo_canvas.js"
       , deps: ['movieclip']
     },
     'tweenjs': {
