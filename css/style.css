@@ -442,9 +442,10 @@ url(../images/brand_big_nav.png) left center; }
 
 .brand_big_text{padding: 50px 0 150px;color: white;}
 .brand_big_text_year{font-weight: bold;font-size: 24px;padding-bottom: 1em;	}
+.brand_big_text_tit_1{font-weight: bold;font-size: 24px;padding-bottom: 1em;	}
 .brand_big_text_tit {font-size: 14px;font-weight: 100;text-transform: uppercase;}
 .brand_big_text_val {font-size: 11px;color: #666;height: 36px;}
-.brand_big_text_item {float: left;width: 20%;line-height: 3em;}
+.brand_big_text_item {float: left;width: 20%;line-height: 3em;text-transform: uppercase;}
 .not-shown{visibility: hidden;}
 .take-no-space{display: none;}
 
@@ -547,7 +548,7 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .pop_jobcon h3{font-size: 24px;text-transform: uppercase;padding: 30px 0 0;color:#fff}
 .pop_jobcon h4{padding: 16px 0;color:#fff}
 .pop_jobs .jobs_more{height: 50px;width: 175px;text-align: center;line-height: 50px;border: #fff solid 2px;display: block;margin: 40px auto 0;background: #000;cursor: pointer;color:#fff}
-.joblang a{color: white;}
+.joblang a{color: white;margin-right:10px;}
 .jobshare{color:#fff;font-size: 14px;position: absolute;left:90px;bottom:40px;}
 .jobshare strong{float: left;padding:7px 15px 0 0}
 .jobshareitem{ opacity: 0.8; float:left;background: url('../images/jobsshare.png') no-repeat;width: 30px; height:30px;display: inline;margin: 0 6px;}

@@ -5489,7 +5489,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         // data-a="brands-item" data-path="pages_contents/categories/alcoholic_drinks/huang_lei_interview/0"
         var listHtml = [];
         $.each(all, function (i, all_item) {
-            console.log(all_item['date'],'-->',all_item['date'].replace(/^(\d{4}).*/, '$1'));
             listHtml.push(LP.format(tpl, {
                 'class': i % 2 ? '' : 'even',
                 year: all_item['date'].replace(/^(\d{4}).*/, '$1'),

@@ -64,10 +64,10 @@
 <script type="text/tpl" id="video-pause-tpl"><div class="transition"><?php _e('PAUSE'); ?><br><br><?php _e('PAUSE'); ?></div></script>
 <script type="text/tpl" id="video-play-tpl"><div class="transition"><?php _e('PLAY MOVIE'); ?><br><br><?php _e('PLAY MOVIE'); ?></div></script>
 <script type="text/tpl" id="brand_big_text_year">
-<p class="brand_big_text_year">#[year]</p>
+<p class="brand_big_text_year">#[title]</p>
 <div class="brand_big_text_item" style="width:80%;">
-  <p class="brand_big_text_tit not-shown">#[title]</p>
-  <p class="brand_big_text_val">#[label]</p>
+  <p class="brand_big_text_tit not-shown">#[year]</p>
+  <p class="brand_big_text_val">#[year]</p>
   <p class="brand_big_text_val">&nbsp;</p>
 </div>
 <div class="brand_big_text_item" #[id_visible]>
