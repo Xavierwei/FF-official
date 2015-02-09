@@ -27,7 +27,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
     var initSoundWave = function( file, $canves , cb ){
-        // file = 'http://f.cn/audios/1.ogg'
+        // file = 'http://f.cn/audios/1.mp3'
         LP.use('waveform', function(){
 
           var
