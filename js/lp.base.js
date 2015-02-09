@@ -4700,7 +4700,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('.gates-inner-l').find('li a').each(function (i) {
             if ($.trim($(this).text())[0].toUpperCase() == letter) {
                 $('.gates-inner-l').animate({
-                    scrollTop: $(this).parent().height() * i
+                    scrollTop: ($(this).parent().height() + 38) * i
                 }, 1000);
                 return false;
             }
