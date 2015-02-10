@@ -29,6 +29,7 @@
 	<meta property="og:description" content="FRED & FARID GROUP is the first French independent Digital Creative Group, founded in 2007 by Fred Raillard and Farid Mokart, Cannes Grand Prix 2009 winner." />
 	<meta property="og:url" content="http://www.fredfarid.com/" />
 	<meta name="viewport" content="width=640, minimum-scale=0.5, maximum-scale=1, target-densityDpi=290,user-scalable = no" />
+	<link rel='shortcut icon' href='../../images/favicon.ico' />
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
     <link href="/css/responsive.css" media="screen and (max-width: 1250px)" rel="stylesheet" type="text/css" />
     <!--[if gte IE 9]>
