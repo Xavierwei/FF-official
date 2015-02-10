@@ -12,7 +12,7 @@
 		<div>
 			<!--  -->
 			<div class="press_txt">
-				<?php _e('Ici un texte de presentation<br />de chapitre utile pour le referencement'); ?>
+				<?php _e('FRED &amp; FARID\'s interviews '); ?>
 			</div>
 			<!--  -->
 			<div id="press-container" class="interview_list cs-clear">
