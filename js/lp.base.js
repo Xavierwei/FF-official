@@ -4092,23 +4092,29 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                         var $interviewList = $('.interview_list');
 
+                        var transform = 'translate(0px,-' + ( stTop / ( $banpho.height() + $banpho.offset().top ) ) * ( banphoImgHeight - $banpho.height() ) + 'px)';
 
                         // for top image
-                        if (stTop > banphoTop && stTop < banphoTop + banphoImgHeight) {
-                            $banpho.height(banphoTop + banphoImgHeight - stTop)
-                                .find('img')
-                                .css({
-                                    marginTop: (banphoImgHeight - (banphoTop + banphoImgHeight - stTop)) / 2
-                                });
-                        } else if (stTop < banphoTop) {
-                            $banpho.height('auto')
-                                .find('img')
-                                .css('marginTop', 0);
-                        } else if (stTop > banphoTop + banphoImgHeight) {
-                            $banpho.height(0)
-                                .find('img')
-                                .css('marginTop', -banphoImgHeight / 2);
-                        }
+                        $banpho.find('img')
+                            .css({
+                                transform: transform,
+                                webkitTransform: transform
+                            });
+                        // if (stTop > banphoTop && stTop < banphoTop + banphoImgHeight) {
+                        //     $banpho.height(banphoTop + banphoImgHeight - stTop)
+                        //         .find('img')
+                        //         .css({
+                        //             marginTop: (banphoImgHeight - (banphoTop + banphoImgHeight - stTop)) / 2
+                        //         });
+                        // } else if (stTop < banphoTop) {
+                        //     $banpho.height('auto')
+                        //         .find('img')
+                        //         .css('marginTop', 0);
+                        // } else if (stTop > banphoTop + banphoImgHeight) {
+                        //     $banpho.height(0)
+                        //         .find('img')
+                        //         .css('marginTop', -banphoImgHeight / 2);
+                        // }
                     }
 
                     // fix up-fadein
@@ -4518,6 +4524,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 fixImageToWrap($(this), $(this).find('img'));
             });
         }, 400);
+
+        // fix banpho banpho-img
+        $('.banpho-img').height( 500 / 1600 * $(window).width() );
     });
 
 
