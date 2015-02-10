@@ -728,6 +728,41 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }
 
                 setPath(tarPath);
+            },
+            myBack: function () {
+
+                //LP.triggerAction('pop_close');
+
+                disposeVideo();
+                var path = getPath();
+                var paths = path.split('/');
+                var tarPath = '';
+                switch (paths.length) {
+                    case 1:
+                        tarPath = '';
+                        break;
+                    case 2:
+                        tarPath = paths[0];
+                        break;
+                    case 4:
+                        if( LP.getCookie('prev') ){
+                            tarPath = LP.getCookie('prev');
+                        } else if (LP.getCookie('level2')) {
+                            tarPath = LP.getCookie('level2');
+                        } else {
+                            tarPath = paths[0] + '/' + paths[1];
+                        }
+                        break;
+                    case 5:
+                        paths.pop();
+                        tarPath = paths.join('/');
+                        break;
+                }
+                if (!tarPath || tarPath == 'undefined') {
+                    tarPath = LP.getCookie('page') || '';
+                }
+
+                setPath(tarPath);
             }
         }
 
@@ -6066,6 +6101,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     LP.action('pageback', function () {
         urlManager.back();
+        return false;
+    });
+    LP.action('myBack', function () {
+        urlManager.myBack();
         return false;
     });
 
