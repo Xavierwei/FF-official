@@ -13,7 +13,7 @@
   'FOLLOW US' => '',
   'Fred & Farid is a digital creative agency<br /> based in shanghai and paris' => '',
   'FRED &amp; FARID GROUP' => '',
-  'Ici un texte de presentation<br />de chapitre utile pour le referencement' => '',
+  'Ici un texte de presentation<br />de chapitre utile pour le referencement' => 'They are talking about us',
   'interview' => '',
   'jobs' => '',
   'key people' => '',
