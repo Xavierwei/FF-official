@@ -3387,13 +3387,29 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     var audio_images_num = 0,
                         video_images_num = 0;
 
+                    var listen_txt,
+                        watch_txt,
+                        close_txt;
+                    if($('body').hasClass('lang-zho')) {
+                        listen_txt = '收听';
+                        watch_txt = '观看';
+                        close_txt = '关闭';
+                    } else if($('body').hasClass('lang-fr')) {
+                        listen_txt = 'LISTEN';
+                        watch_txt = 'WATCH';
+                        close_txt = 'CLOSE';
+                    } else {
+                        listen_txt = 'LISTEN';
+                        watch_txt = 'WATCH';
+                        close_txt = 'CLOSE';
+                    }
                     $.each(r.items, function (i, item) {
                         var media = campaignManager.getPath(item, 'media');
                         var tpl = !media.match(/.mp3$/) ? tvTpl : radioTpl;
                         var titles = item.title.split('|');
                         aHtml.push(LP.format(tpl, {
                             oddoreven: i % 2 ? 'even' : 'odd',
-                            text: !media.match(/.mp3$/) ? 'WATCH<br/>CLOSE' : 'LISTEN<br/>CLOSE',
+                            text: !media.match(/.mp3$/) ? watch_txt + '<br/>' + close_txt : listen_txt + '<br/>' + close_txt,
                             title: titles[0],
                             content: titles.slice(1).join('<br/>'),
                             preview: campaignManager.getPath(item, 'picture_2'),
