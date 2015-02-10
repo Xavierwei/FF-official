@@ -93,7 +93,7 @@
 	<div class="brands_tit" style="display:none;">
 		<div class="sec_brands_tit">
 			<h2 class="column cs-clear"></h2>
-			<a href="#" class="pageback transition" data-a="pageback"></a>
+			<a href="#" class="pageback transition" data-a="myBack"></a>
 			<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop"></a>
 			<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom"></a>
 		</div>
@@ -107,7 +107,7 @@
 	<div class="brand_item_tit" style="display:none;" >
 		<div class="sec_brands_tit">
 			<h2 class="column cs-clear"></h2>
-			<a href="#" class="pageback transition" data-a="pageback"></a>
+			<a href="#" class="pageback transition" data-a="myBack"></a>
 			<a href="#" class="pagetitarr pagetitarrtop transition" data-a="pagetitarrtop-level3"></a>
 			<a href="#" class="pagetitarr pagetitarrbottom transition" data-a="pagetitarrbottom-level3"></a>
 		</div>
