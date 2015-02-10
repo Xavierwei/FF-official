@@ -3377,7 +3377,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         <img src="#[preview]">\
                     </div>\
                     <span class="interview_opt" data-a="show-music-interview" data-media="#[media]">\
-                        <div class="transition">LISTEN<br/>CLOSE</div>\
+                        <div class="transition">#[text]</div>\
                     </span>\
                 </div>';
                 // get audio and video
@@ -3409,7 +3409,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         var titles = item.title.split('|');
                         aHtml.push(LP.format(tpl, {
                             oddoreven: i % 2 ? 'even' : 'odd',
-                            text: !media.match(/.mp3$/) ? watch_txt + '<br/>' + close_txt : listen_txt + '<br/>' + close_txt,
+                            text: !media.match(/.mp3$/) ? (watch_txt + '<br/>' + close_txt) : (listen_txt + '<br/>' + close_txt),
                             title: titles[0],
                             content: titles.slice(1).join('<br/>'),
                             preview: campaignManager.getPath(item, 'picture_2'),
