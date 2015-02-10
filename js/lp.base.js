@@ -3046,9 +3046,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 //var pics = [];
                 var preload_imgs = [];
 
-                api.extraRequest({
-                    wsExtraRequest: 'getAwardsExtended'
-                }, function (r) {
+                api.request('extended/awards', function (r) {
                     awards = array_unique(r.items);
                     var a = {};
                     var b = [];

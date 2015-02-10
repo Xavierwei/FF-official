@@ -59,30 +59,30 @@ define(function( require , exports , model ){
 				}, 'json');
 			}
 		},
-		extraRequest: function( data, success ){
-			var cacheKey = LP.json2query( data );
-			if( window.localStorage && $.inArray( cacheKey, localStoragePaths ) >= 0 ){
-				var result = localStorage.getItem( cacheKey );
-				if( result ){
-					success && success( JSON.parse( result ) );
-					return;
-				}
-			}
+		// extraRequest: function( data, success ){
+		// 	var cacheKey = LP.json2query( data );
+		// 	if( window.localStorage && $.inArray( cacheKey, localStoragePaths ) >= 0 ){
+		// 		var result = localStorage.getItem( cacheKey );
+		// 		if( result ){
+		// 			success && success( JSON.parse( result ) );
+		// 			return;
+		// 		}
+		// 	}
 
-			data.outputFormat = 'json';
+		// 	data.outputFormat = 'json';
 
-			if( __AJAX_CACHE__[cacheKey] ){
-				success && success( __AJAX_CACHE__[cacheKey] );
-			} else {
-				$.post( baseUrl , data , function( r ){
-					success && success( r );
-					__AJAX_CACHE__[cacheKey] = r;
-					if( window.localStorage && $.inArray( cacheKey, localStoragePaths ) >= 0 ){
-						localStorage.setItem( cacheKey, JSON.stringify( r ) );
-					}
-				}, 'json');
-			}
-		},
+		// 	if( __AJAX_CACHE__[cacheKey] ){
+		// 		success && success( __AJAX_CACHE__[cacheKey] );
+		// 	} else {
+		// 		$.post( baseUrl , data , function( r ){
+		// 			success && success( r );
+		// 			__AJAX_CACHE__[cacheKey] = r;
+		// 			if( window.localStorage && $.inArray( cacheKey, localStoragePaths ) >= 0 ){
+		// 				localStorage.setItem( cacheKey, JSON.stringify( r ) );
+		// 			}
+		// 		}, 'json');
+		// 	}
+		// },
         localRequest: function( url, success ){
             var cacheKey = url;
             if( window.localStorage && $.inArray( cacheKey, localStoragePaths ) >= 0 ){
@@ -148,7 +148,7 @@ define(function( require , exports , model ){
 				var cacheKey = path + LP.json2query ( params );
 				if( __AJAX_CACHE__[cacheKey] ){
 					successIndex++;
-					totalItems = totalItems.concat( __AJAX_CACHE__[cacheKey].items );
+					totalItems = totalItems.concat( __AJAX_CACHE__[cacheKey].items || [] );
 					if( successIndex == paths.length ){
 						success && success( {items: totalItems} );
 					}
@@ -162,7 +162,7 @@ define(function( require , exports , model ){
 							successIndex++;
 
 							__AJAX_CACHE__[cacheKey] = r;
-							totalItems = totalItems.concat( r.items );
+							totalItems = totalItems.concat( r.items || [] );
 							if( successIndex == paths.length ){
 								success && success( {items: totalItems} );
 							}
