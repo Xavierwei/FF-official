@@ -12,52 +12,54 @@ define(function( require , exports , model ){
 	var localStoragePaths = [];//['pages_contents/awards','pages_contents/footer_icons','pages_contents/brands','pages_contents/categorys'];
 	return {
 		getServiceCampaigns: function( serviceId, success ){
-			var path = 'services/' + serviceId;
-			if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
-				var result = localStorage.getItem( path );
-				if( result ){
-					success && success( JSON.parse( result ) );
-					return;
-				}
-			}
+			api.require('extended/service_' + serviceId + '_campaigns', success);
+			// var path = 'services/' + serviceId;
+			// if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
+			// 	var result = localStorage.getItem( path );
+			// 	if( result ){
+			// 		success && success( JSON.parse( result ) );
+			// 		return;
+			// 	}
+			// }
 
-			var cacheKey = path;
+			// var cacheKey = path;
 
-			if( __AJAX_CACHE__[cacheKey] ){
-				success && success( __AJAX_CACHE__[cacheKey] );
-			} else {
-				$.post( baseUrl , {wsExtraRequest: 'getServiceCampaigns', serviceID: serviceId, outputFormat: 'json'} , function( r ){
-					success && success( r );
-					__AJAX_CACHE__[cacheKey] = r;
-					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
-						localStorage.setItem( path, JSON.stringify( r ) );
-					}
-				}, 'json');
-			}
+			// if( __AJAX_CACHE__[cacheKey] ){
+			// 	success && success( __AJAX_CACHE__[cacheKey] );
+			// } else {
+			// 	$.post( baseUrl , {wsExtraRequest: 'getServiceCampaigns', serviceID: serviceId, outputFormat: 'json'} , function( r ){
+			// 		success && success( r );
+			// 		__AJAX_CACHE__[cacheKey] = r;
+			// 		if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
+			// 			localStorage.setItem( path, JSON.stringify( r ) );
+			// 		}
+			// 	}, 'json');
+			// }
 		},
 		getBrandCampaigns: function( brandId, success ){
-			var path = 'brands/' + brandId;
-			if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
-				var result = localStorage.getItem( path );
-				if( result ){
-					success && success( JSON.parse( result ) );
-					return;
-				}
-			}
+			api.require('extended/brand_' + brandId + '_campaigns', success);
+			// var path = 'brands/' + brandId;
+			// if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
+			// 	var result = localStorage.getItem( path );
+			// 	if( result ){
+			// 		success && success( JSON.parse( result ) );
+			// 		return;
+			// 	}
+			// }
 
-			var cacheKey = path;
+			// var cacheKey = path;
 
-			if( __AJAX_CACHE__[cacheKey] ){
-				success && success( __AJAX_CACHE__[cacheKey] );
-			} else {
-				$.post( baseUrl , {wsExtraRequest: 'getBrandCampaigns', brandID: brandId, outputFormat: 'json'} , function( r ){
-					success && success( r );
-					__AJAX_CACHE__[cacheKey] = r;
-					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
-						localStorage.setItem( path, JSON.stringify( r ) );
-					}
-				}, 'json');
-			}
+			// if( __AJAX_CACHE__[cacheKey] ){
+			// 	success && success( __AJAX_CACHE__[cacheKey] );
+			// } else {
+			// 	$.post( baseUrl , {wsExtraRequest: 'getBrandCampaigns', brandID: brandId, outputFormat: 'json'} , function( r ){
+			// 		success && success( r );
+			// 		__AJAX_CACHE__[cacheKey] = r;
+			// 		if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
+			// 			localStorage.setItem( path, JSON.stringify( r ) );
+			// 		}
+			// 	}, 'json');
+			// }
 		},
 		// extraRequest: function( data, success ){
 		// 	var cacheKey = LP.json2query( data );

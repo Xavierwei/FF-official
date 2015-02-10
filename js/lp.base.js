@@ -3379,7 +3379,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     </span>\
                 </div>';
                 // get audio and video
-                api.request(['about/interviews/radio', 'about/interviews/tv'], {sortField:'id'} , function (r) {
+                api.request(['about/interviews/radio', 'about/interviews/tv'], function (r) {
                     var aHtml = [];
                     var images = [];
                     var audio_images_num = 0,
