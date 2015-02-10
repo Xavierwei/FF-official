@@ -2178,7 +2178,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var timeout = null;
         $('.sec_brands').unbind('scroll.loading-con')
             .bind('scroll.loading-con', function () {
-                if (!campaignItemGroups.ready) return;
                 var stTop = $(this).scrollTop();
                 clearTimeout(timeout);
                 timeout = setTimeout(function () {
@@ -2191,16 +2190,31 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     var winHeight = $(window).height();
                     var start = Math.max(0, Math.floor(stTop / itemHeight - 1));
                     var end = Math.floor((stTop + winHeight * 2) / itemHeight + 1);
-                    loadCampaignDetails($lis.slice(start, end));
+
+                    $lis = $lis.slice(start, end).filter(':not(.done)');
+                    $lis.addClass('done');
+                    console.log( $lis );
+                    $lis.each(function (i) {
+                        var $item = $(this);
+                        campaignManager.getCampaignItems(this.getAttribute('data-path'), function( items ){
+                            $.each(items, function (i, item) {
+                                campaignItemGroups[item._contentPath] = campaignItemGroups[item._contentPath] || [];
+                                campaignItemGroups[item._contentPath].push(item);
+                            });
+
+                            loadCampaignDetails($item);
+                        });
+                    });
+
+                    
                 }, 40);
             });
 
         // 需要载入所有的campaigns
-        var campaignPaths = [];
+        
         $('.brands-con-li').each(function (i) {
-            campaignPaths.push(this.getAttribute('data-path'));
-
-            $(this).delay(200 * i)
+            $(this)
+                .delay(200 * i)
                 .animate({
                     marginLeft: 0,
                     opacity: 1
@@ -2209,24 +2223,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $(this).attr('start-loading', 1);
                 });
         });
-        var campaignItemGroups = {
-            ready: false
-        };
-        campaignManager.getCampaignItems(campaignPaths, function (items) {
-            if (!compareVersion(loadpath, ver)) {
-                return;
-            }
+        var campaignItemGroups = {}
+        // campaignManager.getCampaignItems(campaignPaths, function (items) {
+        //     if (!compareVersion(loadpath, ver)) {
+        //         return;
+        //     }
 
 
-            $.each(items, function (i, item) {
-                campaignItemGroups[item._contentPath] = campaignItemGroups[item._contentPath] || [];
-                campaignItemGroups[item._contentPath].push(item);
-            });
+        //     $.each(items, function (i, item) {
+        //         campaignItemGroups[item._contentPath] = campaignItemGroups[item._contentPath] || [];
+        //         campaignItemGroups[item._contentPath].push(item);
+        //     });
 
-            campaignItemGroups.ready = true;
+        //     campaignItemGroups.ready = true;
 
-            $('.sec_brands').trigger('scroll.loading-con');
-        });
+        //     $('.sec_brands').trigger('scroll.loading-con');
+        // });
     }
 
     function fixImageToWrap($wrap, $img) {
