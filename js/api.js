@@ -10,9 +10,9 @@ define(function( require , exports , model ){
 	var __AJAX_CACHE__ = {};
 
 	var localStoragePaths = [];//['pages_contents/awards','pages_contents/footer_icons','pages_contents/brands','pages_contents/categorys'];
-	return {
+	var api = {
 		getServiceCampaigns: function( serviceId, success ){
-			api.require('extended/service_' + serviceId + '_campaigns', success);
+			this.request('extended/service_' + serviceId + '_campaigns', success);
 			// var path = 'services/' + serviceId;
 			// if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
 			// 	var result = localStorage.getItem( path );
@@ -37,7 +37,7 @@ define(function( require , exports , model ){
 			// }
 		},
 		getBrandCampaigns: function( brandId, success ){
-			api.require('extended/brand_' + brandId + '_campaigns', success);
+			this.request('extended/brand_' + brandId + '_campaigns', success);
 			// var path = 'brands/' + brandId;
 			// if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
 			// 	var result = localStorage.getItem( path );
@@ -194,4 +194,7 @@ define(function( require , exports , model ){
 			// }
 		}
 	}
+
+
+	return api;
 });
