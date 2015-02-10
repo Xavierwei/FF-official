@@ -71,7 +71,7 @@
 		</div>		
 		<!--  -->
 		<div class="home_bio">
-			<img class="home_bio_bg" src="../images/home_biobg.jpg">
+			<img class="home_bio_bg" src="/images/home_biobg.jpg">
 			<h2><?php _e('BIOGRAPHY'); ?></h2>
 			<div class="home_biotxt cs-clear">
 				<div class="home_bioleft"></div>

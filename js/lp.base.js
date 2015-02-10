@@ -2920,9 +2920,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     // fix $homeBio background image
                     var all = $homeBioBg.height() - $homeBio.height();
                     var bgTop = stTop + winHeight - $homeBio.offset().top; // - headerHeight - stTop;
-                    var per = bgTop / (winHeight - headerHeight + $homeBio.height());
+                    var per = bgTop / (winHeight + $homeBio.height());
 
-                    var trans = 'translate(0px,' + (-per * all) + 'px)';
+                    var trans = 'translate(0px,' + (-per * all ) + 'px)';
                     $homeBioBg.css({
                         'transform': trans,
                         'mozTransform': trans,
@@ -2934,9 +2934,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
                 // render home numbers
-                api.extraRequest({
-                    wsExtraRequest: 'getNumbers'
-                }, function (r) {
+                api.request('extended/numbers', function (r) {
                     var obj = {};
                     $.each(r.items || [], function (i, item) {
                         obj[item.id] = item.number;
@@ -3383,7 +3381,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     </span>\
                 </div>';
                 // get audio and video
-                api.request(['about/interviews/radio', 'about/interviews/tv'], {sortField:id} , function (r) {
+                api.request(['about/interviews/radio', 'about/interviews/tv'], {sortField:'id'} , function (r) {
                     var aHtml = [];
                     var images = [];
                     var audio_images_num = 0,
@@ -4084,7 +4082,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // for  banpho-img
                 var $footer = $('.footer');
                 $(window).scroll(function () {
-                    var stTop = $(window).scrollTop() + headerHeight;
+                    var stTop = $(window).scrollTop();
                     var winHeight = $(window).height();
 
                     if ($('.banpho-img').length) {

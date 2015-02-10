@@ -139,19 +139,57 @@ define(function( require , exports , model ){
 
 			params.contentPaths = path.replace(/pages_contents\//g,'');
 
-			var cacheKey = path + LP.json2query ( params );
-			if( __AJAX_CACHE__[cacheKey] ){
-				success && success( __AJAX_CACHE__[cacheKey] );
-			} else {
-				return $.post( baseUrl , params , function( r ){
-					success && success( r );
-					__AJAX_CACHE__[cacheKey] = r;
+			var paths = params.contentPaths.split(',');
 
-					if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
-						localStorage.setItem( path, JSON.stringify( r ) );
+			var successIndex = 0;
+			var totalItems = [];
+			$.each( paths, function(i , path){
+				params.contentPaths = path;
+				var cacheKey = path + LP.json2query ( params );
+				if( __AJAX_CACHE__[cacheKey] ){
+					successIndex++;
+					totalItems = totalItems.concat( __AJAX_CACHE__[cacheKey].items );
+					if( successIndex == paths.length ){
+						success && success( {items: totalItems} );
 					}
-				} , 'json' );
-			}
+				} else {
+					return $.ajax({
+						url: baseUrl,
+						data: params,
+						type: 'post',
+						dataType: 'json',
+						success: function( r ){
+							successIndex++;
+
+							__AJAX_CACHE__[cacheKey] = r;
+							totalItems = totalItems.concat( r.items );
+							if( successIndex == paths.length ){
+								success && success( {items: totalItems} );
+							}
+						},
+						error: function(){
+							successIndex++;
+							if( successIndex == paths.length ){
+								success && success( {items: totalItems} );
+							}
+						}
+					});
+				}
+			});
+
+			// var cacheKey = path + LP.json2query ( params );
+			// if( __AJAX_CACHE__[cacheKey] ){
+			// 	success && success( __AJAX_CACHE__[cacheKey] );
+			// } else {
+			// 	return $.post( baseUrl , params , function( r ){
+			// 		success && success( r );
+			// 		__AJAX_CACHE__[cacheKey] = r;
+
+			// 		if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
+			// 			localStorage.setItem( path, JSON.stringify( r ) );
+			// 		}
+			// 	} , 'json' );
+			// }
 		}
 	}
 });
