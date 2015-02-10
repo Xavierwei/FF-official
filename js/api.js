@@ -137,7 +137,7 @@ define(function( require , exports , model ){
 			}
 
 
-			params.contentPaths = path;
+			params.contentPaths = path.replace(/pages_contents\//g,'');
 
 			var cacheKey = path + LP.json2query ( params );
 			if( __AJAX_CACHE__[cacheKey] ){

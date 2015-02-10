@@ -1164,10 +1164,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }
 
                 var lang = 'eng';
-                var rpath = 'http://backoffice.fredfarid.com/#[lang]/file/#[_contentPath]/#[type]/#[name]';
+                var rpath = 'http://preprod.fredfarid.com/data/#[lang]/#[_contentPath]/#[type]/#[name]';
                 return LP.format(rpath, {
                     lang: lang,
-                    _contentPath: item._contentPath,
+                    _contentPath: item._contentPath.replace('pages_contents/',''),
                     type: type,
                     name: item[type],
                 });
@@ -1179,7 +1179,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }
 
                 var lang = 'eng';
-                var rpath = 'http://backoffice.fredfarid.com/#[lang]/file/pages_contents/awards/preview/#[name]';
+                var rpath = 'http://preprod.fredfarid.com/data/#[lang]/awards/preview/#[name]';
                 return LP.format(rpath, {
                     lang: lang,
                     name: item.award_preview
@@ -1448,6 +1448,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             var px = ev.pageX - off.left;
             var py = ev.pageY - off.top;
             var lx , ly;
+            domWidth = $dom.width();
+            domHeight = $dom.height();
             lx = ( domWidth / 2 - px );
             ly = ( domHeight / 2 - py );
             if( init ){
@@ -3381,7 +3383,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     </span>\
                 </div>';
                 // get audio and video
-                api.request(['about/interviews/radio', 'about/interviews/tv'], function (r) {
+                api.request(['about/interviews/radio', 'about/interviews/tv'], {sortField:id} , function (r) {
                     var aHtml = [];
                     var images = [];
                     var audio_images_num = 0,
