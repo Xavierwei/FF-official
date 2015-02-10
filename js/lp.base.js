@@ -4092,14 +4092,23 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                         var $interviewList = $('.interview_list');
 
-                        var transform = 'translate(0px,-' + ( stTop / ( $banpho.height() + $banpho.offset().top ) ) * ( banphoImgHeight - $banpho.height() ) + 'px)';
+                        var off = ( stTop / ( $banpho.height() + $banpho.offset().top ) ) * ( banphoImgHeight - $banpho.height() );
+                        if( $.browser.msie && $.browser.version < 9 ){
+                            var css = {marginTop: - off }
+                        } else {
+                            var css = {
+                                transform: 'translate(0px,-' + off + 'px)',
+                                webkitTransform: 'translate(0px,-' + off + 'px)',
+                                msTransform: 'translate(0px,-' + off + 'px)',
+                                oTransform: 'translate(0px,-' + off + 'px)',
+                                mozTransform: 'translate(0px,-' + off + 'px)'
+                            }
+                        }
+                        
 
                         // for top image
                         $banpho.find('img')
-                            .css({
-                                transform: transform,
-                                webkitTransform: transform
-                            });
+                            .css(css);
                         // if (stTop > banphoTop && stTop < banphoTop + banphoImgHeight) {
                         //     $banpho.height(banphoTop + banphoImgHeight - stTop)
                         //         .find('img')
