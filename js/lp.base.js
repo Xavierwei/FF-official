@@ -3906,7 +3906,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             title: item.title,
                             content: item.content,
                             id: item.id,
-                            cover: campaignManager.getPath(item, 'preview'),
+                            cover: campaignManager.getPath(item, 'picture_2'),
                             preview: campaignManager.getPath(item, 'preview'),
                             index: i + 1,
                             total: r.items.length,
