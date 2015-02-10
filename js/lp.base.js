@@ -3119,7 +3119,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         initSelect($('select'));
 
                         // render awards
-                        var awardsHtml = ['<span class="award-num"></span>'];
+                        var awardsHtml = [];
                         $.each(old_awards_for_imgs, function (i, old_award_for_imgs) {
                             var num = award_count[old_award_for_imgs.label] || 0;
                             awardsHtml.push('<div class="award-image-num">' + '<p class="transition">' + num + '</p>' + '<img class="transition"' + 'data-num=\"' + num + '" src="' + campaignManager.getPath(old_award_for_imgs, 'preview', true) + '">' + '</div>');
@@ -3130,7 +3130,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $('.awardicons').on('hover', 'img' , function () {
                             var num = $(this).data('num');
                             $('.awardicons span').html(num);
-                            effects['number-rock']($('span.award-num'), 0, null, 500);
                             effects['number-rock']($(this).closest('.award-image-num').find('p'), 0, null, 500);
 
                         });

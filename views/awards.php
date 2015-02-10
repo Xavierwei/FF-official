@@ -12,9 +12,6 @@
 			<img data-num="40" src="../images/award_img1.png" />
 			<img data-num="60" src="../images/award_img2.png" />
 			<img data-num="8" src="../images/award_img3.png" />
-			<span class="award-num">
-				20
-			</span>
 			<img data-num="108" src="../images/award_img5.png" />
 			<img data-num="518" src="../images/award_img6.png" />
 			<img data-num="518" src="../images/award_img7.png" />
