@@ -42,10 +42,10 @@
             <div class="ft_mod ft_newyork">
                 <h3><?php _e('NEWYORK');?></h3>
                 <div class="ft_mbd">
-                    <p class="ft-addr-p-1"><?php _e('SHANGHAI_ADDR_L1');?></p>
-                    <p class="ft-addr-p-2"><?php _e('SHANGHAI_ADDR_L2');?></p>
-                    <p class="ft-addr-p-3"><?php _e('SHANGHAI_ADDR_L3');?></p>
-                    <p class="ft-addr-p-4"><?php _e('SHANGHAI_ADDR_L4');?></p>
+                    <p class="ft-addr-p-1"><?php _e('NEWYORK_ADDR_L1');?></p>
+                    <p class="ft-addr-p-2"><?php _e('NEWYORK_ADDR_L2');?></p>
+                    <p class="ft-addr-p-3"><?php _e('NEWYORK_ADDR_L3');?></p>
+                    <p class="ft-addr-p-4"><?php _e('NEWYORK_ADDR_L4');?></p>
                 </div>
             </div>
 			<div class="ft_mod ft_network">
