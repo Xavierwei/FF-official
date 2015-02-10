@@ -120,7 +120,7 @@
 				<div class="timeline_right timeline_2011right" style="padding-top:20px">
 					<div class="timeline_txt ">
 						<p><?php _e('Loïc Le Meur asked them to imagine the logo and branding of his influential LeWeb Tech Conference.');?></p>
-						<p style="padding-top:110px;font-size:36px;text-transform: uppercase;line-height:40px;color:#000"><?php _e('Fred & Farid won the highly desired Cannes Lions Grand Prix for their iconic American brand Wrangler, a crowning achievement for every creative in the advertising industry.');?></p>
+						<p style="padding-top:110px;font-size:36px;text-transform: uppercase;line-height:40px;color:#000;font-weight: bold;"><?php _e('Fred & Farid won the highly desired Cannes Lions Grand Prix for their iconic American brand Wrangler, a crowning achievement for every creative in the advertising industry.');?></p>
 						<p><?php _e('“Before, the brand was about middle-aged cowboy jeans from America. Now it takes a whole look overnight” ');?></p>
 						<p><?php _e('David Lubars<br />President of Cannes Lions Festival');?></p>
 					</div>
@@ -132,7 +132,7 @@
 			<div data-effect="fadeup" class="timeline_item intoview-effect cs-clear">
 				<div class="timeline_left timeline_2011left">
 					<div class="timeline_txt" style="padding-top:30px">
-						<p style="font-size:36px;text-transform: uppercase;line-height:40px;color:#000"><?php _e('“Fred & Farid, a duo who became logo”');?> </p>
+						<p style="font-size:36px;text-transform: uppercase;line-height:40px;color:#000;font-weight: bold;"><?php _e('“Fred & Farid, a duo who became logo”');?> </p>
 						<p><?php _e('27 February 2007<br />Le Monde');?></p>
 						<p><img src="../images/timeline_2007img.jpg"></p>
 					</div>
@@ -156,7 +156,7 @@
 				<div class="timeline_right timeline_2011right" style="padding-top:20px">
 					<div class="timeline_txt ">
 						<p><?php _e('At that stage, the team was world-renowned, British newspaper Independent wrote: ');?></p>
-						<p style="padding-top:20px;font-size:36px;text-transform: uppercase;line-height:40px;color:#000"><?php _e('“If you’re interested in advertising creativity then you’ll be familiar with Fred & Farid (…) Fred & Farid have a formidable international reputation”.');?></p>
+						<p style="padding-top:20px;font-size:36px;text-transform: uppercase;line-height:40px;color:#000;font-weight: bold;"><?php _e('“If you’re interested in advertising creativity then you’ll be familiar with Fred & Farid (…) Fred & Farid have a formidable international reputation”.');?></p>
 						<p><?php _e('16 October 2006');?></p>
 						<p><?php _e('Indepedent newspaper');?></p>
 					</div>
@@ -226,7 +226,7 @@
 				<div class="timeline_right timeline_2011right" style="padding-top:20px">
 					<div class="timeline_txt ">
 						<p><?php _e('Advertising legend Sir John Hegarty hired them at the prestigious BBH London to lead the biggest Microsoft launch: XBOX (500 million dollars). ');?></p>
-						<p style="padding-top:20px;font-size:36px;text-transform: uppercase;line-height:40px;color:#000"><?php _e('"Fred & Farid have a huge talent. They know how to develop a narrative structure from an audacious idea"  ');?></p>
+						<p style="padding-top:20px;font-size:36px;text-transform: uppercase;line-height:40px;color:#000;font-weight:bold;"><?php _e('"Fred & Farid have a huge talent. They know how to develop a narrative structure from an audacious idea"  ');?></p>
 						<p ><?php _e('February 08th 2002');?></p>
 						<p ><?php _e('Sir John Hegarty <br />Stratégies');?></p>
 						<p  style="padding-top:390px;text-transform: uppercase;font-size:18px;color:#000;font-weight:bold"><strong><?php _e('In his 2002 novel "L\'Egoiste romantique", famous French writer Frederic Beigbeder mentioned them as "Fred & Farid, the world\'s best advertising creatives".');?></strong></p>
