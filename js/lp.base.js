@@ -4618,7 +4618,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $(this).hide();
         }
         $(this).siblings('.banpho-bt-r').show();
-        $(this).siblings('.banpho-bt-c').html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
+        $(this).siblings('.banpho-bt-c').html($('.banpho-bt-c').html());
 
         $('.banpho-i').html(index + '/' + len);
 
@@ -4651,7 +4651,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $(this).hide();
         }
         $(this).siblings('.banpho-bt-l').show();
-        $(this).siblings('.banpho-bt-c').html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
+        $(this).siblings('.banpho-bt-c').html($('.banpho-bt-c').html());
 
         $('.banpho-i').html((index + 2) + '/' + len);
 
@@ -4664,6 +4664,19 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var $sliderItem = $('.slider-item').eq(index);
         var videoObject = $sliderItem.data('video-object');
         var $btn = $('.slider-block-inner').next();
+        var pause_txt,
+            play_txt;
+        if($('body').hasClass('lang-zho')) {
+            pause_txt = '暂停';
+            play_txt = '播放视频';
+        } else if($('body').hasClass('lang-fr')) {
+            pause_txt = 'PAUSE';
+            play_txt = 'PLAY MOVIE';
+        } else {
+            pause_txt = 'PAUSE';
+            play_txt = 'PLAY MOVIE';
+        }
+
         if (!videoObject) {
             var movie = $sliderItem.data('movie');
             $sliderItem.find('.video-wrap').remove();
@@ -4676,14 +4689,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $btn
                         .fadeOut('fast')
                         .find('.banpho-bt-c')
-                        .html('<div class="transition">PAUSE<br><br>PAUSE</div>');
+                        .html('<div class="transition">' + pause_txt + '<br><br>' + pause_txt + '</div>');
                 });
 
                 this.on('pause', function () {
                     $btn
                         .fadeIn('fast')
                         .find('.banpho-bt-c')
-                        .html('<div class="transition">PLAY MOVIE<br><br>PLAY MOVIE</div>');
+                        .html('<div class="transition">' + play_txt + '<br><br>' + play_txt + '</div>');
                 });
 
                 this.on('end', function () {
