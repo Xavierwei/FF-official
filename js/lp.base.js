@@ -5685,7 +5685,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 award: all_item.award_label,
                 brand: all_item.brand_title,
                 campaign: all_item.label,
-                path: all_item._contentPath.replace('pages_contents/','') + all_item.path + '/0'
+                path: all_item._contentPath.replace('pages_contents/','') + '/' + all_item.path + '/0'
                 //campaign_link: 'path=categories/' + all_item._awardPath + '&id=' + all_item.fid_award
             }));
         });
