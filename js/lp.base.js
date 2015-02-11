@@ -1169,7 +1169,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     lang: lang,
                     _contentPath: item._contentPath.replace('pages_contents/',''),
                     type: type,
-                    name: item[type],
+                    name: item[type]
                 });
             },
             getPath_awards: function (item, type, isBack) {
@@ -2193,7 +2193,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                     $lis = $lis.slice(start, end).filter(':not(.done)');
                     $lis.addClass('done');
-                    console.log( $lis );
+                    //console.log( $lis );
                     $lis.each(function (i) {
                         var $item = $(this);
                         campaignManager.getCampaignItems(this.getAttribute('data-path'), function( items ){
@@ -2932,9 +2932,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     // fix $homeBio background image
                     var all = $homeBioBg.height() - $homeBio.height();
                     var bgTop = stTop + winHeight - $homeBio.offset().top; // - headerHeight - stTop;
-                    var per = bgTop / (winHeight + $homeBio.height());
+                    var per = bgTop / (winHeight - headerHeight + $homeBio.height());
 
-                    var trans = 'translate(0px,' + (-per * all ) + 'px)';
+                    var trans = 'translate(0px,' + (-per * all) + 'px)';
                     $homeBioBg.css({
                         'transform': trans,
                         'mozTransform': trans,
@@ -4154,8 +4154,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
                     // fix second page tit
-                    var off = $('.pagetit').offset();
-                    if (off && off.top < stTop - headerHeight) {
+                    //var off = $('.pagetit').offset();
+                    //if ($('.pagetit').offset().top < stTop - headerHeight) {
+                    //    $('.pagetit').addClass('pagetit-fixed');
+                    //} else {
+                    //    $('.pagetit').removeClass('pagetit-fixed');
+                    //}
+                    if (stTop - headerHeight > 0) {
                         $('.pagetit').addClass('pagetit-fixed');
                     } else {
                         $('.pagetit').removeClass('pagetit-fixed');
@@ -4163,8 +4168,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                     // fix quote event "banner_footer"
                     $('.banner_footer').css('background-position', '0 ' + ~~(stTop / 3) + 'px');
-                })
-                    .trigger('scroll');
+                }).trigger('scroll');
 
 
                 // init texteffect
@@ -4506,8 +4510,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             if (loadingMgr.isLoading()) {
                 loadingMgr.abort();
             }
+            if ($('#categories-wrap').length) {
+                LP.triggerAction('myBack');
+            } else {
+                urlManager.back();
+            }
 
-            urlManager.back();
 
             break;
         case 37:

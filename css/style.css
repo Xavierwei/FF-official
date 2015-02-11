@@ -745,6 +745,7 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
     background-position: 0 50%;}
 .preview .popprev{background-position: 0 -60px;}
 
+.pagetit-inner, .pagetit-inner .column {height: 85px;}
 
 .pagetit-fixed .pagetit-inner{position: fixed;right: 0;left: 0;top: 0;z-index: 1;background: #f0f0f0;}
 
