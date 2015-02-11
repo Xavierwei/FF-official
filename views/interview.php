@@ -12,7 +12,7 @@
 		<div>
 			<!--  -->
 			<div class="press_txt">
-				<?php _e('FRED &amp; FARID\'s interviews '); ?>
+				<?php _e('FRED &amp; FARID\'s interviews'); ?>
 			</div>
 			<!--  -->
 			<div id="press-container" class="interview_list cs-clear">
