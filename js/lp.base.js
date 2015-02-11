@@ -1707,7 +1707,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 switch (type) {
                 case 'services':
                 case 'brands':
-                    path += item.path;
+                    path += item.id;
                     break;
                 case 'categories':
                     path += item.path;
@@ -3364,8 +3364,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         });
 
                     }).trigger('resize');
+
+                    cb && cb();
                 });
-                cb && cb();
             },
             'interview-page': function (cb) {
                 // preload js conponent
