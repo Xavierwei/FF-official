@@ -423,7 +423,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             year: item.date.replace(/(\d+)-.*/, '$1'),
                             id: item.id,
                             cpgn_type: item.cpgn_type,
-                            path: item._contentPath.replace('pages_contents/', '') + item.path
+                            path: item._contentPath.replace('pages_contents/', '') + '/' + item.path
                         }));
                     });
                     $('.brands-con').children().remove();
@@ -2223,7 +2223,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 .animate({
                     marginLeft: 0,
                     opacity: 1
-                }, 200, function () {
+                }, 400, function () {
                     $(this).attr('start-loading', 1).removeClass('done');
                     $('.sec_brands').trigger('scroll.loading-con');
                 });
