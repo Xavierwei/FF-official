@@ -122,11 +122,11 @@ define(function( require , exports , model ){
 			if(Object.prototype.toString.call(path) == '[object Array]'){
 				var contentPaths = [];
 			 	$.each( path , function( i , item ){
-			 		contentPaths.push( 'pages_contents/' + item );
+			 		contentPaths.push( item );
 				} );
 			 	path = contentPaths.join(',');
 			} else {
-				path = 'pages_contents/' + path;
+				path = path;
 			}
 
 			// save cache to localStorage
@@ -139,7 +139,7 @@ define(function( require , exports , model ){
 			}
 
 
-			params.contentPaths = path.replace(/pages_contents\//g,'');
+			params.contentPaths = path.replace(/\b(pages_contents|eng|zho)\//g,'');
 
 			var paths = params.contentPaths.split(',');
 

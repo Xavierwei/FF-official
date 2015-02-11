@@ -423,7 +423,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             year: item.date.replace(/(\d+)-.*/, '$1'),
                             id: item.id,
                             cpgn_type: item.cpgn_type,
-                            path: item._contentPath.replace('pages_contents/', '') + '/' + item.path
+                            path: item._contentPath.replace('pages_contents/', '') + item.path
                         }));
                     });
                     $('.brands-con').children().remove();
@@ -943,7 +943,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         var __fixCampaigns = function (campaigns) {
             $.each(campaigns, function (i, campaign) {
-                __CACHE_CAMPAIGN__[campaign._contentPath + '/' + campaign.path] = campaign;
+                __CACHE_CAMPAIGN__[campaign._contentPath + campaign.path + '/'] = campaign;
             });
             return campaigns;
         }
@@ -959,7 +959,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }
                 itemGroupIndex[item._contentPath]++;
 
-                __CACHE_ITEM__[item._contentPath + '/' + itemGroupIndex[item._contentPath]] = item;
+                __CACHE_ITEM__[item._contentPath  + itemGroupIndex[item._contentPath]] = item;
             })
             return items;
         }
@@ -1124,7 +1124,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // path = __fixRequestPath( path );
                 var campaigns = this.getCampaigns(path, function (campaigns) {
                     $.each(campaigns, function (i, campaign) {
-                        if (path.indexOf(campaign._contentPath + '/' + campaign.path) >= 0) {
+                        if (path.indexOf(campaign._contentPath + campaign.path) >= 0) {
                             success && success(__CACHE_CAMPAIGN__[path]);
                             return false;
                         }
@@ -1165,9 +1165,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 var lang = 'eng';
                 var rpath = 'http://preprod.fredfarid.com/data/#[lang]/#[_contentPath]/#[type]/#[name]';
+                
                 return LP.format(rpath, {
                     lang: lang,
-                    _contentPath: item._contentPath.replace('pages_contents/',''),
+                    _contentPath: item._contentPath.replace(/(pages_contents|eng|zho)\//,''),
                     type: type,
                     name: item[type]
                 });
@@ -1657,7 +1658,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 var isImage = !tm.media || tm.media.match(/\.(jpg|png|bmp|jpeg)$/i);
                 aHtml.push(LP.format(tpl, {
-                    path: tm._contentPath + '/' + i,
+                    path: tm._contentPath + i,
                     picture: Math.abs(i - itemIndex) <= preloadNum ? '' : pic,
                     image: isImage ? 1 : '',
                     src: Math.abs(i - itemIndex) <= preloadNum ? pic : '/images/pre_load_l3.png',
@@ -2069,7 +2070,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var path = this.getAttribute('data-path');
                 var pics = [];
                 var tHtml = [];
-                $.each(campaignItemGroups['pages_contents/' + path] || [], function (i, item) {
+                path = path.replace(/\/\//,'/');
+                if( path.indexOf( path.length - 1 ) !== '/' ){
+                    path += '/';
+                }
+                $.each(campaignItemGroups[path] || [], function (i, item) {
                     var pic = campaignManager.getPath(item, 'picture');
                     pics.push(pic);
                     // render items
@@ -2077,7 +2082,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         picture: pic,
                         image: !item.media || item.media.match(/\.jpg$/) ? 1 : '',
                         video: !item.media || item.media.match(/\.jpg$/) ? '' : 1,
-                        path: item._contentPath + '/' + i
+                        path: item._contentPath + i
                     }));
                 });
                 var $li = $(this);
@@ -2219,8 +2224,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     marginLeft: 0,
                     opacity: 1
                 }, 200, function () {
+                    $(this).attr('start-loading', 1).removeClass('done');
                     $('.sec_brands').trigger('scroll.loading-con');
-                    $(this).attr('start-loading', 1);
                 });
         });
         var campaignItemGroups = {}
@@ -2932,7 +2937,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     // fix $homeBio background image
                     var all = $homeBioBg.height() - $homeBio.height();
                     var bgTop = stTop + winHeight - $homeBio.offset().top; // - headerHeight - stTop;
-                    var per = bgTop / (winHeight - headerHeight + $homeBio.height());
+                    var per = bgTop / (winHeight + $homeBio.height());
 
                     var trans = 'translate(0px,' + (-per * all) + 'px)';
                     $homeBioBg.css({
@@ -4769,7 +4774,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }
             });
             if (compaign) {
-                urlManager.setFormatHash(data.path + '/' + compaign.path + '/0');
+                urlManager.setFormatHash(compaign._contentPath + compaign.path + '/0');
             }
         });
 
@@ -5679,7 +5684,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 award: all_item.award_label,
                 brand: all_item.brand_title,
                 campaign: all_item.label,
-                path: all_item._contentPath.replace('pages_contents/','') + '/' + all_item.path + '/0'
+                path: all_item._contentPath.replace('pages_contents/','') + all_item.path + '/0'
                 //campaign_link: 'path=categories/' + all_item._awardPath + '&id=' + all_item.fid_award
             }));
         });

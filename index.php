@@ -24,6 +24,9 @@ if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE 6.0') == true  || strpos($_SERVER['H
 		setcookie( 'page', $page == 'index' ? '' : $page );
 		require_once $file;
 	} else {
+		if(isset($_SERVER["HTTP_X_REQUESTED_WITH"]) && strtolower($_SERVER["HTTP_X_REQUESTED_WITH"])=="xmlhttprequest"){ 
+			throw new Exception('sb Exception');
+		}
 		//require_once '404.html';
 		header('Location:/404.html');
 	}
