@@ -17,7 +17,7 @@
   'FILTER' => '筛选',
   'FOLLOW US' => '关于我们',
   'FRED & FARID DIGITAL INVESTMENT FUND is a business fund which takes participation and promotes startups in the area of digital technology' => '佛海佛瑞数字投资基金是一家参与和促进在数字技术领域的初创公司的商业基金',
-  'Fred & Farid is a digital creative agency<br /> based in shanghai and paris' => '佛海佛瑞是一家位于上海和巴黎的<br/>数字创意广告公司',
+  'Fred & Farid is a digital creative agency<br /> based in shanghai, paris and New-York' => '佛海佛瑞是一家位于上海,巴黎和纽约的<br/>数字创意广告公司',
   'FRED & FARID MEDIA is the media buying agency of xxxxxxxxxxxxxxxxxxxxxx. It offers its clients a full-service plan that involves the design of above the line media ideas and their orchestration. It also offers strategic consulting services for all the xxxxxxxxxxxxxxxxxxxxxx’s brands.' => '佛海佛瑞媒体是一家xxxxxxxxxxxxxxxxxxxxxx的媒体购买机构。它向客户提供了涉及在线媒体的创意和业务流程的全方位服务。并提供了对所有xxxxxxxxxxxxxxxxxxxxxx的品牌战略咨询服务。',
   'FRED & FARID PARIS-SHANGHAI is a full-service integrated communication agency founded in 2007 and located in France and China, The offices in Paris and Shanghai are connected 24/7/365 by means of screens that serve as bridges, allowing to work as a single agency.' => '佛海佛瑞 巴黎-上海是一家成立于2007年,位于法国和中国的提供全方位服务的整合传播机构，通过屏幕充当桥梁,全天候地连接巴黎和上海的办事处，作为一个单一的机构运行。',
   'FRED &amp; FARID GROUP' => '佛海佛瑞',

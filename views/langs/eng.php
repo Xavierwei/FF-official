@@ -11,7 +11,7 @@
   'ff bio' => '',
   'ff showreel' => '',
   'FOLLOW US' => '',
-  'Fred & Farid is a digital creative agency<br /> based in shanghai and paris' => '',
+  'Fred & Farid is a digital creative agency<br /> based in shanghai, paris and New-York' => '',
   'FRED &amp; FARID GROUP' => '',
   'FRED &amp; FARID\'s interviews ' => '',
   'They are talking about us' => 'They are talking about us',

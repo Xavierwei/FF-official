@@ -199,11 +199,11 @@ html.ie8 .pop_jobtxt{overflow-x: hidden;}
 /*.contact_conl .cs-clear , .contact_conr .cs-clear{min-height: 200px;}*/
 .contact_con h4{padding:15px 0;}
 /*.contact_txt{min-height: 125px;height: auto;margin-bottom: 40px;}*/
-.contact_txt{height: auto;margin-bottom: 40px;}
+.contact_txt{height: auto;margin-bottom: 40px;text-transform: lowercase;}
 .contact_city{float: left;font-size: 13px;}
 body.lang-zho .contact_city{float: left;font-size: 11px;}
 .contact_ad{float: left;padding-left:20px;width: 180px}
-.contact_ad p{padding: 0 0 10px;font-size: 13px;}
+.contact_ad p{padding: 0 0 10px;font-size: 13px;text-transform: lowercase;}
 body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 .contact_address_1{}
 .contact_address_2 p.contact_address_p{float: right;}
