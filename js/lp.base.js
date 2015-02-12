@@ -3852,6 +3852,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             'number-rock': function ($dom, index, cb, du) {
                 // init humbers
                 var num = $dom.text() || '';
+                console.log( num );
                 var $span = $('<span>' + num + '</span>').appendTo($dom.html('').data('num', num));
                 var width = $span.width();
                 var height = $span.height();
@@ -3866,12 +3867,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     verticalAlign: 'middle'
                 }).html('');
 
-                $.each(num.split(''), function (i) {
-                    $('<div>' + "1234567890".split('').join('<br/>') + '</div>').appendTo($span)
+                $.each(num.split(''), function (i, n) {
+                    var str = '1234567890';
+                    if( n == '+' ){
+                        str = '!@#$%^&*-+';
+                    }
+                    $('<div>' + str.split('').join('<br/>') + '</div>').appendTo($span)
                         .css({
                             position: 'absolute',
                             left: i * width / num.length,
-                            top: -~~(Math.random() * 10) * height
+                            top: -~~(Math.random() * 10) * height,
+                            width: width / num.length
                         });
                 });
 
@@ -3888,7 +3894,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         var nums = num.split('');
                         $divs.each(function (i) {
                             var top = -(nums[i] - 1) * spanHeight;
-                            if (nums[i] == 0) {
+                            
+                            if (nums[i] == 0 || nums[i] == '+') {
                                 top = -9 * spanHeight
                             }
                             $(this).animate({
@@ -4261,6 +4268,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                                 window.quote_timer_index = 0 ;
                                 window.quote_timer = setInterval(function(){
+                                    if( !$('.page-mask').hasClass('lighter') ) return;
                                     quote_timer_index++;
                                     quote_timer_index = quote_timer_index % $('#random-quotes .banft_txt div').length;
                                     $('#random-quotes .banft_txt').animate({
