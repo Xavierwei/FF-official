@@ -25,7 +25,7 @@
   'GENRE' => '种类',
   'HELLO SUNSHINE is a creative agency based on a single, powerful notion that optimism drives successful brands and popular culture. It’s ambition is to bring a much needed breath of fresh air to the advertising world' => 'HELLO SUNSHINE是一家基于一个单一的,有力的概念的广告公司，即乐观推动成功的品牌和流行文化。它的目标是带给广告界急需的一口新鲜空气',
   'They are talking about us' => '他们在谈论我们',
-  'INTERNATIONAL AWARDS' => '项国际奖项',
+  'INTERNATIONAL AWARDS' => '400多个国际奖项 <br/>其中包括从2011年以来获得的200个数字奖项',
   'INTERVIEW' => '访谈',
   'jobs' => '职位',
   'KEY PEOPLE' => '核心团队',

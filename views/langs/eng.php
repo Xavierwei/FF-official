@@ -16,6 +16,7 @@
   'FRED &amp; FARID\'s interviews' => '',
   'They are talking about us' => 'They are talking about us',
   'interview' => '',
+  'INTERNATIONAL AWARDS' => 'More than 400 international awards<br/>including 200 digital distinctions since 2011',
   'jobs' => '',
   'key people' => '',
   'LOAD MORE' => '',

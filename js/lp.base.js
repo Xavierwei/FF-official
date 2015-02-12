@@ -2954,6 +2954,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     var obj = {};
                     $.each(r.items || [], function (i, item) {
                         obj[item.id] = item.number;
+
                     });
 
                     var tpl = $('#num-tpl').html();
@@ -3076,7 +3077,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }
                         //preload_imgs.push(item.award_preview);
                     });
-                    $('#awards-number').text(b.length);
+                    //$('#awards-number').text(b.length);
                     // preloading awards icons
                     api.request('awards', function (r) {
                         $.each(r.items, function (i, old_award) {
@@ -3128,9 +3129,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             .data('awards', old_awards_for_imgs)
                             .data('all', awards);
 
-                        LP.triggerAction('awardfilter');
+                        //LP.triggerAction('awardfilter');
                         // init select
-                        initSelect($('select'));
+                        //initSelect($('select'));
 
                         // render awards
                         var awardsHtml = [];
@@ -3141,12 +3142,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         });
 
                         $('.awardicons').html(awardsHtml.join(''));
-                        $('.awardicons').on('hover', 'img' , function () {
-                            var num = $(this).data('num');
-                            $('.awardicons span').html(num);
-                            effects['number-rock']($(this).closest('.award-image-num').find('p'), 0, null, 500);
-
-                        });
+                        //$('.awardicons').on('hover', 'img' , function () {
+                        //    var num = $(this).data('num');
+                        //    $('.awardicons span').html(num);
+                        //    effects['number-rock']($(this).closest('.award-image-num').find('p'), 0, null, 500);
+                        //
+                        //});
 
                         loadImages_2(preload_imgs.slice(0,8), function () {
                             cb && cb();
@@ -5705,6 +5706,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('#awardfilter').one('click',function() {
             $('#list-table').removeClass('take-no-space');
         });
+        //$('#awardfilter').trigger('click');
         //$('#awardfilter').on('click',function() {
         //    $('#list-table').show();
         //    //$('#list-table').toggleClass('take-no-space');
