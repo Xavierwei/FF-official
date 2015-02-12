@@ -446,11 +446,11 @@ body.lang-zho .home_biotxt{font-size: 14px;width: 1090px;margin: 0 auto;line-hei
 url(../images/brand_big_nav.png) left center; }
 .brand_big_next span{background:url(../images/brand_big_nav.png) right center; }
 
-.brand_big_text{padding: 50px 0 150px;color: white;}
-.brand_big_text_year{font-weight: bold;font-size: 24px;padding-bottom: 1em;	}
-.brand_big_text_tit_1{font-weight: bold;font-size: 24px;padding-bottom: 1em;	}
+.brand_big_text{padding: 50px 0 150px;color: white;text-transform: uppercase;}
+.brand_big_text_year{font-weight: bold;font-size: 24px;padding-bottom: 1em;text-transform: uppercase;}
+.brand_big_text_tit_1{font-weight: bold;font-size: 24px;padding-bottom: 1em;text-transform: uppercase;}
 .brand_big_text_tit {font-size: 14px;font-weight: 100;text-transform: uppercase;}
-.brand_big_text_val {font-size: 11px;color: #666;height: 36px;}
+.brand_big_text_val {font-size: 11px;color: #666;height: 36px;text-transform: uppercase;}
 .brand_big_text_item {float: left;width: 20%;line-height: 3em;text-transform: uppercase;}
 .not-shown{visibility: hidden;}
 .take-no-space{display: none;}
