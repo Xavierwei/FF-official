@@ -1617,7 +1617,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             campaignManager.getCampaignInfo(item._contentPath, function (campaign) {
                 campaign['year'] = campaign['date'].split('-')[0];
-
                 for (var key in campaign) {
                     if (!campaign[key]) {
                         campaign[key + '_visible'] = 'style="display:none;"';
@@ -3580,7 +3579,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $.each(r.items, function (i, item) {
                             item['fr-lang'] = item['content_fr'] ? '<a href="#" data-a="jobs-lang" data-lang="fr"> FR </a>' : '';
                             item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中国 </a>' : '';
-                            console.log( item );
+                            //console.log( item );
                             aHtml.push(LP.format(tpl, item));
                         });
 
@@ -3591,11 +3590,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             $self.find('.jobcontent').each(function(i,el) {
                                 if($(el).text() == '') {
                                     var id = $(el).prop('class').split(' ')[1].split('_')[1];
-                                    console.log('id: ',id);
+                                    //console.log('id: ',id);
                                     $self.find('a').each(function(i,a) {
-                                        console.log($(a).data('lang'));
+                                        //console.log($(a).data('lang'));
                                         if($(a).data('lang') == id) {
-                                            console.log(a);
+                                            //console.log(a);
                                             $(a).hide();
                                         }
                                     });
@@ -4392,7 +4391,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 pageManager.destroy();
 
                 var $banner_footer = $('.container').find('.banner_footer');
-                console.log( $banner_footer );
+                //console.log( $banner_footer );
                 $('.container').html(html)
                     .find('.banner_footer')
                     .html('')
@@ -5732,10 +5731,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $self.find('.jobcontent').each(function(i,el) {
                 if($(el).text() == '') {
                     var id = $(el).prop('class').split(' ')[1].split('_')[1];
-                    console.log('id: ',id);
+                    //console.log('id: ',id);
                     $self.find('a').each(function(i,a) {
                         if($(a).data('lang') == id) {
-                            console.log(a);
+                            //console.log(a);
                             $(a).hide();
                         }
                     });
