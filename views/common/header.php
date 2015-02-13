@@ -153,6 +153,7 @@
 					<a class="navitem" data-a="navitem" href="/awards"><?php _e('AWARDS');?></a>
 					<a class="navitem" data-a="navitem" href="/press" data-last="interview"><?php _e('PRESS');?></a>
 					<a class="navitem" data-a="navitem" href="/bio" data-last="jobs" ><?php _e('ABOUT');?></a>
+					<a class="navitem" data-a="navitem" href="/jobs" data-last="jobs" ><?php _e('jobs');?></a>
 					<a class="navitem" data-a="navitem" href="/contact"><?php _e('CONTACT');?></a>
 				</div>
 				<div class="language"><a href="#" data-a="lang" data-d="lang=eng">EN</a> <a href="#" data-a="lang" data-d="lang=zho">中国</a></div>

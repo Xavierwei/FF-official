@@ -1,5 +1,5 @@
 <?php return array (
-  'ABOUT' => '',
+  'ABOUT' => 'BIO',
   'APPLY' => '',
   'AWARDS' => '',
   'BIOGRAPHY' => '',
@@ -17,7 +17,7 @@
   'They are talking about us' => 'They are talking about us',
   'interview' => '',
   'INTERNATIONAL AWARDS' => 'More than 400 international awards<br/>including 200 digital distinctions since 2011',
-  'jobs' => '',
+  'jobs' => 'JOBS',
   'key people' => '',
   'LOAD MORE' => '',
   'NEWS' => '',
