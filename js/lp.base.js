@@ -1047,10 +1047,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     //     console.log( r );
                     // });
                 }
+                var cate = $('[data-d="type=' + paths[0] + '"]').html();
                 if (__CACHE_TITLE__[key]) {
+
                     $('.sec_brands_tit h2').html(
                         LP.format('<span>#[cate]</span>  <span class="sep">|</span>  <span>#[tit]</span>', {
-                            cate: paths[0].toUpperCase(),
+                            cate: cate,
                             tit: __CACHE_TITLE__[key].toUpperCase()
                         }));
 
@@ -1067,7 +1069,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 __CACHE_TITLE__[key] = item.title;
                                 $('.sec_brands_tit h2').html(
                                     LP.format('<span>#[cate]</span>  <span class="sep">|</span>  <span>#[tit]</span>', {
-                                        cate: paths[0].toUpperCase(),
+                                        cate: cate,
                                         tit: item.title.toUpperCase()
                                     }));
 
