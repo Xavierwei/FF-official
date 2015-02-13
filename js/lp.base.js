@@ -4262,10 +4262,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 var quoteHtmls = [];
                                 var tpl = '<div><p>#[text]</p><span>#[author]</span></div>';
                                 for( var i = 1; item['text_' + i] !== undefined ; i++ ){
-                                    var text = item['text_' + i].match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
-                                    if( !text ) continue;
-                                    //console.log( text );
-                                    quoteHtmls.push( LP.format( tpl, {text: $.trim(text[1]).replace(/\n+/g,'<br/>'), author: $.trim(text[3]).replace(/\n+/g,'<br/>')} ) );
+                                    item['text_' + i] = item['text_' + i].replace('\\u201d','”').replace('\\u201c','“');
+                                    console.log( item['text_' + i] );
+                                    var text = item['text_' + i].match(/^\s*(["“”](.|\n)*["“”])((.|\n)*)$/i);
+                                    if( item['text_' + i] && !text ){
+                                        quoteHtmls.push( LP.format( tpl, {text: item['text_' + i], author: ''} ) );
+                                    } else if( item['text_' + i] && text ){
+                                        quoteHtmls.push( LP.format( tpl, {text: $.trim(text[1]).replace(/\n+/g,'<br/>'), author: $.trim(text[3]).replace(/\n+/g,'<br/>')} ) );
+                                    }
                                 }
                                 // var text_1 = item.text_1.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
                                 // quoteHtmls.push( LP.format( tpl, {text: $.trim(text_1[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_1[3]).replace(/\n+/g,'<br/>')} ) );
@@ -4286,8 +4290,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     });
                                 window.banft_txt_length = quoteHtmls.length;
                                 var $banft = $('.banft_txt');
+                                $banft.clone().appendTo('#random-quotes').animate({ opacity: 1 })
+                                    .css('marginLeft',0);
                                 $banft.children().eq(0).remove();
-                                $banft.clone().appendTo('#random-quotes').animate({ opacity: 1 });
+                                
 
                                 window.quote_timer_index = 0 ;
                                 window.quote_timer = setInterval(function(){
