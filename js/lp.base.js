@@ -4247,22 +4247,28 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             if( $('.banner_footer').length && !$('.banft_txt div').length ){
                                 var quoteHtmls = [];
                                 var tpl = '<div><p>#[text]</p><span>#[author]</span></div>';
-                                var text_1 = item.text_1.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
-                                quoteHtmls.push( LP.format( tpl, {text: $.trim(text_1[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_1[3]).replace(/\n+/g,'<br/>')} ) );
+                                for( var i = 1; item['text_' + i]; i++ ){
+                                    var text = item['text_' + i].match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
+                                    if( !text ) continue;
+                                    console.log( text );
+                                    quoteHtmls.push( LP.format( tpl, {text: $.trim(text[1]).replace(/\n+/g,'<br/>'), author: $.trim(text[3]).replace(/\n+/g,'<br/>')} ) );
+                                }
+                                // var text_1 = item.text_1.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
+                                // quoteHtmls.push( LP.format( tpl, {text: $.trim(text_1[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_1[3]).replace(/\n+/g,'<br/>')} ) );
 
-                                var text_2 = item.text_2.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
-                                quoteHtmls.push( LP.format( tpl, {text: $.trim(text_2[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_2[3]).replace(/\n+/g,'<br/>')} ) );
+                                // var text_2 = item.text_2.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
+                                // quoteHtmls.push( LP.format( tpl, {text: $.trim(text_2[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_2[3]).replace(/\n+/g,'<br/>')} ) );
 
-                                var text_3 = item.text_3.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
-                                quoteHtmls.push( LP.format( tpl, {text: $.trim(text_3[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_3[3]).replace(/\n+/g,'<br/>')} ) );
+                                // var text_3 = item.text_3.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
+                                // quoteHtmls.push( LP.format( tpl, {text: $.trim(text_3[1]).replace(/\n+/g,'<br/>'), author: $.trim(text_3[3]).replace(/\n+/g,'<br/>')} ) );
                                 $('.banft_txt').html( quoteHtmls.join('') )
                                     .css({
-                                        width: '300%'
+                                        width: quoteHtmls.length * 100 + '%'
                                     })
                                     .children()
                                     .css({
                                         float: 'left',
-                                        width: '33.3%'
+                                        width: 1 / quoteHtmls.length * 100 + '%'
                                     });
                                 $('.banft_txt').clone().appendTo('#random-quotes').animate({ opacity: 1 });
 
@@ -4329,8 +4335,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $('.ft-addr-p-4').each(function(i,p) {
                         $(p).height(p4_max);
                     });
-
-                    $('.banft_txt').css('width','300%');
                 }).trigger('resize');
                 return false;
             },
