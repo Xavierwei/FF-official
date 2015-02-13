@@ -4277,6 +4277,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     if( !$('.page-mask').hasClass('lighter') ) return;
                                     quote_timer_index++;
                                     quote_timer_index = quote_timer_index % $('#random-quotes .banft_txt div').length;
+                                    quote_timer_index = Math.max( quote_timer_index, 1 );
                                     $('#random-quotes .banft_txt').animate({
                                         marginLeft: - quote_timer_index * 100 + '%'
                                     }, 500);
