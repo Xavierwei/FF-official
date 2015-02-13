@@ -24,6 +24,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     }
 
     window.console = window.console || {log:function(){}};
+    window.banft_txt_length = 0;
 
 
     var initSoundWave = function( file, $canves , cb ){
@@ -3852,7 +3853,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             'number-rock': function ($dom, index, cb, du) {
                 // init humbers
                 var num = $dom.text() || '';
-                console.log( num );
+                //console.log( num );
                 var $span = $('<span>' + num + '</span>').appendTo($dom.html('').data('num', num));
                 var width = $span.width();
                 var height = $span.height();
@@ -4048,7 +4049,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         loading_logo();
                     });
                 }
-                var random_num = Math.floor((Math.random() * 3));
+                var random_num = null;
+                if (window.banft_txt_length) {
+                    random_num = window.banft_txt_length;
+                } else {
+                    random_num = 3;
+                }
+                random_num = Math.floor((Math.random() * random_num));
+                console.log('random_num: ',random_num);
+
                 $('.banft_txt').css({
                     marginLeft: -(random_num) * 100 + '%'
                 });
@@ -4253,7 +4262,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 for( var i = 1; item['text_' + i]; i++ ){
                                     var text = item['text_' + i].match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
                                     if( !text ) continue;
-                                    console.log( text );
+                                    //console.log( text );
                                     quoteHtmls.push( LP.format( tpl, {text: $.trim(text[1]).replace(/\n+/g,'<br/>'), author: $.trim(text[3]).replace(/\n+/g,'<br/>')} ) );
                                 }
                                 // var text_1 = item.text_1.match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
@@ -4273,6 +4282,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                         float: 'left',
                                         width: 1 / quoteHtmls.length * 100 + '%'
                                     });
+                                window.banft_txt_length = quoteHtmls.length;
                                 $('.banft_txt').clone().appendTo('#random-quotes').animate({ opacity: 1 });
 
                                 window.quote_timer_index = 0 ;
