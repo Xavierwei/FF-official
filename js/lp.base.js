@@ -4259,7 +4259,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             if( $('.banner_footer').length && !$('.banft_txt div').length ){
                                 var quoteHtmls = [];
                                 var tpl = '<div><p>#[text]</p><span>#[author]</span></div>';
-                                for( var i = 1; item['text_' + i]; i++ ){
+                                for( var i = 1; item['text_' + i] !== undefined ; i++ ){
                                     var text = item['text_' + i].match(/^\s*(["”](.|\n)*["“])((.|\n)*)$/i);
                                     if( !text ) continue;
                                     //console.log( text );
@@ -4283,7 +4283,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                         width: 1 / quoteHtmls.length * 100 + '%'
                                     });
                                 window.banft_txt_length = quoteHtmls.length;
-                                $('.banft_txt').clone().appendTo('#random-quotes').animate({ opacity: 1 });
+                                var $banft = $('.banft_txt');
+                                $banft.children().eq(0).remove();
+                                $banft.clone().appendTo('#random-quotes').animate({ opacity: 1 });
 
                                 window.quote_timer_index = 0 ;
                                 window.quote_timer = setInterval(function(){
