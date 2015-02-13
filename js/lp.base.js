@@ -3869,10 +3869,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 $.each(num.split(''), function (i, n) {
                     var str = '1234567890';
+                    var className = 'num';
                     if( n == '+' ){
                         str = '!@#$%^&*-+';
+                        className = 'sign';
                     }
-                    $('<div>' + str.split('').join('<br/>') + '</div>').appendTo($span)
+
+                    $('<div>' + str.split('').join('<br/>') + '</div>').addClass(className).appendTo($span)
                         .css({
                             position: 'absolute',
                             left: i * width / num.length,
