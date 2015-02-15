@@ -4058,7 +4058,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     random_num = 3;
                 }
                 random_num = Math.floor((Math.random() * random_num));
-                console.log('random_num: ',random_num);
 
                 $('.banft_txt').css({
                     marginLeft: -(random_num) * 100 + '%'
@@ -4263,7 +4262,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 var tpl = '<div><p>#[text]</p><span>#[author]</span></div>';
                                 for( var i = 1; item['text_' + i] !== undefined ; i++ ){
                                     item['text_' + i] = item['text_' + i].replace('\\u201d','”').replace('\\u201c','“');
-                                    console.log( item['text_' + i] );
+                                    //console.log( item['text_' + i] );
                                     var text = item['text_' + i].match(/^\s*(["“”](.|\n)*["“”])((.|\n)*)$/i);
                                     if( item['text_' + i] && !text ){
                                         quoteHtmls.push( LP.format( tpl, {text: item['text_' + i], author: ''} ) );
@@ -4704,13 +4703,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             play_txt;
         if($('body').hasClass('lang-zho')) {
             pause_txt = '暂停';
-            play_txt = '播放视频';
+            play_txt = '播放';
         } else if($('body').hasClass('lang-fr')) {
             pause_txt = 'PAUSE';
-            play_txt = 'PLAY MOVIE';
+            play_txt = 'PLAY';
         } else {
             pause_txt = 'PAUSE';
-            play_txt = 'PLAY MOVIE';
+            play_txt = 'PLAY';
         }
 
         if (!videoObject) {
