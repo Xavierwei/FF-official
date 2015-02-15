@@ -3523,6 +3523,16 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         } );
                     });
 
+                api.request('extended/numbers', function (r) {
+                    var obj = {};
+                    $.each(r.items || [], function (i, item) {
+                        obj[item.id] = item.number;
+
+                    });
+
+                    $('#press-num').html( obj.press_articles )
+                });
+
                 // var preview_imgs = [];
                 // var $year_dom = $('div.press_list.column.cs-clear.intoview-effect').slice(0, 2);
                 // var year_arr = [];
@@ -3894,6 +3904,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             'number-rock': function ($dom, index, cb, du) {
                 // init humbers
                 var num = $dom.text() || '';
+                if( !num ) return;
                 //console.log( num );
                 var $span = $('<span>' + num + '</span>').appendTo($dom.html('').data('num', num));
                 var width = $span.width();

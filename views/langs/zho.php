@@ -54,6 +54,7 @@
   'play movie' => '播放',
   'PLAY MOVIE' => '播放',
   'PRESS_1' => '媒体报道',
+  'PRESS ARTICLES' => '媒体报道',
   'press' => '出版',
   'PRESS' => '新闻',
   'PRODUCTION' => '制作',

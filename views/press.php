@@ -10,7 +10,7 @@
 	<div class="section sec_press">
 		<!--  -->
 		<div id="press-container" >
-			<div class="press_txt"><?php _e('They are talking about us'); ?></div>
+			<div class="press_txt"><span id="press-num" class="intoview-effect" data-effect="number-rock"></span> <?php _e('PRESS ARTICLES'); ?></div>
 			<!--  -->
 			<?php for( $i = date('Y') ; $i >= 1999 ; $i-- ){ ?>
 				<div class="press_year"><span class="intoview-effect" data-effect="number-rock"><?php echo $i; ?></span></div>
