@@ -133,7 +133,8 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 .icon_bk{background-position: 100% 3%;}
 a.icon_bg{background-position: 0px -115px;}
 .icon_cc{background-position: 112% 95%;}
-.icon_fredInChina{background-position: -10% -2%;}
+.icon_fredInChina{background-position: -10% -2%;opacity: 0.8;}
+.icon_fredInChina:hover{opacity: 1;}
 
 
 .section{}
