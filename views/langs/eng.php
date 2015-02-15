@@ -7,7 +7,7 @@
   'CATEGORIES' => '',
   'COMMUNICATION AGENCIES' => 'CONTACT',
   'CONTACT' => '',
-  'FEATURED CAMPAIGNS' => '',
+  'FEATURED CAMPAIGNS' => 'LATESST UPLOADS',
   'ff bio' => '',
   'ff showreel' => '',
   'FOLLOW US' => '',

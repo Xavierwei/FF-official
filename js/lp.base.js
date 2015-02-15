@@ -2951,7 +2951,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         'msTransform': trans,
                         'webkitTransform': trans
                     });
-
                 });
 
 
@@ -3003,7 +3002,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $.each(r.items || [], function (i, item) {
                         aHtml.push(LP.format('<div class="slider-item" title="#[title]" data-movie="#[video]"><img src="#[image]" /></div>', {
                             image: campaignManager.getPath(item, 'picture'),
-                            video: campaignManager.getPath(item, 'video'),
+                            video: campaignManager.getPath(item, 'video'),//i == 0 ? '/test.mp4' : '/test1.mp4', //
                             title: item.title || ''
                         }));
                     });
@@ -3066,7 +3065,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $slideA.css({
                         'background-position': '-23px ' + (++positionY) + 'px'
                     });
-                }, 20);
+                }, 40);
                 
 
                 // init campaigns mouse move effect
@@ -4787,7 +4786,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             renderVideo($sliderItem, movie, $sliderItem.find('img').attr('src'), {
                 ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
                 autoplay: true,
-                showLoadingBar: true
+                showLoadingBar: true,
+                loop: false
             }, function () {
                 this.on('play', function () {
                     $btn
@@ -4803,7 +4803,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         .html('<div class="transition">' + play_txt + '<br><br>' + play_txt + '</div>');
                 });
 
-                this.on('end', function () {
+                this.on('ended', function () {
                     LP.triggerAction('home-slider-right',{callback:function(){
                         LP.triggerAction('home-play-movie');
                     }});
