@@ -60,15 +60,36 @@
 			</div>
 		</div>
 		<!--  -->
+		<div class="home_num">
+			<h2><?php _e('NUMBERS'); ?></h2>
+			<div class="home_numtable" style="padding-bottom: 50px;">
+				<table>
+					<tr id="home-num-tr"></tr>
+					<tr>
+						<td><strong class="intoview-effect" data-effect="number-rock">350</strong><?php _e('EMPLOYEES');?></td>
+						<td><strong class="intoview-effect" data-effect="number-rock">5</strong><?php _e('BUILDINGS');?></td>
+						<td><strong class="intoview-effect" data-effect="number-rock">3</strong><?php _e('COUNTRY');?></td>
+						<td><strong class="intoview-effect" data-effect="number-rock">25</strong><?php _e('NATIONALITIES');?></td>
+						<td><strong class="intoview-effect" data-effect="number-rock">1</strong><?php _e('HEART');?></td>
+					</tr>
+				</table>
+			</div>
+			<!-- <a href="/awards" class="home_numbtn">
+				<div class="transition">
+					<?php _e('ABOUT'); ?> <br/><br/><?php _e('ABOUT'); ?>
+				</div>
+			</a> -->
+		</div>
+		<!--  -->
 		<div class="home_campaign">
 			<h2 class="intoview-effect" data-effect="fadeup"><?php _e('FEATURED CAMPAIGNS'); ?></h2>
 			<div class="home_camcon column cs-clear">
 			</div>
-			<a class="home_cambtn" data-a="home-loadmore" href="#">
+			<!-- <a class="home_cambtn" data-a="home-loadmore" href="#">
 				<div class="transition">
 					<?php _e('LOAD MORE'); ?><br/><br/><?php _e('LOAD MORE'); ?>
 				</div>
-			</a>
+			</a> -->
 		</div>		
 		<!--  -->
 		<div class="home_bio">
@@ -81,20 +102,6 @@
 			<a href="/bio" class="home_biobtn">
 				<div class="transition">
 					<?php _e('READ MORE'); ?><br/><br/><?php _e('READ MORE'); ?>
-				</div>
-			</a>
-		</div>
-		<!--  -->
-		<div class="home_num">
-			<h2><?php _e('NUMBERS'); ?></h2>
-			<div class="home_numtable">
-				<table>
-					<tr id="home-num-tr"></tr>
-				</table>
-			</div>
-			<a href="/awards" class="home_numbtn">
-				<div class="transition">
-					<?php _e('ABOUT'); ?> <br/><br/><?php _e('ABOUT'); ?>
 				</div>
 			</a>
 		</div>

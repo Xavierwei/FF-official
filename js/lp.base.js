@@ -3021,6 +3021,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         </div>';
                     var aHtml = [];
                     $.each(r.items || [], function (i, item) {
+                        if( i > 5 ) return false;
                         var pic = campaignManager.getPath(item, 'preview');
                         var sp = item.fid_campaign.split('#');
                         aHtml.push(LP.format(tpl, {
@@ -3043,13 +3044,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
                     $('.home_camcon').children().each(function (i) {
                         var $this = $(this);
-                        if (i <= 2) {
+                        // if (i <= 2) {
                             $this.find('img').load(function () {
                                 fixImageToWrap($this.find('div'), $this.find('img'));
                             });
-                        } else {
-                            $this.hide();
-                        }
+                        // } else {
+                        //     $this.hide();
+                        // }
                     });
 
                 });
@@ -4300,9 +4301,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     quote_timer_index++;
                                     quote_timer_index = quote_timer_index % $('#random-quotes .banft_txt div').length;
                                     quote_timer_index = Math.max( quote_timer_index, 1 );
-                                    $('#random-quotes .banft_txt').animate({
-                                        marginLeft: - quote_timer_index * 100 + '%'
-                                    }, 500);
+                                    $('#random-quotes .banft_txt')
+                                        .fadeOut(function(){
+                                            $(this)
+                                                .css({
+                                                    marginLeft: - quote_timer_index * 100 + '%'
+                                                })
+                                                .fadeIn(500);
+                                        });
                                 }, 5000);
                             }
                             // interview to scroll
@@ -4660,12 +4666,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         return false;
     });
 
-    LP.action('home-slider-right', function () {
+    LP.action('home-slider-right', function ( data ) {
         var $inner = $('.slider-block-inner');
         var index = parseInt($inner.data('index'));
         var len = $('.slider-item').length;
         if (index == len - 1) {
-            return false;
+            var mLeft = 0;
+            index = -1;
+        } else {
+            var mLeft = '-=100%';
         }
 
         // stop current video
@@ -4674,10 +4683,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         // video && video.pause();
 
         $inner.animate({
-            marginLeft: '-=100%'
+            marginLeft: mLeft
         }, 500)
             .promise()
             .then(disposeVideo);
+
+        setTimeout( data.callback || function(){} , 500 );
 
         $inner.data('index', index + 1);
         $inner.data('cb') && $inner.data('cb')(index + 1);
@@ -4735,7 +4746,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
 
                 this.on('end', function () {
-                    LP.triggerAction('home-slider-right');
+                    LP.triggerAction('home-slider-right',{callback:function(){
+                        LP.triggerAction('home-play-movie');
+                    }});
                 });
 
                 // this.on('progress', function(){
