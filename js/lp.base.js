@@ -3582,7 +3582,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     api.request(contentPaths, function (r) {
                         $.each(r.items, function (i, item) {
                             item['fr-lang'] = item['content_fr'] ? '<a href="#" data-a="jobs-lang" data-lang="fr"> FR </a>' : '';
-                            item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中国 </a>' : '';
+                            item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中文 </a>' : '';
                             //console.log( item );
                             aHtml.push(LP.format(tpl, item));
                         });

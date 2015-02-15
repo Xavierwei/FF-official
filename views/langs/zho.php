@@ -63,7 +63,7 @@
   'SERVICES' => '服务',
   'SHANGHAI' => '上海',
   'SHANGHAI_ADDR_L1' => '20080 上海 中国',
-  'SHANGHAI_ADDR_L2' => '上海虹口区黄浦路路200号',
+  'SHANGHAI_ADDR_L2' => '上海虹口区黄浦路200号',
   'SHANGHAI_ADDR_L3' => '上海虹口区溧阳路109-111号',
   'SHANGHAI_ADDR_L4' => '电话: +86 2606 0600',
   'SHARE' => '分享',

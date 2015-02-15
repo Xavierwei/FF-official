@@ -116,7 +116,7 @@
 <div class="pop pop_jobs">
   <div class="pop_jobcon">
     <div class="pop_jobcon_inner">
-      <div class=""><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="cn"> 中国 </a></div>
+      <div class=""><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> <a href="#" data-a="jobs-lang" data-lang="cn"> 中文 </a></div>
       <h3>devleppeur web</h3>
       <h4>Fred & Farid<br />Paris<br />CDD</h4>
       <div class="pop_jobtxt">
