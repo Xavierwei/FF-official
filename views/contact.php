@@ -7,7 +7,7 @@
   <div class="section sec_contact column">
     <!--  -->
     <h2 class="contact_tit">
-		<?php _e('Fred & Farid is a digital creative agency<br /> based in shanghai, paris and New-York'); ?>
+		<?php _e('NEWS_HOMEPAGE'); ?>
 	</h2>
     <!--  -->
     <div class="contact_item"></div>
