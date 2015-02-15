@@ -3958,7 +3958,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 'top': top
                             }, 800, 'easeOutQuart', function () {
                                 if (i == nums.length - 1) {
-                                    //$dom.html( num );
+                                    $dom.html( num );
                                     cb && cb();
                                 }
                             });
@@ -4722,7 +4722,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $(this).hide();
         }
 
-        $('.banpho-con p').html( $inner.children().eq( index ).attr('title') );
+        $('.banpho-con p').html( $inner.children().eq( index - 1 ).attr('title') );
 
         $(this).siblings('.banpho-bt-r').show();
         $(this).siblings('.banpho-bt-c').html($('.banpho-bt-c').html());
@@ -4759,7 +4759,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $inner.data('index', index + 1);
         $inner.data('cb') && $inner.data('cb')(index + 1);
 
-        $('.banpho-con p').html( $inner.children().eq( index ).attr('title') );
+        $('.banpho-con p').html( $inner.children().eq( index + 1 ).attr('title') );
 
         if (index + 2 == len) {
             $(this).hide();
