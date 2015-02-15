@@ -130,10 +130,10 @@
   </a>
   <div class="jobshare cs-clear">
     <strong><?php _e('SHARE'); ?></strong>
-    <a target="_blank" href="http://service.weibo.com/share/share.php?title=xxx&url=xxx&source=bookmark" class="jobshareitem jobshare_weibo"></a>
-    <a target="_blank" href="http://www.facebook.com/sharer.php?u=xxx&t=xxx" class="jobshareitem jobshare_fb"></a>
-    <a target="_blank" href="http://twitter.com/home?status=xxx" class="jobshareitem jobshare_t"></a>
-    <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=xxx&title=xxx&source=ADD_YOUR_BLOG_URL_HERE" class="jobshareitem jobshare_lin"></a>
+    <a target="_blank" onClick="return false;" href="http://service.weibo.com/share/share.php?title=xxx&url=xxx&source=bookmark" class="jobshareitem jobshare_weibo"></a>
+    <a target="_blank" onClick="return false;" href="http://www.facebook.com/sharer.php?u=xxx&t=xxx" class="jobshareitem jobshare_fb"></a>
+    <a target="_blank" onClick="return false;" href="http://twitter.com/home?status=xxx" class="jobshareitem jobshare_t"></a>
+    <a target="_blank" onClick="return false;" href="http://www.linkedin.com/shareArticle?mini=true&url=xxx&title=xxx&source=ADD_YOUR_BLOG_URL_HERE" class="jobshareitem jobshare_lin"></a>
   </div>
   <div class="pop_job_menus">
     <p class="popicon popclose transition" data-a="pop_close"></p>
