@@ -3583,7 +3583,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     api.request(contentPaths, function (r) {
                         $.each(r.items, function (i, item) {
                             item['fr-lang'] = item['content_fr'] ? '<a href="#" data-a="jobs-lang" data-lang="fr"> FR </a>' : '';
-                            item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中国 </a>' : '';
+                            item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中文 </a>' : '';
                             //console.log( item );
                             aHtml.push(LP.format(tpl, item));
                         });
@@ -4395,7 +4395,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 linkHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="work_item #[name]">#[label]</a>', item))
             }
         });
-        //linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_butterfly"></a>');
+        linkHtml.push('<a role="media" href="#" target="_blank" class="work_item icon_fredInChina"></a>');
         $('#icon-wrap').html(linkHtml.join(''));
 
     });
