@@ -37,7 +37,7 @@
   'PAUSE' => '',
   'play movie' => 'PLAY',
   'PLAY MOVIE' => 'PLAY',
-  'PRESS ARTICLES' => '',
+  'PRESS_1' => 'PRESS',
   'PRESS' => '',
   'press' => '',
   'PROJECTS' => '',

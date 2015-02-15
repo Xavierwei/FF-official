@@ -4,6 +4,7 @@
 <div class="banpho home-slider">
 	<div class="slider-block-inner cs-clear" id="slider-block-inner" data-index="0"></div>
 	<div class="banpho-con" data-height="94">
+		<p style="font-size: 1.5em;margin-top:-50px;"></p>
 		<div class="banpho-bt">
 			<a href="javascript:;" data-a="home-slider-left" class="banpho-bt-l transition"></a>
 			<div class="banpho-bt-c" data-a="home-play-movie">
@@ -66,9 +67,9 @@
 				<table>
 					<tr id="home-num-tr"></tr>
 					<tr>
-						<td><strong class="intoview-effect" data-effect="number-rock">350</strong><?php _e('EMPLOYEES');?></td>
+						<td><strong class="intoview-effect" data-effect="number-rock">400+</strong><?php _e('EMPLOYEES');?></td>
 						<td><strong class="intoview-effect" data-effect="number-rock">5</strong><?php _e('BUILDINGS');?></td>
-						<td><strong class="intoview-effect" data-effect="number-rock">3</strong><?php _e('COUNTRY');?></td>
+						<td><strong class="intoview-effect" data-effect="number-rock">3</strong><?php _e('COUNTRIES');?></td>
 						<td><strong class="intoview-effect" data-effect="number-rock">25</strong><?php _e('NATIONALITIES');?></td>
 						<td><strong class="intoview-effect" data-effect="number-rock">1</strong><?php _e('HEART');?></td>
 					</tr>
@@ -109,7 +110,7 @@
 <script type="text/tpl" id="num-tpl" >
 <td><strong class="intoview-effect" data-effect="number-rock">#[projects]</strong><?php _e('PROJECTS');?></td>
 <td><strong class="intoview-effect" data-effect="number-rock">#[brands]</strong><?php _e('BRANDS');?></td>
-<td><strong class="intoview-effect" data-effect="number-rock">#[press_articles]</strong><?php _e('PRESS ARTICLES');?></td>
+<td><strong class="intoview-effect" data-effect="number-rock">#[press_articles]</strong><?php _e('PRESS_1');?></td>
 <td><strong class="intoview-effect" data-effect="number-rock">#[services]</strong><?php _e('SERVICES');?></td>
 <td><strong class="intoview-effect" data-effect="number-rock">#[awards]</strong><?php _e('AWARDS');?></td>
  </script>

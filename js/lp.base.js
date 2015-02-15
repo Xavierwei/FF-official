@@ -1703,7 +1703,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             // load categories
             var aHtml = [];
             // biuld html
-            var tpl = '<li> <a data-a="show-compagins" data-d="path=#[path]" data-id="#[id]" data-category="CONSULTING" title="#[title]" href="#">#[title]</a> </li>';
+            var tpl = '<li> <a data-a="show-compagins" #[disabled] data-d="path=#[path]" data-id="#[id]" data-category="CONSULTING" title="#[title]" href="#">#[title]</a> </li>';
             $.each(r.items || [], function (i, item) {
                 var path = type + '/';
                 switch (type) {
@@ -1719,7 +1719,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 aHtml.push(LP.format(tpl, {
                     title: item.title,
                     path: path,
-                    id: item.id
+                    id: item.id,
+                    disabled: type == 'services' ? 'disabled="disabled"' : ''
                 }));
             });
             $('#categories-wrap').html(aHtml.join(''));
@@ -2811,6 +2812,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             var $sliderInner = $('.slider-block-inner').css('width', $('.slider-item').length + '00%');
             $sliderInner.data('cb', cb);
 
+            $('.banpho-con p').html( $slider.find('.slider-item').eq(0).attr('title') );
+
             // hide left arrow
             $sliderInner.next().find('.banpho-bt-l').hide();
 
@@ -2998,9 +3001,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 api.request('home', function (r) {
                     var aHtml = [];
                     $.each(r.items || [], function (i, item) {
-                        aHtml.push(LP.format('<div class="slider-item" data-movie="#[video]"><img src="#[image]" /></div>', {
+                        aHtml.push(LP.format('<div class="slider-item" title="#[title]" data-movie="#[video]"><img src="#[image]" /></div>', {
                             image: campaignManager.getPath(item, 'picture'),
-                            video: campaignManager.getPath(item, 'video')
+                            video: campaignManager.getPath(item, 'video'),
+                            title: item.title || ''
                         }));
                     });
 
@@ -3423,7 +3427,32 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         watch_txt = 'WATCH';
                         close_txt = 'CLOSE';
                     }
-                    $.each(r.items, function (i, item) {
+
+                    // sort by time
+                    var objs = {};
+                    var dates = [];
+                    $.each( r.items, function(i, item){
+
+                        if( !objs[ item['date'] ] ){
+                            dates.push( item.date );
+                        }
+
+                        objs[ item['date'] ] = objs[ item['date'] ] || [];
+                        objs[ item['date'] ].push( item );
+                    } );
+                    dates = dates.sort().reverse();
+
+                    var result = [];
+                    $.each( dates, function(i, date){
+                        result = result.concat( objs[date] );
+                    } );
+
+                    console.log( objs );
+
+                    console.log( result );
+
+
+                    $.each(result, function (i, item) {
                         var media = campaignManager.getPath(item, 'media');
                         var tpl = !media.match(/.mp3$/) ? tvTpl : radioTpl;
                         var titles = item.title.split('|');
@@ -4288,10 +4317,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                         float: 'left',
                                         width: 1 / quoteHtmls.length * 100 + '%'
                                     });
+
+                                $('.banft_txt').children()
+                                    .each(function(){
+                                        $(this).css('paddingTop', ( $('.banner_footer').height() - $(this).height() ) / 2 )
+                                    });
+
                                 window.banft_txt_length = quoteHtmls.length;
                                 var $banft = $('.banft_txt');
                                 $banft.clone().appendTo('#random-quotes').animate({ opacity: 1 })
-                                    .css('marginLeft',0);
+                                    .css('marginLeft',0)
+                                    .children()
+                                    .css('paddingTop', 0);
                                 $banft.children().eq(0).remove();
                                 
 
@@ -4658,6 +4695,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         if (index == 1) {
             $(this).hide();
         }
+
+        $('.banpho-con p').html( $inner.children().eq( index ).attr('title') );
+
         $(this).siblings('.banpho-bt-r').show();
         $(this).siblings('.banpho-bt-c').html($('.banpho-bt-c').html());
 
@@ -4692,6 +4732,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         $inner.data('index', index + 1);
         $inner.data('cb') && $inner.data('cb')(index + 1);
+
+        $('.banpho-con p').html( $inner.children().eq( index ).attr('title') );
 
         if (index + 2 == len) {
             $(this).hide();
@@ -4884,6 +4926,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     });
 
     LP.action('show-compagins', function (data) {
+        if( $(this).attr('disabled') ){
+            return false;
+        }
         urlManager.setFormatHash(data.path);
         // urlManager.go( data.path );
         return false;

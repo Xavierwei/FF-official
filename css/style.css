@@ -94,7 +94,7 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 
 /**/
 .banner_footer{background: url('../images/banner_ft.png') repeat;height: 360px;}
-.banft_txt, #random-quotes{text-align: center;padding: 128px 0 0;color:#fff;line-height: 30px;}
+.banft_txt, #random-quotes{text-align: center;color:#fff;line-height: 30px;}
 .banft_txt p, #random-quotes p{text-align: center;font-size: 24px;font-style:italic;font-weight: bold;font-size: 30px;text-transform: uppercase;line-height:36px;}
 #random-quotes p {width: 90%;margin: 0 auto;}
 .banft_txt p {max-width: 1090px;margin: auto;}
@@ -381,7 +381,7 @@ body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 .home_viewbtn a{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;float: left;margin: 3px;display: inline}
 .home_campaign{background: #f7f7f7;padding:0 0 0px;position: relative;}
 .home_campaign h2{font-size:48px; text-align:center;line-height: 220px;}
-.home_camcon{width: 966px;}
+.home_camcon{width: 966px;padding-bottom: 50px;}
 .cam_item{text-align: center;width: 322px;font-weight:bold;line-height: 30px;float: left;margin-top: 300px;cursor: pointer;margin-bottom: 50px;}
 /*.cam_item{text-align: center;width: 365px;font-weight:bold;line-height: 30px;float: left;margin-top: 300px;cursor: pointer;}*/
 .cam_item:hover{color:white;}
@@ -403,7 +403,7 @@ body.lang-zho .home_biotxt{font-size: 14px;width: 1090px;margin: 0 auto;line-hei
 .home_bioright{float: right;width: 515px}
 .home_biobtn{font-size: 14px;font-weight: bold;color:#fff;border:#fff solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto 0;display: block;overflow: hidden;}
 .home_biobtn:hover div{margin-top: -100px;background: #fff;color:black;}
-.home_num{background: #444;padding:30px;}
+.home_num{padding:0 30px;}
 .home_num h2{font-size: 48px;height: 150px;text-align: center;line-height: 2em;}
 .home_numbtn{font-size: 14px;font-weight: bold;border:#000 solid 1px;width: 175px;height: 50px;line-height: 50px;text-align: center;margin: 50px auto ;display: block;overflow: hidden;}
 .home_numbtn:hover div{margin-top: -100px;background: #000;color:#fff;}
