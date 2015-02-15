@@ -3059,6 +3059,16 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 });
 
+                // init down slider
+                var positionY = 0;
+                var $slideA = $('.slide-tip a');
+                setInterval(function(){
+                    $slideA.css({
+                        'background-position': '-23px ' + (++positionY) + 'px'
+                    });
+                }, 20);
+                
+
                 // init campaigns mouse move effect
                 // $('.cam_item div').each(function(){
                 //     initImageMouseMoveEffect( $(this) );
@@ -4662,6 +4672,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         pageManager.go($(this).attr('href'));
         return false;
     });
+
+    LP.action('slide-alink', function(){
+        $('html,body').animate({
+            scrollTop: ( $(window).height() + 60 ) / 3
+        }, 500);
+    })
 
 
     LP.action('show-category', function (data) {

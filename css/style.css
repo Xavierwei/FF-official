@@ -768,3 +768,6 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 /*IE8*/
 html.no-canvas #canvas{display: none;}
 html.no-canvas .logo{background: url('../images/logo.png') no-repeat;background-position: center center;}
+.slide-tip{height: 50px;margin-top: -50px;position: relative;z-index: 3;}
+.slide-tip a{position: absolute; width: 30px;height: 30px;top: 0; left: 50%;margin-left: -15px;background: url(../images/ah.png) repeat-y -23px 0px;}
+

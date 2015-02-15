@@ -22,6 +22,7 @@
 	sliderInner.style.height = winHeight - 60 + 'px';
 })();
 </script>
+<div class="slide-tip"> <a href="javascript:;" data-a="slide-alink"></a> </div>
 <div class="page" data-page="home-page">
 	<!-- section -->
 	<div class="section sec_home">
