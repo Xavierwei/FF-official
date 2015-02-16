@@ -72,7 +72,7 @@
   'VIEW ALL TWEETS' => '查看推特详情',
   'VIEW ALL WEIBO' => '查看微博详情',
   'YEAR' => '年度',
-'"There should be more agencies challenging <br />the status quo. Fred & Farid is a good example <br />of a young independent agency that has succeeded brilliantly. <br />But we need 10 or 20 Fred & Farids."' => '"应当有更多的广告公司来挑战现状。<br/>Fred & Farid,作为一个年轻的独立创意公司,</br> 凭借其脱颖而出的成就,无疑是一个极好的典范。"',
+'"There should be more agencies challenging <br />the status quo.<br/> Fred & Farid is a good example <br />of a young independent agency that has succeeded brilliantly. <br />But we need 10 or 20 Fred & Farids."' => '"应当有更多的广告公司来挑战现状。<br/>Fred & Farid,作为一个年轻的独立创意公司,</br> 凭借其脱颖而出的成就,无疑是一个极好的典范。"',
 'Sir John HegartyLes Echos, 01 October 2012' => 'John Hegarty 爵士(《Les Echos》 2012年10月1日)',
 'After studying design and political sciences (Sciences Po), respectively, Fred Raillard and Farid Mokart started as strategic planner and account manager in Paris. They decided to team up and move to the creative side, working consecutively for 6 major agencies in Paris.' => '分别从设计专业与政治科学学院毕业的Fred Raillard和Farid Mokart,起步于品牌战 略策划和客户经理,在巴黎开始了他们的广告人生涯。随后,FF再也没有分开,以双 生创意团队的形式先后就职于巴黎最主要的六家创意公司',
 'They were the youngest creative directors in France, leading the international accounts of CLM/BBDO Paris. They soon became worldwide creative directors of Pepsi International (ROW).' => '他们一度是法国最年轻的 创意总监,在CLM/BBDO巴黎推动众多国际品牌的创意策划',

@@ -182,7 +182,7 @@ a.icon_bg{background-position: 0px -115px;}
 
 /*section jobs*/
 .sec_jobs{margin: 80px auto 80px;}
-.jobsitem{float: left;width: 332px;border-top:#000 solid 22px;float: left;margin: 0 8px 80px;height: 390px;font-size: 14px;color:#666}
+.jobsitem{float: left;width: 350px;border-top:#000 solid 22px;float: left;margin: 0 8px 80px;height: 390px;font-size: 14px;color:#666}
 html.ie8 .jobsitem {height: 400px;}
 .jobsitem h3{font-size: 24px;text-transform: uppercase;padding: 50px 0 0;color:#000;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
 .jobsitem h4{padding: 16px 0;color:#000}
@@ -194,7 +194,7 @@ html.ie8 .pop_jobtxt{overflow-x: hidden;}
 
 /* secction contact */
 .sec_contact{}
-.contact_tit{font-size: 36px;padding:100px 0;text-align: center;line-height: 40px;text-transform: uppercase;}
+.contact_tit{width: 1100px;font-size: 34px;padding:100px 0;text-align: center;line-height: 40px;text-transform: uppercase;}
 .contact_item h3{font-size: 16px;border-bottom: #000 solid 1px;text-transform: uppercase;height: 32px;padding:0 8px;}
 .contact_con{padding:8px 8px 40px;font-size: 14px;}
 /*.contact_conl{float:left;width: 520px;padding-bottom: 40px;}*/
@@ -770,4 +770,5 @@ html.no-canvas #canvas{display: none;}
 html.no-canvas .logo{background: url('../images/logo.png') no-repeat;background-position: center center;}
 .slide-tip{height: 50px;margin-top: -50px;position: relative;z-index: 3;}
 .slide-tip a{position: absolute; width: 30px;height: 30px;bottom: 0; left: 50%;margin-left: -15px;background: url(../images/ah.png) repeat-y -23px 0px;opacity: 0.6;filter:alpha(opacity=60);}
+a[disabled="disabled"]:hover {color: #000000;}
 

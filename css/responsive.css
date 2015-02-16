@@ -16,6 +16,8 @@
     .press_item{font-size: 14px;color:#666;width: 180px;float: left;display: inline;margin: 50px 46px 0;position: relative;}
     .awardicons, .contact_item{width: 1100px;}
     .contact_item{margin: 0 auto;}
+    .about_timeline,.jobslist {width: 1100px;}
+    /*.jobsitem {width:316px; }*/
 }
 
 @media only screen and (max-width:1200px){
@@ -40,6 +42,8 @@
     .awardicons img, .award-num{margin: 0px 62.5px 10px;}
     .contact_conl, .contact_conr {width:50%;}
     .contact_conr{padding-right: 0px;}
+    .jobslist {width: 1000px;}
+    .jobsitem {width:316px; }
 }
 
 @media only screen and (max-width:1090px) {
@@ -85,6 +89,8 @@
 
 
     .timeline_2012txt{font-size: 24px;}
+    .jobslist {width: 900px;}
+    .jobsitem {width:284px; }
 
 }
 @media only screen and (max-width:900px){

@@ -11,7 +11,7 @@
 	<div class="section sec_about">
 		<!--  -->
 		<div class="about_txt">
-			<p><?php _e('"There should be more agencies challenging <br />the status quo. Fred & Farid is a good example <br />of a young independent agency that has succeeded brilliantly. <br />But we need 10 or 20 Fred & Farids."');?></p>
+			<p><?php _e('"There should be more agencies challenging <br />the status quo.<br/> Fred & Farid is a good example <br />of a young independent agency that has succeeded brilliantly. <br />But we need 10 or 20 Fred & Farids."');?></p>
 			<span><?php _e('Sir John HegartyLes Echos, 01 October 2012');?>  </span>
 		</div>
 		<!--  -->
