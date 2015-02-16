@@ -1917,7 +1917,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 var map = new google.maps.Map($dom[0], {
                     center: new google.maps.LatLng(points[0][0], points[0][1]),
-                    zoom: 17,
+                    zoom: 2,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
 
@@ -3177,12 +3177,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 api.localRequest('/api/city/isChina.php', function (r) {
                     if (r == 1) {
                         mapHelper.renderBaidu($('#map'), [
-                            [121.501577, 31.251566]
+                            [121.501577, 31.251566],
+                            [-73.984867,40.7410476],
+                            [2.338616000000002,48.875137]
                         ]);
                     } else {
                         mapHelper.renderGoogle($('#map'), [
                             [48.875137, 2.338616000000002],
-                            [31.245583, 121.49472600000001]
+                            [31.245583, 121.49472600000001],
+                            [40.7410476,-73.984867]
                         ]);
                     }
                 });

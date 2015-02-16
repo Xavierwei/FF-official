@@ -17,6 +17,8 @@
     .awardicons, .contact_item{width: 1100px;}
     .contact_item{margin: 0 auto;}
     .about_timeline,.jobslist {width: 1100px;}
+    .about_timeline {width: 1000px;}
+    .timeline_left, .timeline_right, .timeline_pho a {width: 499px;}
     /*.jobsitem {width:316px; }*/
 }
 
@@ -28,12 +30,13 @@
     .brands-con-time {margin-top: 0em;font-size: 12px;}
     .brands-con dd{left:300px;}
     .home_viewtxt {width: 26%;margin: 0 0 0 5%;}
+    .contact_tit {width: 1000px;}
 }
 
 
 
 @media only screen and (max-width:1100px){
-    .home_camcon {width:100%;}
+    /*.home_camcon {width:100%;}*/
     .press_list {width: 900px;}
     .press_item {margin: 50px 60px;}
     .home_viewtxt {width: 26%;margin: 0 0 0 5%;}
@@ -44,18 +47,22 @@
     .contact_conr{padding-right: 0px;}
     .jobslist {width: 1000px;}
     .jobsitem {width:316px; }
+    .about_timeline {width: 1000px;}
+    .timeline_left, .timeline_right, .timeline_pho a {width: 480px;}
+    .about_txt {width: 1000px;}
 }
 
 @media only screen and (max-width:1090px) {
     .ft_con{width: auto;}
     .ft_mod{width: 19%;padding: 0 0.5%;}
+    .contact_tit {width: 900px;}
 }
 @media only screen and (max-width:1000px){
 	.nav{padding-right:150px;}
     .home_news{width: auto;}
     .home_view{padding: 0 20px;}
 
-    .home_camcon{width: auto;}
+    /*.home_camcon{width: auto;}*/
     .cam_item {width:33%;}
     .cam_item img{width: 100%;}
 
@@ -63,6 +70,7 @@
     .home_bioleft{width: 47%;margin-right: 6%;}
     .home_bioright{width: 47%;}
     .home_numtable{width: auto;}
+    .about_txt {width: 900px;}
     /*.ft_con{width: auto;}*/
     /*.ft_mod{width: 19%;padding: 0 0.5%;}*/
 
@@ -91,6 +99,10 @@
     .timeline_2012txt{font-size: 24px;}
     .jobslist {width: 900px;}
     .jobsitem {width:284px; }
+    .about_timeline {width: 900px;}
+    .timeline_left, .timeline_right, .timeline_pho a {width: 440px;}
+    .timeline_left {padding-right: 20px;}
+
 
 }
 @media only screen and (max-width:900px){

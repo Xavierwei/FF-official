@@ -194,7 +194,7 @@ html.ie8 .pop_jobtxt{overflow-x: hidden;}
 
 /* secction contact */
 .sec_contact{}
-.contact_tit{width: 1100px;font-size: 34px;padding:100px 0;text-align: center;line-height: 40px;text-transform: uppercase;}
+.contact_tit{width: 1100px;font-size: 34px;padding:100px 0;text-align: center;line-height: 40px;text-transform: uppercase;margin: 0 auto;}
 .contact_item h3{font-size: 16px;border-bottom: #000 solid 1px;text-transform: uppercase;height: 32px;padding:0 8px;}
 .contact_con{padding:8px 8px 40px;font-size: 14px;}
 /*.contact_conl{float:left;width: 520px;padding-bottom: 40px;}*/
@@ -230,7 +230,7 @@ body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 /* section about */
 .sec_about{}
 .about_crumbs{font-size: 14px;text-align: center;text-transform: uppercase;padding:50px 0 ;}
-.about_txt{text-align: center;font-size: 14px;font-weight: bold;padding: 70px 0 70px;text-transform: uppercase;}
+.about_txt{text-align: center;font-size: 14px;font-weight: bold;padding: 70px 0 70px;text-transform: uppercase;width: 1100px;margin: 0 auto;}
 .about_txt p{font-size:36px;line-height: 42px;padding:0 0 10px;}
 .show-reel{border: 2px solid white;position: absolute;top: 50%;left: 50%;width: 175px;height: 50px;line-height: 50px;color: white;margin-top: -25px;margin-left: -88px;}
 .show-reel:hover{color: white;}
@@ -239,7 +239,7 @@ body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 .about_timeline{}
 .timeline_item{}
 .timeline_left{float: left;width: 530px;}
-.timeline_right{float: right;width: 480px;padding-right: 40px}
+.timeline_right{float: right;width: 480px;padding-right: 0px}
 .timeline_txt{font-size: 16px;color:#666;padding: 0 0 25px}
 
 .timeline_pho a {display:block;background: url('../images/timeline_pho.png') no-repeat top right;width: 530px;height:250px }
