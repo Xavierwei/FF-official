@@ -944,7 +944,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         var __fixCampaigns = function (campaigns) {
             $.each(campaigns, function (i, campaign) {
-                __CACHE_CAMPAIGN__[campaign._contentPath + campaign.path + '/'] = campaign;
+                var path = campaign._contentPath + '/' + campaign.path + '/';
+                path = path.replace(/\/\//g, '/');
+                __CACHE_CAMPAIGN__[path] = campaign;
             });
             return campaigns;
         }
@@ -1100,9 +1102,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             // 获取campaign列表
             // brands/1
             getCampaigns: function (path, success) {
-
                 path = __fixRequestPath(path);
-                path = path.split('/').slice(0, 2).join('/');
+                if( path.match(/^eng|zho/) ){
+                    path = path.split('/').slice(0, 3).join('/');
+                } else {
+                    path = path.split('/').slice(0, 2).join('/');
+                }
+                
 
                 var match = path.match(/^(brands|services)\/([^\/]+)/);
                 if (match && match[1] == 'brands') {
@@ -3604,7 +3610,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     var tpl = '<div data-effect="fadeup" class="jobsitem intoview-effect">\
                             <h3>#[title]</h3>\
                             <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
-                            <p class="jobs-con">#[content]</p>\
+                            <p class="jobs-con">#[show_content]</p>\
                             <strong class="jobs_more transition-wrap"  data-a="jobs-more" data-path="/jobs/#[id]" data-d="contact=#[contact]">\
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
@@ -3613,7 +3619,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 <div class="jobcontent content_en">\
                                     <h3>#[title]</h3>\
                                     <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
-                                    <div class="pop_jobtxt">#[content]</div>\
+                                    <div class="pop_jobtxt">#[show_content]</div>\
                                 </div>\
                                 <div class="jobcontent content_fr">\
                                     <h3>#[title_fr]</h3>\
@@ -3626,6 +3632,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     <div class="pop_jobtxt">#[content_zho]</div>\
                                 </div>\
                             </div>\
+                            <div class="sharecon" style="display:none;">\
+                              <a target="_blank" href="http://service.weibo.com/share/share.php?title=#[share_content]&url=#[url]" class="jobshareitem jobshare_weibo"></a>\
+                              <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[url]&t=#[share_title]" class="jobshareitem jobshare_fb"></a>\
+                              <a target="_blank" href="https://twitter.com/intent/tweet?url=#[url]&text=#[share_content]" class="jobshareitem jobshare_t"></a>\
+                              <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=#[url]&title=#[share_title]&source=#[url]" class="jobshareitem jobshare_lin"></a>\
+                            </div>\
                         </div>';
                     // <a href="mailto:#[contact]" class="jobs_more transition-wrap">\
                     //             <div class="transition">APPLY <br><br> APPLY</div>\
@@ -3635,6 +3647,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $.each(r.items, function (i, item) {
                             item['fr-lang'] = item['content_fr'] ? '<a href="#" data-a="jobs-lang" data-lang="fr"> FR </a>' : '';
                             item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中文 </a>' : '';
+                            item['url'] = encodeURIComponent( 'http://' + document.domain + '/jobs/' + item.id );
+                            item['share_content'] = encodeURIComponent( item.content );
+                            item['share_title'] = encodeURIComponent( item.title );
+                            item['show_content'] = item['content'];
+                            //item['show_content'] = lang == 'zho' ? item['content_zho'] : item['content'];
                             //console.log( item );
                             aHtml.push(LP.format(tpl, item));
                         });
@@ -5876,7 +5893,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             .html('')
             .append($item.find('.pop_jobcon_inner').clone().show())
 
-        .end()
+            .end()
             .css({
                 top: '-150%',
                 opacity: 1
@@ -5909,6 +5926,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         } else {
             $('.pop_job_menus .popprev').show();
         }
+
+        // change share content
+        $('.pop_jobs').find('.jobshare')
+            .find('a')
+            .remove()
+            .end()
+            .append($item.find('.sharecon').html());
 
         // change path
         pageManager.go( $(this).data('path') );
@@ -5955,6 +5979,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         }
         $('.pop_job_menus .popprev').show();
 
+        // change share content
+        $('.pop_jobs').find('.jobshare')
+            .find('a')
+            .remove()
+            .end()
+            .append($item.find('.sharecon').html());
+
         // change path
         pageManager.go( $item.find('[data-path]').data('path') );
     });
@@ -5994,6 +6025,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $('.pop_job_menus .popprev').hide();
         }
         $('.pop_job_menus .popnext').show();
+
+        // change share content
+        $('.pop_jobs').find('.jobshare')
+            .find('a')
+            .remove()
+            .end()
+            .append($item.find('.sharecon').html());
 
         // change path
         pageManager.go( $item.find('[data-path]').data('path') );

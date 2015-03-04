@@ -59,8 +59,8 @@
 		</div>
 	</div>
 </div>
-<script type="text/tpl" id="video-pause-tpl"><div class="transition"><?php _e('PAUSE'); ?><br><br><?php _e('PAUSE'); ?></div></script>
-<script type="text/tpl" id="video-play-tpl"><div class="transition"><?php _e('PLAY MOVIE'); ?><br><br><?php _e('PLAY MOVIE'); ?></div></script>
+<script type="text/tpl" id="video-pause-tpl"><div class="transition"><?php _e('PAUSE');?><br><br><?php _e('PAUSE');?></div></script>
+<script type="text/tpl" id="video-play-tpl"><div class="transition"><?php _e('PLAY MOVIE');?><br><br><?php _e('PLAY MOVIE');?></div></script>
 <script type="text/tpl" id="brand_big_text_year">
 <p class="brand_big_text_year">#[title]</p>
 <div class="brand_big_text_item" style="width:80%;">
@@ -109,7 +109,7 @@
 </div>
 <div class="brand_big_text_item" #[results_visible]>
   <p class="brand_big_text_tit"><?php _e('RESULT');?></p>
-   #[results] 
+   #[results]
 </div>
 </script>
 <div class="shade" data-a="pop-mask"></div>
@@ -126,15 +126,11 @@
     </div>
   </div>
   <a href="mailto:paris@fredfarid.com" class="jobs_more transition-wrap">
-    <div class="transition"><?php _e('APPLY'); ?> <br><br> <?php _e('APPLY'); ?></div>
+    <div class="transition"><?php _e('APPLY');?> <br><br> <?php _e('APPLY');?></div>
   </a>
-  <div class="jobshare cs-clear">
-    <strong><?php _e('SHARE'); ?></strong>
-    <a target="_blank" onClick="return false;" href="http://service.weibo.com/share/share.php?title=xxx&url=xxx&source=bookmark" class="jobshareitem jobshare_weibo"></a>
-    <a target="_blank" onClick="return false;" href="http://www.facebook.com/sharer.php?u=xxx&t=xxx" class="jobshareitem jobshare_fb"></a>
-    <a target="_blank" onClick="return false;" href="http://twitter.com/home?status=xxx" class="jobshareitem jobshare_t"></a>
-    <a target="_blank" onClick="return false;" href="http://www.linkedin.com/shareArticle?mini=true&url=xxx&title=xxx&source=ADD_YOUR_BLOG_URL_HERE" class="jobshareitem jobshare_lin"></a>
-  </div>
+  <!-- <div class="jobshare cs-clear">
+    <strong><?php _e('SHARE');?></strong>
+  </div> -->
   <div class="pop_job_menus">
     <p class="popicon popclose transition" data-a="pop_close"></p>
     <p class="popicon popnext transition" data-a="pop-jobs-prev"></p>

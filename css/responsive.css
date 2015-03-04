@@ -126,4 +126,14 @@
 
 @media only screen and (max-width:640px){
     .gates-inner-l{font-size: 24px;}
+
+    /*.pop_jobs*/
+    .jobslist{width: 100%;}
+    .sec_jobs{margin-top: 0;}
+    .about_crumbs{display: none;}
+    .jobsitem{width: auto;float: none;margin: 60px 40px;}
+    .pop_jobs{width: 94%;height: 500px;margin: -275px 0 0 0;padding: 40px;font-size: 14px;left: 3%;box-sizing: border-box;-webkit-box-sizing: border-box;}
+    .pop_jobcon{width: auto;height: 330px;}
+    .pop_job_menus .popnext,.pop_job_menus .popnum,.pop_job_menus .popprev{display: none !important;}
+    .pop_job_menus .popclose{right: 40px;width: 50px;height: 50px;background-size: 400%;}
 }
