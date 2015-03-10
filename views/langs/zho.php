@@ -157,7 +157,7 @@ Fred & Farid Group 赢得了全球90多个品牌并为其提供广告创意,包�
     'COUNTRIES' => '国家',
     'NATIONALITIES' => '国籍',
     'HEART' => '心',
-
+    'JOB TITLE' => '唯有人是最宝贵的财富',
 );
 
 

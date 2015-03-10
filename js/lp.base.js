@@ -3291,6 +3291,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         cHtml.push('<div data-effect="fadeup" class="intoview-effect contact_con cs-clear">');
 
                         var num = 0;
+                        var isOdd;
 
                         $.each(departments[val],function(i,item) {
                             if (item) {
@@ -3307,6 +3308,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     contact_address_2: item.address_2 || '',
                                     contact_address_3: item.address_3 || ''
                                 }));
+                                if(!(num % 2)) {
+                                    cHtml.push('<div class="cs-clear"></div>');
+                                }
                             }
                         });
                         cHtml.push('</div>');

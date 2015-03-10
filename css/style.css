@@ -203,11 +203,11 @@ html.ie8 .pop_jobtxt{overflow-x: hidden;}
 /*.contact_conl .cs-clear , .contact_conr .cs-clear{min-height: 200px;}*/
 .contact_con h4{padding:15px 0;}
 /*.contact_txt{min-height: 125px;height: auto;margin-bottom: 40px;}*/
-.contact_txt{height: auto;margin-bottom: 40px;text-transform: lowercase;}
+.contact_txt{height: auto;margin-bottom: 40px;text-transform: uppercase;}
 .contact_city{float: left;font-size: 13px;}
 body.lang-zho .contact_city{float: left;font-size: 11px;}
 .contact_ad{float: left;padding-left:20px;width: 180px}
-.contact_ad p{padding: 0 0 10px;font-size: 13px;text-transform: lowercase;}
+.contact_ad p{padding: 0 0 10px;font-size: 13px;}
 body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 .contact_address_1{}
 .contact_address_2 p.contact_address_p{float: right;}
@@ -553,6 +553,7 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
     _position: absolute; z-index: 20000; display: none;}
 /*pop_jobs*/
 .pop_jobs{width: 860px;height: 500px;margin: -275px 0 0 -517px;padding:50px 84px 0;font-size: 14px;}
+.job_tit{width: 1100px;font-size: 34px;padding:0px 0;text-align: center;line-height: 40px;text-transform: uppercase;margin: 0 auto;}
 .pop_jobcon{color:#fff;height: 380px;width: 750px;overflow: auto;}
 .pop_jobcon h3{font-size: 24px;text-transform: uppercase;padding: 30px 0 0;color:#fff}
 .pop_jobcon h4{padding: 16px 0;color:#fff}
