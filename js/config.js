@@ -5,98 +5,122 @@ seajs.config({
   shim: {
     // for jquery
     jquery: {
-      src: "../jquery/jquery-1.8.3.min.js"
+      src: "/js/jquery/jquery-1.8.3.min.js"
       , exports: "jQuery"
     }
     ,handlebars: {
-      src: "../handlebars/handlebars-v1.1.2.js"
+      src: "/js/handlebars/handlebars-v1.1.2.js"
       , exports: "Handlebars"
     }
     ,easing:{
-      src: "../plugin/jquery.easing.1.3.js"
+      src: "/js/plugin/jquery.easing.1.3.js"
       , deps: ['jquery']
     }
 	,transit:{
-	  src: "../plugin/jquery.transit.min.js"
+	  src: "/js/plugin/jquery.transit.min.js"
 	  , deps: ['jquery']
 	}
     ,isotope:{
-      src: "../plugin/jquery.isotope.min.js"
+      src: "/js/plugin/jquery.isotope.min.js"
       , deps: ['jquery']
     }
     ,jscrollpane:{
-      src: "../plugin/jquery.jscrollpane.js"
+      src: "/js/plugin/jquery.jscrollpane.js"
       , deps: ['jquery']
     }
     ,mousewheel:{
-      src: "../plugin/jquery.mousewheel.js"
+      src: "/js/plugin/jquery.mousewheel.js"
       , deps: ['jquery']
     }
     ,uiwidget: {
-      src: "../plugin/jquery.ui.widget.js"
+      src: "/js/plugin/jquery.ui.widget.js"
       , deps: ['jquery']
     }
     ,uicustom: {
-        src: "../plugin/jquery-ui-1.10.3.custom.js"
+        src: "/js/plugin/jquery-ui-1.10.3.custom.js"
         , deps: ['jquery']
     }
     ,fileupload:{
-      src: "../plugin/jquery.fileupload.js"
+      src: "/js/plugin/jquery.fileupload.js"
       , deps: ['jquery','uiwidget']
     }
     ,form:{
-      src: "../plugin/jquery.form.js"
+      src: "/js/plugin/jquery.form.js"
       , deps: ['jquery']
     }
     ,validate:{
-      src: "../plugin/jquery.validate.js"
+      src: "/js/plugin/jquery.validate.js"
       , deps: ['jquery']
     }
     ,raphael:{
-      src: "../raphael/raphaeljs.min.js"
+      src: "/js/raphael/raphaeljs.min.js"
       , deps: ['eve']
       , exports: "Raphael"
     }
     ,"video-js":{
-      src: "../video-js/video.js"
-      , deps: ['../video-js/video-js.css']
+      src: "/js/video-js/video.js"
+      , deps: ['/js/video-js/video-js.css']
     }
     ,"flash-detect":{
-      src: "../plugin/flash_detect_min.js"
+      src: "/js/plugin/flash_detect_min.js"
     }
     ,"swfupload":{
-      src: "../plugin/swfupload.js"
+      src: "/js/plugin/swfupload.js"
     }
     ,"swfupload-speed":{
-      src: "../plugin/swfupload.speed.js"
+      src: "/js/plugin/swfupload.speed.js"
     }
     ,"swfupload-queue":{
-      src: "../plugin/swfupload.queue.js"
+      src: "/js/plugin/swfupload.queue.js"
     }
     ,hammer:{
-      src: "../plugin/jquery.hammer.js"
+      src: "/js/plugin/jquery.hammer.js"
       ,deps: ['jquery']
     }
     ,skrollr:{
-      src: "../plugin/skrollr.min.js"
+      src: "/js/plugin/skrollr.min.js"
     },
     queryloader: {
-      src: "../plugin/jquery.queryloader22.js",
+      src: "/js/plugin/jquery.queryloader22.js",
       deps: ['jquery']
     },
     wavesurfer: {
-      src: "../plugin/wavesurfer.min.js"
+      src: "/js/plugin/wavesurfer.min.js"
+    },
+    logo: {
+      src: "/js/other/ff_logo_canvas.js"
+      , deps: ['movieclip']
+    },
+    loading_logo: {
+      src: "/js/other/ff_loading_logo_canvas.js"
+      , deps: ['movieclip']
+    },
+    'tweenjs': {
+      src: "/js/other/tweenjs-0.5.0.min.js"
+      , deps: [ '/js/other/easeljs-0.7.0.min.js' ]
+    },
+    'movieclip': {
+      src: "/js/other/movieclip-0.7.0.min.js"
+      , deps: [ '/js/other/easeljs-0.7.0.min.js','tweenjs' ]
+    },
+    'waveform':{
+      src: "/js/dancer/plugins/dancer.waveform.js"
+      , deps: [ 'fft','/js/dancer/dancer.js' ]
+    },
+    'fft':{
+      src: "/js/dancer/plugins/dancer.fft.js"
+      , deps: [ '/js/dancer/dancer.js' ]
     }
   }
   , alias: {
-    api: '../api.js?_201403#'
-    , eve : '../raphael/eve.js'
-    , api4sjht: '../api4sjht'
-    , imgUtil: '../util/imgHelper'
-    , panel: "../panel/panel"
-    , autoComplete: '../autocomplete/autoComplete'
-    , validator: '../validator/validator'
-    , html2json: '../com/html2json'
-    , tooltip: '../util/tooltip'
+    api: '/js/api.js?_201403#'
+    , eve : '/js/raphael/eve.js'
+    , api4sjht: '/js/api4sjht'
+    , imgUtil: '/js/util/imgHelper'
+    , panel: "/js/panel/panel"
+    , autoComplete: '/js/autocomplete/autoComplete'
+    , validator: '/js/validator/validator'
+    , html2json: '/js/com/html2json'
+    , tooltip: '/js/util/tooltip'
   }
 });
