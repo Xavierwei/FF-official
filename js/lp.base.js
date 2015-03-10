@@ -3067,11 +3067,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // init down slider
                 var positionY = 0;
                 var $slideA = $('.slide-tip a');
-                setInterval(function(){
-                    $slideA.css({
-                        'background-position': '-23px ' + (++positionY) + 'px'
-                    });
-                }, 40);
+//                setInterval(function(){
+//                    $slideA.css({
+//                        'background-position': '-23px ' + (++positionY) + 'px'
+//                    });
+//                }, 40);
                 
 
                 // init campaigns mouse move effect
