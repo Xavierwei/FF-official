@@ -2822,7 +2822,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             // hide left arrow
             $sliderInner.next().find('.banpho-bt-l').hide();
-            $slider.find('banpho-i').html('1/' + $('.slider-item').length);
+            $slider.find('.banpho-i').html('1/' + $('.slider-item').length);
 
             $(window).resize(function () {
                 var winWidth = $(window).width();
