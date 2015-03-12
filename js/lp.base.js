@@ -3253,18 +3253,30 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 <h4 class="contact_title"> #[title] </h4> \
                                 <p class="contact_txt contact_content">#[content]</p> \
                                 <div class="cs-clear contact_citys"> \
-                                  <strong class="contact_city">#[city_1]</strong> \
-                                  <div class="contact_ad contact_address_1"> \
-                                    <p class="contact_address_p">#[contact_address_1]</p> \
-                                  </div> \
-                                  <strong class="contact_city">#[city_2]</strong> \
-                                  <div class="contact_ad contact_address_2"> \
-                                    <p class="contact_address_p">#[contact_address_2]</p> \
-                                  </div> \
-                                  <strong class="contact_city">#[city_3]</strong> \
-                                  <div class="contact_ad contact_address_3"> \
-                                    <p class="contact_address_p">#[contact_address_3]</p> \
-                                  </div> \
+                                  <div class="contact_wrap">\
+									  <strong class="contact_city">#[city_1]</strong> \
+									  <div class="contact_ad contact_address_1"> \
+										<p class="contact_address_p">#[contact_address_1]</p> \
+									  </div> \
+                                  </div>\
+                                  <div class="contact_wrap">\
+									  <strong class="contact_city">#[city_2]</strong> \
+									  <div class="contact_ad contact_address_2"> \
+										<p class="contact_address_p">#[contact_address_2]</p> \
+									  </div> \
+                                  </div>\
+                                  <div class="contact_wrap">\
+									  <strong class="contact_city">#[city_3]</strong> \
+									  <div class="contact_ad contact_address_3"> \
+										<p class="contact_address_p">#[contact_address_3]</p> \
+									  </div> \
+                                  </div>\
+                                  <div class="contact_wrap">\
+									  <strong class="contact_city">#[city_4]</strong> \
+									  <div class="contact_ad contact_address_4"> \
+										<p class="contact_address_p">#[contact_address_4]</p> \
+									  </div> \
+                                  </div>\
                                 </div> \
                               </div> \
                             ';
@@ -3305,9 +3317,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     city_1: item.city_1 || '',
                                     city_2: item.city_2 || '',
                                     city_3: item.city_3 || '',
+									city_4: item.city_4 || '',
                                     contact_address_1: item.address_1 || '',
                                     contact_address_2: item.address_2 || '',
-                                    contact_address_3: item.address_3 || ''
+                                    contact_address_3: item.address_3 || '',
+									contact_address_4: item.address_4 || ''
                                 }));
                                 if(!(num % 2)) {
                                     cHtml.push('<div class="cs-clear"></div>');
