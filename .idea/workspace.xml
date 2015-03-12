@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/langs/eng.php" afterPath="$PROJECT_DIR$/views/langs/eng.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/jobs.php" afterPath="$PROJECT_DIR$/views/jobs.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/lp.base.js" afterPath="$PROJECT_DIR$/js/lp.base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/langs/zho.php" afterPath="$PROJECT_DIR$/views/langs/zho.php" />
-    </list>
+    <list default="true" id="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" name="Default" comment="" />
     <ignored path="ff.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="5c1888a4-e4e3-4711-a3df-75c0a723ce0c" time="1425970437837" ignored="false" />
@@ -41,10 +34,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="lp.base.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="lp.base.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/lp.base.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3545" column="60" selection-start="135309" selection-end="135323" vertical-scroll-proportion="-13.230769">
+            <state line="1177" column="33" selection-start="42726" selection-end="42726" vertical-scroll-proportion="0.58641976">
               <folding>
                 <marker date="1425985466000" expanded="false" signature="12689:12708" placeholder="..." />
                 <marker date="1425985466000" expanded="true" signature="12709:13478" placeholder="..." />
@@ -143,10 +136,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="555" column="48" selection-start="34014" selection-end="34014" vertical-scroll-proportion="0.44362018">
+            <state line="555" column="48" selection-start="34014" selection-end="34014" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -515,9 +508,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/press.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="124" selection-start="444" selection-end="444" vertical-scroll-proportion="-8.142858">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/langs/eng.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="25" selection-start="1940" selection-end="1994" vertical-scroll-proportion="-18.321428">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/langs/zho.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="24" selection-start="21533" selection-end="21533" vertical-scroll-proportion="-13.571428">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/jobs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="28" selection-start="230" selection-end="230" vertical-scroll-proportion="-4.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/common/pagetit.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="56" selection-start="1256" selection-end="1261" vertical-scroll-proportion="0.46130502">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/contact.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="334" selection-end="334" vertical-scroll-proportion="-4.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="555" column="48" selection-start="34014" selection-end="34014" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/lp.base.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3545" column="60" selection-start="135309" selection-end="135323" vertical-scroll-proportion="-13.230769">
+        <state line="1177" column="33" selection-start="42726" selection-end="42726" vertical-scroll-proportion="0.58641976">
           <folding>
             <marker date="1425985466000" expanded="false" signature="12689:12708" placeholder="..." />
             <marker date="1425985466000" expanded="true" signature="12709:13478" placeholder="..." />
@@ -567,55 +609,6 @@
             <marker date="1425985466000" expanded="false" signature="214557:214576" placeholder="..." />
             <marker date="1425985466000" expanded="true" signature="214577:214820" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/press.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="124" selection-start="444" selection-end="444" vertical-scroll-proportion="-8.142858">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/langs/eng.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="25" selection-start="1940" selection-end="1994" vertical-scroll-proportion="-18.321428">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/langs/zho.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="24" selection-start="21533" selection-end="21533" vertical-scroll-proportion="-13.571428">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/jobs.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="28" selection-start="230" selection-end="230" vertical-scroll-proportion="-4.75">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/common/pagetit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="56" selection-start="1256" selection-end="1261" vertical-scroll-proportion="0.46130502">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/contact.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="334" selection-end="334" vertical-scroll-proportion="-4.75">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="555" column="48" selection-start="34014" selection-end="34014" vertical-scroll-proportion="0.44362018">
-          <folding />
         </state>
       </provider>
     </entry>
