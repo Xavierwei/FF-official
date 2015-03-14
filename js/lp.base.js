@@ -4767,7 +4767,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $(this).siblings('.banpho-bt-c').html($('.banpho-bt-c').html());
 
         $('.banpho-i').html(index + '/' + len);
-
+		if($('body').hasClass('lang-zho')) {
+			pause_txt = '暂停';
+			play_txt = '播放';
+		} else if($('body').hasClass('lang-fr')) {
+			pause_txt = 'PAUSE';
+			play_txt = 'PLAY';
+		} else {
+			pause_txt = 'PAUSE';
+			play_txt = 'PLAY';
+		}
+		$('.banpho-bt-c')
+			.html('<div class="transition">' + play_txt + '<br><br>' + play_txt + '</div>');
         return false;
     });
 
@@ -4808,6 +4819,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         $('.banpho-i').html((index + 2) + '/' + len);
 
+		if($('body').hasClass('lang-zho')) {
+			pause_txt = '暂停';
+			play_txt = '播放';
+		} else if($('body').hasClass('lang-fr')) {
+			pause_txt = 'PAUSE';
+			play_txt = 'PLAY';
+		} else {
+			pause_txt = 'PAUSE';
+			play_txt = 'PLAY';
+		}
+		$('.banpho-bt-c')
+			.html('<div class="transition">' + play_txt + '<br><br>' + play_txt + '</div>');
         return false;
     });
 
