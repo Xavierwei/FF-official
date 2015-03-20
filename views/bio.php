@@ -11,8 +11,8 @@
 	<div class="section sec_about">
 		<!--  -->
 		<div class="about_txt">
-			<p><?php _e('"There should be more agencies challenging <br />the status quo.<br/> Fred & Farid is a good example <br />of a young independent agency that has succeeded brilliantly. <br />But we need 10 or 20 Fred & Farids."');?></p>
-			<span><?php _e('Sir John HegartyLes Echos, 01 October 2012');?>  </span>
+			<p><?php _e('"THERE SHOULD BE MORE AGENCIES CHALLENGING <BR>THE STATUS QUO.FRED &AMP; FARID IS A GOOD EXAMPLE <BR>OF A YOUNG INDEPENDENT AGENCY THAT HAS SUCCEEDED BRILLIANTLY. <BR>BUT WE NEED 10 OR 20 FRED &AMP; FARIDs."');?></p>
+			<span><?php _e('Sir John Hegarty / Les Echos (01 October 2012)');?>  </span>
 		</div>
 		<!--  -->
 		<div class="about_down">
@@ -45,7 +45,7 @@
 			<div data-effect="fadeup" class="timeline_item intoview-effect cs-clear">
 				<div class="timeline_left timeline_2013left">
 					<div class="timeline_txt timeline_2013txt"><?php _e('Their Shanghai office\’s social media activation work for Garnier got 272 million views in just 4 days (Source CIC Monitoring Shanghai). And their French office\’s digital activation work for French candy bar Carambar tricked the whole country as the “first social media powered joke”, and best case of earn media.');?></div>
-					<div class="timeline_txt"><?php _e('Fred & Farid group is a fully digital company with about 350 permanent digital talents from 25 nationalities, in 4 buildings in France and China. It is composed of 2 integrated digital agencies (Fred & Farid Paris+Shanghai, Hello Sunshine), 2  digital production companies (Kill Death, Fo Xin) and 1 digital media company (Fred & Farid Media). The group also owns 2 webzines: BCKSTG to promote young French musicians, and Creative China to promote the new Chinese creative generation.');?></div>
+					<div class="timeline_txt"><?php _e('Fred & Farid group is a fully digital company with about 350 permanent digital talents from 25 nationalities, in 6 buildings in France and China. It is composed of 2 integrated digital agencies (Fred & Farid Paris+Shanghai, Hello Sunshine), 2  digital production companies (Kill Death, Fo Xin) and 1 digital media company (Fred & Farid Media). The group also owns 2 webzines: BCKSTG to promote young French musicians, and Creative China to promote the new Chinese creative generation.');?></div>
 				</div>
 				<div class="timeline_right timeline_2013right">
 					<div class="timeline_txt "><?php _e('“In just five years, Farid Mokart and Frederic Raillard <br />have succeeded in building an internationally renowned agency, <br />that shakes the codes of the advertising world” ');?>

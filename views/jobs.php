@@ -8,7 +8,11 @@
 	include_once 'common/pagetit.php';?>
 
 	<!-- section -->
+    <h2 class="job_tit">
+        <?php _e('JOB TITLE'); ?>
+    </h2>
 	<div class="section sec_jobs">
+
 		<div class="jobslist column cs-clear">
 		</div>
 		<!--  -->

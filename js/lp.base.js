@@ -2831,6 +2831,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             // hide left arrow
             $sliderInner.next().find('.banpho-bt-l').hide();
+            $slider.find('.banpho-i').html('1/' + $('.slider-item').length);
 
             $(window).resize(function () {
                 var winWidth = $(window).width();
@@ -3076,11 +3077,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // init down slider
                 var positionY = 0;
                 var $slideA = $('.slide-tip a');
-                setInterval(function(){
-                    $slideA.css({
-                        'background-position': '-23px ' + (++positionY) + 'px'
-                    });
-                }, 40);
+//                setInterval(function(){
+//                    $slideA.css({
+//                        'background-position': '-23px ' + (++positionY) + 'px'
+//                    });
+//                }, 40);
                 
 
                 // init campaigns mouse move effect
@@ -3261,18 +3262,30 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 <h4 class="contact_title"> #[title] </h4> \
                                 <p class="contact_txt contact_content">#[content]</p> \
                                 <div class="cs-clear contact_citys"> \
-                                  <strong class="contact_city">#[city_1]</strong> \
-                                  <div class="contact_ad contact_address_1"> \
-                                    <p class="contact_address_p">#[contact_address_1]</p> \
-                                  </div> \
-                                  <strong class="contact_city">#[city_2]</strong> \
-                                  <div class="contact_ad contact_address_2"> \
-                                    <p class="contact_address_p">#[contact_address_2]</p> \
-                                  </div> \
-                                  <strong class="contact_city">#[city_3]</strong> \
-                                  <div class="contact_ad contact_address_3"> \
-                                    <p class="contact_address_p">#[contact_address_3]</p> \
-                                  </div> \
+                                  <div class="contact_wrap">\
+									  <strong class="contact_city">#[city_1]</strong> \
+									  <div class="contact_ad contact_address_1"> \
+										<p class="contact_address_p">#[contact_address_1]</p> \
+									  </div> \
+                                  </div>\
+                                  <div class="contact_wrap">\
+									  <strong class="contact_city">#[city_2]</strong> \
+									  <div class="contact_ad contact_address_2"> \
+										<p class="contact_address_p">#[contact_address_2]</p> \
+									  </div> \
+                                  </div>\
+                                  <div class="contact_wrap">\
+									  <strong class="contact_city">#[city_3]</strong> \
+									  <div class="contact_ad contact_address_3"> \
+										<p class="contact_address_p">#[contact_address_3]</p> \
+									  </div> \
+                                  </div>\
+                                  <div class="contact_wrap">\
+									  <strong class="contact_city">#[city_4]</strong> \
+									  <div class="contact_ad contact_address_4"> \
+										<p class="contact_address_p">#[contact_address_4]</p> \
+									  </div> \
+                                  </div>\
                                 </div> \
                               </div> \
                             ';
@@ -3300,6 +3313,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         cHtml.push('<div data-effect="fadeup" class="intoview-effect contact_con cs-clear">');
 
                         var num = 0;
+                        var isOdd;
 
                         $.each(departments[val],function(i,item) {
                             if (item) {
@@ -3312,10 +3326,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     city_1: item.city_1 || '',
                                     city_2: item.city_2 || '',
                                     city_3: item.city_3 || '',
+									city_4: item.city_4 || '',
                                     contact_address_1: item.address_1 || '',
                                     contact_address_2: item.address_2 || '',
-                                    contact_address_3: item.address_3 || ''
+                                    contact_address_3: item.address_3 || '',
+									contact_address_4: item.address_4 || ''
                                 }));
+                                if(!(num % 2)) {
+                                    cHtml.push('<div class="cs-clear"></div>');
+                                }
                             }
                         });
                         cHtml.push('</div>');
@@ -4755,7 +4774,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $(this).siblings('.banpho-bt-c').html($('.banpho-bt-c').html());
 
         $('.banpho-i').html(index + '/' + len);
-
+		if($('body').hasClass('lang-zho')) {
+			pause_txt = '暂停';
+			play_txt = '播放';
+		} else if($('body').hasClass('lang-fr')) {
+			pause_txt = 'PAUSE';
+			play_txt = 'PLAY';
+		} else {
+			pause_txt = 'PAUSE';
+			play_txt = 'PLAY';
+		}
+		$('.banpho-bt-c')
+			.html('<div class="transition">' + play_txt + '<br><br>' + play_txt + '</div>');
         return false;
     });
 
@@ -4796,6 +4826,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         $('.banpho-i').html((index + 2) + '/' + len);
 
+		if($('body').hasClass('lang-zho')) {
+			pause_txt = '暂停';
+			play_txt = '播放';
+		} else if($('body').hasClass('lang-fr')) {
+			pause_txt = 'PAUSE';
+			play_txt = 'PLAY';
+		} else {
+			pause_txt = 'PAUSE';
+			play_txt = 'PLAY';
+		}
+		$('.banpho-bt-c')
+			.html('<div class="transition">' + play_txt + '<br><br>' + play_txt + '</div>');
         return false;
     });
 

@@ -29,6 +29,7 @@ $connection = $twitter->connectAsApplication();
  * Collection of the most recent Tweets posted by the user indicated by the screen_name, without replies
  * https://dev.twitter.com/docs/api/1.1/get/statuses/user_timeline
  */
+
 $data = $connection->get('/statuses/user_timeline',array('screen_name' => 'FredFaridGroup', 'count' => 3, 'exclude_replies' => 'true'));
 
 $user = $connection->get('/users/lookup',array('screen_name' => 'FredFaridGroup'));

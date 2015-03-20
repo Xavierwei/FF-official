@@ -77,6 +77,7 @@
             </div>
         </div>
 	</div>
+
 	<div class="section sec_gates" style="display:none;">
 		<div class="gates-inner cs-clear">
 			<div class="gates-inner-l">
@@ -138,15 +139,24 @@
 	</div>
 	<div class="container">
 		<!-- header -->
+		<div id="logo-wrap-mobile" class="logo-wrap mobile">
+            <a href="#" data-a="show-mobile-header" class="logo transition">
+                <!-- <canvas id="ff_logo_canvas" width="14" height="14" style="background-color:#FFFFFF"></canvas> -->
+            </a>
+        </div>
+
 		<div class="header">
+		    <a href="#" class="transition" id="hide-header-mobile" data-a="hide-mobile-header"></a>
 			<div class="header-inner">
-				<div class="logo-wrap">
+
+				<div class="logo-wrap desktop">
 					<a href="/" data-a="navitem" class="logo transition">
 					    <!-- <canvas id="ff_logo_canvas" width="14" height="14" style="background-color:#FFFFFF"></canvas> -->
 
                     </a>
 				</div>
 				<div class="nav column cs-clear">
+				   
 					<a class="navitem" data-a="show-category" data-d="type=categories" href="#"><?php _e('CATEGORIES');?></a>
 					<a class="navitem" data-a="show-category" data-d="type=brands" href="#"><?php _e('BRANDS');?></a>
 					<a class="navitem" data-a="show-category" data-d="type=services" href="#"><?php _e('SERVICES');?></a>

@@ -69,7 +69,7 @@
 					<tr id="home-num-tr"></tr>
 					<tr>
 						<td><strong class="intoview-effect" data-effect="number-rock">400+</strong><?php _e('EMPLOYEES');?></td>
-						<td><strong class="intoview-effect" data-effect="number-rock">5</strong><?php _e('BUILDINGS');?></td>
+						<td><strong class="intoview-effect" data-effect="number-rock">6</strong><?php _e('BUILDINGS');?></td>
 						<td><strong class="intoview-effect" data-effect="number-rock">3</strong><?php _e('COUNTRIES');?></td>
 						<td><strong class="intoview-effect" data-effect="number-rock">25</strong><?php _e('NATIONALITIES');?></td>
 						<td><strong class="intoview-effect" data-effect="number-rock">1</strong><?php _e('HEART');?></td>

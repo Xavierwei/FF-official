@@ -6,7 +6,7 @@
 	<!-- footer -->
 	<div class="footer">
 
-		<div class="ft_con cs-clear">
+		<div class="ft_con cs-clear desktop">
 			<div class="ft_mod ft_find">
 				<h3><?php _e('FOLLOW US');?></h3>
 				<div class="ft_mbd ft_findmbd cs-clear" id="share-wrap">
@@ -57,8 +57,67 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="ft_con cs-clear mobile" style="display:none">
+            <div class="ft_mod ft_find mobile">
+                <a href="javascript:;" data-a="share_pop_mobile"><?php _e('SHARE');?></a>
+                <div class="ft_mbd ft_findmbd cs-clear mobile" id="share-wrap">
+                    <a href="#" class="find_item icon_fb"></a>
+                    <a href="#" class="find_item icon_wb"></a>
+                    <a href="#" class="find_item icon_tw"></a>
+                    <a href="#" class="find_item icon_ch"></a>
+                    <a href="#" class="find_item icon_hb"></a>
+                    <a href="#" class="find_item icon_yk"></a>
+                    <a href="#" class="find_item icon_yt"></a>
+                    <a href="#" class="find_item icon_wx"></a>
+                    <a href="#" class="find_item icon_lk"></a>
+                </div>
+            </div>
+			<div class="ft_mod ft_network mobile">
+				<a href="javascript:;" data-a="network_pop_mobile"><?php _e('OUR MEDIAS');?></a>
+				<div class="ft_mbd ft_workmbd mobile" id="icon-wrap">
+					<a href="#" class="work_item icon_bg"></a>
+					<a href="#" class="work_item icon_bk"></a>
+					<a href="#" class="work_item icon_cc"></a>
+				</div>
+			</div>
+            <div class="ft_mod ft_paris mobile">
+                <h3><?php _e('PARIS');?></h3>
+                <div class="ft_mbd mobile">
+                    <p class="ft-addr-p-1"><?php _e('PARIS_ADDR_L1');?></p>
+                    <p class="ft-addr-p-2"><?php _e('PARIS_ADDR_L2');?></p>
+                    <p class="ft-addr-p-3"><?php _e('PARIS_ADDR_L3');?></p>
+                    <p class="ft-addr-p-4"><?php _e('PARIS_ADDR_L4');?></p>
+                </div>
+            </div>
+            <div class="ft_mod ft_shanghai mobile">
+                <h3><?php _e('SHANGHAI');?></h3>
+                <div class="ft_mbd mobile">
+                    <p class="ft-addr-p-1"><?php _e('SHANGHAI_ADDR_L1');?></p>
+                    <p class="ft-addr-p-2"><?php _e('SHANGHAI_ADDR_L2');?></p>
+                    <p class="ft-addr-p-3"><?php _e('SHANGHAI_ADDR_L3');?></p>
+                    <p class="ft-addr-p-4"><?php _e('SHANGHAI_ADDR_L4');?></p>
+                </div>
+            </div>
+            <div class="ft_mod ft_newyork mobile">
+                <h3><?php _e('NEWYORK');?></h3>
+                <div class="ft_mbd">
+                    <p class="ft-addr-p-1"><?php _e('NEWYORK_ADDR_L1');?></p>
+                    <p class="ft-addr-p-2"><?php _e('NEWYORK_ADDR_L2');?></p>
+                    <p class="ft-addr-p-3"><?php _e('NEWYORK_ADDR_L3');?></p>
+                    <p class="ft-addr-p-4"><?php _e('NEWYORK_ADDR_L4');?></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="fullcover-background pop mobile">
+            <p class="popicon popclose transition mobile" data-a="pop_close" data-d="noRefresh=1"></p>
+            <div class="popcon transition popcon-show mobile">
+            </div>
+        </div>
 	</div>
 </div>
+
 <script type="text/tpl" id="video-pause-tpl"><div class="transition"><?php _e('PAUSE');?><br><br><?php _e('PAUSE');?></div></script>
 <script type="text/tpl" id="video-play-tpl"><div class="transition"><?php _e('PLAY MOVIE');?><br><br><?php _e('PLAY MOVIE');?></div></script>
 <script type="text/tpl" id="brand_big_text_year">
@@ -134,9 +193,13 @@
   <a href="mailto:paris@fredfarid.com" class="jobs_more transition-wrap">
     <div class="transition"><?php _e('APPLY');?> <br><br> <?php _e('APPLY');?></div>
   </a>
-  <!-- <div class="jobshare cs-clear">
+  <div class="jobshare cs-clear">
     <strong><?php _e('SHARE');?></strong>
-  </div> -->
+    <a target="_blank" onClick="return false;" href="http://service.weibo.com/share/share.php?title=xxx&url=xxx&source=bookmark" class="jobshareitem jobshare_weibo"></a>
+    <a target="_blank" onClick="return false;" href="http://www.facebook.com/sharer.php?u=xxx&t=xxx" class="jobshareitem jobshare_fb"></a>
+    <a target="_blank" onClick="return false;" href="http://twitter.com/home?status=xxx" class="jobshareitem jobshare_t"></a>
+    <a target="_blank" onClick="return false;" href="http://www.linkedin.com/shareArticle?mini=true&url=xxx&title=xxx&source=ADD_YOUR_BLOG_URL_HERE" class="jobshareitem jobshare_lin"></a>
+  </div>
   <div class="pop_job_menus">
     <p class="popicon popclose transition" data-a="pop_close"></p>
     <p class="popicon popnext transition" data-a="pop-jobs-prev"></p>
