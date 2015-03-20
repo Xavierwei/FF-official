@@ -24,7 +24,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     }
 
     window.console = window.console || {log:function(){}};
-    window.banft_txt_length = 0;
+    // window.banft_txt_length = 0;
 
 
     var initSoundWave = function( file, $canves , cb ){
@@ -406,7 +406,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 <p class="brands-con-t">#[label]</p>\
                                 <p class="brands-con-time">#[year]</p>\
                                 <div class="cs-clear brands-con-meta">\
-                                    <span class="fr">##[id]</span>\
+                                    <span class="fr">##[index]</span>\
                                     <span>#[cpgn_type]</span>\
                                 </div>\
                                 <div class="items-loading"></div>\
@@ -420,9 +420,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $.each(compaigns || [], function (index, item) {
                         aHtml.push(LP.format(tpl, {
                             agency: item.agency,
-                            label: item.label,
+                            label: item.title,
                             year: item.date.replace(/(\d+)-.*/, '$1'),
-                            id: item.id,
+                            index: index + 1,
                             cpgn_type: item.cpgn_type,
                             path: item._contentPath.replace('pages_contents/', '') + '/' + item.path
                         }));
@@ -1919,13 +1919,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }, 100);
             },
             renderGoogle: function ($dom, points) {
+                console.log( points );
+                var $link = $('<a target="_blank"></a>').attr('href', '###');
+                $link.append( $('<img/>').attr('src', '/images/google-map.jpg').width('100%') );
+                $dom.append( $link );
+                return;
                 if (!window.google) return;
 
-                var map = new google.maps.Map($dom[0], {
-                    center: new google.maps.LatLng(points[0][0], points[0][1]),
-                    zoom: 2,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                });
+                var map = null;
+                try{
+                    map = new google.maps.Map($dom[0], {
+                        center: new google.maps.LatLng(points[0][0], points[0][1]),
+                        zoom: 2,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+                } catch(e){}
+                
 
 
                 var styleArray = [{
@@ -4121,17 +4130,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         loading_logo();
                     });
                 }
-                var random_num = null;
-                if (window.banft_txt_length) {
-                    random_num = window.banft_txt_length;
-                } else {
-                    random_num = 3;
-                }
-                random_num = Math.floor((Math.random() * random_num));
+                // var random_num = null;
+                // if (window.banft_txt_length) {
+                //     random_num = window.banft_txt_length;
+                // } else {
+                //     random_num = 3;
+                // }
+                // random_num = Math.floor((Math.random() * random_num));
 
-                $('.banft_txt').css({
-                    marginLeft: -(random_num) * 100 + '%'
-                });
+                // $('.banft_txt').css({
+                //     marginLeft: -(random_num) * 100 + '%'
+                // });
 
                 //var index = 0 ;
                 //if (window.quote_timer) {
@@ -4363,7 +4372,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                         $(this).css('paddingTop', ( $('.banner_footer').height() - $(this).height() ) / 2 )
                                     });
 
-                                window.banft_txt_length = quoteHtmls.length;
+                                // window.banft_txt_length = quoteHtmls.length;
                                 var $banft = $('.banft_txt');
                                 $banft.clone().appendTo('#random-quotes').animate({ opacity: 1 })
                                     .css('marginLeft',0)
@@ -4389,18 +4398,16 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 }, 5000);
                             }
                             // interview to scroll
-                            //var index = 0 ;
-                            //setInterval(function(){
-                            //    index++;
-                            //    index = index % $('.banft_txt div').length;
-                            //    $('.banft_txt').animate({
-                            //        marginLeft: -index * 100 + '%'
-                            //    }, 500);
-                            //}, 5000);
-                            //var index = Math.floor((Math.random() * 3));
-                            //$('.banft_txt').animate({
-                            //    marginLeft: -index * 100 + '%'
-                            //}, 500);
+                            var index = 0 ;
+                            setInterval(function(){
+                               index++;
+                               index = index % $('.banner_footer .banft_txt').children().length;
+                               $('.banner_footer .banft_txt').fadeOut(function(){
+                                    $(this).css({
+                                       marginLeft: -index * 100 + '%'
+                                    }).fadeIn();
+                               });
+                            }, 5000);
                         }
                     });
                 });

@@ -107,10 +107,16 @@
   <p class="brand_big_text_val">#[photographer]</p>
   <p class="brand_big_text_val">&nbsp;</p>
 </div>
-<div class="brand_big_text_item" #[results_visible]>
+<div class="brand_big_text_item" #[media_info_visible]>
+  <p class="brand_big_text_tit"><?php _e('MEDIA INFO');?></p>
+   #[media_info]
+</div>
+<br style="clear:both;"/>
+<div class="brand_big_text_item width-auto" #[results_visible]>
   <p class="brand_big_text_tit"><?php _e('RESULT');?></p>
    #[results]
 </div>
+
 </script>
 <div class="shade" data-a="pop-mask"></div>
 <div class="pop pop_jobs">
@@ -155,7 +161,7 @@
 <script type="text/javascript" src="/js/jquery/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="/js/lp.core.js"></script>
 <script type="text/javascript" src="/js/lp.base.js"></script>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script>
+<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script> -->
 <!--IE6透明判断-->
 <!--[if IE 6]>
 <script src="js/DD_belatedPNG.js"></script>
