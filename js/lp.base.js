@@ -1919,8 +1919,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }, 100);
             },
             renderGoogle: function ($dom, points) {
-                console.log( points );
-                var $link = $('<a target="_blank"></a>').attr('href', '###');
+                var href = 'https://www.google.com/maps/place/Fred+%26+Farid+Group/@48.8753205,2.3372749,17z/data=!4m7!1m4!3m3!1s0x47e66e38be772a75:0x626c11bd6957ed59!2sFred+%26+Farid+Group!3b1!3m1!1s0x47e66e38be772a75:0x626c11bd6957ed59';
+                var $link = $('<a target="_blank"></a>').attr('href', href);
                 $link.append( $('<img/>').attr('src', '/images/google-map.jpg').width('100%') );
                 $dom.append( $link );
                 return;
