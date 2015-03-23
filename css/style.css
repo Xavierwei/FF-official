@@ -225,11 +225,11 @@ body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 .contact_mail{font-size: 14px;margin: 0 0 110px;}
 .contact_mail table{width: 100%;line-height:50px;}
 .contact_mailtit{border-bottom:#000 solid 1px;font-weight: bold;}
-.contact_maill{text-align: left}
-.contact_mailc{text-align: center}
-.contact_mailr{text-align: right;}
+.contact_maill{float: right;}
+.contact_mailc{float: left;}
+.contact_mailr{}
 .contact_mailcon{text-transform: lowercase;}
-.contact_map{height: 397px;width: 100%;}
+.contact_map{  font-size: 0;line-height: 0;width: 100%;}
 
 /* section about */
 .sec_about{}
@@ -438,7 +438,7 @@ body.lang-zho .home_biotxt{font-size: 14px;width: 1090px;margin: 0 auto;line-hei
 .sec_brands{display: none; position: fixed;top: 66px;bottom: 0;overflow: auto; width: 100%;z-index: 99;background: black;}
 .brands_tit{height: 0px;position: fixed;width: 100%;z-index: 100;top: 66px;overflow: hidden;}
 .sec_brands_tit{background: #595959;height:88px;line-height: 88px;font-size: 44px;font-weight: bold;overflow: hidden;position: absolute;z-index: 120;left: 0;right: 0;bottom: 0;}
-.sec_brands_tit h2 span{float: left;}
+.sec_brands_tit h2 span{  float: left;max-width: 50%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .sec_brands_tit .sep{margin: 26px 30px;background: #000;height: 35px;width: 4px;text-indent: -9999px;}
 .sec_brands h2{}
 
@@ -593,6 +593,8 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .brands-video-btn{display: none; background: url(../images/video-btn.png) no-repeat left bottom;position: absolute;top: 50%;left: 50%;width: 90px;height: 90px;margin-top: -45px;margin-left: -45px;}
 .brands-item-video:hover .brands-video-btn{display: block;}
 .full_screen_video_wrap{position: fixed;width: 100%;height: 100%;top:0;left:0;z-index: 40;}
+.brands-item-video .video-meta{position: absolute; bottom: 20px; left: 20px; color: #555; font-size: 20px; z-index: 1; line-height: 1em;};
+
 
 
 /* video theme */

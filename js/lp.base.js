@@ -1654,7 +1654,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             var item = items[itemIndex];
             var aHtml = ['<ul class="brands-items">'];
             var tpl = '<li class="brands-item #[brands-class]" #[style] data-pos="#[pos]" data-a="big-brands-item" data-image="#[image]" data-movie="#[video]" data-path="#[path]">\
-                #[video-btn]<div class="brands-mask"></div><img data-img="#[picture]" src="#[src]">\
+                #[video-btn]<div class="brands-mask"></div><img data-img="#[picture]" src="#[src]">#[video-meta]\
                 </li>';
 
             var pics = [];
@@ -1674,7 +1674,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     // style: Math.abs( i - itemIndex ) <= preloadNum  ? '': 'style="display:none;"',
                     // pos: i < itemIndex ? 'prev' : 'next',
                     'brands-class': isImage ? 'brands-item-image' : 'brands-item-video',
-                    'video-btn': isImage ? '' : '<div class="brands-video-btn"></div>'
+                    'video-btn': isImage ? '' : '<div class="brands-video-btn"></div>',
+                    'video-meta': isImage && tm.media_meta ? '' : '<span class="video-meta">' + tm.media_meta + '</span>'
                     //video: tm.media.match(/\.(jpg|png|bmp|jpeg)$/i) ? '' : 1
                 }));
             });
@@ -3250,10 +3251,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     //console.log('people: ',items)
                     $.each(items, function (i, item) {
                         var c = i == 0 ? 'contact_maill' : i == items.length - 1 ? 'contact_mailr' : 'contact_mailc';
-                        aHtml.push('<td class="' + c + '">' + item.title + '</td>');
-                        bHtml.push('<td class="' + c + '">' + item.content + '</td>');
+                        aHtml.push('<span class="' + c + '">' + item.title + '</span>');
+                        bHtml.push('<span class="' + c + '">' + item.content + '</span>');
                     });
-                    $('.contact_mail').find('tr').eq(0)
+                    $('#contact_mail').find('.contact_page_department')
                         .html(aHtml.join(''))
                         .next()
                         .html(bHtml.join(''));
@@ -3340,7 +3341,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         cHtml.push('</div>');
                     });
                     //console.log('cHtml: ',cHtml);
-                    $('.contact_item').html(cHtml.join(''));
+                    $('#contact_item').html(cHtml.join(''));
                     // fix style:
                     $(window).resize(function() {
                         $('.contact_con').each(function(i,con) {
