@@ -1834,6 +1834,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     var mapHelper = (function () {
         return {
             renderBaidu: function ($dom, points) {
+                var href = 'http://j.map.baidu.com/Vhzjb';
+                var $link = $('<a target="_blank"></a>').attr('href', href);
+                $link.append( $('<img/>').attr('src', '/images/google-map.jpg').width('100%') );
+                $dom.append( $link );
+                return;
                 // var html = '<img class="map-marker" src="#[markerPath]" />\
                 //     <img src="http://api.map.baidu.com/staticimage?center=#[pointer]&width=#[width]&height=#[height]&zoom=11" />';
                 // $dom.html( LP.format( html , {

@@ -166,10 +166,6 @@
   <p class="brand_big_text_val">#[photographer]</p>
   <p class="brand_big_text_val">&nbsp;</p>
 </div>
-<div class="brand_big_text_item" #[media_info_visible]>
-  <p class="brand_big_text_tit"><?php _e('MEDIA INFO');?></p>
-   #[media_info]
-</div>
 <br style="clear:both;"/>
 <div class="brand_big_text_item width-auto" #[results_visible]>
   <p class="brand_big_text_tit"><?php _e('RESULT');?></p>

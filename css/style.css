@@ -229,7 +229,7 @@ body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 .contact_mailc{float: left;}
 .contact_mailr{}
 .contact_mailcon{text-transform: lowercase;}
-.contact_map{  font-size: 0;line-height: 0;width: 100%;}
+.contact_map{  font-size: 0;line-height: 0;width: 100%;min-height: 390px;}
 
 /* section about */
 .sec_about{}
@@ -593,7 +593,7 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .brands-video-btn{display: none; background: url(../images/video-btn.png) no-repeat left bottom;position: absolute;top: 50%;left: 50%;width: 90px;height: 90px;margin-top: -45px;margin-left: -45px;}
 .brands-item-video:hover .brands-video-btn{display: block;}
 .full_screen_video_wrap{position: fixed;width: 100%;height: 100%;top:0;left:0;z-index: 40;}
-.brands-item-video .video-meta{position: absolute; bottom: 20px; left: 20px; color: #555; font-size: 20px; z-index: 1; line-height: 1em;};
+.brands-item-video .video-meta{position: absolute; bottom: 30px; left: 30px; color: #fff; font-size: 22px; z-index: 1; line-height: 1em;text-transform: uppercase;};
 
 
 
