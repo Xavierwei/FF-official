@@ -800,7 +800,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     showLoadingBar: true
                 }, function () {
                     $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
-                        .append($li.find('.vjs-control-bar'))
+                        .append($li.find('.vjs-control-bar').show())
                         .appendTo($li);
                 });
             }
@@ -3257,7 +3257,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $.each(items, function (i, item) {
                         var c = i == 0 ? 'contact_maill' : i == items.length - 1 ? 'contact_mailr' : 'contact_mailc';
                         aHtml.push('<span class="' + c + '">' + item.title + '</span>');
-                        bHtml.push('<span class="' + c + '">' + item.content + '</span>');
+                        bHtml.push('<span class="' + c + '"><a href="mailto:' + item.content + '">' + item.content + '</a></span>');
                     });
                     $('#contact_mail').find('.contact_page_department')
                         .html(aHtml.join(''))
@@ -5126,7 +5126,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         showLoadingBar: true
                     }, function () {
                         $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
-                            .append($li.find('.vjs-control-bar'))
+                            .append($li.find('.vjs-control-bar').show())
                             .appendTo($li);
                     });
                 }
@@ -5169,7 +5169,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         showLoadingBar: true
                     }, function () {
                         $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
-                            .append($li.find('.vjs-control-bar'))
+                            .append($li.find('.vjs-control-bar').show())
                             .appendTo($li);
                     });
                 }
@@ -5452,7 +5452,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 showLoadingBar: true
             }, function () {
                 $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
-                    .append($videoWrap.find('.vjs-control-bar'))
+                    .append($videoWrap.find('.vjs-control-bar').show())
                     .appendTo($videoWrap.parent());
                 
             });
