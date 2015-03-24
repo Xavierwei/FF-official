@@ -229,7 +229,7 @@ body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
 .contact_mailc{float: left;}
 .contact_mailr{}
 .contact_mailcon{text-transform: lowercase;}
-.contact_map{  font-size: 0;line-height: 0;width: 100%;min-height: 390px;}
+.contact_map{  font-size: 0;line-height: 0;width: 100%;}
 
 /* section about */
 .sec_about{}
