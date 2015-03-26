@@ -1709,12 +1709,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         loadingMgr.setSuccess(function (r) {
             // load categories
             var aHtml = [];
+            $('.gates-inner-c').show();
             // biuld html
             var tpl = '<li> <a data-a="show-compagins" #[disabled] data-d="path=#[path]" data-id="#[id]" data-category="CONSULTING" title="#[title]" href="#">#[title]</a> </li>';
             $.each(r.items || [], function (i, item) {
                 var path = type + '/';
                 switch (type) {
                 case 'services':
+                    $('.gates-inner-c').hide();
                 case 'brands':
                     path += item.id;
                     break;
