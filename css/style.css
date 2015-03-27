@@ -602,7 +602,7 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control{line-height: 36px;display: none;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control:before{display: none;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control .vjs-control-text{clip: auto;width: auto;height: auto;left: 20px;}
-.interview-video-wrap .vjs-default-skin .vjs-progress-control{top: 25px;height: 1px;margin: 0 100px;}
+.interview-video-wrap .vjs-default-skin .vjs-progress-control{top: 25px;height: 1px;margin:0 100px 0 30px;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-holder{background: white;border-top: 5px solid black;border-bottom: 5px solid black;margin-top: -5px;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-play-progress{background: #e00000;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-load-progress{background: #999;}
@@ -636,6 +636,7 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
     z-index: 101;
     height: 50px;
 }
+.vjs-default-skin .vjs-control-bar{background: #000;}
 
 
 .interview-music-wrap{position: relative;overflow: hidden;}
