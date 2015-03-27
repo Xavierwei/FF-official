@@ -2228,13 +2228,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $lis.each(function (i) {
                         var $item = $(this);
                         campaignManager.getCampaignItems(this.getAttribute('data-path'), function( items ){
-                            campaignItemGroups[items[0]._contentPath] = items || [];
-                            // $.each(items, function (i, item) {
-                            //     campaignItemGroups[item._contentPath] = campaignItemGroups[item._contentPath] || [];
-                            //     campaignItemGroups[item._contentPath].push(item);
-                            // });
+                            if( items && items[0] ){
+                                campaignItemGroups[items[0]._contentPath] = items || [];
+                                // $.each(items, function (i, item) {
+                                //     campaignItemGroups[item._contentPath] = campaignItemGroups[item._contentPath] || [];
+                                //     campaignItemGroups[item._contentPath].push(item);
+                                // });
 
-                            loadCampaignDetails($item);
+                                loadCampaignDetails($item);
+                            }
                         });
                     });
 
