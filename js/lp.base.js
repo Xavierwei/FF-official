@@ -417,16 +417,19 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     var aHtml = [];
 
                     var paths = [];
+
                     $.each(compaigns || [], function (index, item) {
                         aHtml.push(LP.format(tpl, {
                             agency: item.agency,
                             label: item.title,
                             year: item.date.replace(/(\d+)-.*/, '$1'),
-                            index: index + 1,
+                            index: compaigns.length - index,
                             cpgn_type: item.cpgn_type,
                             path: item._contentPath.replace('pages_contents/', '') + '/' + item.path
-                        }));
+                        })
+                        );
                     });
+
                     $('.brands-con').children().remove();
                     $('.brands-con').html(aHtml.join(''));
                     showCompains(path, ver);
@@ -642,7 +645,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 } );
             },
             go: function (toUrl, data, fromUrl) {
-                disposeVideo();
+                disposeVideo(); //销毁视频调用这个函数
                 //pages_contents/categories/alcoholic_drinks/16eme_ciel_stand-up_-_lyon_-_2013/0
 
                 var hash = getPath(fromUrl);
@@ -663,8 +666,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     }
                 }
 
-                var loadFn = null,
-                    destory = null,
+                var loadFn = null, //进场动画
+                    destory = null, //退场动画
                     currUrlMatch = null;
                 $.each(rules, function (i, rule) {
                     if (rule.url.test(toUrl)) {
