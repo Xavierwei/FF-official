@@ -173,7 +173,7 @@
 				</div>
 				<div class="timeline_right timeline_2011right" style="padding-top:20px">
 					<div class="timeline_txt ">
-						<p><strong><?php _e('In 2005, Publicis Group chairman Maurice Levy personally hired “the already legendary advertising duo” to launch Marcel, a new international digital agency based in Paris, named after the founder of Publicis’ group, Bleustein-Blanchet. </strong>');?></p>
+						<p><strong><?php _e('In 2005, Publicis Group chairman Maurice Levy personally hired “the already legendary advertising duo” to launch Marcel, a new international digital agency based in Paris, named after the founder of Publicis’ group, Bleustein-Blanchet.');?></strong></p>
 						<p><?php _e('18 June 2005');?></p>
 						<p><?php _e('Maurice Levy<br/>Paris Match');?></p>
 					</div>

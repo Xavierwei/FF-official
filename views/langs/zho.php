@@ -115,7 +115,7 @@ Fred & Farid Group 赢得了全球90多个品牌并为其提供广告创意,包�
 '16 October 2006' => '2006 年 10 月 16 日',
 'Indepedent newspaper' => '《独立报》',
 'Then Fred & Farid won 17 new accounts in just 18 months, including what French business newspaper Les Echos called “the pitch of the decade” for Internet/mobile Company Orange, leading the image of this European leader in 27 countries.' => '在仅仅18个月内，Fred & Farid赢得了17个新客户，其中包括被法国商业报《Les Echos》称之为“年代比稿”的Orange法国电信，统筹策划这个欧洲领先品牌在27个国家的品牌形象。',
-'In 2005, Publicis Group chairman Maurice Levy personally hired “the already legendary advertising duo” to launch Marcel, a new international digital agency based in Paris, named after the founder of Publicis’ group, Bleustein-Blanchet. </strong>' => '2005年，Publicis阳狮集团总裁Maurice Lévy将这对“传奇二人组”（《Paris Match》2005年 7 月 18 日）招入麾下，在巴黎建立了Marcel —— Publics集团旗下的一家全新数字广告公司。',
+'In 2005, Publicis Group chairman Maurice Levy personally hired “the already legendary advertising duo” to launch Marcel, a new international digital agency based in Paris, named after the founder of Publicis’ group, Bleustein-Blanchet.' => '2005年，Publicis阳狮集团总裁Maurice Lévy将这对“传奇二人组”（《Paris Match》2005年 7 月 18 日）招入麾下，在巴黎建立了Marcel —— Publics集团旗下的一家全新数字广告公司。',
 '18 June 2005' => '2005年6月18日',
 'Maurice Levy<br/>Paris Match' => '',
 'New York magazine  ' => '《New York magazine》',
