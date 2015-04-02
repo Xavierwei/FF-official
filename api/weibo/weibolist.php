@@ -1,16 +1,23 @@
 <?php
-    include_once( 'config.php' );
-    include_once( 'saetv2.ex.class.php' );
-    $token = file_get_contents("token.txt");
-    $c = new SaeTClientV2( WB_AKEY , WB_SKEY , $token );
-    $ms  = $c->user_timeline_by_id(WB_UID,1,2);
-    $user = $c->show_user_by_id(WB_UID);
-    $ms['userinfo'] = $user;
-//    foreach($ms['statuses'] as $item) {
-//        print_r($item);
-//        $url = file_get_contents('http://api.t.sina.com.cn/querymid.json?id='.$item['mid']);
-//        print_r('http://api.t.sina.com.cn/querymid.json?id='.$item['mid']);
-//    }
+    // 每天 早上9点重新抓一次
+    $cacheFile = __DIR__.'/cache.txt';
+    $output = file_get_contents($cacheFile);
 
-    echo json_encode($ms);
+    if (date('G') == 9 || $output == '') {
+        include_once( 'config.php' );
+        include_once( 'saetv2.ex.class.php');
+        $token = file_get_contents("token.txt");
+        $c = new SaeTClientV2( WB_AKEY , WB_SKEY , $token );
+        $ms  = $c->user_timeline_by_id(WB_UID,1,2);
+        $user = $c->show_user_by_id(WB_UID);
+        $ms['userinfo'] = $user;
+
+        $ret = json_encode($ms);
+
+        file_put_contents($cacheFile, $ret);
+        $output = $ret;
+    }
+
+
+    echo $output;
 ?>
