@@ -48,7 +48,7 @@
 		<!--  -->
 		<div class="home_view column">
 			<div class="home_viewtiem home_twitter cs-clear intoview-effect" data-effect="fadeup">
-				<a href="https://twitter.com/FredFarid" target="_blank" class="home_viewlogo home_tlogo" id="home_twitter_follow"></a>
+				<a href="https://twitter.com/FredFaridGroup" target="_blank" class="home_viewlogo home_tlogo" id="home_twitter_follow"></a>
                 <div id="home_twitter_wrap"></div>
 			</div>
 			<div class="home_viewtiem home_weibo cs-clear intoview-effect" data-effect="fadeup">
