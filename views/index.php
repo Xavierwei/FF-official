@@ -22,7 +22,14 @@
 	sliderInner.style.height = winHeight - 60 + 'px';
 })();
 </script>
-<div class="slide-tip"> <a href="javascript:;" data-a="slide-alink"></a> </div>
+<div class="slide-tip">
+    <a class="hideme" href="javascript:;" data-a="slide-alink"></a>
+    <div class="slide-cat-nav">
+        <a href="javascript:;" data-a="homeSlideType" data-d="type=digital_reel" class="cur">Digital reel</a>
+        <a href="javascript:;" data-a="homeSlideType" data-d="type=spots_reel">spots reel</a>
+        <a href="javascript:;" data-a="homeSlideType" data-d="type=luxury_reel" class="last">luxury reel</a>
+    </div>
+</div>
 <div class="page" data-page="home-page">
 	<!-- section -->
 	<div class="section sec_home">
@@ -49,7 +56,7 @@
                 <div id="home_weibo_wrap"></div>
 			</div>
 			<div class="home_viewbtn cs-clear">
-				<a href="https://twitter.com/FredFarid" target="_blank" class="home_viewbtntw transition-wrap">
+				<a href="https://twitter.com/FredFaridGroup" target="_blank" class="home_viewbtntw transition-wrap">
 					<div class="transition">
 					<?php _e('VIEW ALL TWEETS'); ?><br/><br/><?php _e('VIEW ALL TWEETS'); ?>
 					</div>

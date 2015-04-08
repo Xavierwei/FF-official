@@ -13,8 +13,6 @@
         $ms['userinfo'] = $user;
 
         $ret = json_encode($ms);
-        print_r($ret);
-        die();
 
         file_put_contents($cacheFile, $ret);
         $output = $ret;

@@ -2854,7 +2854,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
                 // resize slider height
-                $sliderInner.height(winHeight - 60);
+                $sliderInner.height(winHeight - 60 - 80);
 
                 // resize the slider images
                 $('<img />')
@@ -2936,6 +2936,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var $slider = $('.home-slider');
                 var homeBioHeight = $homeBio.height();
                 $header = $('.header');
+
+                // showcase nav hover effect
+                $('.slide-tip .slide-cat-nav a').hover(function () {
+                    $(this).siblings().removeClass('cur');
+                    $(this).addClass('cur');
+                });
                 // header fixed effect
                 $(window).scroll(function () {
                     var stTop = $(window).scrollTop();

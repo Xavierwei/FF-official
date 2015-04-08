@@ -10,6 +10,12 @@
 	<!-- section -->
     <h2 class="job_tit">
         <?php _e('JOB TITLE'); ?>
+        <ul class="f-c cs-clear">
+            <li><input type="checkbox"/><label for=""><span>Shanghai</span></label></li>
+            <li><input type="checkbox"/><label for=""><span>Beijing</span></label></li>
+            <li><input type="checkbox"/><label for=""><span>Paris</span></label></li>
+            <li><input type="checkbox"/><label for=""><span>New York</span></label></li>
+        </ul>
     </h2>
 	<div class="section sec_jobs">
 
