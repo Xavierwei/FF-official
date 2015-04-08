@@ -184,7 +184,7 @@ a.icon_bg{background-position: 0px -115px;}
 /*#list-table tr {opacity: 0;display: none;}*/
 
 /*section jobs*/
-.sec_jobs{margin: 80px auto 80px;}
+.sec_jobs{ margin: 45px auto 80px;}
 .jobsitem{float: left;width: 350px;border-top:#000 solid 22px;float: left;margin: 0 8px 80px;height: 390px;font-size: 14px;color:#666}
 html.ie8 .jobsitem {height: 400px;}
 .jobsitem h3{font-size: 24px;text-transform: uppercase;padding: 50px 0 0;color:#000;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
@@ -784,11 +784,63 @@ a[disabled="disabled"]:hover {color: #000000;}
 .slide-tip .slide-cat-nav a.last {margin-right: 0px;}
 .slide-tip .slide-cat-nav a.cur {  border-bottom: 1em solid #fff;  }
 
-.job_tit .f-c {  text-align: center;}
-.job_tit .f-c li{  font-size: 14px;display: inline;text-transform: capitalize;}
-.job_tit .f-c label {margin-left: 5px;display: inline-block;}
-.job_tit .f-c input {display: none;}
-.job_tit .f-c label:before { content: "";width: 19px;height: 19px;line-height: 19px;border: 1px solid #000;display: inline-block;box-sizing: border-box;font-size: 13px; margin-right: 5px;cursor: pointer;  }
-.job_tit .f-c input[type="checkbox"]:checked + label :before {content: "\2713";}
+.job_tit .f-c {  text-align: center;  margin-top: 40px;}
+.job_tit .f-c li{
+    position: relative;
+    font-size: 14px;
+    display: inline-block;
+    text-transform: capitalize;
+    padding-right: 42px;
+    height: 21px;
+    line-height: 21px;
+}
+.job_tit .f-c label {
+    margin-left: 5px;
+    display: inline-block;
+    position: relative;
+}
+.job_tit .f-c input {
+    display: inline-block;
+    position: absolute;
+    left: 5px;
+    top: -2px;
+    visibility: hidden;
+    z-index: 1111;
+}
+
+.job_tit .f-c label:before {
+    content: "\000";
+    width: 19px;
+    height: 19px;
+    line-height: 17px;
+    border: 3px solid #000;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 12px;
+    margin-right: 14px;
+    cursor: pointer;
+}
+
+.job_tit .f-c label:after {
+    background: none;
+    border-color: #000;
+    content: "";
+}
+
+.job_tit .f-c input[type="checkbox"]:checked + label:after  {
+    width: 7px;
+    height: 17px;
+    border-right: 4px solid #000;
+    border-bottom: 4px solid #000;
+    display: inline-block;
+    transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -webkit-transform: rotate(40deg);
+    position: absolute;
+    left: 8px;
+    top: -7px;
+}
+
 .job_tit .f-c label > span {height:19px;line-height: 19px;}
 

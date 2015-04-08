@@ -6409,4 +6409,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         return false;
     });
 
+    LP.action('jobFilter', function () {
+        var target = $(event.target);
+        if (target.prop('tagName') == 'LABEL') {
+            target.parent().siblings('li').find('input[type="checkbox"]:checked + label').click();
+        }
+    });
+
 });
