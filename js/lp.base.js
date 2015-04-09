@@ -3677,7 +3677,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
 
 
-                    var tpl = '<div data-effect="fadeup" class="jobsitem intoview-effect">\
+                    var tpl = '<div data-effect="fadeup" class="jobsitem intoview-effect" data-city="#[city]">\
                             <h3>#[title]</h3>\
                             <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
                             <p class="jobs-con">#[show_content]</p>\
@@ -6433,9 +6433,35 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     LP.action('jobFilter', function () {
         var target = $(event.target);
+
         if (target.prop('tagName') == 'LABEL') {
             target.parent().siblings('li').find('input[type="checkbox"]:checked + label').click();
         }
+
+        setTimeout(function () {
+            if ((input = $('.f-c').find('input[type="checkbox"]:checked')).size()) {
+                var el = $('.jobslist > div');
+                if (!el.data('fadeUp')) {
+                    $('.jobslist > div').css({'margin-top':0, 'opacity': 1});
+                    el.data('fadeUp', true);
+                }
+                el.each(function () {
+                    if ($(this).data('city') != input.data('city')) {
+                        $(this).stop().animate({
+                            'margin-top': 50,
+                            'opacity': 0
+                        }).hide();
+                    }
+                    else {
+                        $(this).stop().show().animate({
+                            'margin-top': 0,
+                            'opacity': 1
+                        });
+                    }
+                });
+            }
+        });
+
     });
 
 });
