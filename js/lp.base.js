@@ -2880,7 +2880,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                         if (!firstLoaded) {
                             firstLoaded = true;
-                            $sliderInner.find('.slider-item').css('opacity', 1).hide().fadeIn();
+                            $sliderInner.find('.slider-item').css('opacity', 1).hide().fadeIn(800);
                         }
 
                     })
@@ -3033,7 +3033,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
 
                 // render home page slider
-                api.request('home', function (r) {
+                function homeAPICb (r) {
                     var aHtml = [];
                     $.each(r.items || [], function (i, item) {
                         aHtml.push(LP.format('<div class="slider-item" title="#[title]" data-movie="#[video]"><img src="#[image]" /></div>', {
@@ -3047,6 +3047,28 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     initSlider();
 
                     fixImgsDomLoaded($($('#slider-block-inner img').slice(0, 3)), cb);
+                }
+                api.request('home', function (r) {
+                    homeAPICb(r);
+                });
+
+                LP.action('homeSlideType', function (data) {
+                    api.request('home', function (res) {
+                        var items = [];
+                        $.each(res['items'], function (index) {
+                           if  (res['items'][index]['reel'] == data['type']) {
+                               items.push(res['items'][index]);
+                           }
+                        });
+                        var el = $(event.target);
+                        var start =el.data('start') ? el.data('start') : (el.data('start', Math.round(Math.random() * 10)), el.data('start'));
+                        var end = el.data('end') ? el.data('end'): (el.data('end', Math.round(Math.random() * 12)), el.data('end'));
+                        if (end < start) {
+                            end = 10;
+                        }
+                        items = res['items'].slice(start, start + end);
+                        homeAPICb({items: items});
+                    });
                 });
 
                 // render home page featured_campaigns

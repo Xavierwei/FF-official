@@ -25,9 +25,9 @@
 <div class="slide-tip">
     <a class="hideme" href="javascript:;" data-a="slide-alink"></a>
     <div class="slide-cat-nav">
-        <a href="javascript:;" data-a="homeSlideType" data-d="type=digital_reel" class="cur">Digital reel</a>
-        <a href="javascript:;" data-a="homeSlideType" data-d="type=spots_reel">spots reel</a>
-        <a href="javascript:;" data-a="homeSlideType" data-d="type=luxury_reel" class="last">luxury reel</a>
+        <a href="javascript:;" data-a="homeSlideType" data-d="type=DIGITAL REEL" class="cur">Digital reel</a>
+        <a href="javascript:;" data-a="homeSlideType" data-d="type=SPOTS REEL">spots reel</a>
+        <a href="javascript:;" data-a="homeSlideType" data-d="type=LUXURY REEL" class="last">luxury reel</a>
     </div>
 </div>
 <div class="page" data-page="home-page">

@@ -23,4 +23,20 @@ $file = __DIR__ . '/../api_cache/' . $key;
 	file_put_contents( $file , $contents);
 // }
 
-echo file_get_contents( $file );
+$res = file_get_contents( $file );
+//if ($_POST['contentPaths'] == 'home' && !empty($_POST['type'])) {
+//    $ret = array();
+//    $data = json_decode($res, true);
+//    foreach ($data['items'] as $item) {
+//        if ($item['reel'] == $_POST['type']) $ret[] = $item;
+//    }
+//    $start = rand(0, 10);
+//    if (count($ret)  < 1) {
+//        $ret = array_slice($data['items'], $start, 10);
+//    }
+//    $res = json_encode(array(
+//        'items' => $ret
+//    ));
+//}
+
+echo $res;
