@@ -3063,7 +3063,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         var el = $(event.target);
                         var start =el.data('start') ? el.data('start') : (el.data('start', Math.round(Math.random() * 10)), el.data('start'));
                         var end = el.data('end') ? el.data('end'): (el.data('end', Math.round(Math.random() * 12)), el.data('end'));
-                        if (end < start) {
+                        if (start >= end ) {
                             end = 10;
                         }
                         items = res['items'].slice(start, start + end);
