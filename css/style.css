@@ -11,6 +11,7 @@
 html{width: 100%;}
 body{font-family:Helvetica,"Microsoft Yahei",simsun,arial,sans-serif;color:#000;font-size:12px;line-height:1.666em;background: #000;}
 body.lang-zho{font-family: "Microsoft Yahei", "Hiragino Sans GB", simsun,arial,sans-serif;color:#000;font-size:12px;line-height:1.666em;background: #000;}
+body.s_bc { background-color: #fff; }
 h1,h2,h3{font-size:100%;}
 body,h1,h2,h3,h4,ul,li,p,img,div{margin:0;padding:0;border:0;}
 img{margin:0;line-height:normal;}
@@ -54,6 +55,7 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 .language a{margin-left: 10px;  color: #ccc;}
 .language a:hover{color: #fff;}
 .search{background: url('../images/hd_search.png') no-repeat;text-indent: -9999px;overflow: hidden; width: 17px;height: 17px;position: absolute;right:46px;top:22px;top: 50%;margin-top: -8px;}
+.s_search { background: url('../images/img/s_magnifyingglass.jpg') no-repeat; }
 .search-close{background: none;text-indent: 0;line-height: 17px;font-size: 24px;text-align: center; color: #666;}
 .navitem{float: left;margin: 0 40px 0 0;display: inline ;font-weight: 100;color: #ccc;position: relative;height: 100%;line-height: 66px;}
 .navitem:hover{color:#fff;}
@@ -777,6 +779,7 @@ html.no-canvas .logo{background: url('../images/logo.png') no-repeat;background-
 .slide-tip a#del{position: absolute; width: 30px;height: 30px;bottom: 10px; left: 50%;margin-left: -15px;background: url(../images/ah.png) repeat-y -23px 0px;opacity: 0.6;filter:alpha(opacity=60);}
 a[disabled="disabled"]:hover {color: #000000;}
 
+<<<<<<< Updated upstream
 .hideme {display:none !important;}
 
 .slide-tip .slide-cat-nav {width: 29em;position: absolute;left: 50%;margin-left: -14.5em; height: 100%; }
@@ -844,3 +847,35 @@ a[disabled="disabled"]:hover {color: #000000;}
 
 .job_tit .f-c label > span {height:19px;line-height: 19px;}
 
+
+.s_ad { position: relative; }
+.s_ad img { width: 100%; height: 100%; }
+.s_adTitle { width: 100%; height: 86px; line-height: 86px; 
+	position: absolute; top: 0; left: 0; background-color: #f0f0f0; font-size: 48px;
+	font-weight: bold; }
+.s_fl { float: left; }
+.s_fr { float: right; }
+.s_adTitle span { margin-left: 248px; }
+.s_prev { display: inline-block; width: 20px; height: 12px; 
+	background: url("../images/img/s_arrorPrev.gif") no-repeat; margin-right: 81px; }
+.s_next { display: inline-block; width: 20px; height: 12px; 
+	background: url("../images/img/s_arrorNext.gif") no-repeat; }
+.s_btns { margin-right: 54px; }
+.s_bigTitle { font-size: 36px; font-weight: bold; width: 555px; height: 50px;
+ line-height: 50px; margin: 88px auto 124px auto; }
+.s_business { width: 80%; margin: 0 auto 116px auto; }
+.s_business li { float: left; width: 32%; height: 377px; border: 1px solid #000; margin-bottom: 16px; }
+.s_mi { margin: 0 16px; }
+.s_f14 { font-size: 14px; }
+.s_f24 { font-size: 24px; }
+.s_fb { font-weight: bold; }
+.s_busP1 { margin-top: 46px; margin-left: 46px; }
+.s_busH2 { margin: 16px 0 40px 45px; }
+.s_busP2 { margin: 0 40px 0 44px; line-height: 17px; }
+.s_opcityBox { width: 100%; height: 194px; color: #fff; text-align: center;
+   font-size: 30px; font-weight: bold; padding-top: 170px; background: url("../images/img/opcityBoxbg.gif") repeat; }
+ .s_opcityBox b { font-size: 18px; font-weight: normal; }
+ .s_links { width: 100%; padding-top: 80px; height: 151px; background-color: #222; text-align: center; }
+ .s_links a { margin: 0 50px; }
+ .s_footer { width: 100%; padding-top: 60px; height: 88px; background-color: #000; text-align: center; }
+ .s_footer a { margin: 0 15px; }
