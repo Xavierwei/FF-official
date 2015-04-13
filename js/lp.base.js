@@ -2911,13 +2911,16 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var video = $item.data('video-object');
                 if (!video || video.paused()) {
                     $banphoCon.stop(true, true).fadeIn();
+                    $('.slide-tip').stop(true, true).fadeIn();
                     return;
                 }
 
                 $banphoCon.stop(true, true).fadeOut();
+                $('.slide-tip').stop(true, true).fadeOut();
 
             }, function (ev) {
                 $banphoCon.stop(true, true).fadeIn();
+                $('.slide-tip').stop(true, true).fadeIn();
             });
 
             cb && cb(0);
