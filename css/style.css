@@ -923,3 +923,23 @@ a[disabled="disabled"]:hover {color: #000000;}
  .s_links a { margin: 0 50px; }
  .s_footer { width: 100%; padding-top: 60px; height: 88px; background-color: #000; text-align: center; }
  .s_footer a { margin: 0 15px; }
+
+ .table {
+     display: table;
+     height:100%;
+ }
+
+ .table-row {
+     display: table;
+     height:100%;
+ }
+
+.table-cell {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.slide-tip a.cur {
+    font-weight: bold;
+}

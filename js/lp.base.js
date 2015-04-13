@@ -2941,7 +2941,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $header = $('.header');
 
                 // showcase nav hover effect
-                $('.slide-tip .slide-cat-nav a').hover(function () {
+                $('.slide-tip .slide-cat-nav a').click(function () {
                     $(this).siblings().removeClass('cur');
                     $(this).addClass('cur');
                 });
