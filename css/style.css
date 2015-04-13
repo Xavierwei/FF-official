@@ -670,18 +670,30 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
   top: 0;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: 3px;
   z-index: 200000;
   background: #Fff;
-  border-top: 2px solid #0023f9;
-  border-bottom: 2px solid #f90000;
+}
+.loading-wrap .layer{
+    width: 33.333333%;
+    height: 3px;
+    float: left;
+}
+.loading-wrap .blue{
+    background-color:blue;
+}
+.loading-wrap .white{
+    background-color:white;
+}
+.loading-wrap .red{
+    background-color:red;
 }
 .loading{  width: 100%;
   background: #000;
-  height: 5px;
+  height: 3px;
   right: 0;
   position: absolute;
-  top: -2px;}
+}
 
 /* logo transition */
 .logo-wrap{

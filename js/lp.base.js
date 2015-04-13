@@ -2523,8 +2523,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 if( !pro ){
                     loadingTimes = 1;
-                    $loading.find('div').width('100%');
-                    pro = process($loading.stop(true, true).fadeIn().find('div'));
+                    $loading.find('.loading').width('100%');
+                    pro = process($loading.stop(true, true).fadeIn().find('.loading'));
                     pro.start();
                 } else {
                     loadingTimes++;

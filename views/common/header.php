@@ -67,7 +67,12 @@
     </script>
 </head>
 <body class="lang-<?php echo $_COOKIE['lang'];?>" data-title="<?php _e('FRED &amp; FARID GROUP');?>">
-	<div class="loading-wrap gradient" style="display:block;"><div class="loading"></div></div>
+	<div class="loading-wrap gradient" style="display:block;">
+	    <div class="layer blue"></div>
+	    <div class="layer white"></div>
+	    <div class="layer red"></div>
+	    <div class="loading"></div>
+	</div>
 	<div class="page-mask"><div id="random-quotes"><canvas style="display:none;" id="ff_loading_logo_canvas" width="48" height="48" style="background-color:black"></canvas></div></div>
 	<div class="fullcover-background pop">
 	    <p class="popicon popclose transition" data-a="pop_close" data-d="noRefresh=1"></p>
