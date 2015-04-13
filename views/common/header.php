@@ -171,7 +171,9 @@
 					<a class="navitem" data-a="navitem" href="/jobs" data-last="jobs" ><?php _e('jobs');?></a>
 					<a class="navitem" data-a="navitem" href="/contact"><?php _e('CONTACT');?></a>
 				</div>
+				<!--
 				<div class="language"><a href="#" data-a="lang" data-d="lang=eng">EN</a> <a href="#" data-a="lang" data-d="lang=zho">中文</a></div>
+				-->
 				<!-- <a href="#" data-a="search-toggle" class="search">×</a> -->
 				<div class="search-wrap">
 					<form class="search-wrap-inner column">
