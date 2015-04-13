@@ -2854,7 +2854,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
                 // resize slider height
-                $sliderInner.height(winHeight - 60 - 80);
+                $sliderInner.height(winHeight - 60 - 40);
 
                 // resize the slider images
                 $('<img />')
@@ -3893,7 +3893,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         var winWidth = $(window).width();
                         var winHeight = $(window).height();
                         var $sliderInner = $('.slider-block-inner');
-                        $('#slider-block-inner').css('height', ($(window).height() - $('.header').height()) + 'px');
+                        var _height=$(window).height() - $('.header').height();
+                        $('#slider-block-inner').css('height', _height);
                         // resize the slider images
                         $('<img />')
                             .load(function () {
