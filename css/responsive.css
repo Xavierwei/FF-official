@@ -1,7 +1,7 @@
 
 
 @media only screen and (max-width:1250px){
-    .nav{padding-left: 75px;height: 100%;overflow: hidden;}
+    .nav{height: 100%;overflow: hidden;}
     .pagetit,.sec_brands_tit,.brands-tags{padding-left: 75px;}
     .pagetit-fixed .pagetit-inner{padding-left: 75px;}
     .column, .pagetit{width: auto; }
