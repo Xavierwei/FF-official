@@ -2911,13 +2911,16 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var video = $item.data('video-object');
                 if (!video || video.paused()) {
                     $banphoCon.stop(true, true).fadeIn();
+                    $('.slide-tip').stop(true, true).fadeIn();
                     return;
                 }
 
                 $banphoCon.stop(true, true).fadeOut();
+                $('.slide-tip').stop(true, true).fadeOut();
 
             }, function (ev) {
                 $banphoCon.stop(true, true).fadeIn();
+                $('.slide-tip').stop(true, true).fadeIn();
             });
 
             cb && cb(0);
@@ -2938,7 +2941,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $header = $('.header');
 
                 // showcase nav hover effect
-                $('.slide-tip .slide-cat-nav a').hover(function () {
+                $('.slide-tip .slide-cat-nav a').click(function () {
                     $(this).siblings().removeClass('cur');
                     $(this).addClass('cur');
                 });
@@ -3061,16 +3064,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                            }
                         });
 
-                        console.log(items);
-                        return;
-
-                        var el = $(event.target);
+                        //var el = $(event.target);
                         //var start =el.data('start') ? el.data('start') : (el.data('start', Math.round(Math.random() * 10)), el.data('start'));
                         //var end = el.data('end') ? el.data('end'): (el.data('end', Math.round(Math.random() * 12)), el.data('end'));
                         //if (start >= end ) {
                         //    end = 10;
                         //}
-                        items = res['items'].slice(start, start + end);
+                        //items = res['items'].slice(start, start + end);
                         homeAPICb({items: items});
                     });
                 });

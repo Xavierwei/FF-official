@@ -73,7 +73,11 @@
 	    <div class="layer red"></div>
 	    <div class="loading"></div>
 	</div>
-	<div class="page-mask"><div id="random-quotes"><canvas style="display:none;" id="ff_loading_logo_canvas" width="48" height="48" style="background-color:black"></canvas></div></div>
+	<div class="page-mask">
+        <div id="random-quotes">
+            <canvas style="display:none;" id="ff_loading_logo_canvas" width="48" height="48" style="background-color:black"></canvas>
+        </div>
+    </div>
 	<div class="fullcover-background pop">
 	    <p class="popicon popclose transition" data-a="pop_close" data-d="noRefresh=1"></p>
 	    <div class="popcon transition qr_pop popcon-show">
