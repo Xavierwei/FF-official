@@ -4567,7 +4567,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         //Place holders
         shareHtml.push('<a role="share" href="#" target="_blank" data-a="icon-wx" class="find_item icon_wx">Weixin</a>');
         //shareHtml.push('<a role="share" href="#" target="_blank" class="find_item icon_lk">Linkedin</a>');
-        $('#share-wrap').html(shareHtml.join(''));
+        $('div[role="share-wrap"]').html(shareHtml.join(''));
 
         // render websites
         var linkHtml = [];

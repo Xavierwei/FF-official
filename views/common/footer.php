@@ -9,7 +9,7 @@
 		<div class="ft_con cs-clear desktop">
 			<div style="display: none;" class="ft_mod ft_find">
 				<h3><?php _e('FOLLOW US');?></h3>
-				<div class="ft_mbd ft_findmbd cs-clear" id="share-wrap">
+				<div class="ft_mbd ft_findmbd cs-clear" >
 					<a href="#" class="find_item icon_fb"></a>
 					<a href="#" class="find_item icon_wb"></a>
 					<a href="#" class="find_item icon_tw"></a>
@@ -61,7 +61,7 @@
 		<div class="ft_con cs-clear mobile" style="display:none">
             <div class="ft_mod ft_find mobile">
                 <a href="javascript:;" data-a="share_pop_mobile"><?php _e('SHARE');?></a>
-                <div class="ft_mbd ft_findmbd cs-clear mobile" id="share-wrap">
+                <div class="ft_mbd ft_findmbd cs-clear mobile" role="share-wrap">
                     <a href="#" class="find_item icon_fb"></a>
                     <a href="#" class="find_item icon_wb"></a>
                     <a href="#" class="find_item icon_tw"></a>
@@ -118,25 +118,25 @@
 	</div>
 </div>
 
-<div class="footer s_footer">
-    <div class="s_footerCon cs-clear">
-        <a class="find_item icon_fb" target="_blank" href="http://www.facebook.com/fredfarid" role="share">Facebook</a>
+<div class="footer s_footer" >
+    <div class="s_footerCon cs-clear" role="share-wrap">
+        <a class="find_item icon_fb" target="_blank">Facebook</a>
 
-        <a class="find_item icon_wb" target="_blank" href="http://weibo.com/fredfaridgroup" role="share">Weibo</a>
+        <a class="find_item icon_wb" target="_blank">Weibo</a>
 
-        <a class="find_item icon_tw" target="_blank" href="http://twitter.com/#!/fredfaridgroup" role="share">Twitter</a>
+        <a class="find_item icon_tw" target="_blank">Twitter</a>
 
-        <a class="find_item icon_ch" target="_blank" href="https://fr.foursquare.com/v/fred--farid-group/4e92c0aa46907142f9881ffb" role="share">Foursquare</a>
+        <a class="find_item icon_ch" target="_blank">Foursquare</a>
 
-        <a class="find_item icon_hb" target="_blank" href="http://huaban.com/fredfaridgroup" role="share">Huaban</a>
+        <a class="find_item icon_hb" target="_blank">Huaban</a>
 
-        <a class="find_item icon_yk" target="_blank" href="http://i.youku.com/u/id_UMzg4ODI4OTI0" role="share">Youku</a>
+        <a class="find_item icon_yk" target="_blank">Youku</a>
 
-        <a class="find_item icon_yt" target="_blank" href="http://www.youtube.com/user/FredFaridGroup" role="share">YouTube</a>
+        <a class="find_item icon_yt" target="_blank" >YouTube</a>
 
-        <a class="find_item icon_lk" target="_blank" href="https://www.linkedin.com/company/864886?trk=tyah&amp;trkInfo=idx%3A2-3-8%2CtarId%3A1423748728705%2Ctas%3Afred" role="share">LINKEDIN</a>
+        <a class="find_item icon_lk" target="_blank" >LINKEDIN</a>
 
-        <a class="find_item icon_wx" data-a="icon-wx" target="_blank" href="#" role="share">Weixin</a>
+        <a class="find_item icon_wx" data-a="icon-wx" target="_blank">Weixin</a>
     </div>
 
 </div>
