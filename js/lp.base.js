@@ -2515,7 +2515,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             hideLoading: function ($wrap) {
                 pro && pro.end();
                 $wrap.find('.loading-wrap').fadeOut();
-                $(".banft_txt").show();
             },
             show: function (bgcolor) {
 
