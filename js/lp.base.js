@@ -3951,7 +3951,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $.each(r.items || [], function (i, service) {
                         htmls.push(LP.format(stpl, {
                             total: total,
-                            index: i,
+                            index: i + 1,
                             title: service['title'],
                             content: service['content']
                         }));
