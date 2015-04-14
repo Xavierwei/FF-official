@@ -4694,7 +4694,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 
 
 
-                if( prevPath.match(/^(categories|brands|services)/) && !path.match(/^(categories|brands|services)/) ){
+                if( prevPath.match(/^(categories|brands)/) && !path.match(/^(categories|brands)/) ){
                     if( LP.parseUrl(prev).path != LP.getCookie('page') ){
                         urlManager.destory( prevPath );
                         if( path != LP.getCookie('page') ){
@@ -4704,7 +4704,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     }
                 }
                 // if only change hash
-                if (path.match(/^(categories|brands|services)/) || prevPath.match(/^(categories|brands|services)/)) {
+                if (path.match(/^(categories|brands)/) || prevPath.match(/^(categories|brands)/)) {
                     var oldArr = prevPath ? formatPath2Arr(prevPath) : [];
                     var newArr = formatPath2Arr(path);
                     if ((!newArr[4] && !oldArr[4]) && oldArr[3] && oldArr[3].match(/^\d+$/) && newArr[3] && newArr[3].match(/^\d+$/) && oldArr[2] == newArr[2]) {
@@ -4805,7 +4805,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     LP.action('navitem', function () {
         // load next page
         pageManager.go($(this).attr('href'));
-        console.log('href');
         return false;
     });
 
