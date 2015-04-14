@@ -98,8 +98,8 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 .banpho-bt-c div:hover{margin-top: -100px;background: #fff;color:#000;}
 
 /**/
-.banner_footer{display:none;background: url('../images/banner_ft.png') repeat;height: 360px;}
-.banft_txt, #random-quotes{text-align: center;color:#fff;line-height: 30px;}
+.banner_footer{background: url('../images/banner_ft.png') repeat;height: 360px;}
+.banft_txt, #random-quotes{display:none;text-align: center;color:#fff;line-height: 30px;}
 .banft_txt p, #random-quotes p{text-align: center;font-size: 24px;font-style:italic;font-weight: bold;font-size: 30px;text-transform: uppercase;line-height:36px;}
 #random-quotes p {width: 90%;margin: 0 auto;}
 .banft_txt p {max-width: 1090px;margin: auto;}
