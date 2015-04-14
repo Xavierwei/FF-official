@@ -872,19 +872,31 @@ a[disabled="disabled"]:hover {color: #000000;}
     content: "";
 }
 
-.job_tit .f-c input[type="checkbox"]:checked + label:after  {
-    width: 7px;
-    height: 17px;
-    border-right: 4px solid #000;
-    border-bottom: 4px solid #000;
+/*对勾*/
+/*.job_tit .f-c input[type="checkbox"]:checked + label:after  {*/
+    /*width: 7px;*/
+    /*height: 17px;*/
+    /*border-right: 4px solid #000;*/
+    /*border-bottom: 4px solid #000;*/
+    /*display: inline-block;*/
+    /*transform: rotate(40deg);*/
+    /*-ms-transform: rotate(40deg);*/
+    /*-moz-transform: rotate(40deg);*/
+    /*-webkit-transform: rotate(40deg);*/
+    /*position: absolute;*/
+    /*left: 8px;*/
+    /*top: -7px;*/
+/*}*/
+
+/*方块*/
+.job_tit .f-c input[type="checkbox"]:checked + label:after {
+    width: 9px;
+    height: 9px;
     display: inline-block;
-    transform: rotate(40deg);
-    -ms-transform: rotate(40deg);
-    -moz-transform: rotate(40deg);
-    -webkit-transform: rotate(40deg);
     position: absolute;
-    left: 8px;
-    top: -7px;
+    left: 5px;
+    top: 5px;
+    background-color: #000;
 }
 
 .job_tit .f-c label > span {height:19px;line-height: 19px;}
