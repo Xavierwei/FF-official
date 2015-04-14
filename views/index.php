@@ -100,7 +100,16 @@
 					<?php _e('LOAD MORE'); ?><br/><br/><?php _e('LOAD MORE'); ?>
 				</div>
 			</a> -->
-		</div>		
+		</div>
+        <div class="home_jobs">
+            <h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEW JOBS'); ?></h2>
+            <div class="section sec_jobs">
+
+                <div class="jobslist column cs-clear">
+                </div>
+                <!--  -->
+            </div>
+        </div>
 		<!--  -->
 		<div class="home_bio">
 			<img class="home_bio_bg" src="/images/home_biobg.jpg">

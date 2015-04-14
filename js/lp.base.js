@@ -3056,6 +3056,76 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     homeAPICb(r);
                 });
 
+                api.request('about/jobs', function (r) {
+                    var paths = [];
+                    $.each(r.items || [], function (i, jobPath) {
+                        paths.push('about/jobs/' +  jobPath['path']);
+                    });
+
+                    api.request(paths, function (r) {
+                        var first = [],
+                            min, rnum = 3, items = [];
+                        r.items || (r.items = []);
+
+                        for (var i = 0; i < r.items.length; i++) {
+                            var timestamp = Date.parse(r.items[i]['updated']);
+                            if (min && timestamp > Date.parse(min['updated'])) {
+                                continue;
+                            }
+                            min = r.items[i];
+                            items.push(min);
+                            min = null;
+
+                            if (items.length > rnum - 1) {
+                                break;
+                            }
+                        }
+
+                        var tpl = '<div data-effect="fadeup" class="jobsitem intoview-effect" data-city="#[city]">\
+                            <h3>#[title]</h3>\
+                            <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
+                            <p class="jobs-con">#[show_content]</p>\
+                            <strong class="jobs_more transition-wrap" data-a="navitem" href="/jobs">\
+                                <div class="transition">MORE <br><br> MORE</div>\
+                            </strong>\
+                            <div class="pop_jobcon_inner" style="display:none;">\
+                                <div class="joblang"><a href="#" data-a="jobs-lang" data-lang="en"> EN </a> #[fr-lang] #[zho-lang] </div>\
+                                <div class="jobcontent content_en">\
+                                    <h3>#[title]</h3>\
+                                    <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
+                                    <div class="pop_jobtxt">#[show_content]</div>\
+                                </div>\
+                                <div class="jobcontent content_fr">\
+                                    <h3>#[title_fr]</h3>\
+                                    <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
+                                    <div class="pop_jobtxt">#[content_fr]</div>\
+                                </div>\
+                                <div class="jobcontent content_zho" style="display:none;">\
+                                    <h3>#[title_zho]</h3>\
+                                    <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
+                                    <div class="pop_jobtxt">#[content_zho]</div>\
+                                </div>\
+                            </div>\
+                        </div>';
+
+                        var aHtml = [];
+                        $.each(items, function (i, item) {
+                            item['fr-lang'] = item['content_fr'] ? '<a href="#" data-a="jobs-lang" data-lang="fr"> FR </a>' : '';
+                            item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中文 </a>' : '';
+                            item['url'] = encodeURIComponent( 'http://' + document.domain + '/jobs/' + item.id );
+                            item['share_content'] = encodeURIComponent( item.content );
+                            item['share_title'] = encodeURIComponent( item.title );
+                            item['show_content'] = item['content'];
+                            //item['show_content'] = lang == 'zho' ? item['content_zho'] : item['content'];
+                            //console.log( item );
+                            aHtml.push(LP.format(tpl, item));
+                        });
+
+                        $('.jobslist').html(aHtml.join(''));
+
+                    });
+                });
+
                 LP.action('homeSlideType', function (data) {
                     api.request('home', function (res) {
                         var items = [];
