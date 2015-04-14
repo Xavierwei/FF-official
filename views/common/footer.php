@@ -7,9 +7,9 @@
 	<div class="footer">
 
 		<div class="ft_con cs-clear desktop">
-			<div class="ft_mod ft_find">
+			<div style="display: none;" class="ft_mod ft_find">
 				<h3><?php _e('FOLLOW US');?></h3>
-				<div class="ft_mbd ft_findmbd cs-clear" id="share-wrap">
+				<div class="ft_mbd ft_findmbd cs-clear" >
 					<a href="#" class="find_item icon_fb"></a>
 					<a href="#" class="find_item icon_wb"></a>
 					<a href="#" class="find_item icon_tw"></a>
@@ -61,7 +61,7 @@
 		<div class="ft_con cs-clear mobile" style="display:none">
             <div class="ft_mod ft_find mobile">
                 <a href="javascript:;" data-a="share_pop_mobile"><?php _e('SHARE');?></a>
-                <div class="ft_mbd ft_findmbd cs-clear mobile" id="share-wrap">
+                <div class="ft_mbd ft_findmbd cs-clear mobile" role="share-wrap">
                     <a href="#" class="find_item icon_fb"></a>
                     <a href="#" class="find_item icon_wb"></a>
                     <a href="#" class="find_item icon_tw"></a>
@@ -116,6 +116,29 @@
             </div>
         </div>
 	</div>
+</div>
+
+<div class="footer s_footer" >
+    <div class="s_footerCon cs-clear" role="share-wrap">
+        <a class="find_item icon_fb" target="_blank">Facebook</a>
+
+        <a class="find_item icon_wb" target="_blank">Weibo</a>
+
+        <a class="find_item icon_tw" target="_blank">Twitter</a>
+
+        <a class="find_item icon_ch" target="_blank">Foursquare</a>
+
+        <a class="find_item icon_hb" target="_blank">Huaban</a>
+
+        <a class="find_item icon_yk" target="_blank">Youku</a>
+
+        <a class="find_item icon_yt" target="_blank" >YouTube</a>
+
+        <a class="find_item icon_lk" target="_blank" >LINKEDIN</a>
+
+        <a class="find_item icon_wx" data-a="icon-wx" target="_blank">Weixin</a>
+    </div>
+
 </div>
 
 <script type="text/tpl" id="video-pause-tpl"><div class="transition"><?php _e('PAUSE');?><br><br><?php _e('PAUSE');?></div></script>
