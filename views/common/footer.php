@@ -1,8 +1,8 @@
 
-
 <div class="banner_footer" style="display: none;">
 		<div class="banft_txt"></div>
 </div>
+
 <div class="s_links">
     <a href="#" class="s_links1"></a>
     <a href="http://bckstg.net/" class="s_links2"></a>
