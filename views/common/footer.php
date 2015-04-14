@@ -21,41 +21,14 @@
 					<a href="#" class="find_item icon_lk"></a>
 				</div>
 			</div>
-			<div class="ft_mod ft_paris">
-            	<h3><?php _e('PARIS');?></h3>
-            	<div class="ft_mbd">
-            	    <p class="ft-addr-p-1"><?php _e('PARIS_ADDR_L1');?></p>
-            	    <p class="ft-addr-p-2"><?php _e('PARIS_ADDR_L2');?></p>
-            	    <p class="ft-addr-p-3"><?php _e('PARIS_ADDR_L3');?></p>
-            	    <p class="ft-addr-p-4"><?php _e('PARIS_ADDR_L4');?></p>
-            	</div>
+            <div class="s_links">
+                <a href="#" class="s_links1"></a>
+                <a href="http://bckstg.net/" class="s_links2"></a>
+                <a href="http://www.ff9263.com/" class="s_links3"></a>
+                <a href="http://creativec.com.cn/" class="s_links4"></a>
+                <a href="http://www.fredfarid.com/#" class="s_links5"></a>
+                <a href="#" class="s_links6"></a>
             </div>
-            <div class="ft_mod ft_shanghai">
-            	<h3><?php _e('SHANGHAI');?></h3>
-            	<div class="ft_mbd">
-            		<p class="ft-addr-p-1"><?php _e('SHANGHAI_ADDR_L1');?></p>
-                    <p class="ft-addr-p-2"><?php _e('SHANGHAI_ADDR_L2');?></p>
-                    <p class="ft-addr-p-3"><?php _e('SHANGHAI_ADDR_L3');?></p>
-                    <p class="ft-addr-p-4"><?php _e('SHANGHAI_ADDR_L4');?></p>
-            	</div>
-            </div>
-            <div class="ft_mod ft_newyork">
-                <h3><?php _e('NEWYORK');?></h3>
-                <div class="ft_mbd">
-                    <p class="ft-addr-p-1"><?php _e('NEWYORK_ADDR_L1');?></p>
-                    <p class="ft-addr-p-2"><?php _e('NEWYORK_ADDR_L2');?></p>
-                    <p class="ft-addr-p-3"><?php _e('NEWYORK_ADDR_L3');?></p>
-                    <p class="ft-addr-p-4"><?php _e('NEWYORK_ADDR_L4');?></p>
-                </div>
-            </div>
-			<div class="ft_mod ft_network">
-				<h3><?php _e('OUR MEDIAS');?></h3>
-				<div class="ft_mbd ft_workmbd" id="icon-wrap">
-					<a href="#" class="work_item icon_bg"></a>
-					<a href="#" class="work_item icon_bk"></a>
-					<a href="#" class="work_item icon_cc"></a>
-				</div>
-			</div>
 		</div>
 
 		<div class="ft_con cs-clear mobile" style="display:none">

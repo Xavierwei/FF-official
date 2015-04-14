@@ -6566,6 +6566,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     }
                 });
             }
+            else {
+                //$('.jobslist > div');
+            }
         });
 
     });
