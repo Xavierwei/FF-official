@@ -3156,6 +3156,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             <div><img src="#[src]" /><div class="cover_cam_item transition"><p>#[label]</p></div></div>\
                         </div>';
                     var aHtml = [];
+                    console.log(r);
                     $.each(r.items || [], function (i, item) {
                         if( i > 5 ) return false;
                         var pic = campaignManager.getPath(item, 'preview');
