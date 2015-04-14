@@ -40,7 +40,7 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 .width-auto{width: auto !important;}
 /* FF Used
 ================================================================================================= */
-.page{background: white;position: relative;z-index: 2;margin-bottom: 550px;}
+.page{background: white;position: relative;z-index: 2;margin-bottom: 148px;}
 .header{height: 66px;position: relative;z-index: 40;width: 100%;}
 .header-inner{height: 66px;position: relative;z-index: 2; width: 100%;font-size: 14px;line-height: 60px;background: black;}
 .header-fixed .header-inner{position: fixed;top: 0;z-index: 100;}
