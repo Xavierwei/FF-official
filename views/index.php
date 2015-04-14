@@ -30,6 +30,7 @@
         <a href="javascript:;" data-a="homeSlideType" data-d="type=LUXURY REEL" class="last">luxe reel</a>
     </div>
 </div>
+<div class="slide-down-tip"> <a href="javascript:;" data-a="slide-alink"></a> </div>
 <div class="page" data-page="home-page">
 	<!-- section -->
 	<div class="section sec_home">

@@ -903,25 +903,15 @@ a[disabled="disabled"]:hover {color: #000000;}
 
 .job_tit .f-c label > span {height:19px;line-height: 19px;}
 
-
-.s_ad { position: relative; }
-.s_ad img { width: 100%; height: 100%; }
-.s_adTitle { width: 100%; height: 86px; line-height: 86px; 
-	position: absolute; top: 0; left: 0; background-color: #f0f0f0; font-size: 48px;
-	font-weight: bold; }
+.s_page { margin-bottom: 148px; }
 .s_fl { float: left; }
 .s_fr { float: right; }
-.s_adTitle span { margin-left: 248px; }
-.s_prev { display: inline-block; width: 20px; height: 12px; 
-	background: url("../images/img/s_arrorPrev.gif") no-repeat; margin-right: 81px; }
-.s_next { display: inline-block; width: 20px; height: 12px; 
-	background: url("../images/img/s_arrorNext.gif") no-repeat; }
 .s_btns { margin-right: 54px; }
 .s_bigTitle { font-size: 36px; font-weight: bold; width: 555px; height: 50px;
  line-height: 50px; margin: 88px auto 124px auto; }
-.s_business { width: 80%; margin: 0 auto 116px auto; }
-.s_business li { float: left; width: 32%; height: 377px; border: 1px solid #000; margin-bottom: 16px; }
-.s_mi { margin: 0 16px; }
+.s_business { width: 1050px; margin: 0 auto 116px auto; }
+.s_business li { float: left; width: 330px; height: 377px; border: 1px solid #000; 
+	margin: 0 8px 16px 8px; }
 .s_f14 { font-size: 14px; }
 .s_f24 { font-size: 24px; }
 .s_fb { font-weight: bold; }
@@ -929,12 +919,23 @@ a[disabled="disabled"]:hover {color: #000000;}
 .s_busH2 { margin: 16px 0 40px 45px; }
 .s_busP2 { margin: 0 40px 0 44px; line-height: 17px; }
 .s_opcityBox { width: 100%; height: 194px; color: #fff; text-align: center;
-   font-size: 30px; font-weight: bold; padding-top: 170px; background: url("../images/img/opcityBoxbg.gif") repeat; }
+   font-size: 30px; font-weight: bold; padding-top: 170px; 
+   background: url("../images/img/opcityBoxbg.gif") repeat; }
  .s_opcityBox b { font-size: 18px; font-weight: normal; }
- .s_links { width: 100%; padding-top: 80px; height: 151px; background-color: #222; text-align: center; }
- .s_links a { margin: 0 50px; }
- .s_footer { width: 100%; padding-top: 60px; height: 88px; background-color: #000; text-align: center; }
+ .s_links { width: 100%; height: 71px; background-color: #222; text-align: center; padding: 80px 0; }
+ .s_links a { display: inline-block; margin: 0 35px; opacity: 0.5; text-indent: -9999em; background: url("../images/img/bgSprite.png") no-repeat; }
+ .s_links a.s_links1 { width: 63px; height: 78px; background-position: 0 0; }
+ .s_links a.s_links2 { width: 112px; height: 78px; background-position: 0 -88px; }
+ .s_links a.s_links3 { width: 80px; height: 78px; background-position: 0 -176px; }
+
+ .s_links a.s_links4 { width: 70px; height: 78px; background-position: 0 -264px; }
+ .s_links a.s_links5 { width: 114px; height: 78px; background-position: 0 -352px; }
+ .s_links a.s_links6 { width: 78px; height: 78px; background-position: 0 -440px; }
+
+ .s_links a:hover { opacity: 1; }
+ .s_footer { width: 100%; height: 148px; background-color: #000; text-align: center; padding: 0; }
  .s_footer a { margin: 0 15px; }
+<<<<<<< Updated upstream
 
  .table {
      display: table;
@@ -955,3 +956,27 @@ a[disabled="disabled"]:hover {color: #000000;}
 .slide-tip a.cur {
     font-weight: bold;
 }
+
+.slide-down-tip {
+    height: 50px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 3;
+}
+
+.slide-down-tip a {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -15px;
+    background: url(../images/ah.png) repeat-y -23px 0px;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+=======
+ .s_footerCon { width: 750px; margin: 60px auto 0 auto; }
+
+
+>>>>>>> Stashed changes

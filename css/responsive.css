@@ -104,6 +104,8 @@
     .timeline_left {padding-right: 20px;}
 
 
+    .s_business { width: 700px; }
+    .s_links a { margin: 0 30px; }
 }
 @media only screen and (max-width:900px){
     .press_list {width: 780px;}
@@ -111,6 +113,7 @@
     .awardicons, .contact_item{width: 800px;}
     .contact_con{width: auto;}
     .awardicons img, .award-num{margin: 0px 50px 10px;}
+    
 }
 @media only screen and (max-width:810px){
     .home_viewtxt{width: 25%;margin: 0px 0px 0px 5%;}
@@ -122,6 +125,8 @@
     .about_txt p{font-size: 24px;}
     .awardicons, .contact_item{width: 600px;}
     .awardicons img, .award-num{margin: 0px 25px 10px;}
+
+    .s_links a { margin: 0 15px; }
 }
 
 @media only screen and (max-width:640px){
@@ -136,4 +141,5 @@
     .pop_jobcon{width: auto;height: 330px;}
     .pop_job_menus .popnext,.pop_job_menus .popnum,.pop_job_menus .popprev{display: none !important;}
     .pop_job_menus .popclose{right: 40px;width: 50px;height: 50px;background-size: 400%;}
+
 }
