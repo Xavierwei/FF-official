@@ -287,7 +287,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         // categories ===>
         var rules = [];
         rules.push({
-            url: /^(categories|brands|services)$/,
+            url: /^(categories|brands)$/,
             destory: function (cb) {
                 $('.gates-inner')
                     .stop(true,true)
@@ -3932,6 +3932,36 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         cb && cb();
                     });
                 });
+            },
+            'services-page': function (cb) {
+
+                var tpl = '';
+
+                api.request('services', function (r) {
+                    var htpl = '<p class="s_bigTitle">#[total] Services to serve you the best</p>';
+                    var stpl = '<li> \
+                        <p class="s_busP1 s_f14 s_fb">#[index]/#[total]</p> \
+                    <h2 class="s_busH2 s_f24 s_fb">#[title]</h2> \
+                    <p class="s_busP2 s_f14">#[content]</p> \
+                    </li>';
+
+                    var htmls = [],
+                        total = (r.items || []).length;
+                    $.each(r.items || [], function (i, service) {
+                        htmls.push(LP.format(stpl, {
+                            total: total,
+                            index: i,
+                            title: service['title'],
+                            content: service['content']
+                        }));
+                    });
+
+                    $('.banpho').after(LP.format(htpl, {total: total}));
+
+                    $('.s_business').append(htmls.join(''));
+                    cb && cb();
+                });
+
             },
             'people-page': function (cb) {
                 //var tpl = '<div class="people_item cs-clear intoview-effect #[class]" data-effect="fadeup" data-a="people_opt">\
