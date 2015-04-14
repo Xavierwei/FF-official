@@ -195,6 +195,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $('.loading-wrap').fadeOut()
             .find('.loading')
             .css('width', '100%');
+        $(".banner_footer").show();
     }
 
 
@@ -2515,6 +2516,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             hideLoading: function ($wrap) {
                 pro && pro.end();
                 $wrap.find('.loading-wrap').fadeOut();
+                $(".banner_footer").show();
             },
             show: function (bgcolor) {
 
