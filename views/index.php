@@ -25,11 +25,12 @@
 <div class="slide-tip">
     <a class="hideme" href="javascript:;" data-a="slide-alink"></a>
     <div class="slide-cat-nav">
-        <a href="javascript:;" data-a="homeSlideType" data-d="type=DIGITAL REEL" class="cur">Digital reel</a>
+        <a href="javascript:;" data-a="homeSlideType" data-d="type=DIGITAL REEL">Digital reel</a>
         <a href="javascript:;" data-a="homeSlideType" data-d="type=SPOTS REEL">spots reel</a>
         <a href="javascript:;" data-a="homeSlideType" data-d="type=LUXURY REEL" class="last">luxury reel</a>
     </div>
 </div>
+<div class="slide-down-tip"> <a href="javascript:;" data-a="slide-alink"></a> </div>
 <div class="page" data-page="home-page">
 	<!-- section -->
 	<div class="section sec_home">

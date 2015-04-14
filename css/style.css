@@ -955,3 +955,22 @@ a[disabled="disabled"]:hover {color: #000000;}
 .slide-tip a.cur {
     font-weight: bold;
 }
+
+.slide-down-tip {
+    height: 50px;
+    margin-top: -50px;
+    position: relative;
+    z-index: 3;
+}
+
+.slide-down-tip a {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -15px;
+    background: url(../images/ah.png) repeat-y -23px 0px;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
