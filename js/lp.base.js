@@ -4803,6 +4803,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     LP.action('navitem', function () {
         // load next page
         pageManager.go($(this).attr('href'));
+        console.log('href');
         return false;
     });
 

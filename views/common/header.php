@@ -175,7 +175,7 @@
 				   
 					<a class="navitem" data-a="show-category" data-d="type=categories" href="#"><?php _e('CATEGORIES');?></a>
 					<a class="navitem" data-a="show-category" data-d="type=brands" href="#"><?php _e('BRANDS');?></a>
-					<a class="navitem" data-a="show-category" data-d="type=services" href="#"><?php _e('SERVICES');?></a>
+					<a class="navitem" data-a="navitem"  href="/services"><?php _e('SERVICES');?></a>
 					<a class="navitem" data-a="navitem" href="/awards"><?php _e('AWARDS');?></a>
 					<a class="navitem" data-a="navitem" href="/press" data-last="interview"><?php _e('PRESS');?></a>
 					<a class="navitem" data-a="navitem" href="/bio" data-last="jobs" ><?php _e('ABOUT');?></a>

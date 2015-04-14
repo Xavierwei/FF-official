@@ -978,5 +978,8 @@ a[disabled="disabled"]:hover {color: #000000;}
 
  .s_footerCon { width: 750px; margin: 60px auto 0 auto; }
 
+.banpho,.section {
+    min-height:400px
+}
 
 
