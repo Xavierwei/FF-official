@@ -1,12 +1,22 @@
-	<div class="banner_footer">
+
+
+<div class="banner_footer">
 		<div class="banft_txt"></div>
-	</div>
+</div>
+<div class="s_links">
+    <a href="#" class="s_links1"></a>
+    <a href="http://bckstg.net/" class="s_links2"></a>
+    <a href="http://www.ff9263.com/" class="s_links3"></a>
+    <a href="http://creativec.com.cn/" class="s_links4"></a>
+    <a href="http://www.fredfarid.com/#" class="s_links5"></a>
+    <a href="#" class="s_links6"></a>
+</div>
 </div>
 </div>
 	<!-- footer -->
-	<div class="footer">
+	<div class="footer" style="display: none;">
 
-		<div class="ft_con cs-clear desktop">
+		<div class="ft_con cs-clear desktop" >
 			<div style="display: none;" class="ft_mod ft_find">
 				<h3><?php _e('FOLLOW US');?></h3>
 				<div class="ft_mbd ft_findmbd cs-clear" >
@@ -21,14 +31,6 @@
 					<a href="#" class="find_item icon_lk"></a>
 				</div>
 			</div>
-            <div class="s_links">
-                <a href="#" class="s_links1"></a>
-                <a href="http://bckstg.net/" class="s_links2"></a>
-                <a href="http://www.ff9263.com/" class="s_links3"></a>
-                <a href="http://creativec.com.cn/" class="s_links4"></a>
-                <a href="http://www.fredfarid.com/#" class="s_links5"></a>
-                <a href="#" class="s_links6"></a>
-            </div>
 		</div>
 
 		<div class="ft_con cs-clear mobile" style="display:none">
