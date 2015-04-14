@@ -74,8 +74,15 @@
 	    <div class="loading"></div>
 	</div>
 	<div class="page-mask">
+        <canvas style="display:none;" id="ff_loading_logo_canvas" width="48" height="48" style="background-color:black"></canvas>
         <div id="random-quotes">
-            <canvas style="display:none;" id="ff_loading_logo_canvas" width="48" height="48" style="background-color:black"></canvas>
+            <div class="table">
+                <div class="table-row">
+                    <div class="table-cell">
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 	<div class="fullcover-background pop">
