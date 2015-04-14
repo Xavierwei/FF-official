@@ -1,6 +1,6 @@
 
 
-<div class="banner_footer">
+<div class="banner_footer" style="display: none;">
 		<div class="banft_txt"></div>
 </div>
 <div class="s_links">
