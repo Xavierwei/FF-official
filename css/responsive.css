@@ -31,6 +31,7 @@
     .brands-con dd{left:300px;}
     .home_viewtxt {width: 26%;margin: 0 0 0 5%;}
     .contact_tit {width: 1000px;}
+    
 }
 
 
@@ -50,12 +51,20 @@
     .about_timeline {width: 1000px;}
     .timeline_left, .timeline_right, .timeline_pho a {width: 480px;}
     .about_txt {width: 1000px;}
+
+    .home_biotxt{width: auto;padding: 0 20px;}
+    .home_bioleft{width: 47%;margin-right: 6%;}
+    .home_bioright{width: 47%;}
 }
 
 @media only screen and (max-width:1090px) {
     .ft_con{width: auto;}
     .ft_mod{width: 19%;padding: 0 0.5%;}
     .contact_tit {width: 900px;}
+
+    .home_biotxt{width: auto;padding: 0 20px;}
+    .home_bioleft{width: 47%;margin-right: 6%;}
+    .home_bioright{width: 47%;}
 }
 @media only screen and (max-width:1000px){
 	.nav{padding-right:150px;}
