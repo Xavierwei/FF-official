@@ -1017,4 +1017,9 @@ a[disabled="disabled"]:hover {color: #000000;}
     min-height:400px
 }
 
-
+.job-warning{
+    text-align: center;
+    font-size: 24px;
+    margin-top: 70px;
+    text-transform: uppercase;
+}
