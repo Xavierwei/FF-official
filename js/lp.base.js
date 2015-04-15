@@ -4029,10 +4029,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     var htmls = [],
                         total = (r.items || []).length;
                     $.each(r.items || [], function (i, service) {
+                        /*temp modify，去除creative关键词*/
+                        var title=service['title'];
+                        if(title&&title.length>9){
+                            title=title.substring(9);
+                        }else{
+                            title='';
+                        }
                         htmls.push(LP.format(stpl, {
                             total: total,
                             index: i + 1,
-                            title: service['title'],
+                            title: title,
                             content: service['content']
                         }));
                     });
