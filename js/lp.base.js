@@ -3033,7 +3033,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }));
                     });
                     $('#home_twitter_wrap').html(aHtml.join(''));
-                    $('#home_twitter_follow').html(~~(r.user[0].followers_count / 1000) + 'k');
+                    $('#home_twitter_follow').html((r.user[0].followers_count / 1000) + 'k');
                 });
 
                 // render home page slider
@@ -5049,9 +5049,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 });
 
                 this.on('ended', function () {
-                    LP.triggerAction('home-slider-right',{callback:function(){
-                        LP.triggerAction('home-play-movie');
-                    }});
+                    //LP.triggerAction('home-slider-right',{callback:function(){
+                    //    LP.triggerAction('home-play-movie');
+                    //}});
+                    $('.video-wrap').remove();
+                    console.log('remove video');
                 });
 
                 // this.on('progress', function(){
