@@ -1,5 +1,5 @@
 
-<div class="banner_footer" style="display: none;">
+<div class="banner_footer">
 		<div class="banft_txt"></div>
 </div>
 
@@ -99,9 +99,9 @@
 
         <a class="find_item icon_tw" target="_blank">Twitter</a>
 
-        <a class="find_item icon_ch" target="_blank">Foursquare</a>
+        <a style="display: none;" class="find_item icon_ch" target="_blank">Foursquare</a>
 
-        <a class="find_item icon_hb" target="_blank">Huaban</a>
+        <a style="display: none;" class="find_item icon_hb" target="_blank">Huaban</a>
 
         <a class="find_item icon_yk" target="_blank">Youku</a>
 

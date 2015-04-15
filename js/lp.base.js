@@ -3162,7 +3162,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         </div>';
                     var aHtml = [];
                     $.each(r.items || [], function (i, item) {
-                        if( i > 5 ) return false;
+                        if( i > 8 ) return false;
                         var pic = campaignManager.getPath(item, 'preview');
                         var sp = item.fid_campaign.split('#');
                         aHtml.push(LP.format(tpl, {
@@ -4635,7 +4635,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     api.request('footer_icons', function (r) {
         var shareHtml = [];
         $.each(r.items, function (i, item) {
-            if (item.role == 'share') {
+            if (item.role == 'share' && ["icon_ch", "icon_hb"].indexOf(item.name) == -1) {
+                console.log(item);
                 shareHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="find_item #[name]">#[label]</a>', item))
             }
         });
