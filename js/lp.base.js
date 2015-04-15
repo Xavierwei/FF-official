@@ -4018,7 +4018,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
                 var tpl = '';
 
-                api.request('services', function (r) {
+                api.request('nav_services', function (r) {
                     var htpl = '<p class="s_bigTitle">#[total] Services to serve you the best</p>';
                     var stpl = '<li> \
                         <p class="s_busP1 s_f14 s_fb">#[index]/#[total]</p> \
@@ -4040,7 +4040,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             total: total,
                             index: i + 1,
                             title: title,
-                            content: service['content']
+                            content: service['description']
                         }));
                     });
 
