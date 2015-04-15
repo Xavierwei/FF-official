@@ -944,7 +944,7 @@ a[disabled="disabled"]:hover {color: #000000;}
  .s_links a:hover { opacity: 1; }
  .s_footer { width: 100%; height: 148px; background-color: #000; text-align: center; padding: 0; }
  .s_footer a { margin: 0 15px; }
- .s_footerCon { width: 750px; margin: 60px auto 0 auto; }
+ .s_footerCon { width: 580px; margin: 60px auto 0 auto; }
 
 .s_section { width: 1000px; margin: 0 auto; font-size: 16px; line-height: 22px; }
  .s_about_txt { text-transform: lowercase; text-align: left; }
