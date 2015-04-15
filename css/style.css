@@ -1014,12 +1014,13 @@ a[disabled="disabled"]:hover {color: #000000;}
 
 
 .banpho,.section {
-    min-height:400px
+    min-height:150px;
 }
 
 .job-warning{
     text-align: center;
-    font-size: 24px;
+    font-size: 14px;
     margin-top: 70px;
     text-transform: uppercase;
+    color:#666;
 }
