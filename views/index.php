@@ -102,7 +102,7 @@
 			</a> -->
 		</div>
         <div class="home_jobs">
-            <h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEW JOBS'); ?></h2>
+            <h2 class="intoview-effect" style="margin-top: 0;" data-effect="fadeup"><?php _e('NEW JOBS'); ?></h2>
             <div class="section sec_jobs">
 
                 <div class="jobslist column cs-clear">
