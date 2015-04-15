@@ -7,7 +7,7 @@
     <a href="http://bckstg.net/" target="_blank" class="s_links2"></a>
     <a href="http://www.ff9263.com/" target="_blank" class="s_links3"></a>
     <a href="http://creativec.com.cn/" target="_blank" class="s_links4"></a>
-    <a href="http://www.fredfarid.com/#" target="_blank" class="s_links5"></a>
+    <a href="http://fredinchina.com/" target="_blank" class="s_links5"></a>
 </div>
 </div>
 </div>
