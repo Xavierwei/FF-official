@@ -4,12 +4,10 @@
 </div>
 
 <div class="s_links">
-    <a href="#" class="s_links1"></a>
-    <a href="http://bckstg.net/" class="s_links2"></a>
-    <a href="http://www.ff9263.com/" class="s_links3"></a>
-    <a href="http://creativec.com.cn/" class="s_links4"></a>
-    <a href="http://www.fredfarid.com/#" class="s_links5"></a>
-    <a href="#" class="s_links6"></a>
+    <a href="http://bckstg.net/" target="_blank" class="s_links2"></a>
+    <a href="http://www.ff9263.com/" target="_blank" class="s_links3"></a>
+    <a href="http://creativec.com.cn/" target="_blank" class="s_links4"></a>
+    <a href="http://www.fredfarid.com/#" target="_blank" class="s_links5"></a>
 </div>
 </div>
 </div>

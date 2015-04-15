@@ -3084,7 +3084,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             <h3>#[title]</h3>\
                             <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
                             <p class="jobs-con">#[show_content]</p>\
-                            <strong class="jobs_more transition-wrap" data-a="navitem" href="/jobs">\
+                            <strong class="jobs_more transition-wrap"  data-a="navitem" href="/jobs/#[id]">\
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
                             <div class="pop_jobcon_inner" style="display:none;">\
@@ -3104,6 +3104,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                     <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
                                     <div class="pop_jobtxt">#[content_zho]</div>\
                                 </div>\
+                            </div>\
+                            <div class="sharecon" style="display:none;">\
+                              <a target="_blank" href="http://service.weibo.com/share/share.php?title=#[share_content]&url=#[url]" class="jobshareitem jobshare_weibo"></a>\
+                              <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[url]&t=#[share_title]" class="jobshareitem jobshare_fb"></a>\
+                              <a target="_blank" href="https://twitter.com/intent/tweet?url=#[url]&text=#[share_content]" class="jobshareitem jobshare_t"></a>\
+                              <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=#[url]&title=#[share_title]&source=#[url]" class="jobshareitem jobshare_lin"></a>\
                             </div>\
                         </div>';
 
@@ -3150,12 +3156,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // 未完成:图片的依次淡入效果,loadMore按钮的边界判断,点击div.cam_item后的跳转
                 // issues: 第一张图片不对,原因是代码中Ajax返回的JSON对象与直接取get返回的JSON内容不一致
                 //
-                api.request('featured_campaigns', function (r) {
+                api.request('new_uploads', function (r) {
                     var tpl = '<div class="cam_item" data-d="path=#[path]&id=#[id]" data-a="home-cam-item">\
                             <div><img src="#[src]" /><div class="cover_cam_item transition"><p>#[label]</p></div></div>\
                         </div>';
                     var aHtml = [];
-                    console.log(r);
                     $.each(r.items || [], function (i, item) {
                         if( i > 5 ) return false;
                         var pic = campaignManager.getPath(item, 'preview');
