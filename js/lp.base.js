@@ -6544,6 +6544,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             target.parent().siblings('li').find('input[type="checkbox"]:checked + label').click();
         }
 
+        function showWarning() {
+            var warning = "<p class='job-warning' style='opacity:0;'>No positions available at this time</p>";
+            $('.job-warning').size() || ($('.sec_jobs').append(warning), $('.job-warning').animate({opacity:1}));
+        }
+
+        function hideWarning() {
+            $('.job-warning').fadeOut(function () {
+                $('.job-warning').remove();
+            });
+        }
+
         setTimeout(function () {
             if ((input = $('.f-c').find('input[type="checkbox"]:checked')).size()) {
                 var el = $('.jobslist > div');
@@ -6551,23 +6562,36 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $('.jobslist > div').css({'margin-top':0, 'opacity': 1});
                     el.data('fadeUp', true);
                 }
+                var jobCounter = 0;
                 el.each(function () {
                     if ($(this).data('city') != input.data('city')) {
-                        $(this).stop().animate({
+                        $(this).stop(true, true).animate({
                             'margin-top': 50,
                             'opacity': 0
                         }).hide();
                     }
                     else {
-                        $(this).stop().show().animate({
+                        hideWarning();
+                        $(this).stop(true, true).show().css({'opacity': 0, 'margin-top': 50}).animate({
                             'margin-top': 0,
                             'opacity': 1
                         });
+                        jobCounter += 1;
                     }
                 });
+
+                if (jobCounter <= 0) {
+                    showWarning();
+                }
             }
             else {
-                //$('.jobslist > div');
+                hideWarning();
+                $('.jobslist > div').each(function () {
+                    $(this).stop(true, true).show().animate({
+                        'margin-top': 0,
+                        'opacity': 1
+                    });
+                });
             }
         });
 
