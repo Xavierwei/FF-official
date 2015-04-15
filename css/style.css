@@ -130,10 +130,6 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 .icon_tw{background-position:  -53px 0px;}
 .icon_ch{background-position:  6px -56px;}
 .icon_hb{background-position:  4px -112px;}
-.s_footer a.icon_yk{margin-top: -3px; background-position:  -115px -112px;}
-.s_footer a.icon_yt{margin-top: -5px; background-position:  -57px -109px;}
-.s_footer a.icon_wx{margin-top: -5px; background-position:  4px 6px;}
-.s_footer a.icon_lk{margin-top: -5px; background-position:  -53px -52px;}
 .find_wx{background-position:  0px -120px;}
 .ft_workmbd{width: 250px;height: 200px;padding-top:35px;}
 .work_item{float: left;background: url('../images/ft_network.png') no-repeat 0 0;width: 125px;height: 100px;opacity: 0.5;}
@@ -963,6 +959,10 @@ a[disabled="disabled"]:hover {color: #000000;}
  .s_emptyDiv1 { height: 830px; }
  .s_emptyDiv2 { height: 580px; }
  .s_emptyDiv3 { height: 150px; }
+ .s_footer a.icon_yk{margin-top: -3px; background-position:  -115px -112px;}
+.s_footer a.icon_yt{margin-top: -5px; background-position:  -57px -109px;}
+.s_footer a.icon_wx{margin-top: -5px; background-position:  4px 6px;}
+.s_footer a.icon_lk{margin-top: -5px; background-position:  -53px -52px;}
 
 
 
