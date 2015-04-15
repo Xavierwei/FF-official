@@ -921,6 +921,9 @@ a[disabled="disabled"]:hover {color: #000000;}
 .s_business { width: 1050px; margin: 0 auto 116px auto; }
 .s_business li { float: left; width: 330px; height: 377px; border: 1px solid #000; 
 	margin: 0 8px 16px 8px; }
+.s_business li h2 {
+    text-transform: uppercase;
+}
 .s_f14 { font-size: 14px; }
 .s_f24 { font-size: 24px; }
 .s_fb { font-weight: bold; }
@@ -960,12 +963,6 @@ a[disabled="disabled"]:hover {color: #000000;}
  .s_emptyDiv1 { height: 830px; }
  .s_emptyDiv2 { height: 580px; }
  .s_emptyDiv3 { height: 210px; }
-
-
-
-
-
-
 
 
 
