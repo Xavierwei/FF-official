@@ -103,13 +103,13 @@
 
         <a style="display: none;" class="find_item icon_hb" target="_blank">Huaban</a>
 
-        <a class="find_item icon_yk" target="_blank" style="margin-top: -2px;">Youku</a>
+        <a class="find_item icon_yk" target="_blank" style="margin-top: -3px;">Youku</a>
 
-        <a class="find_item icon_yt" target="_blank" style="margin-top: -2px;">YouTube</a>
+        <a class="find_item icon_yt" target="_blank" style="margin-top: -5px;">YouTube</a>
 
-        <a class="find_item icon_lk" target="_blank" style="margin-top: -2px;">LINKEDIN</a>
+        <a class="find_item icon_lk" target="_blank" style="margin-top: -5px;">LINKEDIN</a>
 
-        <a class="find_item icon_wx" data-a="icon-wx" target="_blank" style="margin-top: -2px;">Weixin</a>
+        <a class="find_item icon_wx" data-a="icon-wx" target="_blank" style="margin-top: -5px;">Weixin</a>
     </div>
 
 </div>
