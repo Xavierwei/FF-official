@@ -2839,6 +2839,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             // ============================
             var firstLoaded = false;
             var $sliderInner = $('.slider-block-inner').css('width', $('.slider-item').length + '00%');
+            $sliderInner.data('index', 0);
             $sliderInner.data('cb', cb);
 
             $('.banpho-con p').html( $slider.find('.slider-item').eq(0).attr('title') );
@@ -3038,7 +3039,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // render home page slider
                 function homeAPICb (r) {
                     var aHtml = [];
-                    $.each(r.items || [], function (i, item) {
+                        items = (r.items || [] ).slice();
+
+                    $.each(items || [], function (i, item) {
                         aHtml.push(LP.format('<div class="slider-item" title="#[title]" data-movie="#[video]"><img src="#[image]" /></div>', {
                             image: campaignManager.getPath(item, 'picture'),
                             video: campaignManager.getPath(item, 'video'),//i == 0 ? '/test.mp4' : '/test1.mp4', //
@@ -3139,6 +3142,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                items.push(res['items'][index]);
                            }
                         });
+                        $("#slider-block-inner").css('margin-left', '0%');
+                        $('a[data-a="home-slider-right"]').css('display', 'block');
 
                         //var el = $(event.target);
                         //var start =el.data('start') ? el.data('start') : (el.data('start', Math.round(Math.random() * 10)), el.data('start'));
@@ -4636,7 +4641,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var shareHtml = [];
         $.each(r.items, function (i, item) {
             if (item.role == 'share' && ["icon_ch", "icon_hb"].indexOf(item.name) == -1) {
-                console.log(item);
                 shareHtml.push(LP.format('<a role="#[role]" href="#[link]" target="#[link_target]" class="find_item #[name]">#[label]</a>', item))
             }
         });
