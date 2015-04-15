@@ -4591,7 +4591,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                        marginLeft: -index * 100 + '%'
                                     }).fadeIn();
                                });
-                            }, 5000);
+                            }, 3000);
                         }
                     });
                 });
