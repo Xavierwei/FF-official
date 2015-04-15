@@ -962,7 +962,7 @@ a[disabled="disabled"]:hover {color: #000000;}
  .s_mb50 { margin-bottom: 50px; }
  .s_emptyDiv1 { height: 830px; }
  .s_emptyDiv2 { height: 580px; }
- .s_emptyDiv3 { height: 210px; }
+ .s_emptyDiv3 { height: 150px; }
 
 
 
@@ -1020,4 +1020,8 @@ a[disabled="disabled"]:hover {color: #000000;}
     margin-top: 70px;
     text-transform: uppercase;
     color:#666;
+}
+
+.s_newFontLeft p{
+    margin-bottom: 15px;
 }
