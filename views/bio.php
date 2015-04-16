@@ -347,7 +347,7 @@
         </div>
         <!--  -->
 
-
+        <script src="../js/jquery/jquery-1.8.3.min.js"></script>
         <script>
             $(function (){
                 LP.action(
