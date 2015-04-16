@@ -4526,7 +4526,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         case '3':
                             if( $('.banner_footer').length && !$('.banft_txt div').length ){
                                 var quoteHtmls = [];
-                                var tpl = '<div><p>#[text]</p><span>#[author]</span></div>';
+                                var tpl = '<div><div class="table"><div class="tablecell"><p>#[text]</p><span>#[author]</span></div></div></div>';
                                 for( var i = 1; item['text_' + i] !== undefined ; i++ ){
                                     item['text_' + i] = item['text_' + i].replace('\\u201d','”').replace('\\u201c','“');
                                     //console.log( item['text_' + i] );
