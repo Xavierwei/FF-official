@@ -18,7 +18,7 @@
                 <br />
                 that has succeeded brilliantly.
                 <br />
-                <span class="s_upp">B</span>ut we need 10 or 20 <span class="s_upp">F</span>red &amp; <span class="s_upp">F</span>arids."
+                <span class="s_upp">B</span>ut we need 10 or 20 <span class="s_upp">F</span>red &amp; <span class="s_upp">F</span>arid."
             </p>
             <span>Sir John Hegarty, Les Echos, (October 2012)</span>
         </div>
