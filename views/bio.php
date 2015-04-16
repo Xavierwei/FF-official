@@ -6,13 +6,7 @@
 	$pagetit = _e('FF BIO',false);
 	include_once 'common/pagetit.php';?>
 
-<script>
-    $(function (){
 
-        $(this).siblings('.banpho-bt-r').hide();
-
-    });
-</script>
 	<!-- section -->
     <div class="section sec_about s_section">
         <!--  -->
@@ -352,5 +346,14 @@
 
         </div>
         <!--  -->
+
+
+        <script>
+            $(function (){
+                LP.action(
+                    $(this).siblings('.banpho-bt-r').hide();
+                );
+            });
+        </script>
     </div>
 <?php include_once 'common/footer.php';?>
