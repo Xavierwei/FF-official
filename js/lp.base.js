@@ -6629,6 +6629,7 @@ $(function(){
         if(window.location.href.indexOf('bio')>0){
             $('.banpho-bt a').hide();
             $('.banpho-i').hide();
+            $('.showreel-tit').hide();
         }
     }
     bio_hide();
