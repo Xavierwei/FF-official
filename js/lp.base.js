@@ -753,6 +753,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             tarPath = LP.getCookie('prev');
                         } else if (LP.getCookie('level2')) {
                             tarPath = LP.getCookie('level2');
+                            // 判断terPath 是否正确
+                            if (tarPath.indexOf(paths[0]) == -1) {
+                                tarPath = paths[0] + '/' + paths[1];
+                            }
                         } else {
                             tarPath = paths[0] + '/' + paths[1];
                         }
