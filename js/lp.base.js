@@ -6619,3 +6619,17 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     });
 
 });
+
+$(function(){
+    function bio_hide(){
+        if(window.location.href.indexOf('bio')>0){
+            $('.banpho-bt a').hide();
+            $('.banpho-i').hide();
+        }
+    }
+    bio_hide();
+
+    $('.nav a').click(function(){
+        bio_hide();
+    });
+})
