@@ -925,7 +925,7 @@ a[disabled="disabled"]:hover {color: #000000;}
 .s_fb { font-weight: bold; }
 .s_busP1 { margin-top: 46px; margin-left: 21px; }
 .s_busH2 { margin: 16px 0 40px 20px; }
-.s_busP2 { margin: 0 40px 0 20px; line-height: 17px; }
+.s_busP2 { margin: 0 40px 0 20px; line-height: 17px;  color: #666; }
 .s_opcityBox { width: 100%; height: 194px; color: #fff; text-align: center;
    font-size: 30px; font-weight: bold; padding-top: 170px; 
    background: url("../images/img/opcityBoxbg.gif") repeat; }
