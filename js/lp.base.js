@@ -4931,7 +4931,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         $inner.data('index', index - 1);
         $inner.data('cb') && $inner.data('cb')(index - 1);
 
-        if (index == 1) {
+        if (index == 1 ) {
             $(this).hide();
         }
 

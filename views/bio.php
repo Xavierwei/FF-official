@@ -139,7 +139,7 @@
                 </div>
 
                 <div data-effect="fadeup" class="timeline_year s_timeline_year">
-                    <span class="intoview-effect" data-effect="number-rock">2008</span>
+                    <span class="intoview-effect" data-effect="number-rock">2009</span>
                 </div>
 
                 <div class="intoview-effect" data-effect="fadeup">
@@ -346,5 +346,6 @@
 
         </div>
         <!--  -->
+
     </div>
 <?php include_once 'common/footer.php';?>
