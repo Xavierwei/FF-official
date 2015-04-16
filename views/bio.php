@@ -347,13 +347,5 @@
         </div>
         <!--  -->
 
-        <script src="../js/jquery/jquery-1.8.3.min.js"></script>
-        <script>
-            $(function (){
-                LP.action(
-                    $(this).siblings('.banpho-bt-r').hide();
-                );
-            });
-        </script>
     </div>
 <?php include_once 'common/footer.php';?>
