@@ -3091,7 +3091,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             <h3>#[title]</h3>\
                             <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
                             <p class="jobs-con">#[show_content]</p>\
-                            <strong class="jobs_more transition-wrap"  data-a="navitem" href="/jobs/#[id]">\
+                            <strong class="jobs_more transition-wrap"  data-a="navitem" href="/jobs/#[id]/#[city]">\
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
                             <div class="pop_jobcon_inner" style="display:none;">\
@@ -3770,7 +3770,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             <h3>#[title]</h3>\
                             <h4>#[agency]<br>#[city]<br>#[contract]</h4>\
                             <p class="jobs-con">#[show_content]</p>\
-                            <strong class="jobs_more transition-wrap"  data-a="jobs-more" data-path="/jobs/#[id]" data-d="contact=#[contact]">\
+                            <strong class="jobs_more transition-wrap"  data-a="jobs-more" data-path="/jobs/#[id]/#[city]" data-d="contact=#[contact]">\
                                 <div class="transition">MORE <br><br> MORE</div>\
                             </strong>\
                             <div class="pop_jobcon_inner" style="display:none;">\
@@ -3834,7 +3834,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             });
                         });
 
-                        var match = location.href.match(/(\/jobs\/\d+)/)
+                        var match = location.href.match(/(\/jobs\/\d+\/\w+)/);
                         if( match ){
                             $('.jobs_more[data-path="' + match[1] + '"]').click();
                         }
