@@ -912,7 +912,7 @@ a[disabled="disabled"]:hover {color: #000000;}
 .s_fl { float: left; }
 .s_fr { float: right; }
 .s_btns { margin-right: 54px; }
-.s_bigTitle { font-size: 36px; font-weight: bold; width: 555px; height: 50px;
+.s_bigTitle { font-size: 36px; font-weight: bold; text-transform: uppercase; width: 690px; height: 50px;
  line-height: 50px; margin: 88px auto 124px auto; }
 .s_business { width: 1050px; margin: 0 auto 116px auto; }
 .s_business li { float: left; width: 330px; height: 377px; border: 1px solid #000; 
