@@ -4935,18 +4935,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $(this).hide();
         }
 
-
-
         $('.banpho-con p').html( $inner.children().eq( index - 1 ).attr('title') );
 
         $(this).siblings('.banpho-bt-r').show();
         $(this).siblings('.banpho-bt-c').html($('.banpho-bt-c').html());
-
-
-        if(window.location.href.indexOf("bio")){
-            $(this).siblings('.banpho-bt-r').hide();
-        }
-        
 
         $('.banpho-i').html(index + '/' + len);
 		if($('body').hasClass('lang-zho')) {
