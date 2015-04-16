@@ -4575,6 +4575,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 
 
                                 window.quote_timer_index = 0 ;
+                                if (window.quote_switch_timer) {
+                                    clearInterval(window.quote_timer);
+                                }
                                 window.quote_timer = setInterval(function(){
                                     if( !$('.page-mask').hasClass('lighter') ) return;
                                     quote_timer_index++;
@@ -4592,8 +4595,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             }
                             // interview to scroll
                             var index = 0 ;
-
-                            setInterval(function(){
+                            if (window.quote_switch_timer) {
+                                clearInterval(window.quote_switch_timer);
+                            }
+                            window.quote_switch_timer = setInterval(function(){
                                index++;
                                index = index % $('.banner_footer .banft_txt').children().length;
                                $('.banner_footer .banft_txt').fadeOut(function(){
