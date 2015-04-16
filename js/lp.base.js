@@ -4588,13 +4588,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                                 })
                                                 .fadeIn(500);
                                         });
-                                }, 5000);
+                                }, 3000);
                             }
                             // interview to scroll
                             var index = 0 ;
-                            var timer;
-                            timer&&clearInterval(timer);
-                            timer=setInterval(function(){
+
+                            setInterval(function(){
                                index++;
                                index = index % $('.banner_footer .banft_txt').children().length;
                                $('.banner_footer .banft_txt').fadeOut(function(){
