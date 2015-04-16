@@ -4583,7 +4583,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             }
                             // interview to scroll
                             var index = 0 ;
-                            setInterval(function(){
+                            var timer;
+                            timer&&clearInterval(timer);
+                            timer=setInterval(function(){
                                index++;
                                index = index % $('.banner_footer .banft_txt').children().length;
                                $('.banner_footer .banft_txt').fadeOut(function(){
