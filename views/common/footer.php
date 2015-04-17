@@ -93,25 +93,13 @@
 
 <div class="footer s_footer" >
     <div class="s_footerCon cs-clear" role="share-wrap">
-
-        <a class="find_item icon_wx" data-a="icon-wx" target="_blank">Weixin</a>
-
-        <a class="find_item icon_wb" target="_blank">Weibo</a>
-
-        <a class="find_item icon_tw" target="_blank">Twitter</a>
-
-        <a class="find_item icon_fb" target="_blank">Facebook</a>
-
-        <a class="find_item icon_lk" target="_blank">LINKEDIN</a>
-
-        <a class="find_item icon_yk" target="_blank">Youku</a>
-
-        <a class="find_item icon_yt" target="_blank">YouTube</a>
-
-        <a style="display: none;" class="find_item icon_ch" target="_blank">Foursquare</a>
-
-        <a style="display: none;" class="find_item icon_hb" target="_blank">Huaban</a>
-
+        <a role="share" href="http://www.facebook.com/fredfarid" target="_blank" class="find_item icon_fb">Facebook</a>
+        <a role="share" href="http://weibo.com/fredfaridgroup" target="_blank" class="find_item icon_wb">Weibo</a>
+        <a role="share" href="http://twitter.com/#!/fredfaridgroup" target="_blank" class="find_item icon_tw">Twitter</a>
+        <a role="share" href="http://i.youku.com/u/id_UMzg4ODI4OTI0" target="_blank" class="find_item icon_yk">Youku</a>
+        <a role="share" href="http://www.youtube.com/user/FredFaridGroup" target="_blank" class="find_item icon_yt">YouTube</a>
+        <a role="share" href="https://www.linkedin.com/company/864886?trk=tyah&amp;trkInfo=idx%3A2-3-8%2CtarId%3A1423748728705%2Ctas%3Afred" target="_blank" class="find_item icon_lk">LINKEDIN</a>
+        <a role="share" href="#" target="_blank" data-a="icon-wx" class="find_item icon_wx">Weixin</a>
     </div>
 
 </div>

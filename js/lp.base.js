@@ -3037,7 +3037,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }));
                     });
                     $('#home_twitter_wrap').html(aHtml.join(''));
-                    $('#home_twitter_follow').html((r.user[0].followers_count / 1000) + 'k');
+                    if (typeof r.user[0].followers_count != 'undefined') {
+                        $('#home_twitter_follow').html((r.user[0].followers_count / 1000) + 'k');
+                    }
                 });
 
                 // render home page slider
@@ -4670,7 +4672,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         //Place holders
         shareHtml.push('<a role="share" href="#" target="_blank" data-a="icon-wx" class="find_item icon_wx">Weixin</a>');
         //shareHtml.push('<a role="share" href="#" target="_blank" class="find_item icon_lk">Linkedin</a>');
-        $('div[role="share-wrap"]').html(shareHtml.join(''));
+        //$('div[role="share-wrap"]').html(shareHtml.join(''));
 
         // render websites
         var linkHtml = [];
@@ -6209,7 +6211,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             .promise()
             .then(function () {
                 $inner.remove();
-                
+
                 // 初始化 jScrollPane
                 $newInner.bind('jsp-initialised',function () {
                     $('.pop_jobs').find('> .jspVerticalBar').remove()
