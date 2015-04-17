@@ -93,23 +93,25 @@
 
 <div class="footer s_footer" >
     <div class="s_footerCon cs-clear" role="share-wrap">
-        <a class="find_item icon_fb" target="_blank">Facebook</a>
+
+        <a class="find_item icon_wx" data-a="icon-wx" target="_blank">Weixin</a>
 
         <a class="find_item icon_wb" target="_blank">Weibo</a>
 
         <a class="find_item icon_tw" target="_blank">Twitter</a>
 
+        <a class="find_item icon_fb" target="_blank">Facebook</a>
+
+        <a class="find_item icon_lk" target="_blank">LINKEDIN</a>
+
+        <a class="find_item icon_yk" target="_blank">Youku</a>
+
+        <a class="find_item icon_yt" target="_blank">YouTube</a>
+
         <a style="display: none;" class="find_item icon_ch" target="_blank">Foursquare</a>
 
         <a style="display: none;" class="find_item icon_hb" target="_blank">Huaban</a>
 
-        <a class="find_item icon_yk" target="_blank" style="margin-top: -3px;">Youku</a>
-
-        <a class="find_item icon_yt" target="_blank" style="margin-top: -5px;">YouTube</a>
-
-        <a class="find_item icon_lk" target="_blank" style="margin-top: -5px;">LINKEDIN</a>
-
-        <a class="find_item icon_wx" data-a="icon-wx" target="_blank" style="margin-top: -5px;">Weixin</a>
     </div>
 
 </div>

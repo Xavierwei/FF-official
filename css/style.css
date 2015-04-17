@@ -80,9 +80,9 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 
 .pagetit{background: #f0f0f0;height: 85px;line-height: 85px;position: relative;z-index: 102;}
 .pagetit h1{color:#000;font-size: 48px;line-height: 90px;}
-.pagetitarr{position: absolute;width: 24px;height: 16px;background: url('../images/pagetitarr.png') no-repeat 0 0;right: 150px;top:40px;}
-.pagetitarr:hover{background-position: 0 -44px;}
-.pagetitarrbottom{background-position: right -44px;right:55px;}
+.pagetitarr{position: absolute;width: 15px;height: 22px;background: url('../images/pagetitarr.png') no-repeat 0 0;right: 150px;top:40px;}
+.pagetitarr:hover{background-position: 0 -40px;}
+.pagetitarrbottom{background-position: right -40px;right:55px;}
 .pagetitarrbottom:hover{background-position: right top;}
 .pageback{position: absolute;left: 0;height: 100%;width: 80px;top: 0;background: url(../images/back.png) no-repeat 30px center;}
 .pageback:hover{background-position: -55px center; }
@@ -914,17 +914,16 @@ a[disabled="disabled"]:hover {color: #000000;}
 .s_bigTitle { font-size: 36px; font-weight: bold; text-transform: uppercase; width: 690px; height: 50px;
  line-height: 50px; margin: 88px auto 124px auto; }
 .s_business { width: 1050px; margin: 0 auto 116px auto; }
-.s_business li { float: left; width: 330px; height: 377px; border: 1px solid #000; 
-	margin: 0 8px 16px 8px; }
+.s_business li { float: left; width: 290px; height: 337px; border: 1px solid #000;
+	margin: 0 8px 16px 8px; padding: 20px; }
 .s_business li h2 {
     text-transform: uppercase;
 }
 .s_f14 { font-size: 14px; }
 .s_f24 { font-size: 24px; }
 .s_fb { font-weight: bold; }
-.s_busP1 { margin-top: 46px; margin-left: 21px; }
-.s_busH2 { margin: 16px 0 40px 20px; }
-.s_busP2 { margin: 0 40px 0 20px; line-height: 17px;  color: #666; }
+.s_busH2 { margin: 16px 0 40px 0; }
+.s_busP2 { line-height: 17px;  color: #666; }
 .s_opcityBox { width: 100%; height: 194px; color: #fff; text-align: center;
    font-size: 30px; font-weight: bold; padding-top: 170px; 
    background: url("../images/img/opcityBoxbg.gif") repeat; }
