@@ -12,7 +12,7 @@ $url = 'http://preprod.fredfarid.com/data/' . $lang . '/' . $_POST['contentPaths
 $key = md5( $url . json_encode( $_POST ) );
 // check file
 $file = __DIR__ . '/../api_cache/' . $key;
-// if( !file_exists($file) || !file_get_contents( $file ) ){
+ if( !file_exists($file) || !file_get_contents( $file ) ){
 	$ch = curl_init($url);
 	curl_setopt( $ch, CURLOPT_HEADER, 0 );
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
@@ -21,7 +21,7 @@ $file = __DIR__ . '/../api_cache/' . $key;
 	$contents = curl_exec( $ch );
 	curl_close( $ch );
 	file_put_contents( $file , $contents);
-// }
+}
 
 $res = file_get_contents( $file );
 //if ($_POST['contentPaths'] == 'home' && !empty($_POST['type'])) {

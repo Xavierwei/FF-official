@@ -3937,6 +3937,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $('.banpho-bt a').css('visibility','hidden');
                         $('.banpho-i').css('visibility','hidden');
                         $('.showreel-tit').css('visibility','hidden');
+                        $('.banpho-bt-c .transition').html('showreel');
 
                         $(window).resize(function () {
                             $('#slider-block-inner, .home-slider').css('height', ($(window).height() - $('.header').height() - $('.pagetit').height()) + 'px');
@@ -4591,7 +4592,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                                 })
                                                 .fadeIn(500);
                                         });
-                                }, 3000);
+                                }, 4000);
                             }
                             // interview to scroll
                             var index = 0 ;
@@ -4606,7 +4607,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                        marginLeft: -index * 100 + '%'
                                     }).fadeIn();
                                });
-                            }, 3000);
+                            }, 4000);
                         }
                     });
                 });
