@@ -6135,7 +6135,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     top: '-150%',
                     opacity: 1
                 });
-
+            $('.pop_jobs').find('.jspVerticalBar').remove();
             $('.pop_jobs').find('.pop_jobcon_inner').bind('jsp-initialised', function (event, isScrollable) {
                 $$self = $(this);
                 $$self.parents('.pop_jobs').prepend($$self.find('.jspVerticalBar'));
