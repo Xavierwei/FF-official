@@ -6115,58 +6115,68 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             });
         });
 
+        var $self = $(this);
+        LP.use(['jscrollpane', 'mousewheel'], function () {
+            var $item = $self.closest('.jobsitem');
+            job_index = $item.index() + 1;
+            $('.shade').fadeIn();
+            $('.pop_jobs').show()
+                .find('.pop_jobcon')
+                .html('')
+                .append($item.find('.pop_jobcon_inner').clone().show())
 
-        var $item = $(this).closest('.jobsitem');
-        job_index = $item.index() + 1;
-        $('.shade').fadeIn();
-        $('.pop_jobs').show()
-            .find('.pop_jobcon')
-            .html('')
-            .append($item.find('.pop_jobcon_inner').clone().show())
+                .end()
+                .css({
+                    top: '-150%',
+                    opacity: 1
+                });
 
-            .end()
-            .css({
-                top: '-150%',
-                opacity: 1
-            })
-            .animate({
-                top: '50%'
-            }, 400)
-            .promise()
-            .then(function () {
-                $('.pop_press_menus')
-                    .delay(100)
-                    .animate({
-                        right: 0
-                    }, 300, 'easeLightOutBack');
-            });
+            $('.pop_jobs').find('.pop_jobcon_inner').bind('jsp-initialised', function (event, isScrollable) {
+                $$self = $(this);
+                $$self.parent('.pop_jobcon').prepend($$self.find('.jspVerticalBar'));
 
-        $('.pop_jobs .jobs_more').attr('href', 'mailto:' + data.contact);
-        $('.pop_jobs .pop_index').html(job_index);
-        $('.pop_jobs .pop_total').html($item.parent().children().length);
-        $('.pop_job_menus').css('right', 95);
+                $('.pop_jobs').animate({
+                    top: '50%'
+                }, 400)
+                    .promise()
+                    .then(function () {
+                        $('.pop_press_menus')
+                            .delay(100)
+                            .animate({
+                                right: 0
+                            }, 300, 'easeLightOutBack');
+                    });
 
-        if( job_index == 1 ){
-            $('.pop_job_menus .popnext').hide();
-        } else {
-            $('.pop_job_menus .popnext').show();
-        }
+                $('.pop_jobs .jobs_more').attr('href', 'mailto:' + data.contact);
+                $('.pop_jobs .pop_index').html(job_index);
+                $('.pop_jobs .pop_total').html($item.parent().children().length);
+                $('.pop_job_menus').css('right', 95);
 
-        if( job_index == $item.parent().children().length ){
-            $('.pop_job_menus .popprev').hide();
-        } else {
-            $('.pop_job_menus .popprev').show();
-        }
+                if( job_index == 1 ){
+                    $('.pop_job_menus .popnext').hide();
+                } else {
+                    $('.pop_job_menus .popnext').show();
+                }
 
-        // change share content
-        $('.pop_jobs').find('.jobshare')
-            .find('a')
-            .remove()
-            .end()
-            .append($item.find('.sharecon').html());
+                if( job_index == $item.parent().children().length ){
+                    $('.pop_job_menus .popprev').hide();
+                } else {
+                    $('.pop_job_menus .popprev').show();
+                }
 
-        // change path
-        pageManager.go( $(this).data('path') );
+                // change share content
+                $('.pop_jobs').find('.jobshare')
+                    .find('a')
+                    .remove()
+                    .end()
+                    .append($item.find('.sharecon').html());
+
+                // change path
+                pageManager.go( $(this).data('path') );
+            }).jScrollPane();
+        });
+
+
     });
 
 
