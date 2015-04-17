@@ -1163,7 +1163,8 @@ a[disabled="disabled"]:hover {color: #000000;}
 }
 
 .jspDrag {
-    background: #888;
+    background: #000;
+    border: 1px solid #444;
 }
 
 /* Yuk! CSS Hack for IE6 3 pixel bug :( */

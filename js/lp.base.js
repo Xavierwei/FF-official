@@ -6134,7 +6134,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             $('.pop_jobs').find('.pop_jobcon_inner').bind('jsp-initialised', function (event, isScrollable) {
                 $$self = $(this);
-                $$self.parent('.pop_jobcon').prepend($$self.find('.jspVerticalBar'));
+                $$self.parents('.pop_jobs').prepend($$self.find('.jspVerticalBar'));
 
                 $('.pop_jobs').animate({
                     top: '50%'
@@ -6209,6 +6209,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             .promise()
             .then(function () {
                 $inner.remove();
+                
+                // 初始化 jScrollPane
+                $newInner.bind('jsp-initialised',function () {
+                    $('.pop_jobs').find('> .jspVerticalBar').remove()
+                        .end()
+                        .prepend($('.jspVerticalBar', $newInner));
+                }).jScrollPane();
             });
 
 
@@ -6257,6 +6264,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             .then(function () {
                 $inner.remove();
                 $newInner.css('marginRight', 0);
+
+                // 初始化 jScrollPane
+                $newInner.bind('jsp-initialised',function () {
+                    $('.pop_jobs').find('> .jspVerticalBar').remove()
+                        .end()
+                        .prepend($('.jspVerticalBar', $newInner));
+                }).jScrollPane();
             });
 
         var contact = LP.query2json($item.find('.jobs_more').attr('data-d'))['contact'];
