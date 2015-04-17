@@ -6658,6 +6658,14 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     });
 
+    $('.fullcover-background').click(function (event) {
+        if ($(event.target).parents('.popup_qr').size()) {
+            event.stopPropagation();
+            return;
+        }
+        LP.triggerAction('pop_close');
+    });
+
 });
 //
 //$(function(){
