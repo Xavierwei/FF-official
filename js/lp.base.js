@@ -5404,6 +5404,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             .then(function () {
                 $(this).hide();
                 $('.shade').fadeOut();
+
+                $('.container').removeAttr('style');
             });
 
 
@@ -6148,6 +6150,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             .animate({
                                 right: 0
                             }, 300, 'easeLightOutBack');
+
+                        // 禁止其他滚动效果
+                        $('.container').height($(window).height()).css('overflow', 'hidden');
                     });
 
                 $('.pop_jobs .jobs_more').attr('href', 'mailto:' + data.contact);
