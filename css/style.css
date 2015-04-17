@@ -947,7 +947,7 @@ a[disabled="disabled"]:hover {color: #000000;}
 
 .s_section { width: 1000px; margin: 0 auto; font-size: 16px; line-height: 22px; }
  .s_about_txt { text-transform: lowercase; text-align: left; }
- .s_about_txt p { font-size: 33px; }
+ .s_about_txt p { font-size: 28px;text-transform: uppercase; }
  .s_upp { text-transform: uppercase; }
  .s_newFontLeft { width: 650px; margin-right: 50px; }
  .s_column { margin-left: 0; margin-bottom: 50px; color: #666; }
