@@ -800,7 +800,7 @@ a[disabled="disabled"]:hover {color: #000000;}
 .slide-tip{
     position: absolute;
     top: 65px;
-    left: 75px;
+    left: 84px;
     background-color: white;
     z-index: 10;
 }
