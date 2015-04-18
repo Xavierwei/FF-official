@@ -2352,23 +2352,24 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var v = this;
                 if (config.resize !== false) {
                     var resizeFn = function () {
-                        var w = $wrap.width();
-                        var h = $wrap.height();
-                        var vh = 0;
-                        var vw = 0;
-                        if (h / w > ratio) {
-                            vh = h + 0;
-                            vw = vh / ratio;
-                        } else {
-                            vw = w + 0;
-                            vh = vw * ratio;
-                        }
+                        var w = $wrap.children('img').width();
+                        var h = $wrap.children('img').height();
+
+                        //var vh = 0;
+                        //var vw = 0;
+                        //if (h / w > ratio) {
+                        //    vh = h + 0;
+                        //    vw = vh / ratio;
+                        //} else {
+                        //    vw = w + 0;
+                        //    vh = vw * ratio;
+                        //}
                         try {
-                            v.dimensions(vw, vh);
+                            v.dimensions(w, h);
                         } catch (e) {}
                         $('#' + v.Q).css({
-                            "margin-top": (h - vh) / 2,
-                            "margin-left": (w - vw) / 2
+                            "margin-top": $wrap.children('img').css('margin-top'),
+                            "margin-left": $wrap.children('img').css('margin-left')
                         });
                         return false;
                     }
@@ -2870,10 +2871,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         var vh = 0;
                         var vw = 0;
                         if (h / w > ratio) {
-                            vh = h + 40;
+                            vh = h + 80;
                             vw = vh / ratio;
                         } else {
-                            vw = w + 40;
+                            vw = w + 80;
                             vh = vw * ratio;
                         }
                         $sliderInner.find('.slider-item>img').css({
@@ -3948,10 +3949,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $('.banpho-i').css('visibility','hidden');
                         $('.showreel-tit').css('visibility','hidden');
                         $('.banpho-bt-c .transition').html('showreel<br/><br/>showreel');
-
-                        $(window).resize(function () {
-                            $('#slider-block-inner, .home-slider').css('height', ($(window).height() - $('.header').height() - $('.pagetit').height()) + 'px');
-                        }).trigger('resize');
+                        $(window).trigger('resize');
                     });
                 })();
 
@@ -4895,6 +4893,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         // fix banpho banpho-img
         $('.banpho-img').height( 500 / 1600 * $(window).width() );
+
+        if($('.page').data('page') == 'bio-page') {
+            $('#slider-block-inner, .home-slider').css('height', ($(window).height() - $('.header').height() - $('.pagetit').height()) + 'px');
+        }
+
+
+
     });
 
 
@@ -5056,7 +5061,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             $sliderItem.find('.video-wrap').remove();
 
             renderVideo($sliderItem, movie, $sliderItem.find('img').attr('src'), {
-                ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
+                ratio: $sliderItem.children('img')[0].height / $sliderItem.children('img')[0].width,
                 autoplay: true,
                 showLoadingBar: true,
                 loop: false
@@ -6679,6 +6684,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         }
         LP.triggerAction('pop_close');
     });
+
+
 
 });
 //
