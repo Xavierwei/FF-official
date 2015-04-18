@@ -31,10 +31,6 @@
         <!--  -->
         <div class="about_timeline column s_column cs-clear">
             <div class="s_newFontLeft fl">
-                <div data-effect="fadeup" class="timeline_year s_timeline_year">
-                    <span class="intoview-effect" data-effect="number-rock">1999</span>
-                </div>
-
                 <div class="intoview-effect" data-effect="fadeup">
                     <p>
                         After studying respectively design and political science (Sciences Po),
@@ -46,6 +42,13 @@
                         In 2000, Fred & Farid created the highly viral and controversial musical video of British Pop Star Robbie Williams
                         “Rock DJ” which won the Brit Awards, and an MTV award in the USA.
                     </p>
+                    </div>
+
+                <div data-effect="fadeup" class="timeline_year s_timeline_year">
+                    <span class="intoview-effect" data-effect="number-rock">1999</span>
+                </div>
+
+                <div class="intoview-effect" data-effect="fadeup">
                     <p>
                         Shots Magazine (Shots 61) chose the French team to start their gallery of the 12 best creative teams in the world (November 2000).
                     </p>
