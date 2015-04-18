@@ -6619,7 +6619,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         }
 
         function showWarning() {
-            var warning = "<p class='swarning' style='opacity:0;'>No positions available at this time</p>";
+            var warning = "<p class='job-warning' style='opacity:0;'>No positions available at this time</p>";
             $('.job-warning').size() || ($('.sec_jobs').append(warning), $('.job-warning').animate({opacity:1}));
         }
 
