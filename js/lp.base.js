@@ -3947,7 +3947,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $('.banpho-bt a').css('visibility','hidden');
                         $('.banpho-i').css('visibility','hidden');
                         $('.showreel-tit').css('visibility','hidden');
-                        $('.banpho-bt-c .transition').html('showreel');
+                        $('.banpho-bt-c .transition').html('showreel<br/><br/>showreel');
 
                         $(window).resize(function () {
                             $('#slider-block-inner, .home-slider').css('height', ($(window).height() - $('.header').height() - $('.pagetit').height()) + 'px');
@@ -5054,6 +5054,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         if (!videoObject) {
             var movie = $sliderItem.data('movie');
             $sliderItem.find('.video-wrap').remove();
+
             renderVideo($sliderItem, movie, $sliderItem.find('img').attr('src'), {
                 ratio: $sliderItem.children('img').height() / $sliderItem.children('img').width(),
                 autoplay: true,
