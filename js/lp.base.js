@@ -3062,18 +3062,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }
                 api.request('home', function (r) {
                     $ftype = 'LUXE REEL';
-                    var items = [],
-                        index = 1,
-                        found = false;
+                    var items = [];
                     $.each(r.items || [], function (i, item){
                         //res['items'][index]['reel']
-                        if (item['reel'] == $ftype && !found) {
-                            items[0] = item;
-                            found = true;
-                        }
-                        else {
-                            items[index] = item;
-                            index ++;
+                        if (item['reel'] == $ftype) {
+                            items.push(item);
                         }
                     })
                     homeAPICb({items: items});
