@@ -1,6 +1,6 @@
 <?php include_once 'common/header.php';?>
 <!--  -->
-<div class="page" data-page="jobs-page" data-header="about">
+<div class="page" data-page="jobs-page" data-header="jobs">
 	<!-- page title -->
 	<?php 
 	$top_title = _e('ABOUT',false);
