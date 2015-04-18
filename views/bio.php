@@ -1,5 +1,5 @@
 <?php include_once 'common/header.php';?>
-<div class="page s_page" data-page="bio-page" data-header="about">
+<div class="page s_page" data-page="bio-page" data-header="bio">
 	<!-- page title -->
 	<?php
 	$top_title = _e('ABOUT',false);

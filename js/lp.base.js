@@ -3062,18 +3062,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 }
                 api.request('home', function (r) {
                     $ftype = 'LUXE REEL';
-                    var items = [],
-                        index = 1,
-                        found = false;
+                    var items = [];
                     $.each(r.items || [], function (i, item){
                         //res['items'][index]['reel']
-                        if (item['reel'] == $ftype && !found) {
-                            items[0] = item;
-                            found = true;
-                        }
-                        else {
-                            items[index] = item;
-                            index ++;
+                        if (item['reel'] == $ftype) {
+                            items.push(item);
                         }
                     })
                     homeAPICb({items: items});
@@ -3809,9 +3802,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 </div>\
                             </div>\
                             <div class="sharecon" style="display:none;">\
-                              <a target="_blank" href="http://service.weibo.com/share/share.php?title=#[share_content]&url=#[url]" class="jobshareitem jobshare_weibo"></a>\
+                              <a target="_blank" href="http://service.weibo.com/share/share.php?title=#[share_title]&url=#[url]" class="jobshareitem jobshare_weibo"></a>\
                               <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[url]&t=#[share_title]" class="jobshareitem jobshare_fb"></a>\
-                              <a target="_blank" href="https://twitter.com/intent/tweet?url=#[url]&text=#[share_content]" class="jobshareitem jobshare_t"></a>\
+                              <a target="_blank" href="https://twitter.com/intent/tweet?url=#[url]&text=#[share_title]" class="jobshareitem jobshare_t"></a>\
                               <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=#[url]&title=#[share_title]&source=#[url]" class="jobshareitem jobshare_lin"></a>\
                             </div>\
                         </div>';
@@ -3823,7 +3816,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $.each(r.items, function (i, item) {
                             item['fr-lang'] = item['content_fr'] ? '<a href="#" data-a="jobs-lang" data-lang="fr"> FR </a>' : '';
                             item['zho-lang'] = item['content_zho'] ? '<a href="#" data-a="jobs-lang" data-lang="zho"> 中文 </a>' : '';
-                            item['url'] = encodeURIComponent( 'http://' + document.domain + '/jobs/' + item.id );
+                            item['url'] = encodeURIComponent( 'http://' + document.domain + '/jobs/' + item.id + '/' + item['city'] );
                             item['share_content'] = encodeURIComponent( item.content );
                             item['share_title'] = encodeURIComponent( item.title );
                             item['show_content'] = item['content'];
