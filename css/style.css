@@ -80,7 +80,7 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 
 .pagetit{background: #f0f0f0;height: 85px;line-height: 85px;position: relative;z-index: 102;}
 .pagetit h1{color:#000;font-size: 48px;line-height: 90px;}
-.pagetitarr{position: absolute;width: 20px;height: 24px;background: url('../images/pagetitarr.png') no-repeat 0 0;right: 150px;top:40px;}
+.pagetitarr{position: absolute;width: 20px;height: 24px;background: url('../images/pagetitarr.png') no-repeat 0 0;right: 150px;top:30px;}
 .pagetitarr:hover{background-position: 0 -40px;}
 .pagetitarrbottom{background-position: right -40px;right:55px;}
 .pagetitarrbottom:hover{background-position: right top;}
@@ -944,7 +944,7 @@ a[disabled="disabled"]:hover {color: #000000;}
  .s_footerCon { width: 580px; margin: 60px auto 0 auto; }
 
 .s_section { width: 1000px; margin: 0 auto; font-size: 16px; line-height: 22px; }
- .s_about_txt { text-transform: lowercase; text-align: left; }
+ .s_about_txt { text-transform: uppercase; text-align: left; }
  .s_about_txt p { font-size: 28px;text-transform: uppercase; }
  .s_upp { text-transform: uppercase; }
  .s_newFontLeft { width: 650px; margin-right: 50px; }
