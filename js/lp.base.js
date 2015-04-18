@@ -3061,7 +3061,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     fixImgsDomLoaded($($('#slider-block-inner img').slice(0, 3)), cb);
                 }
                 api.request('home', function (r) {
-                    homeAPICb(r);
+                    $ftype = 'LUXE REEL';
+                    var items = [],
+                        index = 1,
+                        found = false;
+                    $.each(r.items || [], function (i, item){
+                        //res['items'][index]['reel']
+                        if (item['reel'] == $ftype && !found) {
+                            items[0] = item;
+                            found = true;
+                        }
+                        else {
+                            items[index] = item;
+                            index ++;
+                        }
+                    })
+                    homeAPICb({items: items});
                 });
 
                 api.request('about/jobs', function (r) {
