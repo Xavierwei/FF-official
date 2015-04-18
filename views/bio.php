@@ -31,6 +31,10 @@
         <!--  -->
         <div class="about_timeline column s_column cs-clear">
             <div class="s_newFontLeft fl">
+                <div data-effect="fadeup" class="timeline_year s_timeline_year">
+                    <span class="intoview-effect" data-effect="number-rock">1999</span>
+                </div>
+
                 <div class="intoview-effect" data-effect="fadeup">
                     <p>
                         After studying respectively design and political science (Sciences Po),
@@ -87,14 +91,6 @@
                     </p>
                     The American magazine New York wrote about them (21 July 2003): “Their work for Pepsi and Xbox in Europe made them the ad-world’s Spike Jonze”.
                     </p>
-                </div>
-
-                <div data-effect="fadeup" class="timeline_year s_timeline_year">
-                    <span class="intoview-effect" data-effect="number-rock">2004</span>
-                </div>
-
-                <div class="intoview-effect" data-effect="fadeup">
-                    <p>In 2004, Fred & Farid became President of the jury of the Golden Drum Festival.</p>
                 </div>
 
                 <div data-effect="fadeup" class="timeline_year s_timeline_year">
