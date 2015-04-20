@@ -85,7 +85,7 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 .pagetitarrbottom{background-position: right -40px;right:55px;}
 .pagetitarrbottom:hover{background-position: right top;}
 .pageback{position: absolute;left: 0;height: 100%;width: 80px;top: 0;background: url(../images/back.png) no-repeat 30px center;}
-.pageback:hover{background-position: -55px center; }s
+.pageback:hover{background-position: -55px center; }
 .banpho{text-align: center;background: white;overflow: hidden; position: relative;}
 .banpho img{width: 100%}
 .banpho-con{position: absolute;top: 50%;margin-top: -30px;left: 50%;margin-left: -165px;width: 330px;color: white;font-size: 14px;font-weight: bold;text-transform: uppercase;line-height: 50px;z-index: 101;}
