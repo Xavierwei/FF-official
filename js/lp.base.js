@@ -3452,7 +3452,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         cHtml.push('<h3 data-effect="fadeup" class="intoview-effect contact_page_department">');
                         cHtml.push(value);
                         cHtml.push('</h3>');
-                        cHtml.push('<div data-effect="fadeup" class="intoview-effect contact_con cs-clear">');
+                        cHtml.push('<div data-effect="fadeup" class="intoview-effect contact_con  cs-clear '+value.toLowerCase().replace(/\s+/i, '_')+'">');
 
                         var num = 0;
                         var isOdd;
