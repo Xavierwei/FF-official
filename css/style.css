@@ -200,8 +200,34 @@ html.ie8 .pop_jobtxt{overflow-x: hidden;}
 /* secction contact */
 .sec_contact{}
 .contact_tit{width: 1100px;font-size: 34px;padding:100px 0;text-align: center;line-height: 40px;text-transform: uppercase;margin: 0 auto;}
-.contact_item h3{font-size: 16px;border-bottom: #000 solid 1px;text-transform: uppercase;height: 32px;padding:0 8px;}
-.contact_con{padding:8px 8px 40px;font-size: 14px;}
+.contact_item h3{
+    font-size: 16px;
+    text-transform: uppercase;
+    height: 32px;
+    padding:0 8px;
+    padding-top: 20px;
+    border-bottom: #000 solid 1px;
+}
+
+#contact_mail {
+    border-top: #000 solid 1px;
+}
+
+#contact_mail.contact_item h3 {
+    border-bottom:none;
+}
+
+.contact_con{
+    padding:8px 8px 40px;
+    font-size: 14px;
+}
+
+#contact_mail .contact_con{
+    padding: 8px 8px 0px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 15px;
+}
+
 /*.contact_conl{float:left;width: 520px;padding-bottom: 40px;}*/
 .contact_conl{float:left;width: 520px;}
 .contact_conr{float:right;width: 510px;padding:0 10px 0px 0;}
@@ -1210,6 +1236,10 @@ a[disabled="disabled"]:hover {color: #000000;}
 
 .contact_txt {
     width: 519px;
+}
+
+#contact_mail {
+    padding-bottom: 45px;
 }
 
 
