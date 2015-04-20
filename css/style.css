@@ -98,6 +98,7 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 .banpho-bt-l:hover{ background-position: -42px center; }
 .banpho-bt-r:hover{ background-position: -192px center;}
 .banpho-bt-c{height: 100%;overflow: hidden;cursor: pointer;}
+.banpho-bt-c .transition{text-align: center;}
 .banpho-bt-c div:hover{margin-top: -100px;background: #fff;color:#000;}
 
 /**/
