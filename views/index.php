@@ -42,23 +42,23 @@
 
             <div class="home-adwards-inner">
                 <ul class="adwards-items cs-clear">
-                    <li>
+                    <li class="intoview-effect" data-effect="fadeup">
                         <img src="../images/adward7.jpg" alt=""/>
                         <span>Grand Prix Award Winner</span></li>
-                    <li>
+                    <li class="intoview-effect" data-effect="fadeup">
                         <img src="../images/adward6.jpg" alt=""/>
                         <span>Top 4 World’s Best Digital Agency</span></li>
-                    <li>
+                    <li class="intoview-effect" data-effect="fadeup">
                         <img src="../images/adward5.jpg" alt=""/>
                         <span>5 Times Best Agency</span></li>
-                    <li>
+                    <li class="intoview-effect" data-effect="fadeup">
                         <img src="../images/adward4.jpg" alt=""/>
                         <span>Agency of The Year</span></li>
-                    <li>
+                    <li class="intoview-effect" data-effect="fadeup">
                         <img src="../images/adward3.jpg" alt=""/>
                         <span>Independent Agency of The Year</span></li>
-                    <li><img src="../images/adward2.jpg" alt=""/><span>Silver Agency of The Year</span></li>
-                    <li style="margin-left: 350px;">
+                    <li class="intoview-effect" data-effect="fadeup"><img src="../images/adward2.jpg" alt=""/><span>Silver Agency of The Year</span></li>
+                    <li class="intoview-effect" style="margin-left: 350px;" data-effect="fadeup">
                         <img src="../images/adward1.jpg" alt=""/>
                         <span>Top 10 Best Agency Outside USA</span></li>
                 </ul>
