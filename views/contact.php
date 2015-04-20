@@ -9,13 +9,13 @@ $pagetit = _e('COMMUNICATION AGENCIES', false);include_once 'common/pagetit.php'
     <!--  -->
     <h2 class="contact_tit"><?php _e('NEWS_HOMEPAGE');?></h2>
     <!--  -->
-    <div id="contact_item" class="contact_item"></div>
-    <div id="contact_mail" class="contact_item">
-      <h3 data-effect="fadeup" class="contact_page_department" style="text-align:center;">
-      </h3>
-      <div class="contact_con cs-clear" style="text-align:center;">
+      <div id="contact_mail" class="contact_item">
+          <h3 data-effect="fadeup" class="contact_page_department" style="text-align:center;">
+          </h3>
+          <div class="contact_con cs-clear" style="text-align:center;">
+          </div>
       </div>
-    </div>
+    <div id="contact_item" class="contact_item"></div>
   </div>
   <div data-effect="fadeup" class="intoview-effect contact_map" id="map">
   </div>
