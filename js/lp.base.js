@@ -5085,7 +5085,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     //    LP.triggerAction('home-play-movie');
                     //}});
                     $('.video-wrap').remove();
-                    console.log('remove video');
                 });
 
                 // this.on('progress', function(){

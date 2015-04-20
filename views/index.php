@@ -110,6 +110,17 @@
                 <!--  -->
             </div>
         </div>
+
+        <div class="home_agencies">
+            <h2 class="intoview-effect" style="margin-top: 0;" data-effect="fadeup"><?php _e('AGENCIES'); ?></h2>
+            <div class="section sec_jobs">
+
+                <div class="agencies-con column cs-clear">
+                    <img src="" alt=""/>
+                </div>
+                <!--  -->
+            </div>
+        </div>
 		<!--  -->
 		<div class="home_bio">
 			<img class="home_bio_bg" src="/images/home_biobg.jpg">
