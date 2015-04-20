@@ -66,9 +66,9 @@
         </div>
 
 		<!--  -->
-		<div class="home_news" data-index="0">
-			<h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEWS_HOMEPAGE'); ?></h2>
-			<!-- <h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEWS'); ?></h2> -->
+		<div class="home_news" data-index="0" style="display:none;">
+<!--			<h2 class="intoview-effect" data-effect="fadeup">--><?php //_e('NEWS_HOMEPAGE'); ?><!--</h2>-->
+			    <h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEWS'); ?></h2>
 			<div class="home_news_inner cs-clear intoview-effect" data-effect="fadeup" style="width:300%;" id="home-news">
 			</div>
 			<div class="home_newspage">
@@ -79,6 +79,7 @@
 		</div>
 		<!--  -->
 		<div class="home_view column">
+            <h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEWS'); ?></h2>
 			<div class="home_viewtiem home_twitter cs-clear intoview-effect" data-effect="fadeup">
 				<a href="https://twitter.com/FredFaridGroup" target="_blank" class="home_viewlogo home_tlogo" id="home_twitter_follow"></a>
                 <div id="home_twitter_wrap"></div>
