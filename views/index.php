@@ -66,7 +66,7 @@
         </div>
 
 		<!--  -->
-		<div class="home_news" data-index="0">
+		<div class="home_news" data-index="0" style="display: none;">
 			<h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEWS_HOMEPAGE'); ?></h2>
 			<!-- <h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEWS'); ?></h2> -->
 			<div class="home_news_inner cs-clear intoview-effect" data-effect="fadeup" style="width:300%;" id="home-news">
