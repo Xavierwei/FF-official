@@ -58,7 +58,7 @@
                         <img src="../images/adward3.jpg" alt=""/>
                         <span>Independent Agency of The Year</span></li>
                     <li class="intoview-effect" data-effect="fadeup"><img src="../images/adward2.jpg" alt=""/><span>Silver Agency of The Year</span></li>
-                    <li class="intoview-effect" style="margin-left: 350px;" data-effect="fadeup">
+                    <li class="intoview-effect s_lastLi" style="margin-left: 350px;" data-effect="fadeup">
                         <img src="../images/adward1.jpg" alt=""/>
                         <span>Top 10 Best Agency Outside USA</span></li>
                 </ul>
