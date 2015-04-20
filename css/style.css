@@ -1245,13 +1245,13 @@ a[disabled="disabled"]:hover {color: #000000;}
     padding-bottom: 45px;
 }
 
-.all_media .contact_conl{
+.all_media .contact_conl, .media .contact_conl{
     width: 510px;
     float: left;
 }
 
 
-.all_media .contact_conr{
+.all_media .contact_conr, .media .contact_conr{
     width: 510px;
     float: right;
 }
