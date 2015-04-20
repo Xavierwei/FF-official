@@ -34,6 +34,37 @@
 <div class="page" data-page="home-page">
 	<!-- section -->
 	<div class="section sec_home">
+
+        <!-- Home Adwards -->
+
+        <div class="home-adwards">
+            <h2 class="intoview-effect" data-effect="fadeup"><?php _e('ADWARDS_HOMEPAGE'); ?></h2>
+
+            <div class="home-adwards-inner">
+                <ul class="adwards-items">
+                    <li>
+                        <img src="../images/adward7.jpg" alt=""/>
+                        <span>Grand Prix Award Winner</span></li>
+                    <li>
+                        <img src="../images/adward6.jpg" alt=""/>
+                        <span>Top 4 World’s Best Digital Agency</span></li>
+                    <li>
+                        <img src="../images/adward5.jpg" alt=""/>
+                        <span>5 Times Best Agency</span></li>
+                    <li>
+                        <img src="../images/adward4.jpg" alt=""/>
+                        <span>Agency of The Year</span></li>
+                    <li>
+                        <img src="../images/adward3.jpg" alt=""/>
+                        <span>Independent Agency of The Year</span></li>
+                    <li><img src="../images/adward2.jpg" alt=""/><span>Silver Agency of The Year</span></li>
+                    <li>
+                        <img src="../images/adward1.jpg" alt=""/>
+                        <span>Top 10 Best Agency Outside USA</span></li>
+                </ul>
+            </div>
+        </div>
+
 		<!--  -->
 		<div class="home_news" data-index="0">
 			<h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEWS_HOMEPAGE'); ?></h2>
@@ -91,7 +122,7 @@
 			</a> -->
 		</div>
 		<!--  -->
-		<div class="home_campaign">
+		<div class="home_campaign" style="display:none;">
 			<h2 class="intoview-effect" data-effect="fadeup"><?php _e('FEATURED CAMPAIGNS'); ?></h2>
 			<div class="home_camcon column cs-clear">
 			</div>
