@@ -38,7 +38,7 @@
         <!-- Home Adwards -->
 
         <div class="home-adwards">
-            <h2 class="intoview-effect" data-effect="fadeup"><?php _e('ADWARDS_HOMEPAGE'); ?></h2>
+            <h2 class="intoview-effect" data-effect="fadeup"><?php _e('NEWS_HOMEPAGE'); ?></h2>
 
             <div class="home-adwards-inner">
                 <ul class="adwards-items cs-clear">
