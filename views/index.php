@@ -115,8 +115,8 @@
             <h2 class="intoview-effect" style="margin-top: 0;" data-effect="fadeup"><?php _e('AGENCIES'); ?></h2>
             <div class="section sec_jobs">
 
-                <div class="agencies-con column cs-clear">
-                    <img src="../images/home-map.jpg" alt=""/>
+                <div class="agencies-con column cs-clear f_column">
+
                 </div>
                 <!--  -->
             </div>
