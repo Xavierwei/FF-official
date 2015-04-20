@@ -53,5 +53,5 @@
   'VIEW ALL TWEETS' => '',
   'VIEW ALL WEIBO' => '',
   'JOB TITLE' => 'IL N’EST DE RICHESSE QUE D’HOMMES',
-    'ADWARDS_HOMEPAGE' => 'First french independant creative groupbased in paris, shanghai and new york',
+    'ADWARDS_HOMEPAGE' => 'First french independant creative group-based in paris, shanghai and new york',
 );
