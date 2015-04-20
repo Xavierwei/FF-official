@@ -121,6 +121,10 @@
     .s_emptyDiv1 { height: 810px; }
     .s_emptyDiv2 { height: 610px; }
     .s_emptyDiv3 { height: 0; margin-top: -27px; }
+
+    .adwards-items li { width: 300px; }
+    .s_lastLi { margin-left: 300px; }
+    .home-adwards h2 { width: 900px; }
 }
 @media only screen and (max-width:900px){
     .press_list {width: 780px;}
@@ -128,6 +132,10 @@
     .awardicons, .contact_item{width: 800px;}
     .contact_con{width: auto;}
     .awardicons img, .award-num{margin: 0px 50px 10px;}
+
+    .home-adwards h2 { width: 800px; }
+    .adwards-items li { width: 266px; font-size: 16px; }
+    .s_lastLi { margin-left: 266px; }
     
 }
 @media only screen and (max-width:810px){
