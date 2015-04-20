@@ -41,7 +41,7 @@
             <h2 class="intoview-effect" data-effect="fadeup"><?php _e('ADWARDS_HOMEPAGE'); ?></h2>
 
             <div class="home-adwards-inner">
-                <ul class="adwards-items">
+                <ul class="adwards-items cs-clear">
                     <li>
                         <img src="../images/adward7.jpg" alt=""/>
                         <span>Grand Prix Award Winner</span></li>
@@ -147,7 +147,7 @@
             <div class="section sec_jobs">
 
                 <div class="agencies-con column cs-clear f_column">
-
+                    <img src="../images/home-map.jpg" alt=""/>
                 </div>
                 <!--  -->
             </div>
