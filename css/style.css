@@ -80,12 +80,12 @@ html.ie8 .jobs_more.transition-wrap:hover .transition{margin-top: -80px;backgrou
 
 .pagetit{background: #f0f0f0;height: 85px;line-height: 85px;position: relative;z-index: 102;}
 .pagetit h1{color:#000;font-size: 48px;line-height: 90px;}
-.pagetitarr{position: absolute;width: 20px;height: 24px;background: url('../images/pagetitarr.png') no-repeat 0 0;right: 150px;top:30px;}
+.pagetitarr{position: absolute;width: 20px;height: 24px;background: url('../images/pagetitarr.png') no-repeat 0 0;right: 150px;top:33px;}
 .pagetitarr:hover{background-position: 0 -40px;}
 .pagetitarrbottom{background-position: right -40px;right:55px;}
 .pagetitarrbottom:hover{background-position: right top;}
 .pageback{position: absolute;left: 0;height: 100%;width: 80px;top: 0;background: url(../images/back.png) no-repeat 30px center;}
-.pageback:hover{background-position: -55px center; }
+.pageback:hover{background-position: -55px center; }s
 .banpho{text-align: center;background: white;overflow: hidden; position: relative;}
 .banpho img{width: 100%}
 .banpho-con{position: absolute;top: 50%;margin-top: -30px;left: 50%;margin-left: -165px;width: 330px;color: white;font-size: 14px;font-weight: bold;text-transform: uppercase;line-height: 50px;z-index: 101;}
