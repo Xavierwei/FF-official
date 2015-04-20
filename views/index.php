@@ -116,7 +116,7 @@
             <div class="section sec_jobs">
 
                 <div class="agencies-con column cs-clear">
-                    <img src="" alt=""/>
+                    <img src="../images/home-map.jpg" alt=""/>
                 </div>
                 <!--  -->
             </div>
