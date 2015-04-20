@@ -209,7 +209,7 @@ html.ie8 .pop_jobtxt{overflow-x: hidden;}
 .contact_con h4{padding:15px 0;}
 /*.contact_txt{min-height: 125px;height: auto;margin-bottom: 40px;}*/
 .contact_txt{height: auto;margin-bottom: 40px;text-transform: uppercase;}
-.contact_wrap {width:50%;float:left;margin:0 0 15px 0;}
+.contact_wrap {float:left;margin:0 0 15px 0;width: 25%;}
 .contact_city{font-size: 13px;}
 body.lang-zho .contact_city{font-size: 11px;}
 .contact_ad{padding-left:0px;width: auto}
@@ -1197,3 +1197,19 @@ a[disabled="disabled"]:hover {color: #000000;}
 .home_campaign {
     display:none;
 }
+
+.contact_conl {
+    float: none;
+    width: 100%;
+}
+
+.contact_conr {
+    float: none;
+    width: 100%;
+}
+
+.contact_txt {
+    width: 519px;
+}
+
+
