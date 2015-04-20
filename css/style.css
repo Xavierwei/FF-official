@@ -930,7 +930,7 @@ a[disabled="disabled"]:hover {color: #000000;}
    background: url("../images/img/opcityBoxbg.gif") repeat; }
  .s_opcityBox b { font-size: 18px; font-weight: normal; }
  .s_links { width: 100%; height: 71px; background-color: #222; text-align: center; padding: 80px 0; }
- .s_links a { display: inline-block; margin: 0 35px; opacity: 0.5; text-indent: -9999em; background: url("../images/img/bgSprite.png") no-repeat; }
+ .s_links a { display: inline-block; margin: 0 35px; opacity: 0.5; text-indent: -9999em; background: url("../images/img/bgSprite1.png") no-repeat; }
  .s_links a.s_links1 { width: 63px; height: 78px; background-position: 0 0; }
  .s_links a.s_links2 { width: 112px; height: 78px; background-position: 0 -88px; }
  .s_links a.s_links3 { width: 80px; height: 78px; background-position: 0 -176px; }
@@ -967,7 +967,7 @@ a[disabled="disabled"]:hover {color: #000000;}
 .adwards-items li { float: left; width: 350px; font-size: 18px; margin-bottom: 65px; }
 .adwards-items li img { display: block; margin: 0 auto; }
 .home-adwards {font-size: 23px;text-align: center;line-height:30px ;width: 1100px;margin: 0 auto; margin-bottom: 50px; font-weight: bold;overflow: hidden;}
-.home-adwards h2 { font-size: 48px; line-height: 56px; margin: 70px 0; text-transform: uppercase; }
+.home-adwards h2 { font-size: 44px; line-height: 56px; margin: 70px 0; text-transform: uppercase; }
 .home_agencies { margin-top: 120px; margin-bottom: -86px; }
 .home_agencies h2 { font-size: 48px; margin-bottom: 55px; text-align: center; }
 
