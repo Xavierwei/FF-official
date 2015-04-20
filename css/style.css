@@ -1246,13 +1246,13 @@ a[disabled="disabled"]:hover {color: #000000;}
 }
 
 .all_media .contact_conl, .media .contact_conl{
-    width: 510px;
+    width: 49%;
     float: left;
 }
 
 
 .all_media .contact_conr, .media .contact_conr{
-    width: 510px;
+    width: 49%;
     float: right;
 }
 

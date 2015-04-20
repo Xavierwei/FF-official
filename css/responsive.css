@@ -60,6 +60,17 @@
     .contact_wrap {
         width: 50%;
     }
+
+    .all_media .contact_conl, .media .contact_conl{
+        width: 100%;
+        float: left;
+    }
+
+
+    .all_media .contact_conr, .media .contact_conr{
+        width: 100%;
+        float: right;
+    }
 }
 
 @media only screen and (max-width:1090px) {
