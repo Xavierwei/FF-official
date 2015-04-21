@@ -309,7 +309,7 @@
                 <div class="s_emptyDiv1"></div>
                 <div>
                     <p class="s_fontItalics">“Fred & Farid, a duo who became a logo”.</p>
-                    <p>Le onde</p>
+                    <p>Le Monde</p>
                     <p>27 July 2007</p>
                 </div>
                 <div class="s_emptyDiv2"></div>
