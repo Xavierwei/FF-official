@@ -54,12 +54,7 @@
     .home_biotxt{width: auto;padding: 0 20px;}
     .home_bioleft{width: 47%;margin-right: 6%;}
     .home_bioright{width: 47%;}
-}
 
-@media only screen and (max-width: 1000px) {
-    .contact_wrap {
-        width: 50%;
-    }
 
     .all_media .contact_conl, .media .contact_conl{
         width: 100%;
@@ -71,6 +66,13 @@
         width: 100%;
         float: right;
     }
+}
+
+@media only screen and (max-width: 1000px) {
+    .contact_wrap {
+        width: 50%;
+    }
+
 }
 
 @media only screen and (max-width:1090px) {
