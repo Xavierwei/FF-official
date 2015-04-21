@@ -651,11 +651,18 @@ body.lang-zho .brands-con-t{font-size: 16px;line-height: 20px;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control:before{display: none;}
 .interview-video-wrap .vjs-default-skin .vjs-play-control .vjs-control-text{clip: auto;width: auto;height: auto;left: 20px;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-control{top: 25px;height: 1px;margin:0 100px 0 30px;}
-.interview-video-wrap .vjs-default-skin .vjs-progress-holder{background: white;border-top: 5px solid black;border-bottom: 5px solid black;margin-top: -5px;}
+
+.interview-video-wrap .vjs-default-skin .vjs-progress-holder{
+    background: white;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    border: none;
+}
+
 .interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-play-progress{background: #e00000;}
 .interview-video-wrap .vjs-default-skin .vjs-progress-holder .vjs-load-progress{background: #999;}
 .interview-video-wrap .vjs-default-skin .vjs-seek-handle{display: none;}
-.interview-video-wrap .vjs-default-skin .vjs-current-time{float: right;width: 8em;font-size: 14px;color: #fff;}
+.interview-video-wrap .vjs-default-skin .vjs-current-time{float: right;width: 8em;font-size: 14px;color: #fff;margin-top: 4px;}
 .interview-video-wrap .vjs-time-divider,
 .interview-video-wrap .vjs-default-skin .vjs-duration,
 .interview-video-wrap .vjs-default-skin .vjs-fullscreen-control,
@@ -1255,5 +1262,25 @@ a[disabled="disabled"]:hover {color: #000000;}
     width: 49%;
     float: right;
 }
+
+.interview_list .interview-video-wrap > .vjs-default-skin {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    left: 0px;
+    z-index: 1;
+}
+
+.interview_list .interview-video {
+    margin-bottom: 0px;
+}
+
+.interview_list .vjs-default-skin .vjs-control-bar {
+    height: 50px;
+}
+
+
+
+
 
 
