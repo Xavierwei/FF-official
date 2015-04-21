@@ -293,7 +293,7 @@
                 </div>
                 <div class="s_mb50">
                     <p class="s_fontItalics">“The two Zidanes of the French advertising creation”</p>
-                    <p>Strategies</p>
+                    <p>Stratégies</p>
                     <p>27 September 2002</p>
                 </div>
                 <div class="s_mb50">
@@ -309,7 +309,7 @@
                 <div class="s_emptyDiv1"></div>
                 <div>
                     <p class="s_fontItalics">“Fred & Farid, a duo who became a logo”.</p>
-                    <p>Le monde</p>
+                    <p>Le onde</p>
                     <p>27 July 2007</p>
                 </div>
                 <div class="s_emptyDiv2"></div>
