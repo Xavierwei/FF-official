@@ -178,12 +178,11 @@
                         Diesel Parfums, L’Oréal).
                     </p>
                     <p>
-                        Overall, in their career, Fred & Farid have worked for over 200 brands, and have won more than 340 international
-                        creative and marketing effectiveness awards in the most prestigious international festivals: Cannes Lions Festival,
+                        Overall, in their career, Fred & Farid have worked for over 200 brands, and have won 400+ international awards
+                        including 200+ digital distinctions since 2011 in the most prestigious international festivals: Cannes Lions Festival,
                         D&AD, Clio, One Show, FWA, Lovie Awards, Webby Awards, London International Awards, British TV Awards, Andy's, New York Festival,
-                        Eurobest, Creative Circle, Epica – including more than 50 digital awards since 2011. Fred & Farid also has consecutively won
-                        4 years the title of “Agency of the Year” at the World Luxury Awards. Fred & Farid were also members of major juries like the Cannes
-                        Lions Festival or the D&AD.
+                        Eurobest, Creative Circle, Epica – including more than 50 digital awards since 2011. Fred & Farid also has consecutively won 4 years
+                        the title of “Agency of the Year” at the World Luxury Awards. Fred & Farid were also members of major juries like the Cannes Lions Festival or the D&AD.
                     </p>
                     <p>
                         Fred & Farid have signed famous brand taglines, such as “Suck less, Play more” for XBOX, “Open” for Orange,
@@ -228,10 +227,11 @@
                         that shakes the codes of the advertising world” Alexandre Deboute / Le Figaro (30 Oct 2013).
                     </p>
                     <p>
-                        Fred & Farid group is a fully digital company with about 350 permanent digital talents from 25 nationalities,
-                        in 4 buildings in France and China. It is composed of 2 integrated digital agencies (Fred & Farid Paris+Shanghai, Hello Sunshine),
-                        2  digital production companies (Kill Death, Fo Xin) and 1 digital media company (Fred & Farid Media).
-                        The group also owns 2 webzines: BCKSTG to promote young French musicians, and Creative China to promote the new Chinese creative generation.
+                        Fred & Farid group is a fully digital company with about 450+ permanent digital talents from 25 nationalities,
+                        in 6 buildings in Paris, Shanghai, Beijing & New York. It is composed of 2 integrated digital agencies (Fred & Farid Paris+Shanghai, Kids Love Jetlag),
+                        1  digital production companies (Kill Death) and 1 digital media company (Fred & Farid Media). The group also owns 4 medias:
+                        BRDG to  converge the culture of the 3 countries, BCKSTG to promote young French musicians, and Creative C. to promote the new
+                        Chinese creative generation and Fred in China the weekly radio emission to highlight the hot topics on chinese social medias.
                     </p>
                     <p>
                         Fred & Farid have also launched a Digital Business Fund (Fred & Farid Digital Investment Fund) taking participations and promoting
@@ -260,7 +260,17 @@
                         Fred & Farid are also “Chevaliers de l’Olivier des Baux de Provence” for their support to the French Provence region.
                     <p>
                     </p>
-                    In their career Fred & Farid have collaborated with leading western figures in digital, music, fashion, photography, politics, sport, features… such as Isabelle Adjani, Will.I.Am, Paul Auster, Jacques Attali, Remy Belvaux, Eric Cantona, Daniel Cohn-Bendit, Eric Besson, Kathryn Bigelow, Cass Bird, Mary J. Blige, Frank Budgen, Etienne De Crecy, Bill Clinton, Common, Penelope Cruz, Yann Delaigue, Christophe Dominici, Philippe Douste-Blazy, Thierry Dusautoir, Olivier Ferrand, Xavier Giannoli, Alejandro Gonzalez Inarritu, Samuel L. Jackson, Laurent Joffrin, Linton Kwesi Johnson, Joseph Kahn, Jean-François Kahn, Shekhar Kapur, Nikola Karabatic, Nicole Kidman, Nick Knight, Jan Kounen, David Lachapelle, Christian Lacroix, Thomas Langmann, Spike Lee, Loïc Le Meur, Peter Lindbergh, Patrick
+                        In their career Fred & Farid have collaborated with leading western figures in digital, music, fashion, photography,
+                        politics, sport, features… such as Isabelle Adjani, Will.I.Am, Paul Auster, Jacques Attali, Remy Belvaux, Eric Cantona, Daniel Cohn-Bendit,
+                        Eric Besson, Kathryn Bigelow, Cass Bird, Mary J. Blige, Frank Budgen, Etienne De Crecy, Bill Clinton, Common, Penelope Cruz, Yann Delaigue,
+                        Christophe Dominici, Philippe Douste-Blazy, Thierry Dusautoir, Olivier Ferrand, Xavier Giannoli, Alejandro Gonzalez Inarritu, Samuel L. Jackson,
+                        Laurent Joffrin, Linton Kwesi Johnson, Joseph Kahn, Jean-François Kahn, Shekhar Kapur, Nikola Karabatic, Nicole Kidman, Nick Knight, Jan Kounen,
+                        David Lachapelle, Christian Lacroix, Thomas Langmann, Spike Lee, Loïc Le Meur, Peter Lindbergh, Patrick Demarchelier, Ryan Mcginley, Benjamin Millepied,
+                        Barbara Palvin, Tony Parker, Frederic Planchon, Rankin, Terry Richardson, Renzo Rosso, Gustavo Santaolalla, Susan Sarandon, Sølve Sundsbø, Uma Thurman,
+                        Peter Thwaites, Ellen Von Unwerth, Tony Ward, Robbie Williams, Zinedine Zidane.
+                    </p>
+                    <p>
+                        And Recently Chinese Stars Like Hu Ge, Huang Wei Wen, Huo Siyan, Laure Shang, Zhang Liang, Zheng Jun, Dadawa Zhu Zheqin.
                     </p>
                 </div>
             </div>
