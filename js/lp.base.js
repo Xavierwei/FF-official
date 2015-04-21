@@ -2352,24 +2352,35 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var v = this;
                 if (config.resize !== false) {
                     var resizeFn = function () {
-                        var w = $wrap.children('img').width();
-                        var h = $wrap.children('img').height();
+                        if ($wrap.parents('.home-slider').length) {
+                            var vw = $wrap.children('img').width(),
+                                vh = $wrap.children('img').height(),
+                                mtop = $wrap.children('img').css('margin-top'),
+                                mleft = $wrap.children('img').css('margin-left');
+                        }
+                        else {
 
-                        //var vh = 0;
-                        //var vw = 0;
-                        //if (h / w > ratio) {
-                        //    vh = h + 0;
-                        //    vw = vh / ratio;
-                        //} else {
-                        //    vw = w + 0;
-                        //    vh = vw * ratio;
-                        //}
+                            var w = $wrap.width();
+                            var h = $wrap.height();
+                            var vh = 0;
+                            var vw = 0;
+                            if (h / w > ratio) {
+                                vh = h + 0;
+                                vw = vh / ratio;
+                            } else {
+                                vw = w + 0;
+                                vh = vw * ratio;
+                            }
+                            var mtop = (h - vh) / 2,
+                                mleft = (w - vw) / 2;
+                        }
+
                         try {
-                            v.dimensions(w, h);
+                            v.dimensions(vw, vh);
                         } catch (e) {}
                         $('#' + v.Q).css({
-                            "margin-top": $wrap.children('img').css('margin-top'),
-                            "margin-left": $wrap.children('img').css('margin-left')
+                            "margin-top": mtop,
+                            "margin-left": mleft
                         });
                         return false;
                     }
