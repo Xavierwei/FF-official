@@ -1,9 +1,9 @@
 <?php include_once 'common/header.php';?>
-<div class="page" data-page="interview-page" data-header="press">
+<div class="page" data-page="tv-page" data-header="press">
 	<!-- page title -->
 	<?php 
 	$top_title = _e('PRESS',false);
-	$pagetit = _e('INTERVIEW',false);
+	$pagetit = _e('TV',false);
 	include_once 'common/pagetit.php';?>
 
 
@@ -12,7 +12,7 @@
 		<div>
 			<!--  -->
 			<div class="press_txt">
-				<?php _e('FRED &amp; FARID\'s interviews'); ?>
+				<?php _e('FRED &amp; FARID\'s TV'); ?>
 			</div>
 			<!--  -->
 			<div id="press-container" class="interview_list cs-clear">

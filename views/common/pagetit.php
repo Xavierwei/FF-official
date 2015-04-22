@@ -52,7 +52,8 @@
 	<div class="about_crumbs crumbs">
 		<span>
 			<a href="/press" data-a="press_crumbs_link"><?php _e('press'); ?></a> / 
-			<a href="/interview" data-a="press_crumbs_link"><?php _e('INTERVIEW'); ?></a>
+			<a href="/tv" data-a="press_crumbs_link"><?php _e('TV'); ?></a> /
+			<a href="/radio" data-a="press_crumbs_link"><?php _e('RADIO'); ?></a>
 		</span>
 	</div>
 </div>

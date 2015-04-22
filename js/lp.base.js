@@ -28,7 +28,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
     var initSoundWave = function( file, $canves , cb ){
-        // file = 'http://f.cn/audios/1.mp3'
+        //file = 'http://ff.local/audios/20140419_chine_0_2.mp3';
+        //file = 'http://ff.local/audios/20140419_chine_0_2_1.mp3';
+        file = file.replace('http://cdn.fredfarid.com', '');
         LP.use('waveform', function(){
 
           var
@@ -42,7 +44,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
            */
           Dancer.setOptions({
             flashSWF : '/js/dancer/lib/soundmanager2.swf',
-            flashJS  : '/js/dancer/lib/soundmanager2.js'
+              flashJS  : '/js/dancer/lib/soundmanager2.js'
           });
 
           dancer = new Dancer();
@@ -3575,7 +3577,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     cb && cb();
                 });
             },
-            'interview-page': function (cb) {
+            'tv-page': function (cb) {
                 // preload js conponent
                 // LP.use(['video-js', '../plugin/jquery.jplayer.min.js']);
                 // LP.use(['wavesurfer']);
@@ -3591,20 +3593,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         <div class="transition">#[text]</div>\
                     </span>\
                 </div>';
-
-                var radioTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
-                    <div class="interview_info">\
-                        <span><strong>#[title]</strong><br/>#[content]</span>\
-                    </div>\
-                    <div class="interview_img hold-audio-url"  data-a="show-music-interview" data-media="#[media]">\
-                        <img src="#[preview]">\
-                    </div>\
-                    <span class="interview_opt" data-a="show-music-interview" data-media="#[media]">\
-                        <div class="transition">#[text]</div>\
-                    </span>\
-                </div>';
                 // get audio and video
-                api.request(['about/interviews/radio', 'about/interviews/tv'], function (r) {
+                api.request(['about/interviews/tv'], function (r) {
                     var aHtml = [];
                     var images = [];
                     var audio_images_num = 0,
@@ -3646,9 +3636,98 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         result = result.concat( objs[date] );
                     } );
 
-                    console.log( objs );
+                    $.each(result, function (i, item) {
+                        var media = campaignManager.getPath(item, 'media');
+                        var tpl = !media.match(/.mp3$/) ? tvTpl : radioTpl;
+                        var titles = item.title.split('|');
+                        aHtml.push(LP.format(tpl, {
+                            oddoreven: i % 2 ? 'even' : 'odd',
+                            text: !media.match(/.mp3$/) ? (watch_txt + '<br/>' + close_txt) : (listen_txt + '<br/>' + close_txt),
+                            title: titles[0],
+                            content: titles.slice(1).join('<br/>'),
+                            preview: campaignManager.getPath(item, 'picture_2'),
+                            media: media
+                        }));
 
-                    console.log( result );
+                        if (!media.match(/.mp3$/)) {
+                            if (video_images_num++ <= 5) {
+                                images.push(campaignManager.getPath(item, 'picture_2'));
+                            }
+                        } else {
+                            if (audio_images_num++ <= 5) {
+                                images.push(campaignManager.getPath(item, 'picture_2'));
+                            }
+                        }
+                    });
+                    loadImages_2(images, function () {
+                        loadImages($('#press-container img'), null, function () {
+                            $('#press-container img').each(function () {
+                                fixImageToWrap($(this).parent(), $(this));
+                            });
+                        });
+                        cb && cb();
+                    });
+                    $('#press-container').html(aHtml.join(''));
+                });
+            },
+            'radio-page': function (cb) {
+                // preload js conponent
+                // LP.use(['video-js', '../plugin/jquery.jplayer.min.js']);
+                // LP.use(['wavesurfer']);
+
+                var radioTpl = '<div data-effect="fadeup" class="interview_item intoview-effect interview_#[oddoreven] cs-clear">\
+                    <div class="interview_info">\
+                        <span><strong>#[title]</strong><br/>#[content]</span>\
+                    </div>\
+                    <div class="interview_img hold-audio-url"  data-a="show-music-interview" data-media="#[media]">\
+                        <img src="#[preview]">\
+                    </div>\
+                    <span class="interview_opt" data-a="show-music-interview" data-media="#[media]">\
+                        <div class="transition">#[text]</div>\
+                    </span>\
+                </div>';
+                // get audio
+                api.request(['about/interviews/radio'], function (r) {
+                    var aHtml = [];
+                    var images = [];
+                    var audio_images_num = 0,
+                        video_images_num = 0;
+
+                    var listen_txt,
+                        watch_txt,
+                        close_txt;
+                    if($('body').hasClass('lang-zho')) {
+                        listen_txt = '收听';
+                        watch_txt = '观看';
+                        close_txt = '关闭';
+                    } else if($('body').hasClass('lang-fr')) {
+                        listen_txt = 'LISTEN';
+                        watch_txt = 'WATCH';
+                        close_txt = 'CLOSE';
+                    } else {
+                        listen_txt = 'LISTEN';
+                        watch_txt = 'WATCH';
+                        close_txt = 'CLOSE';
+                    }
+
+                    // sort by time
+                    var objs = {};
+                    var dates = [];
+                    $.each( r.items, function(i, item){
+
+                        if( !objs[ item['date'] ] ){
+                            dates.push( item.date );
+                        }
+
+                        objs[ item['date'] ] = objs[ item['date'] ] || [];
+                        objs[ item['date'] ].push( item );
+                    } );
+                    dates = dates.sort().reverse();
+
+                    var result = [];
+                    $.each( dates, function(i, date){
+                        result = result.concat( objs[date] );
+                    } );
 
 
                     $.each(result, function (i, item) {
