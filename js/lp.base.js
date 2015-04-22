@@ -31,7 +31,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         //file = 'http://ff.local/audios/20140419_chine_0_2.mp3';
         //file = 'http://ff.local/audios/20140419_chine_0_2_1.mp3';
         //file = 'http://cdn.fredfarid.com/data/eng/about/interviews/radio//media/lemouv_-_re_e_couter_-_mardi_16_juillet_10-03-45.mp3';
-        file = file.replace('http://cdn.fredfarid.com', 'http://fredfarid.com');
+        file = file.replace('http://cdn.fredfarid.com', 'http://www.fredfarid.com');
         LP.use('waveform', function(){
 
           var
