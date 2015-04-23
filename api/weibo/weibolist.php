@@ -21,11 +21,7 @@ function debugEcho() {
 $cacheFile = __DIR__.'/cache.txt';
 $output = file_get_contents($cacheFile);
 
-debugEcho('====== begin fetch weibo ========');
-debugEcho('=====  now is '. date('G').' =======');
-
-if (date('G') == 9 || $output == '') {
-    debugEcho('===== fetching weibo ======= ');
+if (date('G:i') == '9:00' || $output == '') {
     include_once( 'config.php' );
     include_once( 'saetv2.ex.class.php');
     $token = file_get_contents("token.txt");
@@ -39,8 +35,6 @@ if (date('G') == 9 || $output == '') {
     file_put_contents($cacheFile, $ret);
     $output = $ret;
 }
-
-debugEcho('=======end fetch weibo ========');
 
 
 
