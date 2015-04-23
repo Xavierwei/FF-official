@@ -5013,6 +5013,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     LP.action('navitem', function () {
         // load next page
         pageManager.go($(this).attr('href'));
+
+        // 停止音频
+        var dancer = $('body').data('dancer');
+        if (dancer && dancer.isPlaying()) {
+            $('body').data('dancer').parse()
+        }
         return false;
     });
 
@@ -5871,6 +5877,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $(this).removeClass('wavesurfer-pause')
                             .addClass('wavesurfer-play');
                     }
+
+                    $('body').data('dancer', dancer);
                 })
                 .click();
             } );
