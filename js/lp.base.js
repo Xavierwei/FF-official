@@ -305,14 +305,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         cb && cb();
                     });
             },
-            load: function () {
-                var path = getPath();
+            load: function (fromUrl) {
+                var path = getPath()
+
                 fixHomePageVideo(function () {
                     $('.header').addClass('header-fixed');
                     $(document.body).stop(true,true).css('overflow', 'hidden');
 
                     document.title = $(document.body).data('title') + ' | ' + $('a[data-d="type='+ path +'"]').html();
-                    show_cate_list(path);
+                    show_cate_list(path,fromUrl);
                 });
             }
         });
@@ -691,7 +692,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     if (destory && fromUrl) {
                         destory(function () {
                             if (getPath().match(currUrlMatch)) {
-                                loadFn && loadFn(data)
+                                loadFn && loadFn(fromUrl)
                             }
                         });
                     } else {
@@ -1710,7 +1711,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     // show first cate list
     // type => {categories|brands|services}
-    function show_cate_list(type) {
+    function show_cate_list(type,fromUrl) {
         $('header-inner').height(66);
         $('.sec_brands,.brand_movie,.brand_item_tit').fadeOut();
 
@@ -1764,7 +1765,24 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }, 1000, 'easeOutBack')
                         .promise()
                         .then(function () {
-                            $(this).css('height', '100%');
+                            $(this).css('height', '100%')
+                            //滚动到上次点击位置
+                            var currentId=fromUrl.split('/').pop();
+                            $('.gates-inner-l').find('li a').each(function (i) {
+                                if ($(this).data('id')==currentId) {
+                                    var self=$(this);
+                                    $('.gates-inner-l').stop().animate({
+                                        scrollTop: ($(this).parent().height() + 28) * i
+                                    }, 1000,function(){
+                                        //letterCheck();
+                                        //$('.gates-inner-c a').each(function(){
+                                        //    $(this).removeClass('active');
+                                        //});
+                                        //self.addClass('active');
+                                    });
+                                    return false;
+                                }
+                            });
                         });
                 });
             // render the letters
@@ -1790,7 +1808,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         api.request(type, function (r) {
             loadingMgr.success('show_cate_list', r);
         });
-
     }
 
 
@@ -2821,27 +2838,34 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     // });
 
     // init scroll event
+
     $('.gates-inner-l').scroll(function () {
         var st = $(this).scrollTop();
         var cHeight = 0;
         var $li = null;
-        $(this).find('li').each(function () {
-            cHeight += $(this).height();
-            if (cHeight > st) {
-                $li = $(this);
-                return false;
+        var length=$(this).find('li').length;
+
+        $(this).find('li').each(function (index,ele) {
+            cHeight=$(this).position().top;
+
+            if(index<(length-1)){
+                if ((cHeight) > 0) {
+                    $li = $(this);
+                    return false;
+                }
             }
         });
 
-        var letter = $.trim($li.text())[0];
-        $('.gates-inner-c li').each(function () {
-
-            if (letter.toUpperCase() == $.trim($(this).text().toUpperCase())) {
-                $('.gates-inner-c a').removeClass('active');
-                $(this).find('a').addClass('active');
-                return false;
-            }
-        });
+        if($li!=null) {
+            var letter = $.trim($li.text())[0];
+            $('.gates-inner-c li').each(function () {
+                if (letter.toUpperCase() == $.trim($(this).text().toUpperCase())) {
+                    $('.gates-inner-c a').removeClass('active');
+                    $(this).find('a').addClass('active');
+                    return false;
+                }
+            });
+        }
     });
 
 
@@ -5314,31 +5338,66 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         if( $(this).attr('disabled') ){
             return false;
         }
+        LP.currentLetter=$(this).text()[0]
         urlManager.setFormatHash(data.path);
         // urlManager.go( data.path );
         return false;
     });
 
     LP.action('filter-letter', function () {
-        if ($(this).hasClass('active')) {
-            $(this).removeClass('active');
-        } else {
-            $(this).closest('ul')
-                .find('a')
-                .removeClass('active');
-            $(this).addClass('active');
-        }
+        //if ($(this).hasClass('active')) {
+        //    $(this).removeClass('active');
+        //} else {
+        //    $(this).closest('ul')
+        //        .find('a')
+        //        .removeClass('active');
+        //    $(this).addClass('active');
+        //}
+
+
+        $('.gates-inner-c a').each(function(key,ele){
+           $(ele).removeClass('active');
+        });
+        var self=$(this);
+        $(this).addClass('active');
         var letter = $(this).html();
         // scroll to right position
         $('.gates-inner-l').find('li a').each(function (i) {
             if ($.trim($(this).text())[0].toUpperCase() == letter) {
-                $('.gates-inner-l').animate({
+                $('.gates-inner-l').stop().animate({
                     scrollTop: ($(this).parent().height() + 28) * i
-                }, 1000);
+                }, 1000,function(){
+                    //letterCheck();
+                    $('.gates-inner-c a').each(function(){
+                       $(this).removeClass('active');
+                    });
+                    self.addClass('active');
+                });
                 return false;
             }
         });
         return false;
+
+        function letterCheck(){
+            $current=$('.gates-inner-c a.active');
+            var currentKey=0;
+            $('.gates-inner-c a').each(function(key,ele){
+                if($(ele).html()==$current.html()){
+                    currentKey=key;
+                }
+            });
+            if($current.html()!= letter){
+                $.timeout(function(){
+                    $('.gates-inner-c a').each(function(key,ele){
+                        if(key>=currentKey){
+                            $current.removeClass('active');
+                            $(ele).addClass('active');
+                            $current=$(ele);
+                        }
+                    });
+                },100)
+            }
+        }
     });
 
 
@@ -6778,19 +6837,3 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
 });
-//
-//$(function(){
-//    function bio_hide(){
-//        if(window.location.href.indexOf('bio')>0){
-//            $('.banpho-bt a').hide();
-//            $('.banpho-i').hide();
-//            $('.showreel-tit').css('visibility','hidden');
-//        }
-//    }
-//    bio_hide();
-//
-//    $('.nav a').click(function(){
-//        console.log(window.location.href);
-//        bio_hide();
-//    });
-//})
