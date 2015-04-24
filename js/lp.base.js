@@ -1765,24 +1765,28 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         }, 1000, 'easeOutBack')
                         .promise()
                         .then(function () {
-                            $(this).css('height', '100%')
+                            $(this).css('height', '100%');
                             //滚动到上次点击位置
-                            var currentId=fromUrl.split('/').pop();
-                            $('.gates-inner-l').find('li a').each(function (i) {
-                                if ($(this).data('id')==currentId) {
-                                    var self=$(this);
-                                    $('.gates-inner-l').stop().animate({
-                                        scrollTop: ($(this).parent().height() + 28) * i
-                                    }, 1000,function(){
-                                        //letterCheck();
-                                        //$('.gates-inner-c a').each(function(){
-                                        //    $(this).removeClass('active');
-                                        //});
-                                        //self.addClass('active');
-                                    });
-                                    return false;
-                                }
-                            });
+                            if(fromUrl&&fromUrl.length>0){
+                                $('.gates-inner-l').unbind('mousemove');
+                                var currentId=fromUrl.split('/').pop();
+                                $('.gates-inner-l').find('li a').each(function (i) {
+                                    if ($(this).data('id')==currentId) {
+                                        var self=$(this);
+                                        console.log('reAnimate');
+                                        $('.gates-inner-l').stop().animate({
+                                            scrollTop: ($(this).parent().height() + 28) * i
+
+                                        }, 1000,function(){
+                                            $('.gates-inner-c a').each(function(){
+                                                $(this).removeClass('active');
+                                            });
+                                            self.addClass('active');
+                                        });
+                                        return false;
+                                    }
+                                });
+                            }
                         });
                 });
             // render the letters
@@ -5370,6 +5374,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         // scroll to right position
         $('.gates-inner-l').find('li a').each(function (i) {
             if ($.trim($(this).text())[0].toUpperCase() == letter) {
+
+                console.log('animate');
                 $('.gates-inner-l').stop().animate({
                     scrollTop: ($(this).parent().height() + 28) * i
                 }, 1000,function(){
