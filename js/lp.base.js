@@ -410,7 +410,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 <p class="brands-con-t">#[label]</p>\
                                 <p class="brands-con-time">#[year]</p>\
                                 <div class="cs-clear brands-con-meta">\
-                                    <span class="fr">##[index]</span>\
+                                    <span class="fr" style="color: #fff;">##[index]</span>\
                                     <span>#[cpgn_type]</span>\
                                 </div>\
                                 <div class="items-loading"></div>\
@@ -5037,6 +5037,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     LP.action('navitem', function () {
         // load next page
         pageManager.go($(this).attr('href'));
+
+        // 停止音频
+        var dancer = $('body').data('dancer');
+        if (dancer && dancer.isPlaying()) {
+            $('body').data('dancer').parse()
+        }
         return false;
     });
 
@@ -5930,6 +5936,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         $(this).removeClass('wavesurfer-pause')
                             .addClass('wavesurfer-play');
                     }
+
+                    $('body').data('dancer', dancer);
                 })
                 .click();
             } );
