@@ -1771,7 +1771,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                 $('.gates-inner-l').unbind('mousemove');
                                 var currentId=fromUrl.split('/').pop();
                                 $('.gates-inner-l').find('li a').each(function (i) {
-                                    if ($(this).data('id')==currentId) {
+                                    var tempId;
+                                    if(type=='brands'){
+                                        tempId=$(this).data('id');
+                                    }else{
+                                        tempId=$(this).data('d').split('/').pop();
+                                    }
+                                    if (tempId==currentId) {
                                         var self=$(this);
                                         console.log('reAnimate');
                                         $('.gates-inner-l').stop().animate({
@@ -1782,6 +1788,32 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                                 $(this).removeClass('active');
                                             });
                                             self.addClass('active');
+
+                                            //$('.gates-inner-l').bind('mousemove',function (ev) {
+                                            //    var winHeight = $(window).height();
+                                            //    if (ev.clientY < (winHeight - headerHeight) / 4 + headerHeight) {
+                                            //        runedNum = (1 - (ev.clientY - headerHeight) * 4 / (winHeight - headerHeight)) * 15;
+                                            //        if (!isAtTop) {
+                                            //            isAtTop = true;
+                                            //            gatesScrollTop = $gatesInnerL.scrollTop();
+                                            //        }
+                                            //    } else if (ev.clientY + (winHeight - headerHeight) / 4 > winHeight) {
+                                            //        runedNum = (1 - (winHeight - ev.clientY) * 4 / (winHeight - headerHeight)) * 15;
+                                            //        if (!isAtBottom) {
+                                            //            isAtBottom = true;
+                                            //            gatesScrollTop = $gatesInnerL.scrollTop();
+                                            //        }
+                                            //    } else {
+                                            //        isAtTop = false;
+                                            //        isAtBottom = false;
+                                            //    }
+                                            //}).hover(function () {
+                                            //
+                                            //}, function () {
+                                            //    isAtTop = false;
+                                            //    isAtBottom = false;
+                                            //});
+
                                         });
                                         return false;
                                     }
