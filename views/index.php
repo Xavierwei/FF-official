@@ -159,7 +159,7 @@
 				<div class="home_bioleft"></div>
 				<div class="home_bioright"></div>
 			</div>
-			<a href="/bio" class="home_biobtn">
+			<a href="/bio" data-a="navitem" class="home_biobtn">
 				<div class="transition">
 					<?php _e('READ MORE'); ?><br/><br/><?php _e('READ MORE'); ?>
 				</div>
