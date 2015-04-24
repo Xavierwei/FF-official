@@ -4,3 +4,5 @@ api_cache
 js/s_js
 
 *.psd
+
+.DS_Store
