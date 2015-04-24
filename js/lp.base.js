@@ -1762,7 +1762,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         .stop(true, true)
                         .animate({
                             top: 0
-                        }, 1000, 'easeOutBack')
+                        }, 1000)
                         .promise()
                         .then(function () {
                             $(this).css('height', '100%');
