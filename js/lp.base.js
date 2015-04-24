@@ -2372,7 +2372,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 var v = this;
                 if (config.resize !== false) {
                     var resizeFn = function () {
-                        if ($wrap.parents('.home-slider').length) {
+                        if ($wrap.parents('.home-slider').length){
                             var vw = $wrap.children('img').width(),
                                 vh = $wrap.children('img').height(),
                                 mtop = $wrap.children('img').css('margin-top'),
