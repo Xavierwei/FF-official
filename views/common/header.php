@@ -24,7 +24,7 @@
     <title><?php _e('FRED &amp; FARID GROUP');?></title>
 	<meta name="keywords" content="Fred & Farid, Fred&Farid, Fred & Farid Group, Fred&Farid Group, FFL Paris, Frédéric Raillard, Farid Mokart, agence de publicité, agence de communication" />
 	<meta name="description" content="FRED & FARID GROUP is the first French independent Digital Creative Group, founded in 2007 by Fred Raillard and Farid Mokart, Cannes Grand Prix 2009 winner." />
-	<meta property="og:title" content="FRED &amp;AMP; FARID GROUP" />
+	<meta property="og:title" content="FRED & FARID GROUP" />
 	<meta property="og:image" content="http://www.fredfarid.com/assets/images/ff_fb_200x200.jpg" />
 	<meta property="og:description" content="FRED & FARID GROUP is the first French independent Digital Creative Group, founded in 2007 by Fred Raillard and Farid Mokart, Cannes Grand Prix 2009 winner." />
 	<meta property="og:url" content="http://www.fredfarid.com/" />
