@@ -1223,18 +1223,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             .each(function () {
                 var video = $(this).data('video-object');
                 try {
-                    video.src([
-                        {type: 'video/mp4', src: ''},
-                        {type: "video/webm", src: ''},
-                        {type: "video/ogg", src: ''}
-                    ]);
-
-                    if (window.stop !== undefined) {
-                        window.stop();
-                    }
-                    else if (document.execCommand !== undefined) {
-                        document.execCommand("Stop", false);
-                    }
+                    //video.src([
+                    //    {type: 'video/mp4', src: ''},
+                    //    {type: "video/webm", src: ''},
+                    //    {type: "video/ogg", src: ''}
+                    //]);
+                    //
+                    //if (window.stop !== undefined) {
+                    //    window.stop();
+                    //}
+                    //else if (document.execCommand !== undefined) {
+                    //    document.execCommand("Stop", false);
+                    //}
 
                     video && video.dispose();
                 } catch (e) {}
