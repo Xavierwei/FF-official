@@ -19,6 +19,7 @@
     .about_timeline,.jobslist {width: 1100px;}
     .about_timeline {width: 1000px;}
     .timeline_left, .timeline_right, .timeline_pho a {width: 499px;}
+    .home_viewtxt {width: 26%;margin: 0 0 0 5%;}
     /*.jobsitem {width:316px; }*/
 }
 
