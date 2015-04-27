@@ -1804,24 +1804,24 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                                             });
                                             self.addClass('active');
 
-                                            $('.gates-inner-l').bind('mousemove',mousemoveGil).hover(function () {
-
-                                            }, function () {
-                                                isAtTop = false;
-                                                isAtBottom = false;
-                                            });
+                                            //$('.gates-inner-l').bind('mousemove',mousemoveGil).hover(function () {
+                                            //
+                                            //}, function () {
+                                            //    isAtTop = false;
+                                            //    isAtBottom = false;
+                                            //});
 
                                         });
                                         return false;
                                     }
                                 });
                             }else{
-                                $('.gates-inner-l').bind('mousemove',mousemoveGil).hover(function () {
-
-                                }, function () {
-                                    isAtTop = false;
-                                    isAtBottom = false;
-                                });
+                                //$('.gates-inner-l').bind('mousemove',mousemoveGil).hover(function () {
+                                //
+                                //}, function () {
+                                //    isAtTop = false;
+                                //    isAtBottom = false;
+                                //});
                             }
                         });
                 });
@@ -1850,7 +1850,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         });
     }
     function mousemoveGil(ev) {
-        console.log('mousemoveGil');
         var winHeight = $(window).height();
         if (ev.clientY < (winHeight - headerHeight) / 4 + headerHeight) {
             runedNum = (1 - (ev.clientY - headerHeight) * 4 / (winHeight - headerHeight)) * 15;
@@ -2701,23 +2700,23 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     var gatesScrollTop = 0;
     var runedNum = 0;
     var $gatesInnerL = $('.gates-inner-l').mousemove(function (ev) {
-        var winHeight = $(window).height();
-        if (ev.clientY < (winHeight - headerHeight) / 4 + headerHeight) {
-            runedNum = (1 - (ev.clientY - headerHeight) * 4 / (winHeight - headerHeight)) * 15;
-            if (!isAtTop) {
-                isAtTop = true;
-                gatesScrollTop = $gatesInnerL.scrollTop();
-            }
-        } else if (ev.clientY + (winHeight - headerHeight) / 4 > winHeight) {
-            runedNum = (1 - (winHeight - ev.clientY) * 4 / (winHeight - headerHeight)) * 15;
-            if (!isAtBottom) {
-                isAtBottom = true;
-                gatesScrollTop = $gatesInnerL.scrollTop();
-            }
-        } else {
-            isAtTop = false;
-            isAtBottom = false;
-        }
+        //var winHeight = $(window).height();
+        //if (ev.clientY < (winHeight - headerHeight) / 4 + headerHeight) {
+        //    runedNum = (1 - (ev.clientY - headerHeight) * 4 / (winHeight - headerHeight)) * 15;
+        //    if (!isAtTop) {
+        //        isAtTop = true;
+        //        gatesScrollTop = $gatesInnerL.scrollTop();
+        //    }
+        //} else if (ev.clientY + (winHeight - headerHeight) / 4 > winHeight) {
+        //    runedNum = (1 - (winHeight - ev.clientY) * 4 / (winHeight - headerHeight)) * 15;
+        //    if (!isAtBottom) {
+        //        isAtBottom = true;
+        //        gatesScrollTop = $gatesInnerL.scrollTop();
+        //    }
+        //} else {
+        //    isAtTop = false;
+        //    isAtBottom = false;
+        //}
     }).hover(function () {
 
     }, function () {
@@ -2903,6 +2902,27 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var cHeight = 0;
         var $li = null;
         var length=$(this).find('li').length;
+
+
+        var inneL=$('.gates-inner-l>.column').height();
+        var gatesH=$('.sec_gates').height();
+        var inneC=$('.gates-inner-c').height();
+        console.group('letter-scroll');
+            console.group('inner-l');
+                console.log(st);
+                console.log(inneL-gatesH);
+            console.groupEnd();
+            console.group('inner-c');
+                console.log((inneC-gatesH)*st/(inneL-gatesH));
+                console.log(inneC-gatesH);
+            console.groupEnd();
+        console.groupEnd();
+
+        if(inneC-gatesH > 0){
+            $('.gates-inner-c').css('marginTop','-'+(inneC-gatesH)*st/(inneL-gatesH)+'px');
+        }else{
+            $('.gates-inner-c').css('marginTop','0px');
+        }
 
         $(this).find('li').each(function (index,ele) {
             cHeight=$(this).position().top;
@@ -5444,12 +5464,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     });
                     self.addClass('active');
 
-                    $('.gates-inner-l').bind('mousemove',mousemoveGil).hover(function () {
 
-                    }, function () {
-                        isAtTop = false;
-                        isAtBottom = false;
-                    });
+                    //$('.gates-inner-l').bind('mousemove',mousemoveGil).hover(function () {
+                    //
+                    //}, function () {
+                    //    isAtTop = false;
+                    //    isAtBottom = false;
+                    //});
 
                 });
                 return false;
