@@ -477,7 +477,7 @@ body.lang-zho .home_biotxt{font-size: 14px;width: 1090px;margin: 0 auto;line-hei
 .gates-inner a:hover,.gates-inner a.active{color: white;}
 .gates-inner-l{font-size: 44px;font-weight: bold;line-height: 1.2em;height: 100%;overflow: auto;padding: 0;}
 .gates-inner-l a{margin-right: 100px;text-transform: uppercase;}
-.gates-inner-c{/*padding-top: 100px;*/width: 12%;float: left;font-size: 18px;line-height: 1.5em;position: absolute;left: 67.8%;top:0;}
+.gates-inner-c{padding-top: 15px;width: 12%;float: left;font-size: 18px;line-height: 1.5em;position: absolute;left: 67.8%;top:0;}
 .gates-inner-r{padding-top: 100px;width: 20.2%;float: left;font-size: 18px;line-height: 1.5em;text-transform: uppercase;position: absolute;left: 78.8%;top:0;}
 .gates-inner-l .column{margin: 15px auto;}
 #categories-wrap>li {margin-bottom:28px;}
