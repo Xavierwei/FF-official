@@ -2391,7 +2391,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     function renderVideo($wrap, movie, poster, config, cb) {
         var id = 'video-js-' + ($.guid++);
-
+        var title=config.title ? config.title:'';
         $wrap.append(LP.format('<div class="video-wrap" style="z-index:-1;"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
             preload="auto"\
               poster="#[poster]">\
@@ -2408,14 +2408,15 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         <div class="vjs-default-skin">\
         <div class="video-share">share</div>\
         <div class="video-share-icon">\
-        <a target="_blank" href="http://service.weibo.com/share/share.php?title=FF-TV-SHOW&url=#[videoFile]" class="share icon-weibo"></a>\
-        <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[videoFile]&t=FF-TV-SHOW" class="share icon-facebook"></a>\
-        <a target="_blank" href="https://twitter.com/intent/tweet?url=#[videoFile]&text=FF-TV-SHOW" class="share icon-twitter"></a>\
+        <a target="_blank" href="http://service.weibo.com/share/share.php?title=#[title]&url=#[videoFile]" class="share icon-weibo"></a>\
+        <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[videoFile]&t=#[title]" class="share icon-facebook"></a>\
+        <a target="_blank" href="https://twitter.com/intent/tweet?url=#[videoFile]&text=#[title]" class="share icon-twitter"></a>\
         </div></div>\
         ', {
             id: id,
             videoFile: movie,
-            poster: poster
+            poster: poster,
+            title:title
         }));
 
         $('.video-share').mouseover(function(){
@@ -3708,10 +3709,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     <div class="interview_info">\
                         <span><strong>#[title]</strong><br/>#[content]</span>\
                     </div>\
-                    <div class="interview_img" data-a="show-video-interview" data-media="#[media]">\
+                    <div class="interview_img" data-a="show-video-interview" data-title="#[title]" data-content="#[content]" data-media="#[media]">\
                         <img src="#[preview]">\
                     </div>\
-                    <span class="interview_opt" data-a="show-video-interview" data-media="#[media]">\
+                    <span class="interview_opt" data-a="show-video-interview" data-title="#[title]" data-content="#[content]" data-media="#[media]">\
                         <div class="transition">#[text]</div>\
                     </span>\
                 </div>';
@@ -3801,10 +3802,10 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     <div class="interview_info">\
                         <span><strong>#[title]</strong><br/>#[content]</span>\
                     </div>\
-                    <div class="interview_img hold-audio-url"  data-a="show-music-interview" data-media="#[media]">\
+                    <div class="interview_img hold-audio-url"  data-a="show-music-interview" data-title="#[title]" data-media="#[media]">\
                         <img src="#[preview]">\
                     </div>\
-                    <span class="interview_opt" data-a="show-music-interview" data-media="#[media]">\
+                    <span class="interview_opt" data-a="show-music-interview" data-title="#[title]" data-media="#[media]">\
                         <div class="transition">#[text]</div>\
                     </span>\
                 </div>';
@@ -5865,6 +5866,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     LP.action('show-video-interview', function () {
         var media = $(this).data('media');
+        var title=$(this).data('title');
+        var content=$(this).data('content');
         var $item = $(this).closest('.interview_item');
 
         // hide others
@@ -5910,7 +5913,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 autoplay: false,
                 controls: true,
                 pause_button: true,
-                showLoadingBar: true
+                showLoadingBar: true,
+                title:title
             }, function () {
                 $('.vjs-default-skin')
                     .append($videoWrap.find('.vjs-control-bar').show())
@@ -5960,6 +5964,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
     LP.action('show-music-interview', function () {
         var media = $(this).data('media');
+        var title=$(this).data('title');
         var $item = $(this).closest('.interview_item');
 
         // hide others
@@ -6011,12 +6016,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     <div class="wavesurfer-playPause-btn wavesurfer-pause" tabindex="1">play</div>\
                     <div class="interview_share">share</div>\
                     <div class="interview_share_icon">\
-                    <a target="_blank" href="http://service.weibo.com/share/share.php?title=FF-TV-SHOW&url=#[media]" class="share icon-weibo"></a>\
-                    <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[media]&t=FF-TV-SHOW" class="share icon-facebook"></a>\
-                    <a target="_blank" href="https://twitter.com/intent/tweet?url=#[media]&text=FF-TV-SHOW" class="share icon-twitter"></a>\
+                    <a target="_blank" href="http://service.weibo.com/share/share.php?title=#[title]&url=#[media]" class="share icon-weibo"></a>\
+                    <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[media]&t=#[title]" class="share icon-facebook"></a>\
+                    <a target="_blank" href="https://twitter.com/intent/tweet?url=#[media]&text=#[title]" class="share icon-twitter"></a>\
                     </div>\
                 </div>\
-            </div>',{media:media})).insertAfter($item)
+            </div>',{media:media,title:title})).insertAfter($item)
             .find('.interview-music')
             .animate({
                 marginTop: 0
