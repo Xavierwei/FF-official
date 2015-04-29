@@ -1223,18 +1223,18 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             .each(function () {
                 var video = $(this).data('video-object');
                 try {
-                    video.src([
-                        {type: 'video/mp4', src: ''},
-                        {type: "video/webm", src: ''},
-                        {type: "video/ogg", src: ''}
-                    ]);
-
-                    if (window.stop !== undefined) {
-                        window.stop();
-                    }
-                    else if (document.execCommand !== undefined) {
-                        document.execCommand("Stop", false);
-                    }
+                    //video.src([
+                    //    {type: 'video/mp4', src: ''},
+                    //    {type: "video/webm", src: ''},
+                    //    {type: "video/ogg", src: ''}
+                    //]);
+                    //
+                    //if (window.stop !== undefined) {
+                    //    window.stop();
+                    //}
+                    //else if (document.execCommand !== undefined) {
+                    //    document.execCommand("Stop", false);
+                    //}
 
                     video && video.dispose();
                 } catch (e) {}
@@ -1850,7 +1850,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         });
     }
     function mousemoveGil(ev) {
-        console.log('mousemoveGil');
         var winHeight = $(window).height();
         if (ev.clientY < (winHeight - headerHeight) / 4 + headerHeight) {
             runedNum = (1 - (ev.clientY - headerHeight) * 4 / (winHeight - headerHeight)) * 15;
@@ -2920,6 +2919,27 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var cHeight = 0;
         var $li = null;
         var length=$(this).find('li').length;
+
+
+        var inneL=$('.gates-inner-l>.column').height();
+        var gatesH=$('.sec_gates').height();
+        var inneC=$('.gates-inner-c').height();
+        console.group('letter-scroll');
+            console.group('inner-l');
+                console.log(st);
+                console.log(inneL-gatesH);
+            console.groupEnd();
+            console.group('inner-c');
+                console.log((inneC-gatesH)*st/(inneL-gatesH));
+                console.log(inneC-gatesH);
+            console.groupEnd();
+        console.groupEnd();
+
+        if(inneC-gatesH > 0){
+            $('.gates-inner-c').css('marginTop','-'+(inneC-gatesH)*st/(inneL-gatesH)+'px');
+        }else{
+            $('.gates-inner-c').css('marginTop','0px');
+        }
 
         $(this).find('li').each(function (index,ele) {
             cHeight=$(this).position().top;
@@ -4491,22 +4511,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             },
             init: function (cb) {
                 if ($('html').hasClass('canvas')) {
-                    // LP.use(['logo'],function() {
-                    //     var reloadLogo = function() {
-                    //         var canvas, stage, exportRoot;
-                    //         canvas = document.getElementById("ff_logo_canvas");
-                    //         exportRoot = new lib._2();
+                    LP.use(['logo'],function() {
+                         var reloadLogo = function() {
+                             var canvas, stage, exportRoot;
+                             canvas = document.getElementById("ff_logo_canvas");
+                             exportRoot = new lib._2();
 
-                    //         stage = new createjs.Stage(canvas);
-                    //         stage.addChild(exportRoot);
-                    //         stage.update();
-                    //         stage.enableMouseOver();
+                             stage = new createjs.Stage(canvas);
+                             stage.addChild(exportRoot);
+                             stage.update();
+                             stage.enableMouseOver();
 
-                    //         createjs.Ticker.setFPS(lib.properties.fps);
-                    //         createjs.Ticker.addEventListener("tick", stage);
-                    //     }
-                    //     reloadLogo();
-                    // });
+                             createjs.Ticker.setFPS(lib.properties.fps);
+                             createjs.Ticker.addEventListener("tick", stage);
+                         };
+                         reloadLogo();
+                    });
                     LP.use(['loading_logo'],function() {
                         var loading_logo = function () {
                             var canvas, stage, exportRoot;
@@ -5460,6 +5480,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                        $(this).removeClass('active');
                     });
                     self.addClass('active');
+
 
                     $('.gates-inner-l').bind('mousemove',mousemoveGil).hover(function () {
 
