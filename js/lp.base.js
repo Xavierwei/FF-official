@@ -2419,25 +2419,36 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             title:title
         }));
 
-        $('.video-share').mouseenter(function(){
-            $(this).animate({
+
+        function share_icon_show(){
+            $('.video-share-icon').unbind('mouseleave');
+            $('.video-share').stop().animate({
                 bottom:30,
                 opacity:0
-            },null,null,function(){
+            },500,null,function(){
+                console.log('open');
                 $('.video-share-icon').show();
+                $('.video-share-icon').bind('mouseleave',share_icon_hide);
             });
-        });
+        }
 
-
-        $('.video-share-icon').mouseleave(function(){
+        function share_icon_hide(){
+            $('.video-share').unbind('mouseenter');
             setTimeout(function(){
                 $('.video-share-icon').hide();
-                $('.video-share').animate({
-                    bottom:12,
+                $('.video-share').stop().animate({
+                    bottom:10,
                     opacity:1
-                },500);
-            },500)
-        });
+                },500,null,function(){
+                    console.log('close');
+                    $('.video-share').bind('mouseenter',share_icon_show);
+                })
+            },500);
+        }
+
+        $('.video-share').bind('mouseenter',share_icon_show);
+        $('.video-share-icon').bind('mouseleave',share_icon_hide);
+
 
         config = $.extend({
             "controls": false,
@@ -6038,24 +6049,34 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 marginTop: 0
             }, 500);
 
-            $('.interview_share').mouseenter(function(){
-                $(this).animate({
+            function share_icon_show(){
+                $('.interview_share_icon').unbind('mouseleave');
+                $('.interview_share').stop().animate({
                     top:0,
                     opacity:0
-                },null,null,function(){
+                },500,null,function(){
+                    console.log('open');
                     $('.interview_share_icon').show();
+                    $('.interview_share_icon').bind('mouseleave',share_icon_hide);
                 });
-            });
+            }
 
-            $('.interview_share_icon').mouseleave(function(){
+            function share_icon_hide(){
+                $('.interview_share').unbind('mouseenter');
                 setTimeout(function(){
                     $('.interview_share_icon').hide();
-                    $('.interview_share').animate({
+                    $('.interview_share').stop().animate({
                         top:78,
                         opacity:1
-                    },500)
+                    },500,null,function(){
+                        console.log('close');
+                        $('.interview_share').bind('mouseenter',share_icon_show);
+                    })
                 },500);
-            });
+            }
+
+            $('.interview_share').bind('mouseenter',share_icon_show);
+            $('.interview_share_icon').bind('mouseleave',share_icon_hide);
 
             var randomId = 'audio-' + ($.guid++);
             $container.attr('id', randomId);
