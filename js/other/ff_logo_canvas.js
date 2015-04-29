@@ -17,7 +17,7 @@ if (loop == null) { loop = false; }	this.initialize(mode,startPosition,loop,{});
 
 	// Actions
 	this.instance = new lib.FF();
-	this.instance.setTransform(5.7,8.1,0.293,0.293,0,0,0,-4.2,3.8);
+	this.instance.setTransform(6.1,8.1,0.293,0.293,0,0,0,-4.2,3.8);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(64));
 
