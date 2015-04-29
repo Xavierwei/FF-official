@@ -2435,8 +2435,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 $('.video-share').animate({
                     bottom:12,
                     opacity:1
-                });
-            },1000)
+                },500);
+            },500)
         });
 
         config = $.extend({
@@ -6053,8 +6053,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     $('.interview_share').animate({
                         top:78,
                         opacity:1
-                    })
-                },1000);
+                    },500)
+                },500);
             });
 
             var randomId = 'audio-' + ($.guid++);
