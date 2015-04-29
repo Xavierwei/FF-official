@@ -2419,13 +2419,24 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             title:title
         }));
 
-        $('.video-share').mouseover(function(){
+        $('.video-share').mouseenter(function(){
             $(this).animate({
                 bottom:30,
                 opacity:0
             },null,null,function(){
                 $('.video-share-icon').show();
             });
+        });
+
+
+        $('.video-share-icon').mouseleave(function(){
+            setTimeout(function(){
+                $('.video-share-icon').hide();
+                $('.video-share').animate({
+                    bottom:12,
+                    opacity:1
+                });
+            },1000)
         });
 
         config = $.extend({
@@ -6027,13 +6038,23 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 marginTop: 0
             }, 500);
 
-            $('.interview_share').mouseover(function(){
+            $('.interview_share').mouseenter(function(){
                 $(this).animate({
                     top:0,
                     opacity:0
                 },null,null,function(){
                     $('.interview_share_icon').show();
                 });
+            });
+
+            $('.interview_share_icon').mouseleave(function(){
+                setTimeout(function(){
+                    $('.interview_share_icon').hide();
+                    $('.interview_share').animate({
+                        top:78,
+                        opacity:1
+                    })
+                },1000);
             });
 
             var randomId = 'audio-' + ($.guid++);
