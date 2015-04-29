@@ -8,7 +8,13 @@ $lang = isset( $_COOKIE['lang'] ) ? $_COOKIE['lang'] : '';
 if(  empty($lang) ){
 	$lang = 'eng';
 }
-$url = 'http://preprod.fredfarid.com/data/' . $lang . '/' . $_POST['contentPaths'] . '.json';
+// JSON FILE
+//$url = 'http://preprod.fredfarid.com/data/' . $lang . '/' . $_POST['contentPaths'] . '.json';
+
+// WS
+$url = 'http://backoffice.fredfarid.com/'.$lang.'/ws';
+$_POST['contentPaths'] = 'pages_contents/'.$_POST['contentPaths'];
+
 $key = md5( $url . json_encode( $_POST ) );
 // check file
 $file = __DIR__ . '/../api_cache/' . $key;
