@@ -2390,9 +2390,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         });
     }
 
-
     function renderVideo($wrap, movie, poster, config, cb) {
         var id = 'video-js-' + ($.guid++);
+
         $wrap.append(LP.format('<div class="video-wrap" style="z-index:-1;"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
             preload="auto"\
               poster="#[poster]">\
@@ -2405,11 +2405,28 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                  <param name="flashvars" value=\'config={"playlist":["#[poster]", {"url": "#[videoFile]","autoPlay":false,"autoBuffering":true}]}\' />\
                  <img src="#[poster]" alt="Poster Image" title="No video playback capabilities." />\
              </object>\
-        </video></div>', {
+        </video></div>\
+        <div class="vjs-default-skin">\
+        <div class="video-share">share</div>\
+        <div class="video-share-icon">\
+        <a target="_blank" href="http://service.weibo.com/share/share.php?title=FF-TV-SHOW&url=#[videoFile]" class="share icon-weibo"></a>\
+        <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[videoFile]&t=FF-TV-SHOW" class="share icon-facebook"></a>\
+        <a target="_blank" href="https://twitter.com/intent/tweet?url=#[videoFile]&text=FF-TV-SHOW" class="share icon-twitter"></a>\
+        </div></div>\
+        ', {
             id: id,
             videoFile: movie,
             poster: poster
         }));
+
+        $('.video-share').mouseover(function(){
+            $(this).animate({
+                bottom:30,
+                opacity:0
+            },null,null,function(){
+                $('.video-share-icon').show();
+            });
+        });
 
         config = $.extend({
             "controls": false,
@@ -5874,10 +5891,9 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 pause_button: true,
                 showLoadingBar: true
             }, function () {
-                $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
+                $('.vjs-default-skin')
                     .append($videoWrap.find('.vjs-control-bar').show())
                     .appendTo($videoWrap.parent());
-                
             });
 
             // start animate
