@@ -6004,17 +6004,32 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             //        <div class="interview_share">share</div>\
             //    </div>\
             //</div>').insertAfter( $item );
-            $container = $('<div class="interview-music-wrap">\
+
+            $container = $(LP.format('<div class="interview-music-wrap">\
                 <div class="interview-music" style="margin-top: -190px;">\
                     <div class="interview-audio"></div>\
                     <div class="wavesurfer-playPause-btn wavesurfer-pause" tabindex="1">play</div>\
                     <div class="interview_share">share</div>\
+                    <div class="interview_share_icon">\
+                    <a target="_blank" href="http://service.weibo.com/share/share.php?title=FF-TV-SHOW&url=#[media]" class="share icon-weibo"></a>\
+                    <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[media]&t=FF-TV-SHOW" class="share icon-facebook"></a>\
+                    <a target="_blank" href="https://twitter.com/intent/tweet?url=#[media]&text=FF-TV-SHOW" class="share icon-twitter"></a>\
+                    </div>\
                 </div>\
-            </div>').insertAfter($item)
+            </div>',{media:media})).insertAfter($item)
             .find('.interview-music')
             .animate({
                 marginTop: 0
             }, 500);
+
+            $('.interview_share').mouseover(function(){
+                $(this).animate({
+                    top:0,
+                    opacity:0
+                },null,null,function(){
+                    $('.interview_share_icon').show();
+                });
+            });
 
             var randomId = 'audio-' + ($.guid++);
             $container.attr('id', randomId);

@@ -696,6 +696,7 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 
 .interview-music-wrap{position: relative;overflow: hidden;}
 .interview-music-wrap .interview_share{top: 78px;left:205px;cursor: pointer;font-size: 19px;line-height:14px;text-transform:uppercase;position: absolute;color: #ffffff;}
+.interview-music-wrap .interview_share_icon{top: 78px;left:205px;cursor: pointer;font-size: 19px;line-height:14px;text-transform:uppercase;position: absolute;color: #ffffff;display: none}
 .interview-music{height: 170px !important;width: 100% !important;margin-bottom: 20px;background: #000;position: relative;}
 .interview-audio{width: 65%;height:100%;position: relative;margin-left: 35%;}
 .jp-progress{ width: 573px;height: 127px; position: absolute;top: 21px; left: 315px;background: #fff url(../images/music-bg.png) center;}
