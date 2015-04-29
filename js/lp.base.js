@@ -4494,22 +4494,22 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             },
             init: function (cb) {
                 if ($('html').hasClass('canvas')) {
-                    // LP.use(['logo'],function() {
-                    //     var reloadLogo = function() {
-                    //         var canvas, stage, exportRoot;
-                    //         canvas = document.getElementById("ff_logo_canvas");
-                    //         exportRoot = new lib._2();
+                    LP.use(['logo'],function() {
+                         var reloadLogo = function() {
+                             var canvas, stage, exportRoot;
+                             canvas = document.getElementById("ff_logo_canvas");
+                             exportRoot = new lib._2();
 
-                    //         stage = new createjs.Stage(canvas);
-                    //         stage.addChild(exportRoot);
-                    //         stage.update();
-                    //         stage.enableMouseOver();
+                             stage = new createjs.Stage(canvas);
+                             stage.addChild(exportRoot);
+                             stage.update();
+                             stage.enableMouseOver();
 
-                    //         createjs.Ticker.setFPS(lib.properties.fps);
-                    //         createjs.Ticker.addEventListener("tick", stage);
-                    //     }
-                    //     reloadLogo();
-                    // });
+                             createjs.Ticker.setFPS(lib.properties.fps);
+                             createjs.Ticker.addEventListener("tick", stage);
+                         };
+                         reloadLogo();
+                    });
                     LP.use(['loading_logo'],function() {
                         var loading_logo = function () {
                             var canvas, stage, exportRoot;

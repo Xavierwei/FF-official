@@ -160,8 +160,7 @@
 
 				<div class="logo-wrap desktop">
 					<a href="/" data-a="navitem" class="logo transition">
-					    <!-- <canvas id="ff_logo_canvas" width="14" height="14" style="background-color:#FFFFFF"></canvas> -->
-
+					     <canvas id="ff_logo_canvas" width="14" height="14" style="background-color:#FFFFFF"></canvas>
                     </a>
 				</div>
 				<div class="nav column cs-clear">
