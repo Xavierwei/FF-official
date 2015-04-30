@@ -2433,15 +2433,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         function share_icon_hide(){
             //$('.video-share').unbind('mouseenter');
-            setTimeout(function(){
-                $('.video-share-icon').stop().fadeOut('slow');
-                $('.video-share').stop().animate({
-                    bottom:20,
-                    opacity:1
-                },400,null,function(){
-                    //$('.video-share').bind('mouseenter',share_icon_show);
-                })
-            },400);
+            $('.video-share-icon').stop().fadeOut('slow');
+            $('.video-share').stop().animate({
+                bottom:20,
+                opacity:1
+            },400,null,function(){
+                //$('.video-share').bind('mouseenter',share_icon_show);
+            })
         }
 
         $('.video-share').bind('mouseenter',share_icon_show);
@@ -6120,16 +6118,13 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
             function share_icon_hide(){
                 //$('.interview_share').unbind('mouseenter');
-                setTimeout(function(){
-                    $('.interview_share_icon').stop().fadeOut('slow');
-                    $('.interview_share').stop().animate({
-                        top:78,
-                        opacity:1
-                    },500,null,function(){
-                        console.log('close');
-                        //$('.interview_share').bind('mouseenter',share_icon_show);
-                    })
-                },500);
+                $('.interview_share_icon').stop().fadeOut('slow');
+                $('.interview_share').stop().animate({
+                    top:78,
+                    opacity:1
+                },500,null,function(){
+                    //$('.interview_share').bind('mouseenter',share_icon_show);
+                })
             }
 
             $('.interview_share').bind('mouseenter',share_icon_show);
