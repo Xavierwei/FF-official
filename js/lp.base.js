@@ -1742,7 +1742,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 case 'services':
                     $('.gates-inner-c').hide();
                 case 'brands':
-                    path += item.id;
+                    path += item.title;
                     break;
                 case 'categories':
                     path += item.path;
@@ -2942,16 +2942,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         var inneL=$('.gates-inner-l>.column').height();
         var gatesH=$('.sec_gates').height();
         var inneC=$('.gates-inner-c').height();
-        console.group('letter-scroll');
-            console.group('inner-l');
-                console.log(st);
-                console.log(inneL-gatesH);
-            console.groupEnd();
-            console.group('inner-c');
-                console.log((inneC-gatesH)*st/(inneL-gatesH));
-                console.log(inneC-gatesH);
-            console.groupEnd();
-        console.groupEnd();
 
         if(inneC-gatesH > 0){
             $('.gates-inner-c').css('marginTop','-'+(inneC-gatesH)*st/(inneL-gatesH)+'px');

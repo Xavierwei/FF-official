@@ -37,7 +37,24 @@ define(function( require , exports , model ){
 			// }
 		},
 		getBrandCampaigns: function( brandId, success ){
-			this.request('extended/brands/brand_' + brandId , success);
+            var isNumber = !isNaN(brandId) && brandId < 200;
+            var self = this;
+            if (!isNumber) {
+                brandId = decodeURIComponent(brandId);
+                console.log(brandId);
+                this.request('brands', function (res) {
+                    for (var i = 0; i < (res['items'] || []).length; i++) {
+                        var item = res['items'][i];
+                        if (item['title'] == brandId) {
+                            self.request('extended/brands/brand_' + res['items'][i]['id'] , success);
+                            break;
+                        }
+                    }
+                });
+            }
+            else {
+                this.request('extended/brands/brand_' + brandId , success);
+            }
 			// var path = 'brands/' + brandId;
 			// if( window.localStorage && $.inArray( path, localStoragePaths ) >= 0 ){
 			// 	var result = localStorage.getItem( path );
