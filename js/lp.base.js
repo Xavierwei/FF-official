@@ -2426,7 +2426,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 bottom:50,
                 opacity:0
             },400,null,function(){
-                $('.video-share-icon').show();
+                $('.video-share-icon').stop().fadeIn('slow');
                 //$('.video-share-icon').bind('mouseleave',share_icon_hide);
             });
         }
@@ -2434,7 +2434,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
         function share_icon_hide(){
             //$('.video-share').unbind('mouseenter');
             setTimeout(function(){
-                $('.video-share-icon').hide();
+                $('.video-share-icon').stop().fadeOut('slow');
                 $('.video-share').stop().animate({
                     bottom:20,
                     opacity:1
@@ -2446,7 +2446,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
         $('.video-share').bind('mouseenter',share_icon_show);
         $('.video-share-icon').bind('mouseleave',share_icon_hide);
-
 
         config = $.extend({
             "controls": false,
@@ -6048,27 +6047,27 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             }, 500);
 
             function share_icon_show(){
-                $('.interview_share_icon').unbind('mouseleave');
+                //$('.interview_share_icon').unbind('mouseleave');
                 $('.interview_share').stop().animate({
                     top:0,
                     opacity:0
                 },500,null,function(){
                     console.log('open');
-                    $('.interview_share_icon').show();
-                    $('.interview_share_icon').bind('mouseleave',share_icon_hide);
+                    $('.interview_share_icon').stop().fadeIn('slow');
+                    //$('.interview_share_icon').bind('mouseleave',share_icon_hide);
                 });
             }
 
             function share_icon_hide(){
-                $('.interview_share').unbind('mouseenter');
+                //$('.interview_share').unbind('mouseenter');
                 setTimeout(function(){
-                    $('.interview_share_icon').hide();
+                    $('.interview_share_icon').stop().fadeOut('slow');
                     $('.interview_share').stop().animate({
                         top:78,
                         opacity:1
                     },500,null,function(){
                         console.log('close');
-                        $('.interview_share').bind('mouseenter',share_icon_show);
+                        //$('.interview_share').bind('mouseenter',share_icon_show);
                     })
                 },500);
             }
