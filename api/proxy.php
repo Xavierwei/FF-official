@@ -45,17 +45,17 @@ function fixRequestContentPath($contentPath) {
 }
 
 // JSON FILE
-//$url = 'http://preprod.fredfarid.com/data/' . $lang . '/' . $_POST['contentPaths'] . '.json';
+$url = 'http://preprod.fredfarid.com/data/' . $lang . '/' . $_POST['contentPaths'] . '.json';
 
 // WS
-$url = 'http://backoffice.fredfarid.com/'.$lang.'/ws';
-$_POST['contentPaths'] = fixRequestContentPath($_POST['contentPaths']);
+//$url = 'http://backoffice.fredfarid.com/'.$lang.'/ws';
+//$_POST['contentPaths'] = fixRequestContentPath($_POST['contentPaths']);
 
 
 $key = md5( $url . json_encode( $_POST ) );
 // check file
 $file = __DIR__ . '/../api_cache/' . $key;
- if( !file_exists($file) || !file_get_contents( $file ) || TRUE){
+ if( !file_exists($file) || !file_get_contents( $file )){
 	$ch = curl_init($url);
 	curl_setopt( $ch, CURLOPT_HEADER, 0 );
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
@@ -67,19 +67,5 @@ $file = __DIR__ . '/../api_cache/' . $key;
 }
 
 $res = file_get_contents( $file );
-//if ($_POST['contentPaths'] == 'home' && !empty($_POST['type'])) {
-//    $ret = array();
-//    $data = json_decode($res, true);
-//    foreach ($data['items'] as $item) {
-//        if ($item['reel'] == $_POST['type']) $ret[] = $item;
-//    }
-//    $start = rand(0, 10);
-//    if (count($ret)  < 1) {
-//        $ret = array_slice($data['items'], $start, 10);
-//    }
-//    $res = json_encode(array(
-//        'items' => $ret
-//    ));
-//}
 
 echo $res;
