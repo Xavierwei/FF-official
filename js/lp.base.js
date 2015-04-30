@@ -810,7 +810,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     pause_button: true,
                     showLoadingBar: true
                 }, function () {
-                    $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
+                    $('<div class="vjs-default-skin"></div>')
                         .append($li.find('.vjs-control-bar').show())
                         .appendTo($li);
                 });
@@ -2392,6 +2392,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
     function renderVideo($wrap, movie, poster, config, cb) {
         var id = 'video-js-' + ($.guid++);
         var title=config.title ? config.title:'';
+        var hideTimeline = config.hideTimeline ? 'hide-timeline': '';
         $wrap.append(LP.format('<div class="video-wrap" style="z-index:-1;"><video id="#[id]" style="width: 100%;height: 100%;" class="video-js vjs-default-skin"\
             preload="auto"\
               poster="#[poster]">\
@@ -2405,45 +2406,57 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                  <img src="#[poster]" alt="Poster Image" title="No video playback capabilities." />\
              </object>\
         </video></div>\
-        <div class="vjs-default-skin">\
+        <div class="vjs-default-skin #[hideTimeline]">\
+        <div class="video-share-con">\
         <div class="video-share">share</div>\
         <div class="video-share-icon">\
         <a target="_blank" href="http://service.weibo.com/share/share.php?title=#[title]&url=#[videoFile]" class="share icon-weibo"></a>\
         <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[videoFile]&t=#[title]" class="share icon-facebook"></a>\
         <a target="_blank" href="https://twitter.com/intent/tweet?url=#[videoFile]&text=#[title]" class="share icon-twitter"></a>\
-        </div></div>\
+        </div></div></div>\
         ', {
             id: id,
             videoFile: movie,
             poster: poster,
-            title:title
+            title:title,
+            hideTimeline: hideTimeline
         }));
 
+        $('.video-share-con').on('mouseenter', function () {
+            var $el = $(this);
+            var $share = $el.children('.video-share');
+            var $shareIcon = $el.children('.video-share-icon');
+            if ($el.hasClass('moving')) return;
+            $el.addClass('moving');
 
-        function share_icon_show(){
-            //$('.video-share-icon').unbind('mouseleave');
-            $('.video-share').stop().animate({
-                bottom:50,
-                opacity:0
-            },400,null,function(){
-                $('.video-share-icon').stop().fadeIn('slow');
-                //$('.video-share-icon').bind('mouseleave',share_icon_hide);
+            $.when(
+                $share.stop(true, true).animate({
+                bottom: 25
+                }, 400).promise(),
+                $shareIcon.stop(true, true).animate({
+                    bottom: 0
+                }, 400).promise()
+            ).done(function () {
+                    $el.removeClass('moving');
             });
-        }
+        }).on('mouseleave', function () {
+            var $el = $(this);
+            var $share = $el.children('.video-share');
+            var $shareIcon = $el.children('.video-share-icon');
+            if ($el.hasClass('moving')) return;
+            $el.addClass('moving');
 
-        function share_icon_hide(){
-            //$('.video-share').unbind('mouseenter');
-            $('.video-share-icon').stop().fadeOut('slow');
-            $('.video-share').stop().animate({
-                bottom:20,
-                opacity:1
-            },400,null,function(){
-                //$('.video-share').bind('mouseenter',share_icon_show);
-            })
-        }
-
-        $('.video-share').bind('mouseenter',share_icon_show);
-        $('.video-share-icon').bind('mouseleave',share_icon_hide);
+            $.when(
+                $share.stop(true, true).animate({
+                    bottom: 0
+                }, 400).promise(),
+                $shareIcon.stop(true, true).animate({
+                    bottom: -25
+                }, 400).promise()
+            ).done(function () {
+                    $el.removeClass('moving');
+                });
+        });
 
         config = $.extend({
             "controls": false,
@@ -3789,7 +3802,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             }
                         }
                     });
-                    images.push('/images/share_bg.jpg');
+                    //images.push('/images/share_bg.jpg');
                     loadImages_2(images, function () {
                         loadImages($('#press-container img'), null, function () {
                             $('#press-container img').each(function () {
@@ -5352,7 +5365,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 ratio: $sliderItem.children('img')[0].height / $sliderItem.children('img')[0].width,
                 autoplay: true,
                 showLoadingBar: true,
-                loop: false
+                loop: false,
+                hideTimeline: true
             }, function () {
                 this.on('play', function () {
                     $btn
@@ -5378,6 +5392,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 // this.on('progress', function(){
                 //     videoProgress( this.currentTime() / this.duration() * 100 );
                 // });
+
             });
         } else if (videoObject.paused()) {
             videoObject.play();
@@ -5654,7 +5669,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         pause_button: true,
                         showLoadingBar: true
                     }, function () {
-                        $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
+                        $('<div class="vjs-default-skin"></div>')
                             .append($li.find('.vjs-control-bar').show())
                             .appendTo($li);
                     });
@@ -5697,7 +5712,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                         pause_button: true,
                         showLoadingBar: true
                     }, function () {
-                        $('<div class="vjs-default-skin"><div class="video-share">share</div></div>')
+                        $('<div class="vjs-default-skin"></div>')
                             .append($li.find('.vjs-control-bar').show())
                             .appendTo($li);
                     });
