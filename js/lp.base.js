@@ -2421,29 +2421,27 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
 
 
         function share_icon_show(){
-            $('.video-share-icon').unbind('mouseleave');
+            //$('.video-share-icon').unbind('mouseleave');
             $('.video-share').stop().animate({
-                bottom:30,
+                bottom:50,
                 opacity:0
-            },500,null,function(){
-                console.log('open');
+            },400,null,function(){
                 $('.video-share-icon').show();
-                $('.video-share-icon').bind('mouseleave',share_icon_hide);
+                //$('.video-share-icon').bind('mouseleave',share_icon_hide);
             });
         }
 
         function share_icon_hide(){
-            $('.video-share').unbind('mouseenter');
+            //$('.video-share').unbind('mouseenter');
             setTimeout(function(){
                 $('.video-share-icon').hide();
                 $('.video-share').stop().animate({
-                    bottom:10,
+                    bottom:20,
                     opacity:1
-                },500,null,function(){
-                    console.log('close');
-                    $('.video-share').bind('mouseenter',share_icon_show);
+                },400,null,function(){
+                    //$('.video-share').bind('mouseenter',share_icon_show);
                 })
-            },500);
+            },400);
         }
 
         $('.video-share').bind('mouseenter',share_icon_show);
