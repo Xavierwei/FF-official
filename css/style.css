@@ -9,6 +9,7 @@
 /* Reset
 ================================================================================================= */
 html{width: 100%;}
+
 body{font-family:Helvetica,"Microsoft Yahei",simsun,arial,sans-serif;color:#000;font-size:12px;line-height:1.666em;background: #000;}
 body.lang-zho{font-family: "Microsoft Yahei", "Hiragino Sans GB", simsun,arial,sans-serif;color:#000;font-size:12px;line-height:1.666em;background: #000;}
 body.s_bc { background-color: #fff; }
