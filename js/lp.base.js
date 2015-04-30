@@ -4536,14 +4536,74 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                              var canvas, stage, exportRoot;
                              canvas = document.getElementById("ff_logo_canvas");
                              exportRoot = new lib._2();
-
                              stage = new createjs.Stage(canvas);
-                             stage.addChild(exportRoot);
+                             //stage.addChild(exportRoot);
+
+
+                             //test|——|——
+                             var line1 = new createjs.Shape();
+                             line1.graphics.beginFill("#ffffff").drawRect(0, 0, 2, 14);
+                             line1.x = 0;
+                             line1.y = 14;
+                             stage.addChild(line1);
+                             var line2 = new createjs.Shape();
+                             line2.graphics.beginFill("#ffffff").drawRect(0, 0, 14, 2);
+                             line2.x = -14;
+                             line2.y = 0;
+                             stage.addChild(line2);
+                             var line3 = new createjs.Shape();
+                             line3.graphics.beginFill("#ffffff").drawRect(0, 0, 14, 2);
+                             line3.x = -14;
+                             line3.y = 7;
+                             stage.addChild(line3);
+                             var line4 = new createjs.Shape();
+                             line4.graphics.beginFill("#ffffff").drawRect(0, 0, 2, 14);
+                             line4.x = 7;
+                             line4.y = 14;
+                             stage.addChild(line4);
+
+
+
+                                 //.to({ alpha: 0, y: 12 }, 500, createjs.Ease.getPowInOut(2))
+                                 //.to({ alpha: 1, y: 2 }, 500, createjs.Ease.getPowInOut(2))
+                                 //.to({ alpha: 0,  x: 2 }, 800, createjs.Ease.getPowInOut(2));
+
+
+                             var mc = new createjs.MovieClip(null, 0, false, {start:0});
+                             stage.addChild(mc);
+
+                             var speedMc=10;
+                             mc.timeline.addTween(
+                                createjs.Tween.get(line1)
+                                 .to({ y: 0 }, speedMc, createjs.Ease.getPowInOut(4)));
+                             mc.timeline.addTween(
+                                createjs.Tween.get(line2)
+                                 .wait(speedMc)
+                                 .to({ x: 0 }, speedMc, createjs.Ease.getPowInOut(4)));
+                             mc.timeline.addTween(
+                                createjs.Tween.get(line3)
+                                 .wait(speedMc*2)
+                                 .to({ x: 0 }, speedMc, createjs.Ease.getPowInOut(4)));
+                             mc.timeline.addTween(
+                                createjs.Tween.get(line4)
+                                 .wait(speedMc*3)
+                                 .to({ y: 0 }, speedMc, createjs.Ease.getPowInOut(4)));
+
+                             mc.gotoAndPlay("start");
+
+                             //test|——|——end
+
+
                              stage.update();
                              stage.enableMouseOver();
 
+                             stage.addEventListener("mouseenter",function(){
+                                 mc.gotoAndPlay("start");
+                             });
+
                              createjs.Ticker.setFPS(lib.properties.fps);
                              createjs.Ticker.addEventListener("tick", stage);
+
                          };
                          reloadLogo();
                     });
