@@ -3799,6 +3799,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             }
                         }
                     });
+                    images.push('/images/share_bg.jpg');
                     loadImages_2(images, function () {
                         loadImages($('#press-container img'), null, function () {
                             $('#press-container img').each(function () {
@@ -3893,6 +3894,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                             }
                         }
                     });
+                    images.push('/images/share_bg.jpg');
                     loadImages_2(images, function () {
                         loadImages($('#press-container img'), null, function () {
                             $('#press-container img').each(function () {
