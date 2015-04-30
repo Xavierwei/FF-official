@@ -1742,7 +1742,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 case 'services':
                     $('.gates-inner-c').hide();
                 case 'brands':
-                    path += item.title;
+                    path += item.id;
                     break;
                 case 'categories':
                     path += item.path;

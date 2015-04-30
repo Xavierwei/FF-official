@@ -41,7 +41,6 @@ define(function( require , exports , model ){
             var self = this;
             if (!isNumber) {
                 brandId = decodeURIComponent(brandId);
-                console.log(brandId);
                 this.request('brands', function (res) {
                     for (var i = 0; i < (res['items'] || []).length; i++) {
                         var item = res['items'][i];
