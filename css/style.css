@@ -1322,3 +1322,30 @@ a[disabled="disabled"]:hover {color: #000000;}
 .hide-timeline {
     display: none;
 }
+
+.interview-music-wrap .video-share-con {
+    left: 205px;
+    top: 73px;
+}
+
+.interview-music-wrap .interview_share {
+    top: auto;
+    left: 0px;
+    width: 85px;
+    text-align: center;
+    font-size: 14px;
+    bottom: 0px;
+    height: 25px;
+    line-height: 25px;
+}
+
+.interview-music-wrap .interview_share_icon {
+    top: auto;
+    left: 0px;
+    bottom: -25px;
+    display: block;
+}
+
+
+
+

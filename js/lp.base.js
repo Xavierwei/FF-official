@@ -2426,35 +2426,36 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             var $el = $(this);
             var $share = $el.children('.video-share');
             var $shareIcon = $el.children('.video-share-icon');
-            if ($el.hasClass('moving')) return;
-            $el.addClass('moving');
+            $share.stop(true, true);
+            $shareIcon.stop(true, true);
 
             $.when(
-                $share.stop(true, true).animate({
+                $share.animate({
                 bottom: 25
                 }, 400).promise(),
-                $shareIcon.stop(true, true).animate({
+                $shareIcon.animate({
                     bottom: 0
                 }, 400).promise()
             ).done(function () {
-                    $el.removeClass('moving');
+
             });
         }).on('mouseleave', function () {
             var $el = $(this);
             var $share = $el.children('.video-share');
             var $shareIcon = $el.children('.video-share-icon');
-            if ($el.hasClass('moving')) return;
-            $el.addClass('moving');
+
+            $share.stop(true, true);
+            $shareIcon.stop(true, true);
 
             $.when(
-                $share.stop(true, true).animate({
+                $share.animate({
                     bottom: 0
                 }, 400).promise(),
-                $shareIcon.stop(true, true).animate({
+                $shareIcon.animate({
                     bottom: -25
                 }, 400).promise()
             ).done(function () {
-                    $el.removeClass('moving');
+
                 });
         });
 
@@ -6098,12 +6099,12 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 <div class="interview-music" style="margin-top: -190px;">\
                     <div class="interview-audio"></div>\
                     <div class="wavesurfer-playPause-btn wavesurfer-pause" tabindex="1">play</div>\
-                    <div class="interview_share">share</div>\
+                    <div class="video-share-con"><div class="interview_share">share</div>\
                     <div class="interview_share_icon">\
                     <a target="_blank" href="http://service.weibo.com/share/share.php?title=#[title]&url=#[media]" class="share icon-weibo"></a>\
                     <a target="_blank" href="http://www.facebook.com/sharer.php?u=#[media]&t=#[title]" class="share icon-facebook"></a>\
                     <a target="_blank" href="https://twitter.com/intent/tweet?url=#[media]&text=#[title]" class="share icon-twitter"></a>\
-                    </div>\
+                    </div></div>\
                 </div>\
             </div>',{media:media,title:title})).insertAfter($item)
             .find('.interview-music')
@@ -6111,31 +6112,43 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 marginTop: 0
             }, 500);
 
-            function share_icon_show(){
-                //$('.interview_share_icon').unbind('mouseleave');
-                $('.interview_share').stop().animate({
-                    top:0,
-                    opacity:0
-                },500,null,function(){
-                    console.log('open');
-                    $('.interview_share_icon').stop().fadeIn('slow');
-                    //$('.interview_share_icon').bind('mouseleave',share_icon_hide);
-                });
-            }
+            $('.video-share-con').on('mouseenter', function () {
+                var $el = $(this);
+                var $share = $el.children('.interview_share');
+                var $shareIcon = $el.children('.interview_share_icon');
+                $share.stop(true, true);
+                $shareIcon.stop(true, true);
 
-            function share_icon_hide(){
-                //$('.interview_share').unbind('mouseenter');
-                $('.interview_share_icon').stop().fadeOut('slow');
-                $('.interview_share').stop().animate({
-                    top:78,
-                    opacity:1
-                },500,null,function(){
-                    //$('.interview_share').bind('mouseenter',share_icon_show);
-                })
-            }
+                $.when(
+                    $share.animate({
+                        bottom: 25
+                    }, 400).promise(),
+                    $shareIcon.animate({
+                        bottom: 0
+                    }, 400).promise()
+                ).done(function () {
 
-            $('.interview_share').bind('mouseenter',share_icon_show);
-            $('.interview_share_icon').bind('mouseleave',share_icon_hide);
+                    });
+            }).on('mouseleave', function () {
+                var $el = $(this);
+                var $share = $el.children('.interview_share');
+                var $shareIcon = $el.children('.interview_share_icon');
+
+                $share.stop(true, true);
+                $shareIcon.stop(true, true);
+
+                $.when(
+                    $share.animate({
+                        bottom: 0
+                    }, 400).promise(),
+                    $shareIcon.animate({
+                        bottom: -25
+                    }, 400).promise()
+                ).done(function () {
+
+                    });
+            });
+
 
             var randomId = 'audio-' + ($.guid++);
             $container.attr('id', randomId);
