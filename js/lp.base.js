@@ -1223,11 +1223,11 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             .each(function () {
                 var video = $(this).data('video-object');
                 try {
-                    //video.src([
-                    //    {type: 'video/mp4', src: ''},
-                    //    {type: "video/webm", src: ''},
-                    //    {type: "video/ogg", src: ''}
-                    //]);
+                    video.src([
+                        {type: 'video/mp4', src: ''},
+                        {type: "video/webm", src: ''},
+                        {type: "video/ogg", src: ''}
+                    ]);
                     //
                     //if (window.stop !== undefined) {
                     //    window.stop();
@@ -1235,6 +1235,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     //else if (document.execCommand !== undefined) {
                     //    document.execCommand("Stop", false);
                     //}
+                    video.play();
 
                     video && video.dispose();
                 } catch (e) {}
