@@ -15,8 +15,8 @@
                 "<span class="s_upp">T</span>here should be more agencies challenging the status quo.
                 <br />
                 <span class="s_upp">F</span>red &amp; <span class="s_upp">F</span>arid is a good example of a young independent agency
-                <br />
                 that has succeeded brilliantly.
+                <br />
                 <span class="s_upp">B</span>ut we need 10 or 20 <span class="s_upp">F</span>red &amp; <span class="s_upp">F</span>arid"
             </p>
             <div  style="text-align: center; width: 1000px;">

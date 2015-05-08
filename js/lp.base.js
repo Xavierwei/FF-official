@@ -3205,7 +3205,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                 function homeAPICb (r) {
                     var aHtml = [];
                         items = (r.items || [] ).slice();
-
                     $.each(items || [], function (i, item) {
                         aHtml.push(LP.format('<div class="slider-item" title="#[title]" data-movie="#[video]"><img src="#[image]" /></div>', {
                             image: campaignManager.getPath(item, 'picture'),
@@ -3220,7 +3219,8 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     fixImgsDomLoaded($($('#slider-block-inner img').slice(0, 3)), cb);
                 }
                 api.request('home', function (r) {
-                    $ftype = 'LUXE REEL';
+                    console.log(r.items);
+                    $ftype = 'DIGITAL REEL';
                     var items = [];
                     $.each(r.items || [], function (i, item){
                         //res['items'][index]['reel']
