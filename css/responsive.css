@@ -50,7 +50,7 @@
     .jobsitem {width:316px; }
     .about_timeline {width: 1000px;}
     .timeline_left, .timeline_right, .timeline_pho a {width: 480px;}
-    .about_txt {width: 1000px;}
+    .about_txt {width: 1005px;}
 
     .home_biotxt{width: auto;padding: 0 20px;}
     .home_bioleft{width: 47%;margin-right: 6%;}
@@ -98,7 +98,7 @@
     .home_bioleft{width: 47%;margin-right: 6%;}
     .home_bioright{width: 47%;}
     .home_numtable{width: auto;}
-    .about_txt {width: 900px;}
+    .about_txt {width: 1005px;}
     /*.ft_con{width: auto;}*/
     /*.ft_mod{width: 19%;padding: 0 0.5%;}*/
 
@@ -163,8 +163,8 @@
 @media only screen and (max-width:800px){
     .gates-inner-l{font-size: 30px;}
 
-    .about_txt{padding: 40px 0}
-    .about_txt p{font-size: 24px;}
+    /*.about_txt{padding: 40px 0}*/
+    /*.about_txt p{font-size: 24px;}*/
     .awardicons, .contact_item{width: 600px;}
     .awardicons img, .award-num{margin: 0px 25px 10px;}
 
