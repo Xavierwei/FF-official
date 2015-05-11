@@ -27,7 +27,7 @@
     <div class="slide-cat-nav">
         <a href="javascript:;" data-a="homeSlideType" data-d="type=DIGITAL REEL" class="last cur">Digital reel</a>
         <a href="javascript:;" data-a="homeSlideType" data-d="type=LUXE REEL" style="width: 108px;">LUXE reel</a>
-        <a href="javascript:;" data-a="homeSlideType" data-d="type=VIDEO REEL">video reel</a>
+        <a href="javascript:;" data-a="homeSlideType" data-d="type=VIDEO REEL" style="width: 108px;">video reel</a>
     </div>
 </div>
 <div class="slide-down-tip"> <a href="javascript:;" data-a="slide-alink"></a> </div>
