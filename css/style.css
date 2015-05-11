@@ -437,6 +437,23 @@ body.lang-zho .contact_ad p{padding: 0 0 10px;font-size: 12px;}
     line-height: 100px;
     margin-top: 150px;
 }
+.home_brand{
+    text-align: center;
+}
+.home_brand h2{
+    font-size: 48px;
+    line-height: 100px;
+    margin-top: 150px;
+    text-transform: uppercase;
+}
+.home_brand p{
+    color:#9c9c9c;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.home_brand img{
+    margin-top: 50px;
+}
 .home_camcon{width: 966px;padding-bottom: 50px;}
 .cam_item{text-align: center;width: 322px;font-weight:bold;line-height: 30px;float: left;margin-top: 300px;cursor: pointer;margin-bottom: 50px;}
 /*.cam_item{text-align: center;width: 365px;font-weight:bold;line-height: 30px;float: left;margin-top: 300px;cursor: pointer;}*/
@@ -852,13 +869,13 @@ a[disabled="disabled"]:hover {color: #000000;}
 .slide-tip{
     position: absolute;
     top: 65px;
-    left: 84px;
+    left: 65px;
     background-color: white;
     z-index: 10;
 }
 
 .slide-tip .slide-cat-nav {
-    padding-left: 14px;
+    padding-left: 30px;
 }
 
 .slide-tip a{

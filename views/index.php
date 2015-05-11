@@ -131,6 +131,7 @@
 				</div>
 			</a> -->
 		</div>
+
         <div class="home_jobs">
             <h2 class="intoview-effect" style="margin-top: 0;" data-effect="fadeup"><?php _e('NEW JOBS'); ?></h2>
             <div class="section sec_jobs">
@@ -141,8 +142,17 @@
             </div>
         </div>
 
+        <div class="home_brand">
+            <h2 class="intoview-effect" style="margin-top: 0;" data-effect="fadeup">ff digital investment fund</h2>
+            <p>we PROVIDES CAPITAL, INCUBATION, MENTORING & RESOURCES</p>
+            <p>TO PROMISING DIGITAL VENTURES</p>
+            <div class="">
+                <img src="/images/brand.png">
+            </div>
+        </div>
+
         <div class="home_agencies">
-            <h2 class="intoview-effect" style="margin-top: 0;" data-effect="fadeup"><?php _e('AGENCIES'); ?></h2>
+            <!--<h2 class="intoview-effect" style="margin-top: 0;" data-effect="fadeup"><?php _e('AGENCIES'); ?></h2>-->
             <div class="section sec_jobs">
 
                 <div class="agencies-con column cs-clear f_column">
