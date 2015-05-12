@@ -144,10 +144,23 @@
 
         <div class="home_brand">
             <h2 class="intoview-effect" style="margin-top: 0;" data-effect="fadeup">ff digital investment fund</h2>
-            <p>we PROVIDES CAPITAL, INCUBATION, MENTORING & RESOURCES</p>
+            <p>we PROVIDE CAPITAL, INCUBATION, MENTORING & RESOURCES</p>
             <p>TO PROMISING DIGITAL VENTURES</p>
             <div class="">
-                <img src="/images/brand.png">
+                <a href="http://www.5m-ventures.com/fr/"><img src="/images/brand/HOME-BRAND-1.jpg"></a>
+                <a href="http://babbler.fr/"><img src="/images/brand/HOME-BRAND-2.jpg"></a>
+                <a href="http://www.bonjourbonjour.net/en"><img src="/images/brand/HOME-BRAND-3.jpg"></a>
+                <a href="http://www.early-birds.fr/"><img src="/images/brand/HOME-BRAND-4.jpg"></a>
+                <a href="http://fashioncapitalpartners.com/"><img src="/images/brand/HOME-BRAND-5.jpg"></a>
+                <a href="https://itunes.apple.com/fr/app/gov/id732854392?mt=8%3Cbr%20/%3E%3Cbr%20/%3E%3Cbr%20/%3E"><img src="/images/brand/HOME-BRAND-6.jpg"></a>
+            </div>
+            <div>
+                <a href="http://www.little-big-data.com/"><img src="/images/brand/HOME-BRAND-7.jpg"></a>
+                <a href="http://www.markelys.com/"><img src="/images/brand/HOME-BRAND-8.jpg"></a>
+                <a href="http://www.melty.fr/"><img src="/images/brand/HOME-BRAND-9.jpg"></a>
+                <a href="https://state.com/landing"><img src="/images/brand/HOME-BRAND-10.jpg"></a>
+                <a href="http://www.thetops.fr/"><img src="/images/brand/HOME-BRAND-11.jpg"></a>
+                <a href="http://www.wezzoo.com/"><img src="/images/brand/HOME-BRAND-12.jpg"></a>
             </div>
         </div>
 
