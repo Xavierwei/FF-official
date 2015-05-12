@@ -3219,7 +3219,6 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     fixImgsDomLoaded($($('#slider-block-inner img').slice(0, 3)), cb);
                 }
                 api.request('home', function (r) {
-                    console.log(r.items);
                     $ftype = 'DIGITAL REEL';
                     var items = [];
                     $.each(r.items || [], function (i, item){
@@ -5389,6 +5388,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     //    LP.triggerAction('home-play-movie');
                     //}});
                     //$('.video-wrap').remove();
+                    disposeVideo();
                 });
 
                 // this.on('progress', function(){
