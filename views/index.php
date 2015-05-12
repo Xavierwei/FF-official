@@ -150,8 +150,8 @@
                 <a target="_blank" href="http://www.5m-ventures.com/fr/"><img src="/images/brand/HOME-BRAND-1.jpg"></a>
                 <a target="_blank" href="http://babbler.fr/"><img src="/images/brand/HOME-BRAND-2.jpg"></a>
                 <a target="_blank" href="http://www.bonjourbonjour.net/en"><img src="/images/brand/HOME-BRAND-3.jpg"></a>
-                <a target="_blank" href="http://www.early-birds.fr/"><img src="/images/brand/HOME-BRAND-4.jpg"></a>
-                <a target="_blank" href="http://fashioncapitalpartners.com/"><img src="/images/brand/HOME-BRAND-5.jpg"></a>
+                <a target="_blank" href="http://fashioncapitalpartners.com/"><img src="/images/brand/HOME-BRAND-4.jpg"></a>
+                <a target="_blank" href="http://www.early-birds.fr/"><img src="/images/brand/HOME-BRAND-5.jpg"></a>
                 <a target="_blank" href="https://itunes.apple.com/fr/app/gov/id732854392?mt=8%3Cbr%20/%3E%3Cbr%20/%3E%3Cbr%20/%3E"><img src="/images/brand/HOME-BRAND-6.jpg"></a>
             </div>
             <div>
