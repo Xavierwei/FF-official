@@ -5388,7 +5388,7 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
                     //LP.triggerAction('home-slider-right',{callback:function(){
                     //    LP.triggerAction('home-play-movie');
                     //}});
-                    $('.video-wrap').remove();
+                    //$('.video-wrap').remove();
                 });
 
                 // this.on('progress', function(){
