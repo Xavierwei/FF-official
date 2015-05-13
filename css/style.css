@@ -716,6 +716,10 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
     z-index: 101;
     height: 50px;
 }
+.big-item.interview-video-wrap .video-share-con {
+    bottom: 27px;
+    left:10px;
+}
 .vjs-default-skin .vjs-control-bar{background: #000;}
 
 
