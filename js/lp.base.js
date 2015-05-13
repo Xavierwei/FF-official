@@ -1650,11 +1650,19 @@ LP.use(['/js/plugin/jquery.easing.1.3.js', '../api'], function (easing, api) {
             // <div class="brand_big_text_item"> <p class="brand_big_text_tit">&nbsp;</p> <p class="brand_big_text_val">&nbsp;</p><p class="brand_big_text_val">&nbsp;</p> </div>\
 
             campaignManager.getCampaignInfo(item._contentPath, function (campaign) {
+                
                 campaign['year'] = campaign['date'].split('-')[0];
                 for (var key in campaign) {
                     if (!campaign[key]) {
                         campaign[key + '_visible'] = 'style="display:none;"';
                     }
+                }
+                
+                var re = /#\[(.*?)\]/g, item;
+                while((item = re.exec(textTpl)) != null) {
+                	if (!campaign[item[1]] && !campaign[item[1] + '_visible']) {
+                		campaign[item[1] + '_visible'] = 'style="display:none;"';
+                	}
                 }
 
                 campaignManager.getBrandById(campaign.fid_customer, function (brand) {
