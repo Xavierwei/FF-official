@@ -712,7 +712,7 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 .big-item.interview-video-wrap .vjs-default-skin .vjs-control-bar{
     top: auto;
     position: absolute;
-    margin-bottom: 0;
+    margin: 10px;
     z-index: 101;
     height: 50px;
 }
