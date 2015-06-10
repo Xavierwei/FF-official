@@ -45,11 +45,11 @@ function fixRequestContentPath($contentPath) {
 }
 
 // JSON FILE
-$url = 'http://preprod.fredfarid.com/data/' . $lang . '/' . $_POST['contentPaths'] . '.json';
+// $url = 'http://preprod.fredfarid.com/data/' . $lang . '/' . $_POST['contentPaths'] . '.json';
 
 // WS
-//$url = 'http://backoffice.fredfarid.com/'.$lang.'/ws';
-//$_POST['contentPaths'] = fixRequestContentPath($_POST['contentPaths']);
+$url = 'http://backoffice.fredfarid.com/'.$lang.'/ws';
+$_POST['contentPaths'] = fixRequestContentPath($_POST['contentPaths']);
 
 
 $key = md5( $url . json_encode( $_POST ) );
