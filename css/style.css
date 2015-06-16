@@ -764,13 +764,13 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
     float: left;
 }
 .loading-wrap .blue{
-    background-color:blue;
+    background-color:#051440;
 }
 .loading-wrap .white{
-    background-color:white;
+    background-color:#FFFFFF;
 }
 .loading-wrap .red{
-    background-color:red;
+    background-color:#ec1920;
 }
 .loading{  width: 100%;
   background: #000;
