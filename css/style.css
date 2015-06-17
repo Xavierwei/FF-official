@@ -760,7 +760,7 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 }
 .loading-wrap .layer{
     width: 33.333333%;
-    height: 1px;
+    height: 2px;
     float: left;
 }
 .loading-wrap .blue{
@@ -774,7 +774,7 @@ body .vjs-default-skin .vjs-big-play-button:focus{box-shadow: none;}
 }
 .loading{  width: 100%;
   background: #000;
-  height: 1px;
+  height: 2px;
   right: 0;
   position: absolute;
 }
